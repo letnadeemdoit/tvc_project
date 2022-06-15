@@ -1,6 +1,16 @@
 import _ from 'lodash';
 window._ = _;
 
+try {
+    window.jQuery = window.$ = require('jquery');
+    window.bootstrap = require('bootstrap');
+} catch (e) {
+    if (process.env.MIX_ENV === 'development') {
+        console.log('Bootstrap, Jquery, Popper, Try -> Catch: ');
+        console.log(e);
+    }
+}
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

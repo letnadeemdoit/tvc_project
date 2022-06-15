@@ -14,7 +14,9 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
-    ]);
+    ])
+    .sass('resources/sass/app.scss', 'public/css/bootstrap.css')
+    .sourceMaps();
 
 if (mix.inProduction()) {
     mix.version();
