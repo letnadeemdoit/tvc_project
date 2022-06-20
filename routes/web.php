@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::controller(\App\Http\Controllers\GuestController::class)
+    ->name('guest.')
+    ->group(function () {
+        Route::get('/', 'welcome')->name('welcome');
+        Route::get('/contact', 'contact')->name('contact');
+        Route::get('/policies', 'policies')->name('policies');
+        Route::get('/help', 'help')->name('help');
+    });
+
 
 Route::middleware([
     'auth:sanctum',

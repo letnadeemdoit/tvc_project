@@ -1,9 +1,13 @@
 import _ from 'lodash';
 window._ = _;
 
+
 try {
     window.jQuery = window.$ = require('jquery');
     window.bootstrap = require('bootstrap');
+
+    // Front Dashboard Js
+    require('./front-dashboard-v2');
 } catch (e) {
     if (process.env.MIX_ENV === 'development') {
         console.log('Bootstrap, Jquery, Popper, Try -> Catch: ');

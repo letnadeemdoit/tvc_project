@@ -16,6 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
     ])
     .sass('resources/sass/app.scss', 'public/css/bootstrap.css')
+    .sass('resources/sass/front-dashboard-v2/theme.scss', 'public/css')
+    .sass('resources/sass/front-dashboard-v2/theme-dark.scss', 'public/css')
     .sourceMaps();
 
 if (mix.inProduction()) {

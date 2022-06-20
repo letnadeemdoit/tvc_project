@@ -11,14 +11,16 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <main>
+            @include('layouts.partials.navigation-menu-top-guest')
             {{ $slot }}
-        </div>
+            @include('layouts.partials.footer-guest')
+        </main>
     </body>
 </html>
