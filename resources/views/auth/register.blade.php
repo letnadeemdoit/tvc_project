@@ -1,71 +1,19 @@
-<x-guest-layout>
+<x-auth-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
-            <div class="position-absolute top-0 start-0 end-0 mt-3 mx-3">
-                <div class="d-none d-lg-flex justify-content-between">
-                    <a href="./index.html">
-                        <img class="w-100" src="./assets/svg/logos/logo.svg" alt="Image Description"
-                             data-hs-theme-appearance="default" style="min-width: 7rem; max-width: 7rem;">
-                        <img class="w-100" src="./assets/svg/logos-light/logo.svg" alt="Image Description"
-                             data-hs-theme-appearance="dark" style="min-width: 7rem; max-width: 7rem;">
-                    </a>
-
-                    <!-- Select -->
-                    <div class="tom-select-custom tom-select-custom-end tom-select-custom-bg-transparent">
-                        <select class="js-select form-select form-select-sm form-select-borderless"
-                                data-hs-tom-select-options='{
-                          "searchInDropdown": false,
-                          "hideSearch": true,
-                          "dropdownWidth": "12rem",
-                          "placeholder": "Select language"
-                        }'>
-                            <option label="empty"></option>
-                            <option value="language1"
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/><span>English (US)</span></span>'>
-                                English (US)
-                            </option>
-                            <option value="language2" selected
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Image description" width="16"/><span>English (UK)</span></span>'>
-                                English (UK)
-                            </option>
-                            <option value="language3"
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/><span>Deutsch</span></span>'>
-                                Deutsch
-                            </option>
-                            <option value="language4"
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/dk.svg" alt="Image description" width="16"/><span>Dansk</span></span>'>
-                                Dansk
-                            </option>
-                            <option value="language5"
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/><span>Español</span></span>'>
-                                Español
-                            </option>
-                            <option value="language6"
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/nl.svg" alt="Image description" width="16"/><span>Nederlands</span></span>'>
-                                Nederlands
-                            </option>
-                            <option value="language7"
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/it.svg" alt="Image description" width="16"/><span>Italiano</span></span>'>
-                                Italiano
-                            </option>
-                            <option value="language8"
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/><span>中文 (繁體)</span></span>'>
-                                中文 (繁體)
-                            </option>
-                        </select>
-                    </div>
-                    <!-- End Select -->
-                </div>
-            </div>
-            {{--     Logos       --}}
 
             <div style="max-width: 23rem;">
                 <div class="text-center mb-5">
-                    <img class="img-fluid" src="./assets/svg/illustrations/oc-chatting.svg" alt="Image Description"
-                         style="width: 12rem;" data-hs-theme-appearance="default">
-                    <img class="img-fluid" src="./assets/svg/illustrations-light/oc-chatting.svg"
-                         alt="Image Description" style="width: 12rem;" data-hs-theme-appearance="dark">
+                    <img class="img-fluid" src="{{ asset('img/svg/illustrations/oc-chatting.svg') }}"
+                         alt="Image Description"
+                         style="width: 12rem;"
+                         data-hs-theme-appearance="default"
+                    />
+                    {{--                    <img class="img-fluid" src="{{ asset('img/svg/illustrations-light/oc-chatting.svg') }}"--}}
+                    {{--                         alt="Image Description" style="width: 12rem;"--}}
+                    {{--                         data-hs-theme-appearance="dark"--}}
+                    {{--                    />--}}
                 </div>
 
                 <div class="mb-5">
@@ -88,31 +36,32 @@
 
                 <div class="row justify-content-between mt-5 gx-3">
                     <div class="col">
-                        <img class="img-fluid" src="./assets/svg/brands/gitlab-gray.svg" alt="Logo">
+                        <img class="img-fluid" src="{{ asset('img/svg/brands/gitlab-gray.svg') }}" alt="Logo">
                     </div>
                     <!-- End Col -->
 
                     <div class="col">
-                        <img class="img-fluid" src="./assets/svg/brands/fitbit-gray.svg" alt="Logo">
+                        <img class="img-fluid" src="{{ asset('img/svg/brands/fitbit-gray.svg') }}" alt="Logo">
                     </div>
                     <!-- End Col -->
 
                     <div class="col">
-                        <img class="img-fluid" src="./assets/svg/brands/flow-xo-gray.svg" alt="Logo">
+                        <img class="img-fluid" src="{{ asset('img/svg/brands/flow-xo-gray.svg') }}" alt="Logo">
                     </div>
                     <!-- End Col -->
 
                     <div class="col">
-                        <img class="img-fluid" src="./assets/svg/brands/layar-gray.svg" alt="Logo">
+                        <img class="img-fluid" src="{{ asset('img/svg/brands/layar-gray.svg') }}" alt="Logo">
                     </div>
                     <!-- End Col -->
                 </div>
                 <!-- End Row -->
             </div>
         </x-slot>
-        {{--        new html --}}
 
-        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 32rem;">
+        <div class="content-space-t-4 content-space-t-lg-2 content-space-b-1 vh-100 overflow-scroll scrollbar-none"
+             style="max-width: 32rem;">
+
             <!-- Form -->
             <x-jet-validation-errors class="mb-4"/>
 
@@ -134,8 +83,9 @@
                     <div class="d-grid mb-4">
                         <a class="btn btn-white btn-lg" href="#">
                                 <span class="d-flex justify-content-center align-items-center">
-                                  <img class="avatar avatar-xss me-2" src="./assets/svg/brands/google-icon.svg"
-                                       alt="Image Description" />
+                                  <img class="avatar avatar-xss me-2"
+                                       src="{{ asset('img/svg/brands/google-icon.svg') }}"
+                                       alt="Image Description"/>
                                   Sign up with Google
                                 </span>
                         </a>
@@ -144,386 +94,358 @@
                     <span class="divider-center text-muted mb-4">OR</span>
                 </div>
 
+                <!-- Form -->
+                <div class="row pt-2">
+                    <div class="col-md-12">
+                        <!-- Form -->
+                        <div class="mb-2">
+                            <label class="form-label" for="house_name">House Name:*</label>
+                            <input
+                                type="text"
+                                class="form-control form-control-lg"
+                                name="house_name"
+                                id="house_name"
+                                placeholder="Enter House Name"
+                                value="{{old('house_name')}}"
+                                required
+                            />
+                        </div>
+                        <!-- End Form -->
+                    </div>
+                </div>
+                {{--     second row starts --}}
+
+                <div class="mb-2">
+                    <label class="form-label" for="guest_password">Guest Password:*</label>
+                    <input
+                        type="password"
+                        class="form-control form-control-lg"
+                        name="guest_password"
+                        id="guest_password"
+                        placeholder="Enter Guest Password"
+                        value="{{ old('guest_password') }}"
+                        required
+                    />
+                </div>
+                <!-- End Form -->
+
+                <div class="mb-2">
+                    <div class="form-group">
+                        <label class="form-label" for="password_field_2">Confirm Password:*</label>
+                        <input
+                            id="password_field_2"
+                            type="password"
+                            class="form-control form-control-lg"
+                            name="password_field_2"
+                            value="{{old('password_field_2')}}"
+                            required
+                        />
+                        <span toggle="#password-field-2"
+                              class="fa-regular fa-eye field-icon toggle-password me-2"></span>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label" for="address_line_1">Address Line 1:*</label>
+                    <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        value="{{ old('address_line_1') }}"
+                        id="address_line_1"
+                        placeholder="Address Line 1"
+                        required
+                    />
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label" for="address_line_2">Address Line 2</label>
+                    <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        id="address_line_2"
+                        placeholder="Address Line 2"
+                        value="{{old('address_line_2')}}"
+                        required
+                    />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <label class="form-label" for="city">City</label>
+                            <input
+                                type="text"
+                                class="form-control form-control-lg"
+                                id="city"
+                                placeholder="City"
+                                value="{{ old('city') }}"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class=" col-md-6">
+                        <div class="mb-2">
+                            <label class="form-label" for="state">State</label>
+                            <input
+                                type="text"
+                                class="form-control form-control-lg" name="state"
+                                id="state"
+                                placeholder="State"
+                                value="{{ old('state') }}"
+                                aria-label=""
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <label class="form-label" for="zipcode">Zipcode</label>
+                            <input
+                                type="number"
+                                class="form-control form-control-lg"
+                                id="zipcode"
+                                placeholder="Enter Zipcode"
+                                value="{{old('zipcode')}}"
+                                required
+                            />
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <label class="form-label" for="home_phone">Home Phone</label>
+                            <input
+                                type="text"
+                                class="form-control form-control-lg"
+                                name="home_phone"
+                                id="home_phone"
+                                placeholder="Enter Home Phone"
+                                value="{{old('home_phone')}}"
+                                aria-label=""
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-6">
+                        <div class="mb-2">
+                            <label class="form-label" for="Fax">Fax</label>
+                            <input
+                                type="number"
+                                class="form-control form-control-lg"
+                                id="Fax"
+                                placeholder="Fax"
+                                value="{{old('Fax')}}"
+                                required
+                            />
+                        </div>
+
+                    </div>
+                    <div class=" col-md-6">
+                        <div class="mb-2">
+                            <label class="form-label" for="emergency_phone">Emergency Phone</label>
+                            <input
+                                type="number"
+                                class="form-control form-control-lg"
+                                name="emergency_phone"
+                                id="emergency_phone"
+                                placeholder="Enter Emergency Phone"
+                                value="{{old('emergency_phone')}}"
+                                aria-label=""
+                                required
+                            />
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Form Check -->
+                <div class="form-check mb-4">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="terms_Checkbox"
+                        value="{{old('terms_Checkbox')}}"
+                        required
+                    />
+                    <label class="form-check-label" for="terms_Checkbox">
+                        I accept the <a href="#">Terms and Conditions</a>
+                    </label>
+                    <span class="invalid-feedback">Please accept our Terms and Conditions.</span>
+                </div>
+                <!-- End Form Check -->
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
+
+                    <button type="submit" class="btn btn-link">
+                        or Start your 30-day trial <i class="bu-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="text-center">
+                    <p>Referral Info
+                        Please provide the PayPal account of the person that referred you to
+                        TheVacationCalendar.com. They will receive $5 via PayPal after this account remains
+                        open beyond the initial free trial period. Please note that the referral PayPal
+                        account cannot be the same as the account used to activate this house. Additionally,
+                        please note that standard PayPal service charges will be applied to the the $5.
+                    </p>
+                </div>
+
+                <div class="mb-2">
+                    <label for="paypal">Paypal Account</label>
+                    <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        id="paypal"
+                        name="paypal"
+                        placeholder="Paypal Account"
+                        value="{{old('paypal')}}"
+                        required
+                    />
+                </div>
+                <div class="mb-2">
+                    <label for="form_File" class="form-label fs-5">House Picture</label>
+                    <input class="form-control"
+                           type="file"
+                           id="formFile"
+                           value="{{old('form_File')}}"/>
+                </div>
+
+                <div class="mb-2">
+                    <label for="admin_username" class="form-label fs-5">Admin Username</label>
+                    <input class="form-control form-control-lg"
+                           type="text"
+                           value="{{old('admin_username')}}"
+                           id="admin_username"/>
+                </div>
+                <div class="mb-2">
+                    <label for="admin_password" class="form-label fs-5">Admin Password</label>
+                    <input type="text"
+                           class="form-control form-control-lg"
+                           id="admin_password"
+                           value="{{old('admin_password')}}"
+                           required/>
+                </div>
+
+                <div class="mb-2">
+                    <label for="admin_password_confirm" class="form-label fs-5">Admin
+                        Password(Confirm*)</label>
+                    <input type="text"
+                           class="form-control form-control-lg"
+                           id="admin_password_confirm"
+                           value="{{old('admin_password_confirm')}}"
+                           required/>
+                </div>
+
+                <div class="mb-2">
+                    <label for="admin_email" class="form-label fs-5">Admin Email</label>
+                    <input type="text"
+                           class="form-control form-control-lg"
+                           id="admin_email"
+                           value="{{old('admin_email')}}"
+                           required/>
+                </div>
+
+                <div class="mb-2">
+                    <div class="form-group">
+                        Allow Administrator to have Owner permissions
+                        <input type="checkbox" name="AdminOwner">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- Form -->
+                        <div class="mb-4">
+                            <label class="form-label" for="name">First Name</label>
+                            <input type="text"
+                                   class="form-control form-control-lg"
+                                   name="name"
+                                   value="{{old('name')}}"
+                                   id="name"
+                                   placeholder="First Name"
+                                   aria-label=""
+                                   autofocus
+                                   autocomplete="name" required/>
+                            <span class="invalid-feedback">Please enter your first name.</span>
+                        </div>
+                        <!-- End Form -->
+                    </div>
+
+                    <div class="col-sm-6">
+                        <!-- Form -->
+                        <div class="mb-4">
+                            <label class="form-label" for="last_name">Last Name</label>
+                            <input type="text"
+                                   class="form-control form-control-lg"
+                                   placeholder="Last Name"
+                                   aria-label=""
+                                   id="last_name"
+                                   value="{{old('last_name')}}"
+                                   required/>
+                            <span class="invalid-feedback">Please enter your last name.</span>
+                        </div>
+                        <!-- End Form -->
+                    </div>
+                </div>
+                <!-- End Form -->
 
                 <!-- Form -->
-                {{--        first row            --}}
-                    <div class="row pt-2">
-                        <div class="col-md-12">
-                            <!-- Form -->
-                            <div class="mb-2">
-                                <label class="form-label" for="house-name">House Name*</label>
-                                <input
-                                    type="text"
-                                    class="form-control form-control-lg"
-                                    name="house_name"
-                                    id="house_name"
-                                    placeholder="Enter House Name"
-                                    value="{{old('house_name')}}"
-                                    required
-                                />
-                            </div>
-                            <!-- End Form -->
-                        </div>
-                    </div>
-        {{--          first row ends     --}}
-                {{--     second row starts --}}
-                    <div class="row pt-2">
-                        <div class="col-md-12">
-                            <div class="mb-2">
-                                <label class="form-label" for="guest_password">Guest Password*</label>
-                                <input type="password"
-                                       class="form-control form-control-lg"
-                                       name="guest_password"
-                                       id="guest-password"
-                                       placeholder="Enter Guest Password"
-                                       value="{{old('guest_password')}}"
-                                       required />
-                            </div>
-                            <!-- End Form -->
-                        </div>
-                    </div>
-                    {{--     second row ends    --}}
-
-                    {{--     Third Row     --}}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="mb-2">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label class="form-label" for="password_field_2">Confirm Password*</label>
-                                        <input id="password_field_2"
-                                               type="password"
-                                               class="form-control form-control-lg"
-                                               name="password_field_2"
-                                               value="{{old('password_field_2')}}"
-                                               required />
-                                        <span toggle="#password-field-2"
-                                              class="fa-regular fa-eye field-icon toggle-password me-2"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  -->
-                    {{--     Third Row Ends               --}}
-                        {{--            fourth row starts            --}}
-                        <div class="row">
-                          <div class=" col-md-12">
-                              <div class="mb-2">
-                                  <label class="form-label" for="Address_line_1">Address Line 1</label>
-                                  <input type="text"
-                                         class="form-control form-control-lg"
-                                         value="{{old('Address_line_1')}}"
-                                         id="Address_line_1"
-                                         placeholder="Address Line 1"
-                                         required />
-                              </div>
-
-                          </div>
-                        </div>
-
-                        {{--         fourth row ends               --}}
-                        <div class="row">
-                            <div class=" col-md-12">
-                                <div class="mb-2">
-                                    <label class="form-label" for="Address_line_2">Address Line 2</label>
-                                    <input
-                                            type="text"
-                                            class="form-control form-control-lg"
-                                            id="Address_line_2"
-                                            placeholder="Address Line 2"
-                                            value="{{old('Address_line_2')}}"
-                                            required />
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col-md-6">
-                                <div class="mb-2">
-                                     <label class="form-label" for="city">City</label>
-                                    <input type="text"
-                                           class="form-control form-control-lg"
-                                           id="city"
-                                           placeholder="City"
-                                           value="{{old('city')}}"
-                                           required />
-                                </div>
-
-                            </div>
-                            <div class=" col-md-6">
-                                <div class="mb-2">
-                                    <label class="form-label" for="state">State</label>
-                                    <input type="text"
-                                           class="form-control form-control-lg" name="state"
-                                           id="state"
-                                           placeholder="State"
-                                           value="{{old('state')}}"
-                                           aria-label=""
-                                           required />
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col-md-6">
-                                <div class="mb-2">
-                                    <label class="form-label" for="zipcode">Zip Code</label>
-                                    <input type="number"
-                                           class="form-control form-control-lg"
-                                           id="zipcode"
-                                           placeholder="Enter Zipcode"
-                                           value="{{old('zipcode')}}"
-                                           required />
-                                </div>
-
-                            </div>
-                            <div class=" col-md-6">
-                                <div class="mb-2">
-                                    <label class="form-label" for="home_phone">Home Phone</label>
-                                    <input type="text" class="form-control form-control-lg" name="home_phone"
-                                           id="home_phone"
-                                           placeholder="Enter Home Phone"
-                                           value="{{old('home_phone')}}"
-                                           aria-label=""
-                                           required />
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col-md-6">
-                                <div class="mb-2">
-                                    <label class="form-label" for="Fax">Fax</label>
-                                    <input type="number"
-                                           class="form-control form-control-lg"
-                                           id="Fax"
-                                           placeholder="Fax"
-                                           value="{{old('Fax')}}"
-                                           required />
-                                </div>
-
-                            </div>
-                            <div class=" col-md-6">
-                                <div class="mb-2">
-                                    <label class="form-label" for="emergency_phone">Emergency Phone</label>
-                                    <input type="number"
-                                           class="form-control form-control-lg"
-                                           name="emergency_phone"
-                                           id="emergency_phone"
-                                           placeholder="Enter Emergency Phone"
-                                           value="{{old('emergency_phone')}}"
-                                           aria-label=""
-                                           required />
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Form Check -->
-                        <div class="form-check mb-4">
-                            <input class="form-check-input"
-                                   type="checkbox"
-                                   value=""
-                                   id="terms_Checkbox"
-                                   value="{{old('terms_Checkbox')}}"
-                                   required />
-                            <label class="form-check-label" for="terms_Checkbox">
-                                I accept the <a href="#">Terms and Conditions</a>
-                            </label>
-                            <span class="invalid-feedback">Please accept our Terms and Conditions.</span>
-                        </div>
-                        <!-- End Form Check -->
-
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
-
-                        <button type="submit" class="btn btn-link">
-                            or Start your 30-day trial <i class="bu-chevron-right"></i>
-                        </button>
-                    </div>
-                    <div class="text-center">
-                        <p>Referral Info
-                            Please provide the PayPal account of the person that referred you to
-                            TheVacationCalendar.com. They will receive $5 via PayPal after this account remains
-                            open beyond the initial free trial period. Please note that the referral PayPal
-                            account cannot be the same as the account used to activate this house. Additionally,
-                            please note that standard PayPal service charges will be applied to the the $5.
-                        </p>
-                    </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-2">
-                                    <label for="paypal">Paypal Account</label>
-                                    <input type="text"
-                                           class="form-control form-control-lg"
-                                           id="paypal"
-                                           name="paypal"
-                                           placeholder="Paypal Account"
-                                           value="{{old('paypal')}}"
-                                           required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-2">
-                                    <label for="form_File" class="form-label fs-5">House Picture</label>
-                                    <input class="form-control"
-                                           type="file"
-                                           id="formFile"
-                                           value="{{old('form_File')}}" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-2">
-                                    <label for="admin_username" class="form-label fs-5">Admin Username</label>
-                                    <input class="form-control form-control-lg"
-                                           type="text"
-                                           value="{{old('admin_username')}}"
-                                           id="admin_username" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-2">
-                                    <label for="admin_password" class="form-label fs-5">Admin Password</label>
-                                    <input  type="text"
-                                            class="form-control form-control-lg"
-                                           id="admin_password"
-                                            value="{{old('admin_password')}}"
-                                            required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-2">
-                                    <label for="admin_password_confirm" class="form-label fs-5">Admin Password(Confirm*)</label>
-                                    <input  type="text"
-                                            class="form-control form-control-lg"
-                                            id="admin_password_confirm"
-                                            value="{{old('admin_password_confirm')}}"
-                                            required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-2">
-                                    <label for="admin_email" class="form-label fs-5">Admin Email</label>
-                                    <input type="text"
-                                           class="form-control form-control-lg"
-                                           id="admin_email"
-                                           value="{{old('admin_email')}}"
-                                           required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-2">
-                                    <div class="form-group">
-                                        Allow Administrator to have Owner permissions
-                                        <input type="checkbox" name="AdminOwner">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-sm-6">
-                            <!-- Form -->
-                            <div class="mb-4">
-                                <label class="form-label" for="name">First Name</label>
-                                <input type="text"
-                                       class="form-control form-control-lg"
-                                       name="name"
-                                       value="{{old('name')}}"
-                                       id="name"
-                                       placeholder="First Name"
-                                       aria-label=""
-                                        autofocus
-                                       autocomplete="name" required />
-                                <span class="invalid-feedback">Please enter your first name.</span>
-                            </div>
-                            <!-- End Form -->
-                        </div>
-
-                        <div class="col-sm-6">
-                            <!-- Form -->
-                            <div class="mb-4">
-                                <label class="form-label" for="last_name">Last Name</label>
-                                <input type="text"
-                                       class="form-control form-control-lg"
-                                       placeholder="Last Name"
-                                       aria-label=""
-                                       id="last_name"
-                                       value="{{old('last_name')}}"
-                                       required />
-                                <span class="invalid-feedback">Please enter your last name.</span>
-                            </div>
-                            <!-- End Form -->
-                        </div>
-                    </div>
-                    <!-- End Form -->
-
-                    <!-- Form -->
-                    <div class="mb-4">
-                        <label class="form-label" for="zipcode_2">Zip Code</label>
-                        <input type="number"
-                               class="form-control form-control-lg"
-                               id="zipcode_2"
-                               value="{{old('zipcode_2')}}"
-                               placeholder="Enter Zip Code"
-                               aria-label=""
-                               required />
-                    </div>
-                    <!-- End Form -->
-
-                    <!-- Form -->
-                    <div class="mb-4">
-                        <label class="form-label" for="home-phone-2">Home Phone</label>
-
-                        <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                            <input type="number"
-                                   class="js-toggle-password form-control form-control-lg"
-                                   name="home_phone_2"
-                                   id="home_phone_2"
-                                   placeholder="8+ characters required"
-                                   value="{{old('home_phone_2')}}"
-                                   aria-label="8+ characters required"
-                                   minlength="8"
-                                   autocomplete="new-password" />
-                        </div>
-
-                        <span class="invalid-feedback">Your password is invalid. Please try again.</span>
-                    </div>
-                    <!-- End Form -->
-
-                    <!-- Form -->
-                    <div class="mb-4">
-                        <label class="form-label" for="password_confirmation">Fax</label>
-
-                        <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                            <input type="number"
-                                   class="js-toggle-password form-control form-control-lg"
-                                   name="fax_2"
-                                   id="fax_2"
-                                   placeholder="8+ characters required"
-                                   aria-label=""
-                                   value="{{old('fax_2')}}"
-                                   minlength="8" required />
-
-                        </div>
-                    </div>
-                    <!-- End Form -->
-
-                    </div>
-                </form>
+                <div class="mb-4">
+                    <label class="form-label" for="zipcode_2">Zip Code</label>
+                    <input type="number"
+                           class="form-control form-control-lg"
+                           id="zipcode_2"
+                           value="{{old('zipcode_2')}}"
+                           placeholder="Enter Zip Code"
+                           aria-label=""
+                           required/>
+                </div>
                 <!-- End Form -->
-            </div>
+
+                <!-- Form -->
+                <div class="mb-4">
+                    <label class="form-label" for="home-phone-2">Home Phone</label>
+
+                    <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                        <input type="number"
+                               class="js-toggle-password form-control form-control-lg"
+                               name="home_phone_2"
+                               id="home_phone_2"
+                               placeholder="8+ characters required"
+                               value="{{old('home_phone_2')}}"
+                               aria-label="8+ characters required"
+                               minlength="8"
+                               autocomplete="new-password"/>
+                    </div>
+
+                    <span class="invalid-feedback">Your password is invalid. Please try again.</span>
+                </div>
+                <!-- End Form -->
+
+                <!-- Form -->
+                <div class="mb-4">
+                    <label class="form-label" for="password_confirmation">Fax</label>
+
+                    <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                        <input type="number"
+                               class="js-toggle-password form-control form-control-lg"
+                               name="fax_2"
+                               id="fax_2"
+                               placeholder="8+ characters required"
+                               aria-label=""
+                               value="{{old('fax_2')}}"
+                               minlength="8" required/>
+
+                    </div>
+                </div>
+                <!-- End Form -->
+
+
+            </form>
+            <!-- End Form -->
         </div>
 
 
@@ -581,4 +503,4 @@
         {{--            </div>--}}
         {{--        </form>--}}
     </x-jet-authentication-card>
-</x-guest-layout>
+</x-auth-layout>

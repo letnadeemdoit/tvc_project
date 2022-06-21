@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col">
-                <p class="fs-6 mb-0">&copy; Front. <span class="d-none d-sm-inline-block">2022 Htmlstream.</span></p>
+                <p class="fs-6 mb-0">&copy;2022 {{ config('app.name') }}.</p>
             </div>
             <!-- End Col -->
 
@@ -11,8 +11,9 @@
                 <div class="d-flex justify-content-end">
                     <!-- List Separator -->
                     <ul class="list-inline list-separator">
+
                         <li class="list-inline-item">
-                            <a class="list-separator-link" href="#">FAQ</a>
+                            <a class="list-separator-link" href="{{ route('guest.help') }}">Help</a>
                         </li>
 
                         <li class="list-inline-item">
