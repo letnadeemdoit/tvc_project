@@ -120,9 +120,9 @@
                         <div class="col-md-12">
                             <!-- Form -->
                             <div class="mb-2">
-                                <label class="form-label" for="housename">House Name</label>
-                                <input type="text" class="form-control form-control-lg" name="housename"
-                                       id="housename" placeholder="Enter House Name" required>
+                                <label class="form-label" for="house-name">House Name*</label>
+                                <input type="text" class="form-control form-control-lg" name="house-name"
+                                       id="house-name" placeholder="Enter House Name"  value="{{old('house-name')}}" required />
                             </div>
                             <!-- End Form -->
                         </div>
@@ -132,9 +132,9 @@
                     <div class="row pt-2">
                         <div class="col-md-12">
                             <div class="mb-2">
-                                <label class="form-label" for="guestpassword">Guest Password</label>
-                                <input type="password" class="form-control form-control-lg" name="guestpassword"
-                                       id="guestpassword" placeholder="Enter Guest Password" required>
+                                <label class="form-label" for="guest-password">Guest Password*</label>
+                                <input type="password" class="form-control form-control-lg" name="guest-password"
+                                       id="guest-password" placeholder="Enter Guest Password" value="{{old('guest-password')}}" required />
                             </div>
                             <!-- End Form -->
                         </div>
@@ -147,9 +147,9 @@
                             <div class="mb-2">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <label class="form-label" for="password-field-2">Confirm Password</label>
+                                        <label class="form-label" for="password-field-2">Confirm Password*</label>
                                         <input id="password-field-2" type="password" class="form-control form-control-lg"
-                                               name="password" value="secret">
+                                               name="password-field-2" value="{{old('guest-password')}}" required />
                                         <span toggle="#password-field-2"
                                               class="fa-regular fa-eye field-icon toggle-password me-2"></span>
                                     </div>
@@ -162,9 +162,9 @@
                         <div class="row">
                           <div class=" col-md-12">
                               <div class="mb-2">
-                                  <label class="form-label" for="Addressline1">Address Line 1</label>
-                                  <input type="text" class="form-control form-control-lg" id="Addressline1"
-                                         placeholder="Address Line 1" required>
+                                  <label class="form-label" for="Address-line-1">Address Line 1</label>
+                                  <input type="text" class="form-control form-control-lg" value="{{old('Address-line-1')}}" id="Address-line-1"
+                                         placeholder="Address Line 1" required />
                               </div>
 
                           </div>
@@ -174,9 +174,9 @@
                         <div class="row">
                             <div class=" col-md-12">
                                 <div class="mb-2">
-                                    <label class="form-label" for="Addressline2">Address Line 2</label>
-                                    <input type="text" class="form-control form-control-lg" id="Addressline2"
-                                           placeholder="Address Line 2" required>
+                                    <label class="form-label" for="Address-line-2">Address Line 2</label>
+                                    <input type="text" class="form-control form-control-lg" id="Address-line-2"
+                                           placeholder="Address Line 2" value="{{old('Address-line-2')}}" required />
                                 </div>
 
                             </div>
@@ -186,7 +186,7 @@
                                 <div class="mb-2">
                                      <label class="form-label" for="city">City</label>
                                     <input type="text" class="form-control form-control-lg" id="city"
-                                           placeholder="City" required>
+                                           placeholder="City" value="{{old('city')}}" required />
                                 </div>
 
                             </div>
@@ -194,8 +194,8 @@
                                 <div class="mb-2">
                                     <label class="form-label" for="state">State</label>
                                     <input type="text" class="form-control form-control-lg" name="state"
-                                           id="state" placeholder="State" aria-label=""
-                                           required>
+                                           id="state" placeholder="State" value="{{old('state')}}" aria-label=""
+                                           required />
                                 </div>
 
                             </div>
@@ -203,18 +203,18 @@
                         <div class="row">
                             <div class=" col-md-6">
                                 <div class="mb-2">
-                                    <label class="form-label" for="city">Zip Code</label>
+                                    <label class="form-label" for="zipcode">Zip Code</label>
                                     <input type="number" class="form-control form-control-lg" id="zipcode"
-                                           placeholder="Enter Zipcode" required>
+                                           placeholder="Enter Zipcode" value="{{old('zipcode')}}" required />
                                 </div>
 
                             </div>
                             <div class=" col-md-6">
                                 <div class="mb-2">
-                                    <label class="form-label" for="homephone">Home Phone</label>
-                                    <input type="text" class="form-control form-control-lg" name="state"
-                                           id="homephone" placeholder="Enter Home Phone" aria-label=""
-                                           required>
+                                    <label class="form-label" for="home-phone">Home Phone</label>
+                                    <input type="text" class="form-control form-control-lg" name="home-phone"
+                                           id="home-phone" placeholder="Enter Home Phone" value="{{old('home-phone')}}" aria-label=""
+                                           required />
                                 </div>
 
                             </div>
@@ -224,24 +224,24 @@
                                 <div class="mb-2">
                                     <label class="form-label" for="Fax">Fax</label>
                                     <input type="number" class="form-control form-control-lg" id="Fax"
-                                           placeholder="Fax" required>
+                                           placeholder="Fax" value="{{old('Fax')}}" required />
                                 </div>
 
                             </div>
                             <div class=" col-md-6">
                                 <div class="mb-2">
-                                    <label class="form-label" for="emergencyphone">Emergency Phone</label>
-                                    <input type="number" class="form-control form-control-lg" name="emergencyphone"
-                                           id="emergencyphone" placeholder="Enter Emergency Phone" aria-label=""
-                                           required>
+                                    <label class="form-label" for="emergency-phone">Emergency Phone</label>
+                                    <input type="number" class="form-control form-control-lg" name="emergency-phone"
+                                           id="emergency-phone" placeholder="Enter Emergency Phone" value="{{old('emergency-phone')}}" aria-label=""
+                                           required />
                                 </div>
 
                             </div>
                         </div>
                         <!-- Form Check -->
                         <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" value="" id="termsCheckbox" required>
-                            <label class="form-check-label" for="termsCheckbox">
+                            <input class="form-check-input" type="checkbox" value="" id="terms-Checkbox" value="{{old('terms-Checkbox')}}" required />
+                            <label class="form-check-label" for="terms-Checkbox">
                                 I accept the <a href="#">Terms and Conditions</a>
                             </label>
                             <span class="invalid-feedback">Please accept our Terms and Conditions.</span>
@@ -270,7 +270,8 @@
                                 <div class="mb-2">
                                     <label for="paypal">Paypal Account</label>
                                     <input type="text" class="form-control form-control-lg" id="paypal" name="paypal"
-                                           placeholder="Paypal Account" required>
+                                           placeholder="Paypal Account" value="{{old('paypal')}}"
+                                           required />
                                 </div>
                             </div>
                         </div>
@@ -278,31 +279,31 @@
                             <div class="col-md-12">
                                 <div class="mb-2">
                                     <label for="formFile" class="form-label fs-5">House Picture</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="formFile" value="{{old('formFile')}}" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-2">
-                                    <label for="adminusername" class="form-label fs-5">Admin Username</label>
-                                    <input class="form-control form-control-lg" type="text" id="adminusername">
+                                    <label for="admin-username" class="form-label fs-5">Admin Username</label>
+                                    <input class="form-control form-control-lg" type="text" value="{{old('admin-username')}}" id="admin-username">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-2">
-                                    <label for="adminpassword" class="form-label fs-5">Admin Password</label>
-                                    <input class="form-control form-control-lg" type="text" id="adminpassword">
+                                    <label for="admin-password" class="form-label fs-5">Admin Password</label>
+                                    <input class="form-control form-control-lg" type="text" id="admin-password" value="{{old('admin-password')}}" required />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-2">
-                                    <label for="adminpasswordconfirm" class="form-label fs-5">Admin Password(Confirm*)</label>
-                                    <input class="form-control form-control-lg" type="text" id="adminpasswordconfirm">
+                                    <label for="admin-password-confirm" class="form-label fs-5">Admin Password(Confirm*)</label>
+                                    <input class="form-control form-control-lg" type="text" id="admin-password-confirm" value="{{old('admin-password-confirm')}}" required />
                                 </div>
                             </div>
                         </div>
@@ -310,7 +311,7 @@
                             <div class="col-md-12">
                                 <div class="mb-2">
                                     <label for="adminemail" class="form-label fs-5">Admin Email</label>
-                                    <input class="form-control form-control-lg" type="text" id="adminemail">
+                                    <input type="text" class="form-control form-control-lg"  id="adminemail" value="{{old('adminemail')}}" required />
                                 </div>
                             </div>
                         </div>
@@ -329,7 +330,8 @@
                             <!-- Form -->
                             <div class="mb-4">
                                 <label class="form-label" for="name">First Name</label>
-                                <input type="text" class="form-control form-control-lg" name="name" :value="old('name')" id="name" placeholder="First Name" aria-label="Mark" required autofocus autocomplete="name">
+                                <input type="text" class="form-control form-control-lg" name="name" value="{{old('name')}}" id="name" placeholder="First Name"
+                                       aria-label="Mark" required autofocus autocomplete="name" />
                                 <span class="invalid-feedback">Please enter your first name.</span>
                             </div>
                             <!-- End Form -->
@@ -338,8 +340,9 @@
                         <div class="col-sm-6">
                             <!-- Form -->
                             <div class="mb-4">
-                                <label class="form-label" for="lastname">Last Name</label>
-                                <input type="text" class="form-control form-control-lg" placeholder="Last Name" aria-label="" id="lastname" required>
+                                <label class="form-label" for="last-name">Last Name</label>
+                                <input type="text" class="form-control form-control-lg" placeholder="Last Name"
+                                       aria-label="" id="last-name" value="{{old('last-name')}}" required />
                                 <span class="invalid-feedback">Please enter your last name.</span>
                             </div>
                             <!-- End Form -->
@@ -350,16 +353,19 @@
                     <!-- Form -->
                     <div class="mb-4">
                         <label class="form-label" for="zipcode-2">Zip Code</label>
-                        <input type="number" class="form-control form-control-lg" name="zipcode-2" id="zipcode-2" placeholder="Enter Zip Code" aria-label="" required>
+                        <input type="number" class="form-control form-control-lg"  id="zipcode-2"
+                               value="{{old('zipcode-2')}}"  placeholder="Enter Zip Code" aria-label="" required />
                     </div>
                     <!-- End Form -->
 
                     <!-- Form -->
                     <div class="mb-4">
-                        <label class="form-label" for="homephone-2">Home Phone</label>
+                        <label class="form-label" for="home-phone-2">Home Phone</label>
 
                         <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                            <input type="number" class="js-toggle-password form-control form-control-lg" name=homephone-2 id="homephone-2" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8"  autocomplete="new-password">
+                            <input type="number" class="js-toggle-password form-control form-control-lg" name="home-phone-2" id="home-phone-2"
+                                   placeholder="8+ characters required" value="{{old('home-phone-2')}}" aria-label="8+ characters required"  minlength="8"
+                                   autocomplete="new-password" />
                         </div>
 
                         <span class="invalid-feedback">Your password is invalid. Please try again.</span>
@@ -371,13 +377,15 @@
                         <label class="form-label" for="password_confirmation">Fax</label>
 
                         <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                            <input type="number" class="js-toggle-password form-control form-control-lg" name="fax-2" id="fax-2" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8" >
+                            <input type="number" class="js-toggle-password form-control form-control-lg" name="fax-2" id="fax-2"
+                                   placeholder="8+ characters required"
+                                   aria-label="" value="{{old('fax-2')}}"  minlength="8" required />
 
                         </div>
                     </div>
                     <!-- End Form -->
 
-
+                    </div>
                 </form>
                 <!-- End Form -->
             </div>

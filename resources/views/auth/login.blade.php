@@ -147,7 +147,7 @@
                 <div class="mb-4">
                     <label class="form-label" for="email">{{ __('Email') }}</label>
                     <input type="email" class="form-control form-control-lg" name="email" value="{{ old('email') }}" id="email"
-                           tabindex="1" placeholder="email@address.com" aria-label="email@address.com" required>
+                           tabindex="1" placeholder="email@address.com" aria-label="email@address.com" required />
                     <span class="invalid-feedback">Please enter a valid email address.</span>
                 </div>
                 <!-- End Form -->
@@ -176,7 +176,7 @@
                            "defaultClass": "bi-eye-slash",
                            "showClass": "bi-eye",
                            "classChangeTarget": "#changePassIcon"
-                         }'>
+                         }' />
                         <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
                             <i id="changePassIcon" class="bi-eye"></i>
                         </a>
@@ -188,7 +188,7 @@
 
                 <!-- Form Check -->
                 <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember_me">
+                    <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me">
                     <label class="form-check-label" for="remember_me">
                         {{ __('Remember me') }}
                     </label>
