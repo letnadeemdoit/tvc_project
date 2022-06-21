@@ -146,8 +146,15 @@
                 <!-- Form -->
                 <div class="mb-4">
                     <label class="form-label" for="email">{{ __('Email') }}</label>
-                    <input type="email" class="form-control form-control-lg" name="email" value="{{ old('email') }}" id="email"
-                           tabindex="1" placeholder="email@address.com" aria-label="email@address.com" required />
+                    <input type="email"
+                           class="form-control form-control-lg"
+                           name="email"
+                           value="{{ old('email') }}"
+                           id="email"
+                           tabindex="1"
+                           placeholder="email@address.com"
+                           aria-label="email@address.com"
+                           required />
                     <span class="invalid-feedback">Please enter a valid email address.</span>
                 </div>
                 <!-- End Form -->
@@ -167,16 +174,21 @@
                     </label>
 
                     <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                        <input type="password" class="js-toggle-password form-control form-control-lg"
-                               name="password" id="password" placeholder="8+ characters required"
+                        <input type="password"
+                               class="js-toggle-password form-control form-control-lg"
+                               name="password"
+                               id="password"
+                               placeholder="8+ characters required"
+                               value="{{ old('password') }}"
                                autocomplete="current-password"
-                               aria-label="8+ characters required" required minlength="8"
+                               aria-label="8+ characters required"
+                               minlength="8"
                                data-hs-toggle-password-options='{
                            "target": "#changePassTarget",
                            "defaultClass": "bi-eye-slash",
                            "showClass": "bi-eye",
                            "classChangeTarget": "#changePassIcon"
-                         }' />
+                         }'  required />
                         <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
                             <i id="changePassIcon" class="bi-eye"></i>
                         </a>
@@ -188,7 +200,12 @@
 
                 <!-- Form Check -->
                 <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me">
+                    <input
+                        type="checkbox"
+                        class="form-check-input"
+                           name="remember_me"
+                        value="{{ old('remember_me') }}"
+                           id="remember_me">
                     <label class="form-check-label" for="remember_me">
                         {{ __('Remember me') }}
                     </label>

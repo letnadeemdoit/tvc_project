@@ -1,7 +1,22 @@
 <x-guest-layout>
     @push('stylesheets')
         <style>
-
+            .cards-row .card img {
+                width: 130px !important;
+                margin: 0 auto;
+            }
+            .cards-row {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            .cards-row .card {
+                -webkit-box-shadow: 0px 20px 40px rgb(1 182 130 / 15%);
+                box-shadow: 0px 20px 40px rgb(1 182 130 / 15%);
+                min-height: 340px;
+            }
+            .max-width {
+                max-width: 300px;
+            }
         </style>
     @endpush
     <header>
@@ -17,19 +32,18 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div>
                         <div class="card text-white bg-transparent border-0 text-center">
                             <img src="images-home/slider-img.png" class="card-img img-height" alt="...">
                             <div class="card-img-overlay">
                                 <div class="d-flex align-items-center h-100 justify-content-center my-auto">
                                     <div class="d-block">
-                                        <h5 class="card-title fs-2 fs-3 font-garamond"><span
-                                                class="d-none d-lg-block">Keep Track Of When</span></h5>
-                                        <p class="card-text fs-50 font-bolder font-jost mb-0">YOUR VACATION HOME
+                                        <h1 class="card-title display-3 font-garamond text-white"><span
+                                                class="d-none d-lg-block">Keep Track Of When</span></h1>
+                                        <p class="card-text display-5 font-bolder font-jost text-success">YOUR VACATION HOME
                                         </p>
-                                        <p class="card-text  fs-2 fw-600"><span class="d-none d-lg-block">IS IN
+                                        <p class="card-text text-white display-6 fw-600"><span class="d-none d-lg-block">IS IN
                                                 USE</span></p>
-                                        <button class="btn btn-green px-3 py-1 px-md-5  py-md-3 font-jost"
+                                        <button class="btn btn-success px-3 py-1 px-md-5 fs-3 py-md-3 font-jost"
                                                 type="submit">SIGN
                                             UP
                                         </button>
@@ -37,22 +51,20 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div class="carousel-item">
-                    <div>
                         <div class="card text-white bg-transparent border-0 text-center">
                             <img src="images-home/slider-img.png" class="card-img img-height" alt="...">
                             <div class="card-img-overlay">
                                 <div class="d-flex align-items-center h-100 justify-content-center my-auto">
                                     <div class="d-block">
-                                        <h5 class="card-title fs-2 fs-3 font-garamond"><span
-                                                class="d-none d-lg-block">Keep Track Of When</span></h5>
-                                        <p class="card-text fs-50 font-bolder font-jost mb-0">YOUR VACATION HOME
+                                        <h1 class="card-title display-3 font-garamond text-white"><span
+                                                class="d-none d-lg-block">Keep Track Of When</span></h1>
+                                        <p class="card-text display-5 font-bolder font-jost text-success">YOUR VACATION HOME
                                         </p>
-                                        <p class="card-text  fs-2 fw-600"><span class="d-none d-lg-block">IS IN
+                                        <p class="card-text text-white display-6 fw-600"><span class="d-none d-lg-block">IS IN
                                                 USE</span></p>
-                                        <button class="btn btn-green px-3 py-1 px-md-5  py-md-3 font-jost"
+                                        <button class="btn btn-success px-3 py-1 px-md-5 fs-3 py-md-3 font-jost"
                                                 type="submit">SIGN
                                             UP
                                         </button>
@@ -60,22 +72,21 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div class="carousel-item">
-                    <div>
+
                         <div class="card text-white bg-transparent border-0 text-center">
                             <img src="images-home/slider-img.png" class="card-img img-height" alt="...">
                             <div class="card-img-overlay">
                                 <div class="d-flex align-items-center h-100 justify-content-center my-auto">
                                     <div class="d-block">
-                                        <h5 class="card-title fs-2 fs-3 font-garamond"><span
-                                                class="d-none d-lg-block">Keep Track Of When</span></h5>
-                                        <p class="card-text fs-50 font-bolder font-jost mb-0">YOUR VACATION HOME
+                                        <h1 class="card-title display-3 font-garamond text-white"><span
+                                                class="d-none d-lg-block">Keep Track Of When</span></h1>
+                                        <p class="card-text display-5 font-bolder font-jost text-success">YOUR VACATION HOME
                                         </p>
-                                        <p class="card-text  fs-2 fw-600"><span class="d-none d-lg-block">IS IN
+                                        <p class="card-text text-white display-6 fw-600"><span class="d-none d-lg-block">IS IN
                                                 USE</span></p>
-                                        <button class="btn btn-green px-3 py-1 px-md-5  py-md-3 font-jost"
+                                        <button class="btn btn-success px-3 py-1 px-md-5 fs-3 py-md-3 font-jost"
                                                 type="submit">SIGN
                                             UP
                                         </button>
@@ -83,7 +94,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -116,7 +127,7 @@
                     <div class="card p-4">
                         <img src="images-home/schedule 1.png" class="card-img-top img-fluid">
                         <div class="card-body">
-                            <h6 class="card-title">Organize your vacation home schedule</h6>
+                            <h4 class="card-title">Organize your vacation home schedule</h4>
                             <p class="card-text">make up the bulk of the card's content.</p>
                         </div>
                     </div>
@@ -125,7 +136,7 @@
                     <div class="card p-4  my-md-5 my-3 my-lg-5">
                         <img src="images-home/card-img-2.png" class="card-img-top img-fluid">
                         <div class="card-body">
-                            <h6 class="card-title">Organize your vacation home schedule</h6>
+                            <h4 class="card-title">Organize your vacation home schedule</h4>
                             <p class="card-text">make up the bulk of the card's content.</p>
                         </div>
                     </div>
@@ -134,7 +145,7 @@
                     <div class="card p-4">
                         <img src="images-home/card-img-3.png" class="card-img-top img-fluid">
                         <div class="card-body">
-                            <h6 class="card-title">Organize your vacation home schedule</h6>
+                            <h4 class="card-title">Organize your vacation home schedule</h4>
                             <p class="card-text">make up the bulk of the card's content.</p>
                         </div>
                     </div>
@@ -147,8 +158,8 @@
         <div class="container">
             <div class="row text-center text-md-start">
                 <div class="col-lg-6">
-                    <h3 class="orange-color font-garamond mt-2 mt-md-4">Find your vacation house</h3>
-                    <p class="font-jost fs-2 max-width">
+                    <h3 class="orange-color font-garamond mt-2 display-5 mt-md-4">Find your vacation house</h3>
+                    <p class="font-jost max-width display-4">
                         What is The Vacation Calendar?
                     </p>
                     <p class="paragraph-max-width fs-6">This is the main view of online calendar on
