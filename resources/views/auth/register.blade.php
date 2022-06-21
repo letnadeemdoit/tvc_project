@@ -152,8 +152,15 @@
                             <!-- Form -->
                             <div class="mb-2">
                                 <label class="form-label" for="house-name">House Name*</label>
-                                <input type="text" class="form-control form-control-lg" name="house-name"
-                                       id="house-name" placeholder="Enter House Name"  value="{{old('house-name')}}" required />
+                                <input
+                                    type="text"
+                                    class="form-control form-control-lg"
+                                    name="house-name"
+                                    id="house-name"
+                                    placeholder="Enter House Name"
+                                    value="{{old('house-name')}}"
+                                    required
+                                />
                             </div>
                             <!-- End Form -->
                         </div>
