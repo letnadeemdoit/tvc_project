@@ -1,42 +1,71 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-{{--            <x-jet-authentication-card-logo />--}}
+            {{--            <x-jet-authentication-card-logo />--}}
             <div class="position-absolute top-0 start-0 end-0 mt-3 mx-3">
                 <div class="d-none d-lg-flex justify-content-between">
                     <a href="./index.html">
-                        <img class="w-100" src="./assets/svg/logos/logo.svg" alt="Image Description" data-hs-theme-appearance="default" style="min-width: 7rem; max-width: 7rem;">
-                        <img class="w-100" src="./assets/svg/logos-light/logo.svg" alt="Image Description" data-hs-theme-appearance="dark" style="min-width: 7rem; max-width: 7rem;">
+                        <img class="w-100" src="./assets/svg/logos/logo.svg" alt="Image Description"
+                             data-hs-theme-appearance="default" style="min-width: 7rem; max-width: 7rem;">
+                        <img class="w-100" src="./assets/svg/logos-light/logo.svg" alt="Image Description"
+                             data-hs-theme-appearance="dark" style="min-width: 7rem; max-width: 7rem;">
                     </a>
 
                     <!-- Select -->
                     <div class="tom-select-custom tom-select-custom-end tom-select-custom-bg-transparent">
-                        <select class="js-select form-select form-select-sm form-select-borderless" data-hs-tom-select-options='{
+                        <select class="js-select form-select form-select-sm form-select-borderless"
+                                data-hs-tom-select-options='{
                           "searchInDropdown": false,
                           "hideSearch": true,
                           "dropdownWidth": "12rem",
                           "placeholder": "Select language"
                         }'>
                             <option label="empty"></option>
-                            <option value="language1" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/><span>English (US)</span></span>'>English (US)</option>
-                            <option value="language2" selected data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Image description" width="16"/><span>English (UK)</span></span>'>English (UK)</option>
-                            <option value="language3" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/><span>Deutsch</span></span>'>Deutsch</option>
-                            <option value="language4" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/dk.svg" alt="Image description" width="16"/><span>Dansk</span></span>'>Dansk</option>
-                            <option value="language5" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/><span>Español</span></span>'>Español</option>
-                            <option value="language6" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/nl.svg" alt="Image description" width="16"/><span>Nederlands</span></span>'>Nederlands</option>
-                            <option value="language7" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/it.svg" alt="Image description" width="16"/><span>Italiano</span></span>'>Italiano</option>
-                            <option value="language8" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/><span>中文 (繁體)</span></span>'>中文 (繁體)</option>
+                            <option value="language1"
+                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/><span>English (US)</span></span>'>
+                                English (US)
+                            </option>
+                            <option value="language2" selected
+                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Image description" width="16"/><span>English (UK)</span></span>'>
+                                English (UK)
+                            </option>
+                            <option value="language3"
+                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/><span>Deutsch</span></span>'>
+                                Deutsch
+                            </option>
+                            <option value="language4"
+                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/dk.svg" alt="Image description" width="16"/><span>Dansk</span></span>'>
+                                Dansk
+                            </option>
+                            <option value="language5"
+                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/><span>Español</span></span>'>
+                                Español
+                            </option>
+                            <option value="language6"
+                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/nl.svg" alt="Image description" width="16"/><span>Nederlands</span></span>'>
+                                Nederlands
+                            </option>
+                            <option value="language7"
+                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/it.svg" alt="Image description" width="16"/><span>Italiano</span></span>'>
+                                Italiano
+                            </option>
+                            <option value="language8"
+                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/><span>中文 (繁體)</span></span>'>
+                                中文 (繁體)
+                            </option>
                         </select>
                     </div>
                     <!-- End Select -->
                 </div>
             </div>
-        {{--     Logos       --}}
+            {{--     Logos       --}}
 
             <div style="max-width: 23rem;">
                 <div class="text-center mb-5">
-                    <img class="img-fluid" src="./assets/svg/illustrations/oc-chatting.svg" alt="Image Description" style="width: 12rem;" data-hs-theme-appearance="default">
-                    <img class="img-fluid" src="./assets/svg/illustrations-light/oc-chatting.svg" alt="Image Description" style="width: 12rem;" data-hs-theme-appearance="dark">
+                    <img class="img-fluid" src="./assets/svg/illustrations/oc-chatting.svg" alt="Image Description"
+                         style="width: 12rem;" data-hs-theme-appearance="default">
+                    <img class="img-fluid" src="./assets/svg/illustrations-light/oc-chatting.svg"
+                         alt="Image Description" style="width: 12rem;" data-hs-theme-appearance="dark">
                 </div>
 
                 <div class="mb-5">
@@ -81,40 +110,42 @@
                 <!-- End Row -->
             </div>
         </x-slot>
-{{--        new html --}}
-        <div class="col-lg-12 d-flex justify-content-center align-items-center min-vh-lg-100">
-            <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 32rem;">
+        {{--        new html --}}
+
+        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 32rem;">
+            <!-- Form -->
+            <x-jet-validation-errors class="mb-4"/>
+
+            @if (session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <form class="js-validate needs-validation" novalidate action="{{ route('register') }}">
+                @csrf
+                <div class="text-center">
+                    <div class="mb-5">
+                        <h1 class="display-5">Create your account</h1>
+                        <p>
+                            Already have an account? <a class="link" href="{{ route('login') }}"> Sign in here</a>
+                        </p>
+                    </div>
+
+                    <div class="d-grid mb-4">
+                        <a class="btn btn-white btn-lg" href="#">
+                                <span class="d-flex justify-content-center align-items-center">
+                                  <img class="avatar avatar-xss me-2" src="./assets/svg/brands/google-icon.svg"
+                                       alt="Image Description">
+                                  Sign up with Google
+                                </span>
+                        </a>
+                    </div>
+
+                    <span class="divider-center text-muted mb-4">OR</span>
+                </div>
+
+
                 <!-- Form -->
-                <x-jet-validation-errors class="mb-4"/>
-
-                @if (session('status'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                <form class="js-validate needs-validation" novalidate action="{{ route('register') }}">
-                    @csrf
-                    <div class="text-center">
-                        <div class="mb-5">
-                            <h1 class="display-5">Create your account</h1>
-                            <p>Already have an account? <a class="link" href="./authentication-login-cover.html">Sign in here</a></p>
-                        </div>
-
-                        <div class="d-grid mb-4">
-                            <a class="btn btn-white btn-lg" href="#">
-                    <span class="d-flex justify-content-center align-items-center">
-                      <img class="avatar avatar-xss me-2" src="./assets/svg/brands/google-icon.svg" alt="Image Description">
-                      Sign up with Google
-                    </span>
-                            </a>
-                        </div>
-
-                        <span class="divider-center text-muted mb-4">OR</span>
-                    </div>
-
-
-
-                    <!-- Form -->
                 {{--        first row            --}}
                     <div class="row pt-2">
                         <div class="col-md-12">
@@ -248,22 +279,22 @@
                         </div>
                         <!-- End Form Check -->
 
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
 
-                            <button type="submit" class="btn btn-link">
-                                or Start your 30-day trial <i class="bu-chevron-right"></i>
-                            </button>
-                        </div>
-                        <div class="text-center">
-                            <p>Referral Info
-                                Please provide the PayPal account of the person that referred you to
-                                TheVacationCalendar.com. They will receive $5 via PayPal after this account remains
-                                open beyond the initial free trial period. Please note that the referral PayPal
-                                account cannot be the same as the account used to activate this house. Additionally,
-                                please note that standard PayPal service charges will be applied to the the $5.
-                            </p>
-                        </div>
+                        <button type="submit" class="btn btn-link">
+                            or Start your 30-day trial <i class="bu-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <p>Referral Info
+                            Please provide the PayPal account of the person that referred you to
+                            TheVacationCalendar.com. They will receive $5 via PayPal after this account remains
+                            open beyond the initial free trial period. Please note that the referral PayPal
+                            account cannot be the same as the account used to activate this house. Additionally,
+                            please note that standard PayPal service charges will be applied to the the $5.
+                        </p>
+                    </div>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -392,58 +423,58 @@
         </div>
 
 
-{{--      ends  --}}
-        <x-jet-validation-errors class="mb-4" />
+        {{--      ends  --}}
+        {{--        <x-jet-validation-errors class="mb-4" />--}}
 
-{{--        <form method="POST" action="{{ route('register') }}">--}}
-{{--            @csrf--}}
+        {{--        <form method="POST" action="{{ route('register') }}">--}}
+        {{--            @csrf--}}
 
-{{--            <div>--}}
-{{--                <x-jet-label for="name" value="{{ __('Name') }}" />--}}
-{{--                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />--}}
-{{--            </div>--}}
+        {{--            <div>--}}
+        {{--                <x-jet-label for="name" value="{{ __('Name') }}" />--}}
+        {{--                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />--}}
+        {{--            </div>--}}
 
-{{--            <div class="mt-4">--}}
-{{--                <x-jet-label for="email" value="{{ __('Email') }}" />--}}
-{{--                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />--}}
-{{--            </div>--}}
+        {{--            <div class="mt-4">--}}
+        {{--                <x-jet-label for="email" value="{{ __('Email') }}" />--}}
+        {{--                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />--}}
+        {{--            </div>--}}
 
-{{--            <div class="mt-4">--}}
-{{--                <x-jet-label for="password" value="{{ __('Password') }}" />--}}
-{{--                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />--}}
-{{--            </div>--}}
+        {{--            <div class="mt-4">--}}
+        {{--                <x-jet-label for="password" value="{{ __('Password') }}" />--}}
+        {{--                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />--}}
+        {{--            </div>--}}
 
-{{--            <div class="mt-4">--}}
-{{--                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />--}}
-{{--                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />--}}
-{{--            </div>--}}
+        {{--            <div class="mt-4">--}}
+        {{--                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />--}}
+        {{--                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />--}}
+        {{--            </div>--}}
 
-{{--            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())--}}
-{{--                <div class="mt-4">--}}
-{{--                    <x-jet-label for="terms">--}}
-{{--                        <div class="flex items-center">--}}
-{{--                            <x-jet-checkbox name="terms" id="terms"/>--}}
+        {{--            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())--}}
+        {{--                <div class="mt-4">--}}
+        {{--                    <x-jet-label for="terms">--}}
+        {{--                        <div class="flex items-center">--}}
+        {{--                            <x-jet-checkbox name="terms" id="terms"/>--}}
 
-{{--                            <div class="ml-2">--}}
-{{--                                {!! __('I agree to the :terms_of_service and :privacy_policy', [--}}
-{{--                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',--}}
-{{--                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',--}}
-{{--                                ]) !!}--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </x-jet-label>--}}
-{{--                </div>--}}
-{{--            @endif--}}
+        {{--                            <div class="ml-2">--}}
+        {{--                                {!! __('I agree to the :terms_of_service and :privacy_policy', [--}}
+        {{--                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',--}}
+        {{--                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',--}}
+        {{--                                ]) !!}--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    </x-jet-label>--}}
+        {{--                </div>--}}
+        {{--            @endif--}}
 
-{{--            <div class="flex items-center justify-end mt-4">--}}
-{{--                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">--}}
-{{--                    {{ __('Already registered?') }}--}}
-{{--                </a>--}}
+        {{--            <div class="flex items-center justify-end mt-4">--}}
+        {{--                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">--}}
+        {{--                    {{ __('Already registered?') }}--}}
+        {{--                </a>--}}
 
-{{--                <x-jet-button class="ml-4">--}}
-{{--                    {{ __('Register') }}--}}
-{{--                </x-jet-button>--}}
-{{--            </div>--}}
-{{--        </form>--}}
+        {{--                <x-jet-button class="ml-4">--}}
+        {{--                    {{ __('Register') }}--}}
+        {{--                </x-jet-button>--}}
+        {{--            </div>--}}
+        {{--        </form>--}}
     </x-jet-authentication-card>
 </x-guest-layout>
