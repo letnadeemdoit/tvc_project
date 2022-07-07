@@ -13,8 +13,6 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
         @stack('stylesheets')
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body>
         <main>
@@ -23,4 +21,7 @@
             @include('layouts.partials.footer-guest')
         </main>
     </body>
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}"></script>
+    @stack('scripts')
 </html>

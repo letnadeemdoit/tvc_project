@@ -1,415 +1,486 @@
 <x-guest-layout>
-{{--    @push('stylesheets')--}}
-{{--        <style>--}}
-{{--            .cards-row .card img {--}}
-{{--                width: 130px !important;--}}
-{{--                margin: 0 auto;--}}
-{{--            }--}}
-{{--            .cards-row {--}}
-{{--                max-width: 1000px;--}}
-{{--                margin: 0 auto;--}}
-{{--            }--}}
-{{--            .cards-row .card {--}}
-{{--                -webkit-box-shadow: 0px 20px 40px rgb(1 182 130 / 15%);--}}
-{{--                box-shadow: 0px 20px 40px rgb(1 182 130 / 15%);--}}
-{{--                min-height: 340px;--}}
-{{--            }--}}
-{{--            .max-width {--}}
-{{--                max-width: 300px;--}}
-{{--            }--}}
-{{--        </style>--}}
-{{--    @endpush--}}
-{{--    <header>--}}
-{{--        <!-- slider section -->--}}
-{{--        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">--}}
-{{--            <div class="carousel-indicators">--}}
-{{--                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"--}}
-{{--                        aria-current="true" aria-label="Slide 1"></button>--}}
-{{--                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"--}}
-{{--                        aria-label="Slide 2"></button>--}}
-{{--                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"--}}
-{{--                        aria-label="Slide 3"></button>--}}
-{{--            </div>--}}
-{{--            <div class="carousel-inner">--}}
-{{--                <div class="carousel-item active">--}}
-{{--                        <div class="card text-white bg-transparent border-0 text-center">--}}
-{{--                            <img src="images-home/slider-img.png" class="card-img" alt="...">--}}
-{{--                            <div class="card-img-overlay">--}}
-{{--                                <div class="d-flex align-items-center h-100 justify-content-center my-auto">--}}
-{{--                                    <div class="d-block">--}}
-{{--                                        <h1 class="card-title display-3 font-garamond text-white"><span--}}
-{{--                                                class="d-none d-lg-block">Keep Track Of When</span></h1>--}}
-{{--                                        <p class="card-text display-5 font-bolder font-jost text-success">YOUR VACATION HOME--}}
-{{--                                        </p>--}}
-{{--                                        <p class="card-text text-white display-6 fw-600"><span class="d-none d-lg-block">IS IN--}}
-{{--                                                USE</span></p>--}}
-{{--                                        <button class="btn btn-success px-3 py-1 px-md-5 fs-3 py-md-3 font-jost"--}}
-{{--                                                type="submit">SIGN--}}
-{{--                                            UP--}}
-{{--                                        </button>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                </div>--}}
-{{--                <div class="carousel-item">--}}
-{{--                        <div class="card text-white bg-transparent border-0 text-center">--}}
-{{--                            <img src="images-home/slider-img.png" class="card-img img-height" alt="...">--}}
-{{--                            <div class="card-img-overlay">--}}
-{{--                                <div class="d-flex align-items-center h-100 justify-content-center my-auto">--}}
-{{--                                    <div class="d-block">--}}
-{{--                                        <h1 class="card-title display-3 font-garamond text-white"><span--}}
-{{--                                                class="d-none d-lg-block">Keep Track Of When</span></h1>--}}
-{{--                                        <p class="card-text display-5 font-bolder font-jost text-success">YOUR VACATION HOME--}}
-{{--                                        </p>--}}
-{{--                                        <p class="card-text text-white display-6 fw-600"><span class="d-none d-lg-block">IS IN--}}
-{{--                                                USE</span></p>--}}
-{{--                                        <button class="btn btn-success px-3 py-1 px-md-5 fs-3 py-md-3 font-jost"--}}
-{{--                                                type="submit">SIGN--}}
-{{--                                            UP--}}
-{{--                                        </button>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                </div>--}}
-{{--                <div class="carousel-item">--}}
+    @push('stylesheets')
 
-{{--                        <div class="card text-white bg-transparent border-0 text-center">--}}
-{{--                            <img src="images-home/slider-img.png" class="card-img img-height" alt="...">--}}
-{{--                            <div class="card-img-overlay">--}}
-{{--                                <div class="d-flex align-items-center h-100 justify-content-center my-auto">--}}
-{{--                                    <div class="d-block">--}}
-{{--                                        <h1 class="card-title display-3 font-garamond text-white"><span--}}
-{{--                                                class="d-none d-lg-block">Keep Track Of When</span></h1>--}}
-{{--                                        <p class="card-text display-5 font-bolder font-jost text-success">YOUR VACATION HOME--}}
-{{--                                        </p>--}}
-{{--                                        <p class="card-text text-white display-6 fw-600"><span class="d-none d-lg-block">IS IN--}}
-{{--                                                USE</span></p>--}}
-{{--                                        <button class="btn btn-success px-3 py-1 px-md-5 fs-3 py-md-3 font-jost"--}}
-{{--                                                type="submit">SIGN--}}
-{{--                                            UP--}}
-{{--                                        </button>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+    @endpush
 
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"--}}
-{{--                    data-bs-slide="prev">--}}
-{{--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-{{--                <span class="visually-hidden">Previous</span>--}}
-{{--            </button>--}}
-{{--            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"--}}
-{{--                    data-bs-slide="next">--}}
-{{--                <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-{{--                <span class="visually-hidden">Next</span>--}}
-{{--            </button>--}}
-{{--        </div>--}}
+    <header>
+        <div class="position-relative d-flex align-items-center" style=" background-image: url('/images-home/hero-image.png'); background-size: cover;background-position: center;background-repeat: no-repeat;height: 700px;">
 
-{{--        <!-- slider ends -->--}}
-{{--    </header>--}}
-{{--    <!-- main starts -->--}}
+            <div class="container">
 
-{{--    <!-- section 1  -->--}}
-{{--    <section class="content-space-xl-2">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row text-center">--}}
-{{--                <div class="col-12">--}}
-{{--                    <p class="text-muted mb-0">Working</p>--}}
-{{--                    <h1 class="display-5">How we will help you?</h1>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="row cards-row text-center mt-4 h-100">--}}
-{{--                <div class="col-lg-4 padding-0">--}}
-{{--                    <div class="card p-4">--}}
-{{--                        <img src="{{ asset('img/home/schedule 1.png') }}" class="card-img-top img-fluid" />--}}
-{{--                        <div class="card-body">--}}
-{{--                            <h4 class="card-title">Organize your vacation home schedule</h4>--}}
-{{--                            <p class="card-text">make up the bulk of the card's content.</p>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-4 padding-0">--}}
-{{--                    <div class="card p-4  my-md-5 my-3 my-lg-5">--}}
-{{--                        <img src="{{ asset('img/home/card-img-2.png') }}" class="card-img-top img-fluid" />--}}
-{{--                        <div class="card-body">--}}
-{{--                            <h4 class="card-title">Organize your vacation home schedule</h4>--}}
-{{--                            <p class="card-text">make up the bulk of the card's content.</p>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-4 padding-0">--}}
-{{--                    <div class="card p-4">--}}
-{{--                        <img src="{{ asset('img/home/card-img-3.png') }}" class="card-img-top img-fluid" />--}}
-{{--                        <div class="card-body">--}}
-{{--                            <h4 class="card-title">Organize your vacation home schedule</h4>--}}
-{{--                            <p class="card-text">make up the bulk of the card's content.</p>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
-{{--    <!-- section 2 -->--}}
-{{--    <section class="content-space-xl-2">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row text-center text-md-start">--}}
-{{--                <div class="col-lg-6">--}}
-{{--                    <h3 class="orange-color font-garamond mt-2 display-5 mt-md-4">Find your vacation house</h3>--}}
-{{--                    <p class="font-jost max-width display-4">--}}
-{{--                        What is The Vacation Calendar?--}}
-{{--                    </p>--}}
-{{--                    <p class="paragraph-max-width fs-6">This is the main view of online calendar on--}}
-{{--                        TheVacationCalendar.com which allows everyone to--}}
-{{--                        see when the vacation home is in use. When a vacation is scheduled the user can set the--}}
-{{--                        online calendar to show that the house is occupied. Users can choose to use color to enhance--}}
-{{--                        the calendar or to signify special meaning, such as "would like to trade this vacation" for--}}
-{{--                        different time.</p>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6 bg-dots mt-4 mt-lg-0">--}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img src="images-home/green-bg.png" class="img-fluid mt-5">--}}
-{{--                            <img src="images-home/Mac-Calendar.png"--}}
-{{--                                 class="img-fluid end-0 position-absolute mt-4 me-md-5 me-lg-3" width="590px">--}}
-{{--                        </div>--}}
-{{--                        <div class=" aeroplane-img d-none d-xl-block">--}}
-{{--                            <img src="images-home/aeroplane.png" class="img-fluid">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <!-- second row -->--}}
-{{--            <div class="row section-margin flex-column-reverse flex-lg-row text-center text-md-start">--}}
-{{--                <div class="col-lg-6 bg-dots-green mt-4 mt-lg-0">--}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img src="images-home/bg-orange.png" class="img-fluid mt-4 mt-lg-5">--}}
-{{--                            <img src="images-home/Mac -green.png"--}}
-{{--                                 class="img-fluid end-0 position-absolute mt-4 me-1 mt-lg-4 me-md-5 me-lg-3"--}}
-{{--                                 width="585px">--}}
-{{--                        </div>--}}
-{{--                        <div class=" aeroplane-img-2 d-none d-xl-block text-end">--}}
-{{--                            <img src="images-home/aeroplane-right.png" class="img-fluid aeroplane">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6">--}}
-{{--                    <div class="padding-left">--}}
-{{--                        <h3 class="orange-color font-garamond mt-3 mt-md-5">find your vacation house</h3>--}}
-{{--                        <p class="font-jost fs-3 max-width">--}}
-{{--                            House Bulletin Board--}}
-{{--                        </p>--}}
-{{--                        <p class="paragraph-max-width">This is the main view of online calendar on--}}
-{{--                            TheVacationCalendar.com which allows everyone to--}}
-{{--                            see when the vacation home is in use. When a vacation is scheduled the user can set the--}}
-{{--                            online calendar to show that the house is occupied. Users can choose to use color to--}}
-{{--                            enhance--}}
-{{--                            the calendar or to signify special meaning, such as "would like to trade this vacation"--}}
-{{--                            for--}}
-{{--                            different time.</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <!-- third row -->--}}
-{{--            <div class="row section-margin text-center text-md-start">--}}
-{{--                <div class="col-lg-6">--}}
-{{--                    <h3 class="orange-color font-garamond mt-3 mt-md-5">Find your vacation house</h3>--}}
-{{--                    <p class="font-jost fs-2 max-width">--}}
-{{--                        What is The Vacation Calendar?--}}
-{{--                    </p>--}}
-{{--                    <p class="paragraph-max-width fs-6">This is the main view of online calendar on--}}
-{{--                        TheVacationCalendar.com which allows everyone to--}}
-{{--                        see when the vacation home is in use. When a vacation is scheduled the user can set the--}}
-{{--                        online calendar to show that the house is occupied. Users can choose to use color to enhance--}}
-{{--                        the calendar or to signify special meaning, such as "would like to trade this vacation" for--}}
-{{--                        different time.</p>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6 bg-dots mt-4 mt-lg-0">--}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img src="images-home/green-bg.png" class="img-fluid mt-5">--}}
-{{--                            <img src="images-home/Mac-Calendar.png"--}}
-{{--                                 class="img-fluid end-0 position-absolute mt-4 me-md-5 me-lg-3" width="590px">--}}
-{{--                        </div>--}}
-{{--                        <div class=" aeroplane-img d-none d-xl-block">--}}
-{{--                            <img src="images-home/aeroplane.png" class="img-fluid">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
+                    <p class="mb-1 display-5 text-primary font-jost">Keep Track of when</p>
+                    <h1 class="h1 py-4">Your Vacation <br> Home is in Use</h1>
+                    <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
+                    <div class="position-relative mt-3 max-width">
+                        <img src="/images-home/rounded-arrow.png"
+                             class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
+                        <p class="display-4 font-poppins text-primary">Only $20 <span class="fs-6">per year</span></p>
+                    </div>
 
-{{--    <section class="content-space-xl-2">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row align-items-center  flex-column-reverse flex-lg-row">--}}
-{{--                <div class="col-lg-5 text-center text-md-start mt-5 mt-lg-0">--}}
-{{--                    <h3 class="font-garamond ">Find your vacation house</h3>--}}
-{{--                    <h2 class="text-white">Managing Vacations</h2>--}}
-{{--                    <p>So this is the money shot of TheVacationCalendar.com. Using this simple screen anyone who is--}}
-{{--                        authorized to schedule a vacation can do so. The site checks that there are no conflicts on--}}
-{{--                        the online calendar and prevents you from ever having multiple parties showing up at your--}}
-{{--                        vacation home at the same time.</p>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-7 mt-3 mt-md-0 text-center text-lg-end">--}}
-{{--                    <img src="images-home/mobile-img.png" class="img-fluid atm-img">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
-{{--    <section class="content-space-xl-2">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row mt-5 flex-column-reverse flex-lg-row text-center text-md-start">--}}
-{{--                <div class="col-lg-6 bg-dots-green mt-4 mt-lg-0">--}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img src="images-home/bg-orange.png" class="img-fluid mt-4 mt-lg-5">--}}
-{{--                            <img src="images-home/Mac -green.png"--}}
-{{--                                 class="img-fluid end-0 position-absolute mt-4 me-1 me-md-5 mt-lg-4 me-lg-3"--}}
-{{--                                 width="585px">--}}
-{{--                        </div>--}}
-{{--                        <div class=" aeroplane-img-2 d-none d-xl-block text-end">--}}
-{{--                            <img src="images-home/aeroplane-right.png" class="img-fluid aeroplane">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6">--}}
-{{--                    <div class="padding-left">--}}
-{{--                        <h3 class="orange-color font-garamond mt-3 mt-md-5">find your vacation house</h3>--}}
-{{--                        <p class="font-jost fs-3 max-width">--}}
-{{--                            House Bulletin Board--}}
-{{--                        </p>--}}
-{{--                        <p class="paragraph-max-width">This is the main view of online calendar on--}}
-{{--                            TheVacationCalendar.com which allows everyone to--}}
-{{--                            see when the vacation home is in use. When a vacation is scheduled the user can set the--}}
-{{--                            online calendar to show that the house is occupied. Users can choose to use color to--}}
-{{--                            enhance--}}
-{{--                            the calendar or to signify special meaning, such as "would like to trade this vacation"--}}
-{{--                            for--}}
-{{--                            different time.</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="row section-margin text-center text-md-start">--}}
-{{--                <div class="col-lg-6">--}}
-{{--                    <h3 class="orange-color font-garamond mt-3 mt-md-5">Find your vacation house</h3>--}}
-{{--                    <p class="font-jost fs-2 max-width">--}}
-{{--                        What is The Vacation Calendar?--}}
-{{--                    </p>--}}
-{{--                    <p class="paragraph-max-width fs-6">This is the main view of online calendar on--}}
-{{--                        TheVacationCalendar.com which allows everyone to--}}
-{{--                        see when the vacation home is in use. When a vacation is scheduled the user can set the--}}
-{{--                        online calendar to show that the house is occupied. Users can choose to use color to enhance--}}
-{{--                        the calendar or to signify special meaning, such as "would like to trade this vacation" for--}}
-{{--                        different time.</p>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6 bg-dots mt-4 mt-lg-0">--}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img src="images-home/green-bg.png" class="img-fluid mt-5">--}}
-{{--                            <img src="images-home/Mac-Calendar.png"--}}
-{{--                                 class="img-fluid end-0 position-absolute mt-4 me-md-5 me-lg-3" width="590px">--}}
-{{--                        </div>--}}
-{{--                        <div class=" aeroplane-img d-none d-xl-block">--}}
-{{--                            <img src="images-home/aeroplane.png" class="img-fluid">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="row  flex-column-reverse flex-lg-row text-center text-md-start section-margin">--}}
-{{--                <div class="col-lg-6 bg-dots-green mt-4 mt-lg-0">--}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img src="images-home/bg-orange.png" class="img-fluid mt-4 mt-lg-5">--}}
-{{--                            <img src="images-home/Mac -green.png"--}}
-{{--                                 class="img-fluid end-0 position-absolute mt-4 me-1 me-md-5 mt-lg-4 me-lg-3"--}}
-{{--                                 width="585px">--}}
-{{--                        </div>--}}
-{{--                        <div class=" aeroplane-img-2 d-none d-xl-block text-end">--}}
-{{--                            <img src="images-home/aeroplane-right.png" class="img-fluid aeroplane">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6">--}}
-{{--                    <div class="padding-left">--}}
-{{--                        <h3 class="orange-color font-garamond mt-3 mt-md-5">find your vacation house</h3>--}}
-{{--                        <p class="font-jost fs-3 max-width">--}}
-{{--                            House Bulletin Board--}}
-{{--                        </p>--}}
-{{--                        <p class="paragraph-max-width">This is the main view of online calendar on--}}
-{{--                            TheVacationCalendar.com which allows everyone to--}}
-{{--                            see when the vacation home is in use. When a vacation is scheduled the user can set the--}}
-{{--                            online calendar to show that the house is occupied. Users can choose to use color to--}}
-{{--                            enhance--}}
-{{--                            the calendar or to signify special meaning, such as "would like to trade this vacation"--}}
-{{--                            for--}}
-{{--                            different time.</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="row section-margin text-center text-md-start">--}}
-{{--                <div class="col-lg-6">--}}
-{{--                    <h3 class="orange-color font-garamond mt-3 mt-md-5">Find your vacation house</h3>--}}
-{{--                    <p class="font-jost fs-2 max-width">--}}
-{{--                        What is The Vacation Calendar?--}}
-{{--                    </p>--}}
-{{--                    <p class="paragraph-max-width fs-6">This is the main view of online calendar on--}}
-{{--                        TheVacationCalendar.com which allows everyone to--}}
-{{--                        see when the vacation home is in use. When a vacation is scheduled the user can set the--}}
-{{--                        online calendar to show that the house is occupied. Users can choose to use color to enhance--}}
-{{--                        the calendar or to signify special meaning, such as "would like to trade this vacation" for--}}
-{{--                        different time.</p>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6 bg-dots mt-4 mt-lg-0">--}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img src="images-home/green-bg.png" class="img-fluid mt-5">--}}
-{{--                            <img src="images-home/Mac-Calendar.png"--}}
-{{--                                 class="img-fluid end-0 position-absolute mt-4 me-md-5 me-lg-3" width="590px">--}}
-{{--                        </div>--}}
-{{--                        <div class=" aeroplane-img d-none d-xl-block">--}}
-{{--                            <img src="images-home/aeroplane.png" class="img-fluid">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="row section-margin flex-column-reverse flex-lg-row text-center text-md-start">--}}
-{{--                <div class="col-lg-6 bg-dots-green mt-4 mt-lg-0">--}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="position-relative">--}}
-{{--                            <img src="images-home/bg-orange.png" class="img-fluid mt-4 mt-lg-5">--}}
-{{--                            <img src="images-home/Mac -green.png"--}}
-{{--                                 class="img-fluid end-0 position-absolute mt-4 me-1 me-md-5 mt-lg-4 me-lg-3"--}}
-{{--                                 width="585px">--}}
-{{--                        </div>--}}
-{{--                        <div class=" aeroplane-img-2 d-none d-xl-block text-end">--}}
-{{--                            <img src="images-home/aeroplane-right.png" class="img-fluid aeroplane">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6">--}}
-{{--                    <div class="padding-left">--}}
-{{--                        <h3 class="orange-color font-garamond mt-3 mt-md-5">find your vacation house</h3>--}}
-{{--                        <p class="font-jost fs-3 max-width">--}}
-{{--                            House Bulletin Board--}}
-{{--                        </p>--}}
-{{--                        <p class="paragraph-max-width">This is the main view of online calendar on--}}
-{{--                            TheVacationCalendar.com which allows everyone to--}}
-{{--                            see when the vacation home is in use. When a vacation is scheduled the user can set the--}}
-{{--                            online calendar to show that the house is occupied. Users can choose to use color to--}}
-{{--                            enhance--}}
-{{--                            the calendar or to signify special meaning, such as "would like to trade this vacation"--}}
-{{--                            for--}}
-{{--                            different time.</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
+            </div>
+        </div>
+    </header>
 
+    <section class="my-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 text-center text-lg-start">
+                    <!-- Jumbotron -->
+                    <div
+                        class="p-5 text-center shadow-1-strong rounded mb-5 text-white bg-process-img">
+                        <h1 class="h2 text-start text-primary font-jost">Find Your Vacation House</h1>
+                    </div>
+                    <div class="pt-3">
+                        <h4>What is the Vacation Calendar?</h4>
+                        <p class="pe-0 pe-lg-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor felis pellentesque velit, et
+                            sed pharetra. Nunc, faucibus orci malesuada id sit fusce mi, nec. Blandit sed sit neque
+                            faucibus morbi feugiat quis. Odio egestas dictum lorem fermentum a eget lacus. Vulputate
+                            morbi curabitur adipiscing facilisi. Convallis pulvinar pharetra suscipit eget blandit
+                            nisl. </p>
+                        <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg mt-3">SIGN UP</button>
+                    </div>
+                </div>
+                <div class="col-lg-3 mt-4 mt-lg-0 offset-md-1">
+                    <div class="text-center d-none d-lg-block">
+                        <img src="/images-home/left-arrow.png" class="img-fluid ms-auto mb-3"/>
+                    </div>
+                    <div class="card  border-0 rounded-3 bg-card-1">
+                        <div class="d-block text-center d-lg-flex justify-content-center justify-content-lg-start align-items-lg-center h-100 position-absolute w-100">
+                            <div class="bg-white rounded-pill p-4 rounded-icon">
+                                <img src="/images-home/card-img-1.png" class="img-fluid" alt="calculator">
+                            </div>
+                        </div>
+                        <div class="card-body pt-5 padding-top">
+                            <h3 class="card-title">Organize your vacation home schedule</h3>
+                            <p class="card-text">Spend more time enjoying your getaway home</p>
 
+                        </div>
+                    </div>
+                    <div class="text-center d-none d-lg-block">
+                        <img src="/images-home/right-arrow.png" class="img-fluid me-auto mb-3"/>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card  border-0 my-4 my-lg-0 rounded-3 bg-card-2">
+                        <div class="d-block  d-lg-flex text-center justify-content-center justify-content-lg-start w-100 align-items-center h-100 position-absolute">
+                            <div class="bg-white rounded-pill p-4 rounded-icon">
+                                <img src="/images-home/card-img-2.png" class="img-fluid" alt="message">
+                            </div>
+                        </div>
+                        <div class="card-body pt-5 padding-top">
+                        <h3 class="card-title">Share information on the house bulletin board and house blog</h3>
+                        <p class="card-text">Direct all of your guests to a single location that has all of the house
+                            details.</p>
+
+                    </div>
+                </div>
+                <div class="card  border-0 mt-2 rounded-3 bg-card-3">
+                    <div class="d-block d-lg-flex text-center justify-content-center justify-content-lg-start w-100 align-items-center h-100 position-absolute">
+                        <div class="bg-white rounded-pill p-4 rounded-icon">
+                            <img src="/images-home/card-img-3.png" class="img-fluid" alt="users">
+                        </div>
+                    </div>
+                    <div class="card-body pt-5 padding-top">
+                        <h3 class="card-title">Let friends and family see when they can visit</h3>
+                        <p class="card-text">Allows visitors to see when the house is going to be free.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    {{--   cards-section   --}}
+
+    <section class="bg-secondary py-5 bg-cards-section">
+        <div class="container py-5">
+            <div
+                class="features-img  text-center shadow-1-strong rounded  text-white d-flex justify-content-center">
+                <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+            </div>
+            <h3 class="text-center text-white">Vacation Calendar makes it simple</h3>
+            <div class="row py-5">
+                <div class="col-lg-4">
+                    <!-- Card -->
+                    <div class="card p-2">
+                        <img class="card-img-top" src="/images-home/bulletin-image.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title">Card title</h3>
+                            <p class="card-text">This is a longer card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit longer.</p>
+                            <button class="btn btn-lg w-100 btn-primary text-white">Learn More</button>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                </div>
+                <div class="col-lg-4 my-4 my-lg-0">
+                    <!-- Card -->
+                    <div class="card p-2">
+                        <img class="card-img-top" src="/images-home/vacations-image.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title">Card title</h3>
+                            <p class="card-text">This is a longer card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit longer.</p>
+                            <button class="btn btn-lg w-100 btn-primary text-white">Learn More</button>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                </div>
+                <div class="col-lg-4">
+                    <!-- Card -->
+                    <div class="card p-2">
+                        <img class="card-img-top" src="/images-home/blog-image.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title">Card title</h3>
+                            <p class="card-text">This is a longer card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit longer.</p>
+                            <button class="btn btn-lg w-100 btn-primary text-white">Learn More</button>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- section 3   --}}
+
+    <section class=" my-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div
+                        class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white bg-process-img"">
+                        <h1 class="mb-3 h2 text-start font-jost">Find Your Vacation House</h1>
+                    </div>
+                    <div class="pt-3">
+                        <h4>What is the Vacation Calendar?</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor felis pellentesque velit, et
+                            sed pharetra. Nunc, faucibus orci malesuada id sit fusce mi, nec. Blandit sed sit neque
+                            faucibus morbi feugiat quis. Odio egestas dictum lorem fermentum a eget lacus. Vulputate
+                            morbi curabitur adipiscing facilisi. Convallis pulvinar pharetra suscipit eget blandit
+                            nisl. </p>
+        {{--          nav tabs           --}}
+                        <div class="images-nav-tabs">
+                        <ul class="nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                                    <img src="{{asset('/images-home/envelope.png')}}" width="30px" class="d-none d-lg-block" />
+                                    <p class="mb-0 pt-2">House Blog</p>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                    <img src="{{asset('/images-home/card.png')}}" width="30px" class="d-none d-lg-block" />
+                                    <p class="mb-0 pt-2">House Photo Album</p>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">
+                                    <img src="{{asset('/images-home/user.png')}}" width="30px" class="d-none d-lg-block" />
+                                    <p class="mb-0 pt-2">Account Management</p>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping" aria-selected="true">
+                                    <img src="{{asset('/images-home/user-2.png')}}" width="30px" class="d-none d-lg-block" />
+                                    <p class="mb-0 pt-2">User Management</p>
+                                </button>
+                            </li>
+
+                        </ul>
+                        </div>
+        {{--           nav tabs end             --}}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="big-image">
+                <img src="{{asset('/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image">
+                        <img src="{{asset('/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image">
+                        <img src="{{asset('/images-home/bulletin-image.png')}}" class="img-fluid" alt="tab-image">
+                        <img src="{{asset('/images-home/hero-image.png')}}" class="img-fluid" alt="tab-image">
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="p-2 p-lg-5"
+                 style="background: url({{asset('/images-home/cards-background.png')}});background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="container">
+                <div
+                    class="bg-image my-5 text-center shadow-1-strong rounded  text-white features-img">
+                    <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+                </div>
+                <h3 class="text-center text-white">Vacation Calendar makes it simple</h3>
+                <div class="d-block d-lg-flex  justify-content-center mt-4">
+                    <div class="d-flex flex-column">
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/girl-image.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-1.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+
+                        <!-- Card -->
+                        <div class="card my-3 border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/red-flowers.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-2.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/brown-house.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-3.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+
+                    </div>
+                    <!--  -->
+                    <div class="d-flex flex-column ms-3 mt-3 mt-lg-0">
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/rome.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-4.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card my-3 border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-2.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-5.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-3.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-6.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                    <!--  -->
+                    <div class="d-flex flex-column ms-3 mt-3 mt-lg-0">
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-4.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-6.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card my-3 border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-5.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-6.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-6.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-6.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                    <div class="d-flex flex-column ms-3 mt-3 mt-lg-0">
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-8.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-3.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card my-3 border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-9.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-2.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-10.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-1.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                    <div class="d-flex flex-column ms-3 mt-3 mt-lg-0">
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-12.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-11.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card my-3 border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-13.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-12.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('images-home/house-4.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-11.png')}}" alt="Image Description">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    @push('scripts')
+        <script>
+            $(function () {
+                $("#big-image img:eq(0)").nextAll().hide();
+                $(".images-nav-tabs .nav-item").click(function (e) {
+                    var index = $(this).index();
+                    $("#big-image img").eq(index).show().siblings().hide();
+                });
+            });
+        </script>
+    @endpush
 </x-guest-layout>
+

@@ -136,6 +136,7 @@
                             id="password_field_2"
                             type="password"
                             class="form-control form-control-lg"
+                            placeholder="Confirm Password"
                             name="password_field_2"
                             value="{{old('password_field_2')}}"
                             required
@@ -261,29 +262,7 @@
 
                     </div>
                 </div>
-                <!-- Form Check -->
-                <div class="form-check mb-4">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="terms_Checkbox"
-                        value="{{old('terms_Checkbox')}}"
-                        required
-                    />
-                    <label class="form-check-label" for="terms_Checkbox">
-                        I accept the <a href="#">Terms and Conditions</a>
-                    </label>
-                    <span class="invalid-feedback">Please accept our Terms and Conditions.</span>
-                </div>
-                <!-- End Form Check -->
 
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
-
-                    <button type="submit" class="btn btn-link">
-                        or Start your 30-day trial <i class="bu-chevron-right"></i>
-                    </button>
-                </div>
                 <div class="text-center">
                     <p>Referral Info
                         Please provide the PayPal account of the person that referred you to
@@ -318,6 +297,7 @@
                     <label for="admin_username" class="form-label fs-5">Admin Username</label>
                     <input class="form-control form-control-lg"
                            type="text"
+                           placeholder="Admin Username"
                            value="{{old('admin_username')}}"
                            id="admin_username"/>
                 </div>
@@ -325,6 +305,7 @@
                     <label for="admin_password" class="form-label fs-5">Admin Password</label>
                     <input type="text"
                            class="form-control form-control-lg"
+                           placeholder="Admin Password"
                            id="admin_password"
                            value="{{old('admin_password')}}"
                            required/>
@@ -335,6 +316,7 @@
                         Password(Confirm*)</label>
                     <input type="text"
                            class="form-control form-control-lg"
+                           placeholder="Confirm Admin Password"
                            id="admin_password_confirm"
                            value="{{old('admin_password_confirm')}}"
                            required/>
@@ -344,12 +326,13 @@
                     <label for="admin_email" class="form-label fs-5">Admin Email</label>
                     <input type="text"
                            class="form-control form-control-lg"
+                           placeholder="Enter Admin Email"
                            id="admin_email"
                            value="{{old('admin_email')}}"
                            required/>
                 </div>
 
-                <div class="mb-2">
+                <div class="my-3">
                     <div class="form-group">
                         Allow Administrator to have Owner permissions
                         <input type="checkbox" name="AdminOwner">
@@ -441,8 +424,28 @@
 
                     </div>
                 </div>
-                <!-- End Form -->
+                <!-- Form Check -->
+                <div class="form-check mb-4">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="terms_Checkbox"
+                        value="{{old('terms_Checkbox')}}"
+                        required
+                    />
+                    <label class="form-check-label" for="terms_Checkbox">
+                        I accept the <a href="#">Terms and Conditions</a>
+                    </label>
+                    <span class="invalid-feedback">Please accept our Terms and Conditions.</span>
+                </div>
+                <!-- End Form Check -->
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
 
+                    <button type="submit" class="btn btn-link">
+                        or Start your 30-day trial <i class="bu-chevron-right"></i>
+                    </button>
+                </div>
 
             </form>
             <!-- End Form -->

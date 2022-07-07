@@ -1,6 +1,40 @@
+{{--    topnav    --}}
+<div class="topnav py-2 bg-dark">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="d-flex justify-content-center justify-content-md-start">
+
+                    <i class="bi-facebook fs-3 text-white"></i>
+                    <i class="bi-twitter mx-3 fs-3 text-white"></i>
+                    <i class="bi-instagram fs-3 text-white"></i>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div
+                    class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-md-end">
+                    <div
+                        class="d-flex align-items-center justify-content-center justify-content-md-start py-2 py-md-0">
+                        <i class="fas fa-phone me-2"></i>
+                        <p class="mb-0 text-white">000-000-000</p>
+                    </div>
+                    <div
+                        class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
+                        <i class="fa-solid fa-envelope me-2"></i>
+                        <p class="mb-0 text-white">trips.calendar@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{--   topnnav     --}}
+
 <header id="header" class="navbar navbar-expand-lg navbar-bordered bg-white  ">
     <div class="container">
-        <nav class="js-mega-menu navbar-nav-wrap">
+
+        <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center">
             <!-- Logo -->
 
             <a class="navbar-brand" href="{{ url('/') }}" aria-label="Front">
