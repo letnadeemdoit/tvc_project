@@ -151,7 +151,7 @@
                 <div class="col-lg-6">
                     <div
                         class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white bg-process-img"">
-                        <h1 class="mb-3 h2 text-start font-jost">Find Your Vacation House</h1>
+                        <h1 class="mb-3 h2 text-start font-jost text-primary">Find Your Vacation House</h1>
                     </div>
                     <div class="pt-3">
                         <h4>What is the Vacation Calendar?</h4>
