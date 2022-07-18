@@ -1,0 +1,289 @@
+.h1{
+    font-size: 3rem;
+}
+.bg-primary{
+    background-color: $primary !Important;
+}
+.text-primary{
+    color: $primary;
+}
+@font-face {
+    font-family: poppins;
+    src: url('/fonts/Poppins-Regular.ttf');
+}
+@font-face {
+    font-family: jost;
+    src: url('/fonts/jost/static/Jost-Medium.ttf');
+}
+.font-jost{
+    font-family: jost !important;
+}
+.max-width{
+    max-width: 360px;
+}
+.mt-n100{
+    margin-top: -100px;
+}
+body{
+    font-family: poppins;
+}
+.font-poppins{
+    font-family: poppins;
+}
+.btn-signup{
+    width:180px;
+}
+.features-img{
+    background-image: url('/images/images-home/fEATURE.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    max-width: 100%;
+}
+.bg-cards-section{
+    background: url('/images/images-home/union-waves.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+// home page css
+
+.images-nav-tabs {
+    .nav-link {
+        background-color: rgba(163, 163, 163, 0.12) !important;
+        border: none !important;
+        padding: 12px !important;
+        margin-right: 14px;
+        margin-bottom: 12px;
+        max-width: 122px;
+        min-width: 120px;
+        min-height :100px;
+        border-radius: 9px;
+    }
+    img{
+        margin: 0 auto !important;
+    }
+    .nav-link.active {
+        background: #E8604C !important;
+        color: #fff;
+    }
+}
+.bg-process-img {
+    background-image: url('/images/images-home/process.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: auto;
+    max-width: 100%;
+}
+.rounded-icon{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-left:-23px;
+}
+.card-pinned-bottom-start {
+bottom: -1rem !important;
+}
+@mixin cards-background{
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-position-x:93%;
+    background-position-y:93%;
+    background-size: auto;
+    min-height:350px;
+}
+@mixin background-properties{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.bg-card-1{
+    background-image: url('/images/images-home/number-1.png');
+    @include cards-background;
+}
+.bg-card-2{
+    background-image: url('/images/images-home/number-2.png');
+    @include cards-background;
+}
+.bg-card-3{
+    background-image: url('/images/images-home/number-3.png');
+    @include cards-background;
+}
+.padding-top{
+    padding-left: 3.5rem;
+    padding-right:3.5rem
+}
+
+@media only screen and (max-width:1400px){
+    .rounded-icon{
+        margin-left: -30px;
+        padding: 14px !important;
+    }
+    .padding-top{
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+}
+@media only screen and (max-width:991px){
+    .rounded-icon {
+        width: 10%;
+        margin: 0 auto !important;
+    }
+    .padding-top{
+        padding-top: 6rem !important;
+    }
+}
+@media only screen and (max-width:767px) {
+    .rounded-icon {
+        width: 15%;
+        margin: 0 auto !important;
+    }
+    .padding-top{
+        padding-top: 6rem !important;
+    }
+}
+@media only screen and (max-width:576px){
+    .bg-process-img{
+    background-size: contain !important;
+    }
+    .rounded-icon{
+        width:16%;
+        margin: 0 auto !important;
+    }
+    .padding-top{
+        padding-top: 6rem !important;
+    }
+    .images-nav-tabs .nav-link{
+        width:80px !important;
+        font-size: 8px !important;
+        min-height:65px !important;
+        min-width: revert !important;
+    }
+    .navbar-expand-lg .navbar-nav-wrap-secondary-content{
+        margin-left: 0 !important;
+    }
+}
+@media only screen and (max-width:430px){
+    .rounded-icon{
+        width:15%;
+        margin: 0 auto !important;
+    }
+    .category-cards {
+        .nav.nav-tabs{
+            justify-content: center !important;
+        }
+        .nav-link {
+            padding: 4px !important;
+            img{
+                width: 25px !important;
+            }
+        }
+    }
+}
+@media only screen and (max-width:375px){
+    .rounded-icon{
+        width:16%;
+        margin: 0 auto !important;
+    }
+    .images-nav-tabs .nav-link{
+        width:72px !important;
+        font-size: 8px !important;
+    }
+}
+
+// bulletin page css
+.bulletin-image{
+    background-image: url('/images/bulletin-images/bulletin.png');
+   @include  background-properties;
+    height:600px;
+}
+.category-cards{
+
+    .card{
+        border: none !important;
+        box-shadow: 0px 11px 24px rgba(168, 168, 168, 0.1);
+        margin: 30px 0px !important;
+    }
+
+    .green-shadow{
+        box-shadow:0px 20px 40px rgba(1, 182, 130, 0.15) !important;
+    }
+    .orange-dots{
+        background-image: url('/images/bulletin-images/Combined\ Shape.png');
+        background-size: contain;
+        background-position: top right;
+    }
+
+
+    .vertical-dots{
+        margin-top: -600px;
+        margin-left: -36px;
+    }
+    .bg-dots-orange{
+        margin-bottom: -257px;
+        margin-right: 131px;
+    }
+    .cards-dots-green{
+        margin-top: -55px;
+        margin-left: -367px;
+    }
+    .text-index{
+        z-index: 2;
+    }
+    .featured-btn{
+        font-size: 11px;
+        background: #E8604C;
+        color: #fff;
+        padding: 6px 14px;
+        border-radius: 6px;
+    }
+
+    .nav-link{
+        background-color: rgba(163, 163, 163, 0.12) !important;
+        border: none !important;
+        padding: 18px;
+        margin-right: 14px;
+        &.active{
+            background:rgba(232, 96, 76, 0.06) !important;
+        img{
+            filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+        }
+        }
+
+    }
+}
+
+.bg-waves{
+    background-image: url('/images/bulletin-images/Union.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.fs-50{
+    font-size: 50px;
+}
+// bulletin page css ends
+
+// blog page css
+.blog-image{
+    background: url("/images/blog-images/blog.png");
+    @include  background-properties;
+    height: 600px;
+}
+.blog-text{
+        background-image: url('/images/blog-images/blog-text.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        max-width: 100%;
+}
+.margin-negative{
+    margin-top: -60px;
+}
+.ul-card-footer {
+    li {
+        p {
+            padding-left: 20px;
+        }
+    }
+}
+// blog page css ends

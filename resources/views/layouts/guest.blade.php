@@ -9,12 +9,11 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
-
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        @stack('stylesheets')
     </head>
     <body>
         <main>
@@ -23,4 +22,7 @@
             @include('layouts.partials.footer-guest')
         </main>
     </body>
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}"></script>
+    @stack('scripts')
 </html>

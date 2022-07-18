@@ -25,4 +25,12 @@ class GuestController extends Controller
     {
         return view('help');
     }
+
+    public function bulletinBoard(){
+        return view('bulletinBoard');
+    }
+
+    public function blog() {
+        return view('blog');
+    }
 }
