@@ -28129,7 +28129,11 @@ label.form-control,
 }
 
 .nav-link.active {
-  color: #E8604C;
+    color: #000;
+    font-weight: 800;
+    border-bottom: 2px solid #E8604C !important;
+    padding-left: 0.75rem !important;
+    width: 65px;
 }
 
 .nav-link.active .nav-link-svg path,
@@ -28717,7 +28721,7 @@ label.form-control,
 }
 
 .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
-  padding: 1rem 0.75rem;
+  padding: 0.75rem;
 }
 
 .navbar .navbar-collapse .nav-link:first-child {
