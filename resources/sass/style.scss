@@ -123,6 +123,19 @@ bottom: -1rem !important;
     padding-right:3.5rem
 }
 
+.footer{
+    background-color: $dark-blue !important;
+    color:#fff !important;
+    padding:8px;
+    ul{
+        li{
+            a{
+                color:#fff !important;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width:1400px){
     .rounded-icon{
         margin-left: -30px;
