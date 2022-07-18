@@ -2,8 +2,13 @@
 <div class="footer">
     <div class="container">
         <div class="row justify-content-between align-items-center">
-            <div class="col">
-                <p class="fs-6 mb-0">&copy;2022 {{ config('app.name') }}.</p>
+            <div class="col d-flex align-items-center">
+                <p class="fs-6 mb-0">Powered by {{ config('app.name') }}.</p>
+                <div class="ps-3">
+                <i class="bi-facebook fs-3"></i>
+                <i class="bi-twitter mx-3 fs-3"></i>
+                <i class="bi-instagram fs-3"></i>
+            </div>
             </div>
             <!-- End Col -->
 
@@ -13,20 +18,9 @@
                     <ul class="list-inline list-separator">
 
                         <li class="list-inline-item">
-                            <a class="list-separator-link" href="{{ route('guest.help') }}">Help</a>
+                            <a class="list-separator-link" href="{{ route('guest.help') }}">© 2021 Compay name. Privacy Policy and Terms of Service</a>
                         </li>
 
-                        <li class="list-inline-item">
-                            <a class="list-separator-link" href="#">License</a>
-                        </li>
-
-                        <li class="list-inline-item">
-                            <!-- Keyboard Shortcuts Toggle -->
-                            <button class="btn btn-ghost-secondary btn btn-icon btn-ghost-secondary rounded-circle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasKeyboardShortcuts" aria-controls="offcanvasKeyboardShortcuts">
-                                <i class="bi-command"></i>
-                            </button>
-                            <!-- End Keyboard Shortcuts Toggle -->
-                        </li>
                     </ul>
                     <!-- End List Separator -->
                 </div>

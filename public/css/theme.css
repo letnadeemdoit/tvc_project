@@ -28129,10 +28129,7 @@ label.form-control,
 }
 
 .nav-link.active {
-    font-weight: 800;
-    border-bottom:2px solid #E8604C;
-    width:65px;
-
+  color: #E8604C;
 }
 
 .nav-link.active .nav-link-svg path,
@@ -28720,12 +28717,12 @@ label.form-control,
 }
 
 .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
-  padding: 0.75rem;
+  padding: 1rem 0.75rem;
 }
 
-/*.navbar .navbar-collapse .nav-link:first-child {*/
-/*  padding-left: 0;*/
-/*}*/
+.navbar .navbar-collapse .nav-link:first-child {
+  padding-left: 0;
+}
 
 .navbar .nav-item:hover > .nav-link {
   color: #e4442c;
@@ -36469,6 +36466,15 @@ header nav button:last-child:hover {
 .padding-top {
   padding-left: 3.5rem;
   padding-right: 3.5rem;
+}
+
+.footer {
+  background-color: #2A3342 !important;
+  color: #fff !important;
+  padding: 8px;
+}
+.footer ul li a {
+  color: #fff !important;
 }
 
 @media only screen and (max-width: 1400px) {

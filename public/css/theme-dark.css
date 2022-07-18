@@ -28051,6 +28051,15 @@ header nav button:last-child:hover {
   padding-right: 3.5rem;
 }
 
+.footer {
+  background-color: #2A3342 !important;
+  color: #fff !important;
+  padding: 8px;
+}
+.footer ul li a {
+  color: #fff !important;
+}
+
 @media only screen and (max-width: 1400px) {
   .rounded-icon {
     margin-left: -30px;
