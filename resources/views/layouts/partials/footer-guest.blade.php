@@ -1,5 +1,5 @@
 <!-- Footer -->
-<div class="footer">
+<div class="footer d-flex align-items-center mt-5">
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col d-flex align-items-center">
@@ -9,6 +9,7 @@
                 <i class="bi-twitter mx-3 fs-3"></i>
                 <i class="bi-instagram fs-3"></i>
             </div>
+                <div class="border-right ps-3"></div>
             </div>
             <!-- End Col -->
 
@@ -18,7 +19,7 @@
                     <ul class="list-inline list-separator">
 
                         <li class="list-inline-item">
-                            <a class="list-separator-link" href="{{ route('guest.help') }}">© 2021 Compay name. Privacy Policy and Terms of Service</a>
+                            <a class="list-separator-link" href="{{ route('guest.help') }}">© 2021 Compay name.<span class="text-decoration-underline">Privacy Policy</span> and <span class="text-decoration-underline"> Terms of Service</span></a>
                         </li>
 
                     </ul>

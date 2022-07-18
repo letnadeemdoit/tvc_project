@@ -127,12 +127,17 @@ bottom: -1rem !important;
     background-color: $dark-blue !important;
     color:#fff !important;
     padding:8px;
+    border-top: 2px solid rgba(255, 255, 255, 0.25);
     ul{
         li{
             a{
                 color:#fff !important;
             }
         }
+    }
+    .border-right{
+        border-right: 1px solid rgba(255, 255, 255, 0.25);
+        height: 23px;
     }
 }
 
