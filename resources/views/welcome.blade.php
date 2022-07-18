@@ -8,14 +8,14 @@
 
             <div class="container">
 
-                    <p class="mb-1 display-5 text-primary font-jost">Keep Track of when</p>
-                    <h1 class="h1 py-4">Your Vacation <br> Home is in Use</h1>
-                    <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
-                    <div class="position-relative mt-3 max-width">
-                        <img src="/images/images-home/rounded-arrow.png"
-                             class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
-                        <p class="display-4 font-poppins text-primary">Only $20 <span class="fs-6">per year</span></p>
-                    </div>
+                <p class="mb-1 display-5 text-primary font-jost">Keep Track of when</p>
+                <h1 class="h1 py-4">Your Vacation <br> Home is in Use</h1>
+                <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
+                <div class="position-relative mt-3 max-width">
+                    <img src="/images/images-home/rounded-arrow.png"
+                         class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
+                    <p class="display-4 font-poppins text-primary">Only $20 <span class="fs-6">per year</span></p>
+                </div>
 
             </div>
         </div>
@@ -68,26 +68,26 @@
                             </div>
                         </div>
                         <div class="card-body pt-5 padding-top">
-                        <h3 class="card-title">Share information on the house bulletin board and house blog</h3>
-                        <p class="card-text">Direct all of your guests to a single location that has all of the house
-                            details.</p>
+                            <h3 class="card-title">Share information on the house bulletin board and house blog</h3>
+                            <p class="card-text">Direct all of your guests to a single location that has all of the house
+                                details.</p>
 
-                    </div>
-                </div>
-                <div class="card  border-0 mt-2 rounded-3 bg-card-3">
-                    <div class="d-block d-lg-flex text-center justify-content-center justify-content-lg-start w-100 align-items-center h-100 position-absolute">
-                        <div class="bg-white rounded-pill p-4 rounded-icon">
-                            <img src="/images/images-home/card-img-3.png" class="img-fluid" alt="users" />
                         </div>
                     </div>
-                    <div class="card-body pt-5 padding-top">
-                        <h3 class="card-title">Let friends and family see when they can visit</h3>
-                        <p class="card-text">Allows visitors to see when the house is going to be free.</p>
+                    <div class="card  border-0 mt-2 rounded-3 bg-card-3">
+                        <div class="d-block d-lg-flex text-center justify-content-center justify-content-lg-start w-100 align-items-center h-100 position-absolute">
+                            <div class="bg-white rounded-pill p-4 rounded-icon">
+                                <img src="/images/images-home/card-img-3.png" class="img-fluid" alt="users" />
+                            </div>
+                        </div>
+                        <div class="card-body pt-5 padding-top">
+                            <h3 class="card-title">Let friends and family see when they can visit</h3>
+                            <p class="card-text">Allows visitors to see when the house is going to be free.</p>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -151,17 +151,17 @@
                 <div class="col-lg-6">
                     <div
                         class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white bg-process-img"">
-                        <h1 class="mb-3 h2 text-start font-jost text-primary">Find Your Vacation House</h1>
-                    </div>
-                    <div class="pt-3">
-                        <h4>What is the Vacation Calendar?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor felis pellentesque velit, et
-                            sed pharetra. Nunc, faucibus orci malesuada id sit fusce mi, nec. Blandit sed sit neque
-                            faucibus morbi feugiat quis. Odio egestas dictum lorem fermentum a eget lacus. Vulputate
-                            morbi curabitur adipiscing facilisi. Convallis pulvinar pharetra suscipit eget blandit
-                            nisl. </p>
-        {{--          nav tabs           --}}
-                        <div class="images-nav-tabs">
+                    <h1 class="mb-3 h2 text-start font-jost text-primary">Find Your Vacation House</h1>
+                </div>
+                <div class="pt-3">
+                    <h4>What is the Vacation Calendar?</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor felis pellentesque velit, et
+                        sed pharetra. Nunc, faucibus orci malesuada id sit fusce mi, nec. Blandit sed sit neque
+                        faucibus morbi feugiat quis. Odio egestas dictum lorem fermentum a eget lacus. Vulputate
+                        morbi curabitur adipiscing facilisi. Convallis pulvinar pharetra suscipit eget blandit
+                        nisl. </p>
+                    {{--          nav tabs           --}}
+                    <div class="images-nav-tabs">
                         <ul class="nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
@@ -189,288 +189,40 @@
                             </li>
 
                         </ul>
-                        </div>
-        {{--           nav tabs end             --}}
                     </div>
+                    {{--           nav tabs end             --}}
                 </div>
-                <div class="col-lg-6">
-                    <div id="big-image">
-                <img src="{{asset('/images/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/bulletin-image.png')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/hero-image.png')}}" class="img-fluid" alt="tab-image" />
+            </div>
+            <div class="col-lg-6">
+                <div id="big-image">
+                    <img src="{{asset('/images/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image" />
+                    <img src="{{asset('/images/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image" />
+                    <img src="{{asset('/images/images-home/bulletin-image.png')}}" class="img-fluid" alt="tab-image" />
+                    <img src="{{asset('/images/images-home/hero-image.png')}}" class="img-fluid" alt="tab-image" />
                 </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="p-2 p-lg-5"
+             style="background: url({{asset('/images/images-home/cards-background.png')}});background-repeat: no-repeat;background-size: cover;background-position: center;">
+        <div class="container">
+            <div
+                class="bg-image my-5 text-center shadow-1-strong rounded  text-white features-img">
+                <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+            </div>
+            <h3 class="text-center text-white">Vacation Calendar makes it simple</h3>
+            <div class="d-block d-lg-flex mt-4">
+                <div class="d-flex flex-column">
+                    <!-- Card -->
+                    @include('partials.social-media-feed-card')
+                    <!-- End Card -->
+
+
                 </div>
             </div>
         </div>
     </section>
-        <section class="p-2 p-lg-5"
-                 style="background: url({{asset('/images/images-home/cards-background.png')}});background-repeat: no-repeat;background-size: cover;background-position: center;">
-            <div class="container">
-                <div
-                    class="bg-image my-5 text-center shadow-1-strong rounded  text-white features-img">
-                    <h1 class="text-primary font-jost">Find Your Vacation House</h1>
-                </div>
-                <h3 class="text-center text-white">Vacation Calendar makes it simple</h3>
-                <div class="d-block d-lg-flex  justify-content-center mt-4">
-                    <div class="d-flex flex-column">
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/girl-image.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-1.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-
-                        <!-- Card -->
-                        <div class="card my-3 border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/red-flowers.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-2.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/brown-house.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-3.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-
-                    </div>
-                    <!--  -->
-                    <div class="d-flex flex-column ms-3 mt-3 mt-lg-0">
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/rome.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-4.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card my-3 border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-2.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-5.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-3.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-6.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                    </div>
-                    <!--  -->
-                    <div class="d-flex flex-column ms-3 mt-3 mt-lg-0">
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-4.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-6.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card my-3 border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-5.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-6.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-6.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-6.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                    </div>
-                    <div class="d-flex flex-column ms-3 mt-3 mt-lg-0">
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-8.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-3.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card my-3 border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-9.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-2.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-10.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-1.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                    </div>
-                    <div class="d-flex flex-column ms-3 mt-3 mt-lg-0">
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-12.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-11.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card my-3 border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-13.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-12.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/house-4.png')}}" alt="Image Description" />
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-11.png')}}" alt="Image Description" />
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                    </div>
-                </div>
-            </div>
-        </section>
     @push('scripts')
         <script>
             $(function () {

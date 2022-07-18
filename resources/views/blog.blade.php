@@ -4,15 +4,7 @@
 
     @endpush
 
-    <section class="blog-image">
-        <div class="container h-100">
-            <div class="row align-items-center h-100">
-                <div class="col-12 text-center">
-                    <h2 class="text-white fs-50 font-jost">Blog</h2>
-                </div>
-            </div>
-        </div>
-    </section>
+        @include('partials.sub-page-hero-section')
 
     {{--  center text row  --}}
     <section class="bg-map bg-light pt-5">
