@@ -19,8 +19,8 @@
         <main>
             @include('layouts.partials.navigation-menu-top-guest')
             {{ $slot }}
-            @include('layouts.partials.footer-guest')
         </main>
+        @include('layouts.partials.footer-guest')
     </body>
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
