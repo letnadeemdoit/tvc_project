@@ -93,6 +93,12 @@ header{
     background-image: url('/images/privacy-policy/privacy.png');
     @include background-text;
 }
+.privacy-policy-page{
+    background-image: url('/images/privacy-policy/mirror.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 .contact-text{
     background-image: url('/images/contact-images/contact.png');
     background-repeat: no-repeat;
@@ -103,6 +109,12 @@ header{
     button {
         min-width: 160px !important;
     }
+}
+.contact-page{
+    background-image: url('/images/contact-images/maps.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 .rounded-icon{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -156,6 +168,7 @@ bottom: -1rem !important;
     .accordion-button:not(.collapsed){
         border: none !important;
         color: #000 !important;
+        border-radius: 10px;
     }
     .accordion-button{
         border: 2px solid rgba(232, 96, 76, 0.21);
@@ -164,8 +177,13 @@ bottom: -1rem !important;
     .accordion-item{
         border: 0px solid #fff !important;
     }
+    .bottom-box-shadow{
+        box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);
+    }
 }
-
+.mt-80{
+    margin-top: 80px;
+}
 @media only screen and (max-width:1400px){
     .rounded-icon{
         margin-left: -30px;
