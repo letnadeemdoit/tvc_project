@@ -1249,6 +1249,9 @@ select {
 .mb-10 {
   margin-bottom: 2.5rem;
 }
+.mt-80 {
+  margin-top: 20rem;
+}
 .block {
   display: block;
 }

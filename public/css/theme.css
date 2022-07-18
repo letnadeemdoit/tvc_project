@@ -36531,8 +36531,8 @@ header nav button:last-child:hover {
   box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);
 }
 
-.mt-50 {
-  margin-top: 50px;
+.mt-80 {
+  margin-top: 80px;
 }
 
 @media only screen and (max-width: 1400px) {
