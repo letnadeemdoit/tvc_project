@@ -28129,11 +28129,10 @@ label.form-control,
 }
 
 .nav-link.active {
-    color: #000;
     font-weight: 800;
-    border-bottom: 2px solid #E8604C !important;
-    padding-left: 0.75rem !important;
-    width: 65px;
+    border-bottom:2px solid #E8604C;
+    width:65px;
+
 }
 
 .nav-link.active .nav-link-svg path,
@@ -28724,9 +28723,9 @@ label.form-control,
   padding: 0.75rem;
 }
 
-.navbar .navbar-collapse .nav-link:first-child {
-  padding-left: 0;
-}
+/*.navbar .navbar-collapse .nav-link:first-child {*/
+/*  padding-left: 0;*/
+/*}*/
 
 .navbar .nav-item:hover > .nav-link {
   color: #e4442c;
@@ -36387,6 +36386,11 @@ body {
   background-position: center;
   background-size: contain;
   max-width: 100%;
+}
+
+header nav button:last-child:hover {
+  background-color: #fff !important;
+  color: #E8604C;
 }
 
 .bg-cards-section {
