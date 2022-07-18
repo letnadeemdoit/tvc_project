@@ -28055,9 +28055,14 @@ header nav button:last-child:hover {
   background-color: #2A3342 !important;
   color: #fff !important;
   padding: 8px;
+  border-top: 2px solid rgba(255, 255, 255, 0.25);
 }
 .footer ul li a {
   color: #fff !important;
+}
+.footer .border-right {
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+  height: 23px;
 }
 
 @media only screen and (max-width: 1400px) {
