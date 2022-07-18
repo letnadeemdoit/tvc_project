@@ -21,7 +21,6 @@
                         <li class="list-inline-item">
                             <a class="list-separator-link" href="{{ route('guest.help') }}">© 2021 Compay name.<span class="text-decoration-underline">Privacy Policy</span> and <span class="text-decoration-underline"> Terms of Service</span></a>
                         </li>
-
                     </ul>
                     <!-- End List Separator -->
                 </div>
