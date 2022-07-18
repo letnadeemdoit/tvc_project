@@ -4,7 +4,7 @@
     @endpush
 
     <header>
-        <div class="position-relative d-flex align-items-center" style=" background-image: url('/images-home/hero-image.png'); background-size: cover;background-position: center;background-repeat: no-repeat;height: 700px;">
+        <div class="position-relative d-flex align-items-center" style=" background-image: url('/images/images-home/hero-image.png'); background-size: cover;background-position: center;background-repeat: no-repeat;height: 700px;">
 
             <div class="container">
 
@@ -12,7 +12,7 @@
                     <h1 class="h1 py-4">Your Vacation <br> Home is in Use</h1>
                     <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
                     <div class="position-relative mt-3 max-width">
-                        <img src="/images-home/rounded-arrow.png"
+                        <img src="/images/images-home/rounded-arrow.png"
                              class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
                         <p class="display-4 font-poppins text-primary">Only $20 <span class="fs-6">per year</span></p>
                     </div>
@@ -42,12 +42,12 @@
                 </div>
                 <div class="col-lg-3 mt-4 mt-lg-0 offset-md-1">
                     <div class="text-center d-none d-lg-block">
-                        <img src="/images-home/left-arrow.png" class="img-fluid ms-auto mb-3"/>
+                        <img src="/images/images-home/left-arrow.png" class="img-fluid ms-auto mb-3"/>
                     </div>
                     <div class="card  border-0 rounded-3 bg-card-1">
                         <div class="d-block text-center d-lg-flex justify-content-center justify-content-lg-start align-items-lg-center h-100 position-absolute w-100">
                             <div class="bg-white rounded-pill p-4 rounded-icon">
-                                <img src="/images-home/card-img-1.png" class="img-fluid" alt="calculator">
+                                <img src="/images/images-home/card-img-1.png" class="img-fluid" alt="calculator" />
                             </div>
                         </div>
                         <div class="card-body pt-5 padding-top">
@@ -57,14 +57,14 @@
                         </div>
                     </div>
                     <div class="text-center d-none d-lg-block">
-                        <img src="/images-home/right-arrow.png" class="img-fluid me-auto mb-3"/>
+                        <img src="/images/images-home/right-arrow.png" class="img-fluid me-auto mb-3"/>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="card  border-0 my-4 my-lg-0 rounded-3 bg-card-2">
                         <div class="d-block  d-lg-flex text-center justify-content-center justify-content-lg-start w-100 align-items-center h-100 position-absolute">
                             <div class="bg-white rounded-pill p-4 rounded-icon">
-                                <img src="/images-home/card-img-2.png" class="img-fluid" alt="message">
+                                <img src="/images/images-home/card-img-2.png" class="img-fluid" alt="message" />
                             </div>
                         </div>
                         <div class="card-body pt-5 padding-top">
@@ -77,7 +77,7 @@
                 <div class="card  border-0 mt-2 rounded-3 bg-card-3">
                     <div class="d-block d-lg-flex text-center justify-content-center justify-content-lg-start w-100 align-items-center h-100 position-absolute">
                         <div class="bg-white rounded-pill p-4 rounded-icon">
-                            <img src="/images-home/card-img-3.png" class="img-fluid" alt="users">
+                            <img src="/images/images-home/card-img-3.png" class="img-fluid" alt="users" />
                         </div>
                     </div>
                     <div class="card-body pt-5 padding-top">
@@ -104,7 +104,7 @@
                 <div class="col-lg-4">
                     <!-- Card -->
                     <div class="card p-2">
-                        <img class="card-img-top" src="/images-home/bulletin-image.png" alt="Card image cap">
+                        <img class="card-img-top" src="/images/images-home/bulletin-image.png" alt="Card image cap" />
                         <div class="card-body">
                             <h3 class="card-title">Card title</h3>
                             <p class="card-text">This is a longer card with supporting text below as a natural
@@ -117,7 +117,7 @@
                 <div class="col-lg-4 my-4 my-lg-0">
                     <!-- Card -->
                     <div class="card p-2">
-                        <img class="card-img-top" src="/images-home/vacations-image.png" alt="Card image cap">
+                        <img class="card-img-top" src="/images/images-home/vacations-image.png" alt="Card image cap" />
                         <div class="card-body">
                             <h3 class="card-title">Card title</h3>
                             <p class="card-text">This is a longer card with supporting text below as a natural
@@ -130,7 +130,7 @@
                 <div class="col-lg-4">
                     <!-- Card -->
                     <div class="card p-2">
-                        <img class="card-img-top" src="/images-home/blog-image.png" alt="Card image cap">
+                        <img class="card-img-top" src="/images/images-home/blog-image.png" alt="Card image cap" />
                         <div class="card-body">
                             <h3 class="card-title">Card title</h3>
                             <p class="card-text">This is a longer card with supporting text below as a natural
@@ -165,25 +165,25 @@
                         <ul class="nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
-                                    <img src="{{asset('/images-home/envelope.png')}}" width="30px" class="d-none d-lg-block" />
+                                    <img src="{{asset('/images/images-home/envelope.png')}}" width="30px" class="d-none d-lg-block" />
                                     <p class="mb-0 pt-2">House Blog</p>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                                    <img src="{{asset('/images-home/card.png')}}" width="30px" class="d-none d-lg-block" />
+                                    <img src="{{asset('/images/images-home/card.png')}}" width="30px" class="d-none d-lg-block" />
                                     <p class="mb-0 pt-2">House Photo Album</p>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">
-                                    <img src="{{asset('/images-home/user.png')}}" width="30px" class="d-none d-lg-block" />
+                                    <img src="{{asset('/images/images-home/user.png')}}" width="30px" class="d-none d-lg-block" />
                                     <p class="mb-0 pt-2">Account Management</p>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping" aria-selected="true">
-                                    <img src="{{asset('/images-home/user-2.png')}}" width="30px" class="d-none d-lg-block" />
+                                    <img src="{{asset('/images/images-home/user-2.png')}}" width="30px" class="d-none d-lg-block" />
                                     <p class="mb-0 pt-2">User Management</p>
                                 </button>
                             </li>
@@ -195,17 +195,17 @@
                 </div>
                 <div class="col-lg-6">
                     <div id="big-image">
-                <img src="{{asset('/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image">
-                        <img src="{{asset('/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image">
-                        <img src="{{asset('/images-home/bulletin-image.png')}}" class="img-fluid" alt="tab-image">
-                        <img src="{{asset('/images-home/hero-image.png')}}" class="img-fluid" alt="tab-image">
+                <img src="{{asset('/images/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/bulletin-image.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/hero-image.png')}}" class="img-fluid" alt="tab-image" />
                 </div>
                 </div>
             </div>
         </div>
     </section>
         <section class="p-2 p-lg-5"
-                 style="background: url({{asset('/images-home/cards-background.png')}});background-repeat: no-repeat;background-size: cover;background-position: center;">
+                 style="background: url({{asset('/images/images-home/cards-background.png')}});background-repeat: no-repeat;background-size: cover;background-position: center;">
             <div class="container">
                 <div
                     class="bg-image my-5 text-center shadow-1-strong rounded  text-white features-img">
@@ -217,10 +217,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/girl-image.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/girl-image.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-1.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-1.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -234,10 +234,10 @@
                         <!-- Card -->
                         <div class="card my-3 border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/red-flowers.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/red-flowers.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-2.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-2.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -250,10 +250,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/brown-house.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/brown-house.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-3.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-3.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -270,10 +270,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/rome.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/rome.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-4.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-4.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -287,10 +287,10 @@
                         <!-- Card -->
                         <div class="card my-3 border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-2.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-2.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-5.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-5.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -303,10 +303,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-3.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-3.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-6.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-6.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -322,10 +322,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-4.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-4.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-6.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-6.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -338,10 +338,10 @@
                         <!-- Card -->
                         <div class="card my-3 border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-5.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-5.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-6.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-6.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -354,10 +354,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-6.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-6.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-6.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-6.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -372,10 +372,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-8.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-8.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-3.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-3.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -388,10 +388,10 @@
                         <!-- Card -->
                         <div class="card my-3 border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-9.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-9.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-2.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-2.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -404,10 +404,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-10.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-10.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-1.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-1.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -422,10 +422,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-12.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-12.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-11.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-11.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -438,10 +438,10 @@
                         <!-- Card -->
                         <div class="card my-3 border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-13.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-13.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-12.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-12.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 
@@ -454,10 +454,10 @@
                         <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images-home/house-4.png')}}" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('images/images-home/house-4.png')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images-home/Rectangle-11.png')}}" alt="Image Description">
+                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-11.png')}}" alt="Image Description" />
                                 </div>
                             </div>
 

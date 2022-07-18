@@ -27961,7 +27961,7 @@ body {
 }
 
 .features-img {
-  background-image: url("/images-home/FEATURES.png");
+  background-image: url("/images/images-home/fEATURE.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -27969,7 +27969,7 @@ body {
 }
 
 .bg-cards-section {
-  background: url("/images-home/union-waves.png");
+  background: url("/images/images-home/union-waves.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -27995,7 +27995,7 @@ body {
 }
 
 .bg-process-img {
-  background-image: url("/images-home/process.png");
+  background-image: url("/images/images-home/process.png");
   background-repeat: no-repeat;
   background-position: left;
   background-size: auto;
@@ -28012,7 +28012,7 @@ body {
 }
 
 .bg-card-1 {
-  background-image: url("/images-home/number-1.png");
+  background-image: url("/images/images-home/number-1.png");
   background-repeat: no-repeat;
   background-position: bottom right;
   background-position-x: 93%;
@@ -28022,7 +28022,7 @@ body {
 }
 
 .bg-card-2 {
-  background-image: url("/images-home/number-2.png");
+  background-image: url("/images/images-home/number-2.png");
   background-repeat: no-repeat;
   background-position: bottom right;
   background-position-x: 93%;
@@ -28032,7 +28032,7 @@ body {
 }
 
 .bg-card-3 {
-  background-image: url("/images-home/number-3.png");
+  background-image: url("/images/images-home/number-3.png");
   background-repeat: no-repeat;
   background-position: bottom right;
   background-position-x: 93%;
@@ -28100,6 +28100,15 @@ body {
     width: 15%;
     margin: 0 auto !important;
   }
+  .category-cards .nav.nav-tabs {
+    justify-content: center !important;
+  }
+  .category-cards .nav-link {
+    padding: 4px !important;
+  }
+  .category-cards .nav-link img {
+    width: 25px !important;
+  }
 }
 @media only screen and (max-width: 375px) {
   .rounded-icon {
@@ -28110,4 +28119,94 @@ body {
     width: 72px !important;
     font-size: 8px !important;
   }
+}
+.bulletin-image {
+  background-image: url("/images/bulletin-images/bulletin.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+}
+
+.category-cards .card {
+  border: none !important;
+  box-shadow: 0px 11px 24px rgba(168, 168, 168, 0.1);
+  margin: 30px 0px !important;
+}
+.category-cards .green-shadow {
+  box-shadow: 0px 20px 40px rgba(1, 182, 130, 0.15) !important;
+}
+.category-cards .orange-dots {
+  background-image: url("/images/bulletin-images/Combined Shape.png");
+  background-size: contain;
+  background-position: top right;
+}
+.category-cards .vertical-dots {
+  margin-top: -600px;
+  margin-left: -36px;
+}
+.category-cards .bg-dots-orange {
+  margin-bottom: -257px;
+  margin-right: 131px;
+}
+.category-cards .cards-dots-green {
+  margin-top: -55px;
+  margin-left: -367px;
+}
+.category-cards .text-index {
+  z-index: 2;
+}
+.category-cards .featured-btn {
+  font-size: 11px;
+  background: #E8604C;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+.category-cards .nav-link {
+  background-color: rgba(163, 163, 163, 0.12) !important;
+  border: none !important;
+  padding: 18px;
+  margin-right: 14px;
+}
+.category-cards .nav-link.active {
+  background: rgba(232, 96, 76, 0.06) !important;
+}
+.category-cards .nav-link.active img {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+.bg-waves {
+  background-image: url("/images/bulletin-images/Union.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.fs-50 {
+  font-size: 50px;
+}
+
+.blog-image {
+  background: url("/images/blog-images/blog.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+}
+
+.blog-text {
+  background-image: url("/images/blog-images/blog-text.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  max-width: 100%;
+}
+
+.margin-negative {
+  margin-top: -60px;
+}
+
+.ul-card-footer li p {
+  padding-left: 20px;
 }

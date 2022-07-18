@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(\App\Http\Controllers\GuestController::class)
+Route::controller(GuestController::class)
     ->name('guest.')
     ->group(function () {
         Route::get('/', 'welcome')->name('welcome');
         Route::get('/contact', 'contact')->name('contact');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
+        Route::get('/blog','blog')->name('blog');
+        Route::get('/bulletin','bulletinBoard')->name('bulletinBoard');
     });
 
 

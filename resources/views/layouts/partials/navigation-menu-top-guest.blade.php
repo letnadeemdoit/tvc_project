@@ -89,7 +89,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}" data-placement="left">
+                        <a class="nav-link" href="{{ url('bulletin-board') }}" data-placement="left">
                             <i class="bi-book bi-clipboard-data"></i> Bulletin Board
                         </a>
                     </li>
