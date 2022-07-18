@@ -9,16 +9,20 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
+        @stack('stylesheets')
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <main>
+            @include('layouts.partials.navigation-menu-top-guest')
             {{ $slot }}
-        </div>
+            @include('layouts.partials.footer-guest')
+        </main>
     </body>
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}"></script>
+    @stack('scripts')
 </html>
