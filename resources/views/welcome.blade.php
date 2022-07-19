@@ -202,7 +202,6 @@
                 </div>
             </div>
         </div>
-        </div>
     </section>
     <section class="p-2 p-lg-5"
              style="background: url({{asset('/images/images-home/cards-background.png')}});background-repeat: no-repeat;background-size: cover;background-position: center;">
@@ -217,8 +216,6 @@
                     <!-- Card -->
                     @include('partials.social-media-feed-card')
                     <!-- End Card -->
-
-
                 </div>
             </div>
         </div>
