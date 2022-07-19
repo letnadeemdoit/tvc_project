@@ -16,7 +16,7 @@
         @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
+
     </head>
     <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
@@ -36,5 +36,26 @@
         @stack('modals')
 
         @livewireScripts
+
+
+        <script src="{{ mix('js/app.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                window.livewire.on('hideModal', (reload = false) => {
+                    $('.hideableModal').each(function () {
+                        $(this).modal('hide');
+                    });
+                    if (reload) {
+                        window.location.reload();
+                    } else {
+                        $('.modal-backdrop').remove();
+                        $('body').css('overflow', '');
+                        $('body').css('padding-right', '');
+                        $('body').removeClass('modal-open');
+                    }
+                });
+            });
+        </script>
+
     </body>
 </html>
