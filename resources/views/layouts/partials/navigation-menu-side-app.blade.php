@@ -4,7 +4,7 @@
             <!-- Logo -->
 
             <a class="navbar-brand" href="./index.html" aria-label="Front">
-                <img class="img-fluid" src="{{asset('admin/assets/svg/logos/logo.svg')}}" alt="Logo" data-hs-theme-appearance="default">
+                <img class="img-fluid" src="{{asset('dash/assets/svg/logos/logo.svg')}}" alt="Logo" data-hs-theme-appearance="default">
             </a>
 
             <!-- End Logo -->

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::controller(GuestController::class)
     ->group(function () {
         Route::get('/', 'welcome')->name('welcome');
         Route::get('/contact', 'contact')->name('contact');
+        Route::post('/contact', 'contactMail')->name('contact.mail');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/blog','blog')->name('blog');
@@ -26,9 +28,13 @@ Route::controller(GuestController::class)
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
     });
 
+
+Route::resource('blogs', BlogController::class);
+
 Route::get('/dashboard', function () {
-    return view('admin.index');
+    return view('dash.index');
 })->name('dashboard');
+
 
 //Route::middleware([
 //    'auth:sanctum',

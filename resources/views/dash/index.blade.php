@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="content container-fluid">
+        <div class="content container-fluid">
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-items-center">
