@@ -33,4 +33,7 @@ class GuestController extends Controller
     public function blog() {
         return view('blog');
     }
+    public function PrivacyPolicy() {
+        return view('privacy-policy');
+    }
 }

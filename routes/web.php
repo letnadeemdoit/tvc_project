@@ -23,6 +23,7 @@ Route::controller(GuestController::class)
         Route::get('/help', 'help')->name('help');
         Route::get('/blog','blog')->name('blog');
         Route::get('/bulletin','bulletinBoard')->name('bulletinBoard');
+        Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
     });
 
 Route::get('/dashboard', function () {

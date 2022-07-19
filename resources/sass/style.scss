@@ -79,12 +79,48 @@ header{
         color: #fff;
     }
 }
-.bg-process-img {
-    background-image: url('/images/images-home/process.png');
+@mixin background-text{
     background-repeat: no-repeat;
     background-position: left;
     background-size: auto;
     max-width: 100%;
+}
+.bg-process-img {
+    background-image: url('/images/images-home/process.png');
+    @include background-text;
+}
+.privacy-policy{
+    background-image: url('/images/privacy-policy/privacy.png');
+    @include background-text;
+}
+.privacy-policy-page{
+    background-image: url('/images/privacy-policy/mirror.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.contact-text{
+    background-image: url('/images/contact-images/contact.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.help-text{
+    background-image: url('/images/help-images/help.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.contact-btn {
+    button {
+        min-width: 160px !important;
+    }
+}
+.contact-page{
+    background-image: url('/images/contact-images/maps.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 .rounded-icon{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -125,8 +161,57 @@ bottom: -1rem !important;
 
 .footer{
     background-color: $dark-blue !important;
+    color: #fff;
 }
-
+.accordion-section{
+    /* Custom style */
+    .accordion-button::after {
+        background-image: url("/images/privacy-policy/icon-plus.png");
+    }
+    .accordion-button:not(.collapsed)::after {
+        background-image: url("/images/privacy-policy/icon-minus.png");
+    }
+    .accordion-button:not(.collapsed){
+        border: none !important;
+        color: #000 !important;
+        border-radius: 10px;
+        background: none;
+    }
+    .accordion-button{
+        border: 2px solid rgba(232, 96, 76, 0.21);
+        border-radius: 5px !important;
+        background: $primary-light;
+    }
+    .accordion-item{
+        border: 0px solid #fff !important;
+    }
+    .bottom-box-shadow{
+        box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);
+    }
+}
+.mt-80{
+    margin-top: 80px;
+}
+.help-page-tabs{
+    .card{
+        min-width: 230px;
+        max-width: 230px;
+    }
+    .nav-tabs{
+        .nav-link{
+            border-bottom: 0px solid !important;
+            &.active{
+                .card-border {
+                                   border: 1px solid $primary !important;
+                }
+            }
+        }
+    }
+}
+.bg-arrow{
+    margin-top: -127px;
+    margin-right: -113px;
+}
 @media only screen and (max-width:1400px){
     .rounded-icon{
         margin-left: -30px;
@@ -136,6 +221,14 @@ bottom: -1rem !important;
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
     }
+
+}
+@media only screen and (min-width:992px) and (max-width:1200px) {
+    .help-page-tabs .card {
+        min-width: 190px !important;
+        max-width: 190px !important;
+    }
+
 
 }
 @media only screen and (max-width:991px){
@@ -192,6 +285,25 @@ bottom: -1rem !important;
                 width: 25px !important;
             }
         }
+    }
+    .help-page-tabs {
+      .nav-tabs{
+          .nav-item {
+              .nav-link {
+                  padding:0px !important;
+                  width: 85px !important;
+                  font-size: 10px;
+              }
+              .card{
+                  min-height: 75px;
+                  min-width: revert !important;
+                  max-width: revert !important;
+                  .card-body{
+                      padding: 12px !important;
+                  }
+              }
+          }
+      }
     }
 }
 @media only screen and (max-width:375px){
