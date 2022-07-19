@@ -38,10 +38,11 @@
                  }'>
             <thead class="thead-light">
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Country</th>
-                <th>Status</th>
+                <th>HouseId</th>
+                <th>Subject</th>
+                <th>Author</th>
+                <th>Content</th>
+                <th>Action</th>
             </tr>
             </thead>
 
@@ -65,6 +66,16 @@
                 <td>United Kingdom</td>
                 <td>
                     <span class="legend-indicator bg-success"></span>Active
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Edit group">
+                        <a class="btn btn-white" href="#">
+                            <i class="bi-pencil me-1"></i> Edit
+                        </a>
+                        <a class="btn btn-white" href="#">
+                            <i class="bi-trash"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
 
@@ -90,6 +101,16 @@
                 <td>
                     <span class="legend-indicator bg-success"></span>Active
                 </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Edit group">
+                        <a class="btn btn-white" href="#">
+                            <i class="bi-pencil me-1"></i> Edit
+                        </a>
+                        <a class="btn btn-white" href="#">
+                            <i class="bi-trash"></i>
+                        </a>
+                    </div>
+                </td>
             </tr>
 
             <tr>
@@ -111,6 +132,16 @@
                 <td>Norway</td>
                 <td>
                     <span class="legend-indicator bg-danger"></span>Suspended
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Edit group">
+                        <a class="btn btn-white" href="#">
+                            <i class="bi-pencil me-1"></i> Edit
+                        </a>
+                        <a class="btn btn-white" href="#">
+                            <i class="bi-trash"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
 
