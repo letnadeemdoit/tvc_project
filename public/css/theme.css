@@ -36446,6 +36446,13 @@ header nav button:last-child:hover {
   background-size: contain;
 }
 
+.help-text {
+  background-image: url("/images/help-images/help.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 .contact-btn button {
   min-width: 160px !important;
 }
@@ -36519,10 +36526,12 @@ header nav button:last-child:hover {
   border: none !important;
   color: #000 !important;
   border-radius: 10px;
+  background: none;
 }
 .accordion-section .accordion-button {
   border: 2px solid rgba(232, 96, 76, 0.21);
   border-radius: 5px !important;
+  background: #F6E9E7;
 }
 .accordion-section .accordion-item {
   border: 0px solid #fff !important;
@@ -36535,6 +36544,22 @@ header nav button:last-child:hover {
   margin-top: 80px;
 }
 
+.help-page-tabs .card {
+  min-width: 230px;
+  max-width: 230px;
+}
+.help-page-tabs .nav-tabs .nav-link {
+  border-bottom: 0px solid !important;
+}
+.help-page-tabs .nav-tabs .nav-link.active .card-border {
+  border: 1px solid #E8604C !important;
+}
+
+.bg-arrow {
+  margin-top: -127px;
+  margin-right: -113px;
+}
+
 @media only screen and (max-width: 1400px) {
   .rounded-icon {
     margin-left: -30px;
@@ -36543,6 +36568,12 @@ header nav button:last-child:hover {
   .padding-top {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .help-page-tabs .card {
+    min-width: 190px !important;
+    max-width: 190px !important;
   }
 }
 @media only screen and (max-width: 991px) {
@@ -36597,6 +36628,19 @@ header nav button:last-child:hover {
   }
   .category-cards .nav-link img {
     width: 25px !important;
+  }
+  .help-page-tabs .nav-tabs .nav-item .nav-link {
+    padding: 0px !important;
+    width: 85px !important;
+    font-size: 10px;
+  }
+  .help-page-tabs .nav-tabs .nav-item .card {
+    min-height: 75px;
+    min-width: revert !important;
+    max-width: revert !important;
+  }
+  .help-page-tabs .nav-tabs .nav-item .card .card-body {
+    padding: 12px !important;
   }
 }
 @media only screen and (max-width: 375px) {

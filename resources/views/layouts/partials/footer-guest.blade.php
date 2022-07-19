@@ -15,8 +15,9 @@
                         <i class="bi-instagram fs-3"></i>
                     </a>
                 </p>
-                <div class="ps-3 border-right border-light d-none d-md-inline-block d-lg-inline-block d-xl-inline-block"></div>
+                <div class="border-end border-1 border-light"></div>
             </div>
+
             <!-- End Col -->
 
             <div class="col-12 col-md-6 col-lg-6 col-xl-6 text-center text-md-end text-white">

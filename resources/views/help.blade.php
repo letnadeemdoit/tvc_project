@@ -1,244 +1,149 @@
 <x-guest-layout>
     <!-- Hero -->
-    <div class="bg-img-start" style="background-image: url({{ asset('img/svg/hero-bg.svg') }});">
-        <div class="container content-space-t-2 content-space-t-lg-2 content-space-b-2">
-            <div class="w-md-75 w-lg-50 text-center mx-md-auto">
-                <h1 class="display-3">FAQ</h1>
-                <p>Search our FAQ for answers to anything you might ask.</p>
-            </div>
-        </div>
-    </div>
+    @include('partials.sub-page-hero-section');
     <!-- End Hero -->
 
     <!-- FAQ -->
     <div class="container content-space-2 content-space-b-lg-3">
-        <div class="w-lg-75 mx-lg-auto">
-            <div class="d-grid gap-10">
-                <div class="d-grid gap-3">
-                    <h2 class="display-5">Basics</h2>
-
-                    <!-- Accordion -->
-                    <div class="accordion accordion-flush accordion-lg" id="accordionFAQBasics">
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingBasicsOne">
-                                <a class="accordion-button" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsOne" aria-expanded="true" aria-controls="collapseBasicsOne">
-                                    What methods of payments are supported?
-                                </a>
-                            </div>
-                            <div id="collapseBasicsOne" class="accordion-collapse collapse show" aria-labelledby="headingBasicsOne" data-bs-parent="#accordionFAQBasics">
-                                <div class="accordion-body">
-                                    You can purchase the themes on Bootstrap Themes via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingBasicsTwo">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsTwo" aria-expanded="false" aria-controls="collapseBasicsTwo">
-                                    Can I cancel at anytime?
-                                </a>
-                            </div>
-                            <div id="collapseBasicsTwo" class="accordion-collapse collapse" aria-labelledby="headingBasicsTwo" data-bs-parent="#accordionFAQBasics">
-                                <div class="accordion-body">
-                                    If you'd like a refund please reach out to us at <a href="#">themes@getbootstrap.com</a>. If you need technical help with the theme before a refund please reach out to the seller first and they can get in touch with us if they're unable to resolve the issue.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingBasicsThree">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsThree" aria-expanded="false" aria-controls="collapseBasicsThree">
-                                    How do I get a receipt for my purchase?
-                                </a>
-                            </div>
-                            <div id="collapseBasicsThree" class="accordion-collapse collapse" aria-labelledby="headingBasicsThree" data-bs-parent="#accordionFAQBasics">
-                                <div class="accordion-body">
-                                    You'll receive an email from Bootstrap themes once your purchase is complete.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingBasicsFour">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsFour" aria-expanded="false" aria-controls="collapseBasicsFour">
-                                    Which license do I need?
-                                </a>
-                            </div>
-                            <div id="collapseBasicsFour" class="accordion-collapse collapse" aria-labelledby="headingBasicsFour" data-bs-parent="#accordionFAQBasics">
-                                <div class="accordion-body">
-                                    There are three license types - <a href="#">Standard</a>, <a href="#">Multisite</a>, and <a href="#">Extended</a>. We've provided the table below for a quick look at the difference between the them, as well as a few examples of ways each license could be used. If you'd like more of the nitty-gritty details you can find them below and always feel free to reach out with any questions you have at <a href="#">themes@getbootstrap.com</a>.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingBasicsFive">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsFive" aria-expanded="false" aria-controls="collapseBasicsFive">
-                                    How do I get access to a theme I purchased?
-                                </a>
-                            </div>
-                            <div id="collapseBasicsFive" class="accordion-collapse collapse" aria-labelledby="headingBasicsFive" data-bs-parent="#accordionFAQBasics">
-                                <div class="accordion-body">
-                                    If you lose the link for a theme you purchased, don't panic! We've got you covered. You can login to your account, tap your avatar in the upper right corner, and tap Purchases. If you didn't create a login or can't remember the information, you can use our handy Redownload page, just remember to use the same email you originally made your purchases with.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingBasicsSix">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsSix" aria-expanded="false" aria-controls="collapseBasicsSix">
-                                    Upgrade License Type
-                                </a>
-                            </div>
-                            <div id="collapseBasicsSix" class="accordion-collapse collapse" aria-labelledby="headingBasicsSix" data-bs-parent="#accordionFAQBasics">
-                                <div class="accordion-body">
-                                    There may be times when you need to upgrade your license from the original type you purchased and we have a solution that ensures you can apply your original purchase cost to the new license purchase.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-                    </div>
-                    <!-- End Accordion -->
-                </div>
-
-                <div class="d-grid gap-3">
-                    <h2>Support</h2>
-
-                    <!-- Accordion -->
-                    <div class="accordion accordion-flush accordion-lg" id="accordionFAQSupport">
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingSupportOne">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportOne" aria-expanded="false" aria-controls="collapseSupportOne">
-                                    How do I get help with the theme I purchased?
-                                </a>
-                            </div>
-                            <div id="collapseSupportOne" class="accordion-collapse collapse" aria-labelledby="headingSupportOne" data-bs-parent="#accordionFAQSupport">
-                                <div class="accordion-body">
-                                    Technical support for each theme is given directly by the creator of the theme. You'll be given a link to contact their support in a couple places:
-
-                                    <ul>
-                                        <li>Your confirmation email: Each theme in your confirmation email will have both the download link for your theme, and a "support" link which will connect you directly with the sellers support system or email.</li>
-                                        <li>While logged in to your account go to Purchases > Click the Order # > Get Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingSupportTwo">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportTwo" aria-expanded="false" aria-controls="collapseSupportTwo">
-                                    What version of Bootstrap are the themes built on?
-                                </a>
-                            </div>
-                            <div id="collapseSupportTwo" class="accordion-collapse collapse" aria-labelledby="headingSupportTwo" data-bs-parent="#accordionFAQSupport">
-                                <div class="accordion-body">
-                                    All of the themes are built on versions of Bootstrap v4, currently all are on the v4.0.0 stable build. As more Bootstrap updates are launched the themes will be update as needed and as new features and bug fixes come out. You will want to download any updates that come out and update your installation as required.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingSupportThree">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportThree" aria-expanded="false" aria-controls="collapseSupportThree">
-                                    What if I have a question that isn't answered here?
-                                </a>
-                            </div>
-                            <div id="collapseSupportThree" class="accordion-collapse collapse" aria-labelledby="headingSupportThree" data-bs-parent="#accordionFAQSupport">
-                                <div class="accordion-body">
-                                    For anything we haven't covered feel free to reach out to the Bootstrap Themes team at <a href="#">themes@getbootstrap.com</a> !We're here to help.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingSupportFour">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportFour" aria-expanded="false" aria-controls="collapseSupportFour">
-                                    Uh oh! Where's my theme download?
-                                </a>
-                            </div>
-                            <div id="collapseSupportFour" class="accordion-collapse collapse" aria-labelledby="headingSupportFour" data-bs-parent="#accordionFAQSupport">
-                                <div class="accordion-body">
-                                    We just switched to a whole new platform and if you're a customer from our previous platform, we will be migrating you to the new platform, but in the meantime your download link for our old platform won't work.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-                    </div>
-                    <!-- End Accordion -->
-                </div>
-
-                <div class="d-grid gap-3">
-                    <h2>Payments</h2>
-
-                    <!-- Accordion -->
-                    <div class="accordion accordion-flush accordion-lg" id="accordionFAQPayments">
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingPaymentsOne">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsOne" aria-expanded="false" aria-controls="collapsePaymentsOne">
-                                    What methods of payments are supported?
-                                </a>
-                            </div>
-                            <div id="collapsePaymentsOne" class="accordion-collapse collapse" aria-labelledby="headingPaymentsOne" data-bs-parent="#accordionFAQPayments">
-                                <div class="accordion-body">
-                                    You can purchase the themes on Bootstrap Themes via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingPaymentsTwo">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsTwo" aria-expanded="false" aria-controls="collapsePaymentsTwo">
-                                    How do I get a receipt for my purchase?
-                                </a>
-                            </div>
-                            <div id="collapsePaymentsTwo" class="accordion-collapse collapse" aria-labelledby="headingPaymentsTwo" data-bs-parent="#accordionFAQPayments">
-                                <div class="accordion-body">
-                                    You'll receive an email from Bootstrap themes once your purchase is complete.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-
-                        <!-- Accordion Item -->
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="headingPaymentsThree">
-                                <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsThree" aria-expanded="false" aria-controls="collapsePaymentsThree">
-                                    How can I get a refund?
-                                </a>
-                            </div>
-                            <div id="collapsePaymentsThree" class="accordion-collapse collapse" aria-labelledby="headingPaymentsThree" data-bs-parent="#accordionFAQPayments">
-                                <div class="accordion-body">
-                                    If you'd like a refund please reach out to us at <a href="#">themes@getbootstrap.com</a>. If you need technical help with the theme before a refund please reach out to the seller first and they can get in touch with us if they're unable to resolve the issue.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Accordion Item -->
-                    </div>
-                    <!-- End Accordion -->
-                </div>
-            </div>
+        <!-- nav tabs -->
+    <section class="text-center">
+        <div class="help-text shadow-1-strong rounded  d-flex justify-content-center mt-5">
+            <h1 class="text-primary font-jost">Find Your Vacation House</h1>
         </div>
+        <h3 class="pt-2">We’d Love to Hear From You</h3>
+    </section>
+        <div class="help-page-tabs mt-80">
+            <ul class="nav nav-tabs  border-bottom-0 d-flex justify-content-center" id="myTab" role="tablist">
+                <!-- <div class="row">  -->
+                <!-- <div class="col-3">  -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">
+                        <div class="card shadow-lg card-border rounded-3">
+                            <div class="card-body">
+                                <img src="{{asset('/images/help-images/menu-book.png')}}" class="img-fluid d-none d-md-block m-auto">
+                                <p>Quick Start Guide</p>
+                            </div>
+                        </div>
+                        <div class="text-end bg-arrow d-none d-lg-block">
+                            <img src="{{asset('/images/help-images/vector-1.png')}}" class="img-fluid">
+                        </div>
+                    </button>
+                </li>
+                <!-- </div>  -->
+                <!-- <div class="col-3"> -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">
+                        <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5">
+                            <div class="card-body">
+                                <img src="{{asset('/images/help-images/instructions.png')}}" class="img-fluid d-none d-md-block m-auto">
+                                <p>Instructions</p>
+                            </div>
+                        </div>
+                        <div class="text-end bg-arrow d-none d-lg-block">
+                            <img src="{{asset('/images/help-images/vector-2.png')}}" class="img-fluid">
+                        </div>
+                    </button>
+                </li>
+                <!-- </div>  -->
+                <!-- <div class="col-3"> -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                            type="button" role="tab" aria-controls="contact" aria-selected="false">
+                        <div class="card shadow-lg card-border rounded-3 mt-lg-n1 ">
+                            <div class="card-body">
+                                <img src="{{asset('/images/help-images/vacation-calendar.png')}}"
+                                     class="img-fluid d-none d-md-block m-auto">
+                                <p><span class="d-none d-lg-block">Different Ways to Use The</span> Vacation Calendar</p>
+                            </div>
+                        </div>
+                        <div class="text-end bg-arrow d-none d-lg-block">
+                            <img src="{{asset('/images/help-images/vector-3.png')}}" class="img-fluid">
+                        </div>
+                    </button>
+                </li>
+                <!-- </div>  -->
+                <!-- <div class="col-3">  -->
+                <li class="nav-item " role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                            type="button" role="tab" aria-controls="contact" aria-selected="false">
+                        <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5">
+                            <div class="card-body">
+                                <img src="{{asset('/images/help-images/users.png')}}" class="img-fluid d-none d-md-block m-auto">
+                                <p> <span class="d-none d-lg-block">Understanding the different</span> Users and Roles</p>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+                <!-- </div>  -->
+                <!-- </div> -->
+            </ul>
+        </div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <section class="accordion-section mt-80">
+                    <div class="container">
+                        <div class="m-4">
+                            <div class="accordion" id="myAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button type="button" class="accordion-button collapsed"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseOne">1. What is
+                                            HTML?</button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                         data-bs-parent="#myAccordion">
+                                        <div class="card-body bottom-box-shadow">
+                                            <p>HTML stands for HyperText Markup Language. HTML is the standard markup
+                                                language for describing the structure of web pages. <a
+                                                    href="https://www.tutorialrepublic.com/html-tutorial/"
+                                                    target="_blank">Learn more.</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item mt-3">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button type="button" class="accordion-button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseTwo">2. What is Bootstrap?</button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse show"
+                                         data-bs-parent="#myAccordion">
+                                        <div class="card-body bottom-box-shadow">
+                                            <p>Bootstrap is a sleek, intuitive, and powerful front-end framework for
+                                                faster and easier web development. It is a collection of CSS and HTML
+                                                conventions. <a
+                                                    href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/"
+                                                    target="_blank">Learn more.</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item mt-3">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button type="button" class="accordion-button collapsed"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">3. What is
+                                            CSS?</button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse"
+                                         data-bs-parent="#myAccordion">
+                                        <div class="card-body bottom-box-shadow">
+                                            <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various
+                                                style properties for a given HTML element such as colors, backgrounds,
+                                                fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/"
+                                                              target="_blank">Learn more.</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        </div>
+        <!-- nav tabs end -->
+
     </div>
     <!-- End FAQ -->
 </x-guest-layout>
