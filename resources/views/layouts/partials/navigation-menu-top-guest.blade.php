@@ -53,16 +53,16 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">HOME</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('guest.welcome')}}">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">POLICIES</a>
+                        <a class="nav-link" href="{{route('guest.privacy-policy')}}">POLICIES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/" tabindex="-1">CONTACT US</a>
+                        <a class="nav-link" href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/" tabindex="-1">HELP</a>
+                        <a class="nav-link" href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
 
 

@@ -35,13 +35,14 @@
                             <!-- End Heading -->
 
                             <!-- Form -->
-                            <form>
+                            <form action="{{route('guest.contact.mail')}}" method="post">
+                                @csrf
                                 <div class="row gx-3">
                                     <div class="col-sm-6">
                                         <!-- Form -->
                                         <div class="mb-3">
                                             <label class="form-label" for="hireUsFormFirstName">First name</label>
-                                            <input type="text" class="form-control form-control-lg" name="hireUsFormNameFirstName" id="hireUsFormFirstName" placeholder="First name" aria-label="First name">
+                                            <input type="text" class="form-control form-control-lg" name="first_name" id="hireUsFormFirstName" placeholder="First name" aria-label="First name">
                                         </div>
                                         <!-- End Form -->
                                     </div>
@@ -51,7 +52,7 @@
                                         <!-- Form -->
                                         <div class="mb-3">
                                             <label class="form-label" for="hireUsFormLasttName">Last name</label>
-                                            <input type="text" class="form-control form-control-lg" name="hireUsFormNameLastName" id="hireUsFormLasttName" placeholder="Last name" aria-label="Last name">
+                                            <input type="text" class="form-control form-control-lg" name="last_name" id="hireUsFormLasttName" placeholder="Last name" aria-label="Last name">
                                         </div>
                                         <!-- End Form -->
                                     </div>
@@ -64,7 +65,7 @@
                                         <!-- Form -->
                                         <div class="mb-3">
                                             <label class="form-label" for="hireUsFormWorkEmail">Email address</label>
-                                            <input type="email" class="form-control form-control-lg" name="hireUsFormNameWorkEmail" id="hireUsFormWorkEmail" placeholder="email@site.com" aria-label="email@site.com">
+                                            <input type="email" class="form-control form-control-lg" name="email" id="hireUsFormWorkEmail" placeholder="email@site.com" aria-label="email@site.com">
                                         </div>
                                         <!-- End Form -->
                                     </div>
@@ -74,10 +75,21 @@
                                         <!-- Form -->
                                         <div class="mb-3">
                                             <label class="form-label" for="hireUsFormPhone">Phone <span class="form-label-secondary">(Optional)</span></label>
-                                            <input type="text" class="form-control form-control-lg" name="hireUsFormNamePhone" id="hireUsFormPhone" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx">
+                                            <input type="text" class="form-control form-control-lg" name="phone" id="hireUsFormPhone" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx">
                                         </div>
                                         <!-- End Form -->
                                     </div>
+
+                                    <div class="col-sm-6">
+                                        <!-- Form -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="subject">Subject <span class="form-label-secondary"></span></label>
+                                            <input type="text" class="form-control form-control-lg" name="subject" id="subject" placeholder="Subject" aria-label="Subject">
+                                        </div>
+                                        <!-- End Form -->
+                                    </div>
+
+
                                     <!-- End Col -->
                                 </div>
                                 <!-- End Row -->
@@ -85,7 +97,7 @@
                                 <!-- Form -->
                                 <div class="mb-3">
                                     <label class="form-label" for="hireUsFormDetails">Details</label>
-                                    <textarea class="form-control form-control-lg" name="hireUsFormNameDetails" id="hireUsFormDetails" placeholder="Tell us about your ..." aria-label="Tell us about your ..." rows="4"></textarea>
+                                    <textarea class="form-control form-control-lg" name="detail" id="hireUsFormDetails" placeholder="Tell us about your ..." aria-label="Tell us about your ..." rows="4"></textarea>
                                 </div>
                                 <!-- End Form -->
 
