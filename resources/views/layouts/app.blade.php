@@ -18,26 +18,20 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+    <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+        @include('layouts.partials.navigation-menu-top-app')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+        @include('layouts.partials.navigation-menu-side-app')
 
-            <!-- Page Content -->
-            <main>
+            <main id="content" role="main" class="main">
                 {{ $slot }}
+
+                @include('layouts.partials.footer-app')
+
             </main>
-        </div>
+
+
 
         @stack('modals')
 
