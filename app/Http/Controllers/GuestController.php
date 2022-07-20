@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog\Blog;
 use App\Notifications\ContactUsNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -52,13 +53,21 @@ class GuestController extends Controller
     }
 
     public function bulletinBoard(){
+
         return view('bulletinBoard');
+
     }
 
     public function blog() {
-        return view('blog');
+
+        $blogs = Blog:: paginate(20);
+
+        return view('blog',compact('blogs'));
     }
+
     public function PrivacyPolicy() {
+
         return view('privacy-policy');
+
     }
 }

@@ -10,7 +10,8 @@
                 <!-- End Col -->
 
                 <div class="col-auto">
-                    <a class="btn btn-primary" href="javascript:;" data-bs-toggle="modal" data-bs-target="#inviteUserModal">
+                    <a class="btn btn-primary" href="javascript:;"
+                       data-bs-toggle="modal" data-bs-target="#createOrUpdateBlog">
                         <i class="bi-plus me-1"></i> Add New Blog
                     </a>
                 </div>
@@ -22,5 +23,7 @@
 
     @livewire('blog.display-as-list')
     </div>
+
+@livewire('blog.create-or-update-modal')
 
 </x-app-layout>

@@ -16,7 +16,8 @@
                         <div class="input-group-prepend input-group-text">
                             <i class="bi-search"></i>
                         </div>
-                        <input id="datatableWithSearchInput" type="search" class="form-control" placeholder="Search users" aria-label="Search users">
+                        <input id="datatableWithSearchInput" type="search" class="form-control"
+                               placeholder="Search users" aria-label="Search users">
                     </div>
                     <!-- End Search -->
                 </form>
@@ -28,8 +29,9 @@
 
     <!-- Table -->
     <div class="table-responsive datatable-custom">
-        <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
-               data-hs-datatables-options='{
+        <table
+            class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+            data-hs-datatables-options='{
                    "order": [],
                    "search": "#datatableWithSearchInput",
                    "isResponsive": false,
@@ -38,84 +40,94 @@
                  }'>
             <thead class="thead-light">
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Country</th>
-                <th>Status</th>
+                <th>HouseId</th>
+                <th>Subject</th>
+                <th>Author</th>
+                <th>Content</th>
+                <th>Action</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr>
-                <td>
-                    <a class="d-flex align-items-center" href="../user-profile.html">
-                        <div class="avatar avatar-circle">
-                            <img class="avatar-img" src="{{asset('admin/assets/img/160x160/img10.jpg')}}" alt="Image Description">
-                        </div>
-                        <div class="ms-3">
-                            <span class="d-block h5 text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></span>
-                            <span class="d-block fs-5 text-body">amanda@example.com</span>
-                        </div>
-                    </a>
-                </td>
-                <td>
-                    <span class="d-block h5 mb-0">Director</span>
-                    <span class="d-block fs-5">Human resources</span>
-                </td>
-                <td>United Kingdom</td>
-                <td>
-                    <span class="legend-indicator bg-success"></span>Active
-                </td>
-            </tr>
+
+            {{--            <tr>--}}
+            {{--                <td>--}}
+            {{--                    <a class="d-flex align-items-center" href="../user-profile.html">--}}
+            {{--                        <div class="avatar avatar-circle">--}}
+            {{--                            <img class="avatar-img" src="{{asset('admin/assets/img/160x160/img10.jpg')}}" alt="Image Description">--}}
+            {{--                        </div>--}}
+            {{--                        <div class="ms-3">--}}
+            {{--                            <span class="d-block h5 text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></span>--}}
+            {{--                            <span class="d-block fs-5 text-body">amanda@example.com</span>--}}
+            {{--                        </div>--}}
+            {{--                    </a>--}}
+            {{--                </td>--}}
+            {{--                <td>--}}
+            {{--                    <span class="d-block h5 mb-0">Director</span>--}}
+            {{--                    <span class="d-block fs-5">Human resources</span>--}}
+            {{--                </td>--}}
+            {{--                <td>United Kingdom</td>--}}
+            {{--                <td>--}}
+            {{--                    <span class="legend-indicator bg-success"></span>Active--}}
+            {{--                </td>--}}
+            {{--                <td>--}}
+            {{--                    <div class="btn-group" role="group" aria-label="Edit group">--}}
+            {{--                        <a class="btn btn-white" href="#">--}}
+            {{--                            <i class="bi-pencil me-1"></i> Edit--}}
+            {{--                        </a>--}}
+            {{--                        <a class="btn btn-white" href="#">--}}
+            {{--                            <i class="bi-trash"></i>--}}
+            {{--                        </a>--}}
+            {{--                    </div>--}}
+            {{--                </td>--}}
+            {{--            </tr>--}}
 
 
+            @if(isset($blogs))
+                @foreach($blogs as $blog)
+                    <tr>
+                        <td>
+                            <a class="d-flex align-items-center" href="../user-profile.html">
+                                <div class="avatar avatar-soft-primary avatar-circle">
+                                    <span class="avatar-initials">G</span>
+                                </div>
+                                <div class="ms-3">
+                                    <span class="d-block h5 text-inherit mb-0">Gary Bishop <i
+                                            class="bi-patch-check-fill text-primary" data-toggle="tooltip"
+                                            data-bs-placement="top" title="Top endorsed"></i></span>
+                                    <span class="d-block fs-5 text-body">gary@example.com</span>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <span class="d-block h5 mb-0">{{$blog->Subject ?? ''}}</span>
+                        </td>
+                        <td>{{$blog->Author}}</td>
+                        <td>
+                            <span class="legend-indicator bg-success"></span>Active
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Edit group">
+                                <a class="btn btn-white" href="#">
+                                    <i class="bi-pencil me-1"></i> Edit
+                                </a>
+                                <a class="btn btn-white" href="#"
+                                   data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"
+                                >
+                                    <i class="bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
 
-            <tr>
-                <td>
-                    <a class="d-flex align-items-center" href="../user-profile.html">
-                        <div class="avatar avatar-soft-primary avatar-circle">
-                            <span class="avatar-initials">G</span>
-                        </div>
-                        <div class="ms-3">
-                            <span class="d-block h5 text-inherit mb-0">Gary Bishop <i class="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></span>
-                            <span class="d-block fs-5 text-body">gary@example.com</span>
-                        </div>
-                    </a>
-                </td>
-                <td>
-                    <span class="d-block h5 mb-0">Developer</span>
-                    <span class="d-block fs-5">Mobile app</span>
-                </td>
-                <td>Latvia</td>
-                <td>
-                    <span class="legend-indicator bg-success"></span>Active
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <a class="d-flex align-items-center" href="../">
-                        <div class="avatar avatar-soft-primary avatar-circle">
-                            <span class="avatar-initials">Y</span>
-                        </div>
-                        <div class="ms-3">
-                            <span class="d-block h5 text-inherit mb-0">Yorker Scogings</span>
-                            <span class="d-block fs-5 text-body">yorker@example.com</span>
-                        </div>
-                    </a>
-                </td>
-                <td>
-                    <span class="d-block h5 mb-0">Seller</span>
-                    <span class="d-block fs-5">Branding products</span>
-                </td>
-                <td>Norway</td>
-                <td>
-                    <span class="legend-indicator bg-danger"></span>Suspended
-                </td>
-            </tr>
 
             </tbody>
         </table>
+        <div class="d-flex mt-4">
+            {!! $blogs->links() !!}
+        </div>
     </div>
     <!-- End Table -->
 
@@ -128,4 +140,14 @@
         <!-- End Pagination -->
     </div>
     <!-- End Footer -->
+
+    @if(isset($blogs))
+        @foreach($blogs as $blog)
+
+            <x-modals.delete-confirmation :id="$blog->BlogId" action="destroy({{$blog->BlogId}})"/>
+
+        @endforeach
+    @endif
+
+
 </div>
