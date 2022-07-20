@@ -39,33 +39,49 @@
                             <form class="contact-us-form">
                                 <!-- Form -->
 
-                                <fieldset class="border-light">
-                                    <legend class="float-none w-auto fs-5">First Name</legend>
-                                    <input type="text" class="form-control" id="text-input-1"
-                                           placeholder="Placeholder" value="First Name"/>
+                                <fieldset class="border-light scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2">First Name</legend>
+                                    <input type="text"
+                                           class="form-control border-0"
+                                           id="text_input_1"
+                                           name="text-input-1"
+                                           placeholder=""
+                                           value="{{old('text_input_1')}}"/>
 
 
                                 </fieldset>
                                 <!-- End Form -->
-                                <fieldset class="border-light mt-4">
-                                    <legend class="float-none w-auto fs-5">Last Name</legend>
-                                    <input type="text" class="form-control" id="text-input-2"
-                                           placeholder="Placeholder" value="Last Name"/>
+                                <fieldset class="border-light mt-4 scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2">Last Name</legend>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="text-input-2"
+                                           id="text_input_2"
+                                           placeholder=""
+                                           value="{{old('text_input_2')}}"/>
                                 </fieldset>
-                                <fieldset class="border-light mt-4">
-                                    <legend class="float-none w-auto fs-5">Email</legend>
-                                    <input type="text" class="form-control" id="text-input-3"
-                                           placeholder="Placeholder" value="Enter E-mail"/>
+                                <fieldset class="border-light mt-4 scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2">Email</legend>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="text_input_3"
+                                           name="text-input-3"
+                                           placeholder=""
+                                           value="{{old('text_input_3')}}"/>
                                 </fieldset>
-                                <fieldset class="border-light mt-4">
-                                    <legend class="float-none w-auto fs-5">Subject</legend>
-                                    <input type="text" class="form-control" id="text-input-4"
-                                           placeholder="Placeholder" value="Subject"/>
+                                <fieldset class="border-light mt-4 scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2">Subject</legend>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="text_input_4"
+                                           name="text_input_4"
+                                           placeholder=""
+                                           value="{{old('text_input_4')}}"/>
                                 </fieldset>
-                                <fieldset class="border-light mt-4">
-                                    <legend class="float-none w-auto fs-5">Subject</legend>
+                                <fieldset class="border-light mt-4 scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2">Comments</legend>
                                     <textarea  class="form-control" id="text-input-5"
-                                           placeholder="Placeholder" value="Subject" rows="3"></textarea>
+                                           placeholder="" value="Subject" rows="3"></textarea>
                                 </fieldset>
                                 <div class="d-block d-md-flex justify-content-center text-center contact-btn mt-4">
                                     <button type="submit" class="btn btn-primary btn-lg">Send</button>
