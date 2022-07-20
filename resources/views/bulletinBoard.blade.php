@@ -3,7 +3,7 @@
 
     @endpush
 
-        @include('partials.sub-page-hero-section');
+        @include('partials.sub-page-hero-section',["title" => 'Bulletin Board']);
     <section class="bg-waves bg-light">
         <div class="container  pt-5">
             <div class="row text-center">

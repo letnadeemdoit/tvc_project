@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\BulletinController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,7 @@ Route::controller(GuestController::class)
 
 
 Route::resource('blogs', BlogController::class);
+Route::resource('bulletin', BulletinController::class);
 
 Route::get('/dashboard', function () {
     return view('dash.index');

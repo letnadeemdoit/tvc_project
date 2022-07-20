@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="./welcome-page.html" data-placement="left">
+                            <a class="nav-link" href="/bulletins" data-placement="left">
                                 <i class="bi-clipboard-data nav-icon"></i>
                                 <span class="nav-link-title">Bulletin Board</span>
                             </a>
