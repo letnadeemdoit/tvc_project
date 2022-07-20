@@ -27968,9 +27968,38 @@ body {
   max-width: 100%;
 }
 
+.btn-dark-secondary {
+  background: #2A3342;
+  color: #fff;
+}
+
+fieldset.scheduler-border {
+  border: 1px solid #f6f6f6 !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  box-shadow: 0px 0px 0px 0px #000;
+  margin-top: 30px !important;
+}
+
+legend.scheduler-border {
+  font-size: 1.2em !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  width: auto;
+  padding: 0 10px;
+  border-bottom: none;
+  margin-top: -15px;
+  background-color: white;
+  color: black;
+}
+
 header nav button:last-child:hover {
   background-color: #fff !important;
   color: #E8604C;
+}
+
+.bg-topnav {
+  background: #2A3342;
 }
 
 .bg-cards-section {
@@ -28141,6 +28170,26 @@ header nav button:last-child:hover {
 .bg-arrow {
   margin-top: -127px;
   margin-right: -113px;
+}
+
+.contact-us-form input {
+  outline: 0 !important;
+}
+
+.navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
+  padding: 0.75rem !important;
+}
+
+#header .nav-link.active {
+  border-bottom: 2px solid #E8604C;
+  padding-left: 0.75rem !important;
+}
+
+.bg-image {
+  background: url("/images/login-images/login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 @media only screen and (max-width: 1400px) {
