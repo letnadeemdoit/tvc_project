@@ -23,10 +23,11 @@ class DisplayAsList extends Component
 
             $this->emit('hideModal');
 
-//            $this->emit('showToast', 'Success!', 'OfferForm Deleted Successfully!');
+            $this->emit('showToast', 'success!', 'OfferForm Deleted Successfully!');
+
+            session()->flash('success', 'Blog successfully Deleted...');
 
             $blog->delete();
-
 
         }
     }
