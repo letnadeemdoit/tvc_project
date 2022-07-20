@@ -35,10 +35,13 @@
 
 
 
+
         @stack('modals')
 
         @livewireScripts
 
+
+        @stack('scripts')
 
         <script src="{{ mix('js/app.js') }}"></script>
         <script>
@@ -60,8 +63,6 @@
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-
         <script>
             @if(Session::has('success'))
                 toastr.options =
