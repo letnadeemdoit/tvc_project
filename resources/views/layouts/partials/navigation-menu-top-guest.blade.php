@@ -1,5 +1,5 @@
 {{--    topnav    --}}
-<div class="topnav py-2 bg-dark">
+<div class="topnav py-2 bg-topnav">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
@@ -16,12 +16,12 @@
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-md-end">
                     <div
                         class="d-flex align-items-center justify-content-center justify-content-md-start py-2 py-md-0">
-                        <i class="fas fa-phone me-2"></i>
+                        <i class="fas fa-phone me-2 text-white"></i>
                         <p class="mb-0 text-white">000-000-000</p>
                     </div>
                     <div
                         class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
-                        <i class="fa-solid fa-envelope me-2"></i>
+                        <img src="{{asset('/images/images-home/Email.png')}}" class="img-fluid me-2">
                         <p class="mb-0 text-white">trips.calendar@gmail.com</p>
                     </div>
                 </div>
