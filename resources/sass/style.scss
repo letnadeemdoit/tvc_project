@@ -40,6 +40,60 @@ body{
     background-size: contain;
     max-width: 100%;
 }
+.btn-dark-secondary{
+    background: $dark-blue;
+    color: #fff;
+}
+.bg-primary-light{
+    background: $primary-light !important;
+}
+.border-primary{
+    border: 1px dashed $primary !important;
+}
+.fieldset-padding{
+    padding: 1.4rem !important;
+}
+// fieldset
+
+    fieldset.scheduler-border {
+        border: 1px solid #f6f6f6 !important;
+        padding: 0 0em 0em 1.2em;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width: auto;
+        padding: 0 10px;
+        border-bottom: none;
+        margin-top: -15px;
+        background-color: white;
+        color: black;
+    }
+.scheduler-border {
+
+    .form-control{
+        border: 0px !important;
+        padding-top: 0.25rem !important;
+    }
+
+    .form-control:focus{
+        box-shadow: none !important;
+    }
+    .input-group-text{
+        padding-top: 0.25rem !important;
+    }
+    textarea{
+        border: 0px !important;
+    }
+}
+// fieldset ends
+
+
 header{
     nav{
         button:last-child{
@@ -50,7 +104,9 @@ header{
         }
     }
 }
-
+.bg-topnav{
+    background: $dark-blue;
+}
 .bg-cards-section{
     background: url('/images/images-home/union-waves.png');
     background-repeat: no-repeat;
@@ -211,6 +267,28 @@ bottom: -1rem !important;
 .bg-arrow{
     margin-top: -127px;
     margin-right: -113px;
+}
+.contact-us-form{
+    input{
+        outline: 0 !important;
+    }
+}
+.navbar:not(.splitted-content-navbar) .navbar-nav .nav-link{
+    padding: 0.75rem !important;
+}
+#header {
+    .nav-link {
+        &.active {
+            border-bottom: 2px solid $primary;
+            padding-left: 0.75rem !important;
+        }
+    }
+}
+.bg-image{
+    background: url("/images/login-images/login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 @media only screen and (max-width:1400px){
     .rounded-icon{

@@ -27968,9 +27968,63 @@ body {
   max-width: 100%;
 }
 
+.btn-dark-secondary {
+  background: #2A3342;
+  color: #fff;
+}
+
+.bg-primary-light {
+  background: rgba(232, 96, 76, 0.03) !important;
+}
+
+.border-primary {
+  border: 1px dashed #E8604C !important;
+}
+
+.fieldset-padding {
+  padding: 1.4rem !important;
+}
+
+fieldset.scheduler-border {
+  border: 1px solid #f6f6f6 !important;
+  padding: 0 0em 0em 1.2em;
+  margin: 0 0 1.5em 0 !important;
+  box-shadow: 0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+  font-size: 1.2em !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  width: auto;
+  padding: 0 10px;
+  border-bottom: none;
+  margin-top: -15px;
+  background-color: white;
+  color: black;
+}
+
+.scheduler-border .form-control {
+  border: 0px !important;
+  padding-top: 0.25rem !important;
+}
+.scheduler-border .form-control:focus {
+  box-shadow: none !important;
+}
+.scheduler-border .input-group-text {
+  padding-top: 0.25rem !important;
+}
+.scheduler-border textarea {
+  border: 0px !important;
+}
+
 header nav button:last-child:hover {
   background-color: #fff !important;
   color: #E8604C;
+}
+
+.bg-topnav {
+  background: #2A3342;
 }
 
 .bg-cards-section {
@@ -28114,7 +28168,7 @@ header nav button:last-child:hover {
 .accordion-section .accordion-button {
   border: 2px solid rgba(232, 96, 76, 0.21);
   border-radius: 5px !important;
-  background: #F6E9E7;
+  background: rgba(232, 96, 76, 0.03);
 }
 .accordion-section .accordion-item {
   border: 0px solid #fff !important;
@@ -28141,6 +28195,26 @@ header nav button:last-child:hover {
 .bg-arrow {
   margin-top: -127px;
   margin-right: -113px;
+}
+
+.contact-us-form input {
+  outline: 0 !important;
+}
+
+.navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
+  padding: 0.75rem !important;
+}
+
+#header .nav-link.active {
+  border-bottom: 2px solid #E8604C;
+  padding-left: 0.75rem !important;
+}
+
+.bg-image {
+  background: url("/images/login-images/login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 @media only screen and (max-width: 1400px) {
