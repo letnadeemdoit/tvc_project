@@ -74,7 +74,7 @@
                                     <input type="text"
                                            class="form-control"
                                            id="text_input_4"
-                                           name="text_input_4"
+                                           name="text-input-4"
                                            placeholder=""
                                            value="{{old('text_input_4')}}"/>
                                 </fieldset>
