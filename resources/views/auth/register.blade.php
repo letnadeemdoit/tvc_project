@@ -36,13 +36,13 @@
                                     <input
                                         type="text"
                                         class="form-control form-control-lg"
-                                        name="HouseID"
-                                        id="HouseID"
+                                        name="HouseName"
+                                        id="HouseName"
                                         placeholder="Enter House Name"
-                                        value="{{old('HouseID')}}"
+                                        value="{{old('HouseName')}}"
                                     />
                                 </fieldset>
-                                @error('HouseID')
+                                @error('HouseName')
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
                             </div>
@@ -76,7 +76,8 @@
                                     <legend class="float-none w-auto fs-5 mb-0">State</legend>
                                     <input
                                         type="text"
-                                        class="form-control" name="state"
+                                        class="form-control"
+                                        name="State"
                                         id="State"
                                         placeholder="State"
                                         value="{{ old('state') }}"
@@ -97,12 +98,16 @@
                                     <input
                                         type="number"
                                         class="form-control form-control-lg"
-                                        id="paypal"
+                                        id="ReferredBy"
+                                        name="ReferredBy"
                                         placeholder=""
-                                        value="{{old('paypal')}}"
+                                        value="{{old('ReferredBy')}}"
                                     />
 
                                 </fieldset>
+                                @error('ReferredBy')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
                             </div>
 
                         </div>
@@ -117,7 +122,7 @@
 
                                 <p class="mb-2">or</p>
 
-                                <input type="file" name="">
+                                <input type="file" name="img">
 
                                 <span class="btn bg-primary btn-sm text-white">Upload Image</span>
                             </div>
@@ -136,7 +141,7 @@
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Username</legend>
                                     <input type="text" class="form-control form-control-lg border-end-0"
-                                           name="text" value=""
+                                           name="user_name"
                                            id="user_name" tabindex="1"
                                            placeholder=""
                                            value="{{ old('user_name') }}"
@@ -176,10 +181,11 @@
                                 @enderror
                             </div>
                             <div class="form-check mt-2">
-                                <label class="form-check-label" for="remember_me">
+                                <label class="form-check-label" for="AdminOwner">
                                     Allow Administrator to have Owner Permissions.
                                 </label>
-                                <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+
+                                <input type="checkbox" class="form-check-input" name="AdminOwner" value="Y" id="AdminOwner">
 
                             </div>
                         </div>
@@ -225,7 +231,7 @@
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Create Password</legend>
-                                    <input type="text"
+                                    <input type="password"
                                            class="form-control form-control-lg border-end-0"
                                            name="password"
                                            value="{{old('password')}}"
@@ -251,7 +257,7 @@
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Confirm Password</legend>
-                                    <input type="text"
+                                    <input type="password"
                                            class="form-control form-control-lg border-end-0"
                                            name="password_confirmation"
                                            value="{{old('confirm_password')}}"
@@ -288,7 +294,7 @@
                 </fieldset>
             </form>
             <div class="text-center">
-                <p>Already have an account?<a href="#" class="text-decoration-underline text-primary">Login</a></p>
+                <p>Already have an account?<a href="{{route('login')}}" class="text-decoration-underline text-primary">Login</a></p>
             </div>
             <!-- second fieldset ends -->
         </div>
