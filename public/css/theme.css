@@ -36345,8 +36345,16 @@ a:hover .text-inherit {
   color: #E8604C;
 }
 
-.guest-btn {
+.bg-light-primary {
   background: #F6E9E7;
+}
+
+.border-solid {
+  border: 1px solid #E8604C !important;
+}
+
+.color-black {
+  color: #000 !important;
 }
 
 @font-face {
@@ -36736,7 +36744,7 @@ header nav button:last-child:hover {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 600px;
+  height: 400px;
 }
 
 .category-cards .card {

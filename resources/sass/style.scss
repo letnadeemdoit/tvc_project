@@ -7,8 +7,14 @@
 .text-primary{
     color: $primary;
 }
-.guest-btn{
+.bg-light-primary{
     background: $bg-primary-light;
+}
+.border-solid{
+    border: 1px solid $primary !important;
+}
+.color-black{
+    color: #000 !important;
 }
 @font-face {
     font-family: poppins;

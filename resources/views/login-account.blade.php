@@ -19,11 +19,11 @@
 
             <x-jet-validation-errors class="mb-4"/>
 
-            <form method="POST" action="{{ route('password.email') }}">
+            <form>
                 @csrf
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark-secondary btn-lg">{{ __('Administrator & Owner') }}</button>
-                    <button type="submit" class="btn guest-btn btn-lg mt-3">{{ __('Guest') }}</button>
+                    <button type="submit" class="btn btn-dark-secondary btn-lg shadow-lg">{{ __('Administrator & Owner') }}</button>
+                    <button type="submit" class="btn bg-light-primary border-solid btn-lg mt-3 text-dark">{{ __('Guest') }}</button>
                 </div>
             </form>
         </div>
