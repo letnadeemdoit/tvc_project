@@ -1,8 +1,4 @@
 <x-guest-layout>
-    @push('stylesheets')
-
-    @endpush
-
     @include('partials.sub-page-hero-section');
 
     <section class="text-center">
