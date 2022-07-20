@@ -24,6 +24,10 @@ Route::controller(GuestController::class)
         Route::get('/blog','blog')->name('blog');
         Route::get('/bulletin','bulletinBoard')->name('bulletinBoard');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
+        Route::get('/guest-login','guestLogin')->name('guest-login');
+        Route::get('/login-account','loginAccount')->name('login-account');
+        Route::get('/search-house','searchHouse')->name('search-house');
+
     });
 
 

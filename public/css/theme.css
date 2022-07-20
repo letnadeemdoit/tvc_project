@@ -36345,6 +36345,10 @@ a:hover .text-inherit {
   color: #E8604C;
 }
 
+.guest-btn {
+  background: #F6E9E7;
+}
+
 @font-face {
   font-family: poppins;
   src: url("/fonts/Poppins-Regular.ttf");
@@ -36585,7 +36589,7 @@ header nav button:last-child:hover {
 .accordion-section .accordion-button {
   border: 2px solid rgba(232, 96, 76, 0.21);
   border-radius: 5px !important;
-  background: rgba(232, 96, 76, 0.03);
+  background: #F6E9E7;
 }
 .accordion-section .accordion-item {
   border: 0px solid #fff !important;

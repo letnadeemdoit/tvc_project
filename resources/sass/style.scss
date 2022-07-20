@@ -7,6 +7,9 @@
 .text-primary{
     color: $primary;
 }
+.guest-btn{
+    background: $bg-primary-light;
+}
 @font-face {
     font-family: poppins;
     src: url('/fonts/Poppins-Regular.ttf');
@@ -236,7 +239,7 @@ bottom: -1rem !important;
     .accordion-button{
         border: 2px solid rgba(232, 96, 76, 0.21);
         border-radius: 5px !important;
-        background: $primary-light;
+        background: $bg-primary-light;
     }
     .accordion-item{
         border: 0px solid #fff !important;
