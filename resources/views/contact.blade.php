@@ -13,8 +13,7 @@
                         <h1 class="text-primary font-jost">Find Your Vacation House</h1>
                     </div>
                     <h3 class="pt-2">We’d Love to Hear From You</h3>
-                    <p class="pt-2">Thank you very much for visiting TheVacationCalendar.com. If you have any questions
-                        about the service, technical issues, or any other suggestions, please feel free to email.</p>
+                    <p class="pt-2">Thank you very much for visiting TheVacationCalendar.com. If you have any questions about the service, technical issues, or any other suggestions, please feel free to email.</p>
                 </div>
             </div>
         </div>
@@ -36,6 +35,70 @@
                             <!-- End Heading -->
 
                             <!-- Form -->
+                            <form action="{{route('guest.contact.mail')}}" method="post">
+                                @csrf
+                                <div class="row gx-3">
+                                    <div class="col-sm-6">
+                                        <!-- Form -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="hireUsFormFirstName">First name</label>
+                                            <input type="text" class="form-control form-control-lg" name="first_name" id="hireUsFormFirstName" placeholder="First name" aria-label="First name">
+                                        </div>
+                                        <!-- End Form -->
+                                    </div>
+                                    <!-- End Col -->
+
+                                    <div class="col-sm-6">
+                                        <!-- Form -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="hireUsFormLasttName">Last name</label>
+                                            <input type="text" class="form-control form-control-lg" name="last_name" id="hireUsFormLasttName" placeholder="Last name" aria-label="Last name">
+                                        </div>
+                                        <!-- End Form -->
+                                    </div>
+                                    <!-- End Col -->
+                                </div>
+                                <!-- End Row -->
+
+                                <div class="row gx-3">
+                                    <div class="col-sm-6">
+                                        <!-- Form -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="hireUsFormWorkEmail">Email address</label>
+                                            <input type="email" class="form-control form-control-lg" name="email" id="hireUsFormWorkEmail" placeholder="email@site.com" aria-label="email@site.com">
+                                        </div>
+                                        <!-- End Form -->
+                                    </div>
+                                    <!-- End Col -->
+
+                                    <div class="col-sm-6">
+                                        <!-- Form -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="hireUsFormPhone">Phone <span class="form-label-secondary">(Optional)</span></label>
+                                            <input type="text" class="form-control form-control-lg" name="phone" id="hireUsFormPhone" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx">
+                                        </div>
+                                        <!-- End Form -->
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <!-- Form -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="subject">Subject <span class="form-label-secondary"></span></label>
+                                            <input type="text" class="form-control form-control-lg" name="subject" id="subject" placeholder="Subject" aria-label="Subject">
+                                        </div>
+                                        <!-- End Form -->
+                                    </div>
+
+
+                                    <!-- End Col -->
+                                </div>
+                                <!-- End Row -->
+
+                                <!-- Form -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="hireUsFormDetails">Details</label>
+                                    <textarea class="form-control form-control-lg" name="detail" id="hireUsFormDetails" placeholder="Tell us about your ..." aria-label="Tell us about your ..." rows="4"></textarea>
+                                </div>
                             <form class="contact-us-form">
                                 <!-- Form -->
 
@@ -107,4 +170,7 @@
         </div>
     </div>
     <!-- End Contact Form -->
+
+
+
 </x-guest-layout>

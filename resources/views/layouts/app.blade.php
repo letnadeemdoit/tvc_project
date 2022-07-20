@@ -13,34 +13,93 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/theme.css') }}" />
 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
         @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
+
     </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+    <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+        @include('layouts.partials.navigation-menu-top-app')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+        @include('layouts.partials.navigation-menu-side-app')
 
-            <!-- Page Content -->
-            <main>
+            <main id="content" role="main" class="main">
                 {{ $slot }}
+
+                @include('layouts.partials.footer-app')
+
             </main>
-        </div>
+
+
+
 
         @stack('modals')
 
         @livewireScripts
+
+
+        @stack('scripts')
+
+        <script src="{{ mix('js/app.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                window.livewire.on('hideModal', (reload = false) => {
+                    $('.hideableModal').each(function () {
+                        $(this).modal('hide');
+                    });
+                    if (reload) {
+                        window.location.reload();
+                    } else {
+                        $('.modal-backdrop').remove();
+                        $('body').css('overflow', '');
+                        $('body').css('padding-right', '');
+                        $('body').removeClass('modal-open');
+                    }
+                });
+            });
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script>
+            @if(Session::has('success'))
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+            toastr.success("{{ session('success') }}");
+            @endif
+
+                @if(Session::has('error'))
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+            toastr.error("{{ session('error') }}");
+            @endif
+
+                @if(Session::has('info'))
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+            toastr.info("{{ session('info') }}");
+            @endif
+
+                @if(Session::has('warning'))
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+            toastr.warning("{{ session('warning') }}");
+            @endif
+        </script>
+
     </body>
 </html>
