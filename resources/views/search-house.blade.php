@@ -3,7 +3,7 @@
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
         </x-slot>
-        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 30rem;">
+        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 37rem;">
 
             <div class="mb-5">
                 <h1 class="display-5">Search <span class="text-primary">House</span></h1>
@@ -16,42 +16,79 @@
                 </div>
             @endif
 
-            <x-jet-validation-errors class="mb-4"/>
+            <x-jet-validation-errors class="mb-4" />
 
             <form class="bg-light-primary p-4 border-solid">
 
                 <label for="defaultDropdown fw-bolder mb-2" style="color: #000">House Name</label>
                 <div class="d-block d-md-flex">
-                    <!-- <input  type="text" class="form-control" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" />
-                    <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
-                    </ul> -->
-                    <div class="input-group dropdown">
-                        <input type="text" class="form-control countrycode dropdown-toggle" value="(+47)">
-                        <ul class="dropdown-menu">
-                            <li><a href="#" data-value="+47">Norway (+47)</a></li>
-                            <li><a href="#" data-value="+1">USA (+1)</a></li>
-                            <li><a href="#" data-value="+55">Japan (+55)</a></li>
+                    <div class="t-dropdown-block w-75">
+                        <div class="t-dropdown-select">
+                            <input type="text" class="t-dropdown-input py-2" placeholder="Value" />
+                            <span class="t-select-btn border-start-0">
+                            </span>
+                        </div>
+                        <ul class="t-dropdown-list">
+                            <li class="t-dropdown-item">Item 1</li>
+                            <li class="t-dropdown-item">Item 2</li>
+                            <li class="t-dropdown-item">Item 3</li>
+                            <li class="t-dropdown-item">Item 4</li>
+                            <li class="t-dropdown-item">Item 5</li>
+                            <li class="t-dropdown-item">Item 6</li>
+                            <li class="t-dropdown-item">Item 7</li>
+                            <li class="t-dropdown-item">Item 8</li>
+                            <li class="t-dropdown-item">Item 9</li>
+                            <li class="t-dropdown-item">Item 10</li>
+                            <li class="t-dropdown-item">Item 11</li>
+                            <li class="t-dropdown-item">Item 12</li>
                         </ul>
-                        <span role="button" class="input-group-addon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></span>
                     </div>
+
+
+
                     <button class="btn bg-primary text-white ms-0 ms-md-3  mt-2 mt-md-0">Go to House</button>
                 </div>
             </form>
         </div>
     </x-jet-authentication-card>
     @push('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
-            $(document).ready(function(){
-            $(function() {
-                $('.dropdown-menu a').click(function() {
-                    console.log($(this).attr('data-value'));
-                    $(this).closest('.dropdown').find('input.countrycode')
-                        .val('(' + $(this).attr('data-value') + ')');
+            $(document).ready(function () {
+                $('.t-dropdown-input').on('click', function() {
+                    $(this).parent().next().slideDown('fast');
                 });
-            });
+
+                $('.t-select-btn').on('click', function() {
+                    $('.t-dropdown-list').slideUp('fast');
+
+                    if(!$(this).prev().attr('disabled')){
+                        $(this).prev().trigger('click');
+                    }
+                });
+
+                $('.t-dropdown-input').width($('.t-dropdown-select').width() - $('.t-select-btn').width() - 13);
+
+                $('.t-dropdown-list').width($('.t-dropdown-select').width());
+
+                $('.t-dropdown-input').val('');
+
+                $('li.t-dropdown-item').on('click', function() {
+                    var text = $(this).html();
+                    $(this).parent().prev().find('.t-dropdown-input').val(text);
+                    $('.t-dropdown-list').slideUp('fast');
+                });
+
+                $(document).on('click', function(event) {
+                    if ($(event.target).closest(".t-dropdown-input, .t-select-btn").length)
+                        return;
+                    $('.t-dropdown-list').slideUp('fast');
+                    event.stopPropagation();
+                });
+// END //
+
             });
         </script>
     @endpush

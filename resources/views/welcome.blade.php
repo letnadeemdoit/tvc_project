@@ -203,11 +203,10 @@
             </div>
         </div>
     </section>
-    <section class="p-2 p-lg-5"
-             style="background: url({{asset('/images/images-home/cards-background.png')}});background-repeat: no-repeat;background-size: cover;background-position: center;">
+    <section class="p-2 p-lg-5 bg-social-feed">
         <div class="container">
             <div
-                class="bg-image my-5 text-center shadow-1-strong rounded  text-white features-img">
+                class=" mt-5 mb-2 text-center shadow-1-strong rounded  text-white social-img">
                 <h1 class="text-primary font-jost">Find Your Vacation House</h1>
             </div>
             <h3 class="text-center text-white">Vacation Calendar makes it simple</h3>
