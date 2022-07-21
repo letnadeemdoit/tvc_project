@@ -16,7 +16,7 @@
 
                     <!-- Select -->
                     <div class="tom-select-custom tom-select-custom-end tom-select-custom-bg-transparent zi-2">
-                        <select class="js-select form-select form-select-sm form-select-borderless"
+                        <select class="js-select form-select form-select-sm form-select-borderless text-white"
                                 data-hs-tom-select-options='{
                           "searchInDropdown": false,
                           "hideSearch": true,

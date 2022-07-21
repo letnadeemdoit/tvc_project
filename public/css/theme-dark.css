@@ -27945,11 +27945,20 @@ select:-webkit-autofill:focus {
   src: url("/fonts/Poppins-Regular.ttf");
 }
 @font-face {
+  font-family: vintage-clothes;
+  src: url("/fonts/vintage/vintage-clothes.otf");
+}
+@font-face {
   font-family: jost;
   src: url("/fonts/jost/static/Jost-Medium.ttf");
 }
 .font-jost {
   font-family: jost !important;
+}
+
+.font-vintage {
+  font-family: vintage-clothes;
+  font-weight: 500;
 }
 
 .max-width {
@@ -27973,11 +27982,15 @@ body {
 }
 
 .features-img {
-  background-image: url("/images/images-home/fEATURE.png");
+  background-image: url("/images/images-home/feature-2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   max-width: 100%;
+}
+
+.h-20 {
+  height: 20px;
 }
 
 .btn-dark-secondary {
@@ -28011,7 +28024,7 @@ legend.scheduler-border {
   width: auto;
   padding: 0 10px;
   border-bottom: none;
-  margin-top: -15px;
+  margin-top: -34px;
   background-color: white;
   color: black;
 }
@@ -28058,6 +28071,7 @@ header nav button:last-child:hover {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  background-color: #2A3342;
 }
 
 .images-nav-tabs .nav-link {
@@ -28089,6 +28103,7 @@ header nav button:last-child:hover {
 
 .privacy-policy {
   background-image: url("/images/privacy-policy/privacy.png");
+  background-size: contain !important;
   background-repeat: no-repeat;
   background-position: left;
   background-size: auto;
@@ -28345,6 +28360,12 @@ header nav button:last-child:hover {
   .padding-top {
     padding-top: 6rem !important;
   }
+  .fs-12 {
+    font-size: 13px !important;
+  }
+  .privacy-policy {
+    background-position: center !important;
+  }
 }
 @media only screen and (max-width: 767px) {
   .rounded-icon {
@@ -28353,6 +28374,22 @@ header nav button:last-child:hover {
   }
   .padding-top {
     padding-top: 6rem !important;
+  }
+  .help-page-tabs .nav-tabs .nav-item .nav-link {
+    padding: 0px !important;
+    width: 85px !important;
+    font-size: 10px;
+  }
+  .help-page-tabs .nav-tabs .nav-item .card {
+    max-height: 120px;
+    min-width: revert !important;
+    max-width: revert !important;
+  }
+  .help-page-tabs .nav-tabs .nav-item .card .card-body {
+    padding: 12px !important;
+  }
+  .help-page-tabs .nav-tabs .nav-item .card .card-body img {
+    width: 50px;
   }
 }
 @media only screen and (max-width: 576px) {
@@ -28375,6 +28412,9 @@ header nav button:last-child:hover {
   .navbar-expand-lg .navbar-nav-wrap-secondary-content {
     margin-left: 0 !important;
   }
+  .nav-buttons a {
+    min-width: 100px !important;
+  }
 }
 @media only screen and (max-width: 430px) {
   .rounded-icon {
@@ -28389,19 +28429,6 @@ header nav button:last-child:hover {
   }
   .category-cards .nav-link img {
     width: 25px !important;
-  }
-  .help-page-tabs .nav-tabs .nav-item .nav-link {
-    padding: 0px !important;
-    width: 85px !important;
-    font-size: 10px;
-  }
-  .help-page-tabs .nav-tabs .nav-item .card {
-    min-height: 75px;
-    min-width: revert !important;
-    max-width: revert !important;
-  }
-  .help-page-tabs .nav-tabs .nav-item .card .card-body {
-    padding: 12px !important;
   }
 }
 @media only screen and (max-width: 375px) {
@@ -28419,7 +28446,7 @@ header nav button:last-child:hover {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 400px;
+  height: 350px;
 }
 
 .category-cards .card {

@@ -8,7 +8,7 @@
         <!-- nav tabs -->
     <section class="text-center">
         <div class="help-text shadow-1-strong rounded  d-flex justify-content-center mt-5">
-            <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+            <h1 class="text-primary font-vintage mb-0">Help</h1>
         </div>
         <h3 class="pt-2">We’d Love to Hear From You</h3>
     </section>
@@ -21,7 +21,7 @@
                             type="button" role="tab" aria-controls="home" aria-selected="true">
                         <div class="card shadow-lg card-border rounded-3">
                             <div class="card-body">
-                                <img src="{{asset('/images/help-images/menu-book.png')}}" class="img-fluid d-none d-md-block m-auto">
+                                <img src="{{asset('/images/help-images/menu-book.png')}}" class="img-fluid m-auto">
                                 <p>Quick Start Guide</p>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             type="button" role="tab" aria-controls="profile" aria-selected="false">
                         <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5">
                             <div class="card-body">
-                                <img src="{{asset('/images/help-images/instructions.png')}}" class="img-fluid d-none d-md-block m-auto">
+                                <img src="{{asset('/images/help-images/instructions.png')}}" class="img-fluid  m-auto">
                                 <p>Instructions</p>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="card shadow-lg card-border rounded-3 mt-lg-n1 ">
                             <div class="card-body">
                                 <img src="{{asset('/images/help-images/vacation-calendar.png')}}"
-                                     class="img-fluid d-none d-md-block m-auto">
+                                     class="img-fluid m-auto">
                                 <p><span class="d-none d-lg-block">Different Ways to Use The</span> Vacation Calendar</p>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             type="button" role="tab" aria-controls="contact" aria-selected="false">
                         <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5">
                             <div class="card-body">
-                                <img src="{{asset('/images/help-images/users.png')}}" class="img-fluid d-none d-md-block m-auto">
+                                <img src="{{asset('/images/help-images/users.png')}}" class="img-fluid  m-auto">
                                 <p> <span class="d-none d-lg-block">Understanding the different</span> Users and Roles</p>
                             </div>
                         </div>

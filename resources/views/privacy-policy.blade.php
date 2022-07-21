@@ -12,7 +12,7 @@
                         <!-- Jumbotron -->
                         <div
                             class="text-center shadow-1-strong rounded text-white privacy-policy">
-                            <h1 class="h2 text-start text-primary font-jost">Find Your Vacation House</h1>
+                            <h1 class="h2 text-center text-lg-start text-primary font-jost">Find Your Vacation House</h1>
                         </div>
                         <div class="pt-3">
                             <h3>Privacy Policy</h3>
@@ -21,7 +21,7 @@
                                 it addresses a niche need and many vacation home owners enjoy it. If you are concerned about privacy and data protection, please do not use the Site. The Site has basic security but should not be used to capture any information that is not publicly available or that the end users are willing to make publicly available. </p>
                         </div>
                     </div>
-                    <div class="col-lg-6 mt-4 mt-lg-0 offset-md-1 text-center">
+                    <div class="col-lg-6 mt-4 mt-lg-0 offset-lg-1 text-center">
                         <img src="  {{asset('/images/privacy-policy/group-image.png')}}" class="img-fluid" />
                     </div>
                 </div>

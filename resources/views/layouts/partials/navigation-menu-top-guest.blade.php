@@ -1,13 +1,13 @@
 {{--    topnav    --}}
-<div class="topnav py-2 bg-topnav">
+<div class="topnav py-1 bg-topnav">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="d-flex justify-content-center justify-content-md-start">
 
-                    <i class="bi-facebook fs-3 text-white"></i>
-                    <i class="bi-twitter mx-3 fs-3 text-white"></i>
-                    <i class="bi-instagram fs-3 text-white"></i>
+                    <a href="#"> <i class="bi-facebook fs-3 text-white"></i></a>
+                    <a href="#">  <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
+                    <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
 
                 </div>
             </div>
@@ -15,14 +15,14 @@
                 <div
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-md-end">
                     <div
-                        class="d-flex align-items-center justify-content-center justify-content-md-start py-2 py-md-0">
+                        class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0">
                         <i class="fas fa-phone me-2 text-white"></i>
-                        <p class="mb-0 text-white">000-000-000</p>
+                        <p class="mb-0 text-white fs-12">000-000-000</p>
                     </div>
                     <div
                         class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
                         <img src="{{asset('/images/images-home/Email.png')}}" class="img-fluid me-2">
-                        <p class="mb-0 text-white">trips.calendar@gmail.com</p>
+                        <p class="mb-0 text-white fs-12">trips.calendar@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
     </span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
                 <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('guest.welcome')}}">HOME</a>
@@ -77,3 +77,14 @@
 
     </div>
 </header>
+
+@push('scripts')
+    <script>
+        $( document ).ready(function() {
+            $( '#header .navbar-nav a' ).on( 'click', function () {
+                $( '#header .navbar-nav a' ).find( '.nav-link.active' ).removeClass( 'active' );
+                $( this ).parent( '.nav-link' ).addClass( 'active' );
+            });
+        });
+    </script>
+@endpush

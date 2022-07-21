@@ -8,7 +8,7 @@
         <div class="container  pt-5">
             <div class="row text-center">
                 <div class="features-img shadow-1-strong rounded  text-white d-flex justify-content-center">
-                    <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+                    <h1 class="text-primary font-vintage">Bulletin Board</h1>
                 </div>
                 <h3 class="pt-2">Choose your Category</h3>
             </div>

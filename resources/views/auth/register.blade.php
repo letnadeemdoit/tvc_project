@@ -39,7 +39,7 @@
                                         class="form-control form-control-lg"
                                         name="house_name"
                                         id="house_name"
-                                        placeholder="Enter House Name"
+                                        placeholder=""
                                         value="{{old('house_name')}}"
                                         required
                                     />
@@ -59,7 +59,7 @@
                                         type="text"
                                         class="form-control"
                                         id="city"
-                                        placeholder="City"
+                                        placeholder=""
                                         value="{{ old('city') }}"
                                         required
                                     />
@@ -74,7 +74,7 @@
                                         type="text"
                                         class="form-control" name="state"
                                         id="state"
-                                        placeholder="State"
+                                        placeholder=""
                                         value="{{ old('state') }}"
                                         aria-label=""
                                         required
@@ -247,7 +247,7 @@
                                 </fieldset>
                                 <div class="form-check mt-2">
                                     <label class="form-check-label" for="remember_me">
-                                        I accept <a href="#" class="text-decoration-underline">Terms and Conditions</a>
+                                        I accept <a  href="#" class="text-decoration-underline">Terms and Conditions</a>
                                     </label>
                                     <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
 
@@ -263,7 +263,7 @@
                 </form>
             </fieldset>
             <div class="text-center">
-                <p>Already have an account?<a href="#" class="text-decoration-underline text-primary">Login</a></p>
+                <p>Already have an account?<a  href="{{ route('login') }}" class="text-decoration-underline text-primary">Login</a></p>
             </div>
             <!-- second fieldset ends -->
         </div>

@@ -8,7 +8,7 @@
 
             <div class="container">
 
-                <p class="mb-1 display-5 text-primary font-jost">Keep Track of when</p>
+                <p class="mb-1 display-3 text-primary font-vintage">Keep Track of when</p>
                 <h1 class="h1 py-4">Your Vacation <br> Home is in Use</h1>
                 <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
                 <div class="position-relative mt-3 max-width">
@@ -27,8 +27,8 @@
                 <div class="col-lg-5 text-center text-lg-start">
                     <!-- Jumbotron -->
                     <div
-                        class="p-5 text-center shadow-1-strong rounded mb-5 text-white bg-process-img">
-                        <h1 class="h2 text-start text-primary font-jost">Find Your Vacation House</h1>
+                        class="py-4 text-center  rounded mb-5 text-white bg-process-img mb-0">
+                        <h1 class="h2 text-start text-primary font-vintage">Find Your Vacation House</h1>
                     </div>
                     <div class="pt-3">
                         <h4>What is the Vacation Calendar?</h4>
@@ -40,11 +40,11 @@
                         <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg mt-3">SIGN UP</button>
                     </div>
                 </div>
-                <div class="col-lg-3 mt-4 mt-lg-0 offset-md-1">
+                <div class="col-lg-3 mt-4 mt-lg-0 offset-lg-1">
                     <div class="text-center d-none d-lg-block">
                         <img src="/images/images-home/left-arrow.png" class="img-fluid ms-auto mb-3"/>
                     </div>
-                    <div class="card  border-0 rounded-3 bg-card-1">
+                    <div class="card  border-0 rounded-3 bg-card-1 me-3">
                         <div class="d-block text-center d-lg-flex justify-content-center justify-content-lg-start align-items-lg-center h-100 position-absolute w-100">
                             <div class="bg-white rounded-pill p-4 rounded-icon">
                                 <img src="/images/images-home/card-img-1.png" class="img-fluid" alt="calculator" />
@@ -93,13 +93,13 @@
 
     {{--   cards-section   --}}
 
-    <section class="bg-secondary py-5 bg-cards-section">
+    <section class="py-5 bg-cards-section">
         <div class="container py-5">
             <div
                 class="features-img  text-center shadow-1-strong rounded  text-white d-flex justify-content-center">
-                <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+                <h1 class="text-primary font-vintage mb-0">Find Your Vacation House</h1>
             </div>
-            <h3 class="text-center text-white">Vacation Calendar makes it simple</h3>
+            <h3 class="text-center text-white mt-2">Vacation Calendar makes it simple</h3>
             <div class="row py-5">
                 <div class="col-lg-4">
                     <!-- Card -->
@@ -150,8 +150,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div
-                        class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white bg-process-img" />
-                    <h1 class="mb-3 h2 text-start font-jost text-primary">Find Your Vacation House</h1>
+                        class="py-4 text-center shadow-1-strong rounded mb-5 text-white bg-process-img" />
+                    <h1 class="mb-0 h2 text-start font-vintage text-primary">Find Your Vacation House</h1>
                 </div>
                 <div class="pt-3">
                     <h4>What is the Vacation Calendar?</h4>
@@ -207,14 +207,13 @@
         <div class="container">
             <div
                 class=" mt-5 mb-2 text-center shadow-1-strong rounded  text-white social-img">
-                <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+                <h1 class="text-primary font-vintage">Find your vacation house</h1>
             </div>
             <h3 class="text-center text-white">Vacation Calendar makes it simple</h3>
-            <div class="d-block d-lg-flex mt-4">
-                <div class="d-flex flex-column">
-                    <!-- Card -->
+
+            <div class="row mt-4">
+                <div class="col-md-4 col-lg-3">
                     @include('partials.social-media-feed-card')
-                    <!-- End Card -->
                 </div>
             </div>
         </div>
