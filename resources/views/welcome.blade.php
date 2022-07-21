@@ -148,7 +148,7 @@
     <section class=" my-5">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div
                         class="py-4 text-center shadow-1-strong rounded mb-5 text-white bg-process-img" />
                     <h1 class="mb-0 h2 text-start font-vintage text-primary">Find Your Vacation House</h1>
@@ -193,7 +193,7 @@
                     {{--           nav tabs end             --}}
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 offset-lg-1">
                 <div id="big-image">
                     <img src="{{asset('/images/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image" />
                     <img src="{{asset('/images/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image" />
