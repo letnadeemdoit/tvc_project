@@ -45,7 +45,7 @@
 
 
 
-                    <button class="btn bg-primary text-white ms-0 ms-md-3  mt-2 mt-md-0">Go to House</button>
+                    <button class="btn bg-primary text-white ms-0 ms-md-3  mt-2 mt-md-0 btn-text">Go to House</button>
                 </div>
             </form>
         </div>

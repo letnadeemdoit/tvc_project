@@ -7,7 +7,7 @@
             <div class="text-start">
                 <div class="mb-5 text-center">
                     <h1 class="display-4 fw-bolder">Login Account</h1>
-                    <span class="divider-center text-muted mt-4">OR</span>
+                    <span class="divider-center text-muted mt-4">as</span>
                 </div>
             </div>
 

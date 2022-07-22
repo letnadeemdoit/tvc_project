@@ -156,9 +156,9 @@ header{
             }
         }
     }
-    .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link{
-        padding: 0.65rem !important;
-    }
+}
+.navbar:not(.splitted-content-navbar) .navbar-nav .nav-link{
+    padding: 0.65rem !important;
 }
 .bg-topnav{
     background: $dark-blue;
@@ -179,10 +179,10 @@ header{
         padding: 12px !important;
         margin-right: 14px;
         margin-bottom: 12px;
-        max-width: 95px;
-        min-width: 95px;
+        max-width: 90px;
+        min-width: 90px;
         min-height :100px;
-        font-size: 11px;
+        font-size: 10px;
         border-radius: 9px;
     }
     img{
@@ -274,7 +274,7 @@ bottom: -1rem !important;
     @include cards-background;
 }
 .padding-top{
-    padding-left: 3.5rem;
+    padding-left: 4rem;
     padding-right:3.5rem
 }
 
@@ -433,7 +433,7 @@ bottom: -1rem !important;
         padding: 14px !important;
     }
     .padding-top{
-        padding-left: 1.5rem !important;
+        padding-left: 2.4rem !important;
         padding-right: 1.5rem !important;
     }
 
@@ -443,7 +443,9 @@ bottom: -1rem !important;
         min-width: 190px !important;
         max-width: 190px !important;
     }
-
+    .btn-text{
+        font-size: 9px !important;
+    }
 
 }
 @media only screen and (max-width:991px){
@@ -463,7 +465,7 @@ bottom: -1rem !important;
 }
 @media only screen and (max-width:767px) {
     .rounded-icon {
-        width: 13%;
+        width: 11%;
         margin: 0 auto !important;
     }
     .padding-top{
@@ -491,14 +493,24 @@ bottom: -1rem !important;
             }
         }
     }
-
+    .category-cards {
+        .nav.nav-tabs{
+            justify-content: center !important;
+        }
+        .nav-link {
+            padding:8px !important;
+            img{
+                width: 25px !important;
+            }
+        }
+    }
 }
 @media only screen and (max-width:576px){
     .bg-process-img{
     background-size: contain !important;
     }
     .rounded-icon{
-        width:12%;
+        width:11%;
         margin: 0 auto !important;
     }
     .padding-top{
@@ -529,7 +541,7 @@ bottom: -1rem !important;
             justify-content: center !important;
         }
         .nav-link {
-            padding: 4px !important;
+            padding: 6px !important;
             img{
                 width: 25px !important;
             }
@@ -544,6 +556,12 @@ bottom: -1rem !important;
     .images-nav-tabs .nav-link{
         width:72px !important;
         font-size: 8px !important;
+    }
+    .category-cards
+    {
+        .nav-link{
+            margin-right: 10px !important;
+        }
     }
 }
 
