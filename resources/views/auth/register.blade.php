@@ -292,7 +292,7 @@
                 </fieldset>
             </form>
             <div class="text-center">
-                <p>Already have an account?<a href="#" class="text-decoration-underline text-primary">Login</a></p>
+                <p>Already have an account?<a href="{{route('login')}}" class="text-decoration-underline text-primary">Login</a></p>
             </div>
             <!-- second fieldset ends -->
         </div>
