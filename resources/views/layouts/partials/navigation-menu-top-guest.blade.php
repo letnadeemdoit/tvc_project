@@ -68,8 +68,8 @@
 
                 </ul>
                 <div class="d-block d-md-flex nav-buttons">
-                    <a href="/" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5" type="submit">SIGN UP</a>
-                    <a href="/" class="btn btn-outline bg-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white" type="submit">LOGIN</a>
+                    <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5" type="submit">SIGN UP</a>
+                    <a href="{{route('login')}}" class="btn btn-outline bg-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white" type="submit">LOGIN</a>
                 </div>
             </div>
         </nav>

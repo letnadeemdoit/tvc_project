@@ -59,8 +59,8 @@
                             </a>
 
                             <div id="navbarVerticalMenuPagesBlogsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="./Blogs.html">All Blogs</a>
-                                <a class="nav-link " href="./Blogs-leaderboard.html">Add New Blog</a>
+                                <a class="nav-link " href="{{route('blogs.index')}}">All Blogs</a>
+                                <a class="nav-link " href="{{route('blogs.index')}}">Add New Blog</a>
                             </div>
                         </div>
 

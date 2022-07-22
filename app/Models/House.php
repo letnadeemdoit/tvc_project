@@ -10,7 +10,9 @@ class House extends Model
 {
     use HasFactory;
 
-    protected $table = 'house';
+    protected $table = 'House';
+
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

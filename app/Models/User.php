@@ -19,9 +19,20 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public $timestamps = false;
+
     const ROLE_ADMINISTRATOR = 'Administrator';
     const ROLE_OWNER = 'Owner';
     const ROLE_GUEST = 'Guest';
+
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'user_id';
+
 
     /**
      * The attributes that are mass assignable.
@@ -29,9 +40,35 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
+        'user_id',
+        'user_name',
+        'first_name',
+        'last_name',
         'password',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
+        'email',
+        'remote_addr',
+        'confirm_hash',
+        'is_confirmed',
+        'role',
+        'OwnerId',
+        'date_created',
+        'HouseId',
+        'Intro',
+        'ShowOldSave',
+        'AdminOwner',
+        'Audit_user_name',
+        'Audit_Role',
+        'Audit_FirstName',
+        'Audit_LastName',
+        'Audit_Email',
+        'email_verified_at',
+        'old_password',
+        'remember_token',
+        'current_team_id',
+        'profile_photo_path',
     ];
 
     /**

@@ -26,8 +26,8 @@
 
                 <!-- Form -->
                 <div class="mb-4">
-                    <fieldset class="border-light input-group">
-                        <legend class="float-none w-auto fs-5">Username</legend>
+                    <fieldset class="border-light input-group scheduler-border">
+                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Username</legend>
                         <input type="text"
                                class="form-control form-control-lg border-end-0"
                                name="email"
@@ -37,7 +37,7 @@
                                placeholder="johnsmith1234"
                                aria-label="email@address.com"
                                required />
-                        <a id="changePassTarget-2" class="input-group-append input-group-text border-start-0" href="javascript:;">
+                        <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
                             <i class="bi bi-person text-primary"></i>
                         </a>
                     </fieldset>
@@ -49,8 +49,8 @@
                 <!-- Form -->
                 <div class="mb-2">
                     <!-- <div class="input-group input-group-merge" > -->
-                    <fieldset class="border-light  input-group">
-                        <legend class="float-none w-auto fs-5">Password</legend>
+                    <fieldset class="border-light  input-group scheduler-border">
+                        <legend class="float-none w-auto fs-5 px-2 mb-0">Password</legend>
                         <input type="password"
                                class="js-toggle-password form-control form-control-lg border-end-0"
                                name="password"
@@ -68,7 +68,7 @@
                                 }'
                                required
                         />
-                        <a id="changePassTarget" class="input-group-append input-group-text border-start-0" href="javascript:;">
+                        <a id="changePassTarget" class="input-group-append input-group-text border-0" href="javascript:;">
                             <i id="changePassIcon" class="bi-eye text-primary"></i>
                         </a>
                     </fieldset>
@@ -108,7 +108,7 @@
                 </div>
                 <!-- End Form Check -->
                 <div class="text-center mt-3">
-                    <p>Don't have an account? <span class="text-decoration-underline text-primary fw-bolder">Create account</span></p>
+                    <p>Don't have an account? <a href="{{route('register')}}" class="text-decoration-underline text-primary fw-bolder">Create account</a></p>
                 </div>
             </form>
             <!-- End Form -->

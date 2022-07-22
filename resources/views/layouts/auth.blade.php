@@ -15,6 +15,13 @@
     @stack('stylesheets')
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <style>
+        .fieldset.scheduler-border{
+            margin-bottom: 5px !important;
+        }
+    </style>
+
 </head>
 <body>
     <!-- ========== MAIN CONTENT ========== -->
@@ -22,5 +29,8 @@
         {{ $slot }}
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
+
+    @stack('scripts')
+
 </body>
 </html>

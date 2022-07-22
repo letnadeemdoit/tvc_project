@@ -5,10 +5,10 @@
         </x-slot>
 
         <div class="content-space-t-4 content-space-t-lg-2 content-space-b-1 vh-100 overflow-scroll scrollbar-none"
-             style="max-width: 32rem;">
+             style="max-width: 35rem;">
 
             <!-- Form -->
-            <x-jet-validation-errors class="mb-4"/>
+{{--            <x-jet-validation-errors class="mb-4"/>--}}
 
             @if (session('status'))
                 <div class="mb-4 font-medium text-sm text-green-600">
@@ -22,28 +22,138 @@
                 </p>
             </div>
 
-            <fieldset class="scheduler-border">
-                <legend class="scheduler-border">House Details</legend>
-                <form class="js-validate needs-validation" novalidate action="{{ route('register') }}">
-                    @csrf
-
+            <form class=""  action="{{ route('register') }}" method="post">
+                @csrf
+                <fieldset class="scheduler-border fieldset-padding">
+                    <legend class="scheduler-border">House Details</legend>
                     <!-- Form -->
                     <div class="row pt-2">
                         <div class="col-md-12">
                             <!-- Form -->
                             <div class="mb-2">
-                                <fieldset class="border-light">
-                                    <legend class="float-none w-auto fs-5">House Name*</legend>
+                                <fieldset class="border-light scheduler-border" style="margin-bottom: 5px !important;">
+                                    <legend class="float-none w-auto fs-5 mb-0">House Name*</legend>
                                     <input
                                         type="text"
                                         class="form-control form-control-lg"
-                                        name="house_name"
-                                        id="house_name"
+                                        name="HouseName"
+                                        id="HouseName"
                                         placeholder="Enter House Name"
-                                        value="{{old('house_name')}}"
-                                        required
+                                        value="{{old('HouseName')}}"
                                     />
                                 </fieldset>
+                                @error('HouseName')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                    </div>
+                    {{--     second row starts --}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mt-3">
+                                <fieldset class="border-light scheduler-border"  style="margin-bottom: 5px !important;">
+                                    <legend class="float-none w-auto fs-5 mb-0">City</legend>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="city"
+                                        name="City"
+                                        placeholder="City"
+                                        value="{{ old('city') }}"
+                                    />
+
+                                </fieldset>
+                                @error('City')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="mt-3">
+                                <fieldset class="border-light scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0">State</legend>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="State"
+                                        id="State"
+                                        placeholder="State"
+                                        value="{{ old('state') }}"
+                                        aria-label=""
+                                    />
+                                </fieldset>
+                                @error('State')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mt-3">
+                                <fieldset class="border-light scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0">Paypal Account</legend>
+                                    <input
+                                        type="number"
+                                        class="form-control form-control-lg"
+                                        id="ReferredBy"
+                                        name="ReferredBy"
+                                        placeholder=""
+                                        value="{{old('ReferredBy')}}"
+                                    />
+
+                                </fieldset>
+                                @error('ReferredBy')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="mb-2">
+                        <div id="basicExampleDropzone" class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light">
+                            <div class="dz-message">
+                                <img class="avatar avatar-xl avatar-4x3 mb-3" src="../assets/svg/illustrations/oc-browse.svg" alt="Image Description">
+
+                                <h5>Drag and drop your file here</h5>
+
+                                <p class="mb-2">or</p>
+
+                                <input type="file" name="img">
+
+                                <span class="btn bg-primary btn-sm text-white">Upload Image</span>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <!-- End Form -->
+                <!-- second fieldset -->
+                <fieldset class="scheduler-border fieldset-padding">
+                    <legend class="scheduler-border">Admin Details</legend>
+                    <!-- Form -->
+                    <div class="row pt-2">
+                        <div class="col-md-12">
+                            <!-- Form -->
+                            <div class="mb-2">
+                                <fieldset class="border-light input-group scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Username</legend>
+                                    <input type="text" class="form-control form-control-lg border-end-0"
+                                           name="user_name"
+                                           id="user_name" tabindex="1"
+                                           placeholder=""
+                                           value="{{ old('user_name') }}"
+                                           aria-label=""
+                                            />
+                                    <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                                        <i class="bi bi-person text-primary"></i>
+                                    </a>
+                                </fieldset>
+                                @error('user_name')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
                             </div>
                             <!-- End Form -->
                         </div>
@@ -51,277 +161,142 @@
                     {{--     second row starts --}}
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-2">
-                                <fieldset class="border-light">
-                                    <legend class="float-none w-auto fs-5">City</legend>
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-lg"
-                                        id="city"
-                                        placeholder="City"
-                                        value="{{ old('city') }}"
-                                        required
-                                    />
+                        <div class="col-md-12">
+                            <div class="mt-3">
+                                <fieldset class="border-light input-group scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Email</legend>
+                                    <input type="email" class="form-control form-control-lg border-end-0"
+                                           name="email" value=""
+                                           id="email" tabindex="1"
+                                           value="{{ old('email') }}"
+                                           placeholder=""
+                                           aria-label=""
+                                            />
+                                    <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                                        <i class="bi bi-envelope text-primary"></i>
+                                    </a>
                                 </fieldset>
+                                @error('email')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
                             </div>
-                        </div>
-                        <div class=" col-md-6">
-                            <div class="mb-2">
-                                <fieldset class="border-light">
-                                    <legend class="float-none w-auto fs-5">State</legend>
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-lg" name="state"
-                                        id="state"
-                                        placeholder="State"
-                                        value="{{ old('state') }}"
-                                        aria-label=""
-                                        required
-                                    />
-                                </fieldset>
+                            <div class="form-check mt-2">
+                                <label class="form-check-label" for="AdminOwner">
+                                    Allow Administrator to have Owner Permissions.
+                                </label>
+
+                                <input type="checkbox" class="form-check-input" name="AdminOwner" value="Y" id="AdminOwner">
+
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-2">
-                                <fieldset class="border-light">
-                                    <legend class="float-none w-auto fs-5">Paypal Account</legend>
-                                    <input
-                                        type="number"
-                                        class="form-control form-control-lg"
-                                        id="zipcode"
-                                        placeholder="Enter Zipcode"
-                                        value="{{old('zipcode')}}"
-                                        required
-                                    />
+                        <div class=" col-md-6">
+                            <div class="mt-3">
+                                <fieldset class="border-light input-group scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">First Name</legend>
+                                    <input type="text" class="form-control form-control-lg border-end-0"
+                                           name="first_name" value=""
+                                           id="first_name" tabindex="1"
+                                           placeholder=""
+                                           value="{{ old('first_name') }}"
+                                           aria-label=""
+                                            />
                                 </fieldset>
+                                @error('first_name')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="mt-3">
+                                <fieldset class="border-light input-group scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Last Name</legend>
+                                    <input type="text" class="form-control form-control-lg border-end-0"
+                                           name="last_name" value=""
+                                           id="last_name" tabindex="1"
+                                           placeholder=""
+                                           value="{{ old('last_name') }}"
+                                           aria-label=""
+                                            />
+                                </fieldset>
+                                @error('last_name')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mt-3">
+                                <fieldset class="border-light input-group scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Create Password</legend>
+                                    <input type="password"
+                                           class="form-control form-control-lg border-end-0"
+                                           name="password"
+                                           value="{{old('password')}}"
+                                           id="password"
+                                           tabindex="1"
+                                           placeholder=""
+                                           aria-label=""
+                                    >
+                                    <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                                        <i class="bi-eye text-primary"></i>
+                                    </a>
+                                </fieldset>
+                                @error('password')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
                             </div>
 
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class=" col-md-6">
-                            <div class="mb-2">
-                                <label class="form-label" for="Fax">Fax</label>
-                                <input
-                                    type="number"
-                                    class="form-control form-control-lg"
-                                    id="Fax"
-                                    placeholder="Fax"
-                                    value="{{old('Fax')}}"
-                                    required
-                                />
+                        <div class="col-md-12">
+                            <div class="mt-3">
+                                <fieldset class="border-light input-group scheduler-border">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Confirm Password</legend>
+                                    <input type="password"
+                                           class="form-control form-control-lg border-end-0"
+                                           name="password_confirmation"
+                                           value="{{old('confirm_password')}}"
+                                           id="password_confirmation"
+                                           tabindex="1"
+                                           placeholder=""
+                                           aria-label=""
+                                    >
+                                    <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                                        <i class="bi-eye text-primary"></i>
+                                    </a>
+                                </fieldset>
+
+                                @error('password_confirmation')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+
+                                <div class="form-check mt-2">
+                                    <label class="form-check-label" for="remember_me">
+                                        I accept <a href="#" class="text-decoration-underline">Terms and Conditions</a>
+                                    </label>
+                                    <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+
+                                </div>
                             </div>
 
                         </div>
-                        <div class=" col-md-6">
-                            <div class="mb-2">
-                                <label class="form-label" for="emergency_phone">Emergency Phone</label>
-                                <input
-                                    type="number"
-                                    class="form-control form-control-lg"
-                                    name="emergency_phone"
-                                    id="emergency_phone"
-                                    placeholder="Enter Emergency Phone"
-                                    value="{{old('emergency_phone')}}"
-                                    aria-label=""
-                                    required
-                                />
-                            </div>
 
-                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-dark-secondary text-white w-100" type="submit">Create Account</button>
                     </div>
 
-                    <div class="text-center">
-                        <p>Referral Info
-                            Please provide the PayPal account of the person that referred you to
-                            TheVacationCalendar.com. They will receive $5 via PayPal after this account remains
-                            open beyond the initial free trial period. Please note that the referral PayPal
-                            account cannot be the same as the account used to activate this house. Additionally,
-                            please note that standard PayPal service charges will be applied to the the $5.
-                        </p>
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="paypal">Paypal Account</label>
-                        <input
-                            type="text"
-                            class="form-control form-control-lg"
-                            id="paypal"
-                            name="paypal"
-                            placeholder="Paypal Account"
-                            value="{{old('paypal')}}"
-                            required
-                        />
-                    </div>
-                    <div class="mb-2">
-                        <label for="form_File" class="form-label fs-5">House Picture</label>
-                        <input class="form-control"
-                               type="file"
-                               id="formFile"
-                               value="{{old('form_File')}}"/>
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="admin_username" class="form-label fs-5">Admin Username</label>
-                        <input class="form-control form-control-lg"
-                               type="text"
-                               placeholder="Admin Username"
-                               value="{{old('admin_username')}}"
-                               id="admin_username"/>
-                    </div>
-                    <div class="mb-2">
-                        <label for="admin_password" class="form-label fs-5">Admin Password</label>
-                        <input type="text"
-                               class="form-control form-control-lg"
-                               placeholder="Admin Password"
-                               id="admin_password"
-                               value="{{old('admin_password')}}"
-                               required/>
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="admin_password_confirm" class="form-label fs-5">Admin
-                            Password(Confirm*)</label>
-                        <input type="text"
-                               class="form-control form-control-lg"
-                               placeholder="Confirm Admin Password"
-                               id="admin_password_confirm"
-                               value="{{old('admin_password_confirm')}}"
-                               required/>
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="admin_email" class="form-label fs-5">Admin Email</label>
-                        <input type="text"
-                               class="form-control form-control-lg"
-                               placeholder="Enter Admin Email"
-                               id="admin_email"
-                               value="{{old('admin_email')}}"
-                               required/>
-                    </div>
-
-                    <div class="my-3">
-                        <div class="form-group">
-                            Allow Administrator to have Owner permissions
-                            <input type="checkbox" name="AdminOwner">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <!-- Form -->
-                            <div class="mb-4">
-                                <label class="form-label" for="name">First Name</label>
-                                <input type="text"
-                                       class="form-control form-control-lg"
-                                       name="name"
-                                       value="{{old('name')}}"
-                                       id="name"
-                                       placeholder="First Name"
-                                       aria-label=""
-                                       autofocus
-                                       autocomplete="name" required/>
-                                <span class="invalid-feedback">Please enter your first name.</span>
-                            </div>
-                            <!-- End Form -->
-                        </div>
-
-                        <div class="col-sm-6">
-                            <!-- Form -->
-                            <div class="mb-4">
-                                <label class="form-label" for="last_name">Last Name</label>
-                                <input type="text"
-                                       class="form-control form-control-lg"
-                                       placeholder="Last Name"
-                                       aria-label=""
-                                       id="last_name"
-                                       value="{{old('last_name')}}"
-                                       required/>
-                                <span class="invalid-feedback">Please enter your last name.</span>
-                            </div>
-                            <!-- End Form -->
-                        </div>
-                    </div>
-                    <!-- End Form -->
-
-                    <!-- Form -->
-                    <div class="mb-4">
-                        <label class="form-label" for="zipcode_2">Zip Code</label>
-                        <input type="number"
-                               class="form-control form-control-lg"
-                               id="zipcode_2"
-                               value="{{old('zipcode_2')}}"
-                               placeholder="Enter Zip Code"
-                               aria-label=""
-                               required/>
-                    </div>
-                    <!-- End Form -->
-
-                    <!-- Form -->
-                    <div class="mb-4">
-                        <label class="form-label" for="home-phone-2">Home Phone</label>
-
-                        <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                            <input type="number"
-                                   class="js-toggle-password form-control form-control-lg"
-                                   name="home_phone_2"
-                                   id="home_phone_2"
-                                   placeholder="8+ characters required"
-                                   value="{{old('home_phone_2')}}"
-                                   aria-label="8+ characters required"
-                                   minlength="8"
-                                   autocomplete="new-password"/>
-                        </div>
-
-                        <span class="invalid-feedback">Your password is invalid. Please try again.</span>
-                    </div>
-                    <!-- End Form -->
-
-                    <!-- Form -->
-                    <div class="mb-4">
-                        <label class="form-label" for="password_confirmation">Fax</label>
-
-                        <div class="input-group input-group-merge" data-hs-validation-validate-class>
-                            <input type="number"
-                                   class="js-toggle-password form-control form-control-lg"
-                                   name="fax_2"
-                                   id="fax_2"
-                                   placeholder="8+ characters required"
-                                   aria-label=""
-                                   value="{{old('fax_2')}}"
-                                   minlength="8" required/>
-
-                        </div>
-                    </div>
-                    <!-- Form Check -->
-                    <div class="form-check mb-4">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="terms_Checkbox"
-                            value="{{old('terms_Checkbox')}}"
-                            required
-                        />
-                        <label class="form-check-label" for="terms_Checkbox">
-                            I accept the <a href="#">Terms and Conditions</a>
-                        </label>
-                        <span class="invalid-feedback">Please accept our Terms and Conditions.</span>
-                    </div>
-                    <!-- End Form Check -->
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
-
-                        <button type="submit" class="btn btn-link">
-                            or Start your 30-day trial <i class="bu-chevron-right"></i>
-                        </button>
-                    </div>
-
-                </form>
-            </fieldset>
-            <!-- End Form -->
+                </fieldset>
+            </form>
+            <div class="text-center">
+                <p>Already have an account?<a href="{{route('login')}}" class="text-decoration-underline text-primary">Login</a></p>
+            </div>
+            <!-- second fieldset ends -->
         </div>
 
 
@@ -379,4 +354,20 @@
         {{--            </div>--}}
         {{--        </form>--}}
     </x-jet-authentication-card>
+
+    @push('scripts')
+
+
+        <script src="{{asset('admin/assets/vendor/dropzone/dist/min/dropzone.min.js')}}"></script>
+
+        <script>
+            (function() {
+                // INITIALIZATION OF DROPZONE
+                // =======================================================
+                HSCore.components.HSDropzone.init('.js-dropzone')
+            });
+        </script>
+
+
+    @endpush
 </x-auth-layout>
