@@ -108,7 +108,7 @@
                 </div>
                 <!-- End Form Check -->
                 <div class="text-center mt-3">
-                    <p>Don't have an account? <a href="{{route('register')}}" class="text-decoration-underline text-primary fw-bolder">Create account</a></p>
+                    <p>Don't have an account? <a  href="{{ route('register') }}" class="text-decoration-underline text-primary fw-bolder">Create account</a></p>
                 </div>
             </form>
             <!-- End Form -->

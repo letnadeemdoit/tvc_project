@@ -36345,9 +36345,25 @@ a:hover .text-inherit {
   color: #E8604C;
 }
 
+.bg-light-primary {
+  background: #F6E9E7;
+}
+
+.border-solid {
+  border: 1px solid #E8604C !important;
+}
+
+.color-black {
+  color: #000 !important;
+}
+
 @font-face {
   font-family: poppins;
   src: url("/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: vintage-clothes;
+  src: url("/fonts/vintage/vintage-clothes.otf");
 }
 @font-face {
   font-family: jost;
@@ -36355,6 +36371,11 @@ a:hover .text-inherit {
 }
 .font-jost {
   font-family: jost !important;
+}
+
+.font-vintage {
+  font-family: vintage-clothes;
+  font-weight: 500;
 }
 
 .max-width {
@@ -36378,11 +36399,15 @@ body {
 }
 
 .features-img {
-  background-image: url("/images/images-home/fEATURE.png");
+  background-image: url("/images/images-home/feature-2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   max-width: 100%;
+}
+
+.h-20 {
+  height: 20px;
 }
 
 .btn-dark-secondary {
@@ -36416,7 +36441,7 @@ legend.scheduler-border {
   width: auto;
   padding: 0 10px;
   border-bottom: none;
-  margin-top: -15px;
+  margin-top: -34px;
   background-color: white;
   color: black;
 }
@@ -36435,6 +36460,20 @@ legend.scheduler-border {
   border: 0px !important;
 }
 
+.social-img {
+  background-image: url("/images/images-home/social.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.bg-social-feed {
+  background: url("/images/images-home/cards-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 header nav button:last-child:hover {
   background-color: #fff !important;
   color: #E8604C;
@@ -36449,6 +36488,7 @@ header nav button:last-child:hover {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  background-color: #2A3342;
 }
 
 .images-nav-tabs .nav-link {
@@ -36480,6 +36520,7 @@ header nav button:last-child:hover {
 
 .privacy-policy {
   background-image: url("/images/privacy-policy/privacy.png");
+  background-size: contain !important;
   background-repeat: no-repeat;
   background-position: left;
   background-size: auto;
@@ -36585,7 +36626,7 @@ header nav button:last-child:hover {
 .accordion-section .accordion-button {
   border: 2px solid rgba(232, 96, 76, 0.21);
   border-radius: 5px !important;
-  background: rgba(232, 96, 76, 0.03);
+  background: #F6E9E7;
 }
 .accordion-section .accordion-item {
   border: 0px solid #fff !important;
@@ -36634,6 +36675,84 @@ header nav button:last-child:hover {
   background-position: center;
 }
 
+.t-dropdown-block .text {
+  display: table;
+  margin: 20px auto;
+}
+
+.t-dropdown-block .t-dropdown-block {
+  width: 200px;
+  height: 28px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.t-dropdown-block .t-dropdown-list {
+  display: none;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  z-index: 10;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 150px;
+  overflow: auto;
+  position: absolute;
+  margin-top: 10px;
+}
+
+.t-dropdown-block .t-dropdown-item {
+  padding: 5px 20px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.t-dropdown-block .t-dropdown-item:hover {
+  background-color: transparent;
+}
+
+.t-dropdown-block input {
+  outline: none !important;
+}
+
+.t-dropdown-block .t-dropdown-select {
+  border: 1px solid #DDD;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  background-color: #FFF;
+  box-sizing: content-box;
+}
+
+.t-dropdown-block .t-dropdown-input {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0 3px 0 10px;
+  box-sizing: border-box;
+}
+
+.t-dropdown-block .t-select-btn {
+  background-image: url(https://cdn4.iconfinder.com/data/icons/ui-indicatives/100/Indicatives-26-128.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 7px 7px;
+  position: absolute;
+  width: 30px;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border-left: 1px solid #DDD;
+}
+
+.t-dropdown-block .t-select-btn:active {
+  background-color: #F1F1F1;
+}
+
 @media only screen and (max-width: 1400px) {
   .rounded-icon {
     margin-left: -30px;
@@ -36658,6 +36777,12 @@ header nav button:last-child:hover {
   .padding-top {
     padding-top: 6rem !important;
   }
+  .fs-12 {
+    font-size: 13px !important;
+  }
+  .privacy-policy {
+    background-position: center !important;
+  }
 }
 @media only screen and (max-width: 767px) {
   .rounded-icon {
@@ -36666,6 +36791,22 @@ header nav button:last-child:hover {
   }
   .padding-top {
     padding-top: 6rem !important;
+  }
+  .help-page-tabs .nav-tabs .nav-item .nav-link {
+    padding: 0px !important;
+    width: 85px !important;
+    font-size: 10px;
+  }
+  .help-page-tabs .nav-tabs .nav-item .card {
+    max-height: 120px;
+    min-width: revert !important;
+    max-width: revert !important;
+  }
+  .help-page-tabs .nav-tabs .nav-item .card .card-body {
+    padding: 12px !important;
+  }
+  .help-page-tabs .nav-tabs .nav-item .card .card-body img {
+    width: 50px;
   }
 }
 @media only screen and (max-width: 576px) {
@@ -36688,6 +36829,9 @@ header nav button:last-child:hover {
   .navbar-expand-lg .navbar-nav-wrap-secondary-content {
     margin-left: 0 !important;
   }
+  .nav-buttons a {
+    min-width: 100px !important;
+  }
 }
 @media only screen and (max-width: 430px) {
   .rounded-icon {
@@ -36702,19 +36846,6 @@ header nav button:last-child:hover {
   }
   .category-cards .nav-link img {
     width: 25px !important;
-  }
-  .help-page-tabs .nav-tabs .nav-item .nav-link {
-    padding: 0px !important;
-    width: 85px !important;
-    font-size: 10px;
-  }
-  .help-page-tabs .nav-tabs .nav-item .card {
-    min-height: 75px;
-    min-width: revert !important;
-    max-width: revert !important;
-  }
-  .help-page-tabs .nav-tabs .nav-item .card .card-body {
-    padding: 12px !important;
   }
 }
 @media only screen and (max-width: 375px) {
@@ -36732,7 +36863,7 @@ header nav button:last-child:hover {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 600px;
+  height: 350px;
 }
 
 .category-cards .card {

@@ -31,18 +31,18 @@
                         <div class="col-md-12">
                             <!-- Form -->
                             <div class="mb-2">
-                                <fieldset class="border-light scheduler-border" style="margin-bottom: 5px !important;">
+                                <fieldset class="border-light scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0">House Name*</legend>
                                     <input
                                         type="text"
                                         class="form-control form-control-lg"
-                                        name="HouseName"
-                                        id="HouseName"
+                                        name="HouseID"
+                                        id="HouseID"
                                         placeholder="Enter House Name"
-                                        value="{{old('HouseName')}}"
+                                        value="{{old('HouseID')}}"
                                     />
                                 </fieldset>
-                                @error('HouseName')
+                                @error('HouseID')
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
                             </div>
@@ -50,10 +50,11 @@
                         </div>
                     </div>
                     {{--     second row starts --}}
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mt-3">
-                                <fieldset class="border-light scheduler-border"  style="margin-bottom: 5px !important;">
+                                <fieldset class="border-light scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0">City</legend>
                                     <input
                                         type="text"
@@ -76,8 +77,7 @@
                                     <legend class="float-none w-auto fs-5 mb-0">State</legend>
                                     <input
                                         type="text"
-                                        class="form-control"
-                                        name="State"
+                                        class="form-control" name="state"
                                         id="State"
                                         placeholder="State"
                                         value="{{ old('state') }}"
@@ -103,7 +103,6 @@
                                         placeholder=""
                                         value="{{old('ReferredBy')}}"
                                     />
-
                                 </fieldset>
                                 @error('ReferredBy')
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
@@ -141,12 +140,12 @@
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Username</legend>
                                     <input type="text" class="form-control form-control-lg border-end-0"
-                                           name="user_name"
+                                           name="text"
                                            id="user_name" tabindex="1"
                                            placeholder=""
                                            value="{{ old('user_name') }}"
                                            aria-label=""
-                                            />
+                                           required />
                                     <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
                                         <i class="bi bi-person text-primary"></i>
                                     </a>
@@ -181,11 +180,10 @@
                                 @enderror
                             </div>
                             <div class="form-check mt-2">
-                                <label class="form-check-label" for="AdminOwner">
+                                <label class="form-check-label" for="remember_me">
                                     Allow Administrator to have Owner Permissions.
                                 </label>
-
-                                <input type="checkbox" class="form-check-input" name="AdminOwner" value="Y" id="AdminOwner">
+                                <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
 
                             </div>
                         </div>
@@ -231,7 +229,7 @@
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Create Password</legend>
-                                    <input type="password"
+                                    <input type="text"
                                            class="form-control form-control-lg border-end-0"
                                            name="password"
                                            value="{{old('password')}}"
@@ -257,7 +255,7 @@
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Confirm Password</legend>
-                                    <input type="password"
+                                    <input type="text"
                                            class="form-control form-control-lg border-end-0"
                                            name="password_confirmation"
                                            value="{{old('confirm_password')}}"
@@ -294,7 +292,7 @@
                 </fieldset>
             </form>
             <div class="text-center">
-                <p>Already have an account?<a href="{{route('login')}}" class="text-decoration-underline text-primary">Login</a></p>
+                <p>Already have an account?<a href="#" class="text-decoration-underline text-primary">Login</a></p>
             </div>
             <!-- second fieldset ends -->
         </div>

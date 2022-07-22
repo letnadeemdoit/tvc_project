@@ -3,10 +3,10 @@
 
     <section class="text-center">
         <div class="container">
-            <div class="row">
+            <div class="row my-5">
                 <div class="col-md-6 mx-auto">
-                    <div class="contact-text shadow-1-strong rounded  d-flex justify-content-center mt-5">
-                        <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+                    <div class="contact-text shadow-1-strong rounded  d-flex justify-content-center">
+                        <h1 class="text-primary font-vintage mb-0">Contact US</h1>
                     </div>
                     <h3 class="pt-2">We’d Love to Hear From You</h3>
                     <p class="pt-2">Thank you very much for visiting TheVacationCalendar.com. If you have any questions
@@ -19,8 +19,8 @@
     <!-- Contact Form -->
     <div class="contact-page">
         <div class="container content-space-2 content-space-lg-3">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row gx-1">
+                <div class="col-lg-6">
                     <!-- Card -->
                     <div class="card shadow-lg">
                         <div class="card-body p-6">
@@ -153,7 +153,7 @@
                     </div>
                     <!-- End Card -->
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 mt-3 mt-lg-0">
                     <div class="card h-100">
                         <div class="card-body">
                             <iframe

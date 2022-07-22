@@ -6,8 +6,8 @@
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 25rem;">
             <div class="text-start">
                 <div class="mb-5">
-                    <h1 class="display-5">Reset Your <span class="text-primary">Password?</span></h1>
-                    <p>{{ __('Don’t worry if you forget the password just enter your email.') }}</p>
+                    <h1 class="display-5">Login Account <span class="text-primary">as Guest.</span></h1>
+                    <p>{{ __('to get beautiful home for vacations to make your vacations memorable.') }}</p>
                 </div>
             </div>
 
@@ -24,7 +24,7 @@
 
                 <div class="mb-4">
                     <fieldset class="border-light input-group scheduler-border">
-                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">{{ __('Admin Email Address') }}</legend>
+                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">{{ __('Shared Password') }}</legend>
                         <input
                             id="email"
                             class="form-control form-control-lg"
@@ -35,18 +35,20 @@
                             autofocus
                         />
                         <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
-                            <i class="bi bi-envelope text-primary"></i>
+                            <i class="bi-eye text-primary"></i>
                         </a>
                     </fieldset>
                 </div>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark-secondary btn-lg">{{ __('Email Password Reset Link') }}</button>
+                    <button type="submit" class="btn btn-dark-secondary btn-lg">{{ __('Login') }}</button>
 
-                    <div class="text-center">
-                        <a class="btn btn-link text-secondary" href="{{ route('login') }}">
-                            <img src="{{asset('/images/reset-password/back-arrow.png')}}"> Back to <span class="text-primary text-decoration-underline">Login</span>
-                        </a>
+                    <div class="form-check mt-2">
+                        <label class="form-check-label" for="remember_me">
+                          Remember me
+                        </label>
+                        <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+
                     </div>
                 </div>
             </form>
