@@ -1,12 +1,7 @@
 .h1{
     font-size: 3rem;
 }
-.bg-primary{
-    background-color: $primary !Important;
-}
-.text-primary{
-    color: $primary;
-}
+
 .bg-light-primary{
     background: $bg-primary-light;
 }
@@ -68,9 +63,7 @@ body{
 .bg-primary-light{
     background: $primary-light !important;
 }
-.border-primary{
-    border: 1px dashed $primary !important;
-}
+
 .fieldset-padding{
     padding: 1.4rem !important;
 }
