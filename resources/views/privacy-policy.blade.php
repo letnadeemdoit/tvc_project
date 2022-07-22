@@ -11,8 +11,8 @@
                     <div class="col-lg-5 text-center text-lg-start ">
                         <!-- Jumbotron -->
                         <div
-                            class="text-center shadow-1-strong rounded text-white privacy-policy">
-                            <h1 class="h2 text-center text-lg-start text-primary font-jost">Find Your Vacation House</h1>
+                            class="text-center shadow-1-strong rounded text-white privacy-policy d-flex align-items-center">
+                            <h2 class="text-center text-lg-start text-primary font-vintage pt-2">Privacy Policy</h2>
                         </div>
                         <div class="pt-3">
                             <h3>Privacy Policy</h3>

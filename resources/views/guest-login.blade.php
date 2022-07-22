@@ -27,7 +27,7 @@
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">{{ __('Shared Password') }}</legend>
                         <input
                             id="email"
-                            class="form-control form-control-lg"
+                            class="form-control"
                             type="email"
                             name="email"
                             value="{{ old('email') }}"
@@ -47,7 +47,7 @@
                         <label class="form-check-label" for="remember_me">
                           Remember me
                         </label>
-                        <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+                        <input type="checkbox" class="form-check-input form-check-css" name="remember_me" value="" id="remember_me">
 
                     </div>
                 </div>

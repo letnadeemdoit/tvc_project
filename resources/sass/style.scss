@@ -13,8 +13,14 @@
 .border-solid{
     border: 1px solid $primary !important;
 }
+.bg-dark-blue{
+    background-color: $dark-blue;
+}
 .color-black{
     color: #000 !important;
+}
+body{
+    font-family: poppins;
 }
 @font-face {
     font-family: poppins;
@@ -42,9 +48,7 @@
 .mt-n100{
     margin-top: -100px;
 }
-body{
-    font-family: poppins;
-}
+
 .font-poppins{
     font-family: poppins;
 }
@@ -56,7 +60,14 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    max-width: 100%;
+    height: 40px;
+}
+.hero-image{
+    background-image: url('/images/images-home/hero-image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 700px;
 }
 .h-20{
     height: 20px;
@@ -68,20 +79,27 @@ body{
 .bg-primary-light{
     background: $primary-light !important;
 }
-.border-primary{
+.border-dashed{
     border: 1px dashed $primary !important;
 }
 .fieldset-padding{
     padding: 1.4rem !important;
 }
+.fieldset-border{
+    border: 1px solid #1A395A !important;
+}
 // fieldset
-
+.form-check-css{
+    border: 1px solid $primary;
+    border-radius: 0px !important;
+}
     fieldset.scheduler-border {
-        border: 1px solid #f6f6f6 !important;
-        padding: 0 0em 0em 1.2em;
+        border: 1px solid #BEC4C8 !important;
+        padding:0.4em 0.9em 0.8em  0.7em;
         margin: 0 0 1.5em 0 !important;
         -webkit-box-shadow: 0px 0px 0px 0px #000;
         box-shadow: 0px 0px 0px 0px #000;
+
     }
 
     legend.scheduler-border {
@@ -99,14 +117,14 @@ body{
 
     .form-control{
         border: 0px !important;
-        padding-top: 0.25rem !important;
+        //padding-top: 0.25rem !important;
     }
 
     .form-control:focus{
         box-shadow: none !important;
     }
     .input-group-text{
-        padding-top: 0.25rem !important;
+        padding: 0.3rem !important;
     }
     textarea{
         border: 0px !important;
@@ -119,6 +137,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+    height: 40px;
 }
 .bg-social-feed{
     background: url('/images/images-home/cards-background.png');
@@ -136,6 +155,9 @@ header{
                 color: $primary;
             }
         }
+    }
+    .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link{
+        padding: 0.65rem !important;
     }
 }
 .bg-topnav{
@@ -157,9 +179,10 @@ header{
         padding: 12px !important;
         margin-right: 14px;
         margin-bottom: 12px;
-        max-width: 122px;
-        min-width: 120px;
+        max-width: 95px;
+        min-width: 95px;
         min-height :100px;
+        font-size: 11px;
         border-radius: 9px;
     }
     img{
@@ -168,6 +191,9 @@ header{
     .nav-link.active {
         background: #E8604C !important;
         color: #fff;
+        img{
+            filter: brightness(0) invert(1);
+        }
     }
 }
 @mixin background-text{
@@ -184,6 +210,7 @@ header{
     background-image: url('/images/privacy-policy/privacy.png');
     background-size:contain !important;
     @include background-text;
+    height: 40px;
 }
 .privacy-policy-page{
     background-image: url('/images/privacy-policy/mirror.png');
@@ -251,10 +278,6 @@ bottom: -1rem !important;
     padding-right:3.5rem
 }
 
-.footer{
-    background-color: $dark-blue !important;
-    color: #fff;
-}
 .accordion-section{
     /* Custom style */
     .accordion-button::after {
@@ -440,7 +463,7 @@ bottom: -1rem !important;
 }
 @media only screen and (max-width:767px) {
     .rounded-icon {
-        width: 15%;
+        width: 13%;
         margin: 0 auto !important;
     }
     .padding-top{
@@ -475,7 +498,7 @@ bottom: -1rem !important;
     background-size: contain !important;
     }
     .rounded-icon{
-        width:16%;
+        width:12%;
         margin: 0 auto !important;
     }
     .padding-top{
@@ -579,7 +602,7 @@ bottom: -1rem !important;
         &.active{
             background:rgba(232, 96, 76, 0.06) !important;
         img{
-            filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+            filter: grayscale(78%) brightness(73%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
         }
         }
 

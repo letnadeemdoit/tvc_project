@@ -1,5 +1,5 @@
 <!-- Content -->
-<div class="container-fluid px-3">
+<div class="container-fluid px-2 overflow-hidden">
     <div class="row">
         <div
             class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100 position-relative bg-image px-0">

@@ -12,7 +12,7 @@
                 </div>
                 <h3 class="pt-2">Choose your Category</h3>
             </div>
-            <div class="row my-5  category-cards">
+            <div class="row mt-5  category-cards">
                 <div class="col-12">
                     <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">

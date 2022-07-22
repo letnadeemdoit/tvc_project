@@ -22,7 +22,7 @@
                 </p>
             </div>
 
-            <fieldset class="scheduler-border fieldset-padding">
+            <fieldset class="scheduler-border fieldset-padding fieldset-border">
                 <legend class="scheduler-border">House Details</legend>
                 <form class="js-validate needs-validation" novalidate action="{{ route('register') }}">
                     @csrf
@@ -103,7 +103,7 @@
 
                     </div>
                     <div class="mb-2">
-                        <div id="basicExampleDropzone" class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light">
+                        <div id="basicExampleDropzone" class="js-dropzone row dz-dropzone dz-dropzone-card border-dashed bg-primary-light">
                             <div class="dz-message">
                                 <img class="avatar avatar-xl avatar-4x3 mb-3" src="../assets/svg/illustrations/oc-browse.svg" alt="Image Description">
 
@@ -123,7 +123,6 @@
                 <legend class="scheduler-border">Admin Details</legend>
                 <form class="js-validate needs-validation" novalidate action="{{ route('register') }}">
                     @csrf
-
                     <!-- Form -->
                     <div class="row pt-2">
                         <div class="col-md-12">
@@ -169,7 +168,7 @@
                                 <label class="form-check-label" for="remember_me">
                                     Allow Administrator to have Owner Permissions.
                                 </label>
-                                <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+                                <input type="checkbox" class="form-check-input form-check-css" name="remember_me" value="" id="remember_me">
 
                             </div>
                         </div>
@@ -249,7 +248,7 @@
                                     <label class="form-check-label" for="remember_me">
                                         I accept <a  href="#" class="text-decoration-underline">Terms and Conditions</a>
                                     </label>
-                                    <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+                                    <input type="checkbox" class="form-check-input form-check-css" name="remember_me" value="" id="remember_me">
 
                                 </div>
                             </div>

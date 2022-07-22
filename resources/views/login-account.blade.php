@@ -3,10 +3,10 @@
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
         </x-slot>
-        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 25rem;">
+        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 23rem;">
             <div class="text-start">
                 <div class="mb-5 text-center">
-                    <h1 class="display-5">Login Account</h1>
+                    <h1 class="display-4 fw-bolder">Login Account</h1>
                     <span class="divider-center text-muted mt-4">OR</span>
                 </div>
             </div>

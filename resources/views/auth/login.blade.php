@@ -100,7 +100,7 @@
                     </label>
                     <input
                         type="checkbox"
-                        class="form-check-input"
+                        class="form-check-input form-check-css"
                         name="remember_me"
                         value="{{ old('remember_me') }}"
                         id="remember_me">

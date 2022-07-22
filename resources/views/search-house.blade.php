@@ -6,7 +6,7 @@
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 37rem;">
 
             <div class="mb-5">
-                <h1 class="display-5">Search <span class="text-primary">House</span></h1>
+                <h1 class="display-4 fw-bolder">Search <span class="text-primary">House</span></h1>
                 <p>Search your house here to have beautiful vacations with your family.</p>
             </div>
 
@@ -18,9 +18,8 @@
 
             <x-jet-validation-errors class="mb-4" />
 
-            <form class="bg-light-primary p-4 border-solid">
+            <form class="bg-light-primary p-4 border-solid rounded-2">
 
-                <label for="defaultDropdown fw-bolder mb-2" style="color: #000">House Name</label>
                 <div class="d-block d-md-flex">
                     <div class="t-dropdown-block w-75">
                         <div class="t-dropdown-select">
