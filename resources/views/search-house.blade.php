@@ -20,34 +20,7 @@
 
             <form class="bg-light-primary p-4 border-solid">
 
-                <label for="defaultDropdown fw-bolder mb-2" style="color: #000">House Name</label>
-                <div class="d-block d-md-flex">
-                    <div class="t-dropdown-block w-75">
-                        <div class="t-dropdown-select">
-                            <input type="text" class="t-dropdown-input py-2" placeholder="Value" />
-                            <span class="t-select-btn border-start-0">
-                            </span>
-                        </div>
-                        <ul class="t-dropdown-list">
-                            <li class="t-dropdown-item">Item 1</li>
-                            <li class="t-dropdown-item">Item 2</li>
-                            <li class="t-dropdown-item">Item 3</li>
-                            <li class="t-dropdown-item">Item 4</li>
-                            <li class="t-dropdown-item">Item 5</li>
-                            <li class="t-dropdown-item">Item 6</li>
-                            <li class="t-dropdown-item">Item 7</li>
-                            <li class="t-dropdown-item">Item 8</li>
-                            <li class="t-dropdown-item">Item 9</li>
-                            <li class="t-dropdown-item">Item 10</li>
-                            <li class="t-dropdown-item">Item 11</li>
-                            <li class="t-dropdown-item">Item 12</li>
-                        </ul>
-                    </div>
 
-
-
-                    <button class="btn bg-primary text-white ms-0 ms-md-3  mt-2 mt-md-0">Go to House</button>
-                </div>
             </form>
         </div>
     </x-jet-authentication-card>

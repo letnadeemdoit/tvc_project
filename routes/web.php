@@ -29,10 +29,14 @@ Route::controller(GuestController::class)
         Route::get('/guest-login','guestLogin')->name('guest-login');
         Route::get('/login-account','loginAccount')->name('login-account');
         Route::get('/search-house','searchHouse')->name('search-house');
-
     });
 
-
+Route::controller(\App\Http\Controllers\Select2Controller::class)
+    ->name('select2.')
+    ->prefix('select2')
+    ->group(function () {
+        Route::get('houses', 'houses')->name('houses');
+    });
 Route::resource('blogs', BlogController::class);
 
 Route::get('/dashboard', function () {

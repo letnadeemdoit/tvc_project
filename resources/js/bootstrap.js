@@ -5,6 +5,7 @@ window._ = _;
 try {
     window.jQuery = window.$ = require('jquery');
     window.bootstrap = require('bootstrap');
+    window.select2 = require('select2');
 
     // Front Dashboard Js
     require('./front-dashboard-v2');
