@@ -4,7 +4,7 @@
     <!-- End Hero -->
 
     <!-- FAQ -->
-    <div class="container content-space-2 content-space-b-lg-3">
+    <div class="container content-space-2 content-space-b-lg-3 bg-crystals">
         <!-- nav tabs -->
     <section class="text-center">
         <div class="help-text shadow-1-strong rounded  d-flex justify-content-center mt-5">

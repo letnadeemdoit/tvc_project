@@ -4,15 +4,15 @@
     @endpush
 
     @include('partials.sub-page-hero-section');
-    <div class="privacy-policy-page">
+    <div class="bg-crystals">
         <section>
-            <div class="container">
+            <div class="container section-padding">
                 <div class="row align-items-center">
                     <div class="col-lg-5 text-center text-lg-start ">
                         <!-- Jumbotron -->
                         <div
-                            class="text-center shadow-1-strong rounded text-white privacy-policy d-flex align-items-center">
-                            <h2 class="text-center text-lg-start text-primary font-vintage pt-2">Privacy Policy</h2>
+                            class="text-center shadow-1-strong rounded text-white privacy-policy d-flex align-items-center justify-content-center justify-content-lg-start">
+                            <h2 class="text-primary font-vintage pt-2">Privacy Policy</h2>
                         </div>
                         <div class="pt-3">
                             <h3>Privacy Policy</h3>

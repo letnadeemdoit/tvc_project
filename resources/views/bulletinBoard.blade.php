@@ -3,12 +3,12 @@
 
     @endpush
 
-    @include('partials.sub-page-hero-section');
-    <section class="bg-waves bg-light">
-        <div class="container  pt-5">
+    @include('partials.sub-page-hero-section')
+    <section class="bg-lightGrey">
+        <div class="container  section-padding">
             <div class="row text-center">
-                <div class="features-img shadow-1-strong rounded  text-white d-flex justify-content-center">
-                    <h1 class="text-primary font-vintage">Bulletin Board</h1>
+                <div class="features-img shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
+                    <h1 class="text-primary font-vintage mb-0">Bulletin Board</h1>
                 </div>
                 <h3 class="pt-2">Choose your Category</h3>
             </div>
@@ -64,31 +64,13 @@
                 </ul>
                 <!-- dots img -->
 
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content bg-waves" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <section class="text-end">
                             <img src="/images/bulletin-images/Combined Shape.png" class="img-fluid bg-dots-orange" />
                         </section>
                         <div class="row">
                             <div class="col-md-4 col-lg-3">
-                                <div class="card">
-                                    <img src="/images/bulletin-images/house-1.png" class="card-img-top" alt="..." />
-                                    <div class="card-body">
-                                        <h3 class="card-title">Beach House</h3>
-                                        <div class="card-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <img src="/images/bulletin-images/house-1.png" class="card-img-top" alt="..." />
-                                    <div class="card-body">
-                                        <h3 class="card-title">Beach House</h3>
-                                        <div class="card-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="card">
                                     <img src="/images/bulletin-images/house-1.png" class="card-img-top" alt="..." />
                                     <div class="card-body">

@@ -3,11 +3,11 @@
 
     @endpush
 
-    @include('partials.sub-page-hero-section');
+    @include('partials.sub-page-hero-section')
 
     <section class="text-center">
         <div class="container">
-            <div class="row my-5">
+            <div class="row mb-5 section-padding">
                 <div class="col-md-5 mx-auto">
                     <div class="contact-text shadow-1-strong rounded  d-flex justify-content-center">
                         <h1 class="text-primary font-vintage mb-0">Contact US</h1>

@@ -36357,6 +36357,14 @@ a:hover .text-inherit {
   background-color: #2A3342;
 }
 
+.bg-darkGrey {
+  background-color: #DADADA;
+}
+
+.bg-lightGrey {
+  background-color: #F8F8F8;
+}
+
 .color-black {
   color: #000 !important;
 }
@@ -36403,7 +36411,7 @@ body {
 }
 
 .features-img {
-  background-image: url("/images/images-home/feature-2.png");
+  background-image: url("/images/images-home/feature.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -36545,6 +36553,7 @@ header nav button:last-child:hover {
   background-position: left;
   background-size: auto;
   max-width: 100%;
+  background-size: contain !important;
 }
 
 .privacy-policy {
@@ -36557,7 +36566,7 @@ header nav button:last-child:hover {
   height: 40px;
 }
 
-.privacy-policy-page {
+.bg-crystals {
   background-image: url("/images/privacy-policy/mirror.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -36633,6 +36642,10 @@ header nav button:last-child:hover {
   padding-right: 3.5rem;
 }
 
+.section-padding {
+  padding-top: 70px;
+}
+
 .accordion-section {
   /* Custom style */
 }
@@ -36682,10 +36695,6 @@ header nav button:last-child:hover {
 
 .contact-us-form input {
   outline: 0 !important;
-}
-
-.navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
-  padding: 0.75rem !important;
 }
 
 #header .nav-link.active {
@@ -36799,7 +36808,7 @@ header nav button:last-child:hover {
 }
 @media only screen and (max-width: 991px) {
   .rounded-icon {
-    width: 10%;
+    width: 9%;
     margin: 0 auto !important;
   }
   .padding-top {
@@ -36810,6 +36819,10 @@ header nav button:last-child:hover {
   }
   .privacy-policy {
     background-position: center !important;
+  }
+  .help-page-tabs .card {
+    min-width: 120px;
+    max-width: 120px;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -36826,7 +36839,7 @@ header nav button:last-child:hover {
     font-size: 10px;
   }
   .help-page-tabs .nav-tabs .nav-item .card {
-    max-height: 120px;
+    max-height: 113px;
     min-width: revert !important;
     max-width: revert !important;
   }
@@ -36844,6 +36857,9 @@ header nav button:last-child:hover {
   }
   .category-cards .nav-link img {
     width: 25px !important;
+  }
+  .section-padding {
+    padding-top: 50px;
   }
 }
 @media only screen and (max-width: 576px) {

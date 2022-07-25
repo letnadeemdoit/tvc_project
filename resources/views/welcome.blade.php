@@ -18,7 +18,7 @@
             </div>
         </div>
     </header>
-    <div class="bg-light">
+    <div class="bg-lightGrey section-padding">
         <section class="py-5">
             <div class="container">
                 <div class="row align-items-center">
@@ -191,7 +191,7 @@
                         {{--           nav tabs end             --}}
                     </div>
                 </div>
-                <div class="col-lg-6 offset-lg-2">
+                <div class="col-lg-6 offset-lg-2 text-center">
                     <div id="big-image">
                         <img src="{{asset('/images/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image" />
                         <img src="{{asset('/images/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image" />

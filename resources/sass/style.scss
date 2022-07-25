@@ -2,7 +2,7 @@
     font-size: 3rem;
 }
 .bg-primary{
-    background-color: $primary !Important;
+    background-color: $primary !important;
 }
 .text-primary{
     color: $primary;
@@ -15,6 +15,12 @@
 }
 .bg-dark-blue{
     background-color: $dark-blue;
+}
+.bg-darkGrey{
+    background-color: #DADADA;;
+}
+.bg-lightGrey{
+    background-color: #F8F8F8;
 }
 .color-black{
     color: #000 !important;
@@ -56,7 +62,7 @@ body{
     width:180px;
 }
 .features-img{
-    background-image: url('/images/images-home/feature-2.png');
+    background-image: url('/images/images-home/feature.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -205,6 +211,7 @@ header{
 .bg-process-img {
     background-image: url('/images/images-home/process.png');
     @include background-text;
+    background-size: contain !important;
 }
 .privacy-policy{
     background-image: url('/images/privacy-policy/privacy.png');
@@ -212,7 +219,7 @@ header{
     @include background-text;
     height: 40px;
 }
-.privacy-policy-page{
+.bg-crystals{
     background-image: url('/images/privacy-policy/mirror.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -277,7 +284,9 @@ bottom: -1rem !important;
     padding-left: 4rem;
     padding-right:3.5rem
 }
-
+.section-padding{
+    padding-top: 70px;
+}
 .accordion-section{
     /* Custom style */
     .accordion-button::after {
@@ -333,7 +342,7 @@ bottom: -1rem !important;
     }
 }
 .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link{
-    padding: 0.75rem !important;
+    //padding: 0.75rem !important;
 }
 #header {
     .nav-link {
@@ -450,7 +459,7 @@ bottom: -1rem !important;
 }
 @media only screen and (max-width:991px){
     .rounded-icon {
-        width: 10%;
+        width: 9%;
         margin: 0 auto !important;
     }
     .padding-top{
@@ -462,6 +471,12 @@ bottom: -1rem !important;
     .privacy-policy{
         background-position: center !important;
     }
+    .help-page-tabs{
+     .card {
+        min-width: 120px;
+        max-width: 120px;
+    }
+}
 }
 @media only screen and (max-width:767px) {
     .rounded-icon {
@@ -480,7 +495,7 @@ bottom: -1rem !important;
                     font-size: 10px;
                 }
                 .card{
-                    max-height: 120px;
+                    max-height: 113px;
                     min-width: revert !important;
                     max-width: revert !important;
                     .card-body{
@@ -503,6 +518,9 @@ bottom: -1rem !important;
                 width: 25px !important;
             }
         }
+    }
+    .section-padding{
+        padding-top: 50px;
     }
 }
 @media only screen and (max-width:576px){
