@@ -33,6 +33,13 @@ body{
     src: url('/fonts/Poppins-Regular.ttf');
 }
 @font-face {
+    font-family: poppins-bold;
+    src: url('/fonts/Poppins-Bold.ttf');
+}
+.popping-bold{
+    font-family: poppins-bold;
+}
+@font-face {
     font-family: vintage-clothes;
     src: url('/fonts/vintage/vintage-clothes.otf');
 }
@@ -63,6 +70,13 @@ body{
 }
 .features-img{
     background-image: url('/images/images-home/feature.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 40px;
+}
+.features-img-2{
+    background-image: url('/images/images-home/feature-2.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -162,9 +176,10 @@ header{
             }
         }
     }
+
 }
 .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link{
-    padding: 0.65rem !important;
+    padding: 0.62rem !important;
 }
 .bg-topnav{
     background: $dark-blue;
@@ -349,6 +364,8 @@ bottom: -1rem !important;
         &.active {
             border-bottom: 2px solid $primary;
             padding-left: 0.75rem !important;
+            color: #000 !important;
+            font-weight: 800 !important;
         }
     }
 }
@@ -455,7 +472,6 @@ bottom: -1rem !important;
     .btn-text{
         font-size: 9px !important;
     }
-
 }
 @media only screen and (max-width:991px){
     .rounded-icon {
@@ -520,7 +536,7 @@ bottom: -1rem !important;
         }
     }
     .section-padding{
-        padding-top: 50px;
+        padding-top: 50px !important;
     }
 }
 @media only screen and (max-width:576px){

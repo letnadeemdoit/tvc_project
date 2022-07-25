@@ -10,7 +10,7 @@
                 <div class="features-img shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage mb-0">Bulletin Board</h1>
                 </div>
-                <h3 class="pt-2">Choose your Category</h3>
+                <h3 class="pt-2 popping-bold">Choose your Category</h3>
             </div>
             <div class="mt-5  category-cards">
                 <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">

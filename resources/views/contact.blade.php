@@ -12,7 +12,7 @@
                     <div class="contact-text shadow-1-strong rounded  d-flex justify-content-center">
                         <h1 class="text-primary font-vintage mb-0">Contact US</h1>
                     </div>
-                    <h3 class="pt-2">We’d Love to Hear From You</h3>
+                    <h2 class="pt-2 popping-bold">We’d Love to Hear From You</h2>
                     <p class="pt-2">Thank you very much for visiting TheVacationCalendar.com. If you have any questions about the service, technical issues, or any other suggestions, please feel free to email.</p>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 <x-auth-layout>
+
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
@@ -6,7 +7,7 @@
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 37rem;">
 
             <div class="mb-5">
-                <h1 class="display-4 fw-bolder">Search <span class="text-primary">House</span></h1>
+                <h1 class="display-4 popping-bold">Search <span class="text-primary">House</span></h1>
                 <p>Search your house here to have beautiful vacations with your family.</p>
             </div>
 

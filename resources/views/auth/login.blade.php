@@ -18,7 +18,7 @@
                 @csrf
                 <div class="text-start">
                     <div class="mb-3">
-                        <h1 class="display-5 lh-base">Login Account <br> <span class="text-primary">as Administrator & Owner</span></h1>
+                        <h1 class="display-5 lh-base popping-bold">Login Account <br> <span class="text-primary">as Administrator & Owner</span></h1>
                         <p class="text-secondary">To keep track of your vacation houme in use.</p>
                     </div>
                     <!-- <span class="divider-center text-muted mb-4">as</span> -->

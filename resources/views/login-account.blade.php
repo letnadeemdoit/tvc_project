@@ -6,7 +6,7 @@
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 23rem;">
             <div class="text-start">
                 <div class="mb-5 text-center">
-                    <h1 class="display-4 fw-bolder">Login Account</h1>
+                    <h1 class="display-4 popping-bold">Login Account.</h1>
                     <span class="divider-center text-muted mt-4">as</span>
                 </div>
             </div>

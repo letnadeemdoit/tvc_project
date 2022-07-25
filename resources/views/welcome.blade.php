@@ -7,7 +7,7 @@
         <div class="position-relative d-flex align-items-center hero-image">
             <div class="container">
                 <p class="mb-1 display-3 text-primary font-vintage">Keep Track of when</p>
-                <h1 class="h1 py-4">Your Vacation <br> Home is in Use</h1>
+                <h1 class="h1 py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
                 <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
                 <div class="position-relative mt-3 max-width">
                     <img src="/images/images-home/rounded-arrow.png"
@@ -25,11 +25,11 @@
                     <div class="col-lg-4 text-center text-lg-start">
                         <!-- Jumbotron -->
                         <div
-                            class="py-4 text-center  rounded mb-5 text-white bg-process-img mb-0">
+                            class="py-4 text-center  rounded mb-2 text-white bg-process-img">
                             <h1 class="h2 text-center text-md-start text-primary font-vintage">Find Your Vacation House</h1>
                         </div>
                         <div class="pt-3">
-                            <h4>What is the Vacation Calendar?</h4>
+                            <h3 class="popping-bold">What is the Vacation Calendar?</h3>
                             <p class="pe-0 pe-lg-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor felis pellentesque velit, et
                                 sed pharetra. Nunc, faucibus orci malesuada id sit fusce mi, nec. Blandit sed sit neque
                                 faucibus morbi feugiat quis. Odio egestas dictum lorem fermentum a eget lacus. Vulputate
@@ -94,7 +94,7 @@
         <section class="py-5 bg-cards-section">
             <div class="container py-5">
                 <div
-                    class="features-img  text-center shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
+                    class="features-img-2  text-center shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage mb-0 pt-2">Find Your Vacation House</h1>
                 </div>
                 <h3 class="text-center text-white mt-2">Vacation Calendar makes it simple</h3>
@@ -148,11 +148,11 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4">
                         <div
-                            class="py-4 text-center shadow-1-strong rounded mb-5 text-white bg-process-img" />
+                            class="py-4 text-center shadow-1-strong rounded mb-2 text-white bg-process-img" />
                         <h1 class="mb-0 h2 text-center text-md-start font-vintage text-primary">Find Your Vacation House</h1>
                     </div>
                     <div class="pt-3">
-                        <h4>What is the Vacation Calendar?</h4>
+                        <h3 class="popping-bold">House Bulletin Board Administration</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor felis pellentesque velit, et
                             sed pharetra. Nunc, faucibus orci malesuada id sit fusce mi, nec. Blandit sed sit neque
                             faucibus morbi feugiat quis. Odio egestas dictum lorem fermentum a eget lacus. Vulputate

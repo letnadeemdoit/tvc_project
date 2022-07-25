@@ -27961,6 +27961,14 @@ body {
   src: url("/fonts/Poppins-Regular.ttf");
 }
 @font-face {
+  font-family: poppins-bold;
+  src: url("/fonts/Poppins-Bold.ttf");
+}
+.popping-bold {
+  font-family: poppins-bold;
+}
+
+@font-face {
   font-family: vintage-clothes;
   src: url("/fonts/vintage/vintage-clothes.otf");
 }
@@ -27995,6 +28003,14 @@ body {
 
 .features-img {
   background-image: url("/images/images-home/feature.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 40px;
+}
+
+.features-img-2 {
+  background-image: url("/images/images-home/feature-2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -28283,6 +28299,8 @@ header nav button:last-child:hover {
 #header .nav-link.active {
   border-bottom: 2px solid #E8604C;
   padding-left: 0.75rem !important;
+  color: #000 !important;
+  font-weight: 800 !important;
 }
 
 .bg-image {
@@ -28442,7 +28460,7 @@ header nav button:last-child:hover {
     width: 25px !important;
   }
   .section-padding {
-    padding-top: 50px;
+    padding-top: 50px !important;
   }
 }
 @media only screen and (max-width: 576px) {

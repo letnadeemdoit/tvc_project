@@ -15,7 +15,7 @@
                             <h2 class="text-primary font-vintage pt-2">Privacy Policy</h2>
                         </div>
                         <div class="pt-3">
-                            <h3>Privacy Policy</h3>
+                            <h3 class="popping-bold">Privacy Policy</h3>
                             <p class="pe-0 pe-lg-4">
                                 This Privacy Policy describes how your personal information is collected, used, and shared when you visit or subscribe to the www.thevacationcalendar.com (the "Site"). Please note that the Site is a hobby that charges a nominal fee to keep the project going since
                                 it addresses a niche need and many vacation home owners enjoy it. If you are concerned about privacy and data protection, please do not use the Site. The Site has basic security but should not be used to capture any information that is not publicly available or that the end users are willing to make publicly available. </p>
