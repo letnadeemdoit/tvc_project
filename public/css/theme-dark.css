@@ -28108,7 +28108,7 @@ header nav button:last-child:hover {
 }
 
 .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
-  padding: 0.65rem !important;
+  padding: 0.6rem !important;
 }
 
 .bg-topnav {
