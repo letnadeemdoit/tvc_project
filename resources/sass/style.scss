@@ -508,10 +508,10 @@ bottom: -1rem !important;
                 .nav-link {
                     padding:0px !important;
                     width: 85px !important;
-                    font-size: 10px;
+                    font-size: 9px;
                 }
                 .card{
-                    max-height: 113px;
+                    max-height: 100px;
                     min-width: revert !important;
                     max-width: revert !important;
                     .card-body{
@@ -536,7 +536,7 @@ bottom: -1rem !important;
         }
     }
     .section-padding{
-        padding-top: 50px !important;
+        padding-top: 40px !important;
     }
 }
 @media only screen and (max-width:576px){
@@ -577,7 +577,7 @@ bottom: -1rem !important;
         .nav-link {
             padding: 6px !important;
             img{
-                width: 25px !important;
+                width: 19px !important;
             }
         }
     }
