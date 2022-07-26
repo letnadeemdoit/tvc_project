@@ -29,6 +29,7 @@ Route::controller(GuestController::class)
         Route::get('/guest-login','guestLogin')->name('guest-login');
         Route::get('/login-account','loginAccount')->name('login-account');
         Route::get('/search-house','searchHouse')->name('search-house');
+        Route::get('/bulletin-board','bulletin')->name('bulletin-board');
 
     });
 

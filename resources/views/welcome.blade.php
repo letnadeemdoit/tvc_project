@@ -6,13 +6,13 @@
     <header>
         <div class="position-relative d-flex align-items-center hero-image">
             <div class="container">
-                <p class="mb-1 display-3 text-primary font-vintage">Keep Track of when</p>
+                <p class="mb-1 display-4 text-primary font-vintage">Keep Track of When</p>
                 <h1 class="h1 py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
                 <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
                 <div class="position-relative mt-3 max-width">
                     <img src="/images/images-home/rounded-arrow.png"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
-                    <p class="display-4 font-poppins text-primary">Only $20 <span class="fs-6">per year</span></p>
+                    <p class="display-4 font-poppins text-primary">Only $20 <span class="fs-6 text-dark fw-lighter">per year</span></p>
                 </div>
 
             </div>
@@ -26,7 +26,7 @@
                         <!-- Jumbotron -->
                         <div
                             class="py-4 text-center  rounded mb-2 text-white bg-process-img">
-                            <h1 class="h2 text-center text-md-start text-primary font-vintage">Find Your Vacation House</h1>
+                            <h1 class="h2 text-center text-md-start text-primary font-vintage mb-0">Find Your Vacation House</h1>
                         </div>
                         <div class="pt-3">
                             <h3 class="popping-bold">What is the Vacation Calendar?</h3>
@@ -98,15 +98,14 @@
                     <h1 class="text-primary font-vintage mb-0 pt-2">Find Your Vacation House</h1>
                 </div>
                 <h3 class="text-center text-white mt-2">Vacation Calendar makes it simple</h3>
-                <div class="row py-5">
+                <div class="row py-5 feature-cards">
                     <div class="col-lg-4">
                         <!-- Card -->
                         <div class="card p-2">
                             <img class="card-img-top" src="/images/images-home/bulletin-image.png" alt="Card image cap" />
                             <div class="card-body">
-                                <h3 class="card-title">Card title</h3>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <h3 class="card-title">House Bulletin Board</h3>
+                                <p class="card-text">The House Bulletin Board is the perfect solution to that all important piece paper that is always getting misplaced. This is a great place for contact information, house instructions, rules, cleaning services.</p>
                                 <button class="btn btn-lg w-100 btn-primary text-white">Learn More</button>
                             </div>
                         </div>
@@ -117,9 +116,8 @@
                         <div class="card p-2">
                             <img class="card-img-top" src="/images/images-home/vacations-image.png" alt="Card image cap" />
                             <div class="card-body">
-                                <h3 class="card-title">Card title</h3>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <h3 class="card-title">Managing Vacations</h3>
+                                <p class="card-text">The money shot of TheVacationCalendar.com. Using this simple screen anyone who is authorized to schedule a vacation can do so. The site checks that there are no conflicts on the online calendar.</p>
                                 <button class="btn btn-lg w-100 btn-primary text-white">Learn More</button>
                             </div>
                         </div>
@@ -130,9 +128,8 @@
                         <div class="card p-2">
                             <img class="card-img-top" src="/images/images-home/blog-image.png" alt="Card image cap" />
                             <div class="card-body">
-                                <h3 class="card-title">Card title</h3>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <h3 class="card-title">House Blog</h3>
+                                <p class="card-text">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house, the House Blog gives everyone a place to share thoughts, provide updates....</p>
                                 <button class="btn btn-lg w-100 btn-primary text-white">Learn More</button>
                             </div>
                         </div>
@@ -146,42 +143,40 @@
         <section class=" my-5">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <div
                             class="py-4 text-center shadow-1-strong rounded mb-2 text-white bg-process-img" />
                         <h1 class="mb-0 h2 text-center text-md-start font-vintage text-primary">Find Your Vacation House</h1>
                     </div>
                     <div class="pt-3">
                         <h3 class="popping-bold">House Bulletin Board Administration</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor felis pellentesque velit, et
-                            sed pharetra. Nunc, faucibus orci malesuada id sit fusce mi, nec. Blandit sed sit neque
-                            faucibus morbi feugiat quis. Odio egestas dictum lorem fermentum a eget lacus. Vulputate
-                            morbi curabitur adipiscing facilisi. Convallis pulvinar pharetra suscipit eget blandit
-                            nisl. </p>
+                        <p>The House Bulletin Board is one of the most popular features of the online calendar and is easily maintained using the WYSIWYG (what you see is what you get) editor.
+                            This has all the same functions that you are accustomed to on your word processor so you can create a fun
+                            and appealing bulletin board without any coding. </p>
                         {{--          nav tabs           --}}
                         <div class="images-nav-tabs  mt-3 mt-md-5 mt-lg-0">
                             <ul class="nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/envelope.png')}}" width="30px" class="d-none d-lg-block" />
+                                        <img src="{{asset('/images/images-home/envelope.png')}}" width="30px" class="" />
                                         <p class="mb-0 pt-2">House Blog</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                                        <img src="{{asset('/images/images-home/card.png')}}" width="30px" class="d-none d-lg-block" />
+                                        <img src="{{asset('/images/images-home/card.png')}}" width="30px" class="" />
                                         <p class="mb-0 pt-2">House Photo Album</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/user.png')}}" width="30px" class="d-none d-lg-block" />
+                                        <img src="{{asset('/images/images-home/user.png')}}" width="30px" class="" />
                                         <p class="mb-0 pt-2">Account Management</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/user-2.png')}}" width="30px" class="d-none d-lg-block" />
+                                        <img src="{{asset('/images/images-home/user-2.png')}}" width="30px" class="" />
                                         <p class="mb-0 pt-2">User Management</p>
                                     </button>
                                 </li>
@@ -191,7 +186,7 @@
                         {{--           nav tabs end             --}}
                     </div>
                 </div>
-                <div class="col-lg-6 offset-lg-2 text-center">
+                <div class="col-lg-6 col-xl-5 offset-lg-1 offset-xl-2 text-center">
                     <div id="big-image">
                         <img src="{{asset('/images/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image" />
                         <img src="{{asset('/images/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image" />
@@ -207,7 +202,7 @@
                     class=" mt-5 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage pt-2">Find your vacation house</h1>
                 </div>
-                <h3 class="text-center text-white">Vacation Calendar makes it simple</h3>
+                <h3 class="text-center text-white">See our social media feed.</h3>
 
                 <div class="row mt-4">
                     <div class="col-md-4 col-lg-3">

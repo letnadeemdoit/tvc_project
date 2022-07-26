@@ -55,13 +55,18 @@ body{
     font-family: vintage-clothes;
     font-weight: 500;
 }
+
 .max-width{
     max-width: 360px;
 }
 .mt-n100{
     margin-top: -100px;
 }
-
+.feature-cards {
+    .card {
+        min-height: 580px;
+    }
+}
 .font-poppins{
     font-family: poppins;
 }
@@ -115,7 +120,7 @@ body{
 }
     fieldset.scheduler-border {
         border: 1px solid #BEC4C8 !important;
-        padding:0.4em 0.9em 0.8em  0.7em;
+        padding:0.2em 0.9em 0.8em  0.7em;
         margin: 0 0 1.5em 0 !important;
         -webkit-box-shadow: 0px 0px 0px 0px #000;
         box-shadow: 0px 0px 0px 0px #000;
@@ -363,7 +368,7 @@ bottom: -1rem !important;
     .nav-link {
         &.active {
             border-bottom: 2px solid $primary;
-            padding-left: 0.75rem !important;
+            padding-left: 0.6rem !important;
             color: #000 !important;
             font-weight: 800 !important;
         }
@@ -472,6 +477,14 @@ bottom: -1rem !important;
     .btn-text{
         font-size: 9px !important;
     }
+    .images-nav-tabs {
+        .nav-link {
+            max-width: 87px !important;
+            min-width: 85px !important;
+            margin-right: 6px !important;
+            padding: 10px !important;
+        }
+    }
 }
 @media only screen and (max-width:991px){
     .rounded-icon {
@@ -487,12 +500,20 @@ bottom: -1rem !important;
     .privacy-policy{
         background-position: center !important;
     }
-    .help-page-tabs{
-     .card {
-        min-width: 120px;
-        max-width: 120px;
+    .help-page-tabs {
+        .nav-tabs {
+            .nav-item {
+                .nav-link {
+                    font-size: 13px;
+                }
+                .card {
+                    max-height: 155px;
+                    min-width: 120px;
+                    max-width: 120px;
+                }
+            }
+        }
     }
-}
 }
 @media only screen and (max-width:767px) {
     .rounded-icon {
@@ -508,7 +529,8 @@ bottom: -1rem !important;
                 .nav-link {
                     padding:0px !important;
                     width: 85px !important;
-                    font-size: 9px;
+                    font-size: 9px !important;
+                    margin-left: 14px;
                 }
                 .card{
                     max-height: 100px;
@@ -564,6 +586,29 @@ bottom: -1rem !important;
             min-width: 100px !important;
         }
     }
+    .help-page-tabs {
+        .nav-tabs {
+            .nav-item {
+                .nav-link {
+                    margin-left: 10px !important;
+                }
+
+                .card {
+                    .card-body {
+                        img {
+                            width: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .contact-btn {
+        button {
+          display: block;
+            width: 100%;
+        }
+    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -581,6 +626,23 @@ bottom: -1rem !important;
             }
         }
     }
+    .help-page-tabs {
+        .nav-tabs {
+            .nav-item {
+                .nav-link{
+                    width: 81px !important;
+                    margin-left: 2px !important;
+                }
+            }
+        }
+    }
+    .images-nav-tabs .nav-link{
+        width: 78px !important;
+        font-size: 9px !important;
+        margin-right: 5px !important;
+        padding: 7px !important;
+        min-height: 78px !important;
+    }
 }
 @media only screen and (max-width:375px){
     .rounded-icon{
@@ -588,13 +650,36 @@ bottom: -1rem !important;
         margin: 0 auto !important;
     }
     .images-nav-tabs .nav-link{
-        width:72px !important;
+        width:67px !important;
         font-size: 8px !important;
+        margin-right: 3px !important;
+        padding: 5px !important;
+        min-height : 71px !important;
     }
     .category-cards
     {
         .nav-link{
             margin-right: 10px !important;
+        }
+    }
+    .help-page-tabs {
+        .nav-tabs {
+            .nav-item {
+            .nav-link{
+                width: 72px !important;
+                margin-left: 2px;
+                font-size: 8px !important;
+            }
+                .card {
+                    max-height: 85px;
+                    .card-body {
+                        padding: 10px !important;
+                        img {
+                            width: 35px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

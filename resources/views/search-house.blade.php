@@ -1,5 +1,5 @@
 <x-auth-layout>
-
+    @include('layouts.partials.navigation-menu-top-guest')
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
@@ -24,7 +24,7 @@
                 <div class="d-block d-md-flex">
                     <div class="t-dropdown-block w-75">
                         <div class="t-dropdown-select">
-                            <input type="text" class="t-dropdown-input py-2" placeholder="Value" />
+                            <input type="text" class="t-dropdown-input py-3" placeholder="Search & select your house..." />
                             <span class="t-select-btn border-start-0">
                             </span>
                         </div>

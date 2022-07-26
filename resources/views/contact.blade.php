@@ -8,7 +8,7 @@
     <section class="text-center">
         <div class="container">
             <div class="row mb-5 section-padding">
-                <div class="col-md-5 mx-auto">
+                <div class="col-md-9 col-lg-5 mx-auto">
                     <div class="contact-text shadow-1-strong rounded  d-flex justify-content-center">
                         <h1 class="text-primary font-vintage mb-0">Contact US</h1>
                     </div>
@@ -148,7 +148,7 @@
                                 </fieldset>
                                 <div class="d-block d-md-flex justify-content-center text-center contact-btn mt-4">
                                     <button type="submit" class="btn btn-primary btn-lg">Send</button>
-                                    <button type="submit" class="btn btn-secondary btn-lg ms-3">Reset</button>
+                                    <button type="submit" class="btn btn-secondary btn-lg ms-0 ms-md-3 mt-3 mt-sm-0">Reset</button>
                                 </div>
                             </form>
                             <!-- End Form -->

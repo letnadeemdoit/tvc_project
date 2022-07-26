@@ -1,4 +1,5 @@
 <x-auth-layout>
+    @include('layouts.partials.navigation-menu-top-guest')
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
@@ -33,10 +34,10 @@
                             <!-- Form -->
                             <div class="mb-2">
                                 <fieldset class="border-light scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0">House Name*</legend>
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1">House Name*</legend>
                                     <input
                                         type="text"
-                                        class="form-control form-control-lg"
+                                        class="form-control"
                                         name="house_name"
                                         id="house_name"
                                         placeholder=""
@@ -54,7 +55,7 @@
                         <div class="col-md-6">
                             <div class="mt-3">
                                 <fieldset class="border-light scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0">City</legend>
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1">City</legend>
                                     <input
                                         type="text"
                                         class="form-control"
@@ -69,7 +70,7 @@
                         <div class=" col-md-6">
                             <div class="mt-3">
                                 <fieldset class="border-light scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0">State</legend>
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1">State</legend>
                                     <input
                                         type="text"
                                         class="form-control" name="state"
@@ -87,10 +88,10 @@
                         <div class="col-md-12">
                             <div class="mt-3">
                                 <fieldset class="border-light scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0">Paypal Account</legend>
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1">Paypal Account</legend>
                                     <input
                                         type="number"
-                                        class="form-control form-control-lg"
+                                        class="form-control"
                                         id="paypal"
                                         placeholder=""
                                         value="{{old('paypal')}}"
@@ -120,7 +121,7 @@
             <!-- End Form -->
             <!-- second fieldset -->
             <fieldset class="scheduler-border fieldset-padding">
-                <legend class="scheduler-border">Admin Details</legend>
+                <legend class="scheduler-border px-1">Admin Details</legend>
                 <form class="js-validate needs-validation" novalidate action="{{ route('register') }}">
                     @csrf
                     <!-- Form -->
@@ -129,8 +130,8 @@
                             <!-- Form -->
                             <div class="mb-2">
                                 <fieldset class="border-light input-group scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Username</legend>
-                                    <input type="text" class="form-control form-control-lg border-end-0"
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1 mb-0">Username</legend>
+                                    <input type="text" class="form-control border-end-0"
                                            name="text" value=""
                                            id="user_name" tabindex="1"
                                            placeholder=""
@@ -151,8 +152,8 @@
                         <div class="col-md-12">
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Email</legend>
-                                    <input type="email" class="form-control form-control-lg border-end-0"
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1 mb-0">Email</legend>
+                                    <input type="email" class="form-control border-end-0"
                                            name="email" value=""
                                            id="email" tabindex="1"
                                            value="{{ old('email') }}"
@@ -177,8 +178,8 @@
                         <div class=" col-md-6">
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">First Name</legend>
-                                    <input type="email" class="form-control form-control-lg border-end-0"
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1 mb-0">First Name</legend>
+                                    <input type="email" class="form-control border-end-0"
                                            name="fname" value=""
                                            id="f_name" tabindex="1"
                                            placeholder=""
@@ -191,8 +192,8 @@
                         <div class=" col-md-6">
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Last Name</legend>
-                                    <input type="email" class="form-control form-control-lg border-end-0"
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1 mb-0">Last Name</legend>
+                                    <input type="email" class="form-control border-end-0"
                                            name="lname" value=""
                                            id="l_name" tabindex="1"
                                            placeholder=""
@@ -207,9 +208,9 @@
                         <div class="col-md-12">
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Create Password</legend>
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1 mb-0">Create Password</legend>
                                     <input type="text"
-                                           class="form-control form-control-lg border-end-0"
+                                           class="form-control border-end-0"
                                            name="c_password"
                                            value="{{old('c_password')}}"
                                            id="c_password"
@@ -230,9 +231,9 @@
                         <div class="col-md-12">
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Confirm Password</legend>
+                                    <legend class="float-none w-auto fs-5 mb-0 px-1 mb-0">Confirm Password</legend>
                                     <input type="text"
-                                           class="form-control form-control-lg border-end-0"
+                                           class="form-control border-end-0"
                                            name="confirm_password"
                                            value="{{old('confirm_password')}}"
                                            id="c_password"
@@ -262,7 +263,7 @@
                 </form>
             </fieldset>
             <div class="text-center">
-                <p>Already have an account?<a  href="{{ route('login') }}" class="text-decoration-underline text-primary">Login</a></p>
+                <p>Already have an account? <a  href="{{ route('login') }}" class="text-decoration-underline text-primary">Login</a></p>
             </div>
             <!-- second fieldset ends -->
         </div>
