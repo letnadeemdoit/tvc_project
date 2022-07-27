@@ -169,8 +169,7 @@
                                 <label class="form-check-label" for="remember_me">
                                     Allow Administrator to have Owner Permissions.
                                 </label>
-                                <input type="checkbox" class="form-check-input form-check-css" name="remember_me" value="" id="remember_me">
-
+                                <input type="checkbox" class="form-check-input form-check-css" name="remember_me" value="" id="allow_administrator">
                             </div>
                         </div>
                     </div>

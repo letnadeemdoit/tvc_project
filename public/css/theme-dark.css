@@ -27916,10 +27916,6 @@ select:-webkit-autofill:focus {
   display: none;
 }
 
-.h1 {
-  font-size: 3rem;
-}
-
 .bg-primary {
   background-color: #E8604C !important;
 }
@@ -27954,6 +27950,10 @@ select:-webkit-autofill:focus {
 
 body {
   font-family: poppins;
+}
+
+.hero-text {
+  font-size: 2.8rem;
 }
 
 @font-face {
@@ -28407,6 +28407,9 @@ header nav button:last-child:hover {
     min-width: 190px !important;
     max-width: 190px !important;
   }
+  .feature-cards .card {
+    min-height: revert !important;
+  }
   .btn-text {
     font-size: 9px !important;
   }
@@ -28438,6 +28441,9 @@ header nav button:last-child:hover {
     max-height: 155px;
     min-width: 120px;
     max-width: 120px;
+  }
+  .bg-process-img {
+    background-position: center !important;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -28483,7 +28489,7 @@ header nav button:last-child:hover {
     background-size: contain !important;
   }
   .rounded-icon {
-    width: 11%;
+    width: 12%;
     margin: 0 auto !important;
   }
   .padding-top {
@@ -28492,7 +28498,7 @@ header nav button:last-child:hover {
   .images-nav-tabs .nav-link {
     width: 80px !important;
     font-size: 8px !important;
-    min-height: 65px !important;
+    min-height: 85px !important;
     min-width: revert !important;
   }
   .navbar-expand-lg .navbar-nav-wrap-secondary-content {

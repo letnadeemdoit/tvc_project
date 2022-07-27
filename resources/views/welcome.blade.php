@@ -7,7 +7,7 @@
         <div class="position-relative d-flex align-items-center hero-image">
             <div class="container">
                 <p class="mb-1 display-4 text-primary font-vintage">Keep Track of When</p>
-                <h1 class="h1 py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
+                <h1 class="hero-text py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
                 <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
                 <div class="position-relative mt-3 max-width">
                     <img src="/images/images-home/rounded-arrow.png"
@@ -26,7 +26,7 @@
                         <!-- Jumbotron -->
                         <div
                             class="py-4 text-center  rounded mb-2 text-white bg-process-img">
-                            <h1 class="h2 text-center text-md-start text-primary font-vintage mb-0">Find Your Vacation House</h1>
+                            <h1 class="h2 text-center text-lg-start text-primary font-vintage mb-0">Find Your Vacation House</h1>
                         </div>
                         <div class="pt-3">
                             <h3 class="popping-bold">What is the Vacation Calendar?</h3>
@@ -158,7 +158,7 @@
                             <ul class="nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/envelope.png')}}" width="30px" class="" />
+                                        <img src="{{asset('/images/images-home/envelope.svg')}}" width="35px" class="" />
                                         <p class="mb-0 pt-2">House Blog</p>
                                     </button>
                                 </li>

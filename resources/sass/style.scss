@@ -1,6 +1,4 @@
-.h1{
-    font-size: 3rem;
-}
+
 .bg-primary{
     background-color: $primary !important;
 }
@@ -27,6 +25,9 @@
 }
 body{
     font-family: poppins;
+}
+.hero-text{
+    font-size: 2.8rem;
 }
 @font-face {
     font-family: poppins;
@@ -474,6 +475,11 @@ bottom: -1rem !important;
         min-width: 190px !important;
         max-width: 190px !important;
     }
+    .feature-cards {
+        .card{
+            min-height: revert !important;
+        }
+    }
     .btn-text{
         font-size: 9px !important;
     }
@@ -513,6 +519,9 @@ bottom: -1rem !important;
                 }
             }
         }
+    }
+    .bg-process-img{
+        background-position: center !important;
     }
 }
 @media only screen and (max-width:767px) {
@@ -566,7 +575,7 @@ bottom: -1rem !important;
     background-size: contain !important;
     }
     .rounded-icon{
-        width:11%;
+        width:12%;
         margin: 0 auto !important;
     }
     .padding-top{
@@ -575,7 +584,7 @@ bottom: -1rem !important;
     .images-nav-tabs .nav-link{
         width:80px !important;
         font-size: 8px !important;
-        min-height:65px !important;
+        min-height:85px !important;
         min-width: revert !important;
     }
     .navbar-expand-lg .navbar-nav-wrap-secondary-content{
