@@ -8,7 +8,7 @@
             <div class="container">
                 <p class="mb-1 display-4 text-primary font-vintage">Keep Track of When</p>
                 <h1 class="hero-text py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
-                <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</button>
+                <a href="{{route('register')}}"  class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</a>
                 <div class="position-relative mt-3 max-width">
                     <img src="/images/images-home/rounded-arrow.png"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
@@ -30,12 +30,10 @@
                         </div>
                         <div class="pt-3">
                             <h3 class="popping-bold">What is the Vacation Calendar?</h3>
-                            <p class="pe-0 pe-lg-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor felis pellentesque velit, et
-                                sed pharetra. Nunc, faucibus orci malesuada id sit fusce mi, nec. Blandit sed sit neque
-                                faucibus morbi feugiat quis. Odio egestas dictum lorem fermentum a eget lacus. Vulputate
-                                morbi curabitur adipiscing facilisi. Convallis pulvinar pharetra suscipit eget blandit
-                                nisl. </p>
-                            <button type="button" class="btn btn-lg btn-signup btn-primary shadow-lg mt-3">SIGN UP</button>
+                            <p class="pe-0 pe-lg-4">This is the main view of online calendar on TheVacationCalendar.com which allows everyone to see when the vacation home is in use.
+                                When a vacation is scheduled the user can set the online calendar to show that the house is occupied.
+                                Users can choose to use color to enhance the calendar or to signify special meaning, such as "would like to trade this vacation" for different time. </p>
+                            <a href="{{route('register')}}" class="btn btn-lg btn-signup btn-primary shadow-lg mt-3">SIGN UP</a>
                         </div>
                     </div>
                     <div class="col-lg-3 mt-4 mt-lg-0 offset-lg-2">
@@ -117,8 +115,8 @@
                             <img class="card-img-top" src="/images/images-home/vacations-image.png" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">Managing Vacations</h3>
-                                <p class="card-text">The money shot of TheVacationCalendar.com. Using this simple screen anyone who is authorized to schedule a vacation can do so. The site checks that there are no conflicts on the online calendar.</p>
-                                <button class="btn btn-lg w-100 btn-primary text-white">Learn More</button>
+                                <p class="card-text">So this is the money shot of TheVacationCalendar.com. Using this simple screen anyone who is authorized to schedule a vacation can do so. The site checks that there are no conflicts on the online calendar and prevents you  <span id="text-content">  from ever having multiple parties showing up at your vacation home at the same time.</span></p>
+                                <button class="btn btn-lg w-100 btn-primary text-white" id="toggle">Learn More</button>
                             </div>
                         </div>
                         <!-- End Card -->
@@ -129,7 +127,7 @@
                             <img class="card-img-top" src="/images/images-home/blog-image.png" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">House Blog</h3>
-                                <p class="card-text">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house, the House Blog gives everyone a place to share thoughts, provide updates....</p>
+                                <p class="card-text">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house, the House Blog gives everyone a place to share thoughts, provide updates.</p>
                                 <button class="btn btn-lg w-100 btn-primary text-white">Learn More</button>
                             </div>
                         </div>
@@ -149,33 +147,49 @@
                         <h1 class="mb-0 h2 text-center text-md-start font-vintage text-primary">Find Your Vacation House</h1>
                     </div>
                     <div class="pt-3">
-                        <h3 class="popping-bold">House Bulletin Board Administration</h3>
-                        <p>The House Bulletin Board is one of the most popular features of the online calendar and is easily maintained using the WYSIWYG (what you see is what you get) editor.
-                            This has all the same functions that you are accustomed to on your word processor so you can create a fun
-                            and appealing bulletin board without any coding. </p>
                         {{--          nav tabs           --}}
                         <div class="images-nav-tabs  mt-3 mt-md-5 mt-lg-0">
+                            <!-- tab content -->
+                            <div class="tab-content bg-waves" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <h2 class="popping-bold">House Blog</h2>
+                                    <p>How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house, the House Blog gives everyone a place to share thoughts, provide updates, and generally make fun of each other.</p>
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <h2 class="popping-bold">House Photo Album</h2>
+                                    <p>This is another favorite for many of the site's users. Since people were getting more and more use out of the vacation homes thanks to the online calendar system in TheVacationCalendar.com, we needed to provide a way to memorialize the great times you are having. So we added a new photo album. It is pretty simple for the first iteration, just add photos and allow anyone to comment. As always, the Administrator has the ability to remove any photos or comments that are inappropriate.</p>
+                                </div>
+                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <h2 class="popping-bold">Account Management</h2>
+                                    <p>This is your basic profile page that allows the administrator to update passwords, change the site picture, and {cough}{cough} cancel the subscription</p>
+                                </div>
+                                <div class="tab-pane fade" id="shopping" role="tabpanel" aria-labelledby="shopping-tab">
+                                    <h2 class="popping-bold">User Management</h2>
+                                    <p>This simple screen lets the Administrator of the house control the users. If you forget your password you can either use the automated password reset functionality or you can call the Administrator and he/she can update your account in a few clicks using this screen.</p>
+                                </div>
+                            </div>
+                            <!-- tab content ends -->
                             <ul class="nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" role="tab" aria-controls="home" aria-selected="true">
                                         <img src="{{asset('/images/images-home/envelope.svg')}}" width="35px" class="" />
                                         <p class="mb-0 pt-2">House Blog</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="false">
                                         <img src="{{asset('/images/images-home/card.png')}}" width="30px" class="" />
                                         <p class="mb-0 pt-2">House Photo Album</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">
+                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" role="tab" aria-controls="contact" aria-selected="true">
                                         <img src="{{asset('/images/images-home/user.png')}}" width="30px" class="" />
                                         <p class="mb-0 pt-2">Account Management</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping" aria-selected="true">
+                                    <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" role="tab" aria-controls="shopping" aria-selected="true">
                                         <img src="{{asset('/images/images-home/user-2.png')}}" width="30px" class="" />
                                         <p class="mb-0 pt-2">User Management</p>
                                     </button>
@@ -188,11 +202,13 @@
                 </div>
                 <div class="col-lg-6 col-xl-5 offset-lg-1 offset-xl-2 text-center">
                     <div id="big-image">
-                        <img src="{{asset('/images/images-home/tab-image-1.png')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/blog-image.png')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/bulletin-image.png')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/hero-image.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/house-blog.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/house-photo-album.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/account-management.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/user-management.png')}}" class="img-fluid" alt="tab-image" />
                     </div>
+
+
                 </div>
             </div>
         </section>
@@ -220,6 +236,11 @@
                     var index = $(this).index();
                     $("#big-image img").eq(index).show().siblings().hide();
                 });
+            });
+        </script>
+        <script>
+            $("#toggle").on("click", function(){
+                $("#text-content").toggleClass("show");
             });
         </script>
     @endpush

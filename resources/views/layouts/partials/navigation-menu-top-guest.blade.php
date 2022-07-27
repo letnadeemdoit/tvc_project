@@ -78,13 +78,3 @@
     </div>
 </header>
 
-@push('scripts')
-    <script>
-        $( document ).ready(function() {
-            $( '#header .navbar-nav a' ).on( 'click', function () {
-                $( '#header .navbar-nav a' ).find( '.nav-link.active' ).removeClass( 'active' );
-                $( this ).parent( '.nav-link' ).addClass( 'active' );
-            });
-        });
-    </script>
-@endpush
