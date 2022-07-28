@@ -43,6 +43,8 @@ Route::resource('blogs', BlogController::class);
 Route::resource('users', UserController::class);
 Route::resource('houses', HouseController::class);
 
+require_once __DIR__ . '/fortify.php';
+
 Route::get('/dashboard', function () {
     return view('dash.index');
 })->name('dashboard');
