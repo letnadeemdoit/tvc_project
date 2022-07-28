@@ -7,6 +7,7 @@ use App\Notifications\ContactUsNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Validator;
 
 class GuestController extends Controller
 {
@@ -22,6 +23,13 @@ class GuestController extends Controller
 
     public function contactMail(Request $request)
     {
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'comment' => 'required',
+        ]);
 
         Mail::send([], [], function ($message) use($request) {
 
@@ -33,9 +41,8 @@ class GuestController extends Controller
                 '<div style="padding: 10px; 20px">'.
                 '<h2> Name: '.$request->first_name . ' '. $request->last_name .'</h2>'.
                 '<p> Email: '.$request->email .'<p/>' .
-                '<p> Phone :'.$request->phone .'<p/>' .
                 '<h4> Subject: '.$request->subject .'<h4/>' .
-                '<p> Deatil: '.$request->detail .'<p/>'  . '</br>' .
+                '<p> Comment: '.$request->comment .'<p/>'  . '</br>' .
                 '</div>', 'text/plain');
         });
 

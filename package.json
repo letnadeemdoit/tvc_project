@@ -1,12 +1,12 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
+        "dev": "npm i && npm run development",
         "development": "NODE_ENV=development mix",
-        "watch": "NODE_ENV=development mix watch",
-        "watch-poll": "NODE_ENV=development mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
+        "watch": "npm i &&  NODE_ENV=development mix watch",
+        "watch-poll": "npm i &&  NODE_ENV=development mix watch -- --watch-options-poll=1000",
+        "hot": "npm i &&  mix watch --hot",
+        "prod": "npm i && npm run production",
         "production": "NODE_ENV=production mix --production"
     },
     "devDependencies": {
@@ -29,6 +29,7 @@
         "bootstrap-icons": "^1.8.1",
         "flag-icons": "^6.6.0",
         "fullcalendar": "^5.10.1",
-        "jquery": "^3.6.0"
+        "jquery": "^3.6.0",
+        "select2": "^4.1.0-rc.0"
     }
 }

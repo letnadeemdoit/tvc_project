@@ -37,6 +37,12 @@
                     <small class="bi-three-dots nav-subtitle-replacer"></small>
                     <div id="navbarVerticalMenuPagesMenu">
 
+                        <div class="nav-item">
+                            <a class="nav-link" href="{{route('users.index')}}" data-placement="left">
+                                <i class="bi-person nav-icon"></i>
+                                <span class="nav-link-title">Users</span>
+                            </a>
+                        </div>
 
                         <div class="nav-item">
                             <a class="nav-link" href="./welcome-page.html" data-placement="left">
@@ -59,8 +65,8 @@
                             </a>
 
                             <div id="navbarVerticalMenuPagesBlogsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="./Blogs.html">All Blogs</a>
-                                <a class="nav-link " href="./Blogs-leaderboard.html">Add New Blog</a>
+                                <a class="nav-link " href="{{route('blogs.index')}}">All Blogs</a>
+                                <a class="nav-link " href="{{route('blogs.index')}}">Add New Blog</a>
                             </div>
                         </div>
 

@@ -1,9 +1,5 @@
 <x-guest-layout>
-    @push('stylesheets')
-
-    @endpush
-
-    @include('partials.sub-page-hero-section')
+    @include('partials.sub-page-hero-section');
 
     <section class="text-center">
         <div class="container">
@@ -18,10 +14,9 @@
             </div>
         </div>
     </section>
-
     <!-- Contact Form -->
     <div class="contact-page">
-        <div class="container content-space-2 content-space-lg-3">
+        <div class="container content-space-2 content-space-lg-3 " style="padding-top: 0 !important;">
             <div class="row gx-1">
                 <div class="col-lg-6">
                     <!-- Card -->
@@ -34,124 +29,82 @@
                             </div>
                             <!-- End Heading -->
 
-                            <!-- Form -->
-                            <form action="{{route('guest.contact.mail')}}" method="post">
+                            @if(session()->has('success'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('success') }}
+                                </div>
+                             @endif
+
+                        <!-- Form -->
+                            <form action="{{route('guest.contact.mail')}}" method="post" id="contactForm">
                                 @csrf
-                                <div class="row gx-3">
-                                    <div class="col-sm-6">
-                                        <!-- Form -->
-                                        <div class="mb-3">
-                                            <label class="form-label" for="hireUsFormFirstName">First name</label>
-                                            <input type="text" class="form-control form-control-lg" name="first_name" id="hireUsFormFirstName" placeholder="First name" aria-label="First name">
-                                        </div>
-                                        <!-- End Form -->
-                                    </div>
-                                    <!-- End Col -->
-
-                                    <div class="col-sm-6">
-                                        <!-- Form -->
-                                        <div class="mb-3">
-                                            <label class="form-label" for="hireUsFormLasttName">Last name</label>
-                                            <input type="text" class="form-control form-control-lg" name="last_name" id="hireUsFormLasttName" placeholder="Last name" aria-label="Last name">
-                                        </div>
-                                        <!-- End Form -->
-                                    </div>
-                                    <!-- End Col -->
-                                </div>
-                                <!-- End Row -->
-
-                                <div class="row gx-3">
-                                    <div class="col-sm-6">
-                                        <!-- Form -->
-                                        <div class="mb-3">
-                                            <label class="form-label" for="hireUsFormWorkEmail">Email address</label>
-                                            <input type="email" class="form-control form-control-lg" name="email" id="hireUsFormWorkEmail" placeholder="email@site.com" aria-label="email@site.com">
-                                        </div>
-                                        <!-- End Form -->
-                                    </div>
-                                    <!-- End Col -->
-
-                                    <div class="col-sm-6">
-                                        <!-- Form -->
-                                        <div class="mb-3">
-                                            <label class="form-label" for="hireUsFormPhone">Phone <span class="form-label-secondary">(Optional)</span></label>
-                                            <input type="text" class="form-control form-control-lg" name="phone" id="hireUsFormPhone" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx">
-                                        </div>
-                                        <!-- End Form -->
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <!-- Form -->
-                                        <div class="mb-3">
-                                            <label class="form-label" for="subject">Subject <span class="form-label-secondary"></span></label>
-                                            <input type="text" class="form-control form-control-lg" name="subject" id="subject" placeholder="Subject" aria-label="Subject">
-                                        </div>
-                                        <!-- End Form -->
-                                    </div>
-
-
-                                    <!-- End Col -->
-                                </div>
-                                <!-- End Row -->
-
-                                <!-- Form -->
-                                <div class="mb-3">
-                                    <label class="form-label" for="hireUsFormDetails">Details</label>
-                                    <textarea class="form-control form-control-lg" name="detail" id="hireUsFormDetails" placeholder="Tell us about your ..." aria-label="Tell us about your ..." rows="4"></textarea>
-                                </div>
-                            <form class="contact-us-form">
-                                <!-- Form -->
-
-                                <fieldset class="border-light scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2">First Name</legend>
+                                <fieldset class="input-group border rounded-1 ps-1">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">First Name</legend>
                                     <input type="text"
-                                           class="form-control border-0"
+                                           class="form-control form-control-lg border-0 shadow-none outline-0"
                                            id="text_input_1"
-                                           name="text-input-1"
+                                           name="first_name"
                                            placeholder=""
-                                           value="{{old('text_input_1')}}"/>
-
-
+                                           value="{{old('first_name')}}"/>
                                 </fieldset>
-                                <!-- End Form -->
-                                <fieldset class="border-light mt-4 scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2">Last Name</legend>
+                                @error('first_name')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+                            <!-- End Form -->
+                                <fieldset class="input-group border rounded-1 ps-1 mt-3">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Last Name</legend>
                                     <input type="text"
-                                           class="form-control"
-                                           name="text-input-2"
+                                           class="form-control form-control-lg border-0 shadow-none outline-0"
+                                           name="last_name"
                                            id="text_input_2"
                                            placeholder=""
-                                           value="{{old('text_input_2')}}"/>
+                                           value="{{old('last_name')}}"/>
                                 </fieldset>
-                                <fieldset class="border-light mt-4 scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2">Email</legend>
+                                @error('last_name')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+
+                                <fieldset class="input-group border rounded-1 ps-1 mt-3">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Email</legend>
                                     <input type="text"
-                                           class="form-control"
+                                           class="form-control form-control-lg border-0 shadow-none outline-0l"
                                            id="text_input_3"
-                                           name="text-input-3"
+                                           name="email"
                                            placeholder=""
-                                           value="{{old('text_input_3')}}"/>
+                                           value="{{old('email')}}"/>
                                 </fieldset>
-                                <fieldset class="border-light mt-4 scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2">Subject</legend>
+                                @error('email')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+
+                                <fieldset class="input-group border rounded-1 ps-1 mt-3">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Subject</legend>
                                     <input type="text"
-                                           class="form-control"
+                                           class="form-control form-control-lg border-0 shadow-none outline-0"
                                            id="text_input_4"
-                                           name="text-input-4"
+                                           name="subject"
                                            placeholder=""
-                                           value="{{old('text_input_4')}}"/>
+                                           value="{{old('subject')}}"/>
                                 </fieldset>
-                                <fieldset class="border-light mt-4 scheduler-border">
-                                    <legend class="float-none w-auto fs-5 mb-0 px-2">Comments</legend>
-                                    <textarea  class="form-control" id="text-input-5"
-                                           placeholder="" value="Subject" rows="3"></textarea>
+                                @error('subject')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+
+                                <fieldset class="input-group border rounded-1 ps-1 mt-3">
+                                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Comments</legend>
+                                    <textarea  class="form-control form-control-lg border-0 shadow-none outline-0" name="comment" id="text-input-5" rows="4">
+                                    </textarea>
                                 </fieldset>
-                                <div class="d-block d-md-flex justify-content-center text-center contact-btn mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">Send</button>
-                                    <button type="submit" class="btn btn-secondary btn-lg ms-0 ms-md-3 mt-3 mt-sm-0">Reset</button>
+                                @error('comment')
+                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+
+                                <div class="btn btn-group gap-3 text-center mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg rounded px-5">Send</button>
+                                    <button type="button" onclick="resetForm()" class="btn btn-secondary btn-lg rounded px-5">Reset</button>
                                 </div>
+
                             </form>
-                            <!-- End Form -->
                         </div>
                     </div>
                     <!-- End Card -->
@@ -171,6 +124,14 @@
     </div>
     <!-- End Contact Form -->
 
+@push('scripts')
 
+        <script>
+            function resetForm() {
+                document.getElementById("contactForm").reset();
+            }
+        </script>
+
+@endpush
 
 </x-guest-layout>

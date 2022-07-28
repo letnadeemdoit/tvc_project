@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\House;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -20,25 +21,53 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make($input, [
-            'HouseID' => ['required','unique:House'],
+        $validate = Validator::make($input, [
+            'HouseName' => ['required','unique:House'],
             'City' => ['required'],
             'State' => ['required'],
+            'ReferredBy' => ['required'],
             'user_name' => ['required','unique:users'],
             'email' => ['required'],
+            'role' => ['required'],
             'AdminOwner' => ['nullable'],
             'first_name' => ['required'],
             'last_name' => ['required'],
             'password' => $this->passwordRules(),
             'password_confirmation' => 'required'
 
-//            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+        $house = House::create([
+            'HouseName' => $input['HouseName'],
+            'City' => $input['City'],
+            'State' => $input['State'],
+            'ReferredBy' => $input['ReferredBy'],
         ]);
+
+        $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
+
+        if ($house){
+
+            if (!isset($input['AdminOwner'])){
+                $AdminOwner =  'N';
+            }else{
+                $AdminOwner =  $input['AdminOwner'];
+            }
+
+            $user = User::create([
+                'user_name' => $input['user_name'],
+                'email' => $input['email'],
+                'AdminOwner' => $AdminOwner,
+                'first_name' => $input['first_name'],
+                'last_name' => $input['last_name'],
+                'role' => $input['role'],
+                'HouseId' => $getCreatedHouseId->HouseID,
+                'old_password' => Hash::make('password'),
+                'password' => Hash::make($input['password']),
+            ]);
+        }
+
+        return $user;
+
     }
 }

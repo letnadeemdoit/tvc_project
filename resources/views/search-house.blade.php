@@ -1,5 +1,4 @@
 <x-auth-layout>
-    @include('layouts.partials.navigation-menu-top-guest')
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
@@ -7,7 +6,7 @@
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 37rem;">
 
             <div class="mb-5">
-                <h1 class="display-4 popping-bold">Search <span class="text-primary">House</span></h1>
+                <h1 class="display-5">Search <span class="text-primary">House</span></h1>
                 <p>Search your house here to have beautiful vacations with your family.</p>
             </div>
 
@@ -19,35 +18,9 @@
 
             <x-jet-validation-errors class="mb-4" />
 
-            <form class="bg-light-primary p-4 border-solid rounded-2">
-
-                <div class="d-block d-md-flex">
-                    <div class="t-dropdown-block w-75">
-                        <div class="t-dropdown-select">
-                            <input type="text" class="t-dropdown-input py-3" placeholder="Search & select your house..." />
-                            <span class="t-select-btn border-start-0">
-                            </span>
-                        </div>
-                        <ul class="t-dropdown-list">
-                            <li class="t-dropdown-item">Item 1</li>
-                            <li class="t-dropdown-item">Item 2</li>
-                            <li class="t-dropdown-item">Item 3</li>
-                            <li class="t-dropdown-item">Item 4</li>
-                            <li class="t-dropdown-item">Item 5</li>
-                            <li class="t-dropdown-item">Item 6</li>
-                            <li class="t-dropdown-item">Item 7</li>
-                            <li class="t-dropdown-item">Item 8</li>
-                            <li class="t-dropdown-item">Item 9</li>
-                            <li class="t-dropdown-item">Item 10</li>
-                            <li class="t-dropdown-item">Item 11</li>
-                            <li class="t-dropdown-item">Item 12</li>
-                        </ul>
-                    </div>
+            <form class="bg-light-primary p-4 border-solid">
 
 
-
-                    <button class="btn bg-primary text-white ms-0 ms-md-3  mt-2 mt-md-0 btn-text">Go to House</button>
-                </div>
             </form>
         </div>
     </x-jet-authentication-card>

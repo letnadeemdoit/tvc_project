@@ -14,6 +14,10 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
         @stack('stylesheets')
+
+        <style>
+
+        </style>
     </head>
     <body>
         <main>
