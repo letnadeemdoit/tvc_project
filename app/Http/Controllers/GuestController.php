@@ -33,7 +33,7 @@ class GuestController extends Controller
 
         Mail::send([], [], function ($message) use($request) {
 
-            $message->to('dash@app.com')
+            $message->to('ddnouman@gmail.com')
 
             ->subject($request->first_name. ' '.'Contact Query' )
 
