@@ -10,8 +10,8 @@ class DisplayAsList extends Component
     public function render()
     {
 
-        $users = User:: paginate(18);
+        $users = User::orderBy('user_id','DESC')->paginate(18);
 
-        return view('dash.user.display-as.list',compact('users'));
+        return view('dash.users.display-as.list',compact('users'));
     }
 }
