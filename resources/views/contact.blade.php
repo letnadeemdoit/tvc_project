@@ -3,19 +3,17 @@
 
     <section class="text-center">
         <div class="container">
-            <div class="row my-5">
-                <div class="col-md-6 mx-auto">
+            <div class="row mb-5 section-padding">
+                <div class="col-md-9 col-lg-5 mx-auto">
                     <div class="contact-text shadow-1-strong rounded  d-flex justify-content-center">
                         <h1 class="text-primary font-vintage mb-0">Contact US</h1>
                     </div>
-                    <h3 class="pt-2">We’d Love to Hear From You</h3>
-                    <p class="pt-2">Thank you very much for visiting TheVacationCalendar.com. If you have any questions
-                        about the service, technical issues, or any other suggestions, please feel free to email.</p>
+                    <h2 class="pt-2 popping-bold">We’d Love to Hear From You</h2>
+                    <p class="pt-2">Thank you very much for visiting TheVacationCalendar.com. If you have any questions about the service, technical issues, or any other suggestions, please feel free to email.</p>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Contact Form -->
     <div class="contact-page">
         <div class="container content-space-2 content-space-lg-3 " style="padding-top: 0 !important;">

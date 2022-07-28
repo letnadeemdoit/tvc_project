@@ -113,15 +113,16 @@
 
                     </div>
                     <div class="mb-2">
+
+                        <!-- Dropzone -->
                         <div id="basicExampleDropzone" class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light">
                             <div class="dz-message">
-                                <img class="avatar avatar-xl avatar-4x3 mb-3" src="../assets/svg/illustrations/oc-browse.svg" alt="Image Description">
+
+{{--                                <img class="avatar avatar-xl avatar-4x3 mb-3" src="../assets/svg/illustrations/oc-browse.svg" alt="Image Description">--}}
 
                                 <h5>Drag and drop your file here</h5>
 
                                 <p class="mb-2">or</p>
-
-                                <input type="file" name="img">
 
                                 <span class="btn bg-primary btn-sm text-white">Upload Image</span>
                             </div>
@@ -361,15 +362,6 @@
     @push('scripts')
 
 
-        <script src="{{asset('admin/assets/vendor/dropzone/dist/min/dropzone.min.js')}}"></script>
-
-        <script>
-            (function() {
-                // INITIALIZATION OF DROPZONE
-                // =======================================================
-                HSCore.components.HSDropzone.init('.js-dropzone')
-            });
-        </script>
 
 
     @endpush
