@@ -92,8 +92,7 @@
 
                                 <fieldset class="input-group border rounded-1 ps-1 mt-3">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Comments</legend>
-                                    <textarea  class="form-control form-control-lg border-0 shadow-none outline-0" name="comment" id="text-input-5" rows="4">
-                                    </textarea>
+                                    <textarea  class="form-control form-control-lg border-0 shadow-none outline-0" name="comment" id="text-input-5" rows="4"></textarea>
                                 </fieldset>
                                 @error('comment')
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
