@@ -23,8 +23,8 @@
                 @csrf
 
                 <div class="mb-4">
-                    <fieldset class="border-light input-group scheduler-border">
-                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">{{ __('Admin Email Address') }}</legend>
+                    <fieldset class="input-group border rounded-1 ps-1">
+                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">{{ __('Admin Email Address') }}</legend>
                         <input
                             id="email"
                             class="form-control form-control-lg"
