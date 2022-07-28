@@ -1,6 +1,11 @@
 <div class="card">
     <!-- Header -->
     <div class="card-header">
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
         <div class="row justify-content-between align-items-center flex-grow-1">
             <div class="col-12 col-md">
                 <div class="d-flex justify-content-between align-items-center">
@@ -13,10 +18,16 @@
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
-                        <div class="input-group-prepend input-group-text">
+                        <div class="input-group-prepend input-group-text" wire:loading.remove>
                             <i class="bi-search"></i>
                         </div>
-                        <input id="datatableWithSearchInput" type="search" class="form-control"
+
+                        <div class="input-group-prepend input-group-text" wire:loading wire:target="searchQuery">
+                            <div class="spinner-border" style="width: 20px;height: 20px" role="status">
+                            </div>
+                        </div>
+
+                        <input wire:model="searchQuery" id="datatableWithSearchInput" type="search" class="form-control"
                                placeholder="Search users" aria-label="Search users">
                     </div>
                     <!-- End Search -->
