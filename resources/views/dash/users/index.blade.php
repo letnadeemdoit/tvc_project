@@ -23,8 +23,6 @@
             <!-- End Row -->
         </div>
 
-
-
         <!-- End Page Header -->
 
         @livewire('users.display-as-list')

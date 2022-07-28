@@ -1,6 +1,11 @@
 <div class="card">
     <!-- Header -->
     <div class="card-header">
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
         <div class="row justify-content-between align-items-center flex-grow-1">
             <div class="col-12 col-md">
                 <div class="d-flex justify-content-between align-items-center">
