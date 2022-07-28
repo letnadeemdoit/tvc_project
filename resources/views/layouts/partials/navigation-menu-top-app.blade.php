@@ -701,7 +701,7 @@
                                         <img class="avatar-img" src="{{asset('dash/assets/img/160x160/img6.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="flex-grow-1 ms-3">
-                                        <h5 class="mb-0">Mark Williams</h5>
+                                        <h5 class="mb-0">{{Auth::user()->user_name ?? 'User Name'}}</h5>
                                         <p class="card-text text-body">mark@site.com</p>
                                     </div>
                                 </div>

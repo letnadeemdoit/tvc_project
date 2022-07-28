@@ -18,8 +18,13 @@
 
                 <!-- End Col -->
             </div>
+
+            <h5 class="mb-0 text-capitalize">{{Auth::user()->user_name ?? 'User Name'}}</h5>
             <!-- End Row -->
         </div>
+
+
+
         <!-- End Page Header -->
 
         @livewire('users.display-as-list')
@@ -36,7 +41,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class=""  action="{{ route('register') }}" method="post">
+                    <form class=""  action="{{ route('users.store') }}" method="post">
                         @csrf
                         <fieldset class="scheduler-border fieldset-padding">
                             <legend class="scheduler-border">House Details</legend>
@@ -50,8 +55,8 @@
                                             <input
                                                 type="text"
                                                 class="form-control form-control-lg"
-                                                name="HouseID"
-                                                id="HouseID"
+                                                name="HouseName"
+                                                id="HouseName"
                                                 placeholder="Enter House Name"
                                                 value="{{old('HouseName')}}"
                                             />
@@ -91,7 +96,7 @@
                                             <legend class="float-none w-auto fs-5 mb-0">State</legend>
                                             <input
                                                 type="text"
-                                                class="form-control" name="state"
+                                                class="form-control" name="State"
                                                 id="State"
                                                 placeholder="State"
                                                 value="{{ old('state') }}"
@@ -154,7 +159,7 @@
                                         <fieldset class="border-light input-group scheduler-border">
                                             <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Username</legend>
                                             <input type="text" class="form-control form-control-lg border-end-0"
-                                                   name="text"
+                                                   name="user_name"
                                                    id="user_name" tabindex="1"
                                                    placeholder=""
                                                    value="{{ old('user_name') }}"
@@ -187,6 +192,42 @@
                                             </a>
                                         </fieldset>
                                         @error('email')
+                                        <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                        @enderror
+                                    </div>
+
+                                </div>
+
+                               <div class="col-12">
+                                   <div class="form-check mt-2 col-12">
+                                       <label class="form-check-label" for="remember_me">
+                                           Allow Administrator to have Owner Permissions.
+                                       </label>
+                                       <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+
+                                   </div>
+                               </div>
+
+                            </div>
+                            <div class="row pt-2">
+                                <div class="col-md-12">
+                                    <div class="">
+                                        <fieldset class="border-light input-group scheduler-border">
+                                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Role</legend>
+                                            <select class="form-control form-control-lg border-end-0"
+                                                   name="role"
+                                                   id="role" tabindex="1"
+                                                   value="{{ old('role') }}"
+                                                   placeholder=""
+                                                   aria-label=""
+                                            >
+                                                <option readonly="" value="">Please Select Role</option>
+                                                <option value="Administrator">Administrator</option>
+                                                <option value="Administrator">Guest</option>
+                                                <option value="Administrator">Owner</option>
+                                            </select>
+                                        </fieldset>
+                                        @error('role')
                                         <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                         @enderror
                                     </div>
@@ -247,7 +288,7 @@
                                     <div class="mt-3">
                                         <fieldset class="border-light input-group scheduler-border">
                                             <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Create Password</legend>
-                                            <input type="text"
+                                            <input type="password"
                                                    class="form-control form-control-lg border-end-0"
                                                    name="password"
                                                    value="{{old('password')}}"
@@ -271,7 +312,7 @@
                                     <div class="mt-3">
                                         <fieldset class="border-light input-group scheduler-border">
                                             <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Confirm Password</legend>
-                                            <input type="text"
+                                            <input type="password"
                                                    class="form-control form-control-lg border-end-0"
                                                    name="password_confirmation"
                                                    value="{{old('confirm_password')}}"

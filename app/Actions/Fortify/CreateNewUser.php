@@ -21,24 +21,21 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-
-        Validator::make($input, [
+        $validate = Validator::make($input, [
             'HouseName' => ['required','unique:House'],
             'City' => ['required'],
             'State' => ['required'],
             'ReferredBy' => ['required'],
             'user_name' => ['required','unique:users'],
             'email' => ['required'],
+            'role' => ['required'],
             'AdminOwner' => ['nullable'],
             'first_name' => ['required'],
             'last_name' => ['required'],
             'password' => $this->passwordRules(),
             'password_confirmation' => 'required'
 
-//            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-
         ])->validate();
-
 
         $house = House::create([
             'HouseName' => $input['HouseName'],
@@ -48,12 +45,6 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
-
-        if (\Request::routeIs('users.index')){
-            dd("request from dashboard");
-        }else{
-            dd("request from signup");
-        }
 
         if ($house){
 
@@ -69,6 +60,7 @@ class CreateNewUser implements CreatesNewUsers
                 'AdminOwner' => $AdminOwner,
                 'first_name' => $input['first_name'],
                 'last_name' => $input['last_name'],
+                'role' => $input['role'],
                 'HouseId' => $getCreatedHouseId->HouseID,
                 'old_password' => Hash::make('password'),
                 'password' => Hash::make($input['password']),
@@ -76,5 +68,6 @@ class CreateNewUser implements CreatesNewUsers
         }
 
         return $user;
+
     }
 }

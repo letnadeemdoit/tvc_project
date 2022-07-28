@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
@@ -35,7 +36,28 @@ class UserController extends Controller
      */
     public function store(Request $request, CreatesNewUsers $newUser)
     {
-        //
+
+        $user =  $newUser->create($request->all());
+
+//        $createUserID =$user->user_id;
+
+//        dd(\Auth::user());
+
+        $data = [
+            'Audit_user_name' => auth()->user()->user_name,
+            'Audit_Role' => auth()->user()->role,
+            'Audit_FirstName' => auth()->user()->first_name,
+            'Audit_LastName' => auth()->user()->last_name,
+            'Audit_Email' => auth()->user()->email,
+            'old_password' => auth()->user()->old_password,
+        ];
+
+        $user->update($data);
+
+        $user->fresh();
+
+        dd($user);
+
     }
 
     /**
@@ -67,7 +89,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, UpdateUserProfileInformation $updateUserProfileInformation)
     {
         //
     }

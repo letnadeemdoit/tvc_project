@@ -36,8 +36,8 @@
                                     <input
                                         type="text"
                                         class="form-control form-control-lg"
-                                        name="HouseID"
-                                        id="HouseID"
+                                        name="HouseName"
+                                        id="HouseName"
                                         placeholder="Enter House Name"
                                         value="{{old('HouseName')}}"
                                     />
@@ -77,7 +77,7 @@
                                     <legend class="float-none w-auto fs-5 mb-0">State</legend>
                                     <input
                                         type="text"
-                                        class="form-control" name="state"
+                                        class="form-control" name="State"
                                         id="State"
                                         placeholder="State"
                                         value="{{ old('state') }}"
@@ -140,7 +140,7 @@
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Username</legend>
                                     <input type="text" class="form-control form-control-lg border-end-0"
-                                           name="text"
+                                           name="user_name"
                                            id="user_name" tabindex="1"
                                            placeholder=""
                                            value="{{ old('user_name') }}"
@@ -179,6 +179,9 @@
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
                             </div>
+
+                            <input type="hidden" name="role" value="Administrator">
+
                             <div class="form-check mt-2">
                                 <label class="form-check-label" for="remember_me">
                                     Allow Administrator to have Owner Permissions.
@@ -229,7 +232,7 @@
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Create Password</legend>
-                                    <input type="text"
+                                    <input type="password"
                                            class="form-control form-control-lg border-end-0"
                                            name="password"
                                            value="{{old('password')}}"
@@ -255,7 +258,7 @@
                             <div class="mt-3">
                                 <fieldset class="border-light input-group scheduler-border">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Confirm Password</legend>
-                                    <input type="text"
+                                    <input type="password"
                                            class="form-control form-control-lg border-end-0"
                                            name="password_confirmation"
                                            value="{{old('confirm_password')}}"
