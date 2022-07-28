@@ -32,6 +32,9 @@ body{
 .hero-text{
     font-size: 2.8rem;
 }
+.bg-skin{
+    background-color: rgba(210, 206, 205, 0.58);
+}
 @font-face {
     font-family: poppins;
     src: url('/fonts/Poppins-Regular.ttf');
@@ -107,6 +110,12 @@ body{
 .h-20{
     height: 20px;
 }
+.min-height{
+    min-height: 600px;
+}
+.padding-y{
+    padding: 110px 0px;
+}
 .btn-dark-secondary{
     background: $dark-blue;
     color: #fff;
@@ -117,56 +126,56 @@ body{
 .border-dashed{
     border: 1px dashed $primary !important;
 }
-.fieldset-padding{
-    padding: 1.4rem !important;
-}
+//.fieldset-padding{
+//    padding: 1.4rem !important;
+//}
 .fieldset-border{
     border: 1px solid #1A395A !important;
 }
 // fieldset
-.form-check-css{
-    border: 1px solid $primary;
-    border-radius: 0px !important;
-}
-fieldset.scheduler-border {
-    border: 1px solid #BEC4C8 !important;
-    padding:3px 12px 14px 12px;
-    margin: 0 0 1.5em 0 !important;
-    -webkit-box-shadow: 0px 0px 0px 0px #000;
-    box-shadow: 0px 0px 0px 0px #000;
-    i{
-        padding-top: 0.30rem;
-    }
-}
-
-legend.scheduler-border {
-    font-size: 1.2em !important;
-    font-weight: bold !important;
-    text-align: left !important;
-    width: auto;
-    padding: 0 10px;
-    border-bottom: none;
-    margin-top: -34px;
-    background-color: white;
-    color: black;
-}
-.scheduler-border {
-
-    .form-control{
-        border: 0px !important;
-        //padding-top: 0.25rem !important;
-    }
-
-    .form-control:focus{
-        box-shadow: none !important;
-    }
-    .input-group-text{
-        padding: 0.3rem !important;
-    }
-    textarea{
-        border: 0px !important;
-    }
-}
+//.form-check-css{
+//    border: 1px solid $primary;
+//    border-radius: 0px !important;
+//}
+//    fieldset.scheduler-border {
+//        border: 1px solid #BEC4C8 !important;
+//        padding:3px 12px 14px 12px;
+//        margin: 0 0 1.5em 0 !important;
+//        -webkit-box-shadow: 0px 0px 0px 0px #000;
+//        box-shadow: 0px 0px 0px 0px #000;
+//    i{
+//        padding-top: 0.30rem;
+//    }
+//    }
+//
+//    legend.scheduler-border {
+//        font-size: 1.2em !important;
+//        font-weight: bold !important;
+//        text-align: left !important;
+//        width: auto;
+//        padding: 0 10px;
+//        border-bottom: none;
+//        margin-top: -34px;
+//        background-color: white;
+//        color: black;
+//    }
+//.scheduler-border {
+//
+//    .form-control{
+//        border: 0px !important;
+//        //padding-top: 0.25rem !important;
+//    }
+//
+//    .form-control:focus{
+//        box-shadow: none !important;
+//    }
+//    .input-group-text{
+//        padding: 0.3rem !important;
+//    }
+//    textarea{
+//        border: 0px !important;
+//    }
+//}
 // fieldset ends
 
 .social-img{
@@ -174,7 +183,7 @@ legend.scheduler-border {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height: 40px;
+    height:50px;
 }
 .bg-social-feed{
     background: url('/images/images-home/cards-background.png');
@@ -212,8 +221,8 @@ header{
 
 .images-nav-tabs {
     .nav-link {
-        background-color: rgba(163, 163, 163, 0.12) !important;
-        border: none !important;
+        background-color:#fff;
+        border: 1px solid #D3D2D2 !important;
         padding: 12px !important;
         margin-right: 14px;
         margin-bottom: 12px;
@@ -229,6 +238,7 @@ header{
     .nav-link.active {
         background: #E8604C !important;
         color: #fff;
+        font-weight: 300 !important;
         img{
             filter: brightness(0) invert(1);
         }
@@ -262,6 +272,7 @@ header{
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+    height: 40px;
 }
 .help-text{
     background-image: url('/images/help-images/help.png');
@@ -282,7 +293,7 @@ header{
 }
 .rounded-icon{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-left:-23px;
+    margin-left:-40px;
 }
 .card-pinned-bottom-start {
     bottom: -1rem !important;
@@ -293,7 +304,7 @@ header{
     background-position-x:93%;
     background-position-y:93%;
     background-size: auto;
-    min-height:350px;
+    min-height:300px;
 }
 @mixin background-properties{
     background-repeat: no-repeat;
@@ -373,6 +384,7 @@ header{
         outline: 0 !important;
     }
 }
+
 .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link{
     //padding: 0.75rem !important;
 }
@@ -505,8 +517,8 @@ header{
 }
 @media only screen and (max-width:991px){
     .rounded-icon {
-        width: 9%;
-        margin: 0 auto !important;
+        width: 8%;
+        margin: -30px auto !important;
     }
 
     .padding-top{
@@ -535,11 +547,17 @@ header{
     .bg-process-img{
         background-position: center !important;
     }
+    .margin-top{
+        margin-top: 50px;
+    }
+    .margin-y{
+        margin: 50px 0px !important;
+    }
 }
 @media only screen and (max-width:767px) {
     .rounded-icon {
         width: 11%;
-        margin: 0 auto !important;
+        margin: -31px auto !important;
     }
     .padding-top{
         padding-top: 6rem !important;
@@ -588,7 +606,7 @@ header{
     }
     .rounded-icon{
         width:12%;
-        margin: 0 auto !important;
+        margin: -30px auto !important;
     }
     .padding-top{
         padding-top: 6rem !important;
@@ -630,11 +648,16 @@ header{
             width: 100%;
         }
     }
+    .feature-cards {
+        .card {
+            min-height:revert !important;
+        }
+    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
         width:15%;
-        margin: 0 auto !important;
+        margin: -26px auto !important;
     }
     .category-cards {
         .nav.nav-tabs{
@@ -709,7 +732,7 @@ header{
 .bulletin-image{
     background-image: url('/images/bulletin-images/bulletin.png');
     @include  background-properties;
-    height:350px;
+    height:435px;
 }
 .category-cards{
 

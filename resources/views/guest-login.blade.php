@@ -1,4 +1,5 @@
 <x-auth-layout>
+    @include('layouts.partials.navigation-menu-top-guest')
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
@@ -6,7 +7,7 @@
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 25rem;">
             <div class="text-start">
                 <div class="mb-5">
-                    <h1 class="display-5">Login Account <span class="text-primary">as Guest.</span></h1>
+                    <h1 class="display-5 popping-bold">Login Account <span class="text-primary">as Guest.</span></h1>
                     <p>{{ __('to get beautiful home for vacations to make your vacations memorable.') }}</p>
                 </div>
             </div>
@@ -27,7 +28,7 @@
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">{{ __('Shared Password') }}</legend>
                         <input
                             id="email"
-                            class="form-control form-control-lg"
+                            class="form-control"
                             type="email"
                             name="email"
                             value="{{ old('email') }}"
@@ -47,7 +48,7 @@
                         <label class="form-check-label" for="remember_me">
                           Remember me
                         </label>
-                        <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+                        <input type="checkbox" class="form-check-input form-check-css" name="remember_me" value="" id="remember_me">
 
                     </div>
                 </div>

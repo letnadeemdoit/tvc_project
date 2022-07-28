@@ -5,10 +5,9 @@
             <div class="col-md-6">
                 <div class="d-flex justify-content-center justify-content-md-start">
 
-                    <a href="#"> <i class="bi-facebook fs-3 text-white"></i></a>
+                    <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
                     <a href="#">  <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
                     <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
-
                 </div>
             </div>
             <div class="col-md-6">
@@ -41,7 +40,7 @@
                        alt="Logo" data-hs-theme-appearance="default" />
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-default">
         <i class="bi-list"></i>
     </span>
@@ -69,7 +68,7 @@
                 </ul>
                 <div class="d-block d-md-flex nav-buttons">
                     <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5" type="submit">SIGN UP</a>
-                    <a href="{{route('login')}}" class="btn btn-outline bg-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white" type="submit">LOGIN</a>
+                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white" type="submit">LOGIN</a>
                 </div>
             </div>
         </nav>

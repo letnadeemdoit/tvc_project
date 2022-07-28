@@ -1,4 +1,5 @@
 <x-auth-layout>
+    @include('layouts.partials.navigation-menu-top-guest')
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
@@ -6,7 +7,7 @@
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 25rem;">
             <div class="text-start">
                 <div class="mb-5">
-                    <h1 class="display-5">Reset Your <span class="text-primary">Password?</span></h1>
+                    <h1 class="display-5 popping-bold">Reset Your <span class="text-primary">Password?</span></h1>
                     <p>{{ __('Don’t worry if you forget the password just enter your email.') }}</p>
                 </div>
             </div>

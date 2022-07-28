@@ -86,4 +86,7 @@ class GuestController extends Controller
     public function searchHouse() {
         return view('search-house');
     }
+    public function bulletin(){
+        return view('bulletin-board.index');
+    }
 }
