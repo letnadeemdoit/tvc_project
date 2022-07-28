@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,7 @@ Route::controller(\App\Http\Controllers\Select2Controller::class)
         Route::get('houses', 'houses')->name('houses');
     });
 Route::resource('blogs', BlogController::class);
+Route::resource('users', UserController::class);
 
 Route::get('/dashboard', function () {
     return view('dash.index');

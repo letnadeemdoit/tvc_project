@@ -35,7 +35,7 @@
                                 <div class="alert alert-success">
                                     {{ session()->get('success') }}
                                 </div>
-                        @endif
+                             @endif
 
                         <!-- Form -->
                             <form action="{{route('guest.contact.mail')}}" method="post" id="contactForm">

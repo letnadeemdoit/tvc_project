@@ -37,6 +37,12 @@
                     <small class="bi-three-dots nav-subtitle-replacer"></small>
                     <div id="navbarVerticalMenuPagesMenu">
 
+                        <div class="nav-item">
+                            <a class="nav-link" href="{{route('users.index')}}" data-placement="left">
+                                <i class="bi-person nav-icon"></i>
+                                <span class="nav-link-title">Users</span>
+                            </a>
+                        </div>
 
                         <div class="nav-item">
                             <a class="nav-link" href="./welcome-page.html" data-placement="left">

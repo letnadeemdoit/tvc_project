@@ -39,10 +39,10 @@
                                         name="HouseID"
                                         id="HouseID"
                                         placeholder="Enter House Name"
-                                        value="{{old('HouseID')}}"
+                                        value="{{old('HouseName')}}"
                                     />
                                 </fieldset>
-                                @error('HouseID')
+                                @error('HouseName')
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
                             </div>
@@ -145,13 +145,13 @@
                                            placeholder=""
                                            value="{{ old('user_name') }}"
                                            aria-label=""
-                                           required />
+                                    />
                                     <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
                                         <i class="bi bi-person text-primary"></i>
                                     </a>
                                 </fieldset>
                                 @error('user_name')
-                                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                     <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
                             </div>
                             <!-- End Form -->
@@ -291,6 +291,8 @@
 
                 </fieldset>
             </form>
+
+
             <div class="text-center">
                 <p>Already have an account?<a href="{{route('login')}}" class="text-decoration-underline text-primary">Login</a></p>
             </div>

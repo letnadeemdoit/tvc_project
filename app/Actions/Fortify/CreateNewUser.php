@@ -36,6 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'password_confirmation' => 'required'
 
 //            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+
         ])->validate();
 
 
@@ -47,6 +48,12 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
+
+        if (\Request::routeIs('users.index')){
+            dd("request from dashboard");
+        }else{
+            dd("request from signup");
+        }
 
         if ($house){
 
