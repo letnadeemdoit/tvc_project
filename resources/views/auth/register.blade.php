@@ -131,7 +131,7 @@
                 </fieldset>
                 <!-- End Form -->
                 <!-- second fieldset -->
-                <fieldset class="scheduler-border fieldset-padding">
+                <fieldset class="scheduler-border fieldset-padding ">
                     <legend class="scheduler-border">Admin Details</legend>
                     <!-- Form -->
                     <div class="row pt-2">
