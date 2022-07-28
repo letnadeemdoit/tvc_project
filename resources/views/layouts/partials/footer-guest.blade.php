@@ -1,9 +1,9 @@
 <!-- Footer -->
-<div class="bg-dark border-top">
-    <div class="container pt-3">
+<div class="bg-dark-blue border-top">
+    <div class="container py-3">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-                <div class="fs-6 mb-2 mb-md-0 mb-lg-0 mb-xl-0 text-center text-md-start text-white d-flex align-items-center">
+                <div class="fs-6 mb-2 mb-md-0 text-white d-flex align-items-center justify-content-center justify-content-md-start">
                     Powered by {{ config('app.name') }}.
                     <a href="#" class="text-decoration-none text-white ps-3">
                         <i class="bi-facebook fs-3"></i>
