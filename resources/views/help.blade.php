@@ -88,10 +88,10 @@
                             <div class="accordion" id="myAccordion">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
-                                        <button type="button" class="accordion-button collapsed"
+                                        <button type="button" class="accordion-button"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseOne">Quick Start Guide for Administrators</button>
                                     </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
                                          data-bs-parent="#myAccordion">
                                         <div class="card-body bottom-box-shadow">
                                             <p>Here are the steps to quickly get your house up and running quickly. For a more thorough understanding of the website please scroll down to see the full Instructions for Administrators or <a href="#" >click here.</a>  Please note the <a href="#">Need Help?</a> link at the top right which has a complete instruction guide to TheVacationCalendar.com.</p>
@@ -106,10 +106,10 @@
                                 </div>
                                 <div class="accordion-item mt-3">
                                     <h2 class="accordion-header" id="headingTwo">
-                                        <button type="button" class="accordion-button" data-bs-toggle="collapse"
+                                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseTwo">Quick Start Guide for Owners</button>
                                     </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse show"
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
                                          data-bs-parent="#myAccordion">
                                         <div class="card-body bottom-box-shadow">
                                             <p>Here are the steps to quickly get your house up and running quickly. For a more thorough understanding of the website please scroll down to see the full Instructions for Owners or <a href="#">click here </a>. Please note the <a href="#"> Need Help?</a> link at the top right which has a complete instruction guide to TheVacationCalendar.com.</p>
@@ -131,11 +131,11 @@
                             <div class="accordion" id="myAccordion-2">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingThree">
-                                        <button type="button" class="accordion-button collapsed"
+                                        <button type="button" class="accordion-button"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseThree">Instructions for Administrators
                                         </button>
                                     </h2>
-                                    <div id="collapseThree" class="accordion-collapse collapse"
+                                    <div id="collapseThree" class="accordion-collapse collapse show"
                                          data-bs-parent="#myAccordion-2">
                                         <div class="card-body bottom-box-shadow">
                                             <p>As an Administrator on TheVacationCalendar.com website, your responsibility is to set up the house, set up users, and monitor the content.
@@ -194,10 +194,10 @@
                                 </div>
                                 <div class="accordion-item mt-3">
                                     <h2 class="accordion-header" id="headingFour">
-                                        <button type="button" class="accordion-button" data-bs-toggle="collapse"
+                                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseFour">Instructions for Owners</button>
                                     </h2>
-                                    <div id="collapseFour" class="accordion-collapse collapse show"
+                                    <div id="collapseFour" class="accordion-collapse collapse"
                                          data-bs-parent="#myAccordion-2">
                                         <div class="card-body bottom-box-shadow">
 
@@ -252,11 +252,11 @@
                             <div class="accordion" id="myAccordion-3">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFive">
-                                        <button type="button" class="accordion-button collapsed"
+                                        <button type="button" class="accordion-button"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseFive">Different Ways to Use TheVacationCalendar.com
                                         </button>
                                     </h2>
-                                    <div id="collapseFive" class="accordion-collapse collapse"
+                                    <div id="collapseFive" class="accordion-collapse collapse show"
                                          data-bs-parent="#myAccordion-3">
                                         <div class="card-body bottom-box-shadow">
                                             <p>TheVacationCalendar.com website was designed to try to appease as many people as possible. Initially, it built for my family when they decided they did not want to have only one person manage the "official" calendar for the beach house. But even within our family, we had all different types of users. Some loved the complexity and rich functionality, but most politely asked if there was an easier way. The website has evolved to be able to support various types of people. This guide will help you set up the house so that it meets your needs, no matter which category you fall into.
@@ -302,11 +302,11 @@
                             <div class="accordion" id="myAccordion-4">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSeven">
-                                        <button type="button" class="accordion-button collapsed"
+                                        <button type="button" class="accordion-button"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseSeven">Understanding the Different Users and Roles
                                         </button>
                                     </h2>
-                                    <div id="collapseSeven" class="accordion-collapse collapse"
+                                    <div id="collapseSeven" class="accordion-collapse collapse show"
                                          data-bs-parent="#myAccordion-4">
                                         <div class="card-body bottom-box-shadow">
                                             <p>TheVacationCalendar.com has three different types of users that can access the website.

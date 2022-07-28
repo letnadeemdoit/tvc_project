@@ -6,7 +6,7 @@
                 <div class="fs-6 mb-2 mb-md-0 text-white d-flex align-items-center justify-content-center justify-content-md-start">
                     Powered by {{ config('app.name') }}.
                     <a href="#" class="text-decoration-none text-white ps-3">
-                        <i class="bi-facebook fs-3"></i>
+                        <i class="fa-brands fa-facebook-f fs-3"></i>
                     </a>
                     <a href="#" class="text-decoration-none text-white">
                         <i class="bi-twitter mx-3 fs-3"></i>
