@@ -45,6 +45,13 @@
                         </div>
 
                         <div class="nav-item">
+                            <a class="nav-link" href="{{route('houses.index')}}" data-placement="left">
+                                <i class="bi-house nav-icon"></i>
+                                <span class="nav-link-title">Houses</span>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
                             <a class="nav-link" href="./welcome-page.html" data-placement="left">
                                 <i class="bi-calendar-month nav-icon"></i>
                                 <span class="nav-link-title">Calendar</span>

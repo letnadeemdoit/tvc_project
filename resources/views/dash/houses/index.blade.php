@@ -27,12 +27,12 @@
 
         <!-- End Page Header -->
 
-        @livewire('users.display-as-list')
+        @livewire('houses.display-as-list')
     </div>
 
 
 
-    <!-- Modal -->
+    <!--Create User Modal -->
     <div class="modal fade" id="createUser" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
