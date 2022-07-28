@@ -36,7 +36,7 @@
             <x-jet-validation-errors class="mb-4"/>
 
             @if (session('status'))
-                <div class="mb-4 font-medium text-sm text-green-600">
+                <div class="alert alert-soft-success text-center mb-4" role="alert">
                     {{ session('status') }}
                 </div>
             @endif
