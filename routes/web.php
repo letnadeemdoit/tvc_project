@@ -41,6 +41,8 @@ Route::controller(\App\Http\Controllers\Select2Controller::class)
 Route::resource('blogs', BlogController::class);
 Route::resource('users', UserController::class);
 
+require_once __DIR__ . '/fortify.php';
+
 Route::get('/dashboard', function () {
     return view('dash.index');
 })->name('dashboard');

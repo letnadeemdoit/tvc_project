@@ -2,7 +2,6 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
-
         </x-slot>
 
         <div
@@ -10,14 +9,29 @@
             x-data="{
                 gotoHouse: false,
                 loginAsGuest: null,
+                role: '{{ old('role', 'Guest') }}',
+                houseIsSelected: false
             }"
-            x-init="$('.select2').select2({
-                ajax: {
-                url: '{{ route('select2.houses') }}',
-                dataType: 'json'
-                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
-                }
-            })"
+            x-init="
+                @if(old('role') !== null)
+                    gotoHouse = true;
+                    if (role === 'Guest') {
+                        loginAsGuest = true
+                    } else {
+                        loginAsGuest = false
+                    }
+                @endif
+
+                $('.select2').select2({
+                    ajax: {
+                    url: '{{ route('select2.houses') }}',
+                    dataType: 'json'
+                    // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+                    }
+                }).on('select2:select', function (e)  {
+                    houseIsSelected = true;
+                })
+            "
         >
             <x-jet-validation-errors class="mb-4"/>
 
@@ -29,6 +43,7 @@
             <!-- Form -->
             <form class="js-validate needs-validation" novalidate method="POST" action="{{ route('login') }}">
                 @csrf
+                <input type="hidden" x-model="role" name="role" />
                 {{-- Search House --}}
                 <div x-show="!gotoHouse">
                     <h1 class="display-4 fw-bold mb-0">Search <span class="text-primary">House</span></h1>
@@ -36,14 +51,23 @@
                         family.</small>
                     <div class="bg-soft-primary p-3 rounded-1 border border-primary row g-2">
                         <div class="col-8">
-                            <select class="form-control form-control-lg select2">
+                            <select class="form-control form-control-lg select2" name="house_id" x-model="house_id">
                                 <option disabled selected>Search &amp; select your house</option>
+                                @if(old('house_id') !== null)
+                                    @php
+                                        $selectedHouse = \App\Models\House::where('HouseID', old('house_id'))->first();
+                                    @endphp
+                                    @if($selectedHouse)
+                                        <option value="{{ old('house_id') }}" selected>{{ $selectedHouse->HouseName }}</option>
+                                    @endif
+                                @endif
                             </select>
                         </div>
                         <div class="col-4 d-grid">
                             <button
                                 class="btn btn-primary"
                                 @click.prevent="gotoHouse = true"
+                                x-bind:disabled="!houseIsSelected"
                             >
                                 Go to House
                             </button>
@@ -56,16 +80,16 @@
                         <div class="text-start">
                             <div class="mb-5 text-center">
                                 <h1 class="display-5">Login Account</h1>
-                                <span class="divider-center text-muted mt-4">OR</span>
+                                <span class="divider-center text-muted mt-4">as</span>
                             </div>
                         </div>
                         <div class="d-grid gap-2">
                             <button class="btn btn-dark-secondary btn-lg shadow-lg"
-                                    @click.prevent="loginAsGuest = false">
+                                    @click.prevent="loginAsGuest = false; role = 'AdministratorOrGuest';">
                                 {{ __('Administrator & Owner') }}
                             </button>
                             <button class="btn bg-light-primary border-solid btn-lg mt-3 text-dark"
-                                    @click.prevent="loginAsGuest = true">{{ __('Guest') }}</button>
+                                    @click.prevent="loginAsGuest = true; role = 'Guest';">{{ __('Guest') }}</button>
                         </div>
                     </div>
 
