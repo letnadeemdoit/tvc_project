@@ -5,7 +5,7 @@
 
     <header>
         <div class="position-relative d-flex align-items-center hero-image">
-            <div class="container">
+            <div class="container text-center text-md-start">
                 <p class="mb-1 display-4 text-primary font-vintage">Keep Track of When</p>
                 <h1 class="hero-text py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
                 <a href="{{route('register')}}"  class="btn btn-lg btn-signup btn-primary shadow-lg my-2">SIGN UP</a>
@@ -90,7 +90,7 @@
         {{--   cards-section   --}}
 
         <section class="py-5 bg-cards-section">
-            <div class="container pt-50 pb-3">
+            <div class="container pt-55 pb-3">
                 <div
                     class="features-img-2  text-center shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage mb-0 pt-2">Find Your Vacation House</h1>
@@ -144,7 +144,7 @@
                     <div class="col-lg-5">
                         <div
                             class="py-4 text-center shadow-1-strong rounded mb-0 text-white bg-process-img" />
-                        <h1 class="mb-0 h2 text-center text-md-start font-vintage text-primary">Find Your Vacation House</h1>
+                        <h1 class="mb-0 h2 text-center text-lg-start font-vintage text-primary">Find Your Vacation House</h1>
                     </div>
                     <div class="pt-3">
                         {{--          nav tabs           --}}
@@ -172,26 +172,26 @@
                             <ul class="nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start mt-2" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" role="tab" aria-controls="home" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/envelope.svg')}}" width="35px" class="" />
-                                        <p class="mb-0 pt-2 fw-bolder">House Blog</p>
+                                        <img src="{{asset('/images/images-home/envelope.svg')}}" class="img-fluid" />
+                                        <p class="mb-0 pt-2 fw-700">House Blog</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="false">
-                                        <img src="{{asset('/images/images-home/card.png')}}" width="35px" class="" />
-                                        <p class="mb-0 pt-2 fw-bolder">House Photo Album</p>
+                                        <img src="{{asset('/images/images-home/card.png')}}"  class="img-fluid" />
+                                        <p class="mb-0 pt-2 fw-700">House Photo Album</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" role="tab" aria-controls="contact" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/user.png')}}" width="35px" class="" />
-                                        <p class="mb-0 pt-2 fw-bolder">Account Management</p>
+                                        <img src="{{asset('/images/images-home/user.png')}}" class="img-fluid" />
+                                        <p class="mb-0 pt-2 fw-700">Account Management</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" role="tab" aria-controls="shopping" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/user-2.png')}}" width="35px" class="" />
-                                        <p class="mb-0 pt-2 fw-bolder">User Management</p>
+                                        <img src="{{asset('/images/images-home/user-2.png')}}" class="img-fluid" />
+                                        <p class="mb-0 pt-2 fw-700">User Management</p>
                                     </button>
                                 </li>
 
@@ -215,7 +215,7 @@
         <section class="p-2 p-lg-5 bg-social-feed">
             <div class="container">
                 <div
-                    class=" mt-5 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">
+                    class="mt-70 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage pt-2 mb-0">Find your vacation house</h1>
                 </div>
                 <h3 class="text-center text-white">See our social media feed.</h3>
