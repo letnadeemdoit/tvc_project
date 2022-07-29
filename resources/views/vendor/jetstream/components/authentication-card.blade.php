@@ -15,20 +15,20 @@
                     </a>
 
                     <!-- Select -->
-                    <div class="tom-select-custom tom-select-custom-end tom-select-custom-bg-transparent zi-2">
-                        <select class="js-select form-select form-select-sm form-select-borderless text-white"
-                                data-hs-tom-select-options='{
-                          "searchInDropdown": false,
-                          "hideSearch": true,
-                          "dropdownWidth": "12rem",
-                          "placeholder": "Select language"
-                        }'>
-                            <option value="language2" selected
-                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="/images/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Image description" width="16"/><span>English (UK)</span></span>'>
-                                English (UK)
-                            </option>
-                        </select>
-                    </div>
+{{--                    <div class="tom-select-custom tom-select-custom-end tom-select-custom-bg-transparent zi-2">--}}
+{{--                        <select class="js-select form-select form-select-sm form-select-borderless text-white"--}}
+{{--                                data-hs-tom-select-options='{--}}
+{{--                          "searchInDropdown": false,--}}
+{{--                          "hideSearch": true,--}}
+{{--                          "dropdownWidth": "12rem",--}}
+{{--                          "placeholder": "Select language"--}}
+{{--                        }'>--}}
+{{--                            <option value="language2" selected--}}
+{{--                                    data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="/images/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Image description" width="16"/><span>English (UK)</span></span>'>--}}
+{{--                                English (UK)--}}
+{{--                            </option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
                     <!-- End Select -->
                 </div>
             </div>

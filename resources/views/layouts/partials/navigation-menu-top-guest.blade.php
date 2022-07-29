@@ -67,8 +67,8 @@
 
                 </ul>
                 <div class="d-block d-md-flex nav-buttons">
-                    <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5" type="submit">SIGN UP</a>
-                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white" type="submit">LOGIN</a>
+                    <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5">SIGN UP</a>
+                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white">LOGIN</a>
                 </div>
             </div>
         </nav>

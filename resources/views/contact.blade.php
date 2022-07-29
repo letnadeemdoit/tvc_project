@@ -99,8 +99,8 @@
                                 @enderror
 
                                 <div class="btn gap-3 text-center mt-4 d-block d-md-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">Send</button>
-                                    <a href="#" onclick="resetForm()" class="btn  btn-lg bg-skin btn-min-160 shadow-lg rounded px-5 mt-3 mt-sm-0 border-0">Reset</a>
+                                    <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">SEND</button>
+                                    <a href="#" onclick="resetForm()" class="btn  btn-lg bg-skin btn-min-160 shadow-lg rounded px-5 mt-3 mt-sm-0 border-0">RESET</a>
                                 </div>
 
                             </form>
