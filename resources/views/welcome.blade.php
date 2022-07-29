@@ -178,19 +178,19 @@
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="false">
-                                        <img src="{{asset('/images/images-home/card.png')}}"  class="img-fluid" />
+                                        <img src="{{asset('/images/images-home/card.svg')}}"  class="img-fluid" />
                                         <p class="mb-0 pt-2 fw-600">House Photo Album</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" role="tab" aria-controls="contact" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/user.png')}}" class="img-fluid" />
+                                        <img src="{{asset('/images/images-home/user.svg')}}" class="img-fluid" />
                                         <p class="mb-0 pt-2 fw-600">Account Management</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" role="tab" aria-controls="shopping" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/user-2.png')}}" class="img-fluid" />
+                                        <img src="{{asset('/images/images-home/user-2.svg')}}" class="img-fluid" />
                                         <p class="mb-0 pt-2 fw-600">User Management</p>
                                     </button>
                                 </li>
