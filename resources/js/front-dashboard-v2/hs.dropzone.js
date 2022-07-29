@@ -8,7 +8,7 @@
 * Copyright 2021 Htmlstream
 */
 
-window.HSCore.components.HSDropzone = {
+HSCore.components.HSDropzone = {
     collection: [],
 
     dataAttributeName: 'data-hs-dropzone-options',

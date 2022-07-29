@@ -1,6 +1,8 @@
 import { Dropzone } from "dropzone";
 window.Dropzone =  Dropzone;
-window.HSCore = require('./hs.core');
+import HSCore from "./hs.core";
+window.HSCore = HSCore;
+
 require('./hs.dropzone');
 import HSBsDropdown from './hs.bs-dropdown'
 
