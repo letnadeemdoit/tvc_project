@@ -11,6 +11,9 @@ i:hover{
 .bg-light-primary{
     background: $bg-primary-light;
 }
+.color-secondary{
+    color: #606368;;
+}
 .border-solid{
     border: 1px solid $primary !important;
 }
@@ -95,10 +98,10 @@ body{
     background-size: contain;
     height: 40px;
 }
-#text-content{
+.text-content{
     display:none;
 }
-#text-content.show{
+.text-content.show{
     display:block; /* P.S: Use `!important` if missing `#content` (selector specificity). */
 }
 .hero-image{
@@ -127,11 +130,13 @@ body{
 .border-dashed{
     border: 1px dashed $primary !important;
 }
-//.fieldset-padding{
-//    padding: 1.4rem !important;
-//}
 .fieldset-border{
     border: 1px solid #1A395A !important;
+}
+fieldset{
+    i{
+        font-size: 19px;
+    }
 }
 
 
@@ -183,7 +188,7 @@ header{
         padding: 12px !important;
         margin-right: 14px;
         margin-bottom: 12px;
-        max-width: 90px;
+        max-width: 105px;
         min-width: 90px;
         min-height :100px;
         font-size: 10px;
@@ -286,7 +291,7 @@ header{
 // select starts
 
 .select2 {
-    width: 100%!important; /* force fluid responsive */
+    width: 75%!important; /* force fluid responsive */
     border: 1px solid rgba(0, 0, 0, 0.13);
 }
 
@@ -337,11 +342,6 @@ header{
     }
     .accordion-item{
         border: 0px solid #fff !important;
-        .card-body{
-            p{
-                font-size: 16px;
-            }
-        }
     }
     .bottom-box-shadow {
         box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);
@@ -604,11 +604,13 @@ header{
     .padding-top{
         padding-top: 6rem !important;
     }
-    .images-nav-tabs .nav-link{
-        width:80px !important;
-        font-size: 8px !important;
-        min-height:85px !important;
-        min-width: revert !important;
+    .images-nav-tabs {
+        .nav-link {
+            width: 80px !important;
+            font-size: 8px !important;
+            min-height: 85px !important;
+            min-width: revert !important;
+        }
     }
     .navbar-expand-lg .navbar-nav-wrap-secondary-content{
         margin-left: 0 !important;
@@ -671,12 +673,14 @@ header{
             }
         }
     }
-    .images-nav-tabs .nav-link{
-        width: 78px !important;
-        font-size: 9px !important;
-        margin-right: 5px !important;
-        padding: 7px !important;
-        min-height: 78px !important;
+    .images-nav-tabs {
+        .nav-link {
+            width: 78px !important;
+            font-size: 9px !important;
+            margin-right: 5px !important;
+            padding: 7px !important;
+            min-height: 78px !important;
+        }
     }
 }
 @media only screen and (max-width:375px){
@@ -717,6 +721,14 @@ header{
             }
         }
     }
+.footer-text{
+    p{
+        font-size: 10px !important;
+    }
+    i{
+        font-size: 14px !important;
+    }
+}
 }
 
 // bulletin page css
