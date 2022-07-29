@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
+    @livewireStyles
     @stack('stylesheets')
 
     <style>
@@ -27,6 +28,7 @@
         {{ $slot }}
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
+    @livewireScripts
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
 
