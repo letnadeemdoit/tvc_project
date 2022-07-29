@@ -111,7 +111,7 @@
                 </div>
                 <div class="col-lg-6 mt-3 mt-lg-0">
                     <div class="card h-100">
-                        <div class="card-body p-3">
+                        <div class="card-body p-2 p-md-3">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109132.50717458608!2d72.21911081640624!3d31.265282300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3923a3d944211f27%3A0xfe1509a2f8d6f2a5!2stravelforbes!5e0!3m2!1sen!2s!4v1655819155305!5m2!1sen!2s"
                                 class="w-100" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
