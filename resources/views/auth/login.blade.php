@@ -120,7 +120,7 @@
                                 <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Username</legend>
                                 <input type="text"
                                        class="form-control form-control-lg border-0 shadow-none outline-0"
-                                       name="text"
+                                       name="email"
                                        value="{{ old('email') }}"
                                        id="email"
                                        tabindex="1"
@@ -153,7 +153,6 @@
                                        name="password"
                                        id="password"
                                        placeholder="8+ characters required"
-                                       value="{{ old('password') }}"
                                        autocomplete="new-password"
                                        aria-label="8+ characters required"
                                        minlength="8"
