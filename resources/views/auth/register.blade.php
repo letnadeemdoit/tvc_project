@@ -107,7 +107,7 @@
                              class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">
                             <div class="dz-message">
 
-                                {{--                                <img class="avatar avatar-xl avatar-4x3 mb-3" src="../assets/svg/illustrations/oc-browse.svg" alt="Image Description">--}}
+                                {{-- <img class="avatar avatar-xl avatar-4x3 mb-3" src="../assets/svg/illustrations/oc-browse.svg" alt="Image Description">--}}
 
                                 <h5>Drag and drop your file here</h5>
 
