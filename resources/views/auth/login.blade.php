@@ -120,7 +120,7 @@
                                 <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Username</legend>
                                 <input type="text"
                                        class="form-control form-control-lg border-0 shadow-none outline-0"
-                                       name="email"
+                                       name="text"
                                        value="{{ old('email') }}"
                                        id="email"
                                        tabindex="1"
