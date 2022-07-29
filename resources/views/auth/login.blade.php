@@ -10,7 +10,8 @@
                 gotoHouse: false,
                 loginAsGuest: null,
                 role: '{{ old('role', 'Guest') }}',
-                houseIsSelected: false
+                houseIsSelected: false,
+                house_id: null
             }"
             x-init="
                 @if(old('role') !== null)
