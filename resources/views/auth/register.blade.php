@@ -365,6 +365,12 @@
     </x-jet-authentication-card>
 
     @push('scripts')
-
+        <script>
+            $(function() {
+                // INITIALIZATION OF DROPZONE
+                // =======================================================
+                HSCore.components.HSDropzone.init('.js-dropzone');
+            });
+        </script>
     @endpush
 </x-auth-layout>
