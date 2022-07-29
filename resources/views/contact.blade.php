@@ -98,9 +98,9 @@
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
 
-                                <div class="btn  gap-3 text-center mt-4 contact-btn d-block d-md-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary btn-lg rounded px-5 border-0 shadow-lg">Send</button>
-                                    <button type="button" onclick="resetForm()" class="btn bg-skin btn-lg shadow-lg rounded px-5 mt-3 mt-sm-0 border-0">Reset</button>
+                                <div class="btn gap-3 text-center mt-4 d-block d-md-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">Send</button>
+                                    <a href="#" onclick="resetForm()" class="btn  btn-lg bg-skin btn-min-160 shadow-lg rounded px-5 mt-3 mt-sm-0 border-0">Reset</a>
                                 </div>
 
                             </form>

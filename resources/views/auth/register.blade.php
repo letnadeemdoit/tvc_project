@@ -15,7 +15,7 @@
                 </div>
             @endif
             <div class="mb-5">
-                <h1 class="display-4 fw-bold mb-0">Create your <span class="text-primary">Account</span></h1>
+                <h1 class="display-4 fw-bold mb-0">Create your <span class="text-primary">Account.</span></h1>
                 <small class="text-muted mb-3 d-block">To keep track of your vacation home in use.</small>
             </div>
 
@@ -236,6 +236,7 @@
                                     <input type="password"
                                            class="form-control form-control-lg border-0 shadow-none outline-0"
                                            name="password"
+                                           value="{{old('password')}}"
                                            id="password"
                                            tabindex="1"
                                            placeholder=""
