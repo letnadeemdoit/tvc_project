@@ -20,7 +20,7 @@
                     </div>
                     <div
                         class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
-                        <img src="{{asset('/images/images-home/Email.png')}}" class="img-fluid me-2">
+                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">
                         <p class="mb-0 text-white fs-12">trips.calendar@gmail.com</p>
                     </div>
                 </div>
@@ -66,9 +66,9 @@
 
 
                 </ul>
-                <div class="d-block d-md-flex nav-buttons">
+                <div class="d-block d-md-flex nav-buttons ms-4 ms-lg-0">
                     <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5">SIGN UP</a>
-                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white">LOGIN</a>
+                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white">LOGIN</a>
                 </div>
             </div>
         </nav>
