@@ -75,3 +75,5 @@ const HSCore = {
 }
 
 HSCore.init()
+
+export default HSCore;
