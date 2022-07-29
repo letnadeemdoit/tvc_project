@@ -1,28 +1,27 @@
 {{--    topnav    --}}
-<div class="topnav py-2 bg-dark">
+<div class="topnav py-1 bg-topnav">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="d-flex justify-content-center justify-content-md-start">
 
-                    <i class="bi-facebook fs-3 text-white"></i>
-                    <i class="bi-twitter mx-3 fs-3 text-white"></i>
-                    <i class="bi-instagram fs-3 text-white"></i>
-
+                    <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
+                    <a href="#">  <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
+                    <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
                 </div>
             </div>
             <div class="col-md-6">
                 <div
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-md-end">
                     <div
-                        class="d-flex align-items-center justify-content-center justify-content-md-start py-2 py-md-0">
-                        <i class="fas fa-phone me-2"></i>
-                        <p class="mb-0 text-white">000-000-000</p>
+                        class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0">
+                        <i class="fas fa-phone me-2 text-white"></i>
+                        <p class="mb-0 text-white fs-12">000-000-000</p>
                     </div>
                     <div
                         class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
-                        <i class="fa-solid fa-envelope me-2"></i>
-                        <p class="mb-0 text-white">trips.calendar@gmail.com</p>
+                        <img src="{{asset('/images/images-home/Email.png')}}" class="img-fluid me-2">
+                        <p class="mb-0 text-white fs-12">trips.calendar@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -41,7 +40,7 @@
                        alt="Logo" data-hs-theme-appearance="default" />
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-default">
         <i class="bi-list"></i>
     </span>
@@ -50,7 +49,7 @@
     </span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
                 <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('guest.welcome')}}">HOME</a>
@@ -68,8 +67,8 @@
 
                 </ul>
                 <div class="d-block d-md-flex nav-buttons">
-                    <a href="/" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5" type="submit">SIGN UP</a>
-                    <a href="/" class="btn btn-outline bg-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white" type="submit">LOGIN</a>
+                    <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5" type="submit">SIGN UP</a>
+                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white" type="submit">LOGIN</a>
                 </div>
             </div>
         </nav>
@@ -77,3 +76,4 @@
 
     </div>
 </header>
+

@@ -1,21 +1,22 @@
 <!-- Content -->
-<div class="container-fluid px-3">
+<div class="container-fluid px-2 overflow-hidden">
     <div class="row">
         <div
-            class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100 position-relative bg-light px-0">
+            class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100 position-relative bg-image px-0">
             <!-- Logo & Language -->
             <div class="position-absolute top-0 start-0 end-0 mt-3 mx-3">
                 <div class="d-none d-lg-flex justify-content-between">
                     <a href="{{ url('/') }}">
-                        <img class="w-100" src="{{ asset('logo/logo.png') }}" alt="Image Description"
-                             data-hs-theme-appearance="default" style="min-width: 10rem; max-width: 10rem;">
+                        <!-- <img class="w-100" src="{{ asset('logo/logo.png') }}" alt="Image Description"
+                             data-hs-theme-appearance="default" style="min-width: 10rem; max-width: 10rem;"> -->
+                        <h2 class="text-white">Vacation Calendar</h2>
                         {{--                        <img class="w-100" src="./assets/svg/logos-light/logo.svg" alt="Image Description"--}}
                         {{--                             data-hs-theme-appearance="dark" style="min-width: 7rem; max-width: 7rem;">--}}
                     </a>
 
                     <!-- Select -->
                     <div class="tom-select-custom tom-select-custom-end tom-select-custom-bg-transparent zi-2">
-                        <select class="js-select form-select form-select-sm form-select-borderless"
+                        <select class="js-select form-select form-select-sm form-select-borderless text-white"
                                 data-hs-tom-select-options='{
                           "searchInDropdown": false,
                           "hideSearch": true,

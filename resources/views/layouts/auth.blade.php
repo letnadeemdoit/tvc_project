@@ -13,8 +13,13 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
     @stack('stylesheets')
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <style>
+        .fieldset.scheduler-border{
+            margin-bottom: 5px !important;
+        }
+    </style>
+
 </head>
 <body>
     <!-- ========== MAIN CONTENT ========== -->
@@ -22,5 +27,24 @@
         {{ $slot }}
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}"></script>
+
+    @stack('scripts')
+
+
+{{--    <script src="{{asset('js/drag/min/dropzone.min.js')}}"></script>--}}
+
+{{--    <script src="{{asset('js/drag-and-drop/hs.dropzone.js')}}"></script>--}}
+
+{{--    <script>--}}
+{{--        (function() {--}}
+{{--            // INITIALIZATION OF DROPZONE--}}
+{{--            // =======================================================--}}
+{{--            HSCore.components.HSDropzone.init('.js-dropzone')--}}
+{{--        });--}}
+{{--    </script>--}}
+
+
 </body>
 </html>

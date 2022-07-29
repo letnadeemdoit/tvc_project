@@ -3,6 +3,8 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\BulletinController;
+use App\Http\Controllers\HouseController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,12 +29,23 @@ Route::controller(GuestController::class)
         Route::get('/blog','blog')->name('blog');
         Route::get('/bulletin','bulletinBoard')->name('bulletinBoard');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
+        Route::get('/guest-login','guestLogin')->name('guest-login');
+        Route::get('/login-account','loginAccount')->name('login-account');
+        Route::get('/search-house','searchHouse')->name('search-house');
     });
 
-
+Route::controller(\App\Http\Controllers\Select2Controller::class)
+    ->name('select2.')
+    ->prefix('select2')
+    ->group(function () {
+        Route::get('houses', 'houses')->name('houses');
+    });
 Route::resource('blogs', BlogController::class);
 Route::resource('bulletin', BulletinController::class);
+Route::resource('users', UserController::class);
+Route::resource('houses', HouseController::class);
 
+require_once __DIR__ . '/fortify.php';
 Route::get('/dashboard', function () {
     return view('dash.index');
 })->name('dashboard');

@@ -1,73 +1,19 @@
 <x-auth-layout>
+    @include('layouts.partials.navigation-menu-top-guest')
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
-
-            <div style="max-width: 23rem;">
-                <div class="text-center mb-5">
-                    <img class="img-fluid" src="{{ asset('img/svg/illustrations/oc-chatting.svg') }}"
-                         alt="Image Description"
-                         style="width: 12rem;"
-                         data-hs-theme-appearance="default"
-                    />
-                    {{--                    <img class="img-fluid" src="{{ asset('img/svg/illustrations-light/oc-chatting.svg') }}"--}}
-                    {{--                         alt="Image Description" style="width: 12rem;"--}}
-                    {{--                         data-hs-theme-appearance="dark"--}}
-                    {{--                    />--}}
-                </div>
-
-                <div class="mb-5">
-                    <h2 class="display-5">Build digital products with:</h2>
-                </div>
-
-                <!-- List Checked -->
-                <ul class="list-checked list-checked-lg list-checked-primary list-py-2">
-                    <li class="list-checked-item">
-                        <span class="d-block fw-semi-bold mb-1">All-in-one tool</span>
-                        Build, run, and scale your apps - end to end
-                    </li>
-
-                    <li class="list-checked-item">
-                        <span class="d-block fw-semi-bold mb-1">Easily add &amp; manage your services</span>
-                        It brings together your tasks, projects, timelines, files and more
-                    </li>
-                </ul>
-                <!-- End List Checked -->
-
-                <div class="row justify-content-between mt-5 gx-3">
-                    <div class="col">
-                        <img class="img-fluid" src="{{ asset('img/svg/brands/gitlab-gray.svg') }}" alt="Logo">
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col">
-                        <img class="img-fluid" src="{{ asset('img/svg/brands/fitbit-gray.svg') }}" alt="Logo">
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col">
-                        <img class="img-fluid" src="{{ asset('img/svg/brands/flow-xo-gray.svg') }}" alt="Logo">
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col">
-                        <img class="img-fluid" src="{{ asset('img/svg/brands/layar-gray.svg') }}" alt="Logo">
-                    </div>
-                    <!-- End Col -->
-                </div>
-                <!-- End Row -->
-            </div>
         </x-slot>
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 25rem;">
-            <div class="text-center">
+            <div class="text-start">
                 <div class="mb-5">
-                    <h1 class="display-5">Forgot password?</h1>
-                    <p>{{ __('No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}</p>
+                    <h1 class="display-5 popping-bold">Reset Your <span class="text-primary">Password?</span></h1>
+                    <p>{{ __('Don’t worry if you forget the password just enter your email.') }}</p>
                 </div>
             </div>
 
             @if (session('status'))
-                <div class="mb-4 font-medium text-sm text-green-600">
+                <div class="alert alert-soft-success text-center mb-4" role="alert">
                     {{ session('status') }}
                 </div>
             @endif
@@ -78,24 +24,29 @@
                 @csrf
 
                 <div class="mb-4">
-                    <label for="email" class="form-label">{{ __('Email:*') }}</label>
-                    <input
-                        id="email"
-                        class="form-control form-control-lg"
-                        type="email"
-                        name="email"
-                        value="{{ old('email') }}"
-                        required
-                        autofocus
-                    />
+                    <fieldset class="input-group border rounded-1 ps-1">
+                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">{{ __('Admin Email Address') }}</legend>
+                        <input
+                            id="email"
+                            class="form-control form-control-lg border-0 shadow-none outline-0"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            autofocus
+                        />
+                        <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                            <i class="bi bi-envelope text-primary"></i>
+                        </a>
+                    </fieldset>
                 </div>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary btn-lg">{{ __('Email Password Reset Link') }}</button>
+                    <button type="submit" class="btn btn-dark-secondary btn-lg">{{ __('Email Password Reset Link') }}</button>
 
                     <div class="text-center">
-                        <a class="btn btn-link" href="{{ route('login') }}">
-                            <i class="bi-chevron-left"></i> Back to Sign in
+                        <a class="btn btn-link text-secondary" href="{{ route('login') }}">
+                            <img src="{{asset('/images/reset-password/back-arrow.png')}}"> Back to <span class="text-primary text-decoration-underline">Login</span>
                         </a>
                     </div>
                 </div>
