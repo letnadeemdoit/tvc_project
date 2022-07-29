@@ -67,7 +67,8 @@ body{
     max-width: 360px;
 }
 .mt-n100{
-    margin-top: -100px;
+    margin-top: -121px;
+    transform: rotate(14deg);
 }
 .feature-cards {
     .card {
@@ -132,51 +133,7 @@ body{
 .fieldset-border{
     border: 1px solid #1A395A !important;
 }
-// fieldset
-//.form-check-css{
-//    border: 1px solid $primary;
-//    border-radius: 0px !important;
-//}
-//    fieldset.scheduler-border {
-//        border: 1px solid #BEC4C8 !important;
-//        padding:3px 12px 14px 12px;
-//        margin: 0 0 1.5em 0 !important;
-//        -webkit-box-shadow: 0px 0px 0px 0px #000;
-//        box-shadow: 0px 0px 0px 0px #000;
-//    i{
-//        padding-top: 0.30rem;
-//    }
-//    }
-//
-//    legend.scheduler-border {
-//        font-size: 1.2em !important;
-//        font-weight: bold !important;
-//        text-align: left !important;
-//        width: auto;
-//        padding: 0 10px;
-//        border-bottom: none;
-//        margin-top: -34px;
-//        background-color: white;
-//        color: black;
-//    }
-//.scheduler-border {
-//
-//    .form-control{
-//        border: 0px !important;
-//        //padding-top: 0.25rem !important;
-//    }
-//
-//    .form-control:focus{
-//        box-shadow: none !important;
-//    }
-//    .input-group-text{
-//        padding: 0.3rem !important;
-//    }
-//    textarea{
-//        border: 0px !important;
-//    }
-//}
-// fieldset ends
+
 
 .social-img{
     background-image: url('/images/images-home/social.png');
@@ -280,10 +237,8 @@ header{
     background-position: center;
     background-size: contain;
 }
-.contact-btn {
-    button {
+.btn-min-160 {
         min-width: 160px !important;
-    }
 }
 .contact-page{
     background-image: url('/images/contact-images/maps.png');
@@ -292,7 +247,7 @@ header{
     background-size: cover;
 }
 .rounded-icon{
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow:0px 2px 8px rgba(135, 135, 135, 0.15);;
     margin-left:-40px;
 }
 .card-pinned-bottom-start {
@@ -301,8 +256,8 @@ header{
 @mixin cards-background{
     background-repeat: no-repeat;
     background-position: bottom right;
-    background-position-x:93%;
-    background-position-y:93%;
+    background-position-x:93% !important;
+    background-position-y:93% !important;
     background-size: auto;
     min-height:300px;
 }
@@ -328,6 +283,36 @@ header{
     padding-left: 4rem;
     padding-right:3.5rem
 }
+// select starts
+
+.select2 {
+    width: 100%!important; /* force fluid responsive */
+    border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+.select2{
+    height: 56px;
+    position: relative;
+
+   .select2-selection__rendered {
+       line-height: 56px;
+   }
+
+   .select2-selection__arrow {
+       top: 16px;
+       right: 8px;
+    }
+
+   .select2-container--default {
+
+       .select2-results>.select2-results__options {
+           -webkit-overflow-scrolling: touch; /* use momentum scrolling */
+      }
+    }
+}
+
+
+// select ends
 .section-padding{
     padding-top: 70px;
 }
@@ -352,10 +337,16 @@ header{
     }
     .accordion-item{
         border: 0px solid #fff !important;
+        .card-body{
+            p{
+                font-size: 16px;
+            }
+        }
     }
-    .bottom-box-shadow{
+    .bottom-box-shadow {
         box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);
     }
+
 }
 .mt-80{
     margin-top: 80px;
@@ -481,6 +472,7 @@ header{
 .t-dropdown-block .t-select-btn:active {
     background-color: #F1F1F1;
 }
+
 
 // Dropdown end
 @media only screen and (max-width:1400px){
@@ -643,11 +635,9 @@ header{
             }
         }
     }
-    .contact-btn {
-        button {
+    .btn-min-160 {
             display: block;
             width: 100%;
-        }
     }
     .feature-cards {
         .card {

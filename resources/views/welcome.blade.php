@@ -8,8 +8,8 @@
             <div class="container">
                 <p class="mb-1 display-4 text-primary font-vintage">Keep Track of When</p>
                 <h1 class="hero-text py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
-                <a href="{{route('register')}}"  class="btn btn-lg btn-signup btn-primary shadow-lg my-4">SIGN UP</a>
-                <div class="position-relative mt-3 max-width">
+                <a href="{{route('register')}}"  class="btn btn-lg btn-signup btn-primary shadow-lg my-2">SIGN UP</a>
+                <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.png"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
                     <p class="display-4 font-poppins text-primary">Only $20 <span class="fs-6 text-dark fw-lighter">per year</span></p>

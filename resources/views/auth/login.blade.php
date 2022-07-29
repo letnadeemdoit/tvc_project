@@ -84,12 +84,12 @@
                             </div>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-dark-secondary btn-lg shadow-lg"
+                            <a class="btn btn-dark-secondary btn-lg shadow-lg"
                                     @click.prevent="loginAsGuest = false; role = 'AdministratorOrGuest';">
                                 {{ __('Administrator & Owner') }}
-                            </button>
-                            <button class="btn bg-light-primary border-solid btn-lg mt-3 text-dark"
-                                    @click.prevent="loginAsGuest = true; role = 'Guest';">{{ __('Guest') }}</button>
+                            </a>
+                            <a class="btn bg-light-primary border-solid btn-lg mt-3 text-dark"
+                                    @click.prevent="loginAsGuest = true; role = 'Guest';">{{ __('Guest') }}</a>
                         </div>
                     </div>
 
@@ -187,7 +187,7 @@
 
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-dark-secondary btn-lg">{{ __('Log in') }}</button>
+                            <a  class="btn btn-dark-secondary btn-lg">{{ __('Log in') }}</a>
                         </div>
                         <!-- Form Check -->
                         <div class="form-check mt-4">

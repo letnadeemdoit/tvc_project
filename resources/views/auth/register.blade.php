@@ -16,9 +16,9 @@
                 </div>
             @endif
             <div class="mb-5">
-                <h1 class="display-5">Create your <span class="text-primary">Account</span></h1>
+                <h1 class="display-5">Create your <span class="text-primary">Account.</span></h1>
                 <p>
-                    To keep track of your vacation houme in use.
+                    To keep track of your vacation home in use.
                 </p>
             </div>
 
