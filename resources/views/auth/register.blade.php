@@ -367,6 +367,7 @@
     @push('scripts')
         <script>
             $(function() {
+                console.log(window.HSCore.components);
                 // INITIALIZATION OF DROPZONE
                 // =======================================================
                 HSCore.components.HSDropzone.init('.js-dropzone');
