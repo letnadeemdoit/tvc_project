@@ -366,8 +366,5 @@
 
     @push('scripts')
 
-
-
-
     @endpush
 </x-auth-layout>
