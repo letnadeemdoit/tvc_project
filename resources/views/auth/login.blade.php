@@ -185,7 +185,7 @@
                         </div>
                         <!-- End Form -->
 
-                        <div class="form-check mt-4">
+                        <div class="form-check mb-4">
                             <label class="form-check-label" for="remember_me">
                                 {{ __('Remember me') }}
                             </label>
