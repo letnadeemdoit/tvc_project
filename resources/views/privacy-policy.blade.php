@@ -14,7 +14,7 @@
                         </div>
                         <div class="pt-3">
                             <h3 class="popping-bold">Privacy Policy</h3>
-                            <p class="pe-0 pe-lg-4">
+                            <p class="pe-0 pe-lg-4 lh-lg">
                                 This Privacy Policy describes how your personal information is collected, used, and shared when you visit or subscribe to the www.thevacationcalendar.com (the "Site"). Please note that the Site is a hobby that charges a nominal fee to keep the project going since
                                 it addresses a niche need and many vacation home owners enjoy it. If you are concerned about privacy and data protection, please do not use the Site. The Site has basic security but should not be used to capture any information that is not publicly available or that the end users are willing to make publicly available. </p>
                         </div>
@@ -30,10 +30,10 @@
                 <div class="accordion" id="myAccordion">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne">PERSONAL INFORMATION WE COLLECT
+                            <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">PERSONAL INFORMATION WE COLLECT
                             </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#myAccordion">
                             <div class="card-body bottom-box-shadow">
                                 <p>When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device. Additionally, as you browse the Site, we collect information about the individual web pages or products that you view, what websites or search terms referred you to the Site, and information about how you interact with the Site. We refer to this automatically-collected information as "Device Information".
                                     We collect Device Information using the following technologies:
@@ -49,10 +49,10 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingTwo">
-                            <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">HOW DO WE USE YOUR PERSONAL INFORMATION?
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">HOW DO WE USE YOUR PERSONAL INFORMATION?
                             </button>
                         </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#myAccordion">
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
                             <div class="card-body bottom-box-shadow">
                                 <p>We use the Subscription Information that we collect as a reference to your PayPal subscription. Again, PayPal.com manages all of your payment, credit card, and additional information. We do not have any interest or participation in that process. In some cases, the email addresses provided either in the setup of the account or in the user setup that is performed by house administrators can be used for the following reasons:
                                     - Communicate with you;
