@@ -16,25 +16,25 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array  $input
+     * @param array $input
      * @return \App\Models\User
      */
     public function create(array $input)
     {
-        $validate = Validator::make($input, [
-            'HouseName' => ['required','unique:House'],
+        Validator::make($input, [
+            'HouseName' => ['required', 'unique:House'],
             'City' => ['required'],
             'State' => ['required'],
             'ReferredBy' => ['required'],
-            'user_name' => ['required','unique:users'],
+            'user_name' => ['required', 'unique:users'],
             'email' => ['required'],
             'role' => ['required'],
             'AdminOwner' => ['nullable'],
             'first_name' => ['required'],
             'last_name' => ['required'],
             'password' => $this->passwordRules(),
-            'password_confirmation' => 'required'
-
+            'password_confirmation' => 'required',
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
         $house = House::create([
@@ -46,12 +46,12 @@ class CreateNewUser implements CreatesNewUsers
 
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
 
-        if ($house){
+        if ($house) {
 
-            if (!isset($input['AdminOwner'])){
-                $AdminOwner =  'N';
-            }else{
-                $AdminOwner =  $input['AdminOwner'];
+            if (!isset($input['AdminOwner'])) {
+                $AdminOwner = 'N';
+            } else {
+                $AdminOwner = $input['AdminOwner'];
             }
 
             $user = User::create([
