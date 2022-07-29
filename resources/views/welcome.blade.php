@@ -90,7 +90,7 @@
         {{--   cards-section   --}}
 
         <section class="py-5 bg-cards-section">
-            <div class="container py-5">
+            <div class="container pt-50 pb-3">
                 <div
                     class="features-img-2  text-center shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage mb-0 pt-2">Find Your Vacation House</h1>
@@ -99,7 +99,7 @@
                 <div class="row py-5 feature-cards">
                     <div class="col-lg-4">
                         <!-- Card -->
-                        <div class="card p-2">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/bulletin-image.png" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">House Bulletin Board</h3>
@@ -111,7 +111,7 @@
                     </div>
                     <div class="col-lg-4 my-4 my-lg-0">
                         <!-- Card -->
-                        <div class="card p-2">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/vacations-image.png" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">Managing Vacations</h3>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="col-lg-4">
                         <!-- Card -->
-                        <div class="card p-2">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/blog-image.png" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">House Blog</h3>
@@ -150,7 +150,7 @@
                         {{--          nav tabs           --}}
                         <div class="images-nav-tabs  mt-4 mt-md-5 mt-lg-3">
                             <!-- tab content -->
-                            <div class="tab-content bg-waves" id="myTabContent">
+                            <div class="tab-content bg-waves min-h-200 text-center text-lg-start" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <h1 class="popping-bold">House Blog</h1>
                                     <p class="lh-lg">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house, the House Blog gives everyone a place to share thoughts, provide updates, and generally make fun of each other.</p>
@@ -220,7 +220,7 @@
                 </div>
                 <h3 class="text-center text-white">See our social media feed.</h3>
 
-                <div class="row my-5">
+                <div class="row  margin-tb">
                     <div class="col-md-4 col-lg-3">
                         @include('partials.social-media-feed-card')
                     </div>

@@ -18,11 +18,9 @@
 
             <x-jet-validation-errors class="mb-4" />
 
-            <form class="bg-light-primary p-4 border-solid">
+            <form class="bg-light-primary p-4 border-solid rounded-2">
                 {{--        select starts       --}}
 
-                <h2>Select2 Test</h2>
-                <p>Fluid responsiveness and momentum scrolling on the results drop down </p>
                 <div class="d-flex">
                     <select class="select2 p-3" name="country">
 
