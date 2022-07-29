@@ -29194,7 +29194,7 @@ header nav button:last-child:hover {
     font-size: 10px !important;
   }
   .footer-text i {
-    font-size: 11px;
+    font-size: 14px !important;
   }
 }
 .bulletin-image {
