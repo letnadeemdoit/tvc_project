@@ -77,3 +77,5 @@ const HSBsDropdown = {
     })
   }
 }
+
+export default HSBsDropdown;
