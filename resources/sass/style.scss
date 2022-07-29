@@ -349,6 +349,9 @@ header{
         border: 0px solid #fff !important;
         .card-body{
             word-wrap: break-word !important;
+            p{
+                line-height: 30px;
+            }
         }
     }
     .bottom-box-shadow {
