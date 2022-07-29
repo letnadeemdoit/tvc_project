@@ -12,7 +12,7 @@
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.png"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
-                    <p class="display-4 font-poppins text-primary">Only $20 <span class="fs-6 text-dark fw-lighter">per year</span></p>
+                    <p class="display-4 font-poppins text-primary"><i>Only $20 <span class="fs-6 color-secondary">per year</span></i></p>
                 </div>
 
             </div>
@@ -115,7 +115,7 @@
                             <img class="card-img-top" src="/images/images-home/vacations-image.png" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">Managing Vacations</h3>
-                                <p class="card-text">So this is the money shot of TheVacationCalendar.com. Using this simple screen anyone who is authorized to schedule a vacation can do so. The site checks that there are no conflicts on the online calendar and <span id="text-content"> prevents you from ever having multiple parties showing up at your vacation home at the same time.</span></p>
+                                <p class="card-text">So this is the money shot of TheVacationCalendar.com. Using this simple screen anyone who is authorized to schedule a vacation can do so. The site checks that there are no conflicts on the online calendar <span class="text-content"> and  prevents you from ever having multiple parties showing up at your vacation home at the same time.</span></p>
                                 <button class="btn btn-lg w-100 btn-primary text-white" id="toggle">Learn More <i class="fa-solid fa-arrow-right ps-2"></i></button>
                             </div>
                         </div>
@@ -178,19 +178,19 @@
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="false">
-                                        <img src="{{asset('/images/images-home/card.png')}}" width="30px" class="" />
+                                        <img src="{{asset('/images/images-home/card.png')}}" width="35px" class="" />
                                         <p class="mb-0 pt-2 fw-bolder">House Photo Album</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" role="tab" aria-controls="contact" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/user.png')}}" width="30px" class="" />
+                                        <img src="{{asset('/images/images-home/user.png')}}" width="35px" class="" />
                                         <p class="mb-0 pt-2 fw-bolder">Account Management</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" role="tab" aria-controls="shopping" aria-selected="true">
-                                        <img src="{{asset('/images/images-home/user-2.png')}}" width="30px" class="" />
+                                        <img src="{{asset('/images/images-home/user-2.png')}}" width="35px" class="" />
                                         <p class="mb-0 pt-2 fw-bolder">User Management</p>
                                     </button>
                                 </li>
@@ -240,7 +240,7 @@
         </script>
         <script>
             $("#toggle").on("click", function(){
-                $("#text-content").toggleClass("show");
+                $("text-content").toggleClass("show");
             });
         </script>
     @endpush
