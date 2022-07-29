@@ -43,7 +43,7 @@
                         <div class="card  border-0 rounded-3 bg-card-1 me-0 me-lg-3 me-xl-5 margin-top text-center text-lg-start">
                             <div class="d-block text-center d-lg-flex justify-content-center justify-content-lg-start align-items-lg-center h-100 position-absolute w-100">
                                 <div class="bg-white rounded-pill p-4 rounded-icon">
-                                    <img src="/images/images-home/card-img-1.png" class="img-fluid" alt="calculator" />
+                                    <img src="/images/images-home/card-img-1.svg" class="img-fluid" alt="calculator" />
                                 </div>
                             </div>
                             <div class="card-body pt-5 padding-top">
@@ -60,7 +60,7 @@
                         <div class="card  border-0 my-4 my-lg-0 rounded-3 bg-card-2 margin-y text-center text-lg-start">
                             <div class="d-block  d-lg-flex text-center justify-content-center justify-content-lg-start w-100 align-items-center h-100 position-absolute">
                                 <div class="bg-white rounded-pill p-4 rounded-icon">
-                                    <img src="/images/images-home/card-img-2.png" class="img-fluid" alt="message" />
+                                    <img src="/images/images-home/card-img-2.svg" class="img-fluid" alt="message" />
                                 </div>
                             </div>
                             <div class="card-body pt-5 padding-top">
@@ -73,7 +73,7 @@
                         <div class="card  border-0 mt-3 mt-md-5 rounded-3 bg-card-3 text-center text-lg-start">
                             <div class="d-block d-lg-flex text-center justify-content-center justify-content-lg-start w-100 align-items-center h-100 position-absolute">
                                 <div class="bg-white rounded-pill p-4 rounded-icon">
-                                    <img src="/images/images-home/card-img-3.png" class="img-fluid" alt="users" />
+                                    <img src="/images/images-home/card-img-3.svg" class="img-fluid" alt="users" />
                                 </div>
                             </div>
                             <div class="card-body pt-5 padding-top">
