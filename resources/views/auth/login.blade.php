@@ -46,11 +46,11 @@
                 <input type="hidden" x-model="role" name="role" />
                 {{-- Search House --}}
                 <div x-show="!gotoHouse">
-                    <h1 class="display-4 fw-bold mb-0">Search <span class="text-primary">House</span></h1>
+                    <h1 class="display-3 popping-bold mb-0">Search <span class="text-primary">House</span></h1>
                     <small class="text-muted mb-3 d-block">Search your house here to have beautiful vacations with your
                         family.</small>
                     <div class="bg-soft-primary p-3 rounded-1 border border-primary row g-2">
-                        <div class="col-8">
+                        <div class="col-md-8">
                             <select class="form-control form-control-lg select2" name="house_id" x-model="house_id">
                                 <option disabled selected>Search &amp; select your house</option>
                                 @if(old('house_id') !== null)
@@ -63,7 +63,7 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="col-4 d-grid">
+                        <div class="col-md-4 d-grid">
                             <button
                                 class="btn btn-primary"
                                 @click.prevent="gotoHouse = true"

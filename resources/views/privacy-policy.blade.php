@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 mt-4 mt-lg-0 offset-lg-1 text-center">
-                        <img src="  {{asset('/images/privacy-policy/group-image.png')}}" class="img-fluid" />
+                        <img src="  {{asset('/images/privacy-policy/group-image.svg')}}" class="img-fluid" />
                     </div>
                 </div>
             </div>

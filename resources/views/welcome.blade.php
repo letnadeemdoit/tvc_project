@@ -6,7 +6,7 @@
     <header>
         <div class="position-relative d-flex align-items-center hero-image">
             <div class="container text-center text-md-start">
-                <p class="mb-1 display-4 text-primary font-vintage">Keep Track of When</p>
+                <p class="mb-1 display-4 text-primary font-vintage">Keep track of when</p>
                 <h1 class="hero-text py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
                 <a href="{{route('register')}}"  class="btn btn-lg btn-signup btn-primary shadow-lg my-2">SIGN UP</a>
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
@@ -89,13 +89,13 @@
 
         {{--   cards-section   --}}
 
-        <section class="py-5 bg-cards-section">
-            <div class="container pt-55 pb-5">
+        <section class="section-min-h bg-cards-section">
+            <div class="container py-5">
                 <div
                     class="features-img-2  text-center shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage mb-0 pt-2">Find Your Vacation House</h1>
                 </div>
-                <h3 class="text-center text-white mt-2">Vacation Calendar makes it simple</h3>
+                <h1 class="text-center text-white mt-3">Vacation Calendar makes it simple</h1>
                 <div class="row py-5 feature-cards">
                     <div class="col-lg-4">
                         <!-- Card -->
@@ -218,7 +218,7 @@
                     class="mt-70 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage pt-2 mb-0">Find your vacation house</h1>
                 </div>
-                <h3 class="text-center text-white">See our social media feed.</h3>
+                <h1 class="text-center text-white">See our social media feed.</h1>
 
                 <div class="row  margin-tb">
                     <div class="col-md-4 col-lg-3">
@@ -240,7 +240,7 @@
         </script>
         <script>
             $("#toggle").on("click", function(){
-                $("text-content").toggleClass("show");
+                $(".text-content").toggleClass("show");
             });
         </script>
     @endpush
