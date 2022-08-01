@@ -2,7 +2,7 @@
     @csrf
 {{--    <x-jet-validation-errors />--}}
     <fieldset class=" border rounded-1 p-3 mb-5"  style="border: 1px solid #D9D9D9;">
-        <legend class="float-none w-auto fs-4 mb-0 px-2 mb-0 ms-1 text-dark popping-bold">House Details</legend>
+        <legend class="float-none w-auto fs-4 mb-0 px-2 mb-0 ms-1 text-dark poppins-bold">House Details</legend>
         <!-- Form -->
         <div class="pt-2 mb-3">
             <fieldset class="input-group rounded-1 ps-1">
@@ -177,7 +177,7 @@
     <!-- End Form -->
     <!-- second fieldset -->
     <fieldset class="border rounded-1 p-3 mb-3" style="border: 1px solid #D9D9D9;">
-        <legend class="float-none w-auto fs-4 mb-0 px-2 mb-0 ms-1 popping-bold text-dark">Admin Details</legend>
+        <legend class="float-none w-auto fs-4 mb-0 px-2 mb-0 ms-1 poppins-bold text-dark">Admin Details</legend>
         <!-- Form -->
         <div class="row pt-2">
             <div class="col-md-12">
