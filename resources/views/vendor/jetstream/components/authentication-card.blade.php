@@ -9,7 +9,7 @@
                     <a href="{{ url('/') }}">
                         <!-- <img class="w-100" src="{{ asset('logo/logo.png') }}" alt="Image Description"
                              data-hs-theme-appearance="default" style="min-width: 10rem; max-width: 10rem;"> -->
-                        <h1 class="text-white p-5 popping-bold">Vacation Calendar</h1>
+                        <h1 class="text-white p-5 poppins-bold">Vacation Calendar</h1>
                         {{--                        <img class="w-100" src="./assets/svg/logos-light/logo.svg" alt="Image Description"--}}
                         {{--                             data-hs-theme-appearance="dark" style="min-width: 7rem; max-width: 7rem;">--}}
                     </a>

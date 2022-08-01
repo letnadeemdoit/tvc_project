@@ -15,7 +15,7 @@
                 </div>
             @endif
             <div class="mb-5 text-center text-lg-start">
-                <h1 class="display-4 popping-bold mb-2">Create your <span class="text-primary">Account.</span></h1>
+                <h1 class="display-4 poppins-bold mb-2">Create your <span class="text-primary">Account.</span></h1>
                 <small class="text-muted mb-3 d-block">To keep track of your vacation home in use.</small>
             </div>
 

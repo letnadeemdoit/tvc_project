@@ -46,7 +46,7 @@
                 <input type="hidden" x-model="role" name="role" />
                 {{-- Search House --}}
                 <div x-show="!gotoHouse">
-                    <h1 class="display-3 popping-bold mb-0">Search <span class="text-primary">House</span></h1>
+                    <h1 class="display-3 poppins-bold mb-0">Search <span class="text-primary">House</span></h1>
                     <small class="text-muted mb-3 d-block">Search your house here to have beautiful vacations with your
                         family.</small>
                     <div class="bg-soft-primary p-3 rounded-1 border border-primary row g-2">
