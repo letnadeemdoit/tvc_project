@@ -4,7 +4,7 @@
             {{--            <x-jet-authentication-card-logo />--}}
         </x-slot>
 
-        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 30rem;">
+        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 35rem;">
 
             <!-- Form -->
             {{--            <x-jet-validation-errors class="mb-4"/>--}}
@@ -15,7 +15,7 @@
                 </div>
             @endif
             <div class="mb-5 text-center text-lg-start">
-                <h1 class="display-4 fw-bold mb-0">Create your <span class="text-primary">Account.</span></h1>
+                <h1 class="display-4 poppins-bold mb-2">Create your <span class="text-primary">Account.</span></h1>
                 <small class="text-muted mb-3 d-block">To keep track of your vacation home in use.</small>
             </div>
 

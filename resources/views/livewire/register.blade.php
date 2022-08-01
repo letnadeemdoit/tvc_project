@@ -1,12 +1,12 @@
 <form wire:submit.prevent="register" method="post">
     @csrf
 {{--    <x-jet-validation-errors />--}}
-    <fieldset class=" border rounded-1 p-3 mb-5">
-        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">House Details</legend>
+    <fieldset class=" border rounded-1 p-3 mb-5"  style="border: 1px solid #D9D9D9;">
+        <legend class="float-none w-auto fs-4 mb-0 px-2 mb-0 ms-1 text-dark poppins-bold">House Details</legend>
         <!-- Form -->
         <div class="pt-2 mb-3">
-            <fieldset class="input-group border rounded-1 ps-1">
-                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">House Name*</legend>
+            <fieldset class="input-group rounded-1 ps-1">
+                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">House Name</legend>
                 <input
                     type="text"
                     class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -28,7 +28,7 @@
 
         <div class="row mb-3">
             <div class="col-md-6">
-                <fieldset class="input-group border rounded-1 ps-1">
+                <fieldset class="input-group  rounded-1 ps-1">
                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">City</legend>
                     <input
                         type="text"
@@ -47,7 +47,7 @@
                 @enderror
             </div>
             <div class="col-md-6">
-                <fieldset class="input-group border rounded-1 ps-1">
+                <fieldset class="input-group  rounded-1 ps-1">
                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">State</legend>
                     <input
                         type="text"
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="mb-3">
-            <fieldset class="input-group border rounded-1 ps-1">
+            <fieldset class="input-group rounded-1 ps-1">
                 <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Paypal Account</legend>
                 <input
                     type="number"
@@ -176,14 +176,14 @@
     </fieldset>
     <!-- End Form -->
     <!-- second fieldset -->
-    <fieldset class="border rounded-1 p-3 mb-3">
-        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Admin Details</legend>
+    <fieldset class="border rounded-1 p-3 mb-3" style="border: 1px solid #D9D9D9;">
+        <legend class="float-none w-auto fs-4 mb-0 px-2 mb-0 ms-1 poppins-bold text-dark">Admin Details</legend>
         <!-- Form -->
         <div class="row pt-2">
             <div class="col-md-12">
                 <!-- Form -->
                 <div class="mb-2">
-                    <fieldset class="input-group border rounded-1 ps-1">
+                    <fieldset class="input-group  rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Username</legend>
                         <input type="text"
                                class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -212,7 +212,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="mt-3">
-                    <fieldset class="input-group border rounded-1 ps-1">
+                    <fieldset class="input-group rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Email</legend>
                         <input type="email"
                                class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -255,7 +255,7 @@
         <div class="row">
             <div class=" col-md-6">
                 <div class="mt-3">
-                    <fieldset class="input-group border rounded-1 ps-1">
+                    <fieldset class="input-group rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">First Name</legend>
                         <input type="text"
                                class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -275,7 +275,7 @@
             </div>
             <div class=" col-md-6">
                 <div class="mt-3">
-                    <fieldset class="input-group border rounded-1 ps-1">
+                    <fieldset class="input-group rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Last Name</legend>
                         <input type="text"
                                class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -297,7 +297,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="mt-3">
-                    <fieldset class="input-group border rounded-1 ps-1">
+                    <fieldset class="input-group rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Create Password</legend>
                         <input type="password"
                                class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -325,7 +325,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="mt-3">
-                    <fieldset class="input-group border rounded-1 ps-1">
+                    <fieldset class="input-group rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Confirm Password</legend>
                         <input type="password"
                                class="form-control form-control-lg border-0 shadow-none outline-0"

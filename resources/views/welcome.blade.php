@@ -6,8 +6,8 @@
     <header>
         <div class="position-relative d-flex align-items-center hero-image">
             <div class="container text-center text-md-start">
-                <p class="mb-1 display-4 text-primary font-vintage">Keep Track of When</p>
-                <h1 class="hero-text py-4 popping-bold">Your Vacation <br> Home is in Use</h1>
+                <p class="mb-1 display-4 text-primary font-vintage">Keep track of when</p>
+                <h1 class="hero-text py-4 poppins-bold">Your Vacation <br> Home is in Use</h1>
                 <a href="{{route('register')}}"  class="btn btn-lg btn-signup btn-primary shadow-lg my-2">SIGN UP</a>
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.png"
@@ -29,7 +29,7 @@
                             <h1 class="h2 text-center text-lg-start text-primary font-vintage mb-0">Find Your Vacation House</h1>
                         </div>
                         <div class="pt-3">
-                            <h1 class="popping-bold">What is the Vacation Calendar?</h1>
+                            <h1 class="poppins-bold">What is the Vacation Calendar?</h1>
                             <p class="pe-0 pe-lg-4 lh-lg">This is the main view of online calendar on TheVacationCalendar.com which allows everyone to see when the vacation home is in use.
                                 When a vacation is scheduled the user can set the online calendar to show that the house is occupied.
                                 Users can choose to use color to enhance the calendar or to signify special meaning, such as "would like to trade this vacation" for different time. </p>
@@ -89,13 +89,13 @@
 
         {{--   cards-section   --}}
 
-        <section class="py-5 bg-cards-section">
-            <div class="container pt-55 pb-5">
+        <section class="section-min-h bg-cards-section">
+            <div class="container py-5">
                 <div
                     class="features-img-2  text-center shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage mb-0 pt-2">Find Your Vacation House</h1>
                 </div>
-                <h3 class="text-center text-white mt-2">Vacation Calendar makes it simple</h3>
+                <h1 class="text-center text-white mt-3">Vacation Calendar makes it simple</h1>
                 <div class="row py-5 feature-cards">
                     <div class="col-lg-4">
                         <!-- Card -->
@@ -152,19 +152,19 @@
                             <!-- tab content -->
                             <div class="tab-content bg-waves min-h-200 text-center text-lg-start" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <h1 class="popping-bold">House Blog</h1>
+                                    <h1 class="poppins-bold">House Blog</h1>
                                     <p class="lh-lg">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house, the House Blog gives everyone a place to share thoughts, provide updates, and generally make fun of each other.</p>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <h1 class="popping-bold">House Photo Album</h1>
+                                    <h1 class="poppins-bold">House Photo Album</h1>
                                     <p class="lh-lg">This is another favorite for many of the site's users. Since people were getting more and more use out of the vacation homes thanks to the online calendar system in TheVacationCalendar.com, we needed to provide a way to memorialize the great times you are having. So we added a new photo album. It is pretty simple for the first iteration, just add photos and allow anyone to comment. As always, the Administrator has the ability to remove any photos or comments that are inappropriate.</p>
                                 </div>
                                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                    <h1 class="popping-bold">Account Management</h1>
+                                    <h1 class="poppins-bold">Account Management</h1>
                                     <p class="lh-lg">This is your basic profile page that allows the administrator to update passwords, change the site picture, and {cough}{cough} cancel the subscription</p>
                                 </div>
                                 <div class="tab-pane fade" id="shopping" role="tabpanel" aria-labelledby="shopping-tab">
-                                    <h1 class="popping-bold">User Management</h1>
+                                    <h1 class="poppins-bold">User Management</h1>
                                     <p class="lh-lg">This simple screen lets the Administrator of the house control the users. If you forget your password you can either use the automated password reset functionality or you can call the Administrator and he/she can update your account in a few clicks using this screen.</p>
                                 </div>
                             </div>
@@ -218,7 +218,7 @@
                     class="mt-70 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage pt-2 mb-0">Find your vacation house</h1>
                 </div>
-                <h3 class="text-center text-white">See our social media feed.</h3>
+                <h1 class="text-center text-white">See our social media feed.</h1>
 
                 <div class="row  margin-tb">
                     <div class="col-md-4 col-lg-3">
@@ -240,7 +240,7 @@
         </script>
         <script>
             $("#toggle").on("click", function(){
-                $("text-content").toggleClass("show");
+                $(".text-content").toggleClass("show");
             });
         </script>
     @endpush

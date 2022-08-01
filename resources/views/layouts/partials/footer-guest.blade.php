@@ -1,7 +1,7 @@
 <!-- Footer -->
 <div class="bg-dark-blue border-top">
     <div class="container py-3">
-        <div class="row row-max-width">
+        <div class="row row-max-width align-items-center">
             <div class="col-12 col-lg-6 col-xl-6">
                 <div class="fs-6 footer-text mb-2 mb-md-0 text-white d-flex align-items-center justify-content-center justify-content-lg-start">
                     <p class="mb-0"> Powered by {{ config('app.name') }}.</p>

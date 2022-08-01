@@ -10,7 +10,7 @@
             <div class="help-text shadow-1-strong rounded  d-flex justify-content-center mt-5">
                 <h1 class="text-primary font-vintage mb-0">Help</h1>
             </div>
-            <h2 class="pt-2 popping-bold">We’d Love to Hear From You</h2>
+            <h2 class="pt-2 poppins-bold">We’d Love to Hear From You</h2>
         </section>
         <div class="help-page-tabs mt-80">
             <ul class="nav nav-tabs  border-bottom-0 d-flex justify-content-center" id="myTab" role="tablist">
