@@ -1,5 +1,5 @@
 {{--    topnav    --}}
-<div class="topnav py-1 bg-topnav">
+<div class="topnav py-1 bg-topnav  d-none d-md-block">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
@@ -14,13 +14,13 @@
                 <div
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-md-end">
                     <div
-                        class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0">
+                        class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
                         <i class="fas fa-phone me-2 text-white"></i>
-                        <p class="mb-0 text-white fs-12">000-000-000</p>
+                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">000-000-000</a>
                     </div>
                     <div
                         class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
-                        <img src="{{asset('/images/images-home/Email.png')}}" class="img-fluid me-2">
+                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">
                         <p class="mb-0 text-white fs-12">trips.calendar@gmail.com</p>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
         <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center">
             <a class="navbar-brand" href="#">
                 <img   class="navbar-brand-logo"
-                       src="<?php echo e(asset('logo/logo.png')); ?>"
+                       src="<?php echo e(asset('logo/logo.svg')); ?>"
                        alt="Logo" data-hs-theme-appearance="default" />
             </a>
 
@@ -63,12 +63,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
-
-
                 </ul>
-                <div class="d-block d-md-flex nav-buttons">
-                    <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5" type="submit">SIGN UP</a>
-                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-3 text-white" type="submit">LOGIN</a>
+                <div class="d-block d-md-flex nav-buttons ms-4 ms-lg-0">
+                    <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5">SIGN UP</a>
+                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white">LOGIN</a>
                 </div>
             </div>
         </nav>

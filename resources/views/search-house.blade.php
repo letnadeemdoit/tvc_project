@@ -18,13 +18,11 @@
 
             <x-jet-validation-errors class="mb-4" />
 
-            <form class="bg-light-primary p-4 border-solid">
+            <form class="bg-light-primary p-4 border-solid rounded-2">
                 {{--        select starts       --}}
 
-                    <h2>Select2 Test</h2>
-                    <p>Fluid responsiveness and momentum scrolling on the results drop down </p>
-
-                    <select class="select2" name="country">
+                <div class="d-flex">
+                    <select class="select2 p-3" name="country">
 
                         <optgroup label=" ">
                             <option value="AU" selected> Australia </option>
@@ -34,21 +32,18 @@
                             <option value="ZA"> South Africa </option>
                         </optgroup>>
 
-                            <optgroup label=" ">
-                                <option value="AF"> Afghanistan (‫افغانستان‬‎) </option>
-                                <option value="AX"> Åland Islands </option>
-                                <option value="AL"> Albania (Shqipëria) </option>
-                                <option value="DZ"> Algeria (‫الجزائر‬‎) </option>
-                                <option value="AS"> American Samoa </option>
-                                <option value="AD"> Andorra </option>
-                                <option value="AO"> Angola </option>
-
-
-
-                            </optgroup>>
-
+                        <optgroup label=" ">
+                            <option value="AF"> Afghanistan (‫افغانستان‬‎) </option>
+                            <option value="AX"> Åland Islands </option>
+                            <option value="AL"> Albania (Shqipëria) </option>
+                            <option value="DZ"> Algeria (‫الجزائر‬‎) </option>
+                            <option value="AS"> American Samoa </option>
+                            <option value="AD"> Andorra </option>
+                            <option value="AO"> Angola </option>
+                        </optgroup>>
                     </select>
-
+                    <button class="btn btn-lg btn-primary ms-md-2 ms-0">Go to House</button>
+                </div>
                 {{--       select ends         --}}
 
             </form>

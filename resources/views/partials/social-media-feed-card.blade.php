@@ -2,7 +2,7 @@
 <!-- Card -->
                         <div class="card border-0">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="{{asset('images/images-home/brown-house.png')}}" alt="Image Description" />
+                                <img class="card-img-top" src="{{asset('images/images-home/brown-house.svg')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
                                     <img class="img-fluid" src="{{asset('images/images-home/Rectangle-3.png')}}" alt="Image Description" />
