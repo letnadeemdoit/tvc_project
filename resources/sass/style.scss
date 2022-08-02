@@ -37,6 +37,10 @@ body{
 }
 .bg-skin{
     background-color: rgba(210, 206, 205, 0.58);
+    &:hover{
+        background-color: transparent;
+        color: #000;
+    }
 }
 @font-face {
     font-family: poppins;
@@ -332,6 +336,13 @@ header{
     font-size: 27px !important;
     color: #6c6c6c !important;
 }
+.footer-text{
+        a {
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
 
 // select2 css starts
 .select2-container{
