@@ -19,7 +19,7 @@
                 <!-- End Col -->
             </div>
 
-            <h5 class="mb-0 text-capitalize">{{Auth::user()->user_name ?? 'User Name'}}</h5>
+{{--            <h5 class="mb-0 text-capitalize">{{Auth::user()->user_name ?? 'User Name'}}</h5>--}}
             <!-- End Row -->
         </div>
 

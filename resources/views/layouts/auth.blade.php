@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
+    @livewireStyles
     @stack('stylesheets')
 
     <style>
@@ -27,24 +28,10 @@
         {{ $slot }}
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
+    @livewireScripts
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
 
     @stack('scripts')
-
-
-{{--    <script src="{{asset('js/drag/min/dropzone.min.js')}}"></script>--}}
-
-{{--    <script src="{{asset('js/drag-and-drop/hs.dropzone.js')}}"></script>--}}
-
-{{--    <script>--}}
-{{--        (function() {--}}
-{{--            // INITIALIZATION OF DROPZONE--}}
-{{--            // =======================================================--}}
-{{--            HSCore.components.HSDropzone.init('.js-dropzone')--}}
-{{--        });--}}
-{{--    </script>--}}
-
-
 </body>
 </html>

@@ -18,8 +18,33 @@
 
             <x-jet-validation-errors class="mb-4" />
 
-            <form class="bg-light-primary p-4 border-solid">
+            <form class="bg-light-primary p-4 border-solid rounded-2">
+                {{--        select starts       --}}
 
+                <div class="d-flex">
+                    <select class="select2 p-3" name="country">
+
+                        <optgroup label=" ">
+                            <option value="AU" selected> Australia </option>
+                            <option value="BR"> Brazil (Brasil) </option>
+                            <option value="NZ"> New Zealand </option>
+                            <option value="US"> United States </option>
+                            <option value="ZA"> South Africa </option>
+                        </optgroup>>
+
+                        <optgroup label=" ">
+                            <option value="AF"> Afghanistan (‫افغانستان‬‎) </option>
+                            <option value="AX"> Åland Islands </option>
+                            <option value="AL"> Albania (Shqipëria) </option>
+                            <option value="DZ"> Algeria (‫الجزائر‬‎) </option>
+                            <option value="AS"> American Samoa </option>
+                            <option value="AD"> Andorra </option>
+                            <option value="AO"> Angola </option>
+                        </optgroup>>
+                    </select>
+                    <button class="btn btn-lg btn-primary ms-md-2 ms-0">Go to House</button>
+                </div>
+                {{--       select ends         --}}
 
             </form>
         </div>
@@ -30,37 +55,8 @@
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
             $(document).ready(function () {
-                $('.t-dropdown-input').on('click', function() {
-                    $(this).parent().next().slideDown('fast');
+                $('.select2').select2({
                 });
-
-                $('.t-select-btn').on('click', function() {
-                    $('.t-dropdown-list').slideUp('fast');
-
-                    if(!$(this).prev().attr('disabled')){
-                        $(this).prev().trigger('click');
-                    }
-                });
-
-                $('.t-dropdown-input').width($('.t-dropdown-select').width() - $('.t-select-btn').width() - 13);
-
-                $('.t-dropdown-list').width($('.t-dropdown-select').width());
-
-                $('.t-dropdown-input').val('');
-
-                $('li.t-dropdown-item').on('click', function() {
-                    var text = $(this).html();
-                    $(this).parent().prev().find('.t-dropdown-input').val(text);
-                    $('.t-dropdown-list').slideUp('fast');
-                });
-
-                $(document).on('click', function(event) {
-                    if ($(event.target).closest(".t-dropdown-input, .t-select-btn").length)
-                        return;
-                    $('.t-dropdown-list').slideUp('fast');
-                    event.stopPropagation();
-                });
-// END //
 
             });
         </script>

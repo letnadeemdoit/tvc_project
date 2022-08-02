@@ -8,7 +8,7 @@
                     <div class="contact-text shadow-1-strong rounded  d-flex justify-content-center align-items-center">
                         <h1 class="text-primary font-vintage mb-0">Contact US</h1>
                     </div>
-                    <h2 class="pt-2 popping-bold">We’d Love to Hear From You</h2>
+                    <h2 class="pt-2 poppins-bold">We’d Love to Hear From You</h2>
                     <p class="pt-2">Thank you very much for visiting TheVacationCalendar.com. If you have any questions about the service, technical issues, or any other suggestions, please feel free to email.</p>
                 </div>
             </div>
@@ -98,9 +98,9 @@
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
 
-                                <div class="btn  gap-3 text-center mt-4 contact-btn d-block d-md-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary btn-lg rounded px-5 border-0 shadow-lg">Send</button>
-                                    <button type="button" onclick="resetForm()" class="btn bg-skin btn-lg shadow-lg rounded px-5 mt-3 mt-sm-0 border-0">Reset</button>
+                                <div class="btn gap-3 text-center mt-4 d-block d-md-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">SEND</button>
+                                    <a href="#" onclick="resetForm()" class="btn  btn-lg bg-skin btn-min-160 shadow-lg rounded px-5 mt-3 mt-sm-0 border-0">RESET</a>
                                 </div>
 
                             </form>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-lg-6 mt-3 mt-lg-0">
                     <div class="card h-100">
-                        <div class="card-body p-3">
+                        <div class="card-body p-2 p-md-3">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109132.50717458608!2d72.21911081640624!3d31.265282300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3923a3d944211f27%3A0xfe1509a2f8d6f2a5!2stravelforbes!5e0!3m2!1sen!2s!4v1655819155305!5m2!1sen!2s"
                                 class="w-100" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
