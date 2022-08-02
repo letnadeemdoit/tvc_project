@@ -30,7 +30,7 @@
                 <div class="accordion" id="myAccordion">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
-                            <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">PERSONAL INFORMATION WE COLLECT
+                            <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Personal Information we collect
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#myAccordion">
@@ -49,7 +49,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingTwo">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">HOW DO WE USE YOUR PERSONAL INFORMATION?
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">How do we use your personal information
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingFour">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">SHARING YOUR PERSONAL INFORMATION</button>
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">Sharing your personal Information</button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
                             <div class="card-body bottom-box-shadow">
@@ -80,7 +80,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingFive">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive">BEHAVIORAL ADVERTISING
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive">Behavorial Advertising
                             </button>
                         </h2>
                         <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingSIx">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSix">DO NOT TRACK
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSix">Do not Track
                             </button>
                         </h2>
                         <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
@@ -104,7 +104,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingSeven">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSeven">YOUR RIGHTS
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSeven">Your Rights
                             </button>
                         </h2>
                         <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
@@ -116,7 +116,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingEight">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseEight">DATA RETENTION
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseEight">Data Retention
                             </button>
                         </h2>
                         <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
@@ -127,7 +127,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingNine">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#headingNine">THIRD PARTY LINKS
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#headingNine">Third Party Links
                             </button>
                         </h2>
                         <div id="headingNine" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
@@ -138,7 +138,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingTen">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTen">CHANGES
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTen">Changes
                             </button>
                         </h2>
                         <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
@@ -149,7 +149,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingEleven">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#headingEleven">MINORS
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#headingEleven">Minors
                             </button>
                         </h2>
                         <div id="headingEleven" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
@@ -160,7 +160,7 @@
                     </div>
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingTwelve">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwelve">CONTACT US
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwelve">Contact US
                             </button>
                         </h2>
                         <div id="collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
