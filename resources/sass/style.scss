@@ -557,6 +557,12 @@ header{
             font-size: 9px !important;
         }
     }
+    .section-min-h{
+        min-height: 800px !important;
+    }
+    .min-height{
+        min-height: 575px !important;
+    }
 }
 @media only screen and (max-width:991px){
     .help-page-tabs{
