@@ -245,7 +245,7 @@
                         class="form-check-input"
                         name="AdminOwner"
                         wire:model.defer="state.AdminOwner"
-                        value=""
+                        value="Y"
                         id="AdminOwner"
                     />
 
@@ -348,11 +348,11 @@
                     @enderror
 
                     <div class="form-check mt-2">
-                        <label class="form-check-label" for="remember_me">
+                        <label class="form-check-label" for="terms_and_conditions">
                             I accept <a href="#" class="text-decoration-underline">Terms and Conditions</a>
                         </label>
-                        <input type="checkbox" class="form-check-input" name="remember_me" value=""
-                               id="remember_me">
+                        <input type="checkbox" class="form-check-input" name="terms" wire:model.defer="state.terms" value="accepted"
+                               id="terms_and_conditions">
 
                     </div>
                 </div>
@@ -361,7 +361,16 @@
 
         </div>
         <div class="text-center mt-3">
-            <button class="btn btn-dark-secondary text-white w-100" type="submit">Create Account</button>
+            <button
+                class="btn btn-dark-secondary text-white w-100"
+                type="submit"
+                wire:loading.attr="disabled"
+                wire:target="register"
+            >
+                <span wire:loading.remove>Create Account</span>
+                <span wire:loading>Creating....</span>
+
+            </button>
         </div>
 
     </fieldset>

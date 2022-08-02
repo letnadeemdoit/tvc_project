@@ -10,7 +10,8 @@
                 gotoHouse: false,
                 loginAsGuest: null,
                 role: '{{ old('role', 'Guest') }}',
-                houseIsSelected: false
+                houseIsSelected: false,
+                house_id: null
             }"
             x-init="
                 @if(old('role') !== null)
@@ -152,7 +153,6 @@
                                        name="password"
                                        id="password"
                                        placeholder="8+ characters required"
-                                       value="{{ old('password') }}"
                                        autocomplete="new-password"
                                        aria-label="8+ characters required"
                                        minlength="8"
@@ -185,12 +185,7 @@
                         </div>
                         <!-- End Form -->
 
-
-                        <div class="d-grid">
-                            <a  class="btn btn-dark-secondary btn-lg">{{ __('Log in') }}</a>
-                        </div>
-                        <!-- Form Check -->
-                        <div class="form-check mt-4">
+                        <div class="form-check mb-4">
                             <label class="form-check-label" for="remember_me">
                                 {{ __('Remember me') }}
                             </label>
@@ -199,10 +194,15 @@
                                 class="form-check-input"
                                 name="remember_me"
                                 value="{{ old('remember_me') }}"
-                                id="remember_me">
+                                id="remember_me"
+                            />
 
                         </div>
-                        <!-- End Form Check -->
+
+                        <div class="d-grid">
+                            <button class="btn btn-dark-secondary btn-lg" type="submit">{{ __('Log in') }}</button>
+                        </div>
+
                         <div class="text-center mt-3" x-show="loginAsGuest === false">
                             <p>Don't have an account? <a href="{{ route('register') }}"
                                                          class="text-decoration-underline text-primary fw-bolder">Create
@@ -214,9 +214,4 @@
             <!-- End Form -->
         </div>
     </x-jet-authentication-card>
-    @push('scripts')
-        <script>
-            window.houses = @json(\App\Models\House::select('HouseID', 'HouseName')->get()->toArray())
-        </script>
-    @endpush
 </x-auth-layout>
