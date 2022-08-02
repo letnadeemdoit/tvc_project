@@ -21,7 +21,7 @@
                             type="button" role="tab" aria-controls="home" aria-selected="true">
                         <div class="card shadow-lg card-border rounded-3">
                             <div class="card-body">
-                                <img src="{{asset('/images/help-images/menu-book.png')}}" class="img-fluid m-auto">
+                                <img src="{{asset('/images/help-images/menu-book.svg')}}" class="img-fluid m-auto">
                                 <p>Quick Start Guide</p>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             type="button" role="tab" aria-controls="profile" aria-selected="false">
                         <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5">
                             <div class="card-body">
-                                <img src="{{asset('/images/help-images/instructions.png')}}" class="img-fluid  m-auto">
+                                <img src="{{asset('/images/help-images/instructions.svg')}}" class="img-fluid  m-auto">
                                 <p>Instructions</p>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                             type="button" role="tab" aria-controls="contact" aria-selected="false">
                         <div class="card shadow-lg card-border rounded-3 mt-lg-n1 ">
                             <div class="card-body">
-                                <img src="{{asset('/images/help-images/vacation-calendar.png')}}"
+                                <img src="{{asset('/images/help-images/vacation-calendar.svg')}}"
                                      class="img-fluid m-auto">
                                 <p><span class="d-none d-lg-block">Different Ways to Use The</span> Vacation Calendar</p>
                             </div>
@@ -70,7 +70,7 @@
                             type="button" role="tab" aria-controls="users" aria-selected="false">
                         <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5">
                             <div class="card-body">
-                                <img src="{{asset('/images/help-images/users.png')}}" class="img-fluid  m-auto">
+                                <img src="{{asset('/images/help-images/users.svg')}}" class="img-fluid  m-auto">
                                 <p> <span class="d-none d-lg-block">Understanding the different</span> Users and Roles</p>
                             </div>
                         </div>

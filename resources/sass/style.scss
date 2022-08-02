@@ -93,7 +93,7 @@ body{
 }
 
 .features-img-2{
-    background-image: url('/images/images-home/feature-2.png');
+    background-image: url('/images/images-home/feature-2.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -110,7 +110,7 @@ body{
     margin-bottom: 90px;
 }
 .hero-image{
-    background-image: url('/images/images-home/hero-image.png');
+    background-image: url('/images/images-home/hero-image.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -158,7 +158,7 @@ fieldset{
 
 
 .social-img{
-    background-image: url('/images/images-home/social.png');
+    background-image: url('/images/images-home/social.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -220,6 +220,7 @@ header{
         background: #E8604C !important;
         color: #fff;
         font-weight: 300 !important;
+        box-shadow: 0px 18px 25px rgba(0, 0, 0, 0.15);
         img{
             filter: brightness(0) invert(1);
         }
@@ -232,12 +233,12 @@ header{
     max-width: 100%;
 }
 .bg-process-img {
-    background-image: url('/images/images-home/process.png');
+    background-image: url('/images/images-home/process.svg');
     @include background-text;
     background-size: contain !important;
 }
 .privacy-policy{
-    background-image: url('/images/privacy-policy/Privacy.png');
+    background-image: url('/images/privacy-policy/Privacy.svg');
     background-size:contain !important;
     @include background-text;
     height: 40px;
@@ -249,7 +250,7 @@ header{
     background-size: cover;
 }
 .contact-text{
-    background-image: url('/images/contact-images/contact.png');
+    background-image: url('/images/contact-images/contact.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -296,16 +297,16 @@ header{
     background-position: center;
 }
 .bg-card-1{
-    background-image: url('/images/images-home/number-1.png');
+    background-image: url('/images/images-home/number-1.svg');
     @include cards-background;
 
 }
 .bg-card-2{
-    background-image: url('/images/images-home/number-2.png');
+    background-image: url('/images/images-home/number-2.svg');
     @include cards-background;
 }
 .bg-card-3{
-    background-image: url('/images/images-home/number-3.png');
+    background-image: url('/images/images-home/number-3.svg');
     @include cards-background;
 }
 .form-check-input:checked[type=checkbox] {
@@ -343,10 +344,10 @@ header{
     /* Custom style */
 
     .accordion-button::after {
-        background-image: url("/images/privacy-policy/icon-plus.png");
+        background-image: url("/images/privacy-policy/icon-plus.svg");
     }
     .accordion-button:not(.collapsed)::after {
-        background-image: url("/images/privacy-policy/icon-minus.png");
+        background-image: url("/images/privacy-policy/icon-minus.svg");
     }
     .accordion-button:not(.collapsed){
         border: none !important;
@@ -433,7 +434,7 @@ header{
     }
 }
 .bg-image{
-    background: url("/images/login-images/login.png");
+    background: url("/images/login-images/login.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -566,12 +567,14 @@ header{
         }
     }
     .rounded-icon {
-        width: 8%;
+        width: 30%;
         margin: -30px auto !important;
     }
 
     .padding-top{
-        padding-top: 6rem !important;
+        padding-top: 3rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
     .fs-12{
         font-size: 13px !important;
@@ -597,11 +600,12 @@ header{
         background-position: center !important;
     }
     .margin-top{
-        margin-top: 50px;
+        //margin-top: 50px;
     }
-    .margin-y{
-        margin: 50px 0px !important;
-    }
+   .mobile-cards{
+       margin:117px 0px 70px 0px  !important;
+   }
+
     #header {
         .nav-item{
             .nav-link{
@@ -613,6 +617,9 @@ header{
             }
         }
     }
+    .padding-y{
+        padding: 40px 0px 0px 0px !important;
+    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -621,15 +628,12 @@ header{
     .select2-container{
     width: 100% !important;
     }
-    .padding-y{
-        padding: 40px 0px !important;
-    }
     .rounded-icon {
-        width: 11%;
+        width: 35%;
         margin: -31px auto !important;
     }
     .padding-top{
-        padding-top: 6rem !important;
+        padding-top: 3rem !important;
     }
     .help-page-tabs {
         .nav-tabs{
@@ -667,6 +671,28 @@ header{
     }
     .section-padding{
         padding-top: 40px !important;
+    }
+    .mobile-cards{
+        margin: 70px 0px;
+        .bg-card-1{
+            min-height: 245px !important;
+        }
+        .bg-card-2{
+            min-height: 245px !important;
+        }
+        .bg-card-3{
+            min-height: 245px !important;
+        }
+        .card{
+            .card-body{
+                .card-title{
+                    font-size: 13px !important;
+                }
+                p{
+                    font-size: 12px;
+                }
+            }
+        }
     }
 }
 @media only screen and (max-width:576px){
@@ -721,6 +747,9 @@ header{
         .card {
             min-height:revert !important;
         }
+    }
+    .margin-mobile-card{
+        margin: 50px 0px !important;
     }
 }
 @media only screen and (max-width:430px){
