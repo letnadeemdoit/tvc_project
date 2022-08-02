@@ -5,7 +5,7 @@
                                 <img class="card-img-top" src="{{asset('images/images-home/brown-house.svg')}}" alt="Image Description" />
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid" src="{{asset('images/images-home/Rectangle-3.png')}}" alt="Image Description" />
+                                    <img class="iimg-fluid rounded-2 border border-3 border-white" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50" />
                                 </div>
                             </div>
 

@@ -110,7 +110,7 @@ body{
     margin-bottom: 90px;
 }
 .hero-image{
-    background-image: url('/images/images-home/hero-image.svg');
+    background-image: url('/images/images-home/hero-image.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -190,6 +190,11 @@ header{
 }
 .bg-topnav{
     background: $dark-blue;
+}
+.topnav{
+    a:hover{
+        color: $primary !important;
+    }
 }
 .bg-cards-section{
     background: url('/images/images-home/union-waves.png');
@@ -281,7 +286,7 @@ header{
     }
 }
 .card-pinned-bottom-start {
-    bottom: -1rem !important;
+    bottom: -1.2rem !important;
 }
 @mixin cards-background{
     background-repeat: no-repeat;
@@ -309,6 +314,9 @@ header{
     background-image: url('/images/images-home/number-3.svg');
     @include cards-background;
 }
+.color-dark{
+    color: rgba(0, 0, 0, 1);
+}
 .form-check-input:checked[type=checkbox] {
     background-image: url("/images/images-home/tick.svg") !important;
 }
@@ -320,7 +328,10 @@ header{
     padding-left: 4rem;
     padding-right:3.5rem
 }
-
+.navbar-toggler{
+    font-size: 27px !important;
+    color: #6c6c6c !important;
+}
 
 // select2 css starts
 .select2-container{
@@ -366,6 +377,7 @@ header{
             word-wrap: break-word !important;
             p{
                 line-height: 30px;
+                color: rgba(42, 51, 66, 1);
             }
         }
     }
@@ -378,7 +390,10 @@ header{
     margin-top: 80px;
 }
 .help-page-tabs{
-    .card{
+    p {
+        color: #6D6D6D !important;
+    }
+        .card{
         min-width: 230px;
         max-width: 230px;
         .card-body{
@@ -434,7 +449,7 @@ header{
     }
 }
 .bg-image{
-    background: url("/images/login-images/login.svg");
+    background: url("/images/login-images/login.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -610,6 +625,15 @@ header{
     }
    .mobile-cards{
        margin:117px 0px 70px 0px  !important;
+       .bg-card-1{
+           min-height: 255px !important;
+       }
+       .bg-card-2{
+           min-height: 255px !important;
+       }
+       .bg-card-3{
+           min-height: 255px !important;
+       }
    }
 
     #header {
@@ -680,15 +704,7 @@ header{
     }
     .mobile-cards{
         margin: 70px 0px;
-        .bg-card-1{
-            min-height: 245px !important;
-        }
-        .bg-card-2{
-            min-height: 245px !important;
-        }
-        .bg-card-3{
-            min-height: 245px !important;
-        }
+
         .card{
             .card-body{
                 .card-title{
