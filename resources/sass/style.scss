@@ -24,7 +24,7 @@ i:hover{
     background-color: #DADADA;;
 }
 .bg-lightGrey{
-    background-color: #F8F8F8;
+    background-color: #f5f3f3 !important;
 }
 .color-black{
     color: #000 !important;
@@ -82,6 +82,22 @@ body{
         min-height: 580px;
     }
 }
+
+.quote-card{
+    .avatar {
+        width:5rem !important;
+        height: 5rem !important;
+    .avatar-status{
+        background: #000;
+        padding: 10px;
+    }
+    }
+    .bi.bi-quote{
+        font-size: 18px;
+        color: #fff;
+    }
+}
+
 .font-poppins{
     font-family: poppins;
 }
@@ -169,10 +185,11 @@ fieldset{
     height:50px;
 }
 .bg-social-feed{
-    background: url('/images/images-home/cards-background.png');
+    background: url('/images/images-home/map.png');
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-size: 100% 50%;
+    background-position: 0px 248px;
+    background-color:$dark-blue;
 }
 .pt-55{
     padding-top: 55px;

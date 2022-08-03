@@ -1,7 +1,7 @@
 <form wire:submit.prevent="register" method="post">
     @csrf
 {{--    <x-jet-validation-errors />--}}
-    <fieldset class=" border rounded-1 p-3 mb-5"  style="border: 1px solid #D9D9D9;">
+    <fieldset class=" border rounded-1 p-3 mb-5"  style="border: 1px solid #D9D9D9 !important;">
         <legend class="float-none w-auto fs-4 mb-0 px-2 mb-0 ms-1 text-dark poppins-bold">House Details</legend>
         <!-- Form -->
         <div class="pt-2 mb-3">
@@ -176,7 +176,7 @@
     </fieldset>
     <!-- End Form -->
     <!-- second fieldset -->
-    <fieldset class="border rounded-1 p-3 mb-3" style="border: 1px solid #D9D9D9;">
+    <fieldset class="border rounded-1 p-3 mb-3" style="border: 1px solid #D9D9D9 !important;">
         <legend class="float-none w-auto fs-4 mb-0 px-2 mb-0 ms-1 poppins-bold text-dark">Admin Details</legend>
         <!-- Form -->
         <div class="row pt-2">

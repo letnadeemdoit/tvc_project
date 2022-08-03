@@ -89,4 +89,7 @@ class GuestController extends Controller
     public function bulletin(){
         return view('bulletin-board.index');
     }
+    public function card(){
+        return view('card');
+    }
 }
