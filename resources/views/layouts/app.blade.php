@@ -19,6 +19,17 @@
 
         <!-- Scripts -->
 
+        <style>
+            i:hover {
+                color: #fff !important;
+            }
+
+            a:hover {
+                color: #000000;
+            }
+
+        </style>
+
     </head>
     <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
@@ -61,6 +72,18 @@
                 });
             });
         </script>
+
+        <script>
+            $(document).ready(function () {
+                window.livewire.on('openModal', (reload = false) => {
+                    $('.createOrUpdateModal').each(function () {
+                        $(this).modal('show');
+                    });
+                });
+            });
+        </script>
+
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script>

@@ -334,9 +334,6 @@
                                 <!-- List Group Item -->
                                 <li class="list-group-item">
                                     <div class="d-flex">
-                                        <div class="flex-shrink-0">
-                                            <img class="avatar avatar-xs avatar-4x3" src="./assets/svg/brands/capsule-icon.svg" alt="Image Description">
-                                        </div>
                                         <div class="flex-grow-1 ms-3">
                                             <div class="row align-items-center">
                                                 <div class="col">
@@ -362,9 +359,6 @@
                                 <!-- List Group Item -->
                                 <li class="list-group-item">
                                     <div class="d-flex">
-                                        <div class="flex-shrink-0">
-                                            <img class="avatar avatar-xs avatar-4x3" src="./assets/svg/brands/mailchimp-icon.svg" alt="Image Description">
-                                        </div>
                                         <div class="flex-grow-1 ms-3">
                                             <div class="row align-items-center">
                                                 <div class="col">
@@ -390,9 +384,6 @@
                                 <!-- List Group Item -->
                                 <li class="list-group-item">
                                     <div class="d-flex">
-                                        <div class="flex-shrink-0">
-                                            <img class="avatar avatar-xs avatar-4x3" src="./assets/svg/brands/google-webdev-icon.svg" alt="Image Description">
-                                        </div>
                                         <div class="flex-grow-1 ms-3">
                                             <div class="row align-items-center">
                                                 <div class="col">
@@ -676,500 +667,448 @@
                    "isShowPaging": false,
                    "pagination": "datatablePagination"
                  }'>
+
                         <thead class="thead-light">
                         <tr>
-                            <th scope="col" class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
-                                    <label class="form-check-label" for="datatableCheckAll"></label>
-                                </div>
-                            </th>
-                            <th class="table-column-ps-0">Full name</th>
-                            <th>Status</th>
-                            <th>Type</th>
-                            <th>Email</th>
-                            <th>Signed up</th>
-                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Full Name</th>
+                            <th>Role</th>
+                            <th>House</th>
+                            <th>Intro</th>
+                            <th>Show Old Save</th>
+                            <th>Admin Owner</th>
+                            <th>Check Audit Details</th>
+                            {{--                <th>Content</th>--}}
+                            <th>Action</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck2">
-                                    <label class="form-check-label" for="usersDataCheck2"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="./assets/img/160x160/img10.jpg" alt="Image Description">
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Successful
-                            </td>
-                            <td>Unassigned</td>
-                            <td>amanda@site.com</td>
-                            <td>1 year ago</td>
-                            <td>67989</td>
-                        </tr>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck3">
-                                    <label class="form-check-label" for="usersDataCheck3"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-primary avatar-circle">
-                                            <span class="avatar-initials">A</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Anne Richard</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Successful
-                            </td>
-                            <td>Subscription</td>
-                            <td>anne@site.com</td>
-                            <td>6 months ago</td>
-                            <td>67326</td>
-                        </tr>
+                        @if(isset($users))
+                            @foreach($users as $user)
+                                <tr>
+                                    <td>
+                                        <a class="d-flex align-items-center" href="../user-profile.html">
+                                            <div class="avatar avatar-soft-primary avatar-circle">
+                                                <span class="avatar-initials">{{substr($user->first_name, 0, 1)}}</span>
+                                            </div>
+                                            <div class="ms-3">
+                                                <span class="d-block h5 text-inherit mb-0">{{$user->user_name}} </span>
+                                                <span class="d-block fs-5 text-body">{{$user->email}}</span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>{{$user->first_name}} {{$user->last_name}}</td>
+                                    <td>{{$user->role}}</td>
+                                    <td>{{$user->HouseId}}</td>
+                                    <td>{{$user->Intro}}</td>
+                                    <td>{{$user->ShowOldSave}}</td>
+                                    <td>{{$user->AdminOwner}}</td>
+                                    <td>
+                                        @if(!is_null($user->Audit_user_name))
+                                            <a class="btn btn-soft-success"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#audit{{$user->user_id}}Modal"
+                                               style="width: 130px" href="#!">Click to view</a>
+                                        @else
+                                            <a class="btn btn-soft-secondary" style="width: 130px" href="#!">No Audit</a>
+                                        @endif
+                                    </td>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck4">
-                                    <label class="form-check-label" for="usersDataCheck4"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="./assets/img/160x160/img3.jpg" alt="Image Description">
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="audit{{$user->user_id}}Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title text-primary" id="exampleModalLabel">Audit Details</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="card shadow-none border-0">
+                                                        <div class="card-body">
+                                                            <div class="mb-3">
+                                                                <h5 class="card-title">Audit User Name</h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted">{{$user->Audit_user_name}}</h6>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <h5 class="card-title">Audit Role</h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted">{{$user->Audit_Role}}</h6>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <h5 class="card-title">Audit First Name</h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted">{{$user->Audit_FirstName}}</h6>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <h5 class="card-title">Audit Last Name</h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted">{{$user->Audit_LastName}}</h6>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <h5 class="card-title">Audit Email</h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted">{{$user->Audit_Email}}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">David Harrison</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-danger"></span>Overdue
-                            </td>
-                            <td>Non-subscription</td>
-                            <td>david@site.com</td>
-                            <td>6 months ago</td>
-                            <td>55821</td>
-                        </tr>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck5">
-                                    <label class="form-check-label" for="usersDataCheck5"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="./assets/img/160x160/img5.jpg" alt="Image Description">
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Edit group">
+                                            <a class="btn btn-outline-info btn-sm" href="#"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#updateUser{{$user->user_id}}Modal"
+                                            >
+                                                <i class="bi-pencil me-1"></i> Edit
+                                            </a>
+                                            <a class="btn btn-outline-danger btn-sm" href="#"
+                                               data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $user->user_id }}Modal"
+                                            >
+                                                <i class="bi-trash"></i>
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Finch Hoot</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-warning"></span>Pending
-                            </td>
-                            <td>Subscription</td>
-                            <td>finch@site.com</td>
-                            <td>1 year ago</td>
-                            <td>85214</td>
-                        </tr>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck6">
-                                    <label class="form-check-label" for="usersDataCheck6"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
-                                            <span class="avatar-initials">B</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Bob Dean</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Successful
-                            </td>
-                            <td>Subscription</td>
-                            <td>bob@site.com</td>
-                            <td>6 months ago</td>
-                            <td>75470</td>
-                        </tr>
+                                        <!--Update User Modal -->
+                                        <div class="modal fade" id="updateUser{{$user->user_id}}Modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Update User {{$user->user_id}}</h5>
+                                                        <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck7">
-                                    <label class="form-check-label" for="usersDataCheck7"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="./assets/img/160x160/img9.jpg" alt="Image Description">
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Ella Lauda <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-warning"></span>Pending
-                            </td>
-                            <td>Subscription</td>
-                            <td>Ella@site.com</td>
-                            <td>1 year ago</td>
-                            <td>37534</td>
-                        </tr>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck8">
-                                    <label class="form-check-label" for="usersDataCheck8"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="./assets/img/160x160/img4.jpg" alt="Image Description">
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Sam Kart</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Successful
-                            </td>
-                            <td>Non-subscription</td>
-                            <td>sam@site.com</td>
-                            <td>1 year ago</td>
-                            <td>57300</td>
-                        </tr>
+                                                    <div class="modal-body">
+                                                        <form class=""  action="{{ route('users.update',$user->user_id) }}" method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <fieldset class="scheduler-border fieldset-padding">
+                                                                <legend class="scheduler-border">House Details:  {{$user->HouseName}}</legend>
+                                                                <!-- Form -->
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck9">
-                                    <label class="form-check-label" for="usersDataCheck9"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description">
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Costa Quinn</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-danger"></span>Overdue
-                            </td>
-                            <td>Unassigned</td>
-                            <td>costa@site.com</td>
-                            <td>1 year ago</td>
-                            <td>71288</td>
-                        </tr>
+                                                                <div class="row pt-2">
+                                                                    <div class="col-md-12">
+                                                                        <!-- Form -->
+                                                                        <div class="mb-2">
+                                                                            <fieldset class="border-light scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0">House Name*</legend>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control form-control-lg"
+                                                                                    name="HouseName"
+                                                                                    id="HouseName"
+                                                                                    placeholder="Enter House Name"
+                                                                                    value="{{$user->HouseName}}"
+                                                                                />
+                                                                            </fieldset>
+                                                                            @error('HouseName')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <!-- End Form -->
+                                                                    </div>
+                                                                </div>
+                                                                {{--     second row starts --}}
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck10">
-                                    <label class="form-check-label" for="usersDataCheck10"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-primary avatar-circle">
-                                            <span class="avatar-initials">R</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Rachel Doe</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-warning"></span>Pending
-                            </td>
-                            <td>Unassigned</td>
-                            <td>rachel@site.com</td>
-                            <td>6 months ago</td>
-                            <td>95211</td>
-                        </tr>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <fieldset class="border-light scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0">City</legend>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    id="city"
+                                                                                    name="City"
+                                                                                    placeholder="City"
+                                                                                    value="{{$user->City}}"
+                                                                                />
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck11">
-                                    <label class="form-check-label" for="usersDataCheck11"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
-                                            <span class="avatar-initials">B</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Brian Halligan</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-warning"></span>Pending
-                            </td>
-                            <td>Subscription</td>
-                            <td>brian@site.com</td>
-                            <td>1 year ago</td>
-                            <td>58643</td>
-                        </tr>
+                                                                            </fieldset>
+                                                                            @error('City')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class=" col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <fieldset class="border-light scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0">State</legend>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    name="State"
+                                                                                    id="State"
+                                                                                    placeholder="State"
+                                                                                    value="{{$user->State}}"
+                                                                                    aria-label=""
+                                                                                />
+                                                                            </fieldset>
+                                                                            @error('State')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="mt-3">
+                                                                            <fieldset class="border-light scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0">Paypal Account</legend>
+                                                                                <input
+                                                                                    type="number"
+                                                                                    class="form-control form-control-lg"
+                                                                                    id="ReferredBy"
+                                                                                    name="ReferredBy"
+                                                                                    placeholder=""
+                                                                                    value="{{$user->ReferredBy}}"
+                                                                                />
+                                                                            </fieldset>
+                                                                            @error('ReferredBy')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck12">
-                                    <label class="form-check-label" for="usersDataCheck12"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="./assets/img/160x160/img8.jpg" alt="Image Description">
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Linda Bates</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-warning"></span>Pending
-                            </td>
-                            <td>Subscription</td>
-                            <td>linda@site.com</td>
-                            <td>1 year ago</td>
-                            <td>44414</td>
-                        </tr>
+                                                                    </div>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck13">
-                                    <label class="form-check-label" for="usersDataCheck13"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-info avatar-circle">
-                                            <span class="avatar-initials">C</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Chris Mathew <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Successful
-                            </td>
-                            <td>Non-subscription</td>
-                            <td>chris@site.com</td>
-                            <td>1 year ago</td>
-                            <td>12569</td>
-                        </tr>
+                                                                </div>
+                                                                <div class="mb-2">
+                                                                    <div id="basicExampleDropzone" class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light">
+                                                                        <div class="dz-message">
+                                                                            {{--                                        <img class="avatar avatar-xl avatar-4x3 mb-3" src="../assets/svg/illustrations/oc-browse.svg" alt="Image Description">--}}
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck14">
-                                    <label class="form-check-label" for="usersDataCheck14"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
-                                            <span class="avatar-initials">L</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Lewis Clarke</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-danger"></span>Overdue
-                            </td>
-                            <td>Non-subscription</td>
-                            <td>lewis@site.com</td>
-                            <td>1 year ago</td>
-                            <td>54621</td>
-                        </tr>
+                                                                            <h5>Drag and drop your file here</h5>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck15">
-                                    <label class="form-check-label" for="usersDataCheck15"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="./assets/img/160x160/img7.jpg" alt="Image Description">
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Clarice Boone <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Successful
-                            </td>
-                            <td>Non-subscription</td>
-                            <td>clarice@site.com</td>
-                            <td>6 months ago</td>
-                            <td>23485</td>
-                        </tr>
+                                                                            <p class="mb-2">or</p>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck16">
-                                    <label class="form-check-label" for="usersDataCheck16"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-danger avatar-circle">
-                                            <span class="avatar-initials">M</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Mark Colbert</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Successful
-                            </td>
-                            <td>Subscription</td>
-                            <td>mark@site.com</td>
-                            <td>6 months ago</td>
-                            <td>78463</td>
-                        </tr>
+                                                                            <span class="btn bg-primary btn-sm text-white">Upload Image</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                            <!-- End Form -->
+                                                            <!-- second fieldset -->
+                                                            <fieldset class="scheduler-border fieldset-padding">
+                                                                <legend class="scheduler-border">Admin Details</legend>
+                                                                <!-- Form -->
+                                                                <div class="row pt-2">
+                                                                    <div class="col-md-6">
+                                                                        <!-- Form -->
+                                                                        <div class="mb-2">
+                                                                            <fieldset class="border-light input-group scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Username</legend>
+                                                                                <input type="text" class="form-control form-control-lg border-end-0"
+                                                                                       name="user_name"
+                                                                                       id="user_name" tabindex="1"
+                                                                                       placeholder=""
+                                                                                       value="{{ old('user_name') }}"
+                                                                                       aria-label=""
+                                                                                />
+                                                                                <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                                                                                    <i class="bi bi-person text-primary"></i>
+                                                                                </a>
+                                                                            </fieldset>
+                                                                            @error('user_name')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <!-- End Form -->
+                                                                    </div>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck17">
-                                    <label class="form-check-label" for="usersDataCheck17"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-info avatar-circle">
-                                            <span class="avatar-initials">J</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Johnny Appleseed</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-warning"></span>Pending
-                            </td>
-                            <td>Subscription</td>
-                            <td>johnny@site.com</td>
-                            <td>1 year ago</td>
-                            <td>23564</td>
-                        </tr>
+                                                                    <div class="col-md-6">
+                                                                        <div class="">
+                                                                            <fieldset class="border-light input-group scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Email</legend>
+                                                                                <input type="email" class="form-control form-control-lg border-end-0"
+                                                                                       name="email" value=""
+                                                                                       id="email" tabindex="1"
+                                                                                       value="{{ old('email') }}"
+                                                                                       placeholder=""
+                                                                                       aria-label=""
+                                                                                />
+                                                                                <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                                                                                    <i class="bi bi-envelope text-primary"></i>
+                                                                                </a>
+                                                                            </fieldset>
+                                                                            @error('email')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
 
-                        <tr>
-                            <td class="table-column-pe-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck18">
-                                    <label class="form-check-label" for="usersDataCheck18"></label>
-                                </div>
-                            </td>
-                            <td class="table-column-ps-0">
-                                <a class="d-flex align-items-center" href="./user-profile.html">
-                                    <div class="flex-shrink-0">
-                                        <div class="avatar avatar-sm avatar-soft-primary avatar-circle">
-                                            <span class="avatar-initials">P</span>
+                                                                    </div>
+
+                                                                    <div class="col-12">
+                                                                        <div class="form-check mt-2 col-12">
+                                                                            <label class="form-check-label" for="remember_me">
+                                                                                Allow Administrator to have Owner Permissions.
+                                                                            </label>
+                                                                            <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row pt-2">
+                                                                    <div class="col-md-12">
+                                                                        <div class="">
+                                                                            <fieldset class="border-light input-group scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Role</legend>
+                                                                                <select class="form-control form-control-lg border-end-0"
+                                                                                        name="role"
+                                                                                        id="role" tabindex="1"
+                                                                                        value="{{ old('role') }}"
+                                                                                        placeholder=""
+                                                                                        aria-label=""
+                                                                                >
+                                                                                    <option readonly="" value="">Please Select Role</option>
+                                                                                    <option value="Administrator">Administrator</option>
+                                                                                    <option value="Administrator">Guest</option>
+                                                                                    <option value="Administrator">Owner</option>
+                                                                                </select>
+                                                                            </fieldset>
+                                                                            @error('role')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="col-12">
+                                                                        <div class="form-check mt-2 col-12">
+                                                                            <label class="form-check-label" for="remember_me">
+                                                                                Allow Administrator to have Owner Permissions.
+                                                                            </label>
+                                                                            <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                {{--     second row starts --}}
+
+                                                                <div class="row">
+                                                                    <div class=" col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <fieldset class="border-light input-group scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">First Name</legend>
+                                                                                <input type="text" class="form-control form-control-lg border-end-0"
+                                                                                       name="first_name" value=""
+                                                                                       id="first_name" tabindex="1"
+                                                                                       placeholder=""
+                                                                                       value="{{$user->first_name}}"
+                                                                                       aria-label=""
+                                                                                />
+                                                                            </fieldset>
+                                                                            @error('first_name')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class=" col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <fieldset class="border-light input-group scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Last Name</legend>
+                                                                                <input type="text" class="form-control form-control-lg border-end-0"
+                                                                                       name="last_name" value=""
+                                                                                       id="last_name" tabindex="1"
+                                                                                       placeholder=""
+                                                                                       value="{{$user->last_name}}"
+                                                                                       aria-label=""
+                                                                                />
+                                                                            </fieldset>
+                                                                            @error('last_name')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <fieldset class="border-light input-group scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Create Password</legend>
+                                                                                <input type="password"
+                                                                                       class="form-control form-control-lg border-end-0"
+                                                                                       name="password"
+                                                                                       value="{{old('password')}}"
+                                                                                       id="password"
+                                                                                       tabindex="1"
+                                                                                       placeholder=""
+                                                                                       aria-label=""
+                                                                                >
+                                                                                <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                                                                                    <i class="bi-eye text-primary"></i>
+                                                                                </a>
+                                                                            </fieldset>
+                                                                            @error('password')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <fieldset class="border-light input-group scheduler-border">
+                                                                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">Confirm Password</legend>
+                                                                                <input type="password"
+                                                                                       class="form-control form-control-lg border-end-0"
+                                                                                       name="password_confirmation"
+                                                                                       value="{{old('confirm_password')}}"
+                                                                                       id="password_confirmation"
+                                                                                       tabindex="1"
+                                                                                       placeholder=""
+                                                                                       aria-label=""
+                                                                                >
+                                                                                <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                                                                                    <i class="bi-eye text-primary"></i>
+                                                                                </a>
+                                                                            </fieldset>
+
+                                                                            @error('password_confirmation')
+                                                                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                                                                            @enderror
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="col-12">
+                                                                        <div class="form-check mt-2">
+                                                                            <label class="form-check-label" for="remember_me">
+                                                                                I accept <a href="#" class="text-decoration-underline">Terms and Conditions</a>
+                                                                            </label>
+                                                                            <input type="checkbox" class="form-check-input" name="remember_me" value="" id="remember_me">
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="text-center mt-3">
+                                                                    <button class="btn btn-dark-secondary text-white w-100" type="submit">Create Account</button>
+                                                                </div>
+
+                                                            </fieldset>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="text-inherit mb-0">Phileas Fogg</h5>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="legend-indicator bg-warning"></span>Pending
-                            </td>
-                            <td>Subscription</td>
-                            <td>phileas@site.com</td>
-                            <td>6 months ago</td>
-                            <td>39199</td>
-                        </tr>
+                                        <!-- End Modal -->
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+
+
                         </tbody>
+
+
                     </table>
                 </div>
                 <!-- End Table -->
@@ -1432,5 +1371,7 @@
                 </div>
             </div>
         </div>
+
+
 
 </x-app-layout>

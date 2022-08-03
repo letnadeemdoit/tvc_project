@@ -21,7 +21,6 @@
 
             <livewire:register />
 
-
             <div class="text-center">
                 <p>Already have an account? <a href="{{route('login')}}" class="text-decoration-underline text-primary">Login</a>
                 </p>

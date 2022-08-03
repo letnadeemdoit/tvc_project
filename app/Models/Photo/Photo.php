@@ -9,16 +9,32 @@ class Photo extends Model
 {
     use HasFactory;
 
-    protected $table = 'amenitytype';
+    protected $table = 'Photo';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
+
+    protected $primaryKey = 'PhotoId';
+
     protected $fillable = [
-        'name',
+        'HouseId',
     ];
 
+    public function getImageAttribute()
+    {
+
+        $path = "photos/photo_{$this->HouseId}_{$this->PhotoId}.jpg";
+
+        if (\Storage::disk('public')->exists($path)) {
+            return \Storage::disk('public')->url($path);
+        }
+
+        return null;
+    }
+
+//    $this->file->storeAs('photos', "photo_{$HouseId}_{$PhotoId}.jpg", 'public');
 
 }

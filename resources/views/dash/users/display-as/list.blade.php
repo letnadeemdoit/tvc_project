@@ -488,6 +488,8 @@
 
 
             </tbody>
+
+
         </table>
         <div class="d-flex mt-4">
             {!! $users->links() !!}

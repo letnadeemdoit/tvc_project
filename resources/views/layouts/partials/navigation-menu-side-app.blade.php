@@ -3,8 +3,8 @@
         <div class="navbar-vertical-footer-offset">
             <!-- Logo -->
 
-            <a class="navbar-brand" href="./index.html" aria-label="Front">
-                <img class="img-fluid" src="{{asset('dash/assets/svg/logos/logo.svg')}}" alt="Logo" data-hs-theme-appearance="default">
+            <a class="navbar-brand" href="{{route('guest.welcome')}}" aria-label="Front">
+                <img class="img-fluid" src="{{asset('logo/logo.svg')}}" alt="Logo" data-hs-theme-appearance="default">
             </a>
 
             <!-- End Logo -->
@@ -22,18 +22,15 @@
                 <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
                     <!-- Collapse -->
                     <div class="nav-item">
-                        <a class="nav-link dropdown-toggle active" href="#navbarVerticalMenuDashboards" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuDashboards" aria-expanded="true" aria-controls="navbarVerticalMenuDashboards">
+                        <a class="nav-link active" href="{{route('dashboard.index')}}">
                             <i class="bi-house-door nav-icon"></i>
-                            <span class="nav-link-title">Dashboards</span>
+                            <span class="nav-link-title">Dashboard</span>
                         </a>
 
-                        <div id="navbarVerticalMenuDashboards" class="nav-collapse collapse show" data-bs-parent="#navbarVerticalMenu">
-                            <a class="nav-link active" href="./index.html">The Vacation Calendar</a>
-                        </div>
                     </div>
                     <!-- End Collapse -->
 
-                    <span class="dropdown-header mt-4">Navigation</span>
+                    <span class="dropdown-header mt-4">Menu</span>
                     <small class="bi-three-dots nav-subtitle-replacer"></small>
                     <div id="navbarVerticalMenuPagesMenu">
 
@@ -45,21 +42,21 @@
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="{{route('houses.index')}}" data-placement="left">
+                            <a class="nav-link" href="{{route('dashboard.houses')}}" data-placement="left">
                                 <i class="bi-house nav-icon"></i>
                                 <span class="nav-link-title">Houses</span>
                             </a>
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="./welcome-page.html" data-placement="left">
+                            <a class="nav-link" href="#" data-placement="left">
                                 <i class="bi-calendar-month nav-icon"></i>
                                 <span class="nav-link-title">Calendar</span>
                             </a>
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="./welcome-page.html" data-placement="left">
+                            <a class="nav-link" href="#" data-placement="left">
                                 <i class="bi-sunset nav-icon"></i>
                                 <span class="nav-link-title">Vacations</span>
                             </a>
@@ -72,13 +69,13 @@
                             </a>
 
                             <div id="navbarVerticalMenuPagesBlogsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="{{route('blogs.index')}}">All Blogs</a>
-                                <a class="nav-link " href="{{route('blogs.index')}}">Add New Blog</a>
+                                <a class="nav-link " href="{{route('dashboard.blogs')}}">All Blogs</a>
+                                <a class="nav-link " href="{{route('dashboard.blogs')}}">Add New Blog</a>
                             </div>
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="./welcome-page.html" data-placement="left">
+                            <a class="nav-link" href="#" data-placement="left">
                                 <i class="bi-clipboard-data nav-icon"></i>
                                 <span class="nav-link-title">Bulletin Board</span>
                             </a>
@@ -87,12 +84,12 @@
                         <div class="nav-item">
                             <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesPhotoAlbumsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesPhotoAlbumsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesPhotoAlbumsMenu">
                                 <i class="bi-images nav-icon"></i>
-                                <span class="nav-link-title">Photo Album</span>
+                                <span class="nav-link-title">Photo Albums</span>
                             </a>
 
                             <div id="navbarVerticalMenuPagesPhotoAlbumsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuNavigationMenu">
-                                <a class="nav-link " href="./Blogs.html">All Photos</a>
-                                <a class="nav-link " href="./Blogs-leaderboard.html">Add New Photo</a>
+                                <a class="nav-link " href="{{route('dashboard.photo-albums')}}">All Photos</a>
+                                <a class="nav-link " href="{{route('dashboard.photo-albums')}}">Add New Photos</a>
                             </div>
                         </div>
 
@@ -104,10 +101,10 @@
                             </a>
 
                             <div id="navbarVerticalMenuPagesAdministratorMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuNavigationMenu">
-                                <a class="nav-link " href="./Blogs.html">Administer Users</a>
-                                <a class="nav-link " href="./Blogs.html">Manage Bulletin Board</a>
-                                <a class="nav-link " href="./Blogs.html">Delete Vacation</a>
-                                <a class="nav-link " href="./Blogs-leaderboard.html">Help</a>
+                                <a class="nav-link " href="#">Administer Users</a>
+                                <a class="nav-link " href="#">Manage Bulletin Board</a>
+                                <a class="nav-link " href="#">Delete Vacation</a>
+                                <a class="nav-link " href="#">Help</a>
                             </div>
                         </div>
                     </div>

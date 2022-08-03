@@ -5,14 +5,14 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h1 class="page-header-title">Users</h1>
+                    <h1 class="page-header-title">Houses</h1>
                 </div>
                 <!-- End Col -->
 
                 <div class="col-auto">
                     <a class="btn btn-primary" href="javascript:;"
                        data-bs-toggle="modal" data-bs-target="#createUser">
-                        <i class="bi-plus me-1"></i> Add New User
+                        <i class="bi-plus me-1"></i> Add New House
                     </a>
                 </div>
 

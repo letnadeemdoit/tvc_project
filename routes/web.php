@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\UserController;
@@ -39,15 +40,23 @@ Route::controller(\App\Http\Controllers\Select2Controller::class)
     ->group(function () {
         Route::get('houses', 'houses')->name('houses');
     });
-Route::resource('blogs', BlogController::class);
+
+
 Route::resource('users', UserController::class);
-Route::resource('houses', HouseController::class);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+Route::get('/blogs', [DashboardController::class, 'blogs'])->name('dashboard.blogs');
+Route::get('/houses', [DashboardController::class, 'houses'])->name('dashboard.houses');
+Route::get('/photo-albums', [DashboardController::class, 'photoAlbum'])->name('dashboard.photo-albums');
+Route::get('/photo-albums/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('dashboard.show-single-album');
+
 
 require_once __DIR__ . '/fortify.php';
-
-Route::get('/dashboard', function () {
-    return view('dash.index');
-})->name('dashboard');
+//
+//Route::get('/dashboard', function () {
+//    return view('dash.index');
+//})->name('dashboard');
 
 
 //Route::middleware([
