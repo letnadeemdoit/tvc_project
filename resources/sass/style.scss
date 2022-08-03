@@ -187,8 +187,8 @@ fieldset{
 .bg-social-feed{
     background: url('/images/images-home/map.png');
     background-repeat: no-repeat;
-    background-size: 100% 50%;
-    background-position: 0px 248px;
+    background-size: cover;
+    background-position:center;
     background-color:$dark-blue;
 }
 .pt-55{
@@ -231,7 +231,7 @@ header{
         background-color:#fff;
         border: 1px solid #D3D2D2 !important;
         padding: 8px !important;
-        margin-right: 14px;
+        margin-right: 7px;
         margin-bottom: 12px;
         max-width: 105px;
         min-width: 105px;
@@ -573,7 +573,7 @@ header{
 
 }
 
-@media only screen and (min-width:1200px) and (max-width:1440px) {
+@media only screen and (min-width:1200px) and (max-width:1570px) {
     .row-max-width{
         margin: 0 auto;
     }
