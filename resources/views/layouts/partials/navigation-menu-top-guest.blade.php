@@ -20,8 +20,9 @@
                     </div>
                     <div
                         class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
-                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">
-                        <p class="mb-0 text-white fs-12">trips.calendar@gmail.com</p>
+{{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
+                        <i class="fa-regular fa-envelope text-white me-2 fs-3"></i>
+                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">trips.calendar@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -64,9 +65,9 @@
                         <a class="nav-link" href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
                 </ul>
-                <div class="d-block d-md-flex nav-buttons ms-4 ms-lg-0">
+                <div class="d-block d-md-flex nav-buttons ms-3 ms-lg-0">
                     <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5">SIGN UP</a>
-                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white">LOGIN</a>
+                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white shadow-none">LOGIN</a>
                 </div>
             </div>
         </nav>

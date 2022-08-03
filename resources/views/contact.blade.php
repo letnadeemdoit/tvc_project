@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('partials.sub-page-hero-section');
+    @include('partials.sub-page-hero-section', ['title' => 'Contact Us']);
 
     <section class="text-center">
         <div class="container">
@@ -9,7 +9,7 @@
                         <h1 class="text-primary font-vintage mb-0">Contact US</h1>
                     </div>
                     <h2 class="pt-2 poppins-bold">We’d Love to Hear From You</h2>
-                    <p class="pt-2">Thank you very much for visiting TheVacationCalendar.com. If you have any questions about the service, technical issues, or any other suggestions, please feel free to email.</p>
+                    <p class="pt-2 color-dark">Thank you very much for visiting TheVacationCalendar.com. If you have any questions about the service, technical issues, or any other suggestions, please feel free to email.</p>
                 </div>
             </div>
         </div>
@@ -33,9 +33,9 @@
                                 <div class="alert alert-success">
                                     {{ session()->get('success') }}
                                 </div>
-                             @endif
+                            @endif
 
-                        <!-- Form -->
+                            <!-- Form -->
                             <form action="{{route('guest.contact.mail')}}" method="post" id="contactForm">
                                 @csrf
                                 <fieldset class="input-group border rounded-1 ps-1">
@@ -50,7 +50,7 @@
                                 @error('first_name')
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
-                            <!-- End Form -->
+                                <!-- End Form -->
                                 <fieldset class="input-group border rounded-1 ps-1 mt-3">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Last Name</legend>
                                     <input type="text"
@@ -100,7 +100,7 @@
 
                                 <div class="btn gap-3 text-center mt-4 d-block d-md-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">SEND</button>
-                                    <a href="#" onclick="resetForm()" class="btn  btn-lg bg-skin btn-min-160 shadow-lg rounded px-5 mt-3 mt-sm-0 border-0">RESET</a>
+                                    <a href="#" onclick="resetForm()" class="btn  btn-lg bg-skin btn-min-160  rounded px-5 mt-3 mt-sm-0 border-0">RESET</a>
                                 </div>
 
                             </form>
@@ -123,7 +123,7 @@
     </div>
     <!-- End Contact Form -->
 
-@push('scripts')
+    @push('scripts')
 
         <script>
             function resetForm() {
@@ -131,6 +131,6 @@
             }
         </script>
 
-@endpush
+    @endpush
 
 </x-guest-layout>
