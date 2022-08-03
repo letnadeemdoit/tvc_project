@@ -18,7 +18,7 @@
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                                 data-bs-target="#home" type="button" role="tab" aria-controls="home"
                                 aria-selected="true">
-                            <img src="/images/bulletin-images/clipboard.png" width="30px" />
+                            <img src="/images/bulletin-images/shopping-bag.png" width="30px" />
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
