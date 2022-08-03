@@ -1,5 +1,4 @@
 <x-auth-layout>
-    @include('layouts.partials.navigation-menu-top-guest')
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}
@@ -7,7 +6,7 @@
         <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 25rem;">
             <div class="text-start">
                 <div class="mb-5">
-                    <h1 class="display-5 poppins-bold">Login Account <span class="text-primary">as Guest.</span></h1>
+                    <h1 class="display-4 poppins-bold">Login Account <span class="text-primary">as Guest.</span></h1>
                     <p>{{ __('to get beautiful home for vacations to make your vacations memorable.') }}</p>
                 </div>
             </div>
@@ -18,37 +17,40 @@
                 </div>
             @endif
 
-            <x-jet-validation-errors class="mb-4"/>
+            <x-jet-validation-errors class="mb-4" />
 
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
-
-                <div class="mb-4">
-                    <fieldset class="border-light input-group scheduler-border">
-                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0">{{ __('Shared Password') }}</legend>
-                        <input
-                            id="email"
-                            class="form-control"
-                            type="email"
-                            name="email"
-                            value="{{ old('email') }}"
-                            required
-                            autofocus
+                <div class="mt-3">
+                    <fieldset class="input-group rounded-1 ps-1">
+                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Shared Password</legend>
+                        <input type="password"
+                               class="form-control form-control-lg border-0 shadow-none outline-0"
+                               name="password"
+                               id="password"
+                               value="{{old('password')}}"
+                               tabindex="1"
+                               placeholder=""
+                               aria-label=""
+                               reuired
+                               autofocus
                         />
-                        <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                        <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                           href="javascript:;">
                             <i class="bi-eye text-primary"></i>
                         </a>
                     </fieldset>
                 </div>
 
-                <div class="d-grid gap-2">
+                <div class="d-grid gap-2 mt-3">
                     <button type="submit" class="btn btn-dark-secondary btn-lg">{{ __('Login') }}</button>
 
                     <div class="form-check mt-2">
                         <label class="form-check-label" for="remember_me">
-                          Remember me
+                            Remember me
                         </label>
-                        <input type="checkbox" class="form-check-input form-check-css" name="remember_me" value="" id="remember_me">
+                        <input type="checkbox" class="form-check-input form-check-css" name="remember_me" value=""
+                               id="remember_me">
 
                     </div>
                 </div>
