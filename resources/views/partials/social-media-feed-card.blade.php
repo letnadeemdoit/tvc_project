@@ -10,7 +10,7 @@
                             </div>
 
                             <div class="card-body">
-                                <h3 class="card-title"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a></h3>
                                 <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
                             </div>
                         </div>
