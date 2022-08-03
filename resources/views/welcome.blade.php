@@ -202,10 +202,11 @@
                             <img class="card-img-top" src="/images/images-home/blog-image.svg" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">House Blog</h3>
-                                <p class="card-text">How have you ever lived without a vacation home blog?!?! Since the
-                                    House Bulletin Board is only updated by the administrator of the house, the House
-                                    Blog gives everyone a place to share thoughts, provide updates.</p>
-                                <button class="btn btn-lg w-100 btn-primary text-white">Learn More <i
+                                <p class="card-text">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house,
+                                    the House Blog gives everyone a place to share thoughts, provide updates,<span
+                                        class="text-content"> and generally make fun of
+                                      each other.</span></p>
+                                <button class="btn btn-lg w-100 btn-primary text-white" id="toggle">Learn More <i
                                         class="fa-solid fa-arrow-right ps-2"></i></button>
                             </div>
                         </div>
