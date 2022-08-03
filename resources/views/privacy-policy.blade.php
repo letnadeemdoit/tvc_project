@@ -1,7 +1,7 @@
 <x-guest-layout>
     @push('stylesheets')
     @endpush
-    @include('partials.sub-page-hero-section');
+    @include('partials.sub-page-hero-section', ['title' => 'Privacy Policy']);
     <div class="bg-crystals">
         <section>
             <div class="container section-padding">

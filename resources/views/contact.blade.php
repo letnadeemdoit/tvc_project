@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @include('partials.sub-page-hero-section');
+    @include('partials.sub-page-hero-section', ['title' => 'Contact Us']);
 
     <section class="text-center">
         <div class="container">
@@ -33,9 +33,9 @@
                                 <div class="alert alert-success">
                                     {{ session()->get('success') }}
                                 </div>
-                             @endif
+                            @endif
 
-                        <!-- Form -->
+                            <!-- Form -->
                             <form action="{{route('guest.contact.mail')}}" method="post" id="contactForm">
                                 @csrf
                                 <fieldset class="input-group border rounded-1 ps-1">
@@ -50,7 +50,7 @@
                                 @error('first_name')
                                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
-                            <!-- End Form -->
+                                <!-- End Form -->
                                 <fieldset class="input-group border rounded-1 ps-1 mt-3">
                                     <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Last Name</legend>
                                     <input type="text"
@@ -123,7 +123,7 @@
     </div>
     <!-- End Contact Form -->
 
-@push('scripts')
+    @push('scripts')
 
         <script>
             function resetForm() {
@@ -131,6 +131,6 @@
             }
         </script>
 
-@endpush
+    @endpush
 
 </x-guest-layout>

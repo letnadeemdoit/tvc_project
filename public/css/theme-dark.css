@@ -29195,6 +29195,9 @@ header nav button:last-child:hover {
   .padding-top {
     padding-top: 3rem !important;
   }
+  .max-width {
+    max-width: 100% !important;
+  }
   .help-page-tabs .nav-tabs .nav-item .nav-link {
     padding: 0px !important;
     width: 85px !important;
