@@ -38,7 +38,7 @@ body{
 .bg-skin{
     background-color: rgba(210, 206, 205, 0.58);
     &:hover{
-        background-color: transparent;
+        background-color: rgb(155 153 152 / 58%);
         color: #000;
     }
 }
@@ -162,7 +162,7 @@ fieldset{
 
 
 .social-img{
-    background-image: url('/images/images-home/social.svg');
+    background-image: url('/images/images-home/Social.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -425,7 +425,7 @@ header{
     }
 }
 .bg-arrow{
-    margin-top: -127px;
+    margin-top: -158px;
     margin-right: -113px;
 }
 .contact-us-form{
@@ -661,6 +661,15 @@ header{
     .padding-y{
         padding: 40px 0px 0px 0px !important;
     }
+    .mobile-cards{
+        .card{
+            .card-body{
+                .card-title{
+                    font-size: 15px !important;
+                }
+            }
+        }
+    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -675,6 +684,9 @@ header{
     }
     .padding-top{
         padding-top: 3rem !important;
+    }
+    .max-width{
+        max-width: 100% !important;
     }
     .help-page-tabs {
         .nav-tabs{
