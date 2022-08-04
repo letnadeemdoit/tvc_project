@@ -121,71 +121,7 @@
             <div class="col-lg-9">
                 <div class="d-grid gap-3 gap-lg-5">
                     <!-- Card -->
-                    <div class="card">
-                        <!-- Profile Cover -->
-                        <div class="profile-cover">
-                            <div class="profile-cover-img-wrapper">
-                                <img id="profileCoverImg" class="profile-cover-img" src="./assets/img/1920x400/img2.jpg" alt="Image Description">
-
-                                <!-- Custom File Cover -->
-                                <div class="profile-cover-content profile-cover-uploader p-3">
-                                    <input type="file" class="js-file-attach profile-cover-uploader-input" id="profileCoverUplaoder" data-hs-file-attach-options='{
-                                "textTarget": "#profileCoverImg",
-                                "mode": "image",
-                                "targetAttr": "src",
-                                "allowTypes": [".png", ".jpeg", ".jpg"]
-                             }'>
-                                    <label class="profile-cover-uploader-label btn btn-sm btn-white" for="profileCoverUplaoder">
-                                        <i class="bi-camera-fill"></i>
-                                        <span class="d-none d-sm-inline-block ms-1">Upload header</span>
-                                    </label>
-                                </div>
-                                <!-- End Custom File Cover -->
-                            </div>
-                        </div>
-                        <!-- End Profile Cover -->
-
-                        <!-- Avatar -->
-                        <label class="avatar avatar-xxl avatar-circle avatar-uploader profile-cover-avatar" for="editAvatarUploaderModal">
-                            <img id="editAvatarImgModal" class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description">
-
-                            <input type="file" class="js-file-attach avatar-uploader-input" id="editAvatarUploaderModal" data-hs-file-attach-options='{
-                            "textTarget": "#editAvatarImgModal",
-                            "mode": "image",
-                            "targetAttr": "src",
-                            "allowTypes": [".png", ".jpeg", ".jpg"]
-                         }'>
-
-                            <span class="avatar-uploader-trigger">
-                  <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
-                </span>
-                        </label>
-                        <!-- End Avatar -->
-
-                        <!-- Body -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <span class="d-block fs-5 mb-2">Who can see your profile photo? <i class="bi-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Your visibility setting only applies to your profile photo. Your header image is always visible to anyone."></i></span>
-
-                                    <!-- Select -->
-                                    <div class="tom-select-custom">
-                                        <select class="js-select form-select" data-hs-tom-select-options='{
-                                "searchInDropdown": false,
-                                "dropdownWidth": "auto"
-                              }'>
-                                            <option value="privacy1" data-option-template='<div class="d-flex align-items-start"><div class="flex-shrink-0"><i class="bi-globe"></i></div><div class="flex-grow-1 ms-2"><span class="d-block fw-semi-bold">Anyone</span><span class="tom-select-custom-hide small">Visible to anyone who can view your content. Accessible by installed apps.</span></div></div>'>Anyone</option>
-                                            <option value="privacy2" data-option-template='<div class="d-flex align-items-start"><div class="flex-shrink-0"><i class="bi-lock"></i></div><div class="flex-grow-1 ms-2"><span class="d-block fw-semi-bold">Only you</span><span class="tom-select-custom-hide small">Only visible to you.</span></div></div>'>Only you</option>
-                                        </select>
-                                    </div>
-                                    <!-- End Select -->
-                                </div>
-                                <!-- End Col -->
-                            </div>
-                            <!-- End Row -->
-                        </div>
-                        <!-- End Body -->
-                    </div>
+                   <livewire:manage-account.settings.profile-photo :user="$user"/>
                     <!-- End Card -->
 
                     <!-- Card -->
