@@ -43,12 +43,6 @@ Route::controller(\App\Http\Controllers\Select2Controller::class)
     });
 
 
-Route::resource('users', UserController::class);
-
-Route::get('/blogs', [DashboardController::class, 'blogs'])->name('dashboard.blogs');
-Route::get('/houses', [DashboardController::class, 'houses'])->name('dashboard.houses');
-Route::get('/photo-albums', [DashboardController::class, 'photoAlbum'])->name('dashboard.photo-albums');
-Route::get('/photo-albums/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('dashboard.show-single-album');
 
 
 require_once __DIR__ . '/fortify.php';
@@ -66,6 +60,15 @@ Route::middleware([
     ->name('dash.')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+
+
+        Route::resource('users', UserController::class);
+
+        Route::get('/blogs', [DashboardController::class, 'blogs'])->name('blogs');
+        Route::get('/houses', [DashboardController::class, 'houses'])->name('houses');
+        Route::get('/photo-albums', [DashboardController::class, 'photoAlbum'])->name('photo-albums');
+        Route::get('/photo-albums/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album');
+
         Route::controller(\App\Http\Controllers\ManageAccountController::class)
             ->prefix('account')
             ->name('account.')->group(function () {

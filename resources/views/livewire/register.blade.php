@@ -12,6 +12,7 @@
                         type="text"
                         class="form-control form-control-lg border-0 shadow-none outline-0"
                         name="HouseName"
+                        autofocus
                         id="HouseName"
                         wire:model.defer="state.HouseName"
                         placeholder="Enter House Name"
@@ -195,7 +196,7 @@
                                    value="{{ old('user_name') }}"
                                    aria-label=""
                             />
-                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
                                href="javascript:;">
                                 <i class="bi bi-person text-primary"></i>
                             </a>
@@ -224,7 +225,7 @@
                                    placeholder=""
                                    aria-label=""
                             />
-                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
                                href="javascript:;">
                                 <i class="bi bi-envelope text-primary"></i>
                             </a>
@@ -309,7 +310,7 @@
                                    placeholder=""
                                    aria-label=""
                             >
-                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
                                href="javascript:;">
                                 <i class="bi-eye text-primary"></i>
                             </a>
@@ -337,7 +338,7 @@
                                    placeholder=""
                                    aria-label=""
                             >
-                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
                                href="javascript:;">
                                 <i class="bi-eye text-primary"></i>
                             </a>

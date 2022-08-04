@@ -76,7 +76,7 @@
                                     </a>
 
                                     <a class="btn btn-primary"
-                                       href="{{route('dashboard.show-single-album',$album->id)}}"
+                                       href="{{route('dash.show-single-album',$album->id)}}"
                                     >
                                         Add Photo Album <i class="bi-arrow-right text-white"></i>
                                     </a>

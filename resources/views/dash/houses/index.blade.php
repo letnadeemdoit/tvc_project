@@ -41,7 +41,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class=""  action="{{ route('users.store') }}" method="post">
+                    <form class=""  action="{{ route('dash.users.store') }}" method="post">
                         @csrf
                         <fieldset class="scheduler-border fieldset-padding">
                             <legend class="scheduler-border">House Details</legend>

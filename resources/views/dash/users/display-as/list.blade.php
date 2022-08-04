@@ -163,7 +163,7 @@
 
 
                                         <div class="modal-body">
-                                            <form class=""  action="{{ route('users.update',$user->user_id) }}" method="post">
+                                            <form class=""  action="{{ route('dash.users.update',$user->user_id) }}" method="post">
                                                 @csrf
                                                 @method('PUT')
                                                 <fieldset class="scheduler-border fieldset-padding">

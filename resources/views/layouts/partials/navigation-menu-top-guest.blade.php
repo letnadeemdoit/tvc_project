@@ -35,7 +35,7 @@
     <div class="container">
         <!--   nav     -->
         <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{route('guest.welcome')}}">
                 <img   class="navbar-brand-logo"
                        src="<?php echo e(asset('logo/logo.svg')); ?>"
                        alt="Logo" data-hs-theme-appearance="default" />
