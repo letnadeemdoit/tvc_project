@@ -26,13 +26,13 @@ Route::controller(GuestController::class)
         Route::post('/contact', 'contactMail')->name('contact.mail');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
-        Route::get('/blog','blog')->name('blog');
-        Route::get('/bulletin','bulletinBoard')->name('bulletinBoard');
-        Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
-        Route::get('/guest-login','guestLogin')->name('guest-login');
-        Route::get('/login-account','loginAccount')->name('login-account');
-        Route::get('/search-house','searchHouse')->name('search-house');
-        Route::get('/card','card')->name('card');
+        Route::get('/blog', 'blog')->name('blog');
+        Route::get('/bulletin', 'bulletinBoard')->name('bulletinBoard');
+        Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy-policy');
+        Route::get('/guest-login', 'guestLogin')->name('guest-login');
+        Route::get('/login-account', 'loginAccount')->name('login-account');
+        Route::get('/search-house', 'searchHouse')->name('search-house');
+        Route::get('/card', 'card')->name('card');
     });
 
 Route::controller(\App\Http\Controllers\Select2Controller::class)
@@ -44,8 +44,6 @@ Route::controller(\App\Http\Controllers\Select2Controller::class)
 
 
 Route::resource('users', UserController::class);
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::get('/blogs', [DashboardController::class, 'blogs'])->name('dashboard.blogs');
 Route::get('/houses', [DashboardController::class, 'houses'])->name('dashboard.houses');
@@ -60,12 +58,19 @@ require_once __DIR__ . '/fortify.php';
 //})->name('dashboard');
 
 
-//Route::middleware([
-//    'auth:sanctum',
-//    config('jetstream.auth_session'),
-//    'verified'
-//])->group(function () {
-//    Route::get('/dashboard', function () {
-//        return view('dashboard');
-//    })->name('dashboard');
-//});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])
+    ->name('dash.')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+        Route::controller(\App\Http\Controllers\ManageAccountController::class)
+            ->prefix('account')
+            ->name('account.')->group(function () {
+                Route::get('/settings', 'settings')->name('settings');
+                Route::get('/subscriptions', 'subscriptions')->name('subscriptions');
+                Route::get('/invoices', 'invoices')->name('invoices');
+            });
+    });

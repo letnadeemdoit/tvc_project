@@ -14,7 +14,6 @@
                 <i class="bi-arrow-bar-left navbar-toggler-short-align" data-bs-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' data-bs-toggle="tooltip" data-bs-placement="right" title="Collapse"></i>
                 <i class="bi-arrow-bar-right navbar-toggler-full-align" data-bs-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' data-bs-toggle="tooltip" data-bs-placement="right" title="Expand"></i>
             </button>
-
             <!-- End Navbar Vertical Toggle -->
 
             <!-- Content -->
@@ -22,7 +21,7 @@
                 <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
                     <!-- Collapse -->
                     <div class="nav-item">
-                        <a class="nav-link active" href="{{route('dashboard.index')}}">
+                        <a class="nav-link active" href="{{route('dash.index')}}">
                             <i class="bi-house-door nav-icon"></i>
                             <span class="nav-link-title">Dashboard</span>
                         </a>
@@ -35,7 +34,7 @@
                     <div id="navbarVerticalMenuPagesMenu">
 
                         <div class="nav-item">
-                            <a class="nav-link" href="{{route('users.index')}}" data-placement="left">
+                            <a class="nav-link" href="{{ route('users.index') }}" data-placement="left">
                                 <i class="bi-person nav-icon"></i>
                                 <span class="nav-link-title">Users</span>
                             </a>
@@ -95,16 +94,15 @@
 
 
                         <div class="nav-item">
-                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesAdministratorMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesAdministratorMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesAdministratorMenu">
+                            <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices']) }}" href="#navbarVerticalMenuPagesAccountMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesAccountMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesAdministratorMenu">
                                 <i class="bi-person-check nav-icon"></i>
-                                <span class="nav-link-title">Administrator</span>
+                                <span class="nav-link-title">Account</span>
                             </a>
 
-                            <div id="navbarVerticalMenuPagesAdministratorMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuNavigationMenu">
-                                <a class="nav-link " href="#">Administer Users</a>
-                                <a class="nav-link " href="#">Manage Bulletin Board</a>
-                                <a class="nav-link " href="#">Delete Vacation</a>
-                                <a class="nav-link " href="#">Help</a>
+                            <div id="navbarVerticalMenuPagesAccountMenu" class="nav-collapse collapse {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices'], 'show') }}" data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
+                                <a class="nav-link {{ link_is_active_with_class('dash.account.settings') }}" href="{{ route('dash.account.settings') }}">Settings</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.account.subscriptions') }}" href="{{ route('dash.account.subscriptions') }}">Subscriptions</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.account.invoices') }}" href="{{ route('dash.account.invoices') }}">Invoices</a>
                             </div>
                         </div>
                     </div>
