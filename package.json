@@ -31,6 +31,7 @@
         "flag-icons": "^6.6.0",
         "fullcalendar": "^5.10.1",
         "jquery": "^3.6.0",
-        "select2": "^4.1.0-rc.0"
+        "select2": "^4.1.0-rc.0",
+        "smoothscroll-polyfill": "^0.4.4"
     }
 }

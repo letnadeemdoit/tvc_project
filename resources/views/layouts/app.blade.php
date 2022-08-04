@@ -51,10 +51,8 @@
 
         @livewireScripts
 
-
-        @stack('scripts')
-
         <script src="{{ mix('js/app.js') }}"></script>
+        @stack('scripts')
         <script>
             $(document).ready(function () {
                 window.livewire.on('hideModal', (reload = false) => {

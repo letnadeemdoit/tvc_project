@@ -17,6 +17,24 @@
 * Copyright 2021 Htmlstream
 */
 
+/*
+* HSScrollspy Plugin
+* @version: 1.0.0 (Wed, 24 Nov 2021)
+* @author: HtmlStream
+* @event-namespace: .HSScrollspy
+* @license: Htmlstream Libraries (https://htmlstream.com/)
+* Copyright 2021 Htmlstream
+*/
+
+/*
+* HSStickyBlock Plugin
+* @version: 3.0.0 (Wed, 24 Nov 2021)
+* @author: HtmlStream
+* @event-namespace: .HSStickyBlock
+* @license: Htmlstream Libraries (https://htmlstream.com/)
+* Copyright 2021 Htmlstream
+*/
+
 /*!
   * Bootstrap v5.1.3 (https://getbootstrap.com/)
   * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
