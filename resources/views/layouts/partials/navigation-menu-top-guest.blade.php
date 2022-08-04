@@ -52,16 +52,16 @@
 
             <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
                 <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center">
-                    <li class="nav-item">
+                    <li class="nav-item my-2 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}" aria-current="page" href="{{route('guest.welcome')}}">HOME</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item my-2 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}" href="{{route('guest.privacy-policy')}}">POLICIES</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item my-2 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}" href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item my-2 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}" href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
                 </ul>

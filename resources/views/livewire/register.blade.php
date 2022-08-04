@@ -15,7 +15,6 @@
                         autofocus
                         id="HouseName"
                         wire:model.defer="state.HouseName"
-                        placeholder="Enter House Name"
                         value="{{old('HouseName')}}"
                     />
                 </fieldset>
@@ -38,7 +37,6 @@
                             id="city"
                             name="City"
                             wire:model.defer="state.City"
-                            placeholder="City"
                             value="{{ old('city') }}"
                         />
 
@@ -57,7 +55,6 @@
                             name="State"
                             wire:model.defer="state.State"
                             id="State"
-                            placeholder="State"
                             value="{{ old('state') }}"
                             aria-label=""
                         />
@@ -298,10 +295,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="mt-3">
+                    <div class="mt-3" x-data="{showPassword: false}">
+
                         <fieldset class="input-group rounded-1 ps-1">
                             <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Create Password</legend>
-                            <input type="password"
+                            <input
+                                   x-bind:type="showPassword ? 'text' : 'password'"
                                    class="form-control form-control-lg border-0 shadow-none outline-0"
                                    name="password"
                                    wire:model.defer="state.password"
@@ -311,8 +310,12 @@
                                    aria-label=""
                             >
                             <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
-                               href="javascript:;">
-                                <i class="bi-eye text-primary"></i>
+                               href="javascript:;"
+                               @click.prevent="showPassword  = !showPassword"
+                            >
+
+                                <i id="changePassIcon" class="bi-eye text-primary"
+                                   :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
                             </a>
                         </fieldset>
                         @error('password')
@@ -326,10 +329,13 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="mt-3">
+
+
+                    <div class="mt-3" x-data="{showPassword: false}">
                         <fieldset class="input-group rounded-1 ps-1">
                             <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Confirm Password</legend>
-                            <input type="password"
+                            <input
+                                   x-bind:type="showPassword ? 'text' : 'password'"
                                    class="form-control form-control-lg border-0 shadow-none outline-0"
                                    wire:model.defer="state.password_confirmation"
                                    name="password_confirmation"
@@ -339,8 +345,11 @@
                                    aria-label=""
                             >
                             <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
-                               href="javascript:;">
-                                <i class="bi-eye text-primary"></i>
+                               href="javascript:;"
+                               @click.prevent="showPassword  = !showPassword"
+                            >
+                                <i id="changePassIcon" class="bi-eye text-primary"
+                                   :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
                             </a>
                         </fieldset>
 
@@ -353,7 +362,7 @@
                             <label class="form-check-label" for="terms_and_conditions">
                                 I accept <a href="#" class="text-decoration-underline">Terms and Conditions</a>
                             </label>
-                            <input type="checkbox" class="form-check-input" name="terms" wire:model.defer="state.terms" value="accepted"
+                            <input type="checkbox" class="form-check-input" name="terms" wire:model.defer="state.terms" value="yes"
                                    id="terms_and_conditions">
                         </div>
                         @error('terms')
@@ -363,10 +372,12 @@
 
                     </div>
 
+
+
                 </div>
 
             </div>
-            <div class="text-center mt-3">
+            <div class="text-center mt-5">
                 <button
                     class="btn btn-dark-secondary text-white w-100"
                     type="submit"

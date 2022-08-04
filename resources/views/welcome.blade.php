@@ -56,7 +56,7 @@
                             </div>
                             <div class="card-body pt-5 padding-top">
                                 <h3 class="card-title">Organize your vacation home schedule</h3>
-                                <p class="card-text">Spend more time enjoying your getaway home</p>
+                                <p class="card-text">Spend more time enjoying your getaway home.</p>
 
                             </div>
                         </div>
@@ -252,7 +252,7 @@
                                     <h1 class="poppins-bold">Account Management</h1>
                                     <p class="lh-lg">This is your basic profile page that allows the administrator to
                                         update passwords, change the site picture, and {cough}{cough} cancel the
-                                        subscription</p>
+                                        subscription.</p>
                                 </div>
                                 <div class="tab-pane fade" id="shopping" role="tabpanel" aria-labelledby="shopping-tab">
                                     <h1 class="poppins-bold">User Management</h1>
