@@ -196,7 +196,7 @@
                                    value="{{ old('user_name') }}"
                                    aria-label=""
                             />
-                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
                                href="javascript:;">
                                 <i class="bi bi-person text-primary"></i>
                             </a>
@@ -225,7 +225,7 @@
                                    placeholder=""
                                    aria-label=""
                             />
-                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
                                href="javascript:;">
                                 <i class="bi bi-envelope text-primary"></i>
                             </a>
@@ -310,7 +310,7 @@
                                    placeholder=""
                                    aria-label=""
                             >
-                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
                                href="javascript:;">
                                 <i class="bi-eye text-primary"></i>
                             </a>
@@ -338,7 +338,7 @@
                                    placeholder=""
                                    aria-label=""
                             >
-                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                            <a id="changePassTarget-2" class="input-group-append input-group-text border-0" style="outline-color: transparent"
                                href="javascript:;">
                                 <i class="bi-eye text-primary"></i>
                             </a>
