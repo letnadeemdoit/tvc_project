@@ -34,14 +34,14 @@
                     <div id="navbarVerticalMenuPagesMenu">
 
                         <div class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}" data-placement="left">
+                            <a class="nav-link" href="{{ route('dash.users.index') }}" data-placement="left">
                                 <i class="bi-person nav-icon"></i>
                                 <span class="nav-link-title">Users</span>
                             </a>
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="{{route('dashboard.houses')}}" data-placement="left">
+                            <a class="nav-link" href="{{route('dash.houses')}}" data-placement="left">
                                 <i class="bi-house nav-icon"></i>
                                 <span class="nav-link-title">Houses</span>
                             </a>
@@ -68,8 +68,7 @@
                             </a>
 
                             <div id="navbarVerticalMenuPagesBlogsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="{{route('dashboard.blogs')}}">All Blogs</a>
-                                <a class="nav-link " href="{{route('dashboard.blogs')}}">Add New Blog</a>
+                                <a class="nav-link " href="{{route('dash.blogs')}}">All Blogs</a>
                             </div>
                         </div>
 
@@ -81,14 +80,15 @@
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesPhotoAlbumsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesPhotoAlbumsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesPhotoAlbumsMenu">
+                            <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.photo-albums']) }} " href="#navbarVerticalMenuPagesPhotoAlbumsMenu" role="button" data-bs-toggle="collapse"
+                               data-bs-target="#navbarVerticalMenuPagesPhotoAlbumsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesPhotoAlbumsMenu">
                                 <i class="bi-images nav-icon"></i>
                                 <span class="nav-link-title">Photo Albums</span>
                             </a>
 
-                            <div id="navbarVerticalMenuPagesPhotoAlbumsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuNavigationMenu">
-                                <a class="nav-link " href="{{route('dashboard.photo-albums')}}">All Photos</a>
-                                <a class="nav-link " href="{{route('dashboard.photo-albums')}}">Add New Photos</a>
+                            <div id="navbarVerticalMenuPagesPhotoAlbumsMenu" class="nav-collapse collapse {{ link_is_active_with_class(['dash.photo-albums'], 'show') }}"
+                                 data-bs-parent="#navbarVerticalMenuNavigationMenu">
+                                <a class="nav-link {{ link_is_active_with_class('dash.photo-albums') }} " href="{{route('dash.photo-albums')}}">All Photos</a>
                             </div>
                         </div>
 

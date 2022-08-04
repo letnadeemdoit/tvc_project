@@ -12,6 +12,7 @@
                         type="text"
                         class="form-control form-control-lg border-0 shadow-none outline-0"
                         name="HouseName"
+                        autofocus
                         id="HouseName"
                         wire:model.defer="state.HouseName"
                         placeholder="Enter House Name"

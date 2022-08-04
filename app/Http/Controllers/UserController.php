@@ -42,7 +42,7 @@ class UserController extends Controller
 
         ModelAudited::dispatch($user, auth()->user());
 
-        return redirect()->route('users.index')->with('success', 'New User Created Successfully');
+        return redirect()->route('dash.users.index')->with('success', 'New User Created Successfully');
 
     }
 
