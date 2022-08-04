@@ -1,4 +1,9 @@
-<header id="header" class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
+<header
+    id="header"
+    class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white"
+    x-data="{avatarUrl: '{{ auth()->user()->profile_photo_url }}'}"
+    @refresh-avatar.window="avatarUrl = $event.detail.profile_photo_url"
+>
     <div class="navbar-nav-wrap">
         <!-- Logo -->
         <a class="navbar-brand" href="./index.html" aria-label="Front">
@@ -579,7 +584,12 @@
                     <div class="dropdown">
                         <a class="navbar-dropdown-account-wrapper" href="javascript:;" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
                             <div class="avatar avatar-sm avatar-circle">
-                                <img class="avatar-img" src="{{asset('images/avatar.png')}}" alt="Image">
+                                <img
+                                    class="avatar-img"
+                                    src="{{ auth()->user()->profile_photo_url }}"
+                                    :src="avatarUrl"
+                                    alt="Image"
+                                />
                                 <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                             </div>
                         </a>
