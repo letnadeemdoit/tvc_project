@@ -53,21 +53,30 @@
             <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
                 <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('guest.welcome')}}">HOME</a>
+                        <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}" aria-current="page" href="{{route('guest.welcome')}}">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                        <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}" href="{{route('guest.privacy-policy')}}">POLICIES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                        <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}" href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                        <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}" href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
                 </ul>
                 <div class="d-block d-md-flex nav-buttons ms-3 ms-lg-0">
-                    <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5">SIGN UP</a>
-                    <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white shadow-none">LOGIN</a>
+                   @auth
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white shadow-none text-uppercase" type="submit">Logout</button>
+                        </form>
+                    @endauth
+
+                    @guest
+                           <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5">SIGN UP</a>
+                           <a href="{{route('login')}}" class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white shadow-none">LOGIN</a>
+                    @endguest
                 </div>
             </div>
         </nav>

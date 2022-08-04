@@ -20,13 +20,13 @@
         <!-- Scripts -->
 
         <style>
-            i:hover {
-                color: #fff !important;
-            }
+            /*i:hover {*/
+            /*    color: #fff !important;*/
+            /*}*/
 
-            a:hover {
-                color: #000000;
-            }
+            /*a:hover {*/
+            /*    color: #000000;*/
+            /*}*/
 
         </style>
 

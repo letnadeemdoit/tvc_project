@@ -200,7 +200,7 @@ header{
         button:last-child{
             &:hover{
                 background-color: #fff !important;
-                color: $primary;
+                color: $primary !important;
             }
         }
     }

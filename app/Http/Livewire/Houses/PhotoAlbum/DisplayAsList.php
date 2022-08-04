@@ -22,6 +22,7 @@ class DisplayAsList extends Component
     public function render()
     {
         $albums = Album::paginate(15);
+
         return view('dash.houses.photo-album.display-as.list',compact('albums'));
     }
 
@@ -48,6 +49,7 @@ class DisplayAsList extends Component
         ]);
 
         $this->emit('hideModal');
+
         session()->flash('success', 'Album Created successfully...');
 
     }
