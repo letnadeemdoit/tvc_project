@@ -86,13 +86,14 @@
                                           name="image" wire:model="image" id="image" accept=".jpeg,.jpg,.png,.gif"
                                           style="display: none">
                                    <div class="mt-3">
-                                       @if($image)
+                                       @if($image || $oldImage)
+                                           @if($image)
                                            <img id="blah" src="{{ $image->temporaryUrl() }}" alt="your image"
                                                 style="width: 100px; height: 100px; border-radius: 10px"/>
-                                       @endif
-                                       @if($oldImage)
-                                           <img id="blah" src="{{ Storage::url($oldImage) }}" alt="your image"
-                                                style="width: 100px; height: 100px; border-radius: 10px"/>
+                                           @else
+                                               <img id="blah" src="{{ Storage::url($oldImage) }}" alt="your image"
+                                                    style="width: 100px; height: 100px; border-radius: 10px"/>
+                                           @endif
                                        @endif
                                    </div>
                                </div>
