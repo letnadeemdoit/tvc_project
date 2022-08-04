@@ -2,7 +2,7 @@
 <div class="col-12 col-md-6 col-lg-3">
     @if(isset($board))
     <div class="card">
-        <a href="{{route('card', $board->HouseId)}}"><img src="/images/bulletin-images/house-1.png" class="card-img-top" alt="..." /></a>
+        <a href="{{route('guest.card', $board->HouseId)}}"><img src="/images/bulletin-images/house-1.png" class="card-img-top" alt="..." /></a>
         <div class="card-body">
             <h3 class="card-title">
                <a>{{ isset($board->Audit_user_name) ? $board->Audit_user_name : ''}}</a>
