@@ -4,29 +4,30 @@
             {{--            <x-jet-authentication-card-logo />--}}
         </x-slot>
 
-        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 35rem;">
+        <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="height: 100vh; overflow-y: scroll">
+            <div style="max-width: 35rem;margin: auto">
 
-            <!-- Form -->
-            {{--            <x-jet-validation-errors class="mb-4"/>--}}
+                <!-- Form -->
+                {{--            <x-jet-validation-errors class="mb-4"/>--}}
 
-            @if (session('status'))
-                <div class="mb-4 font-medium text-sm text-green-600">
-                    {{ session('status') }}
+                @if (session('status'))
+                    <div class="mb-4 font-medium text-sm text-green-600">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <div class="mb-5 text-center text-lg-start">
+                    <h1 class="display-4 poppins-bold mb-2">Create your <span class="text-primary">Account.</span></h1>
+                    <small class="text-muted mb-3 d-block">To keep track of your vacation home in use.</small>
                 </div>
-            @endif
-            <div class="mb-5 text-center text-lg-start">
-                <h1 class="display-4 poppins-bold mb-2">Create your <span class="text-primary">Account.</span></h1>
-                <small class="text-muted mb-3 d-block">To keep track of your vacation home in use.</small>
+
+                <livewire:register />
+
+                <div class="text-center">
+                    <p>Already have an account? <a href="{{route('login')}}" class="text-decoration-underline text-primary">Login</a>
+                    </p>
+                </div>
+                <!-- second fieldset ends -->
             </div>
-
-            <livewire:register />
-
-
-            <div class="text-center">
-                <p>Already have an account? <a href="{{route('login')}}" class="text-decoration-underline text-primary">Login</a>
-                </p>
-            </div>
-            <!-- second fieldset ends -->
         </div>
     </x-jet-authentication-card>
 

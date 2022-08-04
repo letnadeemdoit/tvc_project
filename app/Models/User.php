@@ -109,7 +109,7 @@ class User extends Authenticatable
     protected function isAdmin(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value === self::ROLE_ADMINISTRATOR,
+            get: fn($value) => $value === self::ROLE_ADMINISTRATOR,
         );
     }
 
@@ -121,7 +121,7 @@ class User extends Authenticatable
     protected function isOwner(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value === self::ROLE_OWNER,
+            get: fn($value) => $value === self::ROLE_OWNER,
         );
     }
 
@@ -133,17 +133,41 @@ class User extends Authenticatable
     protected function isGuest(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value === self::ROLE_GUEST,
+            get: fn($value) => $value === self::ROLE_GUEST,
         );
     }
 
+    /**
+     * Concatenate first & last name.
+     *
+     * @return string
+     */
+    protected function getNameAttribute(): string
+    {
+        return trim("$this->first_name $this->last_name");
+    }
 
+    /**
+     * Get the default profile photo URL if no profile photo has been uploaded.
+     *
+     * @return string
+     */
+    protected function defaultProfilePhotoUrl()
+    {
+        $name = trim(collect(explode(' ', $this->name))->map(function ($segment) {
+            return mb_substr($segment, 0, 1);
+        })->join(' '));
 
-    public function isRole($role) {
+        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=e8604c&background=e8604c70';
+    }
+
+    public function isRole($role)
+    {
         return $this->role === $role;
     }
 
-    public function house() {
+    public function house()
+    {
         return $this->belongsTo(House::class, 'HouseId', 'HouseID');
     }
 }

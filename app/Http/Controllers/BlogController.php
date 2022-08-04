@@ -13,9 +13,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('dash.blog.display-as.index');
+        return view('dash.blog.index');
     }
-
 
     /**
      * Show the form for creating a new resource.

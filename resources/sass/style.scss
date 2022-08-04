@@ -24,7 +24,7 @@ i:hover{
     background-color: #DADADA;;
 }
 .bg-lightGrey{
-    background-color: #F8F8F8;
+    background-color: #f5f3f3 !important;
 }
 .color-black{
     color: #000 !important;
@@ -37,6 +37,10 @@ body{
 }
 .bg-skin{
     background-color: rgba(210, 206, 205, 0.58);
+    &:hover{
+        background-color: rgb(155 153 152 / 58%);
+        color: #000;
+    }
 }
 @font-face {
     font-family: poppins;
@@ -78,6 +82,22 @@ body{
         min-height: 580px;
     }
 }
+
+.quote-card{
+    .avatar {
+        width:5rem !important;
+        height: 5rem !important;
+    .avatar-status{
+        background: #000;
+        padding: 10px;
+    }
+    }
+    .bi.bi-quote{
+        font-size: 18px;
+        color: #fff;
+    }
+}
+
 .font-poppins{
     font-family: poppins;
 }
@@ -110,7 +130,7 @@ body{
     margin-bottom: 90px;
 }
 .hero-image{
-    background-image: url('/images/images-home/hero-image.svg');
+    background-image: url('/images/images-home/hero-image.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -158,17 +178,18 @@ fieldset{
 
 
 .social-img{
-    background-image: url('/images/images-home/social.svg');
+    background-image: url('/images/images-home/Social.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     height:50px;
 }
 .bg-social-feed{
-    background: url('/images/images-home/cards-background.png');
+    background: url('/images/images-home/map.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position:center;
+    background-color:$dark-blue;
 }
 .pt-55{
     padding-top: 55px;
@@ -179,7 +200,7 @@ header{
         button:last-child{
             &:hover{
                 background-color: #fff !important;
-                color: $primary;
+                color: $primary !important;
             }
         }
     }
@@ -190,6 +211,11 @@ header{
 }
 .bg-topnav{
     background: $dark-blue;
+}
+.topnav{
+    a:hover{
+        color: $primary !important;
+    }
 }
 .bg-cards-section{
     background: url('/images/images-home/union-waves.png');
@@ -205,7 +231,7 @@ header{
         background-color:#fff;
         border: 1px solid #D3D2D2 !important;
         padding: 8px !important;
-        margin-right: 14px;
+        margin-right: 7px;
         margin-bottom: 12px;
         max-width: 105px;
         min-width: 105px;
@@ -281,7 +307,7 @@ header{
     }
 }
 .card-pinned-bottom-start {
-    bottom: -1rem !important;
+    bottom: -1.2rem !important;
 }
 @mixin cards-background{
     background-repeat: no-repeat;
@@ -309,6 +335,9 @@ header{
     background-image: url('/images/images-home/number-3.svg');
     @include cards-background;
 }
+.color-dark{
+    color: rgba(0, 0, 0, 1);
+}
 .form-check-input:checked[type=checkbox] {
     background-image: url("/images/images-home/tick.svg") !important;
 }
@@ -320,7 +349,17 @@ header{
     padding-left: 4rem;
     padding-right:3.5rem
 }
-
+.navbar-toggler{
+    font-size: 27px !important;
+    color: #6c6c6c !important;
+}
+.footer-text{
+        a {
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
 
 // select2 css starts
 .select2-container{
@@ -366,6 +405,7 @@ header{
             word-wrap: break-word !important;
             p{
                 line-height: 30px;
+                color: rgba(42, 51, 66, 1);
             }
         }
     }
@@ -378,7 +418,10 @@ header{
     margin-top: 80px;
 }
 .help-page-tabs{
-    .card{
+    p {
+        color: #6D6D6D !important;
+    }
+        .card{
         min-width: 230px;
         max-width: 230px;
         .card-body{
@@ -399,7 +442,7 @@ header{
     }
 }
 .bg-arrow{
-    margin-top: -127px;
+    margin-top: -158px;
     margin-right: -113px;
 }
 .contact-us-form{
@@ -434,7 +477,7 @@ header{
     }
 }
 .bg-image{
-    background: url("/images/login-images/login.svg");
+    background: url("/images/login-images/login.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -530,7 +573,7 @@ header{
 
 }
 
-@media only screen and (min-width:1200px) and (max-width:1440px) {
+@media only screen and (min-width:1200px) and (max-width:1570px) {
     .row-max-width{
         margin: 0 auto;
     }
@@ -556,6 +599,12 @@ header{
             padding: 7px !important;
             font-size: 9px !important;
         }
+    }
+    .section-min-h{
+        min-height: 800px !important;
+    }
+    .min-height{
+        min-height: 575px !important;
     }
 }
 @media only screen and (max-width:991px){
@@ -604,6 +653,15 @@ header{
     }
    .mobile-cards{
        margin:117px 0px 70px 0px  !important;
+       .bg-card-1{
+           min-height: 255px !important;
+       }
+       .bg-card-2{
+           min-height: 255px !important;
+       }
+       .bg-card-3{
+           min-height: 255px !important;
+       }
    }
 
     #header {
@@ -620,6 +678,15 @@ header{
     .padding-y{
         padding: 40px 0px 0px 0px !important;
     }
+    .mobile-cards{
+        .card{
+            .card-body{
+                .card-title{
+                    font-size: 15px !important;
+                }
+            }
+        }
+    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -634,6 +701,9 @@ header{
     }
     .padding-top{
         padding-top: 3rem !important;
+    }
+    .max-width{
+        max-width: 100% !important;
     }
     .help-page-tabs {
         .nav-tabs{
@@ -674,15 +744,7 @@ header{
     }
     .mobile-cards{
         margin: 70px 0px;
-        .bg-card-1{
-            min-height: 245px !important;
-        }
-        .bg-card-2{
-            min-height: 245px !important;
-        }
-        .bg-card-3{
-            min-height: 245px !important;
-        }
+
         .card{
             .card-body{
                 .card-title{

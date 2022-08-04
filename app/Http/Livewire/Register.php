@@ -31,6 +31,7 @@ class Register extends Component
         if ($this->file)  {
             $inputs['image']  = $this->file;
         }
+
         event(new Registered($user = $creator->create($inputs)));
 
         $guard->login($user);

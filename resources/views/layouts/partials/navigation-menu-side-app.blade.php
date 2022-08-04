@@ -3,8 +3,8 @@
         <div class="navbar-vertical-footer-offset">
             <!-- Logo -->
 
-            <a class="navbar-brand" href="./index.html" aria-label="Front">
-                <img class="img-fluid" src="{{asset('dash/assets/svg/logos/logo.svg')}}" alt="Logo" data-hs-theme-appearance="default">
+            <a class="navbar-brand" href="{{route('guest.welcome')}}" aria-label="Front">
+                <img class="img-fluid" src="{{asset('logo/logo.svg')}}" alt="Logo" data-hs-theme-appearance="default">
             </a>
 
             <!-- End Logo -->
@@ -22,31 +22,41 @@
                 <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
                     <!-- Collapse -->
                     <div class="nav-item">
-                        <a class="nav-link dropdown-toggle active" href="#navbarVerticalMenuDashboards" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuDashboards" aria-expanded="true" aria-controls="navbarVerticalMenuDashboards">
+                        <a class="nav-link active" href="{{route('dash.index')}}">
                             <i class="bi-house-door nav-icon"></i>
-                            <span class="nav-link-title">Dashboards</span>
+                            <span class="nav-link-title">Dashboard</span>
                         </a>
 
-                        <div id="navbarVerticalMenuDashboards" class="nav-collapse collapse show" data-bs-parent="#navbarVerticalMenu">
-                            <a class="nav-link active" href="./index.html">The Vacation Calendar</a>
-                        </div>
                     </div>
                     <!-- End Collapse -->
 
-                    <span class="dropdown-header mt-4">Navigation</span>
+                    <span class="dropdown-header mt-4">Menu</span>
                     <small class="bi-three-dots nav-subtitle-replacer"></small>
                     <div id="navbarVerticalMenuPagesMenu">
 
+                        <div class="nav-item">
+                            <a class="nav-link" href="{{ route('dash.users.index') }}" data-placement="left">
+                                <i class="bi-person nav-icon"></i>
+                                <span class="nav-link-title">Users</span>
+                            </a>
+                        </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="./welcome-page.html" data-placement="left">
+                            <a class="nav-link" href="{{route('dash.houses')}}" data-placement="left">
+                                <i class="bi-house nav-icon"></i>
+                                <span class="nav-link-title">Houses</span>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
+                            <a class="nav-link" href="#" data-placement="left">
                                 <i class="bi-calendar-month nav-icon"></i>
                                 <span class="nav-link-title">Calendar</span>
                             </a>
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="./welcome-page.html" data-placement="left">
+                            <a class="nav-link" href="#" data-placement="left">
                                 <i class="bi-sunset nav-icon"></i>
                                 <span class="nav-link-title">Vacations</span>
                             </a>
@@ -59,29 +69,31 @@
                             </a>
 
                             <div id="navbarVerticalMenuPagesBlogsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="{{route('blogs.index')}}">All Blogs</a>
+                                <a class="nav-link " href="{{route('dash.blogs.index')}}">All Blogs</a>
                             </div>
                         </div>
+
                         <div class="nav-item">
-                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesBulletinsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesBulletinsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesBlogsMenu">
-                                <i class="bi-bootstrap nav-icon"></i>
-                                <span class="nav-link-title">Bulletins</span>
+                            <a class="nav-link" href="#" data-placement="left">
+                                <i class="bi-clipboard-data nav-icon"></i>
+                                <span class="nav-link-title">Bulletin Board</span>
                             </a>
 
                             <div id="navbarVerticalMenuPagesBulletinsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="{{route('bulletins.index')}}">All Bulletins</a>
+                                <a class="nav-link " href="{{route('dash.bulletins.index')}}">All Bulletins</a>
                             </div>
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesPhotoAlbumsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesPhotoAlbumsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesPhotoAlbumsMenu">
+                            <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.photo-albums']) }} " href="#navbarVerticalMenuPagesPhotoAlbumsMenu" role="button" data-bs-toggle="collapse"
+                               data-bs-target="#navbarVerticalMenuPagesPhotoAlbumsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesPhotoAlbumsMenu">
                                 <i class="bi-images nav-icon"></i>
-                                <span class="nav-link-title">Photo Album</span>
+                                <span class="nav-link-title">Photo Albums</span>
                             </a>
 
-                            <div id="navbarVerticalMenuPagesPhotoAlbumsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuNavigationMenu">
-                                <a class="nav-link " href="./Blogs.html">All Photos</a>
-                                <a class="nav-link " href="./Blogs-leaderboard.html">Add New Photo</a>
+                            <div id="navbarVerticalMenuPagesPhotoAlbumsMenu" class="nav-collapse collapse {{ link_is_active_with_class(['dash.photo-albums'], 'show') }}"
+                                 data-bs-parent="#navbarVerticalMenuNavigationMenu">
+                                <a class="nav-link {{ link_is_active_with_class('dash.photo-albums') }} " href="{{route('dash.photo-albums')}}">All Photos</a>
                             </div>
                         </div>
 
@@ -98,16 +110,15 @@
 
 
                         <div class="nav-item">
-                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesAdministratorMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesAdministratorMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesAdministratorMenu">
+                            <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices']) }}" href="#navbarVerticalMenuPagesAccountMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesAccountMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesAdministratorMenu">
                                 <i class="bi-person-check nav-icon"></i>
-                                <span class="nav-link-title">Administrator</span>
+                                <span class="nav-link-title">Account</span>
                             </a>
 
-                            <div id="navbarVerticalMenuPagesAdministratorMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuNavigationMenu">
-                                <a class="nav-link " href="./Blogs.html">Administer Users</a>
-                                <a class="nav-link " href="./Blogs.html">Manage Bulletin Board</a>
-                                <a class="nav-link " href="./Blogs.html">Delete Vacation</a>
-                                <a class="nav-link " href="./Blogs-leaderboard.html">Help</a>
+                            <div id="navbarVerticalMenuPagesAccountMenu" class="nav-collapse collapse {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices'], 'show') }}" data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
+                                <a class="nav-link {{ link_is_active_with_class('dash.account.settings') }}" href="{{ route('dash.account.settings') }}">Settings</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.account.subscriptions') }}" href="{{ route('dash.account.subscriptions') }}">Subscriptions</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.account.invoices') }}" href="{{ route('dash.account.invoices') }}">Invoices</a>
                             </div>
                         </div>
                     </div>

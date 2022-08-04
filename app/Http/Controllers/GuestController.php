@@ -85,4 +85,7 @@ class GuestController extends Controller
         $guestbook = GuestBook::paginate(10);
         return view('guest-book', compact('guestbook'));
     }
+    public function card(){
+        return view('card');
+    }
 }

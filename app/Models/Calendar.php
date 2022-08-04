@@ -16,8 +16,10 @@ class Calendar extends Model
      *
      * @var string[]
      */
+
+    protected $primaryKey = 'DateId';
+
     protected $fillable = [
-        'DateId',
         'Year',
         'Month',
         'Day',
