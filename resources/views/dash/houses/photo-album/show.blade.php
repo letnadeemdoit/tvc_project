@@ -4,6 +4,7 @@
         <!-- Page Header -->
         <div class="page-header" x-data>
             <div class="row align-items-center">
+
                 <div class="col">
                     <h1 class="page-header-title">Album Name:  <span class="text-primary mx-3">
                             {{$album->parentAlbum->name}}</span>

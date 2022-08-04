@@ -9,6 +9,8 @@ class Photo extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $table = 'Photo';
 
     /**
@@ -21,6 +23,8 @@ class Photo extends Model
 
     protected $fillable = [
         'HouseId',
+        'album_id',
+        'description',
     ];
 
     public function getImageAttribute()

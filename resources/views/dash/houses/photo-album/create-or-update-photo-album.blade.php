@@ -1,5 +1,11 @@
 <div>
 
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row">
         @foreach($photos as $photo)
 
@@ -11,11 +17,13 @@
                         <img src="{{$photo->image}}"  style="max-height: 240px" class="card-img-top  position-relative" alt="..." />
                     </div>
                     <div class="card-body">
-                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3">
+                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-3 rounded-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="user-img d-flex">
                                     <div class="list-unstyled ul-card-footer">
-                                        <p class="mb-0"><span><img src="/images/blog-images/chat.png" class="img-fluid me-1"></span>20 Comments</p>
+                                        <p class="mb-0"><span><img src="/images/blog-images/chat.png" class="img-fluid me-1"></span>
+                                            <a class="text-decoration-none text-muted" href="#">20 Comments</a>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="dropdown">
@@ -31,15 +39,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="paragraph-text pt-3">
-                                <p>	Hi Everyone! I am excited us  to know about house.</p>
+                            <div class="paragraph-text">
+{{--                                <p>	Hi Everyone! I am excited us  to know about house.</p>--}}
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>
 
+
+            </div>
         @endforeach
     </div>
 
@@ -58,20 +67,37 @@
                 </div>
                 <div class="modal-body" id="">
                     <form
-                        wire:submit.prevent="createPhotoAlbum"
+                        wire:submit.prevent="save"
                     >
                         <div class="row">
 
-                            <div class="mb-3">
+                            <div class="mb-3"
+                                 x-data="{ isUploading: false, progress: 0 }"
+                                 x-on:livewire-upload-start="isUploading = true"
+                                 x-on:livewire-upload-finish="isUploading = false"
+                                 x-on:livewire-upload-error="isUploading = false"
+                                 x-on:livewire-upload-progress="progress = $event.detail.progress"
+                            >
                                 <label class="form-label" for="parent_id">Album Id</label>
-                                <input type="text" class="form-control" value="{{$albumID}}">
+
+                                <input type="text" name="album_id" class="form-control" value="{{$albumID}}">
+
+                                <div x-show="isUploading">
+                                    <progress max="100" x-bind:value="progress"></progress>
+                                </div>
+
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label" for="parent_id">Upload Image</label>
-                                <input type="file" class="form-control" >
+                                <input type="file" wire:model="image" class="form-control" >
+                                @error('image') <span class="error text-danger">{{ $message }}</span> @enderror
+
                             </div>
 
+                            @if ($image)
+                                <img class="w-25 my-4" src="{{ $image->temporaryUrl() }}">
+                            @endif
 
 
 
