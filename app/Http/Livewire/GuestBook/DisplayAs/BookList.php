@@ -24,7 +24,7 @@ class BookList extends Component
         $this->title = '';
         $this->name = '';
         $this->content = '';
-        $this->oldImage = '';
+        $this->image = '';
         $this->image = '';
         $this->bookId = '';
     }
@@ -55,12 +55,14 @@ class BookList extends Component
             'content' => $this->content,
             'image' => $path,
         ]);
+        $this->reset();
         $this->emit('hideModal');
         session()->flash('success', 'New Content Created successfully...');
 
     }
 
     public function editGuestBook($bookid){
+        $this->reset();
         $GuestBook = GuestBook::findOrFail($bookid);
         if ($GuestBook){
             $this->title = $GuestBook["title"];
