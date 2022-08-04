@@ -34,7 +34,7 @@
                 })
             "
         >
-            <x-jet-validation-errors class="mb-4"/>
+{{--            <x-jet-validation-errors class="mb-4"/>--}}
 
             @if (session('status'))
                 <div class="alert alert-soft-success text-center mb-4" role="alert">
@@ -132,6 +132,10 @@
                                     <i class="bi bi-person text-primary"></i>
                                 </a>
                             </fieldset>
+                            @error('email')
+                            <span class="text-danger fw-semi-bold"
+                                  style="font-size: 13px !important;">{{$message}}</span>
+                            @enderror
 
                             <span class="invalid-feedback">Please enter a valid email address.</span>
                         </div>
@@ -168,6 +172,10 @@
                                        :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
                                 </a>
                             </fieldset>
+                            @error('password')
+                            <span class="text-danger fw-semi-bold"
+                                  style="font-size: 13px !important;">{{$message}}</span>
+                            @enderror
                             <!-- </div> -->
                             <label class="form-label w-100 mt-3" for="password" tabindex="0">
                                 <span class="float-end" x-show="loginAsGuest === false">
