@@ -77,6 +77,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="#guestPasswordSection">
+                                    <i class="bi-key nav-icon"></i> Guest Password
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="#preferencesSection">
                                     <i class="bi-gear nav-icon"></i> Preferences
                                 </a>
@@ -121,7 +126,7 @@
             <div class="col-lg-9">
                 <div class="d-grid gap-3 gap-lg-5">
                     <!-- Card -->
-                   <livewire:manage-account.settings.profile-photo :user="$user"/>
+                   <livewire:manage-account.settings.profile-photo-form :user="$user"/>
                     <!-- End Card -->
 
                     <!-- Card -->
@@ -548,98 +553,15 @@
                     <!-- End Card -->
 
                     <!-- Card -->
-                    <div id="emailSection" class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Email</h4>
-                        </div>
-
-                        <!-- Body -->
-                        <div class="card-body">
-                            <p>Your current email address is <span class="fw-semi-bold">mark@site.com</span></p>
-
-                            <!-- Form -->
-                            <form>
-                                <!-- Form -->
-                                <div class="row mb-4">
-                                    <label for="newEmailLabel" class="col-sm-3 col-form-label form-label">New email address</label>
-
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" name="newEmail" id="newEmailLabel" placeholder="Enter new email address" aria-label="Enter new email address">
-                                    </div>
-                                </div>
-                                <!-- End Form -->
-
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </form>
-                            <!-- End Form -->
-                        </div>
-                        <!-- End Body -->
-                    </div>
+                    <livewire:manage-account.settings.update-email-form :user="$user"/>
                     <!-- End Card -->
 
                     <!-- Card -->
-                    <div id="passwordSection" class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Change your password</h4>
-                        </div>
+                    <livewire:manage-account.settings.change-password-form :user="$user"/>
+                    <!-- End Card -->
 
-                        <!-- Body -->
-                        <div class="card-body">
-                            <!-- Form -->
-                            <form id="changePasswordForm">
-                                <!-- Form -->
-                                <div class="row mb-4">
-                                    <label for="currentPasswordLabel" class="col-sm-3 col-form-label form-label">Current password</label>
-
-                                    <div class="col-sm-9">
-                                        <input type="password" class="form-control" name="currentPassword" id="currentPasswordLabel" placeholder="Enter current password" aria-label="Enter current password">
-                                    </div>
-                                </div>
-                                <!-- End Form -->
-
-                                <!-- Form -->
-                                <div class="row mb-4">
-                                    <label for="newPassword" class="col-sm-3 col-form-label form-label">New password</label>
-
-                                    <div class="col-sm-9">
-                                        <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Enter new password" aria-label="Enter new password">
-                                    </div>
-                                </div>
-                                <!-- End Form -->
-
-                                <!-- Form -->
-                                <div class="row mb-4">
-                                    <label for="confirmNewPasswordLabel" class="col-sm-3 col-form-label form-label">Confirm new password</label>
-
-                                    <div class="col-sm-9">
-                                        <div class="mb-3">
-                                            <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPasswordLabel" placeholder="Confirm your new password" aria-label="Confirm your new password">
-                                        </div>
-
-                                        <h5>Password requirements:</h5>
-
-                                        <p class="fs-6 mb-2">Ensure that these requirements are met:</p>
-
-                                        <ul class="fs-6">
-                                            <li>Minimum 8 characters long - the more, the better</li>
-                                            <li>At least one lowercase character</li>
-                                            <li>At least one uppercase character</li>
-                                            <li>At least one number, symbol, or whitespace character</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- End Form -->
-
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </form>
-                            <!-- End Form -->
-                        </div>
-                        <!-- End Body -->
-                    </div>
+                    <!-- Card -->
+                    <livewire:manage-account.settings.guest-password-form :user="$user"/>
                     <!-- End Card -->
 
                     <!-- Card -->

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class ProfilePhoto extends Component
+class ProfilePhotoForm extends Component
 {
     use WithFileUploads;
 
@@ -15,7 +15,7 @@ class ProfilePhoto extends Component
 
     public function render()
     {
-        return view('dash.manage-account.partials.settings.profile-photo');
+        return view('dash.manage-account.partials.settings.profile-photo-form');
     }
 
     public function save()
@@ -29,7 +29,7 @@ class ProfilePhoto extends Component
         $this->user->updateProfilePhoto($this->photo);
 
         $this->emit('saved');
-
+        $this->reset('photo');
         $this->dispatchBrowserEvent('refresh-avatar', [
             'profile_photo_url' => $this->user->profile_photo_url
         ]);
