@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
     public function blogs(){
 
-        return view('dash.blog.index');
+        return view('dash.blog.display-as.index');
 
     }
 
@@ -43,7 +43,11 @@ class DashboardController extends Controller
         $album = Album::findOrFail($id);
 
         return view('dash.houses.photo-album.show',compact('album'));
-
-
+    }
+    public function guestBook(){
+        return view('dash.guest-book.display-as.index');
+    }
+    public function bulletins(){
+        return view('dash.bulletin-board.display-list.list');
     }
 }

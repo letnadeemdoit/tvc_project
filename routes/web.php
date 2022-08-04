@@ -3,7 +3,9 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HouseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\BulletinBoard\BulletinCards\Cards;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,15 +27,16 @@ Route::controller(GuestController::class)
         Route::post('/contact', 'contactMail')->name('contact.mail');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
-        Route::get('/blog-cards','blog')->name('blog.card');
+        Route::get('/blog-cards','blog')->name('blog');
         Route::get('/bulletin-cards','bulletinBoard')->name('bulletinBoard');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
         Route::get('/guest-login','guestLogin')->name('guest-login');
         Route::get('/book-cards','guestBook')->name('guest-book');
         Route::get('/login-account','loginAccount')->name('login-account');
         Route::get('/search-house','searchHouse')->name('search-house');
-        Route::get('/card', 'card')->name('card');
     });
+//Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem']);
+
 
 Route::controller(\App\Http\Controllers\Select2Controller::class)
     ->name('select2.')
@@ -68,10 +71,9 @@ Route::middleware([
         Route::get('/houses', [DashboardController::class, 'houses'])->name('houses');
         Route::get('/photo-albums', [DashboardController::class, 'photoAlbum'])->name('photo-albums');
         Route::get('/photo-albums/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album');
-        Route::resource('/guest-book', GuestBookController::class);
-        Route::resource('bulletins', BulletinController::class);
+        Route::get('/guest-book', [DashboardController::class, 'guestBook'])->name('guest-book');
+        Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
 
-        Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
 
         Route::controller(\App\Http\Controllers\ManageAccountController::class)
             ->prefix('account')

@@ -69,18 +69,18 @@
                             </a>
 
                             <div id="navbarVerticalMenuPagesBlogsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="{{route('dash.blogs.index')}}">All Blogs</a>
+                                <a class="nav-link " href="{{route('dash.blogs')}}">All Blogs</a>
                             </div>
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="#" data-placement="left">
-                                <i class="bi-clipboard-data nav-icon"></i>
-                                <span class="nav-link-title">Bulletin Board</span>
+                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesBulletinMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesBulletinMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesBulletinMenu">
+                                <i class="bi-bootstrap nav-icon"></i>
+                                <span class="nav-link-title">Bulletins</span>
                             </a>
 
-                            <div id="navbarVerticalMenuPagesBulletinsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="{{route('dash.bulletins.index')}}">All Bulletins</a>
+                            <div id="navbarVerticalMenuPagesBulletinMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesBulletinMenu">
+                                <a class="nav-link " href="{{route('dash.bulletins')}}">Bulletins</a>
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@
                             </a>
 
                             <div id="navbarVerticalMenuPagesBookMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                                <a class="nav-link " href="{{route('guest-book.index')}}">Guest Book</a>
+                                <a class="nav-link " href="{{route('dash.guest-book')}}">Guest Book</a>
                             </div>
                         </div>
 
