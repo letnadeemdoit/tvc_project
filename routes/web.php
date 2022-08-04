@@ -2,9 +2,15 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\BulletinBoard\CreateOrUpdateBulletin;
+use App\Http\Livewire\BulletinBoard\DisplayList;
+use App\Http\Livewire\BulletinBoard\BulletinCards\Cards;
+use App\Http\Livewire\Blog\BlogCards\Blogs;
+use App\Http\Livewire\GuestBook\DisplayAs\ItemCard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +32,11 @@ Route::controller(GuestController::class)
         Route::post('/contact', 'contactMail')->name('contact.mail');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
-        Route::get('/blog','blog')->name('blog');
-        Route::get('/bulletin','bulletinBoard')->name('bulletinBoard');
+        Route::get('/blog-cards','blog')->name('blog.card');
+        Route::get('/bulletin-cards','bulletinBoard')->name('bulletinBoard');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
         Route::get('/guest-login','guestLogin')->name('guest-login');
+        Route::get('/book-cards','guestBook')->name('guest-book');
         Route::get('/login-account','loginAccount')->name('login-account');
         Route::get('/search-house','searchHouse')->name('search-house');
     });
@@ -41,9 +48,13 @@ Route::controller(\App\Http\Controllers\Select2Controller::class)
         Route::get('houses', 'houses')->name('houses');
     });
 Route::resource('blogs', BlogController::class);
-Route::resource('bulletin', BulletinController::class);
+Route::resource('bulletins', BulletinController::class);
 Route::resource('users', UserController::class);
 Route::resource('houses', HouseController::class);
+Route::resource('/guest-book', GuestBookController::class);
+
+
+Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
 
 require_once __DIR__ . '/fortify.php';
 Route::get('/dashboard', function () {

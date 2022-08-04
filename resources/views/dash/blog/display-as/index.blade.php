@@ -2,7 +2,7 @@
 
     <div class="content container-fluid">
         <!-- Page Header -->
-        <div class="page-header">
+        <div class="page-header" x-data>
             <div class="row align-items-center">
                 <div class="col">
                     <h1 class="page-header-title">Blogs</h1>
@@ -10,8 +10,7 @@
                 <!-- End Col -->
 
                 <div class="col-auto">
-                    <a class="btn btn-primary" href="javascript:;"
-                       data-bs-toggle="modal" data-bs-target="#createOrUpdateBlog">
+                    <a class="btn btn-primary" title="Add Blog" href="javascript:;" @click.prevent="window.livewire.emit('openResetBlogForm')">
                         <i class="bi-plus me-1"></i> Add New Blog
                     </a>
                 </div>
@@ -22,8 +21,6 @@
         <!-- End Page Header -->
 
     @livewire('blog.display-as-list')
+
     </div>
-
-@livewire('blog.create-or-update-modal')
-
 </x-app-layout>

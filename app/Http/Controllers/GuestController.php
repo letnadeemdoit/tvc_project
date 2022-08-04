@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog\Blog;
+use App\Models\GuestBook;
 use App\Notifications\ContactUsNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -59,20 +60,11 @@ class GuestController extends Controller
         return view('help');
     }
 
-    public function bulletinBoard(){
-
-        return view('bulletinBoard');
-
-    }
-
     public function blog() {
 
-        $blogs = Blog:: paginate(20);
-
-        return view('blog',compact('blogs'));
+        return view('blog');
     }
-
-    public function PrivacyPolicy() {
+    public function privacyPolicy() {
 
         return view('privacy-policy');
 
@@ -86,7 +78,11 @@ class GuestController extends Controller
     public function searchHouse() {
         return view('search-house');
     }
-    public function bulletin(){
-        return view('bulletin-board.index');
+    public function bulletinBoard(){
+        return view('bulletinBoard');
+    }
+    public function guestBook(){
+        $guestbook = GuestBook::paginate(10);
+        return view('guest-book', compact('guestbook'));
     }
 }

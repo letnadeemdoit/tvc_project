@@ -9,8 +9,9 @@ class BlogComment extends Model
 {
     use HasFactory;
 
-    protected $table = 'blogcomment';
-
+    protected $table = 'BlogComment';
+    protected $primaryKey = 'CommentId';
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

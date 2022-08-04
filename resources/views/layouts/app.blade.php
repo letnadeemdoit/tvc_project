@@ -61,6 +61,24 @@
                 });
             });
         </script>
+        <script>
+            $(document).ready(function () {
+                window.livewire.on('openModal', (reload = false) => {
+                    $('.createOrUpdateModal').each(function () {
+                        $(this).modal('show');
+                    });
+                });
+            });
+        </script>
+        <script>
+            // $(document).ready(function () {
+            //     window.livewire.on('openModal', (reload = false) => {
+            //         $('.createOrUpdateModal').each(function () {
+            //             $(this).modal('show');
+            //         });
+            //     });
+            // });
+        </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script>

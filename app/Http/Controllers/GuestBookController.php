@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class GuestBookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('dash.blog.display-as.index');
+        return view('dash.guest-book.display-as.index');
     }
-
+    public function openForm() {
+        dd("Nadeem");
+    }
 
     /**
      * Show the form for creating a new resource.

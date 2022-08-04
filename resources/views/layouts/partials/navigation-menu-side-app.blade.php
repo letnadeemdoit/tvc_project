@@ -37,19 +37,6 @@
                     <small class="bi-three-dots nav-subtitle-replacer"></small>
                     <div id="navbarVerticalMenuPagesMenu">
 
-                        <div class="nav-item">
-                            <a class="nav-link" href="{{route('users.index')}}" data-placement="left">
-                                <i class="bi-person nav-icon"></i>
-                                <span class="nav-link-title">Users</span>
-                            </a>
-                        </div>
-
-                        <div class="nav-item">
-                            <a class="nav-link" href="{{route('houses.index')}}" data-placement="left">
-                                <i class="bi-house nav-icon"></i>
-                                <span class="nav-link-title">Houses</span>
-                            </a>
-                        </div>
 
                         <div class="nav-item">
                             <a class="nav-link" href="./welcome-page.html" data-placement="left">
@@ -73,15 +60,17 @@
 
                             <div id="navbarVerticalMenuPagesBlogsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
                                 <a class="nav-link " href="{{route('blogs.index')}}">All Blogs</a>
-                                <a class="nav-link " href="{{route('blogs.index')}}">Add New Blog</a>
                             </div>
                         </div>
-
                         <div class="nav-item">
-                            <a class="nav-link" href="/bulletins" data-placement="left">
-                                <i class="bi-clipboard-data nav-icon"></i>
-                                <span class="nav-link-title">Bulletin Board</span>
+                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesBulletinsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesBulletinsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesBlogsMenu">
+                                <i class="bi-bootstrap nav-icon"></i>
+                                <span class="nav-link-title">Bulletins</span>
                             </a>
+
+                            <div id="navbarVerticalMenuPagesBulletinsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
+                                <a class="nav-link " href="{{route('bulletins.index')}}">All Bulletins</a>
+                            </div>
                         </div>
 
                         <div class="nav-item">
@@ -93,6 +82,17 @@
                             <div id="navbarVerticalMenuPagesPhotoAlbumsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuNavigationMenu">
                                 <a class="nav-link " href="./Blogs.html">All Photos</a>
                                 <a class="nav-link " href="./Blogs-leaderboard.html">Add New Photo</a>
+                            </div>
+                        </div>
+
+                        <div class="nav-item">
+                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesBookMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesBookMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesBookMenu">
+                                <i class="bi-bootstrap nav-icon"></i>
+                                <span class="nav-link-title">Guest Book</span>
+                            </a>
+
+                            <div id="navbarVerticalMenuPagesBookMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
+                                <a class="nav-link " href="{{route('guest-book.index')}}">Guest Book</a>
                             </div>
                         </div>
 

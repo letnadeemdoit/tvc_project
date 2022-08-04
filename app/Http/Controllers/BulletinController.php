@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Board;
 use Illuminate\Http\Request;
-
-class BlogController extends Controller
+class BulletinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +13,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('dash.blog.display-as.index');
+        return view('dash.bulletin-board.display-list.list');
     }
-
-
     /**
      * Show the form for creating a new resource.
      *
