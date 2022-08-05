@@ -18,6 +18,24 @@
 
         <style>
 
+            .navbar-toggler {
+                color: #e8604c !important;
+                font-size: 30px!important;
+            }
+
+            @media (max-width: 992px) {
+                .text-w-50 {
+                    width: 100% !important;
+                }
+            }
+
+            @media (max-width: 992px) {
+                .guset-menu{
+                    background-color: #e8604c05 !important;
+                }
+            }
+
+
         </style>
     </head>
     <body>
