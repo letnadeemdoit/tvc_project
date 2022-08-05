@@ -158,12 +158,46 @@ class User extends Authenticatable
             return mb_substr($segment, 0, 1);
         })->join(' '));
 
-        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=e8604c&background=e8604c70';
+        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=e8604c&background=e8604c70';
     }
 
     public function isRole($role)
     {
         return $this->role === $role;
+    }
+
+    /**
+     * Show additional schedule vacations screen.
+     *
+     * Use this option to control whether you prefer to update the calendar by clicking on the day or
+     * by scheduling on the separate vacations screen. Using just the calendar is a lot easier, however,
+     * if you are using an older browser this functionality may not work to your liking.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function ShowOldSave(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $value === 'Y',
+            set: fn($value) => (int) $value === 1 ? 'Y' : 'N',
+        );
+    }
+
+    /**
+     * Allow administrator to have Owner permissions
+     *
+     * Use this option to control whether the admin will also have the ability to schedule vacations.
+     * The only reason not do this is in the case that a vacation home has a person who is purely the
+     * administrator and doesn't schedule time using the vacation home.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function AdminOwner(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $value === 'Y',
+            set: fn($value) => (int) $value === 1 ? 'Y' : 'N',
+        );
     }
 
     public function house()

@@ -12,6 +12,8 @@ class House extends Model
 
     protected $table = 'House';
 
+    protected $primaryKey = 'HouseID';
+
     public $timestamps = false;
 
     /**

@@ -79,7 +79,7 @@ class BookList extends Component
     }
     public function updateGuestBook($bookid){
         $this->validate();
-        $path =  $this->image->store('public');
+        $path =  $this->image->store('guest-books', 'public');
         $user_id = Auth::user()->user_id;
         $house_id = Auth::user()->HouseId;
         $updateBook = array(

@@ -31,7 +31,7 @@
 
             <div class="d-flex align-items-center justify-content-end">
                 <x-jet-action-message class="text-success me-2" on="saved">
-                    Your email has been changed successfully and we have emailed you verification link.
+                    Your email has been changed successfully, and we have emailed you verification link.
                 </x-jet-action-message>
                 <button type="submit" class="btn btn-primary">Change Email</button>
             </div>

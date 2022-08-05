@@ -29,6 +29,7 @@ class Blog extends Model
         'Audit_FirstName',
         'Audit_LastName',
         'Audit_Email',
+        'BlogImage',
     ];
 
 
