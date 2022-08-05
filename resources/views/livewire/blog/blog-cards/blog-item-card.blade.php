@@ -4,19 +4,24 @@
         <div class="w-100">
             <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                 HOUSE</button>
-            <img src="/images/blog-images/house-1.png" class="card-img-top  position-relative" alt="..." />
+
+            <img src="{{ !empty($blog->BlogImage) ?  Storage::url($blog->BlogImage) : asset('/images/blog-images/house-1.png') }}" class="card-img-top  position-relative" style="height: 200px !important;object-fit: cover" alt="..." />
+
         </div>
         <div class="card-body">
             <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex">
-                        <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
+{{--                        @if(!is_null($userimage))--}}
+{{--                            <img src="{{ Storage::url($userimage) }}" class="img-fluid position-relative" alt="...">--}}
+                            <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
+
                         <div class="ps-3">
-                            <span class="mb-1">{{$blog->Author}}</span>
-                            <span>{{\Carbon\Carbon::parse($blog->BlogDate)->format('d/m/Y h:i A')}}</span>
+                            <strong class="mb-1">{{$blog->Author}}</strong>
+                            <p>{{\Carbon\Carbon::parse($blog->BlogDate)->format('d/m/Y')}}</p>
                         </div>
                     </div>
-                    <div class="dropdown">
+                    <div class="dropdown" x-data>
                         <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi-three-dots-vertical"></i>
                         </button>
@@ -26,8 +31,7 @@
                                data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
                                 <i class="bi-pencil me-1"></i> Add Comment
                             </a>
-                            <a class="btn btn-white dropdown-item" href="#" wire:click="readBlogComments({{ $blog->BlogId }})"
-                               data-bs-toggle="modal" data-bs-target="#ReadBlogCommentModal">
+                            <a class="btn btn-white dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$blog->BlogId}})">
                                 <i class="bi-book me-1"></i> Read Comment
                             </a>
                             <div class="dropdown-divider"></div>
@@ -65,5 +69,31 @@
 </div>
 
 
-@push('customJs')
-@endpush
+
+@pushonce('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        window.livewire.on('openModal', (id) => {
+            $(`#ce${id}`).modal('show');
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        window.livewire.on('hideModal', (reload = false) => {
+            $('.hideableModal').each(function () {
+                $(this).modal('hide');
+            });
+            if (reload) {
+                window.location.reload();
+            } else {
+                $('.modal-backdrop').remove();
+                $('body').css('overflow', '');
+                $('body').css('padding-right', '');
+                $('body').removeClass('modal-open');
+            }
+        });
+    });
+</script>
+@endpushonce

@@ -90,8 +90,11 @@
                                            @if($image)
                                            <img id="blah" src="{{ $image->temporaryUrl() }}" alt="your image"
                                                 style="width: 100px; height: 100px; border-radius: 10px"/>
-                                           @else
+                                           @elseif($oldImage)
                                                <img id="blah" src="{{ Storage::url($oldImage) }}" alt="your image"
+                                                    style="width: 100px; height: 100px; border-radius: 10px"/>
+                                           @else
+                                               <img id="blah" src="" alt="your image"
                                                     style="width: 100px; height: 100px; border-radius: 10px"/>
                                            @endif
                                        @endif

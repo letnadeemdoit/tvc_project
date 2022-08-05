@@ -44,10 +44,17 @@ class DashboardController extends Controller
 
         return view('dash.houses.photo-album.show',compact('album'));
     }
+
+
     public function guestBook(){
+
         return view('dash.guest-book.display-as.index');
+
     }
+
     public function bulletins(){
+
         return view('dash.bulletin-board.display-list.list');
+
     }
 }

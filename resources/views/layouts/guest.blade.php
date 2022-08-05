@@ -34,4 +34,5 @@
     <script src="jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     @stack('scripts')
+
 </html>

@@ -1,12 +1,8 @@
 <div class="card">
     <!-- Header -->
     <div class="card-header">
+        @include('flash-messages')
         <div class="row justify-content-between align-items-center flex-grow-1">
-            @if (session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
             <div class="col-12 col-md">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="card-header-title">Blogs</h5>
@@ -119,3 +115,13 @@
 
 
 </div>
+
+@pushonce('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{{--<script>--}}
+{{--    const myTimeout = setTimeout(myGreeting, 5000);--}}
+{{--    function myGreeting() {--}}
+{{--        document.querySelector('.success-message').style.display = "none";--}}
+{{--    }--}}
+{{--</script>--}}
+@endpushonce
