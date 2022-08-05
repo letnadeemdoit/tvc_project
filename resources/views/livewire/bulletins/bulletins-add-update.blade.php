@@ -2,7 +2,7 @@
 <div class="modal fade hideableModal createOrUpdateModal" tabindex="-1"
      aria-labelledby="addOrEditBoardModalLabel" aria-hidden="true"
      wire:ignore.self>
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <form
             @if($updateMode)
             wire:submit.prevent="updateBulletin({{$HouseId}})"

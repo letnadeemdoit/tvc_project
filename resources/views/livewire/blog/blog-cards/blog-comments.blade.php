@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade hideableModal" id="ReadBlogCommentModal" tabindex="-1"
+<div class="modal fade hideableModal createOrUpdateModal" id="ce{{$BlogId}}" tabindex="-1"
      aria-labelledby="ReadBlogCommentModalLabel" aria-hidden="true"
      wire:ignore.self>
     <div class="modal-dialog" role="document">
@@ -49,7 +49,7 @@
 <!-- End Modal -->
 
 {{--Second Modal If Blog Id is Null--}}
-<div class="modal fade" id="addBlogCommentModal" aria-hidden="true"
+<div class="modal fade hideableModal" id="addBlogCommentModal" aria-hidden="true"
      aria-labelledby="addBlogCommentModalLabel" tabindex="-1"  wire:ignore.self>
     <div class="modal-dialog modal-dialog-top">
         <div class="modal-content">

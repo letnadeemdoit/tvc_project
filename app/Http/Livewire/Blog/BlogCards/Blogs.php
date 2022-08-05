@@ -4,31 +4,42 @@ namespace App\Http\Livewire\Blog\BlogCards;
 
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogComment;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
 
 class Blogs extends Component
 {
-    public $Content ,$BlogComments = [], $BlogId;
+    public $Content ,$BlogComments = [], $BlogId, $userimage;
+    protected $listeners = [
+        'readBlogComments'
+    ];
     public function mount()
     {
+        $user = Auth::user();
+        $this->userimage = $user->profile_photo_path;
 
     }
     public function render()
     {
-        $blogs = Blog:: paginate(20);
+        $blogs = Blog::orderBy('BlogId','DESC')->paginate(20);
         return view('livewire.blog.blog-cards.blogs',compact('blogs'));
+    }
+    public function resetInput()
+    {
+        $this->Content = '';
     }
     protected function rules()
     {
         return [
-            'Content' => 'required',
+            'Content' => 'required|min:20|max:1000',
         ];
     }
-    public function readBlogComments($blogId){
-        $this->BlogId = $blogId;
+    public function readBlogComments($BlogId){
+        $this->BlogId = $BlogId;
+        $this->emit('openModal', $this->BlogId);
         $this->BlogComments = [];
-        $comments = BlogComment::where('BlogId', $blogId)->get();
+        $comments = BlogComment::where('BlogId', $BlogId)->get();
         foreach ($comments as $comment){
             $this->BlogComments[]= [
                 "CommentId" => $comment->CommentId,
@@ -43,10 +54,8 @@ class Blogs extends Component
     }
     public function addBlogComment()
     {
-        $this->validate();
         $blog = Blog::where('BlogId', $this->BlogId)->first();
         $mydatetime =date("Y-m-d H:i:s");
-
         BlogComment::create([
             'BlogId'        => $blog->BlogId,
             'HouseId'        => $blog->HouseId,
@@ -60,7 +69,7 @@ class Blogs extends Component
             'Content' => $this->Content,
         ]);
         $this->emit('hideModal');
-        session()->flash('success', 'New Blog Comment successfully...');
+        session()->flash('success', 'New Blog Comment Added successfully...');
     }
 
     public function destroy($id)
@@ -75,8 +84,8 @@ class Blogs extends Component
             $blogcomment->delete();
         }
         $this->emit('hideModal');
-        return redirect()->to('/blog-cards');
-        $this->emit('showToast', 'Success!', 'board Deleted Successfully!');
+//        return redirect()->to('/blog-cards');
+        session()->flash('success', 'Blog Deleted successfully...');
     }
     public function deleteComment($CommentId)
     {
@@ -85,6 +94,7 @@ class Blogs extends Component
             $comment->delete();
         }
         $this->emit('hideModal');
-        return redirect()->to('/blog-cards');
+        session()->flash('success', 'Blog Comment Deleted successfully...');
+//        return redirect()->to('/blog-cards');
     }
 }

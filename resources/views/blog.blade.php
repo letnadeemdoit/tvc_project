@@ -4,18 +4,13 @@
 
     @endpush
 
-        @include('partials.sub-page-hero-section')
+        @include('partials.sub-page-hero-section', ['title' => 'House Blogs']);
 
     {{--  center text row  --}}
     <section class="bg-map bg-light pt-5">
         <div class="blog-text shadow-1-strong rounded text-center  d-flex justify-content-center">
             <h1 class="text-primary font-jost">Find Your Vacation House</h1>
         </div>
-        @if (session()->has('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
         <h3 class="pt-2 text-center">Choose your Category</h3>
         <div class="container  pt-5">
             <div class="row my-5  category-cards">
@@ -56,7 +51,7 @@
                         </li>
                     </ul>
                     <!-- dots img -->
-
+                    @include('flash-messages')
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         @livewire('blog.blog-cards.blogs')
@@ -81,4 +76,25 @@
     </section>
 
 </x-guest-layout>
+
+@pushonce('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        window.livewire.on('hideModal', (reload = false) => {
+            $('.hideableModal').each(function () {
+                $(this).modal('hide');
+            });
+            if (reload) {
+                window.location.reload();
+            } else {
+                $('.modal-backdrop').remove();
+                $('body').css('overflow', '');
+                $('body').css('padding-right', '');
+                $('body').removeClass('modal-open');
+            }
+        });
+    });
+</script>
+@endpushonce
 
