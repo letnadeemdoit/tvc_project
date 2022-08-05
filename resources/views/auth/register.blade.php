@@ -11,7 +11,13 @@
                 {{--            <x-jet-validation-errors class="mb-4"/>--}}
 
                 @if (session('status'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
+                    <div
+                        x-data="{ shown: false, timeout: null }"
+                        x-init="clearTimeout(timeout); shown = true; timeout = setTimeout(() => { shown = false }, 10000);"
+                        x-show.transition.out.opacity.duration.1500ms="shown"
+                        x-transition:leave.opacity.duration.1500ms
+                        style="display: none;"
+                        class="mb-4 font-medium text-sm text-green-600">
                         {{ session('status') }}
                     </div>
                 @endif

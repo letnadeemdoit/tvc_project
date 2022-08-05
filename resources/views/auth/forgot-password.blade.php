@@ -13,7 +13,13 @@
             </div>
 
             @if (session('status'))
-                <div class="alert alert-soft-success text-center mb-4" role="alert">
+                <div
+                    x-data="{ shown: false, timeout: null }"
+                    x-init="clearTimeout(timeout); shown = true; timeout = setTimeout(() => { shown = false }, 10000);"
+                    x-show.transition.out.opacity.duration.1500ms="shown"
+                    x-transition:leave.opacity.duration.1500ms
+                    style="display: none;"
+                    class="alert alert-soft-success text-center mb-4" role="alert">
                     {{ session('status') }}
                 </div>
             @endif
@@ -35,7 +41,9 @@
                             required
                             autofocus
                         />
-                        <a id="changePassTarget-2" class="input-group-append input-group-text border-0" href="javascript:;">
+                        <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                           style="outline-color: transparent !important;"
+                           href="javascript:;">
                             <i class="bi bi-envelope text-primary"></i>
                         </a>
                     </fieldset>
