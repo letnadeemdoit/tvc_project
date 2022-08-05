@@ -71,11 +71,11 @@
                            href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
 
-                    <div class="d-block d-lg-none">
+
                         @auth
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <li class="nav-item my-1 my-lg-0">
+                                <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
                                     <button
                                         class="btn btn-sm py-2 btn-primary"
                                         type="submit">Logout
@@ -85,35 +85,35 @@
                         @endauth
 
                         @guest
-                            <li class="nav-item my-1 my-lg-0">
+                            <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
                                 <a href="{{route('register')}}"
                                    class="btn btn-sm py-2 btn-dark" style="width: 100px">SIGN UP</a>
                             </li>
-                                <li class="nav-item my-1 my-lg-0">
+                                <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
                                     <a href="{{route('login')}}"
                                        class="btn btn-sm py-2 btn-primary" style="width: 100px">LOGIN
                                     </a>
                                 </li>
                         @endguest
-                    </div>
+
 
                 </ul>
-                <div class="d-block d-md-flex nav-buttons ms-3 ms-lg-0 d-none d-lg-block">
+                <div class="d-md-flex nav-buttons ms-3 ms-lg-0 ">
                     @auth
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button
-                                class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white shadow-none text-uppercase"
+                                class="btn btn-outline d-none d-lg-block btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white shadow-none text-uppercase"
                                 type="submit">Logout
                             </button>
                         </form>
                     @endauth
 
                     @guest
-                        <a href="{{route('register')}}" class="btn btn-outline-dark px-md-5 px-lg-4 px-xl-5 py-2">SIGN
+                        <a href="{{route('register')}}" class="btn d-none d-lg-block btn-outline-dark px-md-5 px-lg-4 px-xl-5 py-2">SIGN
                             UP</a>
                         <a href="{{route('login')}}"
-                           class="btn btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 py-2 ms-2 text-white shadow-none">LOGIN</a>
+                           class="btn d-none d-lg-block btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 py-2 ms-2 text-white shadow-none">LOGIN</a>
                     @endguest
                 </div>
             </div>
