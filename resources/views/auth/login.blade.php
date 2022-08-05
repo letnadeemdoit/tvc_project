@@ -37,7 +37,13 @@
 {{--            <x-jet-validation-errors class="mb-4"/>--}}
 
             @if (session('status'))
-                <div class="alert alert-soft-success text-center mb-4" role="alert">
+                <div
+                    x-data="{ shown: false, timeout: null }"
+                    x-init="clearTimeout(timeout); shown = true; timeout = setTimeout(() => { shown = false }, 10000);"
+                    x-show.transition.out.opacity.duration.1500ms="shown"
+                    x-transition:leave.opacity.duration.1500ms
+                    style="display: none;"
+                    class="alert alert-soft-success text-center mb-4" role="alert">
                     {{ session('status') }}
                 </div>
             @endif
@@ -128,6 +134,7 @@
                                        aria-label="email@address.com"
                                        required/>
                                 <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                                   style="outline-color: transparent !important;"
                                    href="javascript:;">
                                     <i class="bi bi-person text-primary"></i>
                                 </a>
@@ -165,6 +172,7 @@
                                 <a
                                     id="changePassTarget"
                                     class="input-group-append input-group-text border-0"
+                                    style="outline-color: transparent !important;"
                                     href="javascript:;"
                                     @click.prevent="showPassword  = !showPassword"
                                 >
@@ -177,11 +185,14 @@
                                   style="font-size: 13px !important;">{{$message}}</span>
                             @enderror
                             <!-- </div> -->
-                            <label class="form-label w-100 mt-3" for="password" tabindex="0">
+                            <label class="form-label w-100 mt-3" for="password" tabindex="0"
+                                   style="outline-color: transparent !important;"
+                            >
                                 <span class="float-end" x-show="loginAsGuest === false">
                                     @if (Route::has('password.request'))
                                         {{ __('Forget Password?') }}
                                         <a class="form-label-link mb-0 text-secondary fw-lighter"
+                                           style="outline-color: transparent !important;"
                                            href="{{ route('password.request') }}">
                                             <span class="text-decoration-underline text-primary"> Reset</span>
                                         </a>
@@ -211,15 +222,19 @@
                             <button class="btn btn-dark-secondary btn-lg" type="submit">{{ __('Log in') }}</button>
                         </div>
 
-                        <div class="text-center mt-3" x-show="loginAsGuest === false">
-                            <p>Don't have an account? <a href="{{ route('register') }}"
-                                                         class="text-decoration-underline text-primary fw-bolder">Create
-                                    account</a></p>
-                        </div>
+
                     </div>
                 </div>
             </form>
+
+            <div class="text-center mt-4">
+                <p>Don't have an account?
+                    <a href="{{ route('register') }}"
+                       class="text-decoration-underline text-primary fw-bolder">Create
+                        account</a></p>
+            </div>
             <!-- End Form -->
         </div>
+
     </x-jet-authentication-card>
 </x-auth-layout>

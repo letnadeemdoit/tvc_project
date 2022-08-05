@@ -182,14 +182,13 @@ fieldset{
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height:50px;
+    height:60px;
 }
 .bg-social-feed{
     background: url('/images/images-home/map.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
     background-position:center;
-    background-color:$dark-blue;
 }
 .pt-55{
     padding-top: 55px;
@@ -338,13 +337,13 @@ header{
 .color-dark{
     color: rgba(0, 0, 0, 1);
 }
-.form-check-input:checked[type=checkbox] {
-    background-image: url("/images/images-home/tick.svg") !important;
-}
-.form-check-input:checked {
-    background-color: #fff;
-    border: 2px solid #e8604c;
-}
+//.form-check-input:checked[type=checkbox] {
+//    background-image: url("/images/images-home/tick.svg") !important;
+//}
+//.form-check-input:checked {
+//    background-color: #fff;
+//    border: 2px solid #e8604c;
+//}
 .padding-top{
     padding-left: 4rem;
     padding-right:3.5rem
