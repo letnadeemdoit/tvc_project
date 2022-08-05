@@ -24,9 +24,23 @@
                 <!-- End Col -->
             </div>
             <!-- End Row -->
+            <!-- Nav -->
+            <ul class="nav nav-tabs page-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link {{ link_is_active(route('dash.account.settings')) }}" href="{{ route('dash.account.settings') }}">
+                        General
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ link_is_active(route('dash.account.settings')) }}" href="{{ route('dash.account.settings.manage-house') }}">
+                        Mange House
+                    </a>
+                </li>
+            </ul>
+            <!-- End Nav -->
         </div>
-        <!-- End Page Header -->
 
+        <!-- End Page Header -->
         <div class="row">
             <div class="col-lg-3">
                 <!-- Navbar -->
