@@ -87,7 +87,7 @@
                         @guest
                             <li class="nav-item my-1 my-lg-0">
                                 <a href="{{route('register')}}"
-                                   class="btn btn-sm py-2 btn-outline-dark" style="width: 100px">SIGN UP</a>
+                                   class="btn btn-sm py-2 btn-dark" style="width: 100px">SIGN UP</a>
                             </li>
                                 <li class="nav-item my-1 my-lg-0">
                                     <a href="{{route('login')}}"
