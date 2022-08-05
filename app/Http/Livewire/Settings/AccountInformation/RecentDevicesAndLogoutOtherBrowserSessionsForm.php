@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\ManageAccount\Settings;
+namespace App\Http\Livewire\Settings\AccountInformation;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Carbon;
@@ -137,6 +137,6 @@ class RecentDevicesAndLogoutOtherBrowserSessionsForm extends Component
      */
     public function render()
     {
-        return view('dash.manage-account.partials.settings.recent-devices-and-logout-other-browser-sessions-form');
+        return view('dash.settings.account-information.recent-devices-and-logout-other-browser-sessions-form');
     }
 }
