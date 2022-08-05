@@ -53,7 +53,7 @@
             </button>
 
             <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
-                <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center">
+                <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center guset-menu">
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
                            aria-current="page" href="{{route('guest.welcome')}}">HOME</a>
@@ -70,8 +70,35 @@
                         <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
                            href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
+
+                    <div class="d-block d-lg-none">
+                        @auth
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <li class="nav-item my-1 my-lg-0">
+                                    <button
+                                        class="btn btn-sm py-2 btn-primary"
+                                        type="submit">Logout
+                                    </button>
+                                </li>
+                            </form>
+                        @endauth
+
+                        @guest
+                            <li class="nav-item my-1 my-lg-0">
+                                <a href="{{route('register')}}"
+                                   class="btn btn-sm py-2 btn-outline-dark" style="width: 100px">SIGN UP</a>
+                            </li>
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a href="{{route('login')}}"
+                                       class="btn btn-sm py-2 btn-primary" style="width: 100px">LOGIN
+                                    </a>
+                                </li>
+                        @endguest
+                    </div>
+
                 </ul>
-                <div class="d-block d-md-flex nav-buttons ms-3 ms-lg-0">
+                <div class="d-block d-md-flex nav-buttons ms-3 ms-lg-0 d-none d-lg-block">
                     @auth
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
