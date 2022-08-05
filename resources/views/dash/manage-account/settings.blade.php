@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ link_is_active(route('dash.account.settings')) }}" href="{{ route('dash.account.settings.manage-house') }}">
+                    <a class="nav-link {{ link_is_active(route('dash.account.settings')) }}" href="#">
                         Mange House
                     </a>
                 </li>
