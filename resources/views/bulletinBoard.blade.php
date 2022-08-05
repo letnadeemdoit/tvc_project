@@ -69,20 +69,22 @@
                         <section class="text-end">
                             <img src="/images/bulletin-images/Combined Shape.png" class="img-fluid bg-dots-orange" />
                         </section>
-                        <div class="row">
-                            <div class="col-md-4 col-lg-3">
-                                <div class="card">
-                                    <img src="/images/bulletin-images/house-1.png" class="card-img-top" alt="..." />
-                                    <div class="card-body">
-                                        <h3 class="card-title">Beach House</h3>
-                                        <div class="card-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ends -->
-                        </div>
+
+                        @livewire('bulletin-board.bulletin-cards.cards')
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-4 col-lg-3">--}}
+{{--                                <div class="card">--}}
+{{--                                    <img src="/images/bulletin-images/house-1.png" class="card-img-top" alt="..." />--}}
+{{--                                    <div class="card-body">--}}
+{{--                                        <h3 class="card-title">Beach House</h3>--}}
+{{--                                        <div class="card-text">--}}
+{{--                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <!-- ends -->--}}
+{{--                        </div>--}}
                         <section class="text-center">
                             <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green" />
                         </section>

@@ -9,7 +9,7 @@
             @endif
             <div class="col-12 col-md">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="card-header-title">Blogs</h5>
+                    <h5 class="card-header-title">Guest Book</h5>
                 </div>
             </div>
 
@@ -22,7 +22,7 @@
                             <i class="bi-search"></i>
                         </div>
                         <input id="datatableWithSearchInput" type="search" class="form-control"
-                               placeholder="Search blogs" aria-label="Search users">
+                               placeholder="Search users" aria-label="Search users">
                     </div>
                     <!-- End Search -->
                 </form>
@@ -45,43 +45,46 @@
                  }'>
             <thead class="thead-light">
             <tr>
+                <th>UserId</th>
                 <th>HouseId</th>
-                <th>Subject</th>
-                <th>Author</th>
+                <th>Title</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Content</th>
                 <th class="text-center">Action</th>
             </tr>
             </thead>
 
             <tbody>
 
-            @if(isset($blogs) && !empty($blogs))
-                @foreach($blogs as $blog)
+            @if(isset($bookdata) && !empty($bookdata))
+                @foreach($bookdata as $book)
                     <tr>
                         <td>
-                            <a class="d-flex align-items-center" href="../user-profile.html">
-                                <div class="avatar avatar-soft-primary avatar-circle">
-                                    <span class="avatar-initials">{{!empty($blog->Audit_FirstName) ? substr($blog->Audit_FirstName, 0, 1) : 'A'}}</span>
-                                </div>
-                                <div class="ms-3">
-                                    <span class="d-block h5 text-inherit mb-0">{{$blog->Audit_FirstName ?? ''}} <i
-                                            class="bi-patch-check-fill text-primary" data-toggle="tooltip"
-                                            data-bs-placement="top" title="Top endorsed"></i></span>
-                                    <span class="d-block fs-5 text-body">{{$blog->Audit_Email ?? ''}}</span>
-                                </div>
-                            </a>
+                           <span>{{$book->user_id}}</span>
                         </td>
                         <td>
-                            {{$blog->Subject ?? ''}}
+                            <span>{{$book->house_id}}</span>
                         </td>
-                        <td>{{$blog->Author ?? ''}}</td>
-                        <td class="mx-auto text-center">
+                        <td>
+                            <span>{{$book->title ?? ''}}</span>
+                        </td>
+                        <td>
+                            <span>{{$book->name ?? ''}}</span>
+                        </td>
+                        <td>
+                            <span>{{$book->image ?? ''}}</span>
+                        </td>
+                        <td>
+                            <span>{{$book->content ?? ''}}</span>
+                        </td>
+                        <td class="text-center">
                             <div class="btn-group" role="group" aria-label="Edit group">
-                                <a class="btn btn-ghost-success" title="Edit Blog" href="#" wire:click="editBlogData({{ $blog->BlogId }})"
-                                   data-bs-toggle="modal" data-bs-target="#createOrUpdateModal">
+                                <a class="btn btn-ghost-success" href="#" wire:click="editGuestBook({{ $book->id }})">
                                     <i class="bi-pencil me-1"></i> Edit
                                 </a>
-                                <a class="btn btn-ghost-danger" title="Delete Blog" href="#"
-                                   data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"
+                                <a class="btn btn-ghost-danger" href="#"
+                                   data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $book->id }}Modal"
                                 >
                                     <i class="bi-trash"></i>
                                 </a>
@@ -95,7 +98,7 @@
             </tbody>
         </table>
         <div class="d-flex mt-4">
-            {!! $blogs->links() !!}
+            {!! $bookdata->links() !!}
         </div>
     </div>
     <!-- End Table -->
@@ -110,12 +113,16 @@
     </div>
     <!-- End Footer -->
 
-    @if(isset($blogs))
-        @foreach($blogs as $blog)
-            <x-modals.delete-confirmation :id="$blog->BlogId" action="destroy({{$blog->BlogId}})"/>
+    @if(isset($bookdata))
+        @foreach($bookdata as $book)
+            <x-modals.delete-confirmation :id="$book->id" action="destroy({{$book->id}})"/>
         @endforeach
     @endif
-    @include('dash.blog.display-as.create-or-update-modal')
+{{--    @livewire('guest-book.display-as.add-or-update-guest-book', ['id'=>$book->id])--}}
+    @include('dash.guest-book.display-as.create-or-update-book')
 
 
 </div>
+
+
+

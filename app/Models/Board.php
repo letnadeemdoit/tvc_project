@@ -9,8 +9,9 @@ class Board extends Model
 {
     use HasFactory;
 
-    protected $table = 'board';
-
+    protected $table = 'Board';
+    protected $primaryKey = 'HouseId';
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
+        @livewireStyles
         @stack('stylesheets')
 
         <style>
@@ -26,8 +27,11 @@
         </main>
         @include('layouts.partials.footer-guest')
     </body>
+    @livewireScripts
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     @stack('scripts')
 </html>

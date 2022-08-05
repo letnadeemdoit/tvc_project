@@ -14,6 +14,7 @@
                 <i class="bi-arrow-bar-left navbar-toggler-short-align" data-bs-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' data-bs-toggle="tooltip" data-bs-placement="right" title="Collapse"></i>
                 <i class="bi-arrow-bar-right navbar-toggler-full-align" data-bs-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' data-bs-toggle="tooltip" data-bs-placement="right" title="Expand"></i>
             </button>
+
             <!-- End Navbar Vertical Toggle -->
 
             <!-- Content -->
@@ -73,10 +74,14 @@
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="#" data-placement="left">
-                                <i class="bi-clipboard-data nav-icon"></i>
-                                <span class="nav-link-title">Bulletin Board</span>
+                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesBulletinMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesBulletinMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesBulletinMenu">
+                                <i class="bi-bootstrap nav-icon"></i>
+                                <span class="nav-link-title">Bulletins</span>
                             </a>
+
+                            <div id="navbarVerticalMenuPagesBulletinMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesBulletinMenu">
+                                <a class="nav-link " href="{{route('dash.bulletins')}}">Bulletins</a>
+                            </div>
                         </div>
 
                         <div class="nav-item">
@@ -89,6 +94,17 @@
                             <div id="navbarVerticalMenuPagesPhotoAlbumsMenu" class="nav-collapse collapse {{ link_is_active_with_class(['dash.photo-albums'], 'show') }}"
                                  data-bs-parent="#navbarVerticalMenuNavigationMenu">
                                 <a class="nav-link {{ link_is_active_with_class('dash.photo-albums') }} " href="{{route('dash.photo-albums')}}">All Photos</a>
+                            </div>
+                        </div>
+
+                        <div class="nav-item">
+                            <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesBookMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesBookMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesBookMenu">
+                                <i class="bi-bootstrap nav-icon"></i>
+                                <span class="nav-link-title">Guest Book</span>
+                            </a>
+
+                            <div id="navbarVerticalMenuPagesBookMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
+                                <a class="nav-link " href="{{route('dash.guest-book')}}">Guest Book</a>
                             </div>
                         </div>
 

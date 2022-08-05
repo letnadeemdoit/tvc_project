@@ -10,7 +10,8 @@ class Blog extends Model
     use HasFactory;
 
     protected $table = 'Blog';
-
+    protected $primaryKey = 'BlogId';
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

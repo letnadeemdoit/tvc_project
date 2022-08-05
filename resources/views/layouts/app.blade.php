@@ -59,6 +59,24 @@
                 });
             });
         </script>
+        <script>
+            $(document).ready(function () {
+                window.livewire.on('openModal', (reload = false) => {
+                    $('.createOrUpdateModal').each(function () {
+                        $(this).modal('show');
+                    });
+                });
+            });
+        </script>
+        <script>
+            // $(document).ready(function () {
+            //     window.livewire.on('openModal', (reload = false) => {
+            //         $('.createOrUpdateModal').each(function () {
+            //             $(this).modal('show');
+            //         });
+            //     });
+            // });
+        </script>
 
         <script>
             $(document).ready(function () {
