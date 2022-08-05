@@ -182,14 +182,13 @@ fieldset{
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height:50px;
+    height:60px;
 }
 .bg-social-feed{
     background: url('/images/images-home/map.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
     background-position:center;
-    background-color:$dark-blue;
 }
 .pt-55{
     padding-top: 55px;

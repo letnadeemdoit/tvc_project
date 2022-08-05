@@ -25,6 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'HouseName' => ['required', 'unique:House'],
             'City' => ['required'],
             'State' => ['required'],
+            'image' => 'image|mimes:png,jpg,gif,tiff|max:1024|nullable',
             'ReferredBy' => ['required'],
             'user_name' => ['required', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
