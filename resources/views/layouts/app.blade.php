@@ -32,27 +32,16 @@
 
     </head>
     <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
-
         @include('layouts.partials.navigation-menu-top-app')
-
         @include('layouts.partials.navigation-menu-side-app')
-
-            <main id="content" role="main" class="main">
-                {{ $slot }}
-
-                @include('layouts.partials.footer-app')
-
-            </main>
-
-
-
-
-        @stack('modals')
-
+        <main id="content" role="main" class="main">
+            {{ $slot }}
+            @include('layouts.partials.footer-app')
+        </main>
         @livewireScripts
-
         <script src="{{ mix('js/app.js') }}"></script>
         @stack('scripts')
+        @stack('modals')
         <script>
             $(document).ready(function () {
                 window.livewire.on('hideModal', (reload = false) => {

@@ -27,7 +27,7 @@ class CreateNewUser implements CreatesNewUsers
             'State' => ['required'],
             'ReferredBy' => ['required'],
             'user_name' => ['required', 'unique:users'],
-            'email' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required'],
             'AdminOwner' => ['nullable'],
             'first_name' => ['required'],
