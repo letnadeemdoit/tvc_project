@@ -16,7 +16,7 @@
         <div class="px-4 py-2">
             <!-- Other Browser Sessions -->
             @foreach ($this->sessions as $session)
-                <div class="d-flex justify-items-center">
+                <div class="d-flex justify-items-center {{ !$loop->last ? 'mb-3' : ''}}">
                     <div>
                         @if ($session->agent->isDesktop())
                             <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
