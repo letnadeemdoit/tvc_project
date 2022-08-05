@@ -1,15 +1,15 @@
 <div class="col-12 col-md-6 col-lg-3 mb-3">
     @if(isset($blog))
-    <div class="card ">
+    <div class="card " style="height: 550px">
         <div class="w-100">
             <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                 HOUSE</button>
 
-            <img src="{{ !empty($blog->BlogImage) ?  Storage::url($blog->BlogImage) : asset('/images/blog-images/house-1.png') }}" class="card-img-top  position-relative" style="height: 200px !important;object-fit: cover" alt="..." />
+            <img src="{{ !empty($blog->BlogImage) ?  Storage::url($blog->BlogImage) : asset('/images/blog-images/house-1.png') }}" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
 
         </div>
         <div class="card-body">
-            <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3">
+            <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex">
 {{--                        @if(!is_null($userimage))--}}
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="paragraph-text pt-3">
-        <p>	Hi Everyone! I am excited to have you sharing in our new vacation calendar. This is a long awaited site. that will finally allow us  to know about house.</p>
+        <p>	{!!  Str::limit($blog->Content, 80)  !!}</p>
                 </div>
             </div>
             @php

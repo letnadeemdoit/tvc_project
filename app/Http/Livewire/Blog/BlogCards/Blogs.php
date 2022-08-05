@@ -54,7 +54,6 @@ class Blogs extends Component
     }
     public function addBlogComment()
     {
-//        $this->validate();
         $blog = Blog::where('BlogId', $this->BlogId)->first();
         $mydatetime =date("Y-m-d H:i:s");
         BlogComment::create([
