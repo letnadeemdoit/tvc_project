@@ -17,7 +17,7 @@
                 <!-- End Col -->
 
                 <div class="col-sm-auto">
-                    <a class="btn btn-primary" href="./user-profile-my-profile.html">
+                    <a class="btn btn-primary" href="#">
                         <i class="bi-person-fill me-1"></i> My profile
                     </a>
                 </div>
@@ -96,11 +96,11 @@
                                     <i class="bi-bell nav-icon"></i> Notifications
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#deleteAccountSection">
-                                    <i class="bi-trash nav-icon"></i> Delete account
-                                </a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link" href="#deleteAccountSection">--}}
+{{--                                    <i class="bi-trash nav-icon"></i> Delete account--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                         </ul>
                     </div>
                     <!-- End Navbar Collapse -->
@@ -143,33 +143,33 @@
                     <!-- End Card -->
 
                     <!-- Card -->
-                    <div id="deleteAccountSection" class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Delete your account</h4>
-                        </div>
+{{--                    <div id="deleteAccountSection" class="card">--}}
+{{--                        <div class="card-header">--}}
+{{--                            <h4 class="card-title">Delete your account</h4>--}}
+{{--                        </div>--}}
 
-                        <!-- Body -->
-                        <div class="card-body">
-                            <p class="card-text">When you delete your account, you lose access to Front account services, and we permanently delete your personal data. You can cancel the deletion for 14 days.</p>
+{{--                        <!-- Body -->--}}
+{{--                        <div class="card-body">--}}
+{{--                            <p class="card-text">When you delete your account, you lose access to Front account services, and we permanently delete your personal data. You can cancel the deletion for 14 days.</p>--}}
 
-                            <div class="mb-4">
-                                <!-- Form Check -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="deleteAccountCheckbox">
-                                    <label class="form-check-label" for="deleteAccountCheckbox">
-                                        Confirm that I want to delete my account.
-                                    </label>
-                                </div>
-                                <!-- End Form Check -->
-                            </div>
+{{--                            <div class="mb-4">--}}
+{{--                                <!-- Form Check -->--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="checkbox" value="" id="deleteAccountCheckbox">--}}
+{{--                                    <label class="form-check-label" for="deleteAccountCheckbox">--}}
+{{--                                        Confirm that I want to delete my account.--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                                <!-- End Form Check -->--}}
+{{--                            </div>--}}
 
-                            <div class="d-flex justify-content-end gap-3">
-                                <a class="btn btn-white" href="#">Learn more</a>
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                        <!-- End Body -->
-                    </div>
+{{--                            <div class="d-flex justify-content-end gap-3">--}}
+{{--                                <a class="btn btn-white" href="#">Learn more</a>--}}
+{{--                                <button type="submit" class="btn btn-danger">Delete</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- End Body -->--}}
+{{--                    </div>--}}
                     <!-- End Card -->
                 </div>
 
