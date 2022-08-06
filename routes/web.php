@@ -76,12 +76,21 @@ Route::middleware([
         Route::get('/guest-book', [DashboardController::class, 'guestBook'])->name('guest-book');
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
 
-
-        Route::controller(\App\Http\Controllers\ManageAccountController::class)
-            ->prefix('account')
-            ->name('account.')->group(function () {
-                Route::get('/settings', 'settings')->name('settings');
-                Route::get('/subscriptions', 'subscriptions')->name('subscriptions');
-                Route::get('/invoices', 'invoices')->name('invoices');
+        Route::controller(\App\Http\Controllers\SettingController::class)
+            ->prefix('settings')
+            ->name('settings.')
+            ->group(function () {
+                Route::redirect('/', '/settings/account-information');
+                Route::get('account-information', 'accountInformation')->name('account-information');
+                Route::get('billing', 'billing')->name('billing');
+                Route::get('users', 'users')->name('users');
+                Route::get('rooms', 'rooms')->name('rooms');
+                Route::get('additional-homes', 'additionalHomes')->name('additional-homes');
+                Route::get('notifications', 'notifications')->name('notifications');
+                Route::get('vacations', 'vacations')->name('vacations');
+                Route::get('bulletin-board', 'bulletinBoard')->name('bulletin-board');
+                Route::get('audit-history', 'auditHistory')->name('audit-history');
+                Route::get('blog', 'blog')->name('blog');
+                Route::get('guest-book', 'guestBook')->name('guest-book');
             });
     });
