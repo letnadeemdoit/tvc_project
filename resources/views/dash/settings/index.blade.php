@@ -6,17 +6,19 @@
                 <div class="col-sm mb-2 mb-sm-0">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-no-gutter">
-                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
-                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Settings</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('dash.settings.account-information') }}">Settings</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $title ?? '' }}</li>
                         </ol>
                     </nav>
 
-                    <h1 class="page-header-title">Settings</h1>
+                    <h1 class="page-header-title">{{ $title ?? '' }}</h1>
                 </div>
                 <!-- End Col -->
+                <!-- End Row -->
+                {{ $headerRightActions ?? '' }}
             </div>
-            <!-- End Row -->
+
         </div>
 
         <!-- End Page Header -->
@@ -180,15 +182,15 @@
 
                 // SCROLLSPY
                 // =======================================================
-                new bootstrap.ScrollSpy(document.body, {
-                    target: '#navbarSettings',
-                    offset: 100
-                })
-
-                new HSScrollspy('#navbarVerticalNavMenu', {
-                    breakpoint: 'lg',
-                    scrollOffset: -20
-                })
+                // new bootstrap.ScrollSpy(document.body, {
+                //     target: '#navbarSettings',
+                //     offset: 100
+                // });
+            //
+            //     new HSScrollspy('#navbarVerticalNavMenu', {
+            //         breakpoint: 'lg',
+            //         scrollOffset: -20
+            //     })
             })
         </script>
     @endpush
