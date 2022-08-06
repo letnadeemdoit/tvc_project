@@ -27,14 +27,14 @@ Route::controller(GuestController::class)
         Route::post('/contact', 'contactMail')->name('contact.mail');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
-        Route::get('/blog-cards', 'blog')->name('blog');
-        Route::get('/blog-details/', 'blogDetails')->name('blog-details');
-        Route::get('/bulletin-cards', 'bulletinBoard')->name('bulletinBoard');
-        Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy-policy');
-        Route::get('/guest-login', 'guestLogin')->name('guest-login');
-        Route::get('/book-cards', 'guestBook')->name('guest-book');
-        Route::get('/login-account', 'loginAccount')->name('login-account');
-        Route::get('/search-house', 'searchHouse')->name('search-house');
+        Route::get('/blog-cards','blog')->name('blog');
+        Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
+        Route::get('/bulletin-cards','bulletinBoard')->name('bulletinBoard');
+        Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
+        Route::get('/guest-login','guestLogin')->name('guest-login');
+        Route::get('/book-cards','guestBook')->name('guest-book');
+        Route::get('/login-account','loginAccount')->name('login-account');
+        Route::get('/search-house','searchHouse')->name('search-house');
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
     });
 //Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem']);
@@ -83,23 +83,5 @@ Route::middleware([
                 Route::get('/settings', 'settings')->name('settings');
                 Route::get('/subscriptions', 'subscriptions')->name('subscriptions');
                 Route::get('/invoices', 'invoices')->name('invoices');
-            });
-
-        Route::controller(\App\Http\Controllers\SettingController::class)
-            ->prefix('settings')
-            ->name('settings.')
-            ->group(function () {
-                Route::redirect('/', '/settings/account-information');
-                Route::get('account-information', 'accountInformation')->name('account-information');
-                Route::get('billing', 'billing')->name('billing');
-                Route::get('users', 'users')->name('users');
-                Route::get('rooms', 'rooms')->name('rooms');
-                Route::get('additional-homes', 'additionalHomes')->name('additional-homes');
-                Route::get('notifications', 'notifications')->name('notifications');
-                Route::get('vacations', 'vacations')->name('vacations');
-                Route::get('bulletin-board', 'bulletinBoard')->name('bulletin-board');
-                Route::get('audit-history', 'auditHistory')->name('audit-history');
-                Route::get('blog', 'blog')->name('blog');
-                Route::get('guest-book', 'guestBook')->name('guest-book');
             });
     });
