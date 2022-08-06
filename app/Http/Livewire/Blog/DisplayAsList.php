@@ -7,15 +7,16 @@ use App\Models\House;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class DisplayAsList extends Component
 {
     use WithFileUploads;
-    public $Blog_Id, $OldBlogImage, $HouseId, $Subject,$Content ,$BlogImage;
+    public $Blog_Id, $OldBlogImage, $HouseId, $Subject,$Content ,$BlogImage,$imagepath=null;
 
     public $updateMode = false;
     protected $listeners = [
-        'openResetBlogForm'
+        'openResetBlogForm',
     ];
     public function render()
     {
@@ -36,8 +37,10 @@ class DisplayAsList extends Component
         $this->resetInput();
         $this->emit('openModal');
     }
+
     public function editBlogData($blogId)
     {
+        $this->resetInput();
         $this->resetErrorBag();
         $blog = Blog::findOrFail($blogId);
             $this->Subject = $blog->Subject;
@@ -46,6 +49,7 @@ class DisplayAsList extends Component
             $this->Blog_Id = $blog->BlogId;
             $this->HouseId = $blog->HouseId;
         $this->updateMode = true;
+
         $this->emit('openModal');
     }
     protected function rules()
@@ -53,27 +57,32 @@ class DisplayAsList extends Component
         return [
             'Subject' => 'required|min:5|max:40',
             'Content' => 'required|min:20|max:1000',
-            'BlogImage' => 'required',
+            'BlogImage' => 'required|image|max:1024',
         ];
     }
 
     public function updateBlog($Blog_Id){
+        if (isset($this->BlogImage) && !empty($this->BlogImage)){
+            $this->imagepath = $this->BlogImage->store('blog-image', 'public');
+        }
+        else{
+            $this->imagepath =  $this->OldBlogImage;
+        }
         $this->validate();
-        $path =  $this->BlogImage->store('blog-image', 'public');
         $updateBlog = array(
             'Subject'        => $this->Subject,
             'Content' => $this->Content,
-            'BlogImage' => $path,
+            'BlogImage' => $this->imagepath,
         );
         $houseid = Auth::user()->HouseId;
         Blog::where('BlogId', $Blog_Id)->where('HouseId', $houseid)->update($updateBlog);
         $this->updateMode = false;
         $this->emit('hideModal');
         session()->flash('success', 'Blog Updated successfully...');
-//        return redirect()->to('/blogs');
     }
     public function createBlog()
     {
+        $this->resetErrorBag();
         $this->validate();
         $user = Auth::user();
         $path =  $this->BlogImage->store('blog-image', 'public');
@@ -94,7 +103,6 @@ class DisplayAsList extends Component
         ]);
         $this->emit('hideModal');
         session()->flash('success', 'New Blog Created successfully...');
-//        return redirect()->to('/blogs');
     }
 
     public function destroy($id)

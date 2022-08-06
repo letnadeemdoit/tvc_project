@@ -56,11 +56,16 @@
 
                 <div class="d-flex align-items-center mt-4">
                     <div class="flex-shrink-0">
-                        <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-circle" width="60"
-                             height="60" style="object-fit: cover" alt="...">
+                        <img
+                            class="avatar-img rounded-circle"
+                            src="{{ auth()->user()->profile_photo_url }}"
+                            :src="avatarUrl"
+                            alt="Image"
+                            width="60" height="60" style="object-fit: cover"
+                        />
                     </div>
                     <div class="flex-grow-1 ms-3">
-                        <h4 class="mb-0" style="color: #6D6D6D">By John smith</h4>
+                        <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                         <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
                     </div>
                 </div>
@@ -83,86 +88,11 @@
                     </ul>
                 </div>
                 <div class="py-4">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
+                    @if(isset($blogDetail))
+
+                        {!! !empty($blogDetail->Content) ? $blogDetail->Content : '' !!}
+                    @endif
+
                 </div>
             </div>
             <div class="col-12 col-lg-3">
@@ -178,51 +108,76 @@
                         <h4 class="mb-3">Latest Post</h4>
                         <div class="d-flex align-items-center mb-4">
                             <div class="flex-shrink-0">
-                                <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-circle"
-                                     width="60" height="60" style="object-fit: cover" alt="...">
+                                <img
+                                    class="avatar-img rounded-circle"
+                                    src="{{ auth()->user()->profile_photo_url }}"
+                                    :src="avatarUrl"
+                                    alt="Image"
+                                    width="60" height="60" style="object-fit: cover"
+                                />
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">By John smith</h4>
+                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <div class="flex-shrink-0">
-                                <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-circle"
-                                     width="60" height="60" style="object-fit: cover" alt="...">
+                                <img
+                                    class="avatar-img rounded-circle"
+                                    src="{{ auth()->user()->profile_photo_url }}"
+                                    :src="avatarUrl"
+                                    alt="Image"
+                                    width="60" height="60" style="object-fit: cover"
+                                />
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">By John smith</h4>
+                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <div class="flex-shrink-0">
-                                <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-circle"
-                                     width="60" height="60" style="object-fit: cover" alt="...">
+                                <img
+                                    class="avatar-img rounded-circle"
+                                    src="{{ auth()->user()->profile_photo_url }}"
+                                    :src="avatarUrl"
+                                    alt="Image"
+                                    width="60" height="60" style="object-fit: cover"
+                                />
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">By John smith</h4>
+                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <div class="flex-shrink-0">
-                                <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-circle"
-                                     width="60" height="60" style="object-fit: cover" alt="...">
+                                <img
+                                    class="avatar-img rounded-circle"
+                                    src="{{ auth()->user()->profile_photo_url }}"
+                                    :src="avatarUrl"
+                                    alt="Image"
+                                    width="60" height="60" style="object-fit: cover"
+                                />
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">By John smith</h4>
+                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <div class="flex-shrink-0">
-                                <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-circle"
-                                     width="60" height="60" style="object-fit: cover" alt="...">
+                                <img
+                                    class="avatar-img rounded-circle"
+                                    src="{{ auth()->user()->profile_photo_url }}"
+                                    :src="avatarUrl"
+                                    alt="Image"
+                                    width="60" height="60" style="object-fit: cover"
+                                />
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">By John smith</h4>
+                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
                             </div>
                         </div>

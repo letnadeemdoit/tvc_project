@@ -8,8 +8,11 @@
         @endforeach
 
     </div>
-    <div class="d-flex">
-        {!! $blogs->links() !!}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 mx-auto">{{ $blogs->links() }}</div>
+        </div>
+{{--        {{ $blogs->withQueryString()->onEachSide(2)->links() }}--}}
     </div>
 </div>
 

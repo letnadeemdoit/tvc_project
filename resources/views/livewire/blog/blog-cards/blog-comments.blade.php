@@ -2,7 +2,7 @@
 <div class="modal fade hideableModal createOrUpdateModal" id="ce{{$BlogId}}" tabindex="-1"
      aria-labelledby="ReadBlogCommentModalLabel" aria-hidden="true"
      wire:ignore.self>
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Blog Comments</h5>
@@ -51,7 +51,7 @@
 {{--Second Modal If Blog Id is Null--}}
 <div class="modal fade hideableModal" id="addBlogCommentModal" aria-hidden="true"
      aria-labelledby="addBlogCommentModalLabel" tabindex="-1"  wire:ignore.self>
-    <div class="modal-dialog modal-dialog-top">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">New Comment</h5>
@@ -59,9 +59,9 @@
             </div>
             <form wire:submit.prevent="addBlogComment({{ $BlogId }})">
                 <div class="modal-body">
-                    <div class="ms-auto mb-3">
+                    <div class="mb-3">
                         <textarea id="Content" name="Content" wire:model.defer="Content" class="form-control" placeholder="Description"
-                                  rows="4"></textarea>
+                                  rows="6"></textarea>
                         @error('Content')
                         <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                         @enderror

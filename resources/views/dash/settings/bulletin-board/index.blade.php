@@ -1,4 +1,5 @@
 <x-settings>
+
     <x-slot name="title">
         Bulletin Board
     </x-slot>
@@ -15,9 +16,8 @@
             </a>
         </div>
     </x-slot>
+
     <livewire:settings.bulletin-board.board-items-list :user="$user"/>
-
-
-        <livewire:settings.bulletin-board.update-or-create-board-item-form :user="$user"/>
+    <livewire:settings.bulletin-board.update-or-create-board-item-form :user="$user"/>
 
 </x-settings>
