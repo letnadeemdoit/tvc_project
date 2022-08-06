@@ -71,7 +71,6 @@
                            href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
 
-
                         @auth
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -95,7 +94,6 @@
                                     </a>
                                 </li>
                         @endguest
-
 
                 </ul>
                 <div class="d-md-flex nav-buttons ms-3 ms-lg-0 ">
