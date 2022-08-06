@@ -54,7 +54,7 @@
                 <thead class="thead-light">
                 <tr>
                     <th>Audit Name</th>
-                    <th style="width: 25%;">House</th>
+{{--                    <th style="width: 25%;">House</th>--}}
                     <th style="width: 25%;">Title</th>
                     <th style="width: 20%;">Description</th>
                     <th style="width: 20%;">Audit Details</th>
@@ -78,7 +78,7 @@
                                 </a>
                             </td>
 
-                            <td>{{$d->house->HouseName}}</td>
+{{--                            <td>{{$d->house->HouseName ?? ''}}</td>--}}
                             <td>{{$d->title ?? ''}}</td>
                             <td>
                                 <a
