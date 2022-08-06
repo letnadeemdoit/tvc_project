@@ -32,7 +32,7 @@ class Blogs extends Component
     protected function rules()
     {
         return [
-            'Content' => 'required|min:20|max:1000',
+            'Content' => 'required',
         ];
     }
     public function readBlogComments($BlogId){
@@ -54,6 +54,7 @@ class Blogs extends Component
     }
     public function addBlogComment()
     {
+//        $this->validate();
         $blog = Blog::where('BlogId', $this->BlogId)->first();
         $mydatetime =date("Y-m-d H:i:s");
         BlogComment::create([
@@ -68,6 +69,7 @@ class Blogs extends Component
             'Audit_Email' => $blog->Audit_Email,
             'Content' => $this->Content,
         ]);
+        $this->resetInput();
         $this->emit('hideModal');
         session()->flash('success', 'New Blog Comment Added successfully...');
     }

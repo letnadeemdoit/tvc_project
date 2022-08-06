@@ -65,9 +65,9 @@ class GuestController extends Controller
         return view('blog');
     }
 
-    public function blogDetails() {
-
-        return view('blog-details');
+    public function blogDetails($BlogId) {
+        $blogDetail = Blog::where('BlogId', $BlogId)->first();
+        return view('blog-details', compact('blogDetail'));
     }
     public function privacyPolicy() {
 
