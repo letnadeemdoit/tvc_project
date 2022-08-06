@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\ManageAccount\Settings;
+namespace App\Http\Livewire\Settings\AccountInformation;
 
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -15,7 +15,7 @@ class ProfilePhotoForm extends Component
 
     public function render()
     {
-        return view('dash.manage-account.partials.settings.profile-photo-form');
+        return view('dash.settings.account-information.profile-photo-form');
     }
 
     public function save()

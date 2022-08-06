@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\ManageAccount\Settings;
+namespace App\Http\Livewire\Settings\AccountInformation;
 
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -12,7 +12,7 @@ class UpdateEmailForm extends Component
 
     public function render()
     {
-        return view('dash.manage-account.partials.settings.update-email-form');
+        return view('dash.settings.account-information.update-email-form');
     }
 
     public function changeEmail()

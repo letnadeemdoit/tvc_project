@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\ManageAccount\Settings;
+namespace App\Http\Livewire\Settings\Notifications;
 
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -26,7 +26,7 @@ class UpdateNotificationPreferencesForm extends Component
 
     public function render()
     {
-        return view('dash.manage-account.partials.settings.update-notification-preferences-form');
+        return view('dash.settings.notifications.update-notification-preferences-form');
     }
 
     public function updateNotificationPreferences()
