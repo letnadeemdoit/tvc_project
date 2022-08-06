@@ -37,7 +37,7 @@ class UpdateOrCreateBoardItemForm extends Component
     }
 
     public function showBulletinBoardModal($toggle, ?Board $boardItem) {
-        $this->isShowingModal = $toggle;
+        $this->emitSelf('toggle',$toggle);
         $this->boardItem = $boardItem;
 
         if ($boardItem) {
@@ -72,7 +72,7 @@ class UpdateOrCreateBoardItemForm extends Component
 
         ]);
 
-        $this->isShowingModal = false;
+        $this->emitSelf('toggle',false);
 
         $this->emit('refreshBulletinBoard');
 
@@ -113,7 +113,8 @@ class UpdateOrCreateBoardItemForm extends Component
 
         ])->save();
 
-        $this->isShowingModal = false;
+        $this->emitSelf('toggle',false);
+
 
         $this->emit('refreshBulletinBoard');
 

@@ -1,13 +1,12 @@
-<x-modals.bs-modal class="modal-lg" wire:model="isShowingModal">
+<x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Board Item</h5>
             <button
                 type="button"
                 class="btn-close"
-                data-bs-dismiss="modal"
                 aria-label="Close"
-                wire:click="$toggle('isShowingModal')"
+                @click.prevent="hide()"
             ></button>
         </div>
         <div class="modal-body">
