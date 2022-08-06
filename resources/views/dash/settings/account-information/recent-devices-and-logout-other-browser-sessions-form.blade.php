@@ -67,12 +67,12 @@
         </div>
     @endif
     @push('modals')
-        <x-modals.bs-modal wire:model="confirmingLogout">
+        <x-modals.bs-modal>
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="passwordConfirmationLabel">Log Out Other Browser Sessions</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            wire:click="$toggle('confirmingLogout')"></button>
+                            @click.prevent="hide()"></button>
                 </div>
                 <div class="modal-body">
                     <p class="card-text">Please enter your password to confirm you would like to log out of your other
@@ -97,8 +97,7 @@
                         type="button"
                         class="btn btn-white"
                         data-bs-dismiss="modal"
-                        wire:click="$toggle('confirmingLogout')"
-                        wire:loading.attr="disabled"
+                        @click.prevent="hide()"
                     >
                         {{ __('Cancel') }}
                     </button>

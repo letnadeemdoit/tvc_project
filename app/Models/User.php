@@ -19,12 +19,9 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    public $timestamps = false;
-
     const ROLE_ADMINISTRATOR = 'Administrator';
     const ROLE_OWNER = 'Owner';
     const ROLE_GUEST = 'Guest';
-
 
     /**
      * The primary key associated with the table.
@@ -32,7 +29,6 @@ class User extends Authenticatable
      * @var string
      */
     protected $primaryKey = 'user_id';
-
 
     /**
      * The attributes that are mass assignable.

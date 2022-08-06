@@ -43,41 +43,6 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-2 mt-3">
-{{--                                        <div  id="basicExampleDropzone" style="margin: 0"--}}
-{{--                                              class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light">--}}
-{{--                                            <div class="dz-message">--}}
-
-{{--                                                <h5>Drag and drop your file here</h5>--}}
-
-{{--                                                <p class="mb-2">or</p>--}}
-
-
-{{--                                                <a href="#" class="clickToUploadImage">--}}
-{{--                                                    <span class="btn bg-primary btn-sm text-white">Upload Image</span>--}}
-{{--                                                </a>--}}
-{{--                                                <input type="file"--}}
-{{--                                                       class="form-control hiddenUploadImage file-upload"--}}
-{{--                                                       name="BlogImage" wire:model="BlogImage" id="BlogImage" accept=".jpeg,.jpg,.png,.gif"--}}
-{{--                                                       style="display: none">--}}
-{{--                                                <div class="mt-3">--}}
-{{--                                                    @if($BlogImage || $OldBlogImage)--}}
-{{--                                                        @if($BlogImage)--}}
-{{--                                                            <img id="blah" src="{{ $BlogImage->temporaryUrl() }}" alt="your image"--}}
-{{--                                                                 style="width: 100px; height: 100px; border-radius: 10px"/>--}}
-{{--                                                        @elseif($OldBlogImage)--}}
-{{--                                                            <img id="blah" src="{{ Storage::url($OldBlogImage) }}" alt="your image"--}}
-{{--                                                                 style="width: 100px; height: 100px; border-radius: 10px"/>--}}
-{{--                                                        @else--}}
-{{--                                                            <img id="blah" src="" alt="your image"--}}
-{{--                                                                 style="width: 100px; height: 100px; border-radius: 10px"/>--}}
-{{--                                                        @endif--}}
-{{--                                                    @endif--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        @error('BlogImage')--}}
-{{--                                        <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>--}}
-{{--                                        @enderror--}}
 
                                         <div
                                             class="mb-2"
@@ -113,8 +78,8 @@
                                             <div id="basicExampleDropzone"
                                                  class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">
                                                 <div class="dz-message">
-                                                    <h5>Drag and drop your file here</h5>
-                                                    <p class="mb-2">or</p>
+{{--                                                    <h5>Drag and drop your file here</h5>--}}
+{{--                                                    <p class="mb-2">or</p>--}}
                                                     <div class="text-center"
                                                          x-on:livewire-upload-start="isUploadingFile = true"
                                                          x-on:livewire-upload-finish=""
@@ -179,7 +144,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @if($OldBlogImage)
+                                                @if($OldBlogImage && empty($BlogImage))
                                                 <div class="col-6 mt-4 mx-auto">
                                                     <div class="dz-preview dz-file-preview">
                                                         <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"  @click.prevent="$wire.set('OldBlogImage', null); isUploadingFile = false">

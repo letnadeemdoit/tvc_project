@@ -38,6 +38,7 @@
             {{ $slot }}
             @include('layouts.partials.footer-app')
         </main>
+        <livewire:modals.destroyable-confirmation-modal />
         @livewireScripts
         <script src="{{ mix('js/app.js') }}"></script>
         @stack('scripts')

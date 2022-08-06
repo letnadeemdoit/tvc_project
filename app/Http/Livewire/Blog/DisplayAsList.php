@@ -16,7 +16,7 @@ class DisplayAsList extends Component
 
     public $updateMode = false;
     protected $listeners = [
-        'openResetBlogForm'
+        'openResetBlogForm',
     ];
     public function render()
     {
@@ -37,6 +37,7 @@ class DisplayAsList extends Component
         $this->resetInput();
         $this->emit('openModal');
     }
+
     public function editBlogData($blogId)
     {
         $this->resetInput();
@@ -48,6 +49,7 @@ class DisplayAsList extends Component
             $this->Blog_Id = $blog->BlogId;
             $this->HouseId = $blog->HouseId;
         $this->updateMode = true;
+
         $this->emit('openModal');
     }
     protected function rules()
@@ -60,15 +62,13 @@ class DisplayAsList extends Component
     }
 
     public function updateBlog($Blog_Id){
-        if (!is_null($this->OldBlogImage)){
-            $this->imagepath = $this->OldBlogImage;
+        if (isset($this->BlogImage) && !empty($this->BlogImage)){
+            $this->imagepath = $this->BlogImage->store('blog-image', 'public');
         }
-        elseif(!empty($this->BlogImage)){
-            $this->imagepath =  $this->BlogImage->store('blog-image', 'public');
+        else{
+            $this->imagepath =  $this->OldBlogImage;
         }
-        if (is_null($this->imagepath)){
-            $this->validate();
-        }
+        $this->validate();
         $updateBlog = array(
             'Subject'        => $this->Subject,
             'Content' => $this->Content,
@@ -103,7 +103,6 @@ class DisplayAsList extends Component
         ]);
         $this->emit('hideModal');
         session()->flash('success', 'New Blog Created successfully...');
-//        return redirect()->to('/blogs');
     }
 
     public function destroy($id)

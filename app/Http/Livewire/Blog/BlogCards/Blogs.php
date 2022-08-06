@@ -12,7 +12,7 @@ class Blogs extends Component
 {
     public $Content ,$BlogComments = [], $BlogId, $userimage;
     protected $listeners = [
-        'readBlogComments'
+        'readBlogComments',
     ];
     public function mount()
     {
