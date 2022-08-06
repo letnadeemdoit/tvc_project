@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\ManageAccount\Settings;
+namespace App\Http\Livewire\Settings\AccountInformation;
 
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -18,7 +18,7 @@ class UpdatePreferencesForm extends Component
 
     public function render()
     {
-        return view('dash.manage-account.partials.settings.update-preferences-form');
+        return view('dash.settings.account-information.update-preferences-form');
     }
 
     public function updatePreferences()

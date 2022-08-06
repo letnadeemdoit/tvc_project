@@ -112,13 +112,26 @@
                         <div class="nav-item">
                             <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices']) }}" href="#navbarVerticalMenuPagesAccountMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesAccountMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesAdministratorMenu">
                                 <i class="bi-person-check nav-icon"></i>
-                                <span class="nav-link-title">Account</span>
+                                <span class="nav-link-title">Settings</span>
                             </a>
 
-                            <div id="navbarVerticalMenuPagesAccountMenu" class="nav-collapse collapse {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices'], 'show') }}" data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
-                                <a class="nav-link {{ link_is_active_with_class('dash.account.settings') }}" href="{{ route('dash.account.settings') }}">Settings</a>
-                                <a class="nav-link {{ link_is_active_with_class('dash.account.subscriptions') }}" href="{{ route('dash.account.subscriptions') }}">Subscriptions</a>
-                                <a class="nav-link {{ link_is_active_with_class('dash.account.invoices') }}" href="{{ route('dash.account.invoices') }}">Invoices</a>
+{{--                            <div id="navbarVerticalMenuPagesAccountMenu" class="nav-collapse collapse {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices'], 'show') }}" data-bs-parent="#navbarVerticalMenuPagesAccountMenu">--}}
+{{--                                <a class="nav-link {{ link_is_active_with_class('dash.account.settings') }}" href="{{ route('dash.account.settings') }}">Settings</a>--}}
+{{--                                <a class="nav-link {{ link_is_active_with_class('dash.account.subscriptions') }}" href="{{ route('dash.account.subscriptions') }}">Subscriptions</a>--}}
+{{--                                <a class="nav-link {{ link_is_active_with_class('dash.account.invoices') }}" href="{{ route('dash.account.invoices') }}">Invoices</a>--}}
+{{--                            </div>--}}
+                            <div id="navbarVerticalMenuPagesAccountMenu" class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-homes', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.bulletin-board', 'dash.settings.audit-history', 'dash.settings.blog', 'dash.settings.guest-book'], 'show') }}" data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}" href="{{ route('dash.settings.account-information') }}">Account Information</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}" href="{{ route('dash.settings.billing') }}">Billing</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}" href="{{ route('dash.settings.users') }}">Users</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}" href="{{ route('dash.settings.rooms') }}">Rooms</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-homes') }}" href="{{ route('dash.settings.additional-homes') }}">Additional Homes</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}" href="{{ route('dash.settings.notifications') }}">Notifications</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}" href="{{ route('dash.settings.vacations') }}">Vacations</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-board') }}" href="{{ route('dash.settings.bulletin-board') }}">Bulletin Board</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.audit-history') }}" href="{{ route('dash.settings.audit-history') }}">Audit History</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.blog') }}" href="{{ route('dash.settings.blog') }}">Blog</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-book') }}" href="{{ route('dash.settings.guest-book') }}">Guest Book</a>
                             </div>
                         </div>
                     </div>

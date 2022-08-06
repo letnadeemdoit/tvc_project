@@ -1,33 +1,36 @@
 <?php
 
-namespace App\Http\Livewire\ManageAccount\Settings;
+namespace App\Http\Livewire\Settings\AccountInformation;
 
-use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Rules\Password;
 use Livewire\Component;
 
-class ChangePasswordForm extends Component
+class GuestPasswordForm extends Component
 {
-    use PasswordValidationRules;
-
     public $user;
+    public $guestUser;
     public $state = [];
+
+    public function mount()
+    {
+        $this->guestUser = User::where([
+            'HouseId' => $this->user->HouseId,
+            'role' => 'Guest',
+        ])->first();
+    }
 
     public function render()
     {
-        return view('dash.manage-account.partials.settings.change-password-form');
+        return view('dash.settings.account-information.guest-password-form');
     }
 
-    public function changePassword() {
+    public function changeGuestPassword()
+    {
         $this->resetErrorBag();
 
         Validator::make($this->state, [
-            'current_password' => ['required', function ($attribute, $value, $fail) {
-                if (!\Hash::check($value, $this->user->password)) {
-                    return $fail(__('The current password is incorrect.'));
-                }
-            }],
             'new_password' => [
                 'required',
                 'string',
@@ -36,7 +39,7 @@ class ChangePasswordForm extends Component
             ]
         ])->validateWithBag('changePassword');
 
-        $this->user->fill([
+        $this->guestUser->fill([
             'password' => \Hash::make($this->state['new_password']),
         ])->save();
 
