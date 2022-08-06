@@ -1,6 +1,6 @@
 <div class="col-12 col-md-6 col-lg-3 mb-3">
     @if(isset($blog))
-    <div class="card " style="height: 550px">
+    <div class="card ">
         <div class="w-100">
             <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                 HOUSE</button>

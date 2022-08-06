@@ -10,7 +10,6 @@ class Board extends Model
     use HasFactory;
 
     protected $table = 'Board';
-    protected $primaryKey = 'HouseId';
     public $timestamps = false;
     /**
      * The attributes that are mass assignable.
@@ -24,6 +23,15 @@ class Board extends Model
         'Audit_FirstName',
         'Audit_LastName',
         'Audit_Email',
+        'title',
+        'image',
         'Board',
     ];
+
+    public function house()
+    {
+        return $this->belongsTo(House::class, 'HouseId', 'HouseID');
+    }
+
+
 }
