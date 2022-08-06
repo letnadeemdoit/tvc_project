@@ -83,86 +83,10 @@
                     </ul>
                 </div>
                 <div class="py-4">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida placerat commodo facilisis diam
-                        scelerisque iaculis semper velit tellus. Vulputate velit facilisis vulputate aliquet mauris.
-                        Venenatis, mauris elementum amet nulla ac sit nulla. Sed montes, eu ut donec facilisi at. Dolor
-                        leo rhoncus quam ipsum sed massa.
-                        Netus elementum sodales amet, blandit nisi. At curabitur vitae semper eu sed nisl sapien.
-                        Viverra sed sed nunc sed mauris netus enim.
-                    </p>
+                @if(isset($blogDetail))
+
+                    {!! !empty($blogDetail->Content) ? $blogDetail->Content : '' !!}
+                    @endif
                 </div>
             </div>
             <div class="col-12 col-lg-3">

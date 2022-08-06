@@ -9,7 +9,7 @@
 
     </div>
     <div class="d-flex">
-        {!! $blogs->links() !!}
+        {{ $blogs->withQueryString()->onEachSide(2)->links() }}
     </div>
 </div>
 

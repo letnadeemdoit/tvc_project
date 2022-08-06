@@ -28,7 +28,7 @@ Route::controller(GuestController::class)
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/blog-cards','blog')->name('blog');
-        Route::get('/blog-details/','blogDetails')->name('blog-details');
+        Route::get('/blog-details/{blogid}','blogDetails')->name('blog-details');
         Route::get('/bulletin-cards','bulletinBoard')->name('bulletinBoard');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
         Route::get('/guest-login','guestLogin')->name('guest-login');

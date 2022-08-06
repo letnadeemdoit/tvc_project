@@ -4,8 +4,10 @@
         <div class="w-100">
             <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                 HOUSE</button>
+            <a href="{{route('guest.blog-details', $blog->BlogId)}}">
+                <img src="{{ !empty($blog->BlogImage) ?  Storage::url($blog->BlogImage) : asset('/images/blog-images/house-1.png') }}" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
+            </a>
 
-            <img src="{{ !empty($blog->BlogImage) ?  Storage::url($blog->BlogImage) : asset('/images/blog-images/house-1.png') }}" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
 
         </div>
         <div class="card-body">
@@ -17,7 +19,7 @@
                             <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
 
                         <div class="ps-3">
-                            <strong class="mb-1">{{$blog->Author}}</strong>
+                            <strong class="mb-1 text-black">{{$blog->Author}}</strong>
                             <p>{{\Carbon\Carbon::parse($blog->BlogDate)->format('d/m/Y')}}</p>
                         </div>
                     </div>
@@ -34,7 +36,6 @@
                             <a class="btn btn-white dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$blog->BlogId}})">
                                 <i class="bi-book me-1"></i> Read Comment
                             </a>
-                            <div class="dropdown-divider"></div>
                             <a class="btn btn-white dropdown-item" href="#"
                                data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"
                             >
@@ -44,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="paragraph-text pt-3">
+                <div class="paragraph-text pt-3 text-black">
         <p>	{!!  Str::limit($blog->Content, 80)  !!}</p>
                 </div>
             </div>
@@ -56,7 +57,7 @@
                 <ul class="d-flex list-unstyled ul-card-footer">
                     <li><p><span><img src="/images/blog-images/love.png" class="img-fluid me-1"></span>200 Likes</p> </li>
                     <li><p><span><img src="/images/blog-images/chat.png" class="img-fluid me-1"></span>{{$numberofcomments}} Comments</p></li>
-                    <li><p><span><img src="/images/blog-images/eye.png" class="img-fluid me-1"></span>200 Likes</p></li>
+                    <li><p><span><img src="/images/blog-images/eye.png" class="img-fluid me-1"></span>200 Views</p></li>
                 </ul>
             </div>
         </div>
@@ -64,6 +65,7 @@
             <x-modals.delete-confirmation :id="$blog->BlogId" action="destroy({{$blog->BlogId}})"/>
 {{--            @livewire('blog.blog-cards.blog-comments', ['BlogId'=>$blog->BlogId])--}}
                 @include('livewire.blog.blog-cards.blog-comments')
+
 </div>
 @endif
 </div>
