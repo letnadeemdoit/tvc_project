@@ -173,8 +173,7 @@
                         selector: 'textarea#board_textarea',
                         setup: function(editor) {
                                 editor.on('change', function(e) {
-                                    @this.set('state.Board', editor.getContent());
-                                    console.log(editor.getContent());
+                                    @this.set('state.Board', editor.getContent(), true);
                                 });
                             }
                         })
