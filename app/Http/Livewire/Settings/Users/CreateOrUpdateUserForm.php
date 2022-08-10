@@ -13,6 +13,7 @@ class CreateOrUpdateUserForm extends Component
     public $user;
 
     public $state = [];
+
     public ?User $userCU;
 
     protected $listeners = [

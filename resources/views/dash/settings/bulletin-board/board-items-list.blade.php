@@ -64,12 +64,13 @@
                                 >
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
-                                <a class="btn btn-white" href="#"
-                                   data-bs-toggle="modal"
-                                   data-bs-target="#deleteConfirmation{{ $dt->id }}Modal"
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm"
+                                    wire:click.prevent="destroy({{$dt->id}})"
                                 >
-                                    <i class="bi-trash text-danger"></i>
-                                </a>
+                                    <i class="bi-trash"></i>
+                                </button>
 
                             </div>
                         </td>

@@ -34,7 +34,7 @@ class BoardItemsList extends Component
 
     public function mount()
     {
-        $this->model = User::class;
+        $this->model = Board::class;
     }
 
     public function updatingSearch()

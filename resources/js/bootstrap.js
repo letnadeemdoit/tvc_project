@@ -9,6 +9,9 @@ try {
 
     // Front Dashboard Js
     require('./front-dashboard-v2');
+
+    require('jquery-ui/ui/widgets/datepicker.js');
+    require('jquery-ui-timepicker-addon');
 } catch (e) {
     if (process.env.MIX_ENV === 'development') {
         console.log('Bootstrap, Jquery, Popper, Try -> Catch: ');
