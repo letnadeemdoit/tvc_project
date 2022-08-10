@@ -29,7 +29,6 @@ Route::controller(GuestController::class)
         Route::get('/help', 'help')->name('help');
         Route::get('/blog-cards','blog')->name('blog');
         Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
-        Route::get('/bulletin-cards','bulletinBoard')->name('bulletinBoard');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
         Route::get('/guest-login','guestLogin')->name('guest-login');
         Route::get('/book-cards','guestBook')->name('guest-book');
@@ -75,6 +74,10 @@ Route::middleware([
         Route::get('/photo-albums/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album');
         Route::get('/guest-book', [DashboardController::class, 'guestBook'])->name('guest-book');
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
+
+
+        Route::get('/bulletin-board', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
+
 
         Route::controller(\App\Http\Controllers\SettingController::class)
             ->prefix('settings')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Board;
 use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
@@ -55,6 +56,15 @@ class DashboardController extends Controller
     public function bulletins(){
 
         return view('dash.bulletin-board.display-list.list');
+
+    }
+
+    public function bulletinBoard(){
+
+
+        $boards = Board::where('HouseId',\Auth::user()->HouseId)->get();
+
+        return view('dash.bulletin-board.index',compact('boards'));
 
     }
 }
