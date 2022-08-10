@@ -1,9 +1,7 @@
 <div class="col-12 col-md-6 col-lg-3 mb-3 column ">
     <div class="card">
         @if(isset($board->image))
-            <a href="#">
-                <img src="{{ asset('/storage/'.$board->image) }}" class="card-img-top" alt="..." />
-            </a>
+            <img src="{{ asset('/storage/'.$board->image) }}" class="card-img-top" alt="..." />
         @endif
         <div class="card-body">
             <h3 class="card-title">
