@@ -1,7 +1,7 @@
 
 
 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-    <div class="row">
+    <div class="row mt-5">
 
         @foreach($blogs as $blog)
             @include('livewire.blog.blog-cards.blog-item-card')
