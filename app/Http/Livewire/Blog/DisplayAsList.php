@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class DisplayAsList extends Component
 {
     use WithFileUploads;
-    public $Blog_Id, $OldBlogImage, $HouseId, $Subject,$Content ,$BlogImage,$imagepath=null;
+    public $searchQuery, $Blog_Id, $OldBlogImage, $HouseId, $Subject,$Content ,$BlogImage,$imagepath=null;
 
     public $updateMode = false;
     protected $listeners = [
@@ -20,7 +20,13 @@ class DisplayAsList extends Component
     ];
     public function render()
     {
-        $blogs = Blog::orderBy('BlogId','DESC')->paginate(18);
+
+        $blogs = Blog::query()
+            ->where('Subject', 'like', '%'.$this->searchQuery.'%')
+            ->orWhere('Author', 'like', '%'.$this->searchQuery.'%')
+            ->orWhere('Audit_Email', 'like', '%'.$this->searchQuery.'%')
+            ->orWhere('Audit_FirstName', 'like', '%'.$this->searchQuery.'%')
+            ->orderBy('BlogId','DESC')->paginate(18);
         return view('dash.blog.display-as.list',compact('blogs'));
     }
     public function resetInput()
@@ -115,6 +121,7 @@ class DisplayAsList extends Component
 
             $blog->delete();
             session()->flash('success', 'Blog Deleted successfully...');
+            return redirect()->to('/blogs');
 
         }
     }
