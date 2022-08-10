@@ -63,7 +63,7 @@
 
                         $('.showErrorMsg').addClass('d-none');
 
-                    @this.upload( 'file', $event.dataTransfer.files[0],
+                    @this.upload( 'BlogImage', $event.dataTransfer.files[0],
                         (uploadedFilename) => {
                         }, () => {
 
@@ -78,8 +78,8 @@
                                             <div id="basicExampleDropzone"
                                                  class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">
                                                 <div class="dz-message">
-{{--                                                    <h5>Drag and drop your file here</h5>--}}
-{{--                                                    <p class="mb-2">or</p>--}}
+                                                    <h5>Drag and drop your file here</h5>
+                                                    <p class="mb-2">or</p>
                                                     <div class="text-center"
                                                          x-on:livewire-upload-start="isUploadingFile = true"
                                                          x-on:livewire-upload-finish=""
@@ -132,32 +132,36 @@
                                                                 data-dz-uploadprogress></div>
                                                         </div>
                                                         <div class="d-flex align-items-center">
-                                                            {{--                            <div class="dz-success-mark  ">--}}
-                                                            {{--                                <span class="bi-check-lg"></span>--}}
-                                                            {{--                            </div>--}}
-                                                            {{--                            <div class="dz-error-mark">--}}
-                                                            {{--                                <span class="bi-x-lg"></span>--}}
-                                                            {{--                            </div>--}}
-                                                            {{--                            <div class="dz-error-message">--}}
-                                                            {{--                                <small data-dz-errormessage></small>--}}
-                                                            {{--                            </div>--}}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 @if($OldBlogImage && empty($BlogImage))
-                                                <div class="col-6 mt-4 mx-auto">
-                                                    <div class="dz-preview dz-file-preview">
-                                                        <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"  @click.prevent="$wire.set('OldBlogImage', null); isUploadingFile = false">
-                                                            <h1 class="bi-x" title="Remove Image" data-dz-remove></h1>
-                                                        </a>
-                                                        <div class="dz-details d-flex">
-                                                            <div class="dz-img flex-shrink-0">
-                                                                        <img id="blah" src="{{ Storage::url($OldBlogImage) }}" alt="your image"
-                                                                             style="width: 100px; height: 100px; border-radius: 10px"/>
+                                                    <div class="col h-100">
+                                                        <div class="dz-preview dz-file-preview">
+                                                            <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"
+                                                               @click.prevent="$wire.set('OldBlogImage', null); isUploadingFile = false">
+                                                                <small class="bi-x" data-dz-remove></small>
+                                                            </a>
+                                                            <div class="dz-details d-flex">
+                                                                <div class="dz-img flex-shrink-0">
+                                                                    <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ Storage::url($OldBlogImage) }}"/>
+                                                                </div>
+
+                                                                <div class="dz-file-wrapper flex-grow-1">
+                                                                    <h6 class="dz-filename">
+{{--                                                                        @if($OldBlogImage)--}}
+{{--                                                                            <span class="dz-title" data-dz-name>--}}
+{{--                                                        {{ $OldBlogImage->getClientOriginalName() }}--}}
+{{--                                                    </span>--}}
+{{--                                                                        @endif--}}
+                                                                    </h6>
+                                                                    <div class="dz-size" data-dz-size></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex align-items-center">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 @endif
                                             </div>
 
@@ -191,7 +195,6 @@
 <script type='text/javascript'>
     $(".clickToUploadImage").click(function () {
         $(".hiddenUploadImage").click();
-        console.log("Nadeem");
     });
 </script>
 {{--    <script>--}}

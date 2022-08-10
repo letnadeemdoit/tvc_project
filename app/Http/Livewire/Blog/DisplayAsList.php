@@ -13,6 +13,7 @@ class DisplayAsList extends Component
 {
     use WithFileUploads;
     public $searchQuery, $Blog_Id, $OldBlogImage, $HouseId, $Subject,$Content ,$BlogImage,$imagepath=null;
+    public $file;
 
     public $updateMode = false;
     protected $listeners = [
