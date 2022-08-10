@@ -16,7 +16,14 @@
                     <div class="user-img d-flex">
 {{--                        @if(!is_null($userimage))--}}
 {{--                            <img src="{{ Storage::url($userimage) }}" class="img-fluid position-relative" alt="...">--}}
-                            <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
+{{--                            <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">--}}
+                        <img
+                            class="avatar-img rounded-circle"
+                            src="{{ auth()->user()->profile_photo_url }}"
+                            :src="avatarUrl"
+                            alt="Image"
+                            width="60" height="60" style="object-fit: cover"
+                        />
 
                         <div class="ps-3">
                             <strong class="mb-1 text-black">{{$blog->Author}}</strong>

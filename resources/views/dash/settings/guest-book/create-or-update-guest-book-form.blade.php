@@ -187,7 +187,8 @@
                                   <span class="form-check">
                                     <input type="radio" wire:model.defer="state.status"
                                            value="1"
-                                           class="form-check-input" name="status" id="status">
+                                           class="form-check-input" checked  name="status" id="status"
+                                    >
                                     <span class="form-check-label">Active</span>
                                   </span>
                                 </label>
