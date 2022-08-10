@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('Board', function (Blueprint $table) {
-            $table->id()->first();
+        Schema::table('guest_books', function (Blueprint $table) {
+            $table->boolean('status')->default(0)->after('content');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('Board', function (Blueprint $table) {
-            $table->dropColumn('id');
+        Schema::table('guest_books', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 };

@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\Settings\BulletinBoard;
+namespace App\Http\Livewire\Settings\GuestBook;
 
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Board;
+use App\Models\Guest;
+use App\Models\GuestBook;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class BoardItemsList extends Component
+class GuestBookList extends Component
 {
     use WithPagination;
     use Destroyable;
@@ -16,7 +18,9 @@ class BoardItemsList extends Component
     public $user;
 
     public $search = '';
+
     public $page = 1;
+
     public $per_page = 15;
 
     protected $queryString = [
@@ -31,10 +35,10 @@ class BoardItemsList extends Component
         'destroyed-successfully' => '$refresh',
         'user-cu-successfully' => '$refresh',
     ];
-
+//
     public function mount()
     {
-        $this->model = Board::class;
+        $this->model = GuestBook::class;
     }
 
     public function updatingSearch()
@@ -44,7 +48,8 @@ class BoardItemsList extends Component
 
     public function render()
     {
-        $data = Board::where('HouseId', $this->user->HouseId)->orderBy('id', 'DESC')->paginate(18);
-        return view('dash.settings.bulletin-board.board-items-list',compact('data'));
+        $data = GuestBook::orderBy('id','desc')->paginate(20);
+        return view('dash.settings.guest-book.guest-book-list',compact('data'));
     }
+
 }

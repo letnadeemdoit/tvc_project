@@ -36,8 +36,12 @@
                 <thead class="thead-light">
                 <tr>
                     <th style="width: 100px" class="text-center">Image</th>
+{{--                    <th>User</th>--}}
+{{--                    <th>House</th>--}}
                     <th>Title</th>
-                    <th>Description</th>
+                    <th>Content</th>
+                    <th>Status</th>
+                    <th>Created At</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -54,16 +58,25 @@
                                     alt="{{ $dt->title ?? '' }}"
                                 />
                             </div>
+
                         </td>
-                        <td>{{$dt->title ?? ''}}</td>
-                        <td>{{ str(strip_tags($dt->Board))->limit(60) }}</td>
+{{--                        <td>---</td>--}}
+{{--                        <td>--</td>--}}
+                        <td>{{$dt->title}}</td>
+                        <td>{!! $dt->content !!}</td>
+                        <td>
+                            <span class="legend-indicator bg-{{$dt->status == 1 ? 'success' : 'danger'}}"></span>
+                            {{ $dt->status == 1  ? "Active" : 'InActive' }}
+                        </td>
+                        <td>{{$dt->created_at}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
                                 <a class="btn btn-white" href="#"
-                                   wire:click="$emit('showBulletinBoardCUModal', true, {{$dt->id}})"
+                                   wire:click="$emit('showGuestBookCUModal', true, {{$dt->id}})"
                                 >
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
+
                                 <button
                                     type="button"
                                     class="btn btn-danger btn-sm"
