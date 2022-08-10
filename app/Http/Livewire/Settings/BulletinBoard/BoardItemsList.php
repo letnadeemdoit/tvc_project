@@ -44,7 +44,7 @@ class BoardItemsList extends Component
 
     public function render()
     {
-        $data = Board::where('HouseId', $this->user->HouseId)->paginate(18);
+        $data = Board::where('HouseId', $this->user->HouseId)->orderBy('id', 'DESC')->paginate(18);
         return view('dash.settings.bulletin-board.board-items-list',compact('data'));
     }
 }

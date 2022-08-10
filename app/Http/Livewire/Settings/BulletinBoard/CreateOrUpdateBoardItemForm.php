@@ -30,6 +30,11 @@ class CreateOrUpdateBoardItemForm extends Component
         return view('dash.settings.bulletin-board.create-or-update-board-item-form');
     }
 
+    public function hydrate()
+    {
+        $this->dispatchBrowserEvent('modal-is-shown');
+    }
+
     public function showBulletinBoardCUModal($toggle, ?Board $boardItem)
     {
         $this->emitSelf('toggle', $toggle);
@@ -51,14 +56,14 @@ class CreateOrUpdateBoardItemForm extends Component
         }
 
         Validator::make($inputs, [
-            'title' => 'nullable',
+            'title' => 'required|string|max:100',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Board' => 'required',
         ])->validateWithBag('saveBulletinBoardCU');
 
         $this->boardItem->fill([
             'HouseId' => auth()->user()->HouseId,
-            'title' => $inputs['title'],
+            'title' => $inputs['title'] ?? '',
             'Board' => $inputs['Board'],
         ])->save();
 

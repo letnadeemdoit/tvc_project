@@ -35,7 +35,7 @@
                 class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                 <thead class="thead-light">
                 <tr>
-                    <th>Image</th>
+                    <th style="width: 100px" class="text-center">Image</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Action</th>
@@ -46,19 +46,17 @@
 
                 @foreach($data as $dt)
                     <tr>
-                        <td>
-                            <a class="d-flex align-items-center" href="#">
-                                <div class="avatar avatar-soft-primary avatar-circle">
-                                    <img
-                                        src="{{$dt->getFileUrl('image')}}"
-                                        class="avatar-initials"/>
-                                </div>
-                                <div class="ms-3">
-                                    <span class="d-block h5 text-inherit mb-0">{{$dt->Audit_user_name ?? ''}} </span>
-                                </div>
-                            </a>
+                        <td style="width: 100px" class="text-center">
+                            <div class="avatar avatar-soft-primary avatar-circle">
+                                <img
+                                    src="{{$dt->getFileUrl('image')}}"
+                                    class="avatar-initials"
+                                    alt="{{ $dt->title ?? '' }}"
+                                />
+                            </div>
                         </td>
                         <td>{{$dt->title ?? ''}}</td>
+                        <td>{{ str(strip_tags($dt->Board))->limit(60) }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
                                 <a class="btn btn-white" href="#"

@@ -1,7 +1,7 @@
 <x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Board Item</h5>
+            <h5 class="modal-title">{{ $boardItem && $boardItem->id ? "Update" . ($boardItem->title ? " '$boardItem->title'" : '') : 'Add' }} Board Item</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -55,6 +55,7 @@
                                     hidden="hidden"
                                     wire:model="file"
                                     x-ref="file_upload"
+                                    accept=".jpg,.png,.jpeg,.gif,.tiff"
                                 />
                                 <button class="btn bg-primary btn-sm text-white"
                                         @click.prevent="$refs.file_upload.click()">Upload Image
@@ -101,6 +102,35 @@
                                 </div>
                             </div>
                         </div>
+
+                        @if($boardItem && !is_null($boardItem->image))
+                            <div class="col h-100 mt-4">
+                                <div class="dz-preview dz-file-preview">
+                                    <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"
+                                       @click.prevent="">
+                                        <small class="bi-x" data-dz-remove></small>
+                                    </a>
+                                    <div class="dz-details d-flex">
+                                        <div class="dz-img flex-shrink-0">
+                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $boardItem->getFileUrl() }}"/>
+                                        </div>
+
+                                        <div class="dz-file-wrapper flex-grow-1">
+                                            <h6 class="dz-filename">
+                                                @if($file)
+                                                    <span class="dz-title" data-dz-name>
+                                                        {{ $file->getClientOriginalName() }}
+                                                    </span>
+                                                @endif
+                                            </h6>
+                                            <div class="dz-size" data-dz-size></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <span class="showErrorMsg fw-semi-bold mt-1" style="font-size: 13px !important;color: #ff0000 !important;display: none">Only jpg,png,giff,tiff are allowed</span>
                     @error('file')
@@ -135,7 +165,18 @@
 
                 <div
                     class="mb-3"
-                    @modal-is-shown.window=" window.tinymce.init({...window.TINYMCE_DEFAULT_CONFIG, selector: 'textarea#board_textarea'})"
+                    @modal-is-shown.window="
+                        window.tinymce.init({
+                        ...window.TINYMCE_DEFAULT_CONFIG,
+                        selector: 'textarea#board_textarea',
+                        setup: function(editor) {
+                                editor.on('change', function(e) {
+                                    @this.set('state.Board', editor.getContent());
+                                    console.log(editor.getContent());
+                                });
+                            }
+                        })
+                    "
 
                 >
                     <label class="form-label" for="board_textarea">Board Detail</label>
@@ -153,8 +194,8 @@
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <button class="btn btn-primary px-5">Create Bulletin Board</button>
+                <div class="mb-3 d-flex">
+                    <button type="submit" class="btn btn-primary px-5 ms-auto">{{ $boardItem && $boardItem->id ? "Update" . ($boardItem->title ? " '$boardItem->title'" : '') : 'Add' }} Board Item</button>
                 </div>
 
             </form>
