@@ -9,7 +9,20 @@ class Time extends Model
 {
     use HasFactory;
 
-    protected $table = 'amenitytype';
+    /**
+     * @var string
+     */
+    protected $table = 'Time';
+
+    /**
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'timeid';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +30,8 @@ class Time extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'timeid',
+        'time'
     ];
 
 

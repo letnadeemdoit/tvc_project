@@ -9,16 +9,26 @@ class Calendar extends Model
 {
     use HasFactory;
 
-    protected $table = 'calendar';
+    /**
+     * @var string
+     */
+    protected $table = 'Calendar';
+
+    /**
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'DateId';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-
-    protected $primaryKey = 'DateId';
-
     protected $fillable = [
         'Year',
         'Month',
