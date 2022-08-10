@@ -31,6 +31,8 @@
         "flag-icons": "^6.6.0",
         "fullcalendar": "^5.10.1",
         "jquery": "^3.6.0",
+        "jquery-ui": "^1.13.2",
+        "jquery-ui-timepicker-addon": "^1.6.3",
         "select2": "^4.1.0-rc.0",
         "smoothscroll-polyfill": "^0.4.4",
         "tinymce": "^6.1.2"
