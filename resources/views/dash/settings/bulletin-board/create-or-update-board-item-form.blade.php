@@ -36,9 +36,40 @@
                     "
                     x-on:dragover.prevent="isFileDropping = true"
                     x-on:dragleave.prevent="isFileDropping = false"
+                    @modal-is-showing
                 >
+
                     <label class="form-label" for="">Board Image</label>
                     <div class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">
+                        @if($boardItem && !is_null($boardItem->image))
+                            {{--           TODO:  need to fix the design               --}}
+                            <div class="col h-100">
+                                <div class="dz-preview dz-file-preview">
+                                    <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"
+                                       wire:click.prevent="deleteFile">
+                                        <small class="bi-x" data-dz-remove></small>
+                                    </a>
+                                    <div class="dz-details d-flex">
+                                        <div class="dz-img flex-shrink-0">
+                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $boardItem->getFileUrl() }}"/>
+                                        </div>
+
+                                        <div class="dz-file-wrapper flex-grow-1">
+                                            <h6 class="dz-filename">
+                                                @if($file)
+                                                    <span class="dz-title" data-dz-name>
+                                                        {{ $file->getClientOriginalName() }}
+                                                    </span>
+                                                @endif
+                                            </h6>
+                                            <div class="dz-size" data-dz-size></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <div class="dz-message">
                             <h5>Drag and drop your file here</h5>
                             <p class="mb-2">or</p>
@@ -102,35 +133,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        @if($boardItem && !is_null($boardItem->image))
-                            <div class="col h-100 mt-4">
-                                <div class="dz-preview dz-file-preview">
-                                    <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"
-                                       @click.prevent="">
-                                        <small class="bi-x" data-dz-remove></small>
-                                    </a>
-                                    <div class="dz-details d-flex">
-                                        <div class="dz-img flex-shrink-0">
-                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $boardItem->getFileUrl() }}"/>
-                                        </div>
-
-                                        <div class="dz-file-wrapper flex-grow-1">
-                                            <h6 class="dz-filename">
-                                                @if($file)
-                                                    <span class="dz-title" data-dz-name>
-                                                        {{ $file->getClientOriginalName() }}
-                                                    </span>
-                                                @endif
-                                            </h6>
-                                            <div class="dz-size" data-dz-size></div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
                     </div>
                     <span class="showErrorMsg fw-semi-bold mt-1" style="font-size: 13px !important;color: #ff0000 !important;display: none">Only jpg,png,giff,tiff are allowed</span>
                     @error('file')

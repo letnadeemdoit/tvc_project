@@ -39,6 +39,7 @@ class CreateOrUpdateBoardItemForm extends Component
     {
         $this->emitSelf('toggle', $toggle);
         $this->boardItem = $boardItem;
+        $this->reset(['state', 'file']);
 
         if ($boardItem) {
             $this->state = \Arr::only($boardItem->toArray(), ['title', 'image', 'Board']);
@@ -75,6 +76,13 @@ class CreateOrUpdateBoardItemForm extends Component
 
     public function updatedFile() {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
+    }
+
+    public function deleteFile() {
+        if ($this->boardItem->id) {
+            $this->boardItem->deleteFile();
+            $this->emit('user-cu-successfully');
+        }
     }
 
 }

@@ -12,8 +12,6 @@ class CreateOrUpdateUserForm extends Component
 {
     public $user;
 
-    public $isShowingModal = false;
-
     public $state = [];
     public ?User $userCU;
 
@@ -35,6 +33,7 @@ class CreateOrUpdateUserForm extends Component
     {
         $this->emitSelf('toggle', $toggle);
         $this->userCU = $userCU;
+        $this->reset('state');
 
         if ($userCU) {
             $this->state = [
