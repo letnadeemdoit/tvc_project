@@ -28727,7 +28727,7 @@ fieldset i {
 .bg-social-feed {
   background: url("/images/images-home/map.png");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   background-position: center;
 }
 
@@ -29124,6 +29124,9 @@ header nav button:last-child:hover {
   .min-height {
     min-height: 575px !important;
   }
+  .mt-80 {
+    margin-top: 65px !important;
+  }
 }
 @media only screen and (max-width: 991px) {
   .help-page-tabs .card .card-body {
@@ -29132,6 +29135,9 @@ header nav button:last-child:hover {
   .rounded-icon {
     width: 30%;
     margin: -30px auto !important;
+  }
+  .mt-80 {
+    margin-top: 65px !important;
   }
   .padding-top {
     padding-top: 3rem !important;
