@@ -39,7 +39,11 @@ class Vacation extends Model
         'EndDateId',
         'StartTimeId',
         'EndTimeId',
-        'OwnerId'
+        'OwnerId',
+        'HouseId',
+        'AllowOwners',
+        'AllowGuests',
+        'Completed'
     ];
 
     /**

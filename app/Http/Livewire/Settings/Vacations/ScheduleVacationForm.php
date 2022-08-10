@@ -106,6 +106,7 @@ class ScheduleVacationForm extends Component
             'StartTimeId' => $startTime->timeid,
             'EndDateId' => $endDate->DateId,
             'EndTimeId' => $endTime->timeid,
+            'HouseId' => $this->user->HouseId
         ])->save();
 
         $this->emitSelf('toggle', false);
