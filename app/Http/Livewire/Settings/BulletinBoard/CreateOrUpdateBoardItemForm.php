@@ -54,6 +54,8 @@ class CreateOrUpdateBoardItemForm extends Component
 
         if ($this->file) {
             $inputs['image'] = $this->file;
+        }else{
+            unset($inputs['image']);
         }
 
         Validator::make($inputs, [
