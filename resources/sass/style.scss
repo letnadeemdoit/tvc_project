@@ -187,7 +187,7 @@ fieldset{
 .bg-social-feed{
     background: url('/images/images-home/map.png');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size:cover;
     background-position:center;
 }
 .pt-55{
@@ -605,6 +605,9 @@ header{
     .min-height{
         min-height: 575px !important;
     }
+    .mt-80{
+        margin-top: 65px !important;
+    }
 }
 @media only screen and (max-width:991px){
     .help-page-tabs{
@@ -618,7 +621,9 @@ header{
         width: 30%;
         margin: -30px auto !important;
     }
-
+    .mt-80{
+        margin-top: 65px !important;
+    }
     .padding-top{
         padding-top: 3rem !important;
         padding-left: 1rem !important;

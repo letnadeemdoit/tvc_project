@@ -8,7 +8,7 @@
         <div class="container content-space-2 content-space-b-lg-3">
             <!-- nav tabs -->
             <section class="text-center">
-                <div class="help-text shadow-1-strong rounded  d-flex justify-content-center mt-5">
+                <div class="help-text shadow-1-strong rounded  d-flex justify-content-center">
                     <h1 class="text-primary font-vintage mb-0">Help</h1>
                 </div>
                 <h2 class="pt-2 poppins-bold">We’d Love to Hear From You</h2>
@@ -85,7 +85,7 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="accordion-section mt-80">
                         <div class="container">
-                            <div class="m-4">
+                            <div class="m-0 m-lg-4">
                                 <div class="accordion" id="myAccordion">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingOne">
@@ -128,7 +128,7 @@
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="accordion-section mt-80">
                         <div class="container">
-                            <div class="m-4">
+                            <div class="m-0 m-lg-4">
                                 <div class="accordion" id="myAccordion-2">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingThree">
@@ -249,7 +249,7 @@
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="accordion-section mt-80">
                         <div class="container">
-                            <div class="m-4">
+                            <div class="m-0 m-lg-4">
                                 <div class="accordion" id="myAccordion-3">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingFive">
@@ -299,7 +299,7 @@
                 <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
                     <div class="accordion-section mt-80">
                         <div class="container">
-                            <div class="m-4">
+                            <div class="m-0 m-lg-4">
                                 <div class="accordion" id="myAccordion-4">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingSeven">
