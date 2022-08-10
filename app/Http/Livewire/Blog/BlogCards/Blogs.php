@@ -6,23 +6,42 @@ use App\Models\Blog\Blog;
 use App\Models\Blog\BlogComment;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Validator;
 
 class Blogs extends Component
 {
+    use WithPagination;
     public $Content ,$BlogComments = [], $BlogId, $userimage;
     protected $listeners = [
         'readBlogComments',
     ];
+    public $search = '';
+    public $page = 1;
+    public $per_page = 15;
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'page' => ['except' => 1],
+        'per_page' => ['except' => 15],
+    ];
+
+    protected $paginationTheme = 'bootstrap';
+
     public function mount()
     {
         $user = Auth::user();
         $this->userimage = $user->profile_photo_path;
 
     }
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $blogs = Blog::orderBy('BlogId','DESC')->paginate(20);
+        $blogs = Blog::orderBy('BlogId','DESC')->paginate($this->per_page);
         return view('livewire.blog.blog-cards.blogs',compact('blogs'));
     }
     public function resetInput()
