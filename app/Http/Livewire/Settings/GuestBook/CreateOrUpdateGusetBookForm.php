@@ -52,6 +52,8 @@ class CreateOrUpdateGusetBookForm extends Component
 
         if ($this->file) {
             $inputs['image'] = $this->file;
+        }else{
+            unset($inputs['image']);
         }
 
         Validator::make($inputs, [
@@ -66,7 +68,7 @@ class CreateOrUpdateGusetBookForm extends Component
             'house_id' => auth()->user()->HouseId,
             'name' => $inputs['name'],
             'title' => $inputs['title'],
-            'status' => $inputs['status'],
+            'status' => $inputs['status'] ?? 0,
             'content' => $inputs['content'],
         ])->save();
 
