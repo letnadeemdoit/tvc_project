@@ -10,51 +10,35 @@
             ></button>
         </div>
         <div class="modal-body">
-            <form
-
-                @if(isset($boardItem))
-                wire:submit.prevent="updateBulletinBoard"
-                @else
-                wire:submit.prevent="createBulletinBoard"
-                @endif
-
-                method="post">
+            <form wire:submit.prevent="saveBulletinBoardCU" method="post">
                 <div
                     class="mb-3"
                     x-data="{isFileDropping: false, isUploadingFile: false, uploadingProgress: 0}"
                     x-on:drop="isFileDropping = false"
                     x-on:drop.prevent="
+                        if ($event.dataTransfer.files.length > 0 ) {
+                            isUploadingFile = true;
+                            var allowedExtensions = /(\/jpg|\/jpeg|\/png|\/gif)$/i;
+                            var fileTypeCheck = $event.dataTransfer.files[0].type;
+                            if (!allowedExtensions.exec(fileTypeCheck)) {
+                                $('.showErrorMsg').addClass('d-block');
+                                return;
+                             }
+                            $('.showErrorMsg').addClass('d-none');
+                            @this.upload( 'file', $event.dataTransfer.files[0],
+                                (uploadedFilename) => {
+                                }, () => {
 
-                if ($event.dataTransfer.files.length > 0 ) {
-                    isUploadingFile = true;
-                    var allowedExtensions = /(\/jpg|\/jpeg|\/png|\/gif)$/i;
-                    var fileTypeCheck = $event.dataTransfer.files[0].type;
-                    if (!allowedExtensions.exec(fileTypeCheck)) {
-
-                        $('.showErrorMsg').addClass('d-block');
-
-                        return;
-                     }
-
-                        $('.showErrorMsg').addClass('d-none');
-
-                    @this.upload( 'file', $event.dataTransfer.files[0],
-                        (uploadedFilename) => {
-                        }, () => {
-
-                        }, (event) => {
-                            uploadingProgress = event.detail.progress;
-                        });
-                }
-            "
+                                }, (event) => {
+                                    uploadingProgress = event.detail.progress;
+                                });
+                        }
+                    "
                     x-on:dragover.prevent="isFileDropping = true"
                     x-on:dragleave.prevent="isFileDropping = false"
                 >
-
                     <label class="form-label" for="">Board Image</label>
-
-                    <div id="basicExampleDropzone"
-                         class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">
+                    <div class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">
                         <div class="dz-message">
                             <h5>Drag and drop your file here</h5>
                             <p class="mb-2">or</p>
@@ -85,15 +69,18 @@
                                 </a>
                                 <div class="dz-details d-flex">
                                     <div class="dz-img flex-shrink-0">
-                                        @if($file)
-                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $file->temporaryUrl() }}"/>
+                                        @if($file && in_array($file->getClientOriginalExtension(), config('livewire.temporary_file_upload.preview_mimes')))
+                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail
+                                                 src="{{ $file->temporaryUrl() }}"/>
                                         @endif
                                     </div>
 
                                     <div class="dz-file-wrapper flex-grow-1">
                                         <h6 class="dz-filename">
                                             @if($file)
-                                                <span class="dz-title" data-dz-name>{{ $file->getClientOriginalName() }}</span>
+                                                <span class="dz-title" data-dz-name>
+                                                    {{ $file->getClientOriginalName() }}
+                                                </span>
                                             @endif
                                         </h6>
                                         <div class="dz-size" data-dz-size></div>
@@ -114,34 +101,10 @@
                                 </div>
                             </div>
                         </div>
-
-                        @if($OldImage)
-                            <div class="col-6 mt-4 mx-auto">
-                                <div class="dz-preview dz-file-preview">
-                                    <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"
-                                       @click.prevent="$wire.set('OldImage', null); isUploadingFile = false">
-                                        <h1 class="bi-x" title="Remove Image" data-dz-remove></h1>
-                                    </a>
-
-                                    <div class="dz-details d-flex">
-                                        <div class="dz-img flex-shrink-0">
-                                            <img id="blah" class="img-fluid dz-img-inner"
-                                                 src="{{ asset('storage/'.$OldImage) }}" alt="your image"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-
-
                     </div>
-
-                    <span class="showErrorMsg fw-semi-bold mt-1"
-                          style="font-size: 13px !important;color: #ff0000 !important;display: none"> Only jpg,png,giff,tiff are allowed</span>
-                    @error('image')
-                    <span class="text-danger fw-semi-bold"
-                          style="font-size: 13px !important; ">{{$message}}</span>
+                    <span class="showErrorMsg fw-semi-bold mt-1" style="font-size: 13px !important;color: #ff0000 !important;display: none">Only jpg,png,giff,tiff are allowed</span>
+                    @error('file')
+                        <span class="invalid-feedback d-block">{{$message}}</span>
                     @enderror
                 </div>
 
@@ -157,21 +120,36 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
-                    <input type="text" id="title" wire:model.defer="state.title" name="title" class="form-control"
-                           placeholder="Board Title">
+                    <input
+                        type="text"
+                        id="title"
+                        wire:model.defer="state.title"
+                        name="title"
+                        class="form-control @error('title') is-invalid @enderror"
+                        placeholder="Board Title"
+                    />
                     @error('title')
-                    <span class="text-danger fw-semi-bold"
-                          style="font-size: 13px !important;">{{$message}}</span>
+                        <span class="invalid-feedback">{{$message}}</span>
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="Board">Board Detail</label>
-                    <textarea id="Board" class="form-control" wire:model.defer="state.Board" name="Board"
-                              placeholder="Textarea field" rows="4"></textarea>
+                <div
+                    class="mb-3"
+                    @modal-is-shown.window=" window.tinymce.init({...window.TINYMCE_DEFAULT_CONFIG, selector: 'textarea#board_textarea'})"
+
+                >
+                    <label class="form-label" for="board_textarea">Board Detail</label>
+                    <textarea
+                        class="form-control @error('Board') is-invalid @enderror"
+                        wire:model.defer="state.Board"
+                        name="Board"
+                        placeholder=""
+                        rows="4"
+                        id="board_textarea"
+
+                    ></textarea>
                     @error('Board')
-                    <span class="text-danger fw-semi-bold"
-                          style="font-size: 13px !important;">{{$message}}</span>
+                        <span class="invalid-feedback">{{$message}}</span>
                     @enderror
                 </div>
 

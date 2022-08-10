@@ -2,37 +2,49 @@
 
 namespace App\Http\Livewire\Settings\BulletinBoard;
 
+use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Board;
+use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class BoardItemsList extends Component
 {
+    use WithPagination;
+    use Destroyable;
 
-    public $searchQuery = '';
+    public $user;
+
+    public $search = '';
+    public $page = 1;
+    public $per_page = 15;
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'page' => ['except' => 1],
+        'per_page' => ['except' => 15],
+    ];
+
+    protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
-        'refreshBulletinBoard' => '$refresh'
+        'destroyed-successfully' => '$refresh',
+        'user-cu-successfully' => '$refresh',
     ];
+
+    public function mount()
+    {
+        $this->model = User::class;
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
-        $data = Board::paginate(18);
+        $data = Board::where('HouseId', $this->user->HouseId)->paginate(18);
         return view('dash.settings.bulletin-board.board-items-list',compact('data'));
-    }
-
-
-    public function destroy($id)
-    {
-        $board = Board::where('id', $id);
-
-        if ($board) {
-
-            $this->emit('hideModal');
-
-            session()->flash('success', 'Board Item  Deleted successfully...');
-
-            $board->delete();
-
-        }
     }
 }
