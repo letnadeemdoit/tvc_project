@@ -13,7 +13,7 @@ class CreateOrUpdateBoardItemForm extends Component
 {
     use WithFileUploads;
 
-    public $isShowingModal = false;
+    public $user;
 
     public $state = [];
 

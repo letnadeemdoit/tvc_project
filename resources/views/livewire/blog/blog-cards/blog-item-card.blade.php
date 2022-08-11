@@ -53,10 +53,12 @@
                     $blogcomments = App\Models\Blog\BlogComment::where('BlogId', $blog->BlogId )->get();
                     $numberofcomments = count($blogcomments);
                 @endphp
-                <div class="card-footer px-0">
+                <div class="card-footer px-0" x-data>
                     <ul class="d-flex list-unstyled ul-card-footer justify-content-center">
-                        <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
-                        <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>
+                        <li>
+                            <img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span>
+                        </li>
+                        <li><img src="/images/blog-images/comment.png" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>
                         <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
                     </ul>
                 </div>

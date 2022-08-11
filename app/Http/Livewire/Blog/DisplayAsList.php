@@ -18,6 +18,23 @@ class DisplayAsList extends Component
     protected $listeners = [
         'openResetBlogForm',
     ];
+
+    public $page = 1;
+    public $per_page = 15;
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'page' => ['except' => 1],
+        'per_page' => ['except' => 15],
+    ];
+
+    protected $paginationTheme = 'bootstrap';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
 
