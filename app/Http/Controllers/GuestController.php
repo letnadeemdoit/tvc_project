@@ -89,6 +89,9 @@ class GuestController extends Controller
     public function guestBookFrontend(){
         return view('guest-book-frontend');
     }
+    public function localGuide(){
+        return view('local-guide');
+    }
     public function guestBook(){
         $guestbook = GuestBook::paginate(10);
         return view('guest-book', compact('guestbook'));

@@ -36,6 +36,7 @@ Route::controller(GuestController::class)
         Route::get('/search-house','searchHouse')->name('search-house');
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
         Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
+        Route::get('/local-guide','localGuide')->name('local-guide');
     });
 //Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem']);
 

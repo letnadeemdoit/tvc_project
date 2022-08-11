@@ -28595,6 +28595,11 @@ body {
   font-weight: 500;
 }
 
+.btn-primary-light {
+  background-color: rgba(232, 96, 76, 0.08);
+  color: #E8604C;
+}
+
 .max-width {
   max-width: 360px;
 }
@@ -28606,6 +28611,10 @@ body {
 
 .feature-cards .card {
   min-height: 580px;
+}
+
+.checked {
+  color: #E8604C;
 }
 
 .blog-card {
@@ -29006,6 +29015,14 @@ header nav button:last-child:hover {
   font-size: 13px;
 }
 
+.fs-11 {
+  font-size: 11px;
+}
+
+.recipe-card-footer span {
+  font-size: 14px;
+}
+
 .mt-80 {
   margin-top: 80px;
 }
@@ -29152,6 +29169,17 @@ header nav button:last-child:hover {
     padding-right: 1.5rem !important;
   }
 }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .title-fs {
+    font-size: 12px !important;
+  }
+  .date-fs {
+    font-size: 12px !important;
+  }
+  .recipe-card-footer span {
+    font-size: 11px !important;
+  }
+}
 @media only screen and (min-width: 1200px) and (max-width: 1570px) {
   .row-max-width {
     margin: 0 auto;
@@ -29159,6 +29187,9 @@ header nav button:last-child:hover {
   .ul-card-footer li span {
     padding-left: 0px !important;
     font-size: 13px !important;
+  }
+  .recipe-card-footer span {
+    font-size: 12px !important;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1400px) {
@@ -29171,6 +29202,15 @@ header nav button:last-child:hover {
   .help-page-tabs .card {
     min-width: 190px !important;
     max-width: 190px !important;
+  }
+  .fs-13 {
+    font-size: 11px;
+  }
+  .date-fs {
+    font-size: 9px !important;
+  }
+  .title-fs {
+    font-size: 12px !important;
   }
   .feature-cards .card {
     min-height: revert !important;
@@ -29195,6 +29235,9 @@ header nav button:last-child:hover {
     margin-top: 65px !important;
   }
   .ul-card-footer li span {
+    font-size: 10px !important;
+  }
+  .recipe-card-footer span {
     font-size: 10px !important;
   }
 }

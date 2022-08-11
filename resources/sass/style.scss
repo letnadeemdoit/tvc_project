@@ -69,7 +69,10 @@ body{
     font-family: vintage-clothes;
     font-weight: 500;
 }
-
+.btn-primary-light{
+    background-color: rgba(232, 96, 76, 0.08);
+    color: $primary;
+}
 .max-width{
     max-width: 360px;
 }
@@ -81,6 +84,9 @@ body{
     .card {
         min-height: 580px;
     }
+}
+.checked {
+    color: $primary;
 }
 .blog-card{
     margin: 7px 0px !important;
@@ -469,6 +475,14 @@ header{
 .fs-13{
     font-size: 13px;
 }
+.fs-11{
+    font-size: 11px;
+}
+.recipe-card-footer {
+    span {
+        font-size: 14px;
+    }
+}
 .mt-80{
     margin-top: 80px;
 }
@@ -531,6 +545,7 @@ header{
     }
     }
 }
+
 .bg-image{
     background: url("/images/login-images/login.png");
     background-repeat: no-repeat;
@@ -627,7 +642,19 @@ header{
     }
 
 }
-
+@media only screen and (min-width:768px) and (max-width:991px) {
+    .title-fs{
+        font-size: 12px !important;
+    }
+    .date-fs{
+        font-size: 12px !important;
+    }
+    .recipe-card-footer {
+        span {
+            font-size: 11px !important;
+        }
+    }
+}
 @media only screen and (min-width:1200px) and (max-width:1570px) {
     .row-max-width{
         margin: 0 auto;
@@ -638,6 +665,11 @@ header{
                 padding-left: 0px !important;
                 font-size: 13px !important;
             }
+        }
+    }
+    .recipe-card-footer {
+        span {
+            font-size: 12px !important;
         }
     }
 }
@@ -655,6 +687,15 @@ header{
     .help-page-tabs .card {
         min-width: 190px !important;
         max-width: 190px !important;
+    }
+    .fs-13{
+        font-size: 11px;
+    }
+    .date-fs{
+        font-size: 9px !important;
+    }
+    .title-fs{
+        font-size: 12px !important;
     }
     .feature-cards {
         .card{
@@ -687,6 +728,11 @@ header{
             span {
                 font-size: 10px !important;
             }
+        }
+    }
+    .recipe-card-footer {
+        span {
+            font-size: 10px !important;
         }
     }
 }
