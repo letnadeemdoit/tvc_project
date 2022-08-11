@@ -105,6 +105,8 @@ body{
     }
 }
 .list-btn{
+    width: 2.6rem !important;
+    height: 2.6rem !important;
     &:hover{
         color: $dark-blue !important;
     background-color: transparent !important;
@@ -456,6 +458,9 @@ header{
         box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);
     }
 
+}
+.fs-13{
+    font-size: 13px;
 }
 .mt-80{
     margin-top: 80px;
