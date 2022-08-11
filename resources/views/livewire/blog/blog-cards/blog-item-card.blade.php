@@ -6,16 +6,16 @@
                     BLOG</button>
                 <a href="{{route('guest.blog-details', $blog->BlogId)}}">
                     @if(isset($blog->BlogImage) && !empty($blog->BlogImage))
-                    <img src="{{ Storage::url($blog->BlogImage) }}" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
+                    <img src="{{ Storage::url($blog->BlogImage) }}" class="card-img-top  position-relative" style="height: 290px !important;object-fit: cover" alt="..." />
                     @else
-                        <img src="/images/blog-images/house-1.png" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
+                        <img src="/images/blog-images/house-1.png" class="card-img-top  position-relative" style="height: 290px !important;object-fit: cover" alt="..." />
                     @endif
                 </a>
 
 
             </div>
             <div class="card-body p-2">
-                <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
+                <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 200px">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="user-img d-flex align-items-center">
                             {{--                        @if(!is_null($userimage))--}}
