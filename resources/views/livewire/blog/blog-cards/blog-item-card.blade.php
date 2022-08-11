@@ -5,7 +5,11 @@
                 <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                     BLOG</button>
                 <a href="{{route('guest.blog-details', $blog->BlogId)}}">
-                    <img src="{{ !empty($blog->BlogImage) ?  Storage::url($blog->BlogImage) : asset('/images/blog-images/house-1.png') }}" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
+                    @if(isset($blog->BlogImage) && !empty($blog->BlogImage))
+                    <img src="{{ Storage::url($blog->BlogImage) }}" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
+                    @else
+                        <img src="/images/blog-images/house-1.png" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
+                    @endif
                 </a>
 
 
