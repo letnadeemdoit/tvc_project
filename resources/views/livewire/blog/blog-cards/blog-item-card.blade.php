@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
+<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
     @if(isset($blog))
         <div class="card blog-card">
             <div class="w-100">
@@ -13,7 +13,7 @@
             <div class="card-body p-2">
                 <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="user-img d-flex">
+                        <div class="user-img d-flex align-items-center">
                             {{--                        @if(!is_null($userimage))--}}
                             {{--                            <img src="{{ Storage::url($userimage) }}" class="img-fluid position-relative" alt="...">--}}
                             <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="dropdown" x-data>
-                            <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi-three-dots-vertical"></i>
                             </button>
 
@@ -53,7 +53,7 @@
                     $blogcomments = App\Models\Blog\BlogComment::where('BlogId', $blog->BlogId )->get();
                     $numberofcomments = count($blogcomments);
                 @endphp
-                <div class="card-footer px-0">
+                <div class="card-footer px-0 pb-0">
                     <ul class="d-flex list-unstyled ul-card-footer justify-content-center">
                         <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
                         <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>
