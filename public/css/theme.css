@@ -37025,6 +37025,9 @@ body {
   min-height: 580px;
 }
 
+.blog-card {
+  margin: 7px 0px !important;
+}
 .blog-card .blog-dropdown-item:hover {
   background-color: #2A3342 !important;
   color: #fff !important;
@@ -37043,6 +37046,10 @@ body {
   color: #fff;
 }
 
+.list-btn {
+  width: 2.6rem !important;
+  height: 2.6rem !important;
+}
 .list-btn:hover {
   color: #2A3342 !important;
   background-color: transparent !important;
@@ -37087,8 +37094,8 @@ body {
 }
 
 .blog-tabs .nav-item .nav-link {
-  min-height: 60px;
-  padding: 8px 18px !important;
+  min-height: 50px;
+  padding: 8px 18px;
 }
 
 .features-img-2 {
@@ -37187,6 +37194,15 @@ fieldset i {
 
 .pt-55 {
   padding-top: 55px;
+}
+
+.pt-100 {
+  padding-top: 100px;
+}
+
+.guest-row {
+  max-width: 1035px;
+  margin: 0 auto;
 }
 
 header nav button:last-child:hover {
@@ -37403,6 +37419,10 @@ header nav button:last-child:hover {
   box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);
 }
 
+.fs-13 {
+  font-size: 13px;
+}
+
 .mt-80 {
   margin-top: 80px;
 }
@@ -37599,8 +37619,11 @@ header nav button:last-child:hover {
   .help-page-tabs .card .card-body {
     min-height: revert !important;
   }
+  .guest-card-description {
+    font-size: 13px !important;
+  }
   .ul-card-footer li span {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
   .rounded-icon {
     width: 30%;
@@ -37818,6 +37841,11 @@ header nav button:last-child:hover {
   .footer-text i {
     font-size: 14px !important;
   }
+  .blog-tabs .nav-item .nav-link {
+    padding: 7px 6px !important;
+    font-size: 8px !important;
+    margin-right: 3px !important;
+  }
 }
 .bulletin-image {
   background-image: url("/images/bulletin-images/bulletin.png");
@@ -37837,7 +37865,7 @@ header nav button:last-child:hover {
 .category-cards .card {
   border: none !important;
   box-shadow: 0px 11px 24px rgba(168, 168, 168, 0.1);
-  margin: 15px 0px !important;
+  margin: 15px 0px;
 }
 .category-cards .green-shadow {
   box-shadow: 0px 20px 40px rgba(1, 182, 130, 0.15) !important;
@@ -37913,7 +37941,15 @@ header nav button:last-child:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  height: 38px;
+  height: 50px;
+}
+
+.bg-guest {
+  background-image: url("/images/guest-book/Guest.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 50px;
 }
 
 .margin-negative {
