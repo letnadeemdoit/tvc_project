@@ -13,7 +13,7 @@
             <div class="card-body p-2">
                 <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="user-img d-flex">
+                        <div class="user-img d-flex align-items-center">
                             {{--                        @if(!is_null($userimage))--}}
                             {{--                            <img src="{{ Storage::url($userimage) }}" class="img-fluid position-relative" alt="...">--}}
                             <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="dropdown" x-data>
-                            <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi-three-dots-vertical"></i>
                             </button>
 
@@ -53,12 +53,10 @@
                     $blogcomments = App\Models\Blog\BlogComment::where('BlogId', $blog->BlogId )->get();
                     $numberofcomments = count($blogcomments);
                 @endphp
-                <div class="card-footer px-0" x-data>
+                <div class="card-footer px-0 pb-0">
                     <ul class="d-flex list-unstyled ul-card-footer justify-content-center">
-                        <li>
-                            <img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span>
-                        </li>
-                        <li><img src="/images/blog-images/comment.png" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>
+                        <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
+                        <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>
                         <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
                     </ul>
                 </div>
@@ -68,36 +66,36 @@
             {{--            @livewire('blog.blog-cards.blog-comments', ['BlogId'=>$blog->BlogId])--}}
             @include('livewire.blog.blog-cards.blog-comments')
 
-</div>
-@endif
+        </div>
+    @endif
 </div>
 
 
 
 @pushonce('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        window.livewire.on('openModal', (id) => {
-            $(`#ce${id}`).modal('show');
-        });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        window.livewire.on('hideModal', (reload = false) => {
-            $('.hideableModal').each(function () {
-                $(this).modal('hide');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            window.livewire.on('openModal', (id) => {
+                $(`#ce${id}`).modal('show');
             });
-            if (reload) {
-                window.location.reload();
-            } else {
-                $('.modal-backdrop').remove();
-                $('body').css('overflow', '');
-                $('body').css('padding-right', '');
-                $('body').removeClass('modal-open');
-            }
         });
-    });
-</script>
+    </script>
+    <script>
+        $(document).ready(function () {
+            window.livewire.on('hideModal', (reload = false) => {
+                $('.hideableModal').each(function () {
+                    $(this).modal('hide');
+                });
+                if (reload) {
+                    window.location.reload();
+                } else {
+                    $('.modal-backdrop').remove();
+                    $('body').css('overflow', '');
+                    $('body').css('padding-right', '');
+                    $('body').removeClass('modal-open');
+                }
+            });
+        });
+    </script>
 @endpushonce

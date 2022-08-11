@@ -187,7 +187,7 @@
                             </button>
                             <button
                                 type="button"
-                                class="btn btn-danger btn-sm"
+                                class="btn btn-danger btn-sm trash-btn"
                                 wire:click.prevent="destroy({{$dt->user_id}})"
                             >
                                 <i class="bi-trash"></i>

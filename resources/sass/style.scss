@@ -104,9 +104,35 @@ body{
         color: #fff;
     }
 }
+.list-btn{
+    &:hover{
+        color: $dark-blue !important;
+    background-color: transparent !important;
+    }
+    &:active{
+        background-color: transparent !important;
+    }
+    &:focus{
+        color: $dark-blue !important;
+        background-color: transparent !important;
+    }
+}
 .blog-card{
     .blog-dropdown{
         margin: 0px -48px 0px 0px !important;
+        border-radius:12px !important;
+        border: 1px solid #E2E2EA;
+        box-shadow: 10px 11px 24px rgba(0, 0, 0, 0.11);
+        width: 160px;
+        height: 160px;
+    }
+    .blog-dropdown-item{
+        padding: 0.80rem 0.6rem !important;
+    }
+    i{
+        &:hover{
+            color: $dark-blue !important;
+        }
     }
 }
 .font-poppins{
@@ -598,6 +624,16 @@ header{
         li {
             span {
                 padding-left: 0px !important;
+                font-size: 13px !important;
+            }
+        }
+    }
+}
+@media only screen and (min-width:1200px) and (max-width:1400px) {
+    .ul-card-footer {
+        li {
+            span {
+                padding-left: 0px !important;
                 font-size: 10px !important;
             }
         }
@@ -1050,7 +1086,7 @@ header{
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    max-width: 100%;
+    height: 38px;
 }
 .margin-negative{
     margin-top: -60px;

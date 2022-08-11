@@ -80,10 +80,13 @@
                 <div class="border-bottom">
                     <ul class="d-flex list-unstyled ul-card-footer mb-0">
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/love.png"
-                                                                            class="img-fluid me-1"></span>200 Likes</p>
+                                                                            class="img-fluid me-2"></span> 200 Likes</p>
                         </li>
-                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/chat.png"
-                                                                            class="img-fluid me-1"></span>400 Comments
+                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/comment.svg"
+                                                                            class="img-fluid me-2"></span> 400 Comments
+                            </p></li>
+                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
+                                                                            class="img-fluid me-2"></span> 70 Views
                             </p></li>
                     </ul>
                 </div>
@@ -221,7 +224,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <div>
-                                <h4 class="fw-normal" style="color: #6D6D6D">Luxery House</h4>
+                                <h4 class="fw-normal" style="color: #6D6D6D">Luxury House</h4>
                             </div>
                             <div>
                                 <p class="mb-0 border-primary category-count">5</p>
@@ -241,7 +244,7 @@
                                 <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Graphic Design</a>
                             </span>
                             <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Technoly</a>
+                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Technology</a>
                             </span>
                             <span>
                                 <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">App Development</a>
@@ -423,7 +426,7 @@
 
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 mb-3">
-                <div class="card ">
+                <div class="card blog-card">
                     <div class="w-100">
                         <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                             HOUSE
@@ -439,7 +442,7 @@
                             <ul class="d-flex justify-content-between list-unstyled ul-card-footer">
                                 <li><p><span><img src="/images/blog-images/love.png" class="img-fluid me-1"></span>200
                                         Likes</p></li>
-                                <li><p><span><img src="/images/blog-images/chat.png" class="img-fluid me-1"></span>34
+                                <li><p><span><img src="/images/blog-images/comment.svg" class="img-fluid me-1"></span>34
                                         Comments</p></li>
                                 <li><p><span><img src="/images/blog-images/eye.png" class="img-fluid me-1"></span>200
                                         Likes</p></li>
@@ -465,7 +468,7 @@
                             <ul class="d-flex justify-content-between list-unstyled ul-card-footer">
                                 <li><p><span><img src="/images/blog-images/love.png" class="img-fluid me-1"></span>200
                                         Likes</p></li>
-                                <li><p><span><img src="/images/blog-images/chat.png" class="img-fluid me-1"></span>34
+                                <li><p><span><img src="/images/blog-images/comment.svg" class="img-fluid me-1"></span>34
                                         Comments</p></li>
                                 <li><p><span><img src="/images/blog-images/eye.png" class="img-fluid me-1"></span>200
                                         Likes</p></li>
@@ -491,7 +494,7 @@
                             <ul class="d-flex justify-content-between list-unstyled ul-card-footer">
                                 <li><p><span><img src="/images/blog-images/love.png" class="img-fluid me-1"></span>200
                                         Likes</p></li>
-                                <li><p><span><img src="/images/blog-images/chat.png" class="img-fluid me-1"></span>34
+                                <li><p><span><img src="/images/blog-images/comment.svg" class="img-fluid me-1"></span>34
                                         Comments</p></li>
                                 <li><p><span><img src="/images/blog-images/eye.png" class="img-fluid me-1"></span>200
                                         Likes</p></li>

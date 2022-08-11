@@ -4,48 +4,48 @@
 
     @endpush
 
-    @include('partials.sub-page-hero-section', ['title' => 'House Blogs']);
+    @include('partials.sub-page-hero-section', ['title' => 'House Blog'])
 
     {{--  center text row  --}}
     <section class="bg-map bg-light pt-5">
-        <div class="blog-text shadow-1-strong rounded text-center  d-flex justify-content-center">
-            <h1 class="text-primary font-jost">Find Your Vacation House</h1>
+        <div class="blog-text shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
+            <h1 class="text-primary font-vintage mb-0">House Blog</h1>
         </div>
-        <h3 class="pt-2 text-center">Choose your Category</h3>
+        <h2 class="pt-2 text-center">Read the best stories here</h2>
         <div class="container  pt-5">
             <div class="row my-5  category-cards">
                 <div class="col-12">
                     <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                                    type="button" role="tab" aria-controls="profile" aria-selected="true">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                    type="button" role="tab" aria-controls="home" aria-selected="true">
                                 ALL
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
                                     type="button" role="tab" aria-controls="profile" aria-selected="true">
-                                <img src="/images/blog-images/beach.png" width="30px" class="me-2" />BEACH HOUSE
+                                <img src="/images/blog-images/beach.svg" width="30px" class="me-2" />BEACH HOUSE
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
                                     type="button" role="tab" aria-controls="contact" aria-selected="true">
-                                <img src="/images/blog-images/building-house.png" width="30px" class="me-2" />TOWN HOUSE
+                                <img src="/images/blog-images/building-house.svg" width="30px" class="me-2" />TOWN HOUSE
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="shopping-tab" data-bs-toggle="tab"
                                     data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping"
                                     aria-selected="true">
-                                <img src="/images/blog-images/tiny-house.png" width="30px" class="me-2" />TINY HOUSE
+                                <img src="/images/blog-images/tiny-house.svg" width="30px" class="me-2" />TINY HOUSE
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="clipboard-tab" data-bs-toggle="tab"
                                     data-bs-target="#clipboard" type="button" role="tab" aria-controls="clipboard"
                                     aria-selected="true">
-                                <img src="/images/blog-images/pool.png" width="30px" class="me-2" />POOL HOUSE
+                                <img src="/images/blog-images/pool.svg" width="30px" class="me-2" />POOL HOUSE
                             </button>
                         </li>
                     </ul>
@@ -56,6 +56,7 @@
                             @livewire('blog.blog-cards.blogs')
                         </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...
+                            ...
                         </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...
                         </div>
