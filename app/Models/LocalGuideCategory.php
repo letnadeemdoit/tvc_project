@@ -12,4 +12,10 @@ class LocalGuideCategory extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function LocalGuide()
+    {
+        return $this->hasMany(LocalGuide::class);
+    }
+
 }

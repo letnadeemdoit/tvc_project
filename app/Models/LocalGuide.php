@@ -38,6 +38,11 @@ class LocalGuide extends Model
     }
 
 
+    public function localGuideCategory()
+    {
+        return $this->belongsTo(LocalGuideCategory::class);
+    }
+
 
     public function house()
     {

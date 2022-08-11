@@ -203,7 +203,7 @@
                         selector: 'textarea#description',
                         setup: function(editor) {
                                 editor.on('change', function(e) {
-                                    @this.set('state.content', editor.getContent(), true);
+                                    @this.set('state.description', editor.getContent(), true);
                                 });
                             }
                         })
