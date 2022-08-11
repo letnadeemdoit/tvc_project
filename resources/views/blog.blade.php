@@ -4,7 +4,7 @@
 
     @endpush
 
-        @include('partials.sub-page-hero-section', ['title' => 'House Blogs']);
+    @include('partials.sub-page-hero-section', ['title' => 'House Blogs']);
 
     {{--  center text row  --}}
     <section class="bg-map bg-light pt-5">
@@ -15,38 +15,37 @@
         <div class="container  pt-5">
             <div class="row my-5  category-cards">
                 <div class="col-12">
-                    <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                    data-bs-target="#home" type="button" role="tab" aria-controls="home"
-                                    aria-selected="true">
-                              <p class="mb-0 fs-3">All</p>
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                    type="button" role="tab" aria-controls="profile" aria-selected="true">
+                                ALL
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
                                     type="button" role="tab" aria-controls="profile" aria-selected="true">
-                                <img src="/images/blog-images/beach.png" width="30px" />
+                                <img src="/images/blog-images/beach.png" width="30px" class="me-2" />BEACH HOUSE
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
                                     type="button" role="tab" aria-controls="contact" aria-selected="true">
-                                <img src="/images/blog-images/building-house.png" width="30px" />
+                                <img src="/images/blog-images/building-house.png" width="30px" class="me-2" />TOWN HOUSE
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="shopping-tab" data-bs-toggle="tab"
                                     data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping"
                                     aria-selected="true">
-                                <img src="/images/blog-images/tiny-house.png" width="30px" />
+                                <img src="/images/blog-images/tiny-house.png" width="30px" class="me-2" />TINY HOUSE
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="clipboard-tab" data-bs-toggle="tab"
                                     data-bs-target="#clipboard" type="button" role="tab" aria-controls="clipboard"
                                     aria-selected="true">
-                                <img src="/images/blog-images/pool.png" width="30px" />
+                                <img src="/images/blog-images/pool.png" width="30px" class="me-2" />POOL HOUSE
                             </button>
                         </li>
                     </ul>
@@ -54,7 +53,7 @@
                     @include('flash-messages')
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        @livewire('blog.blog-cards.blogs')
+                            @livewire('blog.blog-cards.blogs')
                         </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...
                         </div>
@@ -78,23 +77,23 @@
 </x-guest-layout>
 
 @pushonce('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        window.livewire.on('hideModal', (reload = false) => {
-            $('.hideableModal').each(function () {
-                $(this).modal('hide');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            window.livewire.on('hideModal', (reload = false) => {
+                $('.hideableModal').each(function () {
+                    $(this).modal('hide');
+                });
+                if (reload) {
+                    window.location.reload();
+                } else {
+                    $('.modal-backdrop').remove();
+                    $('body').css('overflow', '');
+                    $('body').css('padding-right', '');
+                    $('body').removeClass('modal-open');
+                }
             });
-            if (reload) {
-                window.location.reload();
-            } else {
-                $('.modal-backdrop').remove();
-                $('body').css('overflow', '');
-                $('body').css('padding-right', '');
-                $('body').removeClass('modal-open');
-            }
         });
-    });
-</script>
+    </script>
 @endpushonce
 

@@ -82,7 +82,14 @@ body{
         min-height: 580px;
     }
 }
-
+.blog-card{
+    .blog-dropdown-item{
+        &:hover{
+            background-color: $dark-blue !important;
+            color: #fff !important;
+        }
+    }
+}
 .quote-card{
     .avatar {
         width:5rem !important;
@@ -97,7 +104,11 @@ body{
         color: #fff;
     }
 }
-
+.blog-card{
+    .blog-dropdown{
+        margin: 0px -48px 0px 0px !important;
+    }
+}
 .font-poppins{
     font-family: poppins;
 }
@@ -111,7 +122,14 @@ body{
     background-size: contain;
     height: 40px;
 }
-
+.blog-tabs{
+    .nav-item{
+        .nav-link{
+            min-height: 60px;
+            padding: 8px 18px !important;
+        }
+    }
+}
 .features-img-2{
     background-image: url('/images/images-home/feature-2.svg');
     background-repeat: no-repeat;
@@ -576,6 +594,14 @@ header{
     .row-max-width{
         margin: 0 auto;
     }
+    .ul-card-footer {
+        li {
+            span {
+                padding-left: 0px !important;
+                font-size: 10px !important;
+            }
+        }
+    }
 }
 @media only screen and (min-width:992px) and (max-width:1200px) {
     .help-page-tabs .card {
@@ -608,12 +634,26 @@ header{
     .mt-80{
         margin-top: 65px !important;
     }
+    .ul-card-footer {
+        li {
+            span {
+                font-size: 10px !important;
+            }
+        }
+    }
 }
 @media only screen and (max-width:991px){
     .help-page-tabs{
         .card{
             .card-body{
                 min-height: revert !important;
+            }
+        }
+    }
+    .ul-card-footer {
+        li {
+            span {
+                font-size: 12px !important;
             }
         }
     }
@@ -834,6 +874,14 @@ header{
             }
         }
     }
+    .ul-card-footer {
+        li {
+            span {
+                padding-left:2px !important;
+                font-size: 10px !important;
+            }
+        }
+    }
     .help-page-tabs {
         .nav-tabs {
             .nav-item {
@@ -909,11 +957,21 @@ header{
     height:435px;
 }
 .category-cards{
-
+    .nav-tabs{
+        .nav-item{
+            .nav-link{
+                  color: grey;
+                  font-weight: 800 !important;
+                &.active{
+                    color: #E8604C !important;
+                }
+            }
+        }
+    }
     .card{
         border: none !important;
         box-shadow: 0px 11px 24px rgba(168, 168, 168, 0.1);
-        margin: 30px 0px !important;
+        margin: 15px 0px !important;
     }
 
     .green-shadow{
@@ -999,8 +1057,10 @@ header{
 }
 .ul-card-footer {
     li {
-        p {
-            padding-left: 20px;
+        padding-left: 7px;
+        span {
+            padding-left: 3px;
+            font-size: 13px;
         }
     }
 }
