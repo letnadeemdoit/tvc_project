@@ -91,11 +91,7 @@
                     </ul>
                 </div>
                 <div class="py-4">
-                    @if(isset($blogDetail))
-
-                        {!! !empty($blogDetail->Content) ? $blogDetail->Content : '' !!}
-                    @endif
-
+                    <p>Lorem ipsum</p>
                 </div>
             </div>
             <div class="col-12 col-lg-3">
@@ -429,75 +425,180 @@
                 <div class="card blog-card">
                     <div class="w-100">
                         <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
-                            HOUSE
-                        </button>
+                            HOUSE</button>
                         <a href="">
-                            <img src="/images/blog-images/house-1.png" class="card-img-top  position-relative"
-                                 alt="..."/>
+                            <img src="/images/blog-images/house-3.png" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
                         </a>
+
+
                     </div>
-                    <div class="card-body">
-                        <p>Hi Everyone! I am excited to have you sharing in our new vacation calendar.</p>
-                        <div class="">
-                            <ul class="d-flex justify-content-between list-unstyled ul-card-footer">
-                                <li><p><span><img src="/images/blog-images/love.png" class="img-fluid me-1"></span>200
-                                        Likes</p></li>
-                                <li><p><span><img src="/images/blog-images/comment.svg" class="img-fluid me-1"></span>34
-                                        Comments</p></li>
-                                <li><p><span><img src="/images/blog-images/eye.png" class="img-fluid me-1"></span>200
-                                        Likes</p></li>
+                    <div class="card-body p-2">
+                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="user-img d-flex align-items-center">
+
+                                    {{--                            <img src="/images/blog-images/house-7.png" class="img-fluid position-relative" alt="...">--}}
+                                    <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
+
+                                    <div class="ps-3">
+                                        <strong class="mb-1 text-black fs-4">John Smith</strong>
+                                        <p>30 june 2020</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown" x-data>
+                                    <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi-three-dots-vertical"></i>
+                                    </button>
+
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
+                                           data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"
+                                        >
+                                            <i class="bi-trash me-1"></i>Delete Blog
+                                        </a>
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId()"
+                                           data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
+                                            <i class="bi-pencil me-1"></i> Add Comment
+                                        </a>
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments')">
+                                            <i class="bi-book me-1"></i> Read Comment
+                                        </a>
+
+                                        {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paragraph-text pt-3 text-black text-center text-md-start">
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer px-1 pb-0">
+                            <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
+                                <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
+                                <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
+                                <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4 mb-3">
-                <div class="card ">
+                <div class="card blog-card">
                     <div class="w-100">
                         <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
-                            HOUSE
-                        </button>
+                            HOUSE</button>
                         <a href="">
-                            <img src="/images/blog-images/house-1.png" class="card-img-top  position-relative"
-                                 alt="..."/>
+                            <img src="/images/blog-images/house-4.png" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
                         </a>
+
+
                     </div>
-                    <div class="card-body">
-                        <p>Hi Everyone! I am excited to have you sharing in our new vacation calendar.</p>
-                        <div class="">
-                            <ul class="d-flex justify-content-between list-unstyled ul-card-footer">
-                                <li><p><span><img src="/images/blog-images/love.png" class="img-fluid me-1"></span>200
-                                        Likes</p></li>
-                                <li><p><span><img src="/images/blog-images/comment.svg" class="img-fluid me-1"></span>34
-                                        Comments</p></li>
-                                <li><p><span><img src="/images/blog-images/eye.png" class="img-fluid me-1"></span>200
-                                        Likes</p></li>
+                    <div class="card-body p-2">
+                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="user-img d-flex align-items-center">
+
+                                    {{--                            <img src="/images/blog-images/house-7.png" class="img-fluid position-relative" alt="...">--}}
+                                    <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
+
+                                    <div class="ps-3">
+                                        <strong class="mb-1 text-black fs-4">John Smith</strong>
+                                        <p>30 june 2020</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown" x-data>
+                                    <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi-three-dots-vertical"></i>
+                                    </button>
+
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
+                                           data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"
+                                        >
+                                            <i class="bi-trash me-1"></i>Delete Blog
+                                        </a>
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId()"
+                                           data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
+                                            <i class="bi-pencil me-1"></i> Add Comment
+                                        </a>
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments')">
+                                            <i class="bi-book me-1"></i> Read Comment
+                                        </a>
+
+                                        {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paragraph-text pt-3 text-black text-center text-md-start">
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer px-1 pb-0">
+                            <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
+                                <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
+                                <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
+                                <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4 mb-3">
-                <div class="card ">
+                <div class="card blog-card">
                     <div class="w-100">
                         <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
-                            HOUSE
-                        </button>
+                            HOUSE</button>
                         <a href="">
-                            <img src="/images/blog-images/house-1.png" class="card-img-top  position-relative"
-                                 alt="..."/>
+                            <img src="/images/blog-images/house-5.png" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
                         </a>
+
+
                     </div>
-                    <div class="card-body">
-                        <p>Hi Everyone! I am excited to have you sharing in our new vacation calendar.</p>
-                        <div class="">
-                            <ul class="d-flex justify-content-between list-unstyled ul-card-footer">
-                                <li><p><span><img src="/images/blog-images/love.png" class="img-fluid me-1"></span>200
-                                        Likes</p></li>
-                                <li><p><span><img src="/images/blog-images/comment.svg" class="img-fluid me-1"></span>34
-                                        Comments</p></li>
-                                <li><p><span><img src="/images/blog-images/eye.png" class="img-fluid me-1"></span>200
-                                        Likes</p></li>
+                    <div class="card-body p-2">
+                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="user-img d-flex align-items-center">
+
+                                    {{--                            <img src="/images/blog-images/house-7.png" class="img-fluid position-relative" alt="...">--}}
+                                    <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
+
+                                    <div class="ps-3">
+                                        <strong class="mb-1 text-black fs-4">John Smith</strong>
+                                        <p>30 june 2020</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown" x-data>
+                                    <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi-three-dots-vertical"></i>
+                                    </button>
+
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
+                                           data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"
+                                        >
+                                            <i class="bi-trash me-1"></i>Delete Blog
+                                        </a>
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId()"
+                                           data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
+                                            <i class="bi-pencil me-1"></i> Add Comment
+                                        </a>
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments')">
+                                            <i class="bi-book me-1"></i> Read Comment
+                                        </a>
+
+                                        {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paragraph-text pt-3 text-black text-center text-md-start">
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer px-1 pb-0">
+                            <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
+                                <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
+                                <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
+                                <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
                             </ul>
                         </div>
                     </div>
