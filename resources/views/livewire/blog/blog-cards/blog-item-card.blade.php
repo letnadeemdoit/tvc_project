@@ -29,6 +29,11 @@
                             </button>
 
                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
+                                <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
+                                   data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"
+                                >
+                                    <i class="bi-trash me-1"></i>Delete Blog
+                                </a>
                                 <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId({{ $blog->BlogId }})"
                                    data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
                                     <i class="bi-pencil me-1"></i> Add Comment
@@ -36,11 +41,7 @@
                                 <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$blog->BlogId}})">
                                     <i class="bi-book me-1"></i> Read Comment
                                 </a>
-                                <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
-                                   data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"
-                                >
-                                    <i class="bi-trash me-1"></i>Delete Blog
-                                </a>
+
                                 {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
                             </div>
                         </div>
