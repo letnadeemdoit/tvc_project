@@ -74,7 +74,7 @@
                             <td>
                                 <button
                                     type="button"
-                                    class="btn btn-white btn-sm"
+                                    class="btn btn-success btn-sm"
                                     wire:click.prevent="$emit('showBlogCUModal', true, {{ $dt->BlogId}})"
                                 >
                                     <i class="bi-pencil-fill"></i>
