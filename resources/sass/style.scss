@@ -83,6 +83,7 @@ body{
     }
 }
 .blog-card{
+    margin: 7px 0px !important;
     .blog-dropdown-item{
         &:hover{
             background-color: $dark-blue !important;
@@ -239,7 +240,13 @@ fieldset{
 .pt-55{
     padding-top: 55px;
 }
-
+.pt-100{
+    padding-top: 100px;
+}
+.guest-row{
+    max-width: 1035px;
+    margin: 0 auto;
+}
 header{
     nav{
         button:last-child{
@@ -691,6 +698,9 @@ header{
             }
         }
     }
+    .guest-card-description{
+        font-size: 13px !important;
+    }
     .ul-card-footer {
         li {
             span {
@@ -1021,7 +1031,7 @@ header{
     .card{
         border: none !important;
         box-shadow: 0px 11px 24px rgba(168, 168, 168, 0.1);
-        margin: 15px 0px !important;
+        margin: 15px 0px;
     }
 
     .green-shadow{
@@ -1102,6 +1112,13 @@ header{
     background-size: contain;
     height: 50px;
 }
+.bg-guest{
+    background-image: url('/images/guest-book/Guest.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 50px;
+}
 .margin-negative{
     margin-top: -60px;
 }
@@ -1115,3 +1132,7 @@ header{
     }
 }
 // blog page css ends
+
+// guest book css
+
+//guest book css ends
