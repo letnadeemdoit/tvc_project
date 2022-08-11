@@ -18,3 +18,4 @@
 
     <livewire:settings.guest-book.create-or-update-guset-book-form :user="$user"/>
 </x-settings>
+

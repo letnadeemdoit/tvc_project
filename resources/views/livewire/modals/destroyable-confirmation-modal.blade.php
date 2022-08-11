@@ -1,4 +1,4 @@
-<x-modals.bs-modal>
+<x-modals.bs-modal class="modal-dialog-centered">
     <div class="modal-content">
         <h6 class="modal-title fs-10 text-white"
             id="deleteConfirmationModalLabel">{{ 'Delete!'}}</h6>

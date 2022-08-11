@@ -35,7 +35,7 @@ class GuestBookList extends Component
         'destroyed-successfully' => '$refresh',
         'user-cu-successfully' => '$refresh',
     ];
-//
+
     public function mount()
     {
         $this->model = GuestBook::class;
@@ -48,7 +48,18 @@ class GuestBookList extends Component
 
     public function render()
     {
-        $data = GuestBook::orderBy('id','desc')->paginate(20);
+
+        $data = GuestBook::where('house_id', $this->user->HouseId)
+            ->when($this->search !== '', function ($query) {
+                $query->where(function ($query) {
+                    $query
+                        ->where('name', 'LIKE', "%$this->search%")
+                        ->orWhere('title', 'LIKE', "%$this->search%")
+                        ->orWhere('content', 'LIKE', "%$this->search%");
+                });
+            })
+            ->paginate($this->per_page);
+
         return view('dash.settings.guest-book.guest-book-list',compact('data'));
     }
 

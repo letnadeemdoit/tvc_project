@@ -47,6 +47,13 @@
                         </div>
 
                         <div class="nav-item">
+                            <a class="nav-link" href="{{route('dash.local-guide')}}" data-placement="left">
+                                <i class="bi-calendar-month nav-icon"></i>
+                                <span class="nav-link-title">Local Guide</span>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
                             <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices']) }}"
                                href="#navbarVerticalMenuPagesAccountMenu" role="button" data-bs-toggle="collapse"
                                data-bs-target="#navbarVerticalMenuPagesAccountMenu" aria-expanded="false"
