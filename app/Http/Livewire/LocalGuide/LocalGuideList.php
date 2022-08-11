@@ -52,8 +52,7 @@ class LocalGuideList extends Component
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query
-                        ->where('name', 'LIKE', "%$this->search%")
-                        ->orWhere('description', 'LIKE', "%$this->search%")
+                        ->where('title', 'LIKE', "%$this->search%")
                         ->orWhere('address', 'LIKE', "%$this->search%")
                         ->orWhere('datetime', 'LIKE', "%$this->search%");
                 });

@@ -18,8 +18,8 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search boards by title"
-                            aria-label="Search boards"
+                            placeholder="Search"
+                            aria-label="Search"
                             wire:model.debounce.500ms="search"
                         />
                     </div>
