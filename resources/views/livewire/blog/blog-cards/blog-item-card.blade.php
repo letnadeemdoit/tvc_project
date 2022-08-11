@@ -55,7 +55,7 @@
                     $numberofcomments = count($blogcomments);
                 @endphp
                 <div class="card-footer px-0 pb-0">
-                    <ul class="d-flex list-unstyled ul-card-footer justify-content-center">
+                    <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
                         <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
                         <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>
                         <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
