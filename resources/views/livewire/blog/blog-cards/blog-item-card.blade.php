@@ -3,7 +3,7 @@
         <div class="card blog-card">
             <div class="w-100">
                 <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
-                    HOUSE</button>
+                    BLOG</button>
                 <a href="{{route('guest.blog-details', $blog->BlogId)}}">
                     <img src="{{ !empty($blog->BlogImage) ?  Storage::url($blog->BlogImage) : asset('/images/blog-images/house-1.png') }}" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
                 </a>
