@@ -28608,6 +28608,11 @@ body {
   min-height: 580px;
 }
 
+.blog-card .blog-dropdown-item:hover {
+  background-color: #2A3342 !important;
+  color: #fff !important;
+}
+
 .quote-card .avatar {
   width: 5rem !important;
   height: 5rem !important;
@@ -28619,6 +28624,33 @@ body {
 .quote-card .bi.bi-quote {
   font-size: 18px;
   color: #fff;
+}
+
+.list-btn:hover {
+  color: #2A3342 !important;
+  background-color: transparent !important;
+}
+.list-btn:active {
+  background-color: transparent !important;
+}
+.list-btn:focus {
+  color: #2A3342 !important;
+  background-color: transparent !important;
+}
+
+.blog-card .blog-dropdown {
+  margin: 0px -48px 0px 0px !important;
+  border-radius: 12px !important;
+  border: 1px solid #E2E2EA;
+  box-shadow: 10px 11px 24px rgba(0, 0, 0, 0.11);
+  width: 160px;
+  height: 160px;
+}
+.blog-card .blog-dropdown-item {
+  padding: 0.8rem 0.6rem !important;
+}
+.blog-card i:hover {
+  color: #2A3342 !important;
 }
 
 .font-poppins {
@@ -28635,6 +28667,11 @@ body {
   background-position: center;
   background-size: contain;
   height: 40px;
+}
+
+.blog-tabs .nav-item .nav-link {
+  min-height: 60px;
+  padding: 8px 18px !important;
 }
 
 .features-img-2 {
@@ -28727,7 +28764,7 @@ fieldset i {
 .bg-social-feed {
   background: url("/images/images-home/map.png");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   background-position: center;
 }
 
@@ -29099,6 +29136,16 @@ header nav button:last-child:hover {
   .row-max-width {
     margin: 0 auto;
   }
+  .ul-card-footer li span {
+    padding-left: 0px !important;
+    font-size: 13px !important;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+  .ul-card-footer li span {
+    padding-left: 0px !important;
+    font-size: 10px !important;
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   .help-page-tabs .card {
@@ -29124,14 +29171,26 @@ header nav button:last-child:hover {
   .min-height {
     min-height: 575px !important;
   }
+  .mt-80 {
+    margin-top: 65px !important;
+  }
+  .ul-card-footer li span {
+    font-size: 10px !important;
+  }
 }
 @media only screen and (max-width: 991px) {
   .help-page-tabs .card .card-body {
     min-height: revert !important;
   }
+  .ul-card-footer li span {
+    font-size: 12px !important;
+  }
   .rounded-icon {
     width: 30%;
     margin: -30px auto !important;
+  }
+  .mt-80 {
+    margin-top: 65px !important;
   }
   .padding-top {
     padding-top: 3rem !important;
@@ -29291,6 +29350,10 @@ header nav button:last-child:hover {
   .category-cards .nav-link img {
     width: 19px !important;
   }
+  .ul-card-footer li span {
+    padding-left: 2px !important;
+    font-size: 10px !important;
+  }
   .help-page-tabs .nav-tabs .nav-item .nav-link {
     width: 81px !important;
     margin-left: 2px !important;
@@ -29347,10 +29410,17 @@ header nav button:last-child:hover {
   height: 435px;
 }
 
+.category-cards .nav-tabs .nav-item .nav-link {
+  color: grey;
+  font-weight: 800 !important;
+}
+.category-cards .nav-tabs .nav-item .nav-link.active {
+  color: #E8604C !important;
+}
 .category-cards .card {
   border: none !important;
   box-shadow: 0px 11px 24px rgba(168, 168, 168, 0.1);
-  margin: 30px 0px !important;
+  margin: 15px 0px !important;
 }
 .category-cards .green-shadow {
   box-shadow: 0px 20px 40px rgba(1, 182, 130, 0.15) !important;
@@ -29426,13 +29496,17 @@ header nav button:last-child:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  max-width: 100%;
+  height: 38px;
 }
 
 .margin-negative {
   margin-top: -60px;
 }
 
-.ul-card-footer li p {
-  padding-left: 20px;
+.ul-card-footer li {
+  padding-left: 7px;
+}
+.ul-card-footer li span {
+  padding-left: 3px;
+  font-size: 13px;
 }
