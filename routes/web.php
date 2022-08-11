@@ -78,6 +78,7 @@ Route::middleware([
 
         Route::get('/bulletin-board', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
 
+        Route::get('/local-guide', [DashboardController::class, 'localGuide'])->name('local-guide');
 
         Route::controller(\App\Http\Controllers\SettingController::class)
             ->prefix('settings')

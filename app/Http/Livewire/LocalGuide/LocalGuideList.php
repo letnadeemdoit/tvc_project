@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\Settings\BulletinBoard;
+namespace App\Http\Livewire\LocalGuide;
 
 use App\Http\Livewire\Traits\Destroyable;
-use App\Models\Board;
-use App\Models\User;
+use App\Models\LocalGuide;
+use App\Models\LocalGuideCategory;
 use Livewire\Component;
+use App\Models\User;
 use Livewire\WithPagination;
 
-class BoardItemsList extends Component
+class LocalGuideList extends Component
 {
     use WithPagination;
     use Destroyable;
@@ -16,7 +17,9 @@ class BoardItemsList extends Component
     public $user;
 
     public $search = '';
+
     public $page = 1;
+
     public $per_page = 15;
 
     protected $queryString = [
@@ -34,7 +37,7 @@ class BoardItemsList extends Component
 
     public function mount()
     {
-        $this->model = Board::class;
+        $this->model = LocalGuide::class;
     }
 
     public function updatingSearch()
@@ -44,17 +47,19 @@ class BoardItemsList extends Component
 
     public function render()
     {
-        $data = Board::where('HouseId', $this->user->HouseId)
+
+        $data = LocalGuide::where('house_id', $this->user->HouseId)
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query
-                        ->where('title', 'LIKE', "%$this->search%")
-                        ->orWhere('Board', 'LIKE', "%$this->search%");
+                        ->where('name', 'LIKE', "%$this->search%")
+                        ->orWhere('description', 'LIKE', "%$this->search%")
+                        ->orWhere('address', 'LIKE', "%$this->search%")
+                        ->orWhere('datetime', 'LIKE', "%$this->search%");
                 });
             })
             ->paginate($this->per_page);
 
-        return view('dash.settings.bulletin-board.board-items-list',compact('data'));
-
+        return view('dash.local-guide.local-guide-list',compact('data'));
     }
 }

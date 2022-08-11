@@ -8,6 +8,7 @@ use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Utils;
 
 class DashboardController extends Controller
 {
@@ -67,4 +68,15 @@ class DashboardController extends Controller
         return view('dash.bulletin-board.index',compact('boards'));
 
     }
+
+    public function localGuide(Request $request){
+
+        return view('dash.local-guide.index', [
+            'user' => $request->user()
+        ]);
+
+    }
+
+
+
 }
