@@ -43,7 +43,7 @@ class CreateOrUpdateLocalGuideForm extends Component
         $this->reset(['state', 'file']);
 
         if ($localGuide) {
-            $this->state = \Arr::only($localGuide->toArray(), ['title','name','content','image','status']);
+            $this->state = \Arr::only($localGuide->toArray(), ['local_guide_category_id','title','description','image','address','datetime']);
         }
     }
 
@@ -63,13 +63,15 @@ class CreateOrUpdateLocalGuideForm extends Component
             'title' => 'required|string|max:100',
         ])->validateWithBag('saveLocalGuideCU');
 
+
         $this->localGuide->fill([
             'user_id' => auth()->user()->user_id,
             'house_id' => auth()->user()->HouseId,
-            'name' => $inputs['name'],
+            'local_guide_category_id' => $inputs['local_guide_category_id'] ?? null,
             'title' => $inputs['title'],
-            'status' => $inputs['status'] ?? 0,
-            'content' => $inputs['content'],
+            'description' => $inputs['description'] ?? null,
+            'address' => $inputs['address'] ?? null,
+            'datetime' => $inputs['datetime'] ?? null,
         ])->save();
 
         $this->localGuide->updateFile($this->file);

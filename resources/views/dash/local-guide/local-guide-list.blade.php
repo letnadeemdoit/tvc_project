@@ -36,12 +36,11 @@
                 <thead class="thead-light">
                 <tr>
                     <th style="width: 100px" class="text-center">Image</th>
-                    {{--                    <th>User</th>--}}
-                    {{--                    <th>House</th>--}}
+                    <th>Category</th>
                     <th>Title</th>
-                    <th>Content</th>
-                    <th>Status</th>
-                    <th>Created At</th>
+                    <th>Description</th>
+                    <th>Address</th>
+                    <th>DateTime</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -60,19 +59,40 @@
                             </div>
 
                         </td>
-                        {{-- <td>---</td>--}}
-                        {{-- <td>--</td>--}}
-                        <td>{{$dt->title}}</td>
-                        <td>{!! $dt->content !!}</td>
-                        <td>
-                            <span class="legend-indicator bg-{{$dt->status == 1 ? 'success' : 'danger'}}"></span>
-                            {{ $dt->status == 1  ? "Active" : 'InActive' }}
+                        <td class="fw-600">{{$dt->localGuideCategory->name ?? ''}}</td>
+                        <td>{{$dt->title ?? ''}}</td>
+                        <td>{!! substr($dt->description,0,40) ?? '' !!}
+                            <a href="#!"
+                               class="fw-600"
+                               data-bs-toggle="modal"
+                               data-bs-target="#localGuideDescription{{$dt->id}}Details"
+                            >Click for more Details</a>
                         </td>
-                        <td>{{$dt->created_at}}</td>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="localGuideDescription{{$dt->id}}Details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{$dt->title ?? ''}}'s Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div>
+                                          {!! $dt->description ?? '' !!}
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <td>{{$dt->address ?? ''}}</td>
+                        <td>{{$dt->datetime ?? ''}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
                                 <a class="btn btn-white" href="#"
-                                   wire:click="$emit('showGuestBookCUModal', true, {{$dt->id}})"
+                                   wire:click="$emit('showLocalGuideCUModal', true, {{$dt->id}})"
                                 >
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
