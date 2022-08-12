@@ -36,6 +36,13 @@ Route::controller(GuestController::class)
         Route::get('/login-account','loginAccount')->name('login-account');
         Route::get('/search-house','searchHouse')->name('search-house');
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
+        Route::controller(BlogController::class)
+            ->prefix('blog')
+            ->name('blog.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{post:slug}', 'show')->name('show');
+            });
         Route::get('/blog-details/{BlogId}', [BlogDetail::class])->name('blog-details');
 
     });
