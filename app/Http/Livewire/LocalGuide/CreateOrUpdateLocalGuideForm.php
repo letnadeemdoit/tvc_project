@@ -79,7 +79,7 @@ class CreateOrUpdateLocalGuideForm extends Component
 
         $this->emitSelf('toggle', false);
 
-        $this->emit('user-cu-successfully');
+        $this->emit('local-guide-cu-successfully');
     }
 
     public function updatedFile() {
@@ -89,7 +89,7 @@ class CreateOrUpdateLocalGuideForm extends Component
     public function deleteFile() {
         if ($this->localGuide->id) {
             $this->localGuide->deleteFile();
-            $this->emit('user-cu-successfully');
+            $this->emit('local-guide-cu-successfully');
         }
     }
 

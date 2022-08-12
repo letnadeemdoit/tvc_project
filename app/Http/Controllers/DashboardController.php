@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Board;
+use App\Models\GuestBook;
 use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
@@ -47,12 +48,6 @@ class DashboardController extends Controller
         return view('dash.houses.photo-album.show',compact('album'));
     }
 
-
-    public function guestBook(){
-
-        return view('dash.guest-book.display-as.index');
-
-    }
 
     public function bulletins(){
 

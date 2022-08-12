@@ -3,7 +3,7 @@
     @push('stylesheets')
     @endpush
 
-    @include('partials.sub-page-hero-section', ['title' => 'Guest Book'])
+    @include('partials.sub-page-hero-section', ['title' => 'Local Guide'])
 
     <section class=" bg-light pt-5">
         <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">

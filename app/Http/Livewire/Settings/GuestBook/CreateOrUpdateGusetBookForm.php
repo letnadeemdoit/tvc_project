@@ -76,7 +76,7 @@ class CreateOrUpdateGusetBookForm extends Component
 
         $this->emitSelf('toggle', false);
 
-        $this->emit('user-cu-successfully');
+        $this->emit('guest-book-cu-successfully');
     }
 
     public function updatedFile() {
@@ -86,7 +86,7 @@ class CreateOrUpdateGusetBookForm extends Component
     public function deleteFile() {
         if ($this->guestBook->id) {
             $this->guestBook->deleteFile();
-            $this->emit('user-cu-successfully');
+            $this->emit('guest-book-cu-successfully');
         }
     }
 

@@ -32,7 +32,7 @@ class LocalGuideList extends Component
 
     protected $listeners = [
         'destroyed-successfully' => '$refresh',
-        'user-cu-successfully' => '$refresh',
+        'local-guide-cu-successfully' => '$refresh',
     ];
 
     public function mount()
