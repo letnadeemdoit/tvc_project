@@ -4,10 +4,9 @@
             id="deleteConfirmationModalLabel">{{ 'Delete!'}}</h6>
         <div class="modal-body text-center">
             <div>
-                <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
                     <i class="bi-exclamation"></i>
                 </span>
-
             </div>
 
             <h4 class="fw-bold text-center my-3"

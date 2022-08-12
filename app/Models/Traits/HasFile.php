@@ -71,7 +71,7 @@ trait HasFile
             return mb_substr($segment, 0, 1);
         })->join(' '));
 
-        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
+        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=e8604c&background=e8604c70';
     }
 
     /**

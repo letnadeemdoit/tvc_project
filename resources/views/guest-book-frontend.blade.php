@@ -7,8 +7,7 @@
                 background-repeat: no-repeat;
                 background-position: top left;
                 background-size: auto;
-                background-position-x: 5%!important;
-                background-position-y: 5%!important;
+                background-position-x: 9%;
             }
             .card-01{
                 border-top-left-radius: 17px;
@@ -39,14 +38,6 @@
                 line-height: 50px;
                 text-align: center;
                 font-size: 20px;
-            }
-            .card-01 .height-fix {
-                height: 455px;
-                overflow: hidden;
-            }
-
-            .card-01 .height-fix .card-img-top {
-                width: auto!imporat;
             }
 
             .card-01 .profile-box {
@@ -101,7 +92,7 @@
                     <div class="card card-01 shadow-lg">
                         <p class="guest-card-description pt-100 pb-4 px-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis nec viverra a pellentesque amet. Morbi eget cras donec at aliquam turpis enim. </p>
                         <div class="card-body bg-primary pb-3 pb-lg-5">
-                            <span class="badge-box py-4"><img src="{{asset('/images/blog-images/rounded-image.png')}}" class="rounded-circle" width="60"> </span>
+                            <span class="badge-box py-4"><img src="{{asset('/images/guest-book/girl.svg')}}" class="rounded-circle border-2 border-light" width="60"> </span>
                             <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">Jessika Albert</h4>
                             <p class="card-text font-vintage text-center text-white fw-light">Guest Review</p>
                         </div>

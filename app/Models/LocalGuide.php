@@ -54,5 +54,15 @@ class LocalGuide extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'commentable');
+    }
+
 }
 
