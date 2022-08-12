@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
+<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
     @if(isset($blog))
         <div class="card blog-card">
             <div class="w-100">

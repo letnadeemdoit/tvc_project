@@ -69,7 +69,10 @@ body{
     font-family: vintage-clothes;
     font-weight: 500;
 }
-
+.btn-primary-light{
+    background-color: rgba(232, 96, 76, 0.08);
+    color: $primary;
+}
 .max-width{
     max-width: 360px;
 }
@@ -82,7 +85,11 @@ body{
         min-height: 580px;
     }
 }
+.checked {
+    color: $primary;
+}
 .blog-card{
+    margin: 7px 0px !important;
     .blog-dropdown-item{
         &:hover{
             background-color: $dark-blue !important;
@@ -105,6 +112,8 @@ body{
     }
 }
 .list-btn{
+    width: 2.6rem !important;
+    height: 2.6rem !important;
     &:hover{
         color: $dark-blue !important;
     background-color: transparent !important;
@@ -237,7 +246,13 @@ fieldset{
 .pt-55{
     padding-top: 55px;
 }
-
+.pt-100{
+    padding-top: 100px;
+}
+.guest-row{
+    max-width: 1035px;
+    margin: 0 auto;
+}
 header{
     nav{
         button:last-child{
@@ -457,6 +472,17 @@ header{
     }
 
 }
+.fs-13{
+    font-size: 13px;
+}
+.fs-11{
+    font-size: 11px;
+}
+.recipe-card-footer {
+    span {
+        font-size: 14px;
+    }
+}
 .mt-80{
     margin-top: 80px;
 }
@@ -519,6 +545,7 @@ header{
     }
     }
 }
+
 .bg-image{
     background: url("/images/login-images/login.png");
     background-repeat: no-repeat;
@@ -615,7 +642,19 @@ header{
     }
 
 }
-
+@media only screen and (min-width:768px) and (max-width:991px) {
+    .title-fs{
+        font-size: 12px !important;
+    }
+    .date-fs{
+        font-size: 12px !important;
+    }
+    .recipe-card-footer {
+        span {
+            font-size: 11px !important;
+        }
+    }
+}
 @media only screen and (min-width:1200px) and (max-width:1570px) {
     .row-max-width{
         margin: 0 auto;
@@ -626,6 +665,11 @@ header{
                 padding-left: 0px !important;
                 font-size: 13px !important;
             }
+        }
+    }
+    .recipe-card-footer {
+        span {
+            font-size: 12px !important;
         }
     }
 }
@@ -643,6 +687,15 @@ header{
     .help-page-tabs .card {
         min-width: 190px !important;
         max-width: 190px !important;
+    }
+    .fs-13{
+        font-size: 11px;
+    }
+    .date-fs{
+        font-size: 9px !important;
+    }
+    .title-fs{
+        font-size: 12px !important;
     }
     .feature-cards {
         .card{
@@ -677,6 +730,11 @@ header{
             }
         }
     }
+    .recipe-card-footer {
+        span {
+            font-size: 10px !important;
+        }
+    }
 }
 @media only screen and (max-width:991px){
     .help-page-tabs{
@@ -685,6 +743,9 @@ header{
                 min-height: revert !important;
             }
         }
+    }
+    .guest-card-description{
+        font-size: 13px !important;
     }
     .ul-card-footer {
         li {
@@ -1016,7 +1077,7 @@ header{
     .card{
         border: none !important;
         box-shadow: 0px 11px 24px rgba(168, 168, 168, 0.1);
-        margin: 15px 0px !important;
+        margin: 15px 0px;
     }
 
     .green-shadow{
@@ -1097,6 +1158,13 @@ header{
     background-size: contain;
     height: 50px;
 }
+.bg-guest{
+    background-image: url('/images/guest-book/Guest.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 50px;
+}
 .margin-negative{
     margin-top: -60px;
 }
@@ -1110,3 +1178,7 @@ header{
     }
 }
 // blog page css ends
+
+// guest book css
+
+//guest book css ends
