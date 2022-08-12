@@ -6,6 +6,7 @@ use App\Http\Controllers\HouseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\BulletinBoard\BulletinCards\Cards;
+use App\Http\Livewire\Blog\BlogCards\BlogDetail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,14 +29,17 @@ Route::controller(GuestController::class)
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/blog-cards','blog')->name('blog');
-        Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
+//        Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
         Route::get('/guest-login','guestLogin')->name('guest-login');
         Route::get('/book-cards','guestBook')->name('guest-book');
         Route::get('/login-account','loginAccount')->name('login-account');
         Route::get('/search-house','searchHouse')->name('search-house');
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
+        Route::get('/blog-details/{BlogId}', [BlogDetail::class])->name('blog-details');
+
     });
+
 //Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem']);
 
 

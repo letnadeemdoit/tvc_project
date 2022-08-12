@@ -46,13 +46,18 @@
     @endpush
 
     <div class="">
-        <img src="{{asset('images/blog-images/blog.png')}}" class="w-100 blog-detail-image" alt="">
+        @if(isset($blogDetail->BlogImage) && !empty($blogDetail->BlogImage))
+            <img src="{{ Storage::url($blogDetail->BlogImage) }}" class="w-100 blog-detail-image" alt="" />
+        @else
+            <img src="{{asset('images/blog-images/blog.png')}}" class="w-100 blog-detail-image" alt="" />
+        @endif
+{{--        <img src="{{asset('images/blog-images/blog.png')}}" class="w-100 blog-detail-image" alt="">--}}
     </div>
 
     <div class="container">
         <div class="card border-0 rounded-20 py-3" style="margin-top: -70px;">
             <div class="card-body">
-                <h1 class="text-w-50 lh-30">35 Stellar Graphic Design Blogs to Keep You Educated and Inspired</h1>
+                <h1 class="text-w-50 lh-30">{{ $blogDetail->Subject ? $blogDetail->Subject : '' }}</h1>
 
                 <div class="d-flex align-items-center mt-4">
                     <div class="flex-shrink-0">
@@ -66,14 +71,17 @@
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
-                        <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
+                        <p class="mb-0" style="color: #B6B4B4"><small>{{\Carbon\Carbon::parse($blogDetail->BlogDate)->format('d M Y')}}</small></p>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-
+        @php
+            $blogcomments = App\Models\Blog\BlogComment::where('BlogId', $blogDetail->BlogId )->get();
+            $numberofcomments = count($blogcomments);
+        @endphp
     <div class="container my-5 pt-5">
         <div class="row">
             <div class="col-12 col-lg-9 pe-0 pe-lg-5">
@@ -83,7 +91,7 @@
                                                                             class="img-fluid me-2"></span> 200 Likes</p>
                         </li>
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/comment.svg"
-                                                                            class="img-fluid me-2"></span> 400 Comments
+                                                                            class="img-fluid me-2"></span> {{$numberofcomments}} Comments
                             </p></li>
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
                                                                             class="img-fluid me-2"></span> 70 Views
@@ -91,7 +99,7 @@
                     </ul>
                 </div>
                 <div class="py-4">
-                    <p>Lorem ipsum</p>
+                    {!! $blogDetail->Content !!}
                 </div>
             </div>
             <div class="col-12 col-lg-3">
@@ -265,7 +273,7 @@
         <div class="row mb-5">
             <div class="col-12 col-lg-6">
                 <div class="d-flex justify-content-between">
-                    <h4>15 comments</h4>
+                    <h4>{{$numberofcomments}} comments</h4>
                     <div><label for="">Sort By</label>
                         <select name="" id="" class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
                             <option value="">Sort</option>
@@ -284,14 +292,24 @@
                         <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-1" width="50"
                              height="50" style="object-fit: cover" alt="...">
                     </div>
-                    <div class="flex-grow-1 ms-3">
-                        <div class="border">
-                            <textarea name="" id="" cols="30" class="form-control border-0" rows="3"></textarea>
+
+                        <div class="flex-grow-1 ms-3">
+                            <form wire:submit.prevent="addBlogComment({{ $blogDetail->BlogId }})">
+                            <div class="border">
+                        <textarea id="Content" name="Content" wire:model.defer="Content" class="form-control" placeholder="Description"
+                                  rows="6"></textarea>
+                            </div>
+                            @error('Content')
+                            <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
+                            @enderror
+
+                            <div class="text-start text-lg-end py-3 px-3" style="background-color: #2D394C10">
+                                <button class="btn btn-secondary px-5" style="background-color: #2D394C">Post</button>
+                            </div>
+                            </form>
+
                         </div>
-                        <div class="text-start text-lg-end py-3 px-3" style="background-color: #2D394C10">
-                            <button class="btn btn-secondary px-5" style="background-color: #2D394C">Post</button>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -176,21 +176,53 @@
                 </div>
                 <div class="row">
 
-                    <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="title">Content</label>
+
+                    <div
+                        class="mb-3"
+                        @modal-is-shown.window="
+                        window.tinymce.init({
+                        ...window.TINYMCE_DEFAULT_CONFIG,
+                        selector: 'textarea#Content',
+                        setup: function(editor) {
+                                editor.on('change', function(e) {
+                                    @this.set('state.Content', editor.getContent(), true);
+                                });
+                            }
+                        })
+                    "
+
+                    >
+                        <label class="form-label" for="board_textarea">Content</label>
                         <textarea
                             class="form-control @error('Content') is-invalid @enderror"
                             wire:model.defer="state.Content"
                             name="Content"
-                            placeholder="Content"
-                            rows="4"
-                            id="board_textarea"
+                            placeholder=""
+                            rows="3"
+                            id="Content"
 
                         ></textarea>
                         @error('Content')
                         <span class="invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
+
+
+{{--                    <div class="mb-3 col-12 col-lg-12">--}}
+{{--                        <label class="form-label" for="title">Content</label>--}}
+{{--                        <textarea--}}
+{{--                            class="form-control @error('Content') is-invalid @enderror"--}}
+{{--                            wire:model.defer="state.Content"--}}
+{{--                            name="Content"--}}
+{{--                            placeholder="Content"--}}
+{{--                            rows="4"--}}
+{{--                            id="board_textarea"--}}
+
+{{--                        ></textarea>--}}
+{{--                        @error('Content')--}}
+{{--                        <span class="invalid-feedback">{{$message}}</span>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
 
 
                 </div>
