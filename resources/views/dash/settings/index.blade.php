@@ -100,8 +100,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-board') }}"
-                                href="{{ route('dash.settings.bulletin-board') }}">
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-boards') }}"
+                                href="{{ route('dash.settings.bulletin-boards') }}">
                                 <i class="bi-bell nav-icon"></i> Bulletin Board
                                 </a>
                             </li>
@@ -118,8 +118,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-book') }}"
-                                href="{{ route('dash.settings.guest-book') }}">
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
+                                href="{{ route('dash.settings.guest-books') }}">
                                 <i class="bi-bell nav-icon"></i> Guest Book
                                 </a>
                             </li>

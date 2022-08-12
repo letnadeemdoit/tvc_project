@@ -38,7 +38,7 @@ class GuestBook extends Model
 
     public function house()
     {
-        return $this->belongsTo(House::class, 'HouseId', 'HouseID');
+        return $this->belongsTo(House::class, 'HouseId', 'house_id');
     }
 
     public function user()

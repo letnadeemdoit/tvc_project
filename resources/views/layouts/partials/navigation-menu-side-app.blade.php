@@ -68,7 +68,7 @@
                             {{--                                <a class="nav-link {{ link_is_active_with_class('dash.account.invoices') }}" href="{{ route('dash.account.invoices') }}">Invoices</a>--}}
                             {{--                            </div>--}}
                             <div id="navbarVerticalMenuPagesAccountMenu"
-                                 class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-homes', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.bulletin-board', 'dash.settings.audit-history', 'dash.settings.blog', 'dash.settings.guest-book'], 'show') }}"
+                                 class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-homes', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.bulletin-boards', 'dash.settings.audit-history', 'dash.settings.blog', 'dash.settings.guest-books'], 'show') }}"
                                  data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}"
                                    href="{{ route('dash.settings.account-information') }}">Account Information</a>
@@ -84,14 +84,14 @@
                                    href="{{ route('dash.settings.notifications') }}">Notifications</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
                                    href="{{ route('dash.settings.vacations') }}">Vacations</a>
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-board') }}"
-                                   href="{{ route('dash.settings.bulletin-board') }}">Bulletin Board</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-boards') }}"
+                                   href="{{ route('dash.settings.bulletin-boards') }}">Bulletin Board</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.audit-history') }}"
                                    href="{{ route('dash.settings.audit-history') }}">Audit History</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.blog') }}"
                                    href="{{ route('dash.settings.blog') }}">Blog</a>
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-book') }}"
-                                   href="{{ route('dash.settings.guest-book') }}">Guest Book</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
+                                   href="{{ route('dash.settings.guest-books') }}">Guest Book</a>
                             </div>
                         </div>
                     </div>

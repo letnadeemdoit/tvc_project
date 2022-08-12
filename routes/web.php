@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BulletinBoardController;
+use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LocalGuideController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\BulletinBoard\BulletinCards\Cards;
-use App\Http\Livewire\Blog\BlogCards\BlogDetail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +31,7 @@ Route::controller(GuestController::class)
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/blog-cards','blog')->name('blog');
-//        Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
+//      Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
         Route::get('/guest-login','guestLogin')->name('guest-login');
         Route::get('/book-cards','guestBook')->name('guest-book');
@@ -38,6 +40,7 @@ Route::controller(GuestController::class)
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
         Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
         Route::get('/local-guide','localGuide')->name('local-guide');
+
         Route::controller(BlogController::class)
             ->prefix('blog')
             ->name('blog.')
@@ -47,9 +50,28 @@ Route::controller(GuestController::class)
             });
         Route::get('/blog-details/{BlogId}', [BlogDetail::class])->name('blog-details');
 
-    });
 
-//Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem']);
+        Route::controller(GuestBookController::class)
+            ->prefix('guest-book')
+            ->name('guest-book.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+            });
+
+        Route::controller(LocalGuideController::class)
+            ->prefix('local-guide')
+            ->name('local-guide.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+            });
+
+        Route::controller(BulletinBoardController::class)
+            ->prefix('bulletin-board')
+            ->name('bulletin-board.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+            });
+    });
 
 
 Route::controller(\App\Http\Controllers\Select2Controller::class)
@@ -58,9 +80,6 @@ Route::controller(\App\Http\Controllers\Select2Controller::class)
     ->group(function () {
         Route::get('houses', 'houses')->name('houses');
     });
-
-
-
 
 require_once __DIR__ . '/fortify.php';
 //
@@ -78,20 +97,14 @@ Route::middleware([
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
-
         Route::resource('users', UserController::class);
-
         Route::get('/blogs', [DashboardController::class, 'blogs'])->name('blogs');
         Route::get('/houses', [DashboardController::class, 'houses'])->name('houses');
         Route::get('/photo-albums', [DashboardController::class, 'photoAlbum'])->name('photo-albums');
         Route::get('/photo-albums/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album');
-        Route::get('/guest-book', [DashboardController::class, 'guestBook'])->name('guest-book');
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
-
-
-        Route::get('/bulletin-board', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
-
-        Route::get('/local-guide', [DashboardController::class, 'localGuide'])->name('local-guide');
+        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
+        Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
 
         Route::controller(\App\Http\Controllers\SettingController::class)
             ->prefix('settings')
@@ -105,9 +118,9 @@ Route::middleware([
                 Route::get('additional-homes', 'additionalHomes')->name('additional-homes');
                 Route::get('notifications', 'notifications')->name('notifications');
                 Route::get('vacations', 'vacations')->name('vacations');
-                Route::get('bulletin-board', 'bulletinBoard')->name('bulletin-board');
+                Route::get('bulletin-boards', 'bulletinBoard')->name('bulletin-boards');
                 Route::get('audit-history', 'auditHistory')->name('audit-history');
                 Route::get('blog', 'blog')->name('blog');
-                Route::get('guest-book', 'guestBook')->name('guest-book');
+                Route::get('guest-books', 'guestBook')->name('guest-books');
             });
     });
