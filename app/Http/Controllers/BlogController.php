@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index() {
-        return '';
+    public function index(Request $request) {
+        return view('blog.index', [
+            'user' => $request->user()
+        ]);
     }
 
-    public function show(Blog $post) {
-        return '';
+    public function show(Request $request, Blog $post) {
+        return view('blog.post-card', [
+            'user' => $request->user()
+        ]);
     }
 }
