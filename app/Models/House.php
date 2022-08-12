@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Photo\Photo;
+use App\Models\Traits\HasFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class House extends Model
 {
     use HasFactory;
+    use HasFile;
 
     protected $table = 'House';
 
@@ -23,6 +26,7 @@ class House extends Model
      */
     protected $fillable = [
         'HouseID',
+        'image',
         'HouseName',
         'Address1',
         'Address2',
@@ -43,6 +47,45 @@ class House extends Model
         'Audit_LastName',
         'Audit_Email',
     ];
+
+    /**
+     * Get the URL to the file.
+     *
+     * @return string
+     */
+    public function getFileUrl($column = 'image')
+    {
+        if ($column === 'image') {
+            if ($this->image === null) {
+                $photos = $this->photos;
+                if (count($photos) > 0) {
+                    $photoPath = "photos/photo_".$this->HouseID."_".$photos[0]->PhotoId.".jpg";
+                    if (Storage::disk($this->fileDisk())->exists($photoPath)) {
+                        $this->{$column} = "photos/photo_".$this->HouseID."_".$photos[0]->PhotoId.".jpg";
+                    }
+                }
+            }
+        }
+
+        return $this->{$column}
+            ? Storage::disk($this->fileDisk())->url($this->{$column})
+            : $this->defaultFileUrl($column);
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->HouseName;
+    }
+
+    public function getAddressAttribute()
+    {
+        return implode(', ',  array_filter([$this->Address1, $this->Address2, $this->City, $this->State, $this->ZipCode]));
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class, 'HouseId', 'HouseID');
+    }
 
     public function users()
     {

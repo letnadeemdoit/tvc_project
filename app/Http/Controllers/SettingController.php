@@ -34,9 +34,9 @@ class SettingController extends Controller
         ]);
     }
 
-    public function additionalHomes(Request $request)
+    public function additionalHouses(Request $request)
     {
-        return view('dash.settings.additional-homes.index', [
+        return view('dash.settings.additional-houses.index', [
             'user' => $request->user()
         ]);
     }

@@ -68,7 +68,7 @@
                             {{--                                <a class="nav-link {{ link_is_active_with_class('dash.account.invoices') }}" href="{{ route('dash.account.invoices') }}">Invoices</a>--}}
                             {{--                            </div>--}}
                             <div id="navbarVerticalMenuPagesAccountMenu"
-                                 class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-homes', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.bulletin-boards', 'dash.settings.audit-history', 'dash.settings.blog', 'dash.settings.guest-books'], 'show') }}"
+                                 class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-houses', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.bulletin-boards', 'dash.settings.audit-history', 'dash.settings.blog', 'dash.settings.guest-books'], 'show') }}"
                                  data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}"
                                    href="{{ route('dash.settings.account-information') }}">Account Information</a>
@@ -78,8 +78,8 @@
                                    href="{{ route('dash.settings.users') }}">Users</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
                                    href="{{ route('dash.settings.rooms') }}">Rooms</a>
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-homes') }}"
-                                   href="{{ route('dash.settings.additional-homes') }}">Additional Homes</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
+                                   href="{{ route('dash.settings.additional-houses') }}">Additional Homes</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
                                    href="{{ route('dash.settings.notifications') }}">Notifications</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
