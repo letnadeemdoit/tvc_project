@@ -43,7 +43,7 @@
                                 <div class="w-100">
                                     <a class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                                         HOUSE</a>
-                                    <a href="">
+                                    <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                         <img src="/images/blog-images/house-5.png" class="card-img-top  position-relative rounded-3 p-2" style="height: 250px !important;object-fit: cover" alt="..." />
                                     </a>
 
@@ -57,9 +57,11 @@
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
-                                                <span class="ps-2">(34 Reviews)</span>
+                                                <span class="ps-2">({{$dt->reviews->count()}} Reviews)</span>
                                             </li>
-                                            <li class="pt-2 pt-md-0"><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>25 Comments</span></li>
+                                            <li class="pt-2 pt-md-0"><img src="/images/blog-images/comment.svg" class="img-fluid me-1">
+                                                <span>{{$dt->comments->count()}}  Comments</span>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

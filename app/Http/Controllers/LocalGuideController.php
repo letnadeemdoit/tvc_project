@@ -14,4 +14,12 @@ class LocalGuideController extends Controller
         return view('local-guide.index',compact('data'));
 
     }
+
+    public function show($id){
+
+        $localGuide = LocalGuide::findOrFail($id);
+
+        return view('local-guide.show',compact('localGuide'));
+
+    }
 }
