@@ -30193,9 +30193,6 @@ body {
 .blog-card {
   margin: 7px 0px !important;
 }
-.blog-card .blog-dropdown-item {
-  font-size: 0.7rem !important;
-}
 .blog-card .blog-dropdown-item:hover {
   background-color: #2A3342 !important;
   color: #fff !important;
