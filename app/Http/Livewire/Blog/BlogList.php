@@ -40,8 +40,7 @@ class BlogList extends Component
 
     public function render()
     {
-        $usera = Auth::user();
-        $data = Blog::where('HouseId', $usera->HouseId)
+        $data = Blog::where('HouseId', $this->user->HouseId)
             ->when($this->category !== 'all', function ($query) {
                 $query->whereHas('category', function ($query) {
                    $query->where('slug', $this->category);
