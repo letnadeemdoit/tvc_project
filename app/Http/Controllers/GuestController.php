@@ -92,6 +92,9 @@ class GuestController extends Controller
     public function localGuide(){
         return view('local-guide');
     }
+    public function photoAlbum(){
+        return view('photo-album');
+    }
     public function guestBook(){
         $guestbook = GuestBook::paginate(10);
         return view('guest-book', compact('guestbook'));

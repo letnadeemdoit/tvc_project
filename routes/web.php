@@ -40,6 +40,7 @@ Route::controller(GuestController::class)
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
         Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
         Route::get('/local-guide','localGuide')->name('local-guide');
+        Route::get('/photo-album','photoAlbum')->name('photo-album');
 
         Route::controller(BlogController::class)
             ->prefix('blog')
