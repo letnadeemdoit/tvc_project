@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('local_guides', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('local_guide_category_id')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('house_id');
-            $table->string('title');
-            $table->longText('description')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('image')->nullable();
-            $table->string('address')->nullable();
-            $table->dateTime('datetime')->nullable();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('description')->nullable();
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('local_guides');
+        Schema::dropIfExists('categories');
     }
 };

@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('Blog', function (Blueprint $table) {
-            $table->unsignedBigInteger('Category_Id')->nullable();
-            $table->string('Slug')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('image')->nullable()->change();
         });
     }
 
@@ -27,8 +28,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('Blog', function (Blueprint $table) {
-            $table->dropColumn('Category_Id');
-            $table->dropColumn('Slug');
+            $table->dropColumn('category_id');
+            $table->dropColumn('slug');
+            $table->string('image')->change();
         });
     }
 };
