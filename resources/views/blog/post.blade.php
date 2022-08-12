@@ -112,7 +112,7 @@
                             <div class="flex-shrink-0">
                                 <img
                                     class="avatar-img rounded-circle"
-                                    src="{{ auth()->user()->profile_photo_url }}"
+                                    src="{{ $auth()->user()->first_name }}"
                                     :src="avatarUrl"
                                     alt="Image"
                                     width="60" height="60" style="object-fit: cover"

@@ -91,7 +91,6 @@ body{
 .blog-card{
     margin: 7px 0px !important;
     .blog-dropdown-item{
-        font-size: 0.7rem !important;
         &:hover{
             background-color: $dark-blue !important;
             color: #fff !important;
@@ -117,7 +116,7 @@ body{
     height: 2.6rem !important;
     &:hover{
         color: $dark-blue !important;
-        background-color: transparent !important;
+    background-color: transparent !important;
     }
     &:active{
         background-color: transparent !important;
@@ -151,10 +150,10 @@ body{
     .blog-dropdown-item{
         padding: 0.80rem 0.5rem !important;
         &:hover {
-            i {
-                background-color: #fff !important;
-                color: $dark-blue;
-            }
+                i {
+                        background-color: #fff !important;
+                        color: $dark-blue;
+                    }
         }
     }
     i{
@@ -1114,7 +1113,6 @@ header{
             }
         }
     }
-
 }
 
 // bulletin page css

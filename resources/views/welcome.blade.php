@@ -166,7 +166,7 @@
         {{--   cards-section   --}}
 
         <section class="section-min-h bg-cards-section">
-            <div class="container pt-5">
+            <div class="container pt-5 pt-md-5 pt-lg-3">
                 <div
                     class="features-img-2  text-center shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage mb-0 pt-2">Find Your Vacation House</h1>
@@ -228,7 +228,7 @@
         </section>
         {{-- section 3   --}}
 
-        <section class=" py-5 bg-white">
+        <section class=" py-2 py-sm-5 bg-white">
             <div class="container">
                 <div class="row align-items-center min-height">
 

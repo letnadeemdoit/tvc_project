@@ -40,6 +40,7 @@ Route::controller(GuestController::class)
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
         Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
         Route::get('/local-guide','localGuide')->name('local-guide');
+        Route::get('/photo-album','photoAlbum')->name('photo-album');
 
         Route::controller(BlogController::class)
             ->prefix('blog')
@@ -116,7 +117,7 @@ Route::middleware([
                 Route::get('billing', 'billing')->name('billing');
                 Route::get('users', 'users')->name('users');
                 Route::get('rooms', 'rooms')->name('rooms');
-                Route::get('additional-homes', 'additionalHomes')->name('additional-homes');
+                Route::get('additional-houses', 'additionalHouses')->name('additional-houses');
                 Route::get('notifications', 'notifications')->name('notifications');
                 Route::get('vacations', 'vacations')->name('vacations');
                 Route::get('bulletin-boards', 'bulletinBoard')->name('bulletin-boards');

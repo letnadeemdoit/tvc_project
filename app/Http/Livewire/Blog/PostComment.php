@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Blog;
 
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogComment;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class PostComment extends Component
@@ -28,10 +29,15 @@ class PostComment extends Component
         }
         return view('blog.post-comment', compact('BlogComments'));
     }
+
     public function addBlogComment()
     {
+        $this->resetErrorBag();
         $mydatetime =date("Y-m-d H:i:s");
         $inputs = $this->state;
+        Validator::make($inputs, [
+            'Content' => 'required|max:200',
+        ]);
         BlogComment::create([
             'BlogId'        => $this->blog->BlogId,
             'HouseId'        => $this->blog->HouseId,

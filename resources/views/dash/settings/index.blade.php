@@ -82,8 +82,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-homes') }}"
-                                href="{{ route('dash.settings.additional-homes') }}">
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
+                                href="{{ route('dash.settings.additional-houses') }}">
                                 <i class="bi-gear nav-icon"></i> Additional Homes
                                 </a>
                             </li>
