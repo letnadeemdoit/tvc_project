@@ -24,14 +24,13 @@
 
                             <div class="ps-3">
                                 <strong class="mb-1 text-black fs-4">{{$blog->Author}}</strong>
-                                <p>{{\Carbon\Carbon::parse($blog->BlogDate)->format('d/m/Y')}}</p>
+                                <p><small>{{\Carbon\Carbon::parse($blog->BlogDate)->format('d M Y')}}</small></p>
                             </div>
                         </div>
                         <div class="dropdown" x-data>
-                            <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi-three-dots-vertical"></i>
+                            <button type="button" class="btn btn-ghost-secondary btn-icon btn-lg rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi-three-dots-vertical fa-lg"></i>
                             </button>
-
                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
                                 <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"
@@ -45,7 +44,6 @@
                                 <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$blog->BlogId}})">
                                     <i class="bi-book me-1"></i> Read Comment
                                 </a>
-
                                 {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
                             </div>
                         </div>

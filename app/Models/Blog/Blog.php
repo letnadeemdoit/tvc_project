@@ -2,6 +2,7 @@
 
 namespace App\Models\Blog;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HasFile;
@@ -10,9 +11,22 @@ class Blog extends Model
 {
     use HasFactory;
     use HasFile;
+
+    /**
+     * @var string
+     */
     protected $table = 'Blog';
+
+    /**
+     * @var string
+     */
     protected $primaryKey = 'BlogId';
+
+    /**
+     * @var bool
+     */
     public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,17 +44,30 @@ class Blog extends Model
         'Audit_FirstName',
         'Audit_LastName',
         'Audit_Email',
-        'BlogImage',
+        'image',
+        'slug',
+        'category_id'
     ];
 
 
-    protected function defaultFileUrl($column = 'BlogImage')
+    /**
+     * @param $column
+     * @return string
+     */
+    protected function defaultFileUrl($column = 'image'): string
     {
         $name = trim(collect(explode(' ', $this->Subject))->map(function ($segment) {
             return mb_substr($segment, 0, 1);
         })->join(' '));
 
-        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
+        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

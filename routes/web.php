@@ -6,6 +6,7 @@ use App\Http\Controllers\HouseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\BulletinBoard\BulletinCards\Cards;
+use App\Http\Livewire\Blog\BlogCards\BlogDetail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,7 @@ Route::controller(GuestController::class)
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/blog-cards','blog')->name('blog');
-        Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
+//        Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
         Route::get('/guest-login','guestLogin')->name('guest-login');
         Route::get('/book-cards','guestBook')->name('guest-book');
@@ -37,7 +38,17 @@ Route::controller(GuestController::class)
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
         Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
         Route::get('/local-guide','localGuide')->name('local-guide');
+        Route::controller(BlogController::class)
+            ->prefix('blog')
+            ->name('blog.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{post:slug}', 'show')->name('show');
+            });
+        Route::get('/blog-details/{BlogId}', [BlogDetail::class])->name('blog-details');
+
     });
+
 //Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem']);
 
 

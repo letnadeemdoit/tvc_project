@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class Blogs extends Component
 {
     use WithPagination;
-    public $Content ,$BlogComments = [], $BlogId, $userimage;
+    public $Content = 'wieuo eoiew iwqjo' ,$BlogComments = [], $BlogId, $userimage;
     protected $listeners = [
         'readBlogComments',
     ];
@@ -73,6 +73,7 @@ class Blogs extends Component
     }
     public function addBlogComment()
     {
+        dd($this->BlogId);
 //        $this->validate();
         $blog = Blog::where('BlogId', $this->BlogId)->first();
         $mydatetime =date("Y-m-d H:i:s");

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('local_guide_category_id')->nullable();
             $table->unsignedBigInteger('user_id');
-           $table->unsignedBigInteger('house_id');
+            $table->unsignedBigInteger('house_id');
             $table->string('title');
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
