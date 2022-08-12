@@ -62,11 +62,15 @@
                         <td class="fw-600">{{$dt->localGuideCategory->name ?? ''}}</td>
                         <td>{{$dt->title ?? ''}}</td>
                         <td>{!! substr($dt->description,0,40) ?? '' !!}
-                            <a href="#!"
-                               class="fw-600"
-                               data-bs-toggle="modal"
-                               data-bs-target="#localGuideDescription{{$dt->id}}Details"
-                            >Click for more Details</a>
+
+                           @if(isset($dt->description) && strlen($dt->description) > 41)
+                                <a href="#!"
+                                   class="fw-600"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#localGuideDescription{{$dt->id}}Details"
+                                >Click for more Details</a>
+                           @endif
+
                         </td>
 
                         <!-- Modal -->
