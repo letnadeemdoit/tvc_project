@@ -73,7 +73,7 @@ class CreateOrUpdateBoardItemForm extends Component
         $this->boardItem->updateFile($this->file);
 
         $this->emitSelf('toggle', false);
-        $this->emit('user-cu-successfully');
+        $this->emit('bulletin-board-cu-successfully');
     }
 
     public function updatedFile() {
@@ -83,7 +83,7 @@ class CreateOrUpdateBoardItemForm extends Component
     public function deleteFile() {
         if ($this->boardItem->id) {
             $this->boardItem->deleteFile();
-            $this->emit('user-cu-successfully');
+            $this->emit('bulletin-board-cu-successfully');
         }
     }
 

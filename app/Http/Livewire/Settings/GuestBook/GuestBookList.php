@@ -33,7 +33,7 @@ class GuestBookList extends Component
 
     protected $listeners = [
         'destroyed-successfully' => '$refresh',
-        'user-cu-successfully' => '$refresh',
+        'guest-book-cu-successfully' => '$refresh',
     ];
 
     public function mount()
