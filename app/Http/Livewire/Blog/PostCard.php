@@ -11,7 +11,6 @@ class PostCard extends Component
 
     public function render()
     {
-        dd($this->post->user());
         return view('blog.post-card');
     }
 }
