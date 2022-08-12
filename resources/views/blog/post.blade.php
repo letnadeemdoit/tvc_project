@@ -56,13 +56,14 @@
 
                 <div class="d-flex align-items-center mt-4">
                     <div class="flex-shrink-0">
-                        <img
-                            class="avatar-img rounded-circle"
-                            src="{{ auth()->user()->profile_photo_url }}"
-                            :src="avatarUrl"
-                            alt="Image"
-                            width="60" height="60" style="object-fit: cover"
-                        />
+{{--                        <img--}}
+{{--                            class="avatar-img rounded-circle"--}}
+{{--                            src="{{ auth()->user()->profile_photo_url }}"--}}
+{{--                            :src="avatarUrl"--}}
+{{--                            alt="Image"--}}
+{{--                            width="60" height="60" style="object-fit: cover"--}}
+{{--                        />--}}
+                        <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
@@ -98,168 +99,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-3">
-                <div class="mb-4">
-                    <div class="input-group border rounded-1" style="border-color: #E8604C35 !important;">
-                        <input type="text" class="form-control border-0 outline-0" placeholder="Search here..."
-                               aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn"><i class="bi-search text-primary"></i></button>
-                    </div>
-                </div>
-                <div class="card border-0 mb-4">
-                    <div class="card-body">
-                        <h4 class="mb-3">Latest Post</h4>
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="flex-shrink-0">
-                                <img
-                                    class="avatar-img rounded-circle"
-                                    src="{{ $auth()->user()->first_name }}"
-                                    :src="avatarUrl"
-                                    alt="Image"
-                                    width="60" height="60" style="object-fit: cover"
-                                />
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
-                                <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="flex-shrink-0">
-                                <img
-                                    class="avatar-img rounded-circle"
-                                    src="{{ auth()->user()->profile_photo_url }}"
-                                    :src="avatarUrl"
-                                    alt="Image"
-                                    width="60" height="60" style="object-fit: cover"
-                                />
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
-                                <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="flex-shrink-0">
-                                <img
-                                    class="avatar-img rounded-circle"
-                                    src="{{ auth()->user()->profile_photo_url }}"
-                                    :src="avatarUrl"
-                                    alt="Image"
-                                    width="60" height="60" style="object-fit: cover"
-                                />
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
-                                <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="flex-shrink-0">
-                                <img
-                                    class="avatar-img rounded-circle"
-                                    src="{{ auth()->user()->profile_photo_url }}"
-                                    :src="avatarUrl"
-                                    alt="Image"
-                                    width="60" height="60" style="object-fit: cover"
-                                />
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
-                                <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="flex-shrink-0">
-                                <img
-                                    class="avatar-img rounded-circle"
-                                    src="{{ auth()->user()->profile_photo_url }}"
-                                    :src="avatarUrl"
-                                    alt="Image"
-                                    width="60" height="60" style="object-fit: cover"
-                                />
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
-                                <p class="mb-0" style="color: #B6B4B4">23 JUNE 202</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card border-0 mb-4 categories-card">
-                    <div class="card-body">
-                        <h4 class="mb-3">Categories</h4>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div>
-                                <h4 class="fw-normal" style="color: #6D6D6D">Beach House</h4>
-                            </div>
-                            <div>
-                                <p class="mb-0 border-primary category-count">5</p>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div>
-                                <h4 class="fw-normal" style="color: #6D6D6D">Town House</h4>
-                            </div>
-                            <div>
-                                <p class="mb-0 border-primary category-count">5</p>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div>
-                                <h4 class="fw-normal" style="color: #6D6D6D">Beach House</h4>
-                            </div>
-                            <div>
-                                <p class="mb-0 border-primary category-count">5</p>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div>
-                                <h4 class="fw-normal" style="color: #6D6D6D">Tiny House</h4>
-                            </div>
-                            <div>
-                                <p class="mb-0 border-primary category-count">5</p>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div>
-                                <h4 class="fw-normal" style="color: #6D6D6D">Luxury House</h4>
-                            </div>
-                            <div>
-                                <p class="mb-0 border-primary category-count">5</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card border-0 mb-4 tags-card">
-                    <div class="card-body">
-                        <h4 class="mb-3">Tags</h4>
-                        <div>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Business</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Graphic Design</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Technology</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">App Development</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Website Design</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Business Idea</a>
-                            </span>
-
-                        </div>
-
-                    </div>
-                </div>
-
+                <livewire:blog.latest-post :user="$user" :post="$post" />
             </div>
         </div>
     </div>
@@ -328,190 +168,80 @@
     <div class="container my-5 py-5">
         <h3>Keep Reading</h3>
 
+
+        @php
+
+        $relatedBlog = \App\Models\Blog\Blog::where('HouseId',$post->HouseId)->get();
+
+
+        @endphp
+
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 mb-3">
+{{--            <livewire:blog.house-related-blog :house="$post" />--}}
+            @foreach($relatedBlog as $blog)
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
                 <div class="card blog-card">
                     <div class="w-100">
-                        <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
-                            HOUSE</button>
-                        <a href="">
-                            <img src="/images/blog-images/house-3.png" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
+                        <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">
+                            FEATURE BLOG
+                        </button>
+                        <a href="{{route('guest.blog.show', $blog->slug)}}">
+                            <img src="{{ $blog->getFileUrl() }}" class="card-img-top  position-relative" style="height: 310px !important;object-fit: cover" alt="..." />
                         </a>
-
-
                     </div>
                     <div class="card-body p-2">
-                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
+                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-1" style="min-height: 210px">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="user-img d-flex align-items-center">
-
-                                    {{--                            <img src="/images/blog-images/house-7.png" class="img-fluid position-relative" alt="...">--}}
                                     <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
 
                                     <div class="ps-3">
-                                        <strong class="mb-1 text-black fs-4">John Smith</strong>
-                                        <p>30 june 2020</p>
+                                        <strong class="mb-1 text-black fs-4">{{$blog->Author}}</strong>
+                                        <p class="mb-0 fs-13 pt-1">{{\Carbon\Carbon::parse($blog->BlogDate)->format('d M Y')}}</p>
                                     </div>
                                 </div>
                                 <div class="dropdown" x-data>
                                     <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi-three-dots-vertical"></i>
                                     </button>
-
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
                                         <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
-                                           data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"
+                                           data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"
                                         >
-                                            <i class="bi-trash me-1"></i>Delete Blog
+                                            <i class="bi-trash me-2"></i>Delete Blog
                                         </a>
-                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId()"
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId({{ $blog->BlogId }})"
                                            data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
-                                            <i class="bi-pencil me-1"></i> Add Comment
+                                            <i class="bi-pencil me-2"></i> Add Comment
                                         </a>
-                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments')">
-                                            <i class="bi-book me-1"></i> Read Comment
+                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$blog->BlogId}})">
+                                            <i class="bi-book me-2"></i> Read Comment
                                         </a>
-
                                         {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
                                     </div>
                                 </div>
                             </div>
                             <div class="paragraph-text pt-3 text-black text-center text-md-start">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                <p>    {!!  Str::limit($blog->Content, 80)  !!}</p>
                             </div>
                         </div>
-                        <div class="card-footer px-1 pb-0">
+                        @php
+                            $blogcomments = App\Models\Blog\BlogComment::where('BlogId', $blog->BlogId )->get();
+                            $numberofcomments = count($blogcomments);
+                        @endphp
+                        <div class="card-footer px-0 pb-0">
                             <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
                                 <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
-                                <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
+                                <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>
                                 <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 mb-3">
-                <div class="card blog-card">
-                    <div class="w-100">
-                        <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
-                            HOUSE</button>
-                        <a href="">
-                            <img src="/images/blog-images/house-4.png" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
-                        </a>
+            @endforeach
 
-
-                    </div>
-                    <div class="card-body p-2">
-                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="user-img d-flex align-items-center">
-
-                                    {{--                            <img src="/images/blog-images/house-7.png" class="img-fluid position-relative" alt="...">--}}
-                                    <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
-
-                                    <div class="ps-3">
-                                        <strong class="mb-1 text-black fs-4">John Smith</strong>
-                                        <p>30 june 2020</p>
-                                    </div>
-                                </div>
-                                <div class="dropdown" x-data>
-                                    <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi-three-dots-vertical"></i>
-                                    </button>
-
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
-                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
-                                           data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"
-                                        >
-                                            <i class="bi-trash me-1"></i>Delete Blog
-                                        </a>
-                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId()"
-                                           data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
-                                            <i class="bi-pencil me-1"></i> Add Comment
-                                        </a>
-                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments')">
-                                            <i class="bi-book me-1"></i> Read Comment
-                                        </a>
-
-                                        {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="paragraph-text pt-3 text-black text-center text-md-start">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                            </div>
-                        </div>
-                        <div class="card-footer px-1 pb-0">
-                            <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
-                                <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
-                                <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
-                                <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 mb-3">
-                <div class="card blog-card">
-                    <div class="w-100">
-                        <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
-                            HOUSE</button>
-                        <a href="">
-                            <img src="/images/blog-images/house-5.png" class="card-img-top  position-relative" style="height: 250px !important;object-fit: cover" alt="..." />
-                        </a>
-
-
-                    </div>
-                    <div class="card-body p-2">
-                        <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-3" style="height: 220px">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="user-img d-flex align-items-center">
-
-                                    {{--                            <img src="/images/blog-images/house-7.png" class="img-fluid position-relative" alt="...">--}}
-                                    <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
-
-                                    <div class="ps-3">
-                                        <strong class="mb-1 text-black fs-4">John Smith</strong>
-                                        <p>30 june 2020</p>
-                                    </div>
-                                </div>
-                                <div class="dropdown" x-data>
-                                    <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi-three-dots-vertical"></i>
-                                    </button>
-
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
-                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
-                                           data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"
-                                        >
-                                            <i class="bi-trash me-1"></i>Delete Blog
-                                        </a>
-                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId()"
-                                           data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
-                                            <i class="bi-pencil me-1"></i> Add Comment
-                                        </a>
-                                        <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments')">
-                                            <i class="bi-book me-1"></i> Read Comment
-                                        </a>
-
-                                        {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="paragraph-text pt-3 text-black text-center text-md-start">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                            </div>
-                        </div>
-                        <div class="card-footer px-1 pb-0">
-                            <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
-                                <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
-                                <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
-                                <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

@@ -36,6 +36,7 @@ class Blog extends Model
     protected $fillable = [
         'BlogId',
         'HouseId',
+        'user_id',
         'Subject',
         'Content',
         'Author',

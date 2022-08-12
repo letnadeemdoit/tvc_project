@@ -77,9 +77,9 @@
 {{--            </div>--}}
 
             @endforeach
-                <div class="">
-                    <button class="w-100 btn btn-primary">Load More comments</button>
-                </div>
+{{--                <div class="">--}}
+{{--                    <button class="w-100 btn btn-primary">Load More comments</button>--}}
+{{--                </div>--}}
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
     <div class="card blog-card">
         <div class="w-100">
             <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">
-                FEATURE HOUSE
+                FEATURE BLOG
             </button>
             <a href="{{route('guest.blog.show', $post->slug)}}">
                 <img src="{{ $post->getFileUrl() }}" class="card-img-top  position-relative" style="height: 310px !important;object-fit: cover" alt="..." />
