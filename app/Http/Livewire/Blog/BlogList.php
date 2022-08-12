@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Blog;
 
 use App\Models\Blog\Blog;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -39,7 +40,8 @@ class BlogList extends Component
 
     public function render()
     {
-        $data = Blog::where('HouseId', $this->user->HouseId)
+        $usera = Auth::user();
+        $data = Blog::where('HouseId', $usera->HouseId)
             ->when($this->category !== 'all', function ($query) {
                 $query->whereHas('category', function ($query) {
                    $query->where('slug', $this->category);
