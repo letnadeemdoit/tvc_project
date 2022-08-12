@@ -59,6 +59,7 @@ class CreateOrUpdateBlogItemForm extends Component
         }else{
             unset($inputs['BlogImage']);
         }
+        $slug = str_slug($inputs['Subject']);
 
         Validator::make($inputs, [
             'Subject' => 'required|string|max:100',
@@ -77,6 +78,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Audit_FirstName' => $user->Audit_FirstName,
             'Audit_LastName' => $user->Audit_LastName,
             'Audit_Email' => $user->Audit_Email,
+            'slug' => $slug,
         ])->save();
 
         $this->blogItem->updateFile($this->file, 'BlogImage');

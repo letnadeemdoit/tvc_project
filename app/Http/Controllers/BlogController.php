@@ -14,8 +14,9 @@ class BlogController extends Controller
     }
 
     public function show(Request $request, Blog $post) {
-        return view('blog.post-card', [
-            'user' => $request->user()
+        return view('blog.post', [
+            'user' => $request->user(),
+            'post' => $post
         ]);
     }
 }
