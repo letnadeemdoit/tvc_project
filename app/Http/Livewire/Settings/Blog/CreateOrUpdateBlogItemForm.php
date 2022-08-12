@@ -6,6 +6,7 @@ use App\Models\Blog\Blog;
 use App\Models\Blog\BlogComment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -50,7 +51,6 @@ class CreateOrUpdateBlogItemForm extends Component
     public function saveBlogItemCU()
     {
         $this->resetErrorBag();
-        $user = Auth::user();
         $date = date('Y/m/d H:i:s');
         $inputs = $this->state;
 
@@ -59,7 +59,7 @@ class CreateOrUpdateBlogItemForm extends Component
         }else{
             unset($inputs['BlogImage']);
         }
-        $slug = str_slug($inputs['Subject']);
+        $slug = Str::slug($inputs['Subject']);
 
         Validator::make($inputs, [
             'Subject' => 'required|string|max:100',
@@ -68,16 +68,16 @@ class CreateOrUpdateBlogItemForm extends Component
         ])->validateWithBag('saveBlogItemCU');
 
         $this->blogItem->fill([
-            'HouseId' => $user->HouseId,
+            'HouseId' => $this->user->HouseId,
             'Subject' => $inputs['Subject'],
             'Content' => $inputs['Content'],
-            'Author' => $user->first_name,
+            'Author' => $this->user->first_name,
             'BlogDate' => $date,
-            'Audit_user_name' => $user->Audit_user_name,
-            'Audit_Role' => $user->Audit_Role,
-            'Audit_FirstName' => $user->Audit_FirstName,
-            'Audit_LastName' => $user->Audit_LastName,
-            'Audit_Email' => $user->Audit_Email,
+            'Audit_user_name' => $this->user->Audit_user_name,
+            'Audit_Role' => $this->user->Audit_Role,
+            'Audit_FirstName' => $this->user->Audit_FirstName,
+            'Audit_LastName' => $this->user->Audit_LastName,
+            'Audit_Email' => $this->user->Audit_Email,
             'slug' => $slug,
         ])->save();
 
