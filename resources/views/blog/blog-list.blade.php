@@ -34,7 +34,7 @@
         </ul>
     </div>
 
-    <div class="row">
+    <div class="row category-cards">
         @foreach($data as $dt)
             <livewire:blog.post-card :post="$dt"/>
         @endforeach
