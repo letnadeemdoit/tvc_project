@@ -74,8 +74,10 @@
                                    href="{{ route('dash.settings.account-information') }}">Account Information</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}"
                                    href="{{ route('dash.settings.billing') }}">Billing</a>
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}"
-                                   href="{{ route('dash.settings.users') }}">Users</a>
+                                @can('viewAny', \App\Models\User::class)
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}"
+                                       href="{{ route('dash.settings.users') }}">Users</a>
+                                @endcan
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
                                    href="{{ route('dash.settings.rooms') }}">Rooms</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"

@@ -36,8 +36,9 @@
                         id="role"
                         wire:model.defer="state.role"
                     >
-                        <option value="Owner">Owner</option>
-                        <option value="Guest" {{ $isGuestAlreadyExists ? 'disabled' : '' }}>Guest</option>
+                        <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
+                        <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
+                        <option value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists ? 'disabled' : '' }}>Guest</option>
                     </select>
                     @error('role')
                         <span class="invalid-feedback">{{ $message }}</span>

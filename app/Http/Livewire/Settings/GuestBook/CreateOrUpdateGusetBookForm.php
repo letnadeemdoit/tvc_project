@@ -39,7 +39,7 @@ class CreateOrUpdateGusetBookForm extends Component
         $this->guestBook = $guestBook;
         $this->reset(['state', 'file']);
 
-        if ($guestBook) {
+        if ($guestBook->id) {
             $this->state = \Arr::only($guestBook->toArray(), ['title','name','content','image','status']);
         }
     }

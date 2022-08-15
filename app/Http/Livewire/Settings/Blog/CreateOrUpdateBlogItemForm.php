@@ -43,7 +43,7 @@ class CreateOrUpdateBlogItemForm extends Component
         $this->blogItem = $blogItem;
         $this->reset(['state', 'file']);
 
-        if ($blogItem) {
+        if ($blogItem->BlogId) {
             $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Content', 'BlogImage']);
         }
     }

@@ -41,7 +41,7 @@ class CreateOrUpdateBoardItemForm extends Component
         $this->boardItem = $boardItem;
         $this->reset(['state', 'file']);
 
-        if ($boardItem) {
+        if ($boardItem->id) {
             $this->state = \Arr::only($boardItem->toArray(), ['title', 'image', 'Board']);
         }
     }

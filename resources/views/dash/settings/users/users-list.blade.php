@@ -140,15 +140,16 @@
             >
                 <thead class="thead-light">
                 <tr>
-{{--                    <th class="table-column-pe-0">--}}
-{{--                        <div class="form-check">--}}
-{{--                            <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">--}}
-{{--                            <label class="form-check-label" for="datatableCheckAll"></label>--}}
-{{--                        </div>--}}
-{{--                    </th>--}}
+                    {{--                    <th class="table-column-pe-0">--}}
+                    {{--                        <div class="form-check">--}}
+                    {{--                            <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">--}}
+                    {{--                            <label class="form-check-label" for="datatableCheckAll"></label>--}}
+                    {{--                        </div>--}}
+                    {{--                    </th>--}}
                     <th>Username</th>
                     <th>Full name</th>
                     <th>Role</th>
+                    <th style="width: 120px">Enabled</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -156,12 +157,12 @@
                 <tbody>
                 @foreach($data as $dt)
                     <tr>
-{{--                        <td class="table-column-pe-0">--}}
-{{--                            <div class="form-check">--}}
-{{--                                <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">--}}
-{{--                                <label class="form-check-label" for="datatableCheckAll1"></label>--}}
-{{--                            </div>--}}
-{{--                        </td>--}}
+                        {{--                        <td class="table-column-pe-0">--}}
+                        {{--                            <div class="form-check">--}}
+                        {{--                                <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">--}}
+                        {{--                                <label class="form-check-label" for="datatableCheckAll1"></label>--}}
+                        {{--                            </div>--}}
+                        {{--                        </td>--}}
                         <td>
                             <a class="d-flex align-items-center" href="javascript;">
                                 <div class="avatar avatar-circle">
@@ -177,21 +178,41 @@
                             <span class="d-block h5 mb-0">{{ $dt->name }}</span>
                         </td>
                         <td>{{ $dt->role }}</td>
+                        <td x-data="" style="width: 120px">
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value="1"
+                                    id="enable_or_disable_{{$dt->user_id}}"
+                                    {{ $dt->is_confirmed ? 'checked' : '' }}
+                                    @change.debounce="@this.isConfirmed({{$dt->is_confirmed ? 0 : 1}}, {{ $dt->user_id }})"
+                                    wire:loading.attr="disabled"
+                                />
+                                <label class="form-check-label" for="enable_or_disable_{{$dt->user_id}}">
+                                    <x-jet-action-message on="saved-{{$dt->user_id}}" class="text-success" />
+                                </label>
+                            </div>
+                        </td>
                         <td>
-                            <button
-                                type="button"
-                                class="btn btn-white btn-sm"
-                                wire:click.prevent="$emit('showUserCUModal', true, {{ $dt->user_id}})"
-                            >
-                                <i class="bi-pencil-fill"></i>
-                            </button>
-                            <button
-                                type="button"
-                                class="btn btn-danger btn-sm trash-btn"
-                                wire:click.prevent="destroy({{$dt->user_id}})"
-                            >
-                                <i class="bi-trash"></i>
-                            </button>
+                            @can('update', $dt)
+                                <button
+                                    type="button"
+                                    class="btn btn-white btn-sm"
+                                    wire:click.prevent="$emit('showUserCUModal', true, {{ $dt->user_id}})"
+                                >
+                                    <i class="bi-pencil-fill"></i>
+                                </button>
+                            @endcan
+                            @can('delete', $dt)
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm trash-btn"
+                                    wire:click.prevent="destroy({{$dt->user_id}})"
+                                >
+                                    <i class="bi-trash"></i>
+                                </button>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

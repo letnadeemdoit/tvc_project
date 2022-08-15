@@ -19,9 +19,11 @@
     <livewire:settings.account-information.change-password-form :user="$user"/>
     <!-- End Card -->
 
-    <!-- Card -->
-    <livewire:settings.account-information.guest-password-form :user="$user"/>
-    <!-- End Card -->
+    @if($user->is_admin && $user->hasGuest())
+        <!-- Card -->
+        <livewire:settings.account-information.guest-password-form :user="$user"/>
+        <!-- End Card -->
+    @endif
 
     <!-- Card -->
     <livewire:settings.account-information.update-preferences-form :user="$user"/>

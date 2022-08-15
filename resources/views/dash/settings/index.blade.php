@@ -69,12 +69,14 @@
                                 <i class="bi-at nav-icon"></i> Billing
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}"
-                                href="{{ route('dash.settings.users') }}">
-                                <i class="bi-key nav-icon"></i> Users
-                                </a>
-                            </li>
+                            @can('viewAny', \App\Models\User::class)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}"
+                                    href="{{ route('dash.settings.users') }}">
+                                    <i class="bi-key nav-icon"></i> Users
+                                    </a>
+                                </li>
+                            @endcan
                             <li class="nav-item">
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
                                 href="{{ route('dash.settings.rooms') }}">
