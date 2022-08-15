@@ -2,33 +2,36 @@
 <x-guest-layout>
     @push('stylesheets')
         <style>
+
             .card-01{
                 background-image: url("/images/guest-book/quotes.svg") !important;
                 background-repeat: no-repeat;
                 background-position: top left;
-                background-size: auto;
-                background-position-x: 5%!important;
-                background-position-y: 5%!important;
+                background-size: 55px;
+                background-position-x: 9.5%;
+                background-position-y: 4%;
             }
+
             .card-01{
-                border-top-left-radius: 17px;
-                border-top-right-radius: 17px;
+                border-top-left-radius: 12px;
+                border-top-right-radius: 12px;
             }
 
             .card-01 .card-body {
                 position: relative;
                 padding-top: 40px;
-                border-bottom-left-radius: 17px;
-                border-bottom-right-radius: 17px;
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
             }
-            .card-01 .badge-box {
+            .card-01 .badge-box img{
                 position: absolute;
-                top: -50px;
+                top: -36px;
                 left: 50%;
-                width: 100px;
-                height: 100px;
-                margin-left: -50px;
+                width: 70px;
+                height: 70px;
+                margin-left: -32px;
                 text-align: center;
+                border: 3px solid #fff;
             }
             .card-01 .badge-box i {
                 background: #006eff;
@@ -46,7 +49,7 @@
             }
 
             .card-01 .height-fix .card-img-top {
-                width: auto!imporat;
+                width: auto!important;
             }
 
             .card-01 .profile-box {
@@ -89,7 +92,7 @@
 
     @include('partials.sub-page-hero-section', ['title' => 'Guest Book'])
 
-    <section class=" bg-light pt-5">
+    <section class=" bg-light pt-55">
         <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
             <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
         </div>
@@ -103,38 +106,38 @@
                         @if($loop->iteration % 2 == 0)
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg my-4 my-md-0" style="min-height: 380px">
-                                    <div class="guest-card-description pt-100 pb-4 px-5" style="min-height: 270px;">
+                                    <div class="guest-card-description pt-75 pb-4 px-5" style="min-height: 270px;">
                                         <h4>{{$dt->title }}</h4>
                                         {!! $dt->content     !!}</div>
-                                    <div class="card-body bg-dark-blue pb-3 pb-lg-5">
+                                    <div class="card-body   bg-card-body pb-5">
                                         <span class="badge-box py-4">
                                             <img src="{{$dt->getFileUrl('image')}}"
                                                  alt="{{ $dt->title ?? '' }}"
                                                  class="rounded-circle" width="60"/>
                                         </span>
                                         <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
-                                        <p class="card-text text-center text-white-70 fw-light">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                        <p class="card-text text-center text-white-light fw-light">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                     </div>
                                 </div>
                             </div>
                         @else
-                            <div class="col-md-6 col-lg-4 mb-4">
+                            <!-- <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg" style="min-height: 380px">
-                                    <div class="guest-card-description pt-100 pb-4 px-5" style="min-height: 270px;">
+                                    <div class="guest-card-description pt-75 pb-4 px-5" style="min-height: 270px;">
                                         <h4>{{$dt->title }}</h4>
                                         {!! $dt->content     !!}
-                                    </div>
-                                    <div class="card-body bg-primary pb-3 pb-lg-5">
-                                        <span class="badge-box py-4">
-                                            <img src="{{$dt->getFileUrl('image')}}"
-                                                 alt="{{ $dt->name ?? '' }}"
-                                                 class="rounded-circle" width="60"/>
+                            </div>
+                            <div class="card-body pb-5">
+                        <span class="badge-box py-4">
+                            <img src="{{$dt->getFileUrl('image')}}"
+                                         alt="{{ $dt->name ?? '' }}"
+                                         class="rounded-circle" width="60"/>
                                         </span>
                                         <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
                                         <p class="card-text text-center text-white-70 fw-light">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         @endif
                     @endforeach
                 @endif
