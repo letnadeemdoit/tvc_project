@@ -31224,14 +31224,6 @@ header nav button:last-child:hover {
   font-size: 13px;
 }
 
-.bg-card-body:nth-child(1) {
-  background-color: #2A3342 !important;
-}
-
-.bg-card-body:nth-child(2) {
-  background-color: #E8604C !important;
-}
-
 .bg-guide {
   background-image: url("/images/local-guide/Guide.svg");
   background-repeat: no-repeat;
