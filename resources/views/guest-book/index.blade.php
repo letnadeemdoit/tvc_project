@@ -16,7 +16,9 @@
                 border-top-left-radius: 12px;
                 border-top-right-radius: 12px;
             }
-
+            .card-01 .bg-card-body{
+                background-color: #E8604C;
+            }
             .card-01 .card-body {
                 position: relative;
                 padding-top: 40px;
@@ -116,7 +118,7 @@
                                                  class="rounded-circle" width="60"/>
                                         </span>
                                         <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
-                                        <p class="card-text text-center text-white-light fw-light">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                        <p class="card-text text-center text-white-light fw-light text-white">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                     </div>
                                 </div>
                             </div>
