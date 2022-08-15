@@ -8,13 +8,16 @@
         <div class="flex-grow-1 ms-3">
             <form wire:submit.prevent="addBlogComment()">
                 <div class="border">
-                        <textarea id="Content" name="Content" wire:model.defer="state.Content" class="form-control" placeholder="Description"
-                                  rows="6"></textarea>
+                    <textarea id="Content" name="Content"
+                      wire:model.defer="state.Content"
+                      class="form-control @error('Content') is-invalid @enderror"
+                      placeholder="Description"
+                      rows="6">
+                    </textarea>
+                    @error('Content')
+                    <span class="invalid-feedback">{{$message}}</span>
+                    @enderror
                 </div>
-                @error('Content')
-                <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
-                @enderror
-
                 <div class="text-start text-lg-end py-3 px-3" style="background-color: #2D394C10">
                     <button class="btn btn-secondary px-5" style="background-color: #2D394C">Post</button>
                 </div>
@@ -33,8 +36,8 @@
                          height="50" style="object-fit: cover" alt="...">
                 </div>
                 <div class="flex-grow-1 ms-3 mb-3">
-                    <h5 class="mb-0">{{$comment['Author']}}</h5>
-                    <p class="mb-0" style="font-size: 12px">{!! $comment['Content'] !!}</p>
+                    <h5 class="mb-0">{{$comment->Author}}</h5>
+                    <p class="mb-0" style="font-size: 12px">{!! $comment->Content !!}</p>
                     <p class="mb-0" style="font-size: 12px">
                             <span class="me-1">
                                 <a href="" class="text-muted">Like</a>
@@ -42,8 +45,14 @@
                         <span class="mx-1">
                                 <a href="" class="text-muted">Reply</a>
                             </span>.
+                        @php
+                            $startTime = \Carbon\Carbon::parse($comment->BlogDate);
+                            $finishTime = \Carbon\Carbon::now();
+                            $totalDuration = $startTime->diff($finishTime)->format('%H:%I:%S');
+                            //$totalDuration = $finishTime->diffForHumans($startTime);
+                        @endphp
                         <span class="mx-1 text-muted">
-                                24h
+                                {{$totalDuration}}
                             </span>
                     </p>
                 </div>
@@ -77,9 +86,11 @@
 {{--            </div>--}}
 
             @endforeach
+{{--            @if(count($BlogComments)>3)--}}
 {{--                <div class="">--}}
 {{--                    <button class="w-100 btn btn-primary">Load More comments</button>--}}
 {{--                </div>--}}
+{{--            @endif--}}
         </div>
     </div>
 </div>

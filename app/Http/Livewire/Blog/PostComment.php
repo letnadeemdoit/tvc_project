@@ -17,16 +17,7 @@ class PostComment extends Component
 
     public function render()
     {
-        $BlogComments = [];
-        $comments = BlogComment::where('BlogId', $this->blog->BlogId)->get();
-        foreach ($comments as $comment){
-            $BlogComments[]= [
-                "CommentId" => $comment->CommentId,
-                "Content" => $comment->Content,
-                "Author" => $comment->Author,
-                "BlogDate" => $comment->BlogDate,
-            ];
-        }
+        $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->get();
         return view('blog.post-comment', compact('BlogComments'));
     }
 
@@ -37,7 +28,8 @@ class PostComment extends Component
         $inputs = $this->state;
         Validator::make($inputs, [
             'Content' => 'required|max:200',
-        ]);
+        ])->validateWithBag('addBlogComment');
+
         BlogComment::create([
             'BlogId'        => $this->blog->BlogId,
             'HouseId'        => $this->blog->HouseId,
@@ -50,6 +42,6 @@ class PostComment extends Component
             'Audit_Email' => $this->blog->Audit_Email,
             'Content' => $inputs['Content'],
         ]);
-        session()->flash('success', 'New Blog Comment Added successfully...');
+        $this->reset('state');
     }
 }

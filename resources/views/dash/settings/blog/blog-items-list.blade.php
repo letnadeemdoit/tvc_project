@@ -57,7 +57,7 @@
                             <td>
                                 <a class="d-flex align-items-center" href="javascript;">
                                     <div class="avatar avatar-circle">
-                                        <img class="avatar-img" src="{{ auth()->user()->profile_photo_url }}" :src="avatarUrl" alt="Image Description">
+                                        <img class="avatar-img" src="{{ auth()->user()->profile_photo_url }}" alt="Image Description">
                                     </div>
                                     <div class="ms-3">
                                     <span class="d-block h5 text-inherit mb-0">{{$dt->Audit_FirstName ?? ''}} <i
