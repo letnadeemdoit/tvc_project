@@ -170,8 +170,8 @@
 
 
         @php
-
-        $relatedBlog = \App\Models\Blog\Blog::where('HouseId',$post->HouseId)->get();
+            //Blog::where('HouseId', $post->HouseId)->latest('BlogId')->limit(4)->get();
+                    $relatedBlog = \App\Models\Blog\Blog::where('HouseId', $post->HouseId)->latest('BlogId')->limit(4)->get();
 
 
         @endphp

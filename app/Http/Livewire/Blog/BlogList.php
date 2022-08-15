@@ -16,16 +16,21 @@ class BlogList extends Component
 
     public $search;
     public $page = 1;
-    public $per_page = 15;
+    public $per_page = 10;
 
     public $category = 'all';
 
     protected $queryString = [
         'search' => ['except' => ''],
         'page' => ['except' => 1],
-        'per_page' => ['except' => 15],
+        'per_page' => ['except' => 10],
         'category' => ['except' => 'all'],
     ];
+
+    public function mount()
+    {
+        $this->model = Blog::class;
+    }
 
     protected $paginationTheme = 'bootstrap';
 
@@ -48,6 +53,7 @@ class BlogList extends Component
             })
             ->orderBy('BlogId', 'DESC')
             ->paginate($this->per_page);
+
 
         return view('blog.blog-list', compact('data'));
     }

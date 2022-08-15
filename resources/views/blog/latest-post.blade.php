@@ -1,8 +1,27 @@
+<div>
 <div class="mb-4">
     <div class="input-group border rounded-1" style="border-color: #E8604C35 !important;">
-        <input type="text" class="form-control border-0 outline-0" placeholder="Search here..."
-               aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn"><i class="bi-search text-primary"></i></button>
+        <form>
+            <!-- Search -->
+            <div class="input-group input-group-merge input-group-flush">
+                <div class="input-group-prepend input-group-text">
+                    <div wire:loading wire:target="search">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <i class="bi-search" wire:loading.remove wire:target="search"></i>
+                </div>
+                <input
+                    type="search"
+                    class="form-control"
+                    placeholder="Search Blog"
+                    aria-label="Search boards"
+                    wire:model.debounce.500ms="search"
+                />
+            </div>
+            <!-- End Search -->
+        </form>
     </div>
 </div>
 <div class="card border-0 mb-4">
@@ -27,4 +46,5 @@
         </div>
         @endforeach
     </div>
+</div>
 </div>

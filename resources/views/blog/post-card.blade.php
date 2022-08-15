@@ -1,9 +1,9 @@
 <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
     <div class="card blog-card">
         <div class="w-100">
-            <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">
-                FEATURE BLOG
-            </button>
+{{--            <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">--}}
+{{--                FEATURE BLOG--}}
+{{--            </button>--}}
             <a href="{{route('guest.blog.show', $post->slug)}}">
                 <img src="{{ $post->getFileUrl() }}" class="card-img-top  position-relative" style="height: 310px !important;object-fit: cover" alt="..." />
             </a>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="paragraph-text pt-3 text-black text-center text-md-start">
-                    <p>    {!!  Str::limit($post->Content, 80)  !!}</p>
+                    <p>{!!  (Str::limit(strip_tags($post->Content), 80))  !!}</p>
                 </div>
             </div>
             @php
