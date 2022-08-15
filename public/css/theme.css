@@ -38607,6 +38607,11 @@ body {
   color: #E8604C;
 }
 
+.text-white-light {
+  --bs-text-opacity: 1;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .blog-card {
   margin: 7px 0px !important;
 }
@@ -38792,8 +38797,8 @@ fieldset i {
   padding-top: 55px;
 }
 
-.pt-100 {
-  padding-top: 100px;
+.pt-75 {
+  padding-top: 75px;
 }
 
 .img-card-text {
@@ -39187,7 +39192,7 @@ header nav button:last-child:hover {
     font-size: 12px !important;
   }
   .recipe-card-footer span {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1570px) {
@@ -39338,6 +39343,9 @@ header nav button:last-child:hover {
   .max-width {
     max-width: 100% !important;
   }
+  .card-01 {
+    background-position-x: 6% !important;
+  }
   .help-page-tabs .nav-tabs .nav-item .nav-link {
     padding: 0px !important;
     width: 85px !important;
@@ -39426,6 +39434,9 @@ header nav button:last-child:hover {
     font-size: 9px !important;
     margin-right: 3px !important;
   }
+  .card-01 {
+    background-position-x: 6% !important;
+  }
 }
 @media only screen and (max-width: 430px) {
   .rounded-icon {
@@ -39464,6 +39475,9 @@ header nav button:last-child:hover {
   }
   .mt-70 {
     margin-top: 30px !important;
+  }
+  .card-01 {
+    background-position-x: 8.5% !important;
   }
 }
 @media only screen and (max-width: 375px) {
@@ -39505,6 +39519,9 @@ header nav button:last-child:hover {
     padding: 7px 6px !important;
     font-size: 8px !important;
     margin-right: 3px !important;
+  }
+  .card-01 {
+    background-position-x: 10.5% !important;
   }
 }
 .bulletin-image {
@@ -39622,4 +39639,20 @@ header nav button:last-child:hover {
 .ul-card-footer li span {
   padding-left: 3px;
   font-size: 13px;
+}
+
+.bg-card-body:nth-child(1) {
+  background-color: #2A3342 !important;
+}
+
+.bg-card-body:nth-child(2) {
+  background-color: #E8604C !important;
+}
+
+.bg-guide {
+  background-image: url("/images/local-guide/Guide.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 50px;
 }
