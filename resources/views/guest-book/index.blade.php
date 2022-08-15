@@ -16,7 +16,9 @@
                 border-top-left-radius: 12px;
                 border-top-right-radius: 12px;
             }
-
+            .card-01 .bg-card-body{
+                background-color: #E8604C;
+            }
             .card-01 .card-body {
                 position: relative;
                 padding-top: 40px;
