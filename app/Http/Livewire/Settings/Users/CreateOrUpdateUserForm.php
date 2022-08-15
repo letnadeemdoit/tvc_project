@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Settings\Users;
 
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -10,6 +12,8 @@ use Livewire\Component;
 
 class CreateOrUpdateUserForm extends Component
 {
+    use AuthorizesRequests;
+
     public $user;
 
     public $state = [];
@@ -32,11 +36,16 @@ class CreateOrUpdateUserForm extends Component
 
     public function showUserCUModal($toggle, ?User $userCU)
     {
+        if (! Gate::any(['create', 'update'], $userCU)) {
+            abort(403);
+        }
+
         $this->emitSelf('toggle', $toggle);
         $this->userCU = $userCU;
         $this->reset('state');
 
-        if ($userCU) {
+
+        if ($userCU->user_id) {
             $this->state = [
                 'user_name' => $userCU->user_name,
                 'first_name' => $userCU->first_name,

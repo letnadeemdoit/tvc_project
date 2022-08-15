@@ -20,13 +20,13 @@
                 border-bottom-left-radius: 17px;
                 border-bottom-right-radius: 17px;
             }
-            .card-01 .badge-box {
+            .card-01 .badge-box img{
                 position: absolute;
                 top: -50px;
                 left: 50%;
                 width: 100px;
                 height: 100px;
-                margin-left: -50px;
+                margin-left: -30px;
                 text-align: center;
             }
             .card-01 .badge-box i {

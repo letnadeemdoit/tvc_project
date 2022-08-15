@@ -5,8 +5,8 @@
 
     @include('partials.sub-page-hero-section', ['title' => 'Local Guide'])
 
-    <section class=" bg-light pt-5">
-        <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
+    <section class=" bg-light pt-55">
+        <div class="bg-guide shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
             <h1 class="text-primary font-vintage mb-0">Local Guide</h1>
         </div>
         <h1 class="pt-2 text-center poppins-bold">Read Local Guide reviews here</h1>
@@ -28,14 +28,14 @@
                                                 alt="{{ $dt->title ?? '' }}"
                                             >
 
-                                            <div class="ps-1">
+                                            <div class="ps-2">
                                                 <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
-                                                <p class="mb-0 date-fs">{{date('Y-M-d',strtotime($dt->created_at))}} <a href="#">View</a> </p>
+                                                <p class="mb-0 date-fs">{{date('Y-M-d',strtotime($dt->created_at))}} <a href="#" class="ps-2">View</a> </p>
                                             </div>
                                         </div>
                                         <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->localGuideCategory->name}}</a>
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-2">
+                                    <div class="d-flex align-items-center justify-content-between pt-3">
                                         <b class="text-dark">{{$dt->title}}</b>
                                         <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
                                     </div>
@@ -51,15 +51,17 @@
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="card-footer px-1 pb-0 border-0">
-                                        <ul class="d-block d-md-flex list-unstyled recipe-card-footer justify-content-between">
-                                            <li>5.0 <span class="fa fa-star checked"></span>
+                                        <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between">
+                                            <li>
+                                                <span class="text-primary fw-bolder fs-4">5.0</span>
+                                                <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="ps-2">({{$dt->reviews->count()}} Reviews)</span>
                                             </li>
-                                            <li class="pt-2 pt-md-0"><img src="/images/blog-images/comment.svg" class="img-fluid me-1">
+                                            <li class="pt-2 pt-sm-0"><img src="/images/local-guide/comment-dots.svg" class="img-fluid me-1">
                                                 <span>{{$dt->comments->count()}}  Comments</span>
                                             </li>
                                         </ul>

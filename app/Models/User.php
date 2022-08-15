@@ -65,6 +65,7 @@ class User extends Authenticatable
         'remember_token',
         'current_team_id',
         'profile_photo_path',
+        'is_confirmed',
     ];
 
     /**
@@ -100,37 +101,31 @@ class User extends Authenticatable
     /**
      * Check user is admin.
      *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     * @return mixed
      */
-    protected function isAdmin(): Attribute
+    protected function getIsAdminAttribute(): bool
     {
-        return Attribute::make(
-            get: fn($value) => $value === self::ROLE_ADMINISTRATOR,
-        );
+        return $this->role === self::ROLE_ADMINISTRATOR;
     }
 
     /**
      * Check user is owner.
      *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     * @return mixed
      */
-    protected function isOwner(): Attribute
+    protected function getIsOwnerAttribute(): bool
     {
-        return Attribute::make(
-            get: fn($value) => $value === self::ROLE_OWNER,
-        );
+        return $this->role === self::ROLE_OWNER || $this->admin_owner;
     }
 
     /**
      * Check user is guest.
      *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     * @return mixed
      */
-    protected function isGuest(): Attribute
+    protected function getIsGuestAttribute(): string
     {
-        return Attribute::make(
-            get: fn($value) => $value === self::ROLE_GUEST,
-        );
+        return $this->role === self::ROLE_GUEST;
     }
 
     /**
@@ -157,9 +152,23 @@ class User extends Authenticatable
         return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=e8604c&background=e8604c70';
     }
 
-    public function isRole($role)
+    /**
+     * Check for specific role
+     * @param $role
+     * @return bool
+     */
+    public function isRole($role): bool
     {
         return $this->role === $role;
+    }
+
+    /**
+     * Check if guest account already exists
+     * @return mixed
+     */
+    public function hasGuest(): bool
+    {
+        return User::where('HouseId', $this->HouseId)->where('role', self::ROLE_GUEST)->exists();
     }
 
     /**
@@ -175,7 +184,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: fn($value) => $value === 'Y',
-            set: fn($value) => (int) $value === 1 ? 'Y' : 'N',
+            set: fn($value) => (int)$value === 1 ? 'Y' : 'N',
         );
     }
 
@@ -192,7 +201,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: fn($value) => $value === 'Y',
-            set: fn($value) => (int) $value === 1 ? 'Y' : 'N',
+            set: fn($value) => (int)$value === 1 ? 'Y' : 'N',
         );
     }
 

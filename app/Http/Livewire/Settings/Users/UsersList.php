@@ -41,9 +41,16 @@ class UsersList extends Component
         $this->resetPage();
     }
 
+    public function isConfirmed($toggle, User $user) {
+        $user->update(['is_confirmed' => !!$toggle]);
+        $this->emitSelf('user-cu-successfully');
+        $this->emitSelf('saved-' . $user->user_id);
+    }
+
     public function render()
     {
         $data = User::where('HouseId', $this->user->HouseId)
+            ->where('user_id', '<>', $this->user->user_id)
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query
