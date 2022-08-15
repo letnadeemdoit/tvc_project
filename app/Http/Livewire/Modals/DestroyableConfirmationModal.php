@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Modals;
 
+use App\Http\Livewire\Traits\Toastr;
 use Livewire\Component;
 
 class DestroyableConfirmationModal extends Component
 {
+    use Toastr;
+
     public $model = null;
     public $confirmationContent = [
         'title' => 'Are you sure you want to delete this?',
@@ -37,5 +40,6 @@ class DestroyableConfirmationModal extends Component
         }
         $this->emitSelf('toggle', false);
         $this->emit('destroyed-successfully');
+        $this->success('Deleted successfully.');
     }
 }

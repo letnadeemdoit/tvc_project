@@ -36,6 +36,7 @@
         "jquery-ui-timepicker-addon": "^1.6.3",
         "select2": "^4.1.0-rc.0",
         "smoothscroll-polyfill": "^0.4.4",
-        "tinymce": "^6.1.2"
+        "tinymce": "^6.1.2",
+        "toastr": "^2.1.4"
     }
 }

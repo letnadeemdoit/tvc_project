@@ -131,7 +131,7 @@
             </div>
         </div>
         <!-- End Header -->
-
+        <x-jet-banner />
         <!-- Table -->
         <div class="table-responsive datatable-custom position-relative">
             <table

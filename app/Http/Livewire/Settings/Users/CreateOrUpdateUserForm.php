@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Settings\Users;
 
+use App\Http\Livewire\Traits\Toastr;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Gate;
@@ -13,12 +14,15 @@ use Livewire\Component;
 class CreateOrUpdateUserForm extends Component
 {
     use AuthorizesRequests;
+    use Toastr;
 
     public $user;
 
     public $state = [];
 
     public ?User $userCU;
+
+    private $isCreating = false;
 
     protected $listeners = [
         'showUserCUModal'
@@ -46,6 +50,7 @@ class CreateOrUpdateUserForm extends Component
 
 
         if ($userCU->user_id) {
+            $this->isCreating = true;
             $this->state = [
                 'user_name' => $userCU->user_name,
                 'first_name' => $userCU->first_name,
@@ -105,5 +110,7 @@ class CreateOrUpdateUserForm extends Component
 
         $this->emitSelf('toggle', false);
         $this->emit('user-cu-successfully');
+
+        $this->success( 'User ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
     }
 }
