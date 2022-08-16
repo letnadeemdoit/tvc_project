@@ -20,6 +20,8 @@ class CreateOrUpdateShoppingItemForm extends Component
 
     public $file;
 
+    public $isCreating = false;
+
     public ?ShoppingItem $shoppingItemList;
 
     protected $listeners = [
@@ -42,8 +44,11 @@ class CreateOrUpdateShoppingItemForm extends Component
         $this->shoppingItemList = $shoppingItemList;
         $this->reset(['state', 'file']);
 
-        if ($shoppingItemList) {
+        if ($shoppingItemList->id) {
+            $this->isCreating = false;
             $this->state = \Arr::only($shoppingItemList->toArray(), ['user_id','house_id','name','location','expiration_date','']);
+        }else{
+            $this->isCreating = true;
         }
     }
 
@@ -76,9 +81,10 @@ class CreateOrUpdateShoppingItemForm extends Component
 
         $this->emitSelf('toggle', false);
 
-        $this->success('saved Successfully');
-
         $this->emit('shopping-item-cu-successfully');
+
+        $this->success( 'Shopping Item ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
+
     }
 
     public function updatedFile() {

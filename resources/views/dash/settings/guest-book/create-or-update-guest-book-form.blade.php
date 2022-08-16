@@ -158,9 +158,7 @@
                     @enderror
                 </div>
 
-
                 <div class="row">
-
                     <div class="mb-3 col-12 col-lg-6">
                         <label class="form-label" for="name">Name</label>
                         <input
@@ -176,9 +174,7 @@
                         @enderror
                     </div>
 
-
                     <div class="mb-3 col-12 col-lg-6">
-
                         <div class="row">
                             <label for="" class="form-label">Status</label>
                             <div class="col-12 col-lg-6  mb-3 mb-sm-0">
@@ -207,47 +203,25 @@
                                 </label>
                                 <!-- End Form Radio -->
                             </div>
-
-
                         </div>
                         <!-- End Row -->
-
                     </div>
-
                 </div>
-
-
-                <div
-                    class="mb-3"
-                    @modal-is-shown.window="
-                        window.tinymce.init({
-                        ...window.TINYMCE_DEFAULT_CONFIG,
-                        selector: 'textarea#content',
-                        setup: function(editor) {
-                                editor.on('change', function(e) {
-                                    @this.set('state.content', editor.getContent(), true);
-                                });
-                            }
-                        })
-                    "
-
-                >
                     <label class="form-label" for="board_textarea">Content</label>
                     <textarea
                         class="form-control @error('content') is-invalid @enderror"
                         wire:model.defer="state.content"
                         name="content"
                         placeholder=""
-                        rows="3"
+                        rows="5"
                         id="content"
 
                     ></textarea>
                     @error('content')
                     <span class="invalid-feedback">{{$message}}</span>
                     @enderror
-                </div>
 
-                <div class="mb-3 d-flex">
+                <div class="my-3 d-flex">
                     <button type="submit" class="btn btn-primary px-5 ms-auto">
                         {{ $guestBook && $guestBook->id ? "Update" . ($guestBook->title ? " '$guestBook->title'" : '') : 'Add' }} Guest Book
                     </button>

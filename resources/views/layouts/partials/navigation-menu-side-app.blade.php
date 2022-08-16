@@ -59,7 +59,7 @@
                                href="#navbarVerticalHouseItemList" role="button" data-bs-toggle="collapse"
                                data-bs-target="#navbarVerticalHouseItemList" aria-expanded="false"
                                aria-controls="navbarVerticalMenuPagesAdministratorMenu">
-                                <i class="bi-person-check nav-icon"></i>
+                                <i class="bi-house nav-icon"></i>
                                 <span class="nav-link-title">House Items</span>
                             </a>
 

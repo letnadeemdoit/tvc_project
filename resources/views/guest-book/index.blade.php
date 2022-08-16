@@ -1,9 +1,8 @@
-
 <x-guest-layout>
     @push('stylesheets')
         <style>
 
-            .card-01{
+            .card-01 {
                 background-image: url("/images/guest-book/quotes.svg") !important;
                 background-repeat: no-repeat;
                 background-position: top left;
@@ -12,23 +11,27 @@
                 background-position-y: 4%;
             }
 
-            .card-01{
+            .card-01 {
                 border-top-left-radius: 12px;
                 border-top-right-radius: 12px;
             }
+
             .bg-card-body:nth-child(even) {
                 background-color: #E8604C;
             }
+
             .bg-card-body:nth-child(odd) {
                 background-color: #2A3342;
             }
+
             .card-01 .card-body {
                 position: relative;
                 padding-top: 40px;
                 border-bottom-left-radius: 12px;
                 border-bottom-right-radius: 12px;
             }
-            .card-01 .badge-box img{
+
+            .card-01 .badge-box img {
                 position: absolute;
                 top: -36px;
                 left: 50%;
@@ -38,6 +41,7 @@
                 text-align: center;
                 border: 3px solid #fff;
             }
+
             .card-01 .badge-box i {
                 background: #006eff;
                 color: #fff;
@@ -48,13 +52,14 @@
                 text-align: center;
                 font-size: 20px;
             }
+
             .card-01 .height-fix {
                 height: 455px;
                 overflow: hidden;
             }
 
             .card-01 .height-fix .card-img-top {
-                width: auto!important;
+                width: auto !important;
             }
 
             .card-01 .profile-box {
@@ -69,8 +74,7 @@
 
             .card-01 .profile-box:before {
                 filter: blur(10px);
-                background: url("https://images.pexels.com/photos/195825/pexels-photo-195825.jpeg?h=350&auto=compress&cs=tinysrgb")
-                no-repeat;
+                background: url("https://images.pexels.com/photos/195825/pexels-photo-195825.jpeg?h=350&auto=compress&cs=tinysrgb") no-repeat;
                 background-size: cover;
                 width: 120%;
                 position: absolute;
@@ -87,10 +91,26 @@
                 position: relative;
                 border: 5px solid #fff;
             }
+
             .card-01.height-fix .fa {
                 color: #fff;
                 font-size: 22px;
                 margin-right: 18px;
+            }
+        </style>
+
+        <style type="text/css">
+            .read-more-show{
+                cursor:pointer;
+                color: #ed8323;
+            }
+            .read-more-hide{
+                cursor:pointer;
+                color: #ed8323;
+            }
+
+            .hide_content{
+                display: none;
             }
         </style>
     @endpush
@@ -113,7 +133,27 @@
                                 <div class="card card-01 shadow-lg my-4 my-md-0" style="min-height: 380px">
                                     <div class="guest-card-description pt-75 pb-4 px-5" style="min-height: 270px;">
                                         <h4 class="pt-2">{{$dt->title }}</h4>
-                                        {!! $dt->content     !!}</div>
+
+
+                                        <div class="comment more">
+                                            @if(strlen($dt->content) > 100)
+                                                {{substr($dt->content,0,100)}}
+                                                <span class="read-more-show hide_content">Read More<i
+                                                        class="fa fa-angle-down"></i></span>
+                                                <span class="read-more-content">
+                                                    {!! substr($dt->content,100,strlen($dt->content)) !!}
+                                                    <span class="read-more-hide hide_content">Read Less
+                                                          <i class="fa fa-angle-up"></i>
+                                                    </span>
+                                                </span>
+                                                     @else
+                                                {!! $dt->content     !!}
+                                            @endif
+                                        </div>
+
+
+{{--                                        {!! $dt->content     !!}--}}
+                                    </div>
                                     <div class="card-body bg-primary pb-5">
                                         <span class="badge-box py-4">
                                             <img src="{{$dt->getFileUrl('image')}}"
@@ -130,7 +170,21 @@
                                 <div class="card card-01 shadow-lg" style="min-height: 380px">
                                     <div class="guest-card-description pt-75 pb-4 px-5" style="min-height: 270px;">
                                         <h4 class="pt-2">{{$dt->title }}</h4>
-                                        {!! $dt->content     !!}
+                                        <div class="comment more">
+                                            @if(strlen($dt->content) > 100)
+                                                {{substr($dt->content,0,100)}}
+                                                <span class="read-more-show hide_content">Read More<i
+                                                        class="fa fa-angle-down"></i></span>
+                                                <span class="read-more-content">
+                                                    {!! substr($dt->content,100,strlen($dt->content)) !!}
+                                                    <span class="read-more-hide hide_content">Read Less
+                                                          <i class="fa fa-angle-up"></i>
+                                                    </span>
+                                                </span>
+                                            @else
+                                                {!! $dt->content     !!}
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="card-body bg-dark-blue pb-5">
                         <span class="badge-box py-4">
@@ -152,6 +206,26 @@
     </section>
 
     @push('scripts')
+            <script type="text/javascript">
+                // Hide the extra content initially, using JS so that if JS is disabled, no problemo:
+                $('.read-more-content').addClass('hide_content')
+                $('.read-more-show, .read-more-hide').removeClass('hide_content')
+
+                // Set up the toggle effect:
+                $('.read-more-show').on('click', function(e) {
+                    $(this).next('.read-more-content').removeClass('hide_content');
+                    $(this).addClass('hide_content');
+                    e.preventDefault();
+                });
+
+                // Changes contributed by @diego-rzg
+                $('.read-more-hide').on('click', function(e) {
+                    var p = $(this).parent('.read-more-content');
+                    p.addClass('hide_content');
+                    p.prev('.read-more-show').removeClass('hide_content'); // Hide only the preceding "Read More"
+                    e.preventDefault();
+                });
+            </script>
     @endpush()
 </x-guest-layout>
 
