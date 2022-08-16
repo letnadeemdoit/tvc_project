@@ -1,6 +1,6 @@
 <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
     @if(isset($blog))
-        <div class="card blog-card">
+        <div class="card blog-card mb-4">
             <div class="w-100">
                 <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                     BLOG</button>
@@ -39,10 +39,10 @@
                                 </a>
                                 <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId({{ $blog->BlogId }})"
                                    data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
-                                    <i class="bi-pencil me-1"></i> Add Comment
+                                    <i class="fa-solid fa-comment-medical me-1"></i> Add Comment
                                 </a>
                                 <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$blog->BlogId}})">
-                                    <i class="bi-book me-1"></i> Read Comment
+                                    <i class="fa-solid fa-comments me-1"></i> Read Comment
                                 </a>
                                 {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
                             </div>
@@ -56,7 +56,7 @@
                     $blogcomments = App\Models\Blog\BlogComment::where('BlogId', $blog->BlogId )->get();
                     $numberofcomments = count($blogcomments);
                 @endphp
-                <div class="card-footer px-0 pb-0">
+                <div class="card-footer px-0 pb-0 border-top-thick">
                     <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
                         <li><img src="/images/blog-images/love.png" class="img-fluid me-1"><span>200 Likes</span></li>
                         <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>

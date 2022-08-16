@@ -23,7 +23,7 @@
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.svg"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow" />
-                    <p class="display-4 font-poppins text-primary"><i>Only $20 <span class="fs-6 color-secondary">per
+                    <p class="display-4 poppins-bold text-primary"><i>Only $20 <span class="fs-6 color-secondary">per
                                 year</span></i></p>
                 </div>
 
@@ -280,7 +280,7 @@
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                                             data-bs-target="#home" role="tab" aria-controls="home" aria-selected="true">
                                         <img src="{{asset('/images/images-home/envelope.svg')}}" class="img-fluid" />
-                                        <p class="mb-0 pt-2 fw-600">House Blog</p>
+                                        <p class="mb-0 pt-2">House Blog</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
@@ -288,7 +288,7 @@
                                             data-bs-target="#profile" role="tab" aria-controls="profile"
                                             aria-selected="false">
                                         <img src="{{asset('/images/images-home/card.svg')}}" class="img-fluid" />
-                                        <p class="mb-0 pt-2 fw-600">House Photo Album</p>
+                                        <p class="mb-0 pt-2">House Photo Album</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
@@ -296,7 +296,7 @@
                                             data-bs-target="#contact" role="tab" aria-controls="contact"
                                             aria-selected="true">
                                         <img src="{{asset('/images/images-home/user.svg')}}" class="img-fluid" />
-                                        <p class="mb-0 pt-2 fw-600">Account Management</p>
+                                        <p class="mb-0 pt-2">Account Management</p>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
@@ -304,7 +304,7 @@
                                             data-bs-target="#shopping" role="tab" aria-controls="shopping"
                                             aria-selected="true">
                                         <img src="{{asset('/images/images-home/user-2.svg')}}" class="img-fluid" />
-                                        <p class="mb-0 pt-2 fw-600">User Management</p>
+                                        <p class="mb-0 pt-2">User Management</p>
                                     </button>
                                 </li>
 

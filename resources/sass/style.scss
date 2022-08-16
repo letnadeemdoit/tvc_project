@@ -53,6 +53,7 @@ body{
 .poppins-bold{
     font-family: poppins-bold;
 }
+
 @font-face {
     font-family: vintage-clothes;
     src: url('/fonts/vintage/vintage-clothes.otf');
@@ -85,6 +86,9 @@ body{
         min-height: 580px;
     }
 }
+.fs-10{
+    font-size: 10px;
+}
 .checked {
     color: $primary;
 }
@@ -93,7 +97,6 @@ body{
     color: rgba(255, 255, 255, 0.8) !important;
 }
 .blog-card{
-    margin: 7px 0px !important;
     .blog-dropdown-item{
         &:hover{
             background-color: $dark-blue !important;
@@ -152,7 +155,8 @@ body{
         }
     }
     .blog-dropdown-item{
-        padding: 0.80rem 0.5rem !important;
+        padding: 0.80rem 0.45rem !important;
+        font-size: 0.7rem !important;
         &:hover {
                 i {
                         background-color: #fff !important;
@@ -168,6 +172,7 @@ body{
 }
 .font-poppins{
     font-family: poppins;
+    font-weight: 500;
 }
 .btn-signup{
     width:180px;
@@ -184,6 +189,7 @@ body{
         .nav-link{
             min-height: 50px;
             padding: 8px 18px;
+            border-radius:6px;
             display: flex;
             align-items: center;
         }
@@ -260,6 +266,9 @@ fieldset{
     background-position: center;
     background-size: contain;
     height:60px;
+}
+.border-top-thick{
+    border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
 }
 .bg-social-feed{
     background: url('/images/images-home/map.png');
@@ -1147,8 +1156,8 @@ header{
     .blog-tabs{
         .nav-item{
             .nav-link{
-                padding: 7px 6px !important;
-                font-size: 8px !important;
+                padding: 7px 7px !important;
+                font-size: 9px !important;
                 margin-right: 3px !important;
 
             }
@@ -1174,6 +1183,7 @@ header{
     height:435px;
 }
 .category-cards{
+    margin-top: 20px;
     .nav-tabs{
         .nav-item{
             .nav-link{
@@ -1188,7 +1198,6 @@ header{
     .card{
         border: none !important;
         box-shadow: 0px 11px 24px rgba(168, 168, 168, 0.1);
-        margin: 15px 0px;
     }
 
     .green-shadow{
@@ -1307,13 +1316,15 @@ header{
 nav.navecation ul li{
     list-style:none;
     float:left;
-    padding-right:20px;
+    padding-right:14px;
 
 }
 nav.navecation ul li a{
     text-decoration:none;
-    color:#222;
+    color:#6d6d6d;
+    font-weight: 600;
     background-color:#d9d9d942;
+    border-radius: 6px;
     padding:4px 5px;
     display: flex;
     align-items: center;
@@ -1331,4 +1342,10 @@ nav.navecation  .active img{
 }
 #navi{
     padding-left: 0px !important;
+}
+.border-rounded-red{
+    border: 2.3875px solid #E8604C;
+}
+.color-blue{
+    color: #0075EF !important;
 }
