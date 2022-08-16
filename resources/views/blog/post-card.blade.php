@@ -11,7 +11,7 @@
 
         </div>
         <div class="card-body p-2">
-            <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 p-5 rounded-1" style="min-height: 210px">
+            <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 210px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
                         <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
@@ -29,7 +29,7 @@
                             <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
                                data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $post->BlogId }}Modal"
                             >
-                                <i class="bi-trash me-2"></i>Delete Blog
+                                <i class="fa-solid fa-trash-can me-2"></i>Delete Blog
                             </a>
                             <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId({{ $post->BlogId }})"
                                data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">

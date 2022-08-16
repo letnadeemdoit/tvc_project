@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="container pt-55">
     <div class="category-cards mb-3">
         <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -8,26 +8,17 @@
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/> BEACH
-                    HOUSE
+                    <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/> Awesome finds
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <img src="/images/blog-images/building-house.svg" width="30px"
-                         class="me-2 d-none d-md-inline-block"/>TOWN
-                    HOUSE
+                    <img src="/images/blog-images/cool.svg" width="30px" class="me-2 d-none d-md-inline-block"/>Cool Stuff
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <img src="/images/blog-images/tiny-house.svg" width="30px" class="me-2 d-none d-md-inline-block"/>TINY
-                    HOUSE
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <img src="/images/blog-images/pool.svg" width="30px" class="me-2 d-none d-md-inline-block"/>POOL
+                    <img src="/images/blog-images/tips.svg" width="30px" class="me-2 d-none d-md-inline-block"/>Fun Tips
                     HOUSE
                 </a>
             </li>
