@@ -42265,6 +42265,9 @@ header nav button:last-child:hover {
     padding-left: 0px !important;
     font-size: 10px !important;
   }
+  .fs-13 {
+    font-size: 12px !important;
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   .help-page-tabs .card {
@@ -42495,8 +42498,8 @@ header nav button:last-child:hover {
   }
   .blog-tabs .nav-item .nav-link {
     padding: 7px 12px !important;
-    font-size: 9px !important;
-    margin-right: 3px !important;
+    font-size: 12px !important;
+    margin-right: 5px !important;
     min-height: revert !important;
   }
   .card-01 {
@@ -42618,7 +42621,7 @@ header nav button:last-child:hover {
 }
 
 .category-cards {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .category-cards .nav-tabs .nav-item .nav-link {
   color: grey;
