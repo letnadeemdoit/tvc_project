@@ -32,7 +32,9 @@
                 padding: 1.25rem;
                 z-index: 1;
             }
-
+        .masonary-gallery img{
+            max-height: 400px !important;
+        }
             .card-img-overlay::after {
                 content: "";
                 position: absolute;
@@ -50,25 +52,25 @@
             }
 
 
-            @-webkit-keyframes beat {
-                0% {
-                    transform: scale(1);
-                }
+            /*@-webkit-keyframes beat {*/
+            /*    0% {*/
+            /*        transform: scale(1);*/
+            /*    }*/
 
-                100% {
-                    transform: scale(1.2);
-                }
-            }
+            /*    100% {*/
+            /*        transform: scale(1.2);*/
+            /*    }*/
+            /*}*/
 
-            @keyframes beat {
-                0% {
-                    transform: scale(1);
-                }
+            /*@keyframes beat {*/
+            /*    0% {*/
+            /*        transform: scale(1);*/
+            /*    }*/
 
-                100% {
-                    transform: scale(1.2);
-                }
-            }
+            /*    100% {*/
+            /*        transform: scale(1.2);*/
+            /*    }*/
+            /*}*/
         </style>
 
     @endpush
@@ -81,112 +83,53 @@
         </div>
         <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>
         <div class="container my-4">
-            <div class="card-columns">
-                <div id="big-image" class="mt-4 text-center">
-                    <div class="img-gallery">
-
-                        <div class="card border-0 text-white bg-transparent shadow-none">
-                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->
-                            <a href="{{asset('/images/photo-album/album-1.svg')}}" data-lightbox="homePortfolio">
-                                <img src="{{asset('/images/photo-album/album-1.svg')}}" class="card-img rounded-0" />
-                            </a>
-                            <div class="p-0">
-                                <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
-                                    <h3 class="text-white">Pathways</h3>
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
-                                        <span>20</span>
-                                    </div>
+            <div class="row masonary-gallery" data-masonry="{&quot;percentPosition&quot;: true }" style="position: relative; height: 690px;">
+                <div class="col-md-3 col-h">
+                    <div class="card border-0 text-white bg-transparent shadow-none">
+                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->
+                        <a href="{{asset('/images/photo-album/album-1.svg')}}" data-lightbox="homePortfolio">
+                            <img src="{{asset('/images/photo-album/album-1.svg')}}" class="card-img rounded-0" />
+                        </a>
+                        <div class="p-0">
+                            <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
+                                <h3 class="text-white">Pathways</h3>
+                                <div class="d-flex align-items-center">
+                                    <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                    <span>20</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="card border-0 text-white bg-transparent shadow-none">
-                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->
-                            <a href="{{asset('/images/photo-album/album-2.svg')}}" data-lightbox="homePortfolio">
-                                <img src="{{asset('/images/photo-album/album-2.svg')}}" class="card-img rounded-0" />
-                            </a>
-                            <div class="p-0">
-                                <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
-                                    <h3 class="text-white">Pathways</h3>
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
-                                        <span>20</span>
-                                    </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-h">
+                    <div class="card border-0 text-white bg-transparent shadow-none">
+                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->
+                        <a href="{{asset('/images/photo-album/album-2.svg')}}" data-lightbox="homePortfolio">
+                            <img src="{{asset('/images/photo-album/album-2.svg')}}" class="card-img rounded-0" />
+                        </a>
+                        <div class="p-0">
+                            <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
+                                <h3 class="text-white">Pathways</h3>
+                                <div class="d-flex align-items-center">
+                                    <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                    <span>20</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="card border-0 text-white bg-transparent shadow-none">
-                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-                            <a href="{{asset('/images/photo-album/album-3.svg')}}" data-lightbox="homePortfolio">
-                                <img src="{{asset('/images/photo-album/album-3.svg')}}" class="card-img rounded-0" />
-                            </a>
-                            <div class="p-0">
-                                <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
-                                    <h3 class="text-white">Pathways</h3>
-                                    <div class="d-flex align-items-center"> <img
-                                            src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
-                                        <span>20</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 text-white bg-transparent shadow-none">
-                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-4.svg')}}"> -->
-                            <a href="{{asset('/images/photo-album/album-4.svg')}}" data-lightbox="homePortfolio">
-                                <img src="{{asset('/images/photo-album/album-4.svg')}}" class="card-img rounded-0" />
-                            </a>
-                            <div class="p-0">
-                                <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
-                                    <h3 class="text-white">Pathways</h3>
-                                    <div class="d-flex align-items-center"> <img
-                                            src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
-                                        <span>20</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 text-white bg-transparent shadow-none">
-                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-5.svg')}}"> -->
-                            <a href="{{asset('/images/photo-album/album-5.svg')}}" data-lightbox="homePortfolio">
-                                <img src="{{asset('/images/photo-album/album-5.svg')}}" class="card-img rounded-0" />
-                            </a>
-                            <div class="p-0">
-                                <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
-                                    <h3 class="text-white">Pathways</h3>
-                                    <div class="d-flex align-items-center"> <img
-                                            src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
-                                        <span>20</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 text-white bg-transparent shadow-none">
-                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-6.svg')}}"> -->
-                            <a href="{{asset('/images/photo-album/album-6.svg')}}" data-lightbox="homePortfolio">
-                                <img src="{{asset('/images/photo-album/album-6.svg')}}" class="card-img rounded-0" />
-                            </a>
-                            <div class="p-0">
-                                <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
-                                    <h3 class="text-white">Pathways</h3>
-                                    <div class="d-flex align-items-center"> <img
-                                            src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
-                                        <span>20</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 text-white bg-transparent shadow-none">
-                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-7.svg')}}"> -->
-                            <a href="{{asset('/images/photo-album/album-7.svg')}}" data-lightbox="homePortfolio">
-                                <img src="{{asset('/images/photo-album/album-7.svg')}}" class="card-img rounded-0" />
-                            </a>
-                            <div class="p-0">
-                                <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
-                                    <h3 class="text-white">Pathways</h3>
-                                    <div class="d-flex align-items-center"> <img
-                                            src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
-                                        <span>20</span>
-                                    </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-h">
+                    <div class="card border-0 text-white bg-transparent shadow-none">
+                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                        <a href="{{asset('/images/photo-album/album-3.svg')}}" data-lightbox="homePortfolio">
+                            <img src="{{asset('/images/photo-album/album-3.svg')}}" class="card-img rounded-0" />
+                        </a>
+                        <div class="p-0">
+                            <div class="card-block d-flex w-100 justify-content-between px-5 img-card-text">
+                                <h3 class="text-white">Pathways</h3>
+                                <div class="d-flex align-items-center"> <img
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                    <span>20</span>
                                 </div>
                             </div>
                         </div>
