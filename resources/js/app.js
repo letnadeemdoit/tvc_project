@@ -51,13 +51,15 @@ window.livewire.on('toastr', function (data) {
 });
 
 window.livewire.hook('message.sent', (message, component) => {
-    if (message.updateQueue[0].payload.event === 'destroyed-successfully') {
+    let event = message.updateQueue[0].payload.event;
+    if ( event && (event === 'destroyed-successfully' || event.includes('cu-successfully') || event.includes('Modal'))) {
         window.jSuites.loading.show();
     }
 });
 
 window.livewire.hook('message.processed', (message, component) => {
-    if (message.updateQueue[0].payload.event === 'destroyed-successfully') {
+    let event = message.updateQueue[0].payload.event;
+    if (event && (event === 'destroyed-successfully' || event.includes('cu-successfully') || event.includes('Modal'))) {
         window.jSuites.loading.hide();
     }
 });
