@@ -1,7 +1,6 @@
 
 <x-guest-layout>
     @push('stylesheets')
-
     @endpush
 
     @include('partials.sub-page-hero-section', ['title' => 'Local Guide'])
@@ -13,17 +12,6 @@
         <h1 class="pt-2 text-center poppins-bold">Read Local Guide reviews here</h1>
         <div class="container mt-80 pb-5">
             <div class="row">
-                <div class="col-12 d-flex mb-5 justify-content-center justify-content-md-start">
-                    <nav class="navecation">
-                        <ul id="navi">
-                            <li><a class="menu active" href="#">All</a></li>
-                            <li><a class="menu" href="#"><img src="/images/guest-book/food.svg" class="img-fluid me-2 d-none d-md-block"> Food & Drink </a></li>
-                            <li><a class="menu" href="#"><img src="/images/guest-book/clipboard.svg" class="img-fluid me-2 d-none d-md-block">Things To Do</a></li>
-                            <li><a class="menu" href="#"><img src="/images/guest-book/home.svg" class="img-fluid me-2 d-none d-md-block">Services</a></li>
-                            <li><a class="menu" href="#"><img src="/images/guest-book/car.svg" class="img-fluid me-2 d-none d-md-block">transportation</a></li>
-                        </ul>
-                    </nav>
-                </div>
                 @if(isset($data))
                     @foreach($data as $dt)
                         <div class="col-md-6 col-xl-4 mb-4">
@@ -36,25 +24,24 @@
                                             <img
 
                                                 src="{{$dt->getFileUrl('image')}}"
-                                                class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
+                                                class="avatar-initials img-fluid position-relative rounded-circle"
                                                 alt="{{ $dt->title ?? '' }}"
                                             >
 
-                                            <div class="ps-2">
+                                            <div class="ps-1">
                                                 <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
-                                                <p class="mb-0 date-fs">{{date('Y-M-d',strtotime($dt->created_at))}} <a href="#" class="ps-2 color-blue">View</a> </p>
+                                                <p class="mb-0 date-fs">{{date('Y-M-d',strtotime($dt->created_at))}} <a href="#">View</a> </p>
                                             </div>
                                         </div>
-                                        <a class="btn btn-primary-light fs-13 my-3 my-md-0 fw-bolder">{{$dt->localGuideCategory->name}}</a>
+                                        <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->localGuideCategory->name}}</a>
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-3">
+                                    <div class="d-flex align-items-center justify-content-between pt-2">
                                         <b class="text-dark">{{$dt->title}}</b>
                                         <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
                                     </div>
                                 </div>
                                 <div class="w-100">
-                                    <a class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
-                                        HOUSE</a>
+                                    <a class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE HOUSE</a>
                                     <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                         <img src="/images/blog-images/house-5.png" class="card-img-top  position-relative p-2" style="height: 320px !important;object-fit: cover;border-radius:17px;" alt="..." />
                                     </a>
@@ -70,13 +57,14 @@
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
                                                 <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                                     <span class="ps-2 text-dark">({{$dt->reviews->count()}} Reviews)</span>
                                                 </a>
                                             </li>
-                                            <li class="pt-2 pt-sm-0"><img src="/images/local-guide/comment-dots.svg" class="img-fluid me-1">
-                                                <span>{{$dt->comments->count()}}  Comments</span>
+                                            <li class="pt-2 pt-md-0"><img src="/images/blog-images/comment.svg" class="img-fluid me-1">
+                                                <a href="{{route('guest.local-guide.show',$dt->id)}}">
+                                                    <span class="text-dark">{{$dt->comments->count()}}  Comments</span>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>

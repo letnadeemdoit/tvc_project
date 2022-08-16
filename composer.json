@@ -14,6 +14,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
+        "owen-it/laravel-auditing": "^13.0",
         "spatie/laravel-validation-rules": "^3.2"
     },
     "require-dev": {

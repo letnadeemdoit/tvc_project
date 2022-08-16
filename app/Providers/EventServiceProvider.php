@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Events\ModelAudited;
+use App\Listeners\AuditedListener;
 use App\Listeners\LogModelAudit;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use OwenIt\Auditing\Events\Audited;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ModelAudited::class => [
             LogModelAudit::class
+        ],
+        Audited::class => [
+            AuditedListener::class
         ]
     ];
 

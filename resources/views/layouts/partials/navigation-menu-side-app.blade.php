@@ -67,13 +67,11 @@
                                  class="nav-collapse collapse {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list'], 'show') }}"
                                  data-bs-parent="#navbarVerticalHouseItemList">
                                 <a class="nav-link {{ link_is_active_with_class('dash.food-item-list') }}"
-                                   href="{{route('dash.food-item-list')}}">Food Item List</a>
+                                   href="{{route('dash.food-item-list')}}">Food in the house</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.shopping-item-list') }}"
                                    href="{{route('dash.shopping-item-list')}}">Food Shopping List</a>
-
                             </div>
                         </div>
-
 
                         <div class="nav-item">
                             <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices']) }}"

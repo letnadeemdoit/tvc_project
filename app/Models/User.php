@@ -10,18 +10,29 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use \OwenIt\Auditing\Auditable;
 
     const ROLE_ADMINISTRATOR = 'Administrator';
     const ROLE_OWNER = 'Owner';
     const ROLE_GUEST = 'Guest';
+
+    /**
+     * Attribute modifiers.
+     *
+     * @var array
+     */
+    protected $attributeModifiers = [
+
+    ];
 
     /**
      * The primary key associated with the table.

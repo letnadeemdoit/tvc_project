@@ -71,48 +71,71 @@
                            href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                     </li>
 
-                        @auth
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
-                                    <button
-                                        class="btn btn-sm py-2 btn-primary"
-                                        type="submit">Logout
-                                    </button>
-                                </li>
-                            </form>
-                        @endauth
-
-                        @guest
-                            <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
-                                <a href="{{route('register')}}"
-                                   class="btn btn-sm py-2 btn-dark" style="width: 100px">SIGN UP</a>
-                            </li>
-                                <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
-                                    <a href="{{route('login')}}"
-                                       class="btn btn-sm py-2 btn-primary" style="width: 100px">LOGIN
-                                    </a>
-                                </li>
-                        @endguest
+                    @guest
+                        <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
+                            <a href="{{route('register')}}"
+                               class="btn btn-sm py-2 btn-dark" style="width: 100px">SIGN UP</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
+                            <a href="{{route('login')}}"
+                               class="btn btn-sm py-2 btn-primary" style="width: 100px">LOGIN
+                            </a>
+                        </li>
+                    @endguest
 
                 </ul>
                 <div class="d-md-flex nav-buttons ms-3 ms-lg-0 ">
                     @auth
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button
-                                class="btn btn-outline d-none d-lg-block btn-primary px-md-5 px-lg-4 px-xl-5 ms-2 text-white shadow-none text-uppercase"
-                                type="submit">Logout
-                            </button>
-                        </form>
-                    @endauth
+                        <!-- Account -->
+                        <div class="dropdown">
+                            <a class="navbar-dropdown-account-wrapper" href="javascript:;" id="accountNavbarDropdown"
+                               data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
+                               data-bs-dropdown-animation>
+                                <div class="avatar avatar-sm avatar-circle">
+                                    <img
+                                        class="avatar-img"
+                                        src="{{ auth()->user()->profile_photo_url }}"
+                                        :src="avatarUrl"
+                                        alt="Image"
+                                    />
+                                    <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                                </div>
+                            </a>
 
-                    @guest
-                        <a href="{{route('register')}}" class="btn d-none d-lg-block btn-outline-dark px-md-5 px-lg-4 px-xl-5 py-2">SIGN
+                            <div
+                                class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account"
+                                aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
+                                <div class="dropdown-item-text">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm avatar-circle">
+                                            <img class="avatar-img" src="{{asset('images/avatar.png')}}"
+                                                 alt="Image Description">
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="mb-0">{{Auth::user()->user_name ?? ''}}</h5>
+                                            <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('dash.index') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings</a>
+                                <div class="dropdown-divider"></div>
+
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">Sign out</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Account -->
+                    @else
+                        <a href="{{route('register')}}"
+                           class="btn d-none d-lg-block btn-outline-dark px-md-5 px-lg-4 px-xl-5 py-2">SIGN
                             UP</a>
                         <a href="{{route('login')}}"
                            class="btn d-none d-lg-block btn-outline btn-primary px-md-5 px-lg-4 px-xl-5 py-2 ms-2 text-white shadow-none">LOGIN</a>
-                    @endguest
+                    @endauth
                 </div>
             </div>
         </nav>
