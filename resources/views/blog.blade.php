@@ -25,27 +25,20 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
                                     type="button" role="tab" aria-controls="profile" aria-selected="true">
-                                <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block" />BEACH HOUSE
+                                <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block" />Awesome finds
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
                                     type="button" role="tab" aria-controls="contact" aria-selected="true">
-                                <img src="/images/blog-images/building-house.svg" width="30px" class="me-2 d-none d-md-inline-block" />TOWN HOUSE
+                                <img src="/images/blog-images/cool.svg" width="30px" class="me-2 d-none d-md-inline-block" />Cool Stuff
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="shopping-tab" data-bs-toggle="tab"
                                     data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping"
                                     aria-selected="true">
-                                <img src="/images/blog-images/tiny-house.svg" width="30px" class="me-2 d-none d-md-inline-block" />TINY HOUSE
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="clipboard-tab" data-bs-toggle="tab"
-                                    data-bs-target="#clipboard" type="button" role="tab" aria-controls="clipboard"
-                                    aria-selected="true">
-                                <img src="/images/blog-images/pool.svg" width="30px" class="me-2 d-none d-md-inline-block" />POOL HOUSE
+                                <img src="/images/blog-images/tips.svg" width="30px" class="me-2 d-none d-md-inline-block" />Fun Tips
                             </button>
                         </li>
                     </ul>
