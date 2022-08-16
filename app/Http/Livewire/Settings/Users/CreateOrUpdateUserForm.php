@@ -22,7 +22,7 @@ class CreateOrUpdateUserForm extends Component
 
     public ?User $userCU;
 
-    private $isCreating = false;
+    public $isCreating = false;
 
     protected $listeners = [
         'showUserCUModal'
@@ -49,7 +49,7 @@ class CreateOrUpdateUserForm extends Component
         $this->reset('state');
 
         if ($userCU->user_id) {
-            $this->isCreating = true;
+            $this->isCreating = false;
             $this->state = [
                 'user_name' => $userCU->user_name,
                 'first_name' => $userCU->first_name,
@@ -58,6 +58,7 @@ class CreateOrUpdateUserForm extends Component
                 'role' => $userCU->role,
             ];
         } else {
+            $this->isCreating = true;
             $this->state = [
                 'role' => User::ROLE_OWNER,
             ];
