@@ -16,13 +16,14 @@ class CommentForm extends Component
 
     public function render()
     {
-        return view('comments.comment-card');
+        $comments = $this->localGuide->comments()->paginate(10);
+
+        return view('comments.comment-card',compact('comments'));
     }
 
     public function saveComment(){
 
         $inputs = $this->state;
-
         Validator::make($inputs, [
             'message' => 'required',
         ])->validateWithBag('saveComment');
@@ -34,7 +35,6 @@ class CommentForm extends Component
             'house_id' => auth()->user()->HouseId,
             'message' => $inputs['message'] ?? null,
         ]);
-
 
         $this->localGuide->comments()->save($comment);
 

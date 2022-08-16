@@ -54,6 +54,28 @@
                         </div>
 
                         <div class="nav-item">
+                            <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list']) }}
+                                "
+                               href="#navbarVerticalHouseItemList" role="button" data-bs-toggle="collapse"
+                               data-bs-target="#navbarVerticalHouseItemList" aria-expanded="false"
+                               aria-controls="navbarVerticalMenuPagesAdministratorMenu">
+                                <i class="bi-person-check nav-icon"></i>
+                                <span class="nav-link-title">House Items</span>
+                            </a>
+
+                            <div id="navbarVerticalHouseItemList"
+                                 class="nav-collapse collapse {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list'], 'show') }}"
+                                 data-bs-parent="#navbarVerticalHouseItemList">
+                                <a class="nav-link {{ link_is_active_with_class('dash.food-item-list') }}"
+                                   href="{{route('dash.food-item-list')}}">Food Item List</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.shopping-item-list') }}"
+                                   href="{{route('dash.shopping-item-list')}}">Food Shopping List</a>
+
+                            </div>
+                        </div>
+
+
+                        <div class="nav-item">
                             <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices']) }}"
                                href="#navbarVerticalMenuPagesAccountMenu" role="button" data-bs-toggle="collapse"
                                data-bs-target="#navbarVerticalMenuPagesAccountMenu" aria-expanded="false"

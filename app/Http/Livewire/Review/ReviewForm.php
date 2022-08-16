@@ -16,7 +16,9 @@ class ReviewForm extends Component
 
     public function render()
     {
-        return view('reviews.review-card');
+        $reviews = $this->localGuide->reviews()->paginate(10);
+
+        return view('reviews.review-card',compact('reviews'));
     }
 
     public function saveRatingForm(){

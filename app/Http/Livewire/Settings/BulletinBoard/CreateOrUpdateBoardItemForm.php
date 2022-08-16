@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Settings\BulletinBoard;
 
+use App\Http\Livewire\Traits\Toastr;
 use App\Models\Board;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -12,6 +13,7 @@ use Livewire\WithFileUploads;
 class CreateOrUpdateBoardItemForm extends Component
 {
     use WithFileUploads;
+    use Toastr;
 
     public $user;
 
@@ -73,6 +75,9 @@ class CreateOrUpdateBoardItemForm extends Component
         $this->boardItem->updateFile($this->file);
 
         $this->emitSelf('toggle', false);
+
+        $this->success('saved Successfully');
+
         $this->emit('bulletin-board-cu-successfully');
     }
 
