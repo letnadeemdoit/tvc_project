@@ -386,6 +386,7 @@ header{
     box-shadow:0px 2px 8px rgba(135, 135, 135, 0.15);;
     margin-left:-40px;
 }
+
 .min-h-200 {
     p {
         min-height: 200px;
@@ -759,7 +760,7 @@ header{
     }
     .recipe-card-footer {
         span {
-            font-size: 10px !important;
+            font-size: 13px !important;
         }
     }
 }
@@ -864,6 +865,9 @@ header{
             }
         }
     }
+    nav.navecation ul li{
+        padding-right: 15px !important;
+    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -945,6 +949,13 @@ header{
             }
         }
     }
+    nav.navecation ul li a{
+        padding: 15px !important;
+        font-size: 12px;
+    }
+    nav.navecation ul li{
+        padding-right: 8px !important;
+    }
 }
 @media only screen and (max-width:576px){
     .bg-process-img{
@@ -1014,6 +1025,10 @@ header{
     .card-01{
         background-position-x: 6% !important;
     }
+    nav.navecation ul li a {
+        padding: 12px !important;
+        font-size: 10px;
+    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -1069,6 +1084,14 @@ header{
     }
     .card-01{
         background-position-x: 8.5% !important;
+    }
+    nav.navecation ul li a{
+        padding: 5px !important;
+        min-height: 35px !important;
+        font-size: 11px;
+    }
+    nav.navecation ul li{
+        padding-right: 7px !important;
     }
 }
 @media only screen and (max-width:375px){
@@ -1128,6 +1151,14 @@ header{
     }
     .card-01{
         background-position-x: 10.5% !important;
+    }
+    nav.navecation ul li a{
+        padding: 5px !important;
+        min-height: 35px !important;
+        font-size: 9px;
+    }
+    nav.navecation ul li{
+        padding-right: 6px !important;
     }
 }
 
@@ -1196,7 +1227,7 @@ header{
         &.active{
             background:rgba(232, 96, 76, 0.06) !important;
             img{
-                filter: grayscale(78%) brightness(73%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
+                filter: grayscale(78%) brightness(130%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
             }
         }
 
@@ -1264,4 +1295,36 @@ header{
     background-position: center;
     background-size: contain;
     height: 50px;
+}
+
+// local guide
+
+
+nav.navecation ul li{
+    list-style:none;
+    float:left;
+    padding-right:20px;
+
+}
+nav.navecation ul li a{
+    text-decoration:none;
+    color:#222;
+    background-color:#d9d9d942;
+    padding:4px 5px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    min-height: 47px;
+}
+nav.navecation  .active{
+    background: rgba(232, 96, 76, 0.06) !important;
+    color: $primary !important;
+
+}
+nav.navecation  .active img{
+    filter: grayscale(78%) brightness(130%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
+}
+#navi{
+    padding-left: 0px !important;
 }

@@ -16,8 +16,11 @@
                 border-top-left-radius: 12px;
                 border-top-right-radius: 12px;
             }
-            .card-01 .bg-card-body{
+            .bg-card-body:nth-child(even) {
                 background-color: #E8604C;
+            }
+            .bg-card-body:nth-child(odd) {
+                background-color: #2A3342;
             }
             .card-01 .card-body {
                 position: relative;
@@ -109,37 +112,37 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg my-4 my-md-0" style="min-height: 380px">
                                     <div class="guest-card-description pt-75 pb-4 px-5" style="min-height: 270px;">
-                                        <h4>{{$dt->title }}</h4>
+                                        <h4 class="pt-2">{{$dt->title }}</h4>
                                         {!! $dt->content     !!}</div>
-                                    <div class="card-body   bg-card-body pb-5">
+                                    <div class="card-body bg-primary pb-5">
                                         <span class="badge-box py-4">
                                             <img src="{{$dt->getFileUrl('image')}}"
                                                  alt="{{ $dt->title ?? '' }}"
                                                  class="rounded-circle" width="60"/>
                                         </span>
                                         <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
-                                        <p class="card-text text-center text-white-light fw-light text-white">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                        <p class="card-text text-center text-white-light fw-light ">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                     </div>
                                 </div>
                             </div>
                         @else
-                            <!-- <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg" style="min-height: 380px">
                                     <div class="guest-card-description pt-75 pb-4 px-5" style="min-height: 270px;">
-                                        <h4>{{$dt->title }}</h4>
+                                        <h4 class="pt-2">{{$dt->title }}</h4>
                                         {!! $dt->content     !!}
-                            </div>
-                            <div class="card-body pb-5">
+                                    </div>
+                                    <div class="card-body bg-dark-blue pb-5">
                         <span class="badge-box py-4">
                             <img src="{{$dt->getFileUrl('image')}}"
-                                         alt="{{ $dt->name ?? '' }}"
-                                         class="rounded-circle" width="60"/>
+                                 alt="{{ $dt->name ?? '' }}"
+                                 class="rounded-circle" width="60"/>
                                         </span>
                                         <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
-                                        <p class="card-text text-center text-white-70 fw-light">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                        <p class="card-text text-center text-white-light fw-light">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         @endif
                     @endforeach
                 @endif
@@ -148,5 +151,7 @@
         </div>
     </section>
 
+    @push('scripts')
+    @endpush()
 </x-guest-layout>
 
