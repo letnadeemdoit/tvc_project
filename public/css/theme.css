@@ -38918,6 +38918,8 @@ body {
 .blog-tabs .nav-item .nav-link {
   min-height: 50px;
   padding: 8px 18px;
+  display: flex;
+  align-items: center;
 }
 
 .features-img-2 {
@@ -39474,7 +39476,7 @@ header nav button:last-child:hover {
     font-size: 10px !important;
   }
   .recipe-card-footer span {
-    font-size: 10px !important;
+    font-size: 13px !important;
   }
 }
 @media only screen and (max-width: 991px) {
@@ -39546,6 +39548,9 @@ header nav button:last-child:hover {
     font-size: 13px !important;
     margin-right: 4px !important;
   }
+  nav.navecation ul li {
+    padding-right: 15px !important;
+  }
 }
 @media only screen and (max-width: 767px) {
   .hero-image {
@@ -39609,6 +39614,14 @@ header nav button:last-child:hover {
     padding: 7px 17px !important;
     font-size: 11px !important;
     margin-right: 4px !important;
+    min-height: revert !important;
+  }
+  nav.navecation ul li a {
+    padding: 15px !important;
+    font-size: 12px;
+  }
+  nav.navecation ul li {
+    padding-right: 8px !important;
   }
 }
 @media only screen and (max-width: 576px) {
@@ -39654,9 +39667,14 @@ header nav button:last-child:hover {
     padding: 7px 12px !important;
     font-size: 9px !important;
     margin-right: 3px !important;
+    min-height: revert !important;
   }
   .card-01 {
     background-position-x: 6% !important;
+  }
+  nav.navecation ul li a {
+    padding: 12px !important;
+    font-size: 10px;
   }
 }
 @media only screen and (max-width: 430px) {
@@ -39699,6 +39717,14 @@ header nav button:last-child:hover {
   }
   .card-01 {
     background-position-x: 8.5% !important;
+  }
+  nav.navecation ul li a {
+    padding: 5px !important;
+    min-height: 35px !important;
+    font-size: 11px;
+  }
+  nav.navecation ul li {
+    padding-right: 7px !important;
   }
 }
 @media only screen and (max-width: 375px) {
@@ -39743,6 +39769,14 @@ header nav button:last-child:hover {
   }
   .card-01 {
     background-position-x: 10.5% !important;
+  }
+  nav.navecation ul li a {
+    padding: 5px !important;
+    min-height: 35px !important;
+    font-size: 9px;
+  }
+  nav.navecation ul li {
+    padding-right: 6px !important;
   }
 }
 .bulletin-image {
@@ -39805,7 +39839,7 @@ header nav button:last-child:hover {
   background: rgba(232, 96, 76, 0.06) !important;
 }
 .category-cards .nav-link.active img {
-  filter: grayscale(78%) brightness(73%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
+  filter: grayscale(78%) brightness(130%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
 }
 
 .bg-waves {
@@ -39854,9 +39888,6 @@ header nav button:last-child:hover {
   margin-top: -60px;
 }
 
-.ul-card-footer li {
-  padding-left: 7px;
-}
 .ul-card-footer li span {
   padding-left: 3px;
   font-size: 13px;
@@ -39868,4 +39899,35 @@ header nav button:last-child:hover {
   background-position: center;
   background-size: contain;
   height: 50px;
+}
+
+nav.navecation ul li {
+  list-style: none;
+  float: left;
+  padding-right: 20px;
+}
+
+nav.navecation ul li a {
+  text-decoration: none;
+  color: #222;
+  background-color: rgba(217, 217, 217, 0.2588235294);
+  padding: 4px 5px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+  min-height: 47px;
+}
+
+nav.navecation .active {
+  background: rgba(232, 96, 76, 0.06) !important;
+  color: #E8604C !important;
+}
+
+nav.navecation .active img {
+  filter: grayscale(78%) brightness(130%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
+}
+
+#navi {
+  padding-left: 0px !important;
 }
