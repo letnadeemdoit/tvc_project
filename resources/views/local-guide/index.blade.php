@@ -1,6 +1,7 @@
 
 <x-guest-layout>
     @push('stylesheets')
+
     @endpush
 
     @include('partials.sub-page-hero-section', ['title' => 'Local Guide'])
@@ -12,12 +13,23 @@
         <h1 class="pt-2 text-center poppins-bold">Read Local Guide reviews here</h1>
         <div class="container mt-80 pb-5">
             <div class="row">
+                <div class="col-12 d-flex mb-5 justify-content-center justify-content-md-start">
+                    <nav class="navecation">
+                        <ul id="navi">
+                            <li><a class="menu active" href="#">About </a></li>
+                            <li><a class="menu" href="#"><img src="/images/guest-book/food.svg" class="img-fluid me-2 d-none d-md-block"> Contact </a></li>
+                            <li><a class="menu" href="#"><img src="/images/guest-book/clipboard.svg" class="img-fluid me-2 d-none d-md-block">Services</a></li>
+                            <li><a class="menu" href="#"><img src="/images/guest-book/home.svg" class="img-fluid me-2 d-none d-md-block"> Contact Us</a></li>
+                            <li><a class="menu" href="#"><img src="/images/guest-book/car.svg" class="img-fluid me-2 d-none d-md-block">Read Our Blog</a></li>
+                        </ul>
+                    </nav>
+                </div>
                 @if(isset($data))
                     @foreach($data as $dt)
-                        <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="col-md-6 col-xl-4 mb-4">
                             <div class="card blog-card rounded-2">
                                 <div class="card-header border-0">
-                                    <div class="d-block d-md-flex justify-content-between align-items-center">
+                                    <div class="d-block d-sm-flex justify-content-between align-items-center">
                                         <div class="user-img d-flex align-items-center">
 
                                             {{--                            <img src="/images/blog-images/house-7.png" class="img-fluid position-relative" alt="...">--}}
@@ -33,7 +45,7 @@
                                                 <p class="mb-0 date-fs">{{date('Y-M-d',strtotime($dt->created_at))}} <a href="#" class="ps-2">View</a> </p>
                                             </div>
                                         </div>
-                                        <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->localGuideCategory->name}}</a>
+                                        <a class="btn btn-primary-light fs-13 my-3 my-md-0 fw-bolder">{{$dt->localGuideCategory->name}}</a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
                                         <b class="text-dark">{{$dt->title}}</b>
@@ -75,5 +87,15 @@
         </div>
     </section>
 
+    @push('scripts')
+        <script>
+            $(document).ready(function(){
+                $('nav.navecation ul li a').click(function(){
+                    $('li a').removeClass("active");
+                    $(this).addClass("active");
+                });
+            });
+        </script>
+    @endpush()
 </x-guest-layout>
 
