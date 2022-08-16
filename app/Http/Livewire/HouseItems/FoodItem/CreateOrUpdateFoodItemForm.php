@@ -16,7 +16,7 @@ class CreateOrUpdateFoodItemForm extends Component
 
     public $isShowingModal = false;
 
-    private $isCreating = false;
+    public $isCreating = false;
 
     public $state = [];
 
@@ -44,8 +44,11 @@ class CreateOrUpdateFoodItemForm extends Component
         $this->foodItemList = $foodItemList;
         $this->reset(['state', 'file']);
 
-        if ($foodItemList) {
+        if ($foodItemList->id) {
+            $this->isCreating = false;
             $this->state = \Arr::only($foodItemList->toArray(), ['user_id','house_id','name','location','expiration_date','']);
+        }else{
+            $this->isCreating = true;
         }
     }
 
@@ -78,9 +81,10 @@ class CreateOrUpdateFoodItemForm extends Component
 
         $this->emitSelf('toggle', false);
 
-        $this->success('saved Successfully');
-
         $this->emit('food-item-cu-successfully');
+
+        $this->success( 'Food Item ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
+
     }
 
     public function updatedFile() {
@@ -90,7 +94,7 @@ class CreateOrUpdateFoodItemForm extends Component
     public function deleteFile() {
         if ($this->foodItemList->id) {
             $this->foodItemList->deleteFile();
-            $this->emit('local-guide-cu-successfully');
+            $this->emit('food-item-cu-successfully');
         }
     }
 

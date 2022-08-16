@@ -60,10 +60,34 @@
                             </div>
 
                         </td>
-{{--                        <td>---</td>--}}
-{{--                        <td>--</td>--}}
                         <td>{{$dt->title}}</td>
-                        <td>{!! $dt->content !!}</td>
+
+                        <td>{!! substr($dt->content,0,60) ?? '' !!}
+                            @if(isset($dt->content) && strlen($dt->content) > 60)
+                                <a href="#!"
+                                   class="fw-600"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#guestBook{{$dt->id}}Details"
+                                >View</a>
+                            @endif
+                        </td>
+                        <!-- Modal -->
+                        <div class="modal fade" id="guestBook{{$dt->id}}Details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{$dt->title ?? ''}}'s Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            {!! $dt->content ?? '' !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <td>
                             <span class="legend-indicator bg-{{$dt->status == 1 ? 'success' : 'danger'}}"></span>
                             {{ $dt->status == 1  ? "Active" : 'InActive' }}

@@ -68,7 +68,7 @@
                                    class="fw-600"
                                    data-bs-toggle="modal"
                                    data-bs-target="#localGuideDescription{{$dt->id}}Details"
-                                >Click for more Details</a>
+                                >View</a>
                            @endif
 
                         </td>
