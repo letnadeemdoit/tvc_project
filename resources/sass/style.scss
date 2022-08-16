@@ -184,6 +184,8 @@ body{
         .nav-link{
             min-height: 50px;
             padding: 8px 18px;
+            display: flex;
+            align-items: center;
         }
     }
 }
@@ -946,6 +948,7 @@ header{
                 padding: 7px 17px !important;
                 font-size:11px !important;
                 margin-right: 4px !important;
+                min-height: revert !important;
             }
         }
     }
@@ -1019,6 +1022,7 @@ header{
                 padding: 7px 12px !important;
                 font-size: 9px !important;
                 margin-right: 3px !important;
+                min-height: revert !important;
             }
         }
     }
@@ -1146,6 +1150,7 @@ header{
                 padding: 7px 6px !important;
                 font-size: 8px !important;
                 margin-right: 3px !important;
+
             }
         }
     }
@@ -1277,7 +1282,6 @@ header{
 }
 .ul-card-footer {
     li {
-        padding-left: 7px;
         span {
             padding-left: 3px;
             font-size: 13px;
