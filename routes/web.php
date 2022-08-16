@@ -30,15 +30,15 @@ Route::controller(GuestController::class)
         Route::post('/contact', 'contactMail')->name('contact.mail');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
-        Route::get('/blog-cards','blog')->name('blog');
+//        Route::get('/blog-cards','blog')->name('blog');
 //      Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
         Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
-        Route::get('/guest-login','guestLogin')->name('guest-login');
-        Route::get('/book-cards','guestBook')->name('guest-book');
-        Route::get('/login-account','loginAccount')->name('login-account');
+//        Route::get('/guest-login','guestLogin')->name('guest-login');
+//        Route::get('/book-cards','guestBook')->name('guest-book');
+//        Route::get('/login-account','loginAccount')->name('login-account');
         Route::get('/search-house','searchHouse')->name('search-house');
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
-        Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
+//        Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
         Route::get('/local-guide','localGuide')->name('local-guide');
         Route::get('/photo-album','photoAlbum')->name('photo-album');
 
