@@ -91,7 +91,7 @@ require_once __DIR__ . '/fortify.php';
 
 
 Route::middleware([
-    'auth:sanctum',
+    'auth',
     config('jetstream.auth_session'),
     'verified'
 ])
@@ -110,6 +110,7 @@ Route::middleware([
         Route::get('/food-item-list', [DashboardController::class, 'foodItemList'])->name('food-item-list');
         Route::get('/shopping-item-list', [DashboardController::class, 'shoppingItemList'])->name('shopping-item-list');
 
+        Route::put('/current-house', [DashboardController::class, 'switchHouse'])->name('switch-house');
         Route::controller(\App\Http\Controllers\SettingController::class)
             ->prefix('settings')
             ->name('settings.')

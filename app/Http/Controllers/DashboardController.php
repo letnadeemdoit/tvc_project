@@ -9,6 +9,7 @@ use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Utils;
 
 class DashboardController extends Controller
@@ -86,6 +87,19 @@ class DashboardController extends Controller
             'user' => $request->user()
         ]);
 
+    }
+
+    public function switchHouse(Request $request) {
+        $user = User::where([
+            'HouseId' => $request->house_id,
+            'email' => auth()->user()->email,
+        ])->first();
+
+        abort_if(!$user, 500,'Sorry! unable to switch house something went wrong. Try again later.');
+
+        auth()->loginUsingId($user->user_id);
+
+        return redirect()->intended('/dashboard');
     }
 
 }

@@ -209,4 +209,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo(House::class, 'HouseId', 'HouseID');
     }
+
+    public function getAdditionalHousesAttribute()
+    {
+        return House::whereHas('users', function ($query) {
+            $query->where([
+                'email' => $this->email,
+                'role' => self::ROLE_ADMINISTRATOR,
+                ['HouseId', '<>', $this->HouseId]
+            ]);
+        })->get();
+    }
 }

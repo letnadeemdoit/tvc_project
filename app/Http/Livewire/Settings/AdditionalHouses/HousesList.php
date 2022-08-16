@@ -38,7 +38,8 @@ class HousesList extends Component
     public function render()
     {
         $data = House::whereHas('users', function ($query) {
-            $query->where('email', $this->user->email);
+            $query->where('email', $this->user->email)
+                ->where('HouseId', '<>', $this->user->HouseId);
         })
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
