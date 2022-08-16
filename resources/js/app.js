@@ -11,6 +11,7 @@ window.TINYMCE_DEFAULT_CONFIG = TINYMCE_DEFAULT_CONFIG;
 
 //Snackbar
 window.toastr = require('toastr');
+window.jSuites = require('jsuites');
 
 window.livewire.on('toastr', function (data) {
     let toastr = window.toastr;
@@ -47,6 +48,18 @@ window.livewire.on('toastr', function (data) {
             break;
     }
 
+});
+
+window.livewire.hook('message.sent', (message, component) => {
+    if (message.updateQueue[0].payload.event === 'destroyed-successfully') {
+        window.jSuites.loading.show();
+    }
+});
+
+window.livewire.hook('message.processed', (message, component) => {
+    if (message.updateQueue[0].payload.event === 'destroyed-successfully') {
+        window.jSuites.loading.hide();
+    }
 });
 
 window.Alpine = Alpine;

@@ -64,6 +64,4 @@ class UsersList extends Component
             ->paginate($this->per_page);
         return view('dash.settings.users.users-list', compact('data'));
     }
-
-
 }
