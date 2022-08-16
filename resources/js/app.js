@@ -52,14 +52,24 @@ window.livewire.on('toastr', function (data) {
 
 window.livewire.hook('message.sent', (message, component) => {
     let event = message.updateQueue[0].payload.event;
-    if ( event && (event === 'destroyed-successfully' || event.includes('cu-successfully') || event.includes('Modal'))) {
+    if (event && (
+        event === 'destroyed-successfully' ||
+        event.includes('cu-successfully') ||
+        event.includes('Modal') ||
+        event.includes('destroyable-confirmation-modal')
+    )) {
         window.jSuites.loading.show();
     }
 });
 
 window.livewire.hook('message.processed', (message, component) => {
     let event = message.updateQueue[0].payload.event;
-    if (event && (event === 'destroyed-successfully' || event.includes('cu-successfully') || event.includes('Modal'))) {
+    if (event && (
+        event === 'destroyed-successfully' ||
+        event.includes('cu-successfully') ||
+        event.includes('Modal') ||
+        event.includes('destroyable-confirmation-modal')
+    )) {
         window.jSuites.loading.hide();
     }
 });
