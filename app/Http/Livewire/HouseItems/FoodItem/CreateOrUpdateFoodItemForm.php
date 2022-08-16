@@ -1,33 +1,36 @@
 <?php
 
-namespace App\Http\Livewire\Settings\GuestBook;
+namespace App\Http\Livewire\HouseItems\FoodItem;
 
 use App\Http\Livewire\Traits\Toastr;
-use App\Models\GuestBook;
+use App\Models\FoodItem;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class CreateOrUpdateGusetBookForm extends Component
+class CreateOrUpdateFoodItemForm extends Component
 {
+
     use WithFileUploads;
     use Toastr;
 
     public $isShowingModal = false;
 
+    private $isCreating = false;
+
     public $state = [];
 
     public $file;
 
-    public ?GuestBook $guestBook;
+    public ?FoodItem $foodItemList;
 
     protected $listeners = [
-        'showGuestBookCUModal',
+        'showFoodItemCUModal',
     ];
 
     public function render()
     {
-        return view('dash.settings.guest-book.create-or-update-guest-book-form') ;
+        return view('dash.house-items.food-item-list.create-or-update-food-item-form');
     }
 
     public function hydrate()
@@ -35,18 +38,18 @@ class CreateOrUpdateGusetBookForm extends Component
         $this->dispatchBrowserEvent('modal-is-shown');
     }
 
-    public function showGuestBookCUModal($toggle, ?GuestBook $guestBook)
+    public function showFoodItemCUModal($toggle, ?FoodItem $foodItemList)
     {
         $this->emitSelf('toggle', $toggle);
-        $this->guestBook = $guestBook;
+        $this->foodItemList = $foodItemList;
         $this->reset(['state', 'file']);
 
-        if ($guestBook->id) {
-            $this->state = \Arr::only($guestBook->toArray(), ['title','name','content','image','status']);
+        if ($foodItemList) {
+            $this->state = \Arr::only($foodItemList->toArray(), ['user_id','house_id','name','location','expiration_date','']);
         }
     }
 
-    public function saveGuestBookCU()
+    public function saveFoodItemCU()
     {
         $this->resetErrorBag();
 
@@ -59,28 +62,25 @@ class CreateOrUpdateGusetBookForm extends Component
         }
 
         Validator::make($inputs, [
-            'name' => 'required',
-            'title' => 'required|string|max:100',
-            'content' => 'required',
-            'image' => 'nullable|mimes:png,jpg,gif,tiff',
-        ])->validateWithBag('saveGuestBookCU');
+            'name' => 'required|string|max:100',
+        ])->validateWithBag('saveFoodItemCU');
 
-        $this->guestBook->fill([
+        $this->foodItemList->fill([
             'user_id' => auth()->user()->user_id,
             'house_id' => auth()->user()->HouseId,
             'name' => $inputs['name'],
-            'title' => $inputs['title'],
-            'status' => $inputs['status'] ?? 0,
-            'content' => $inputs['content'],
+            'location' => $inputs['location'] ?? null,
+            'expiration_date' => $inputs['expiration_date'] ?? null,
+            'description' => $inputs['description'] ?? null,
         ])->save();
 
-        $this->guestBook->updateFile($this->file);
+        $this->foodItemList->updateFile($this->file);
 
         $this->emitSelf('toggle', false);
 
         $this->success('saved Successfully');
 
-        $this->emit('guest-book-cu-successfully');
+        $this->emit('food-item-cu-successfully');
     }
 
     public function updatedFile() {
@@ -88,10 +88,11 @@ class CreateOrUpdateGusetBookForm extends Component
     }
 
     public function deleteFile() {
-        if ($this->guestBook->id) {
-            $this->guestBook->deleteFile();
-            $this->emit('guest-book-cu-successfully');
+        if ($this->foodItemList->id) {
+            $this->foodItemList->deleteFile();
+            $this->emit('local-guide-cu-successfully');
         }
     }
+
 
 }

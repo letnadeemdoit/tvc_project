@@ -48,7 +48,6 @@ class CreateOrUpdateUserForm extends Component
         $this->userCU = $userCU;
         $this->reset('state');
 
-
         if ($userCU->user_id) {
             $this->isCreating = false;
             $this->state = [

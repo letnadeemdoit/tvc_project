@@ -72,6 +72,20 @@ class DashboardController extends Controller
 
     }
 
+    public function foodItemList(Request $request){
 
+        return view('dash.house-items.food-item-list.index', [
+            'user' => $request->user()
+        ]);
+
+    }
+
+    public function shoppingItemList(Request $request){
+
+        return view('dash.house-items.shopping-item-list.index', [
+            'user' => $request->user()
+        ]);
+
+    }
 
 }

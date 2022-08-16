@@ -107,6 +107,8 @@ Route::middleware([
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
         Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
+        Route::get('/food-item-list', [DashboardController::class, 'foodItemList'])->name('food-item-list');
+        Route::get('/shopping-item-list', [DashboardController::class, 'shoppingItemList'])->name('shopping-item-list');
 
         Route::controller(\App\Http\Controllers\SettingController::class)
             ->prefix('settings')

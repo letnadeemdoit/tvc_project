@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\LocalGuide;
 
+use App\Http\Livewire\Traits\Toastr;
 use App\Models\LocalGuide;
 use App\Models\LocalGuideCategory;
 use Illuminate\Support\Facades\Validator;
@@ -11,6 +12,7 @@ use Livewire\WithFileUploads;
 class CreateOrUpdateLocalGuideForm extends Component
 {
     use WithFileUploads;
+    use Toastr;
 
     public $isShowingModal = false;
 
@@ -78,6 +80,8 @@ class CreateOrUpdateLocalGuideForm extends Component
         $this->localGuide->updateFile($this->file);
 
         $this->emitSelf('toggle', false);
+
+        $this->success('saved Successfully');
 
         $this->emit('local-guide-cu-successfully');
     }
