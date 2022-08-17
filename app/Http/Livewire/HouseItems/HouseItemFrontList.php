@@ -8,6 +8,9 @@ use Livewire\Component;
 
 class HouseItemFrontList extends Component
 {
+
+    public $title = 'food';
+
     public function render()
     {
 
@@ -16,4 +19,17 @@ class HouseItemFrontList extends Component
 
         return view('house-items.food-and-shopping-card-list',compact('foodItems','shoppingItems'));
     }
+
+    public function changeFoodTitle(){
+
+        $this->title = 'food';
+
+    }
+
+    public function changeShoppingTitle(){
+
+        $this->title = 'shopping';
+
+    }
+
 }
