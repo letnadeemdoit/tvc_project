@@ -24,16 +24,19 @@
                             <i class="bi-three-dots-vertical"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
-                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
-                               data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"
+                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"
+{{--                               data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $blog->BlogId }}Modal"--}}
                             >
                                 <i class="bi-trash me-2"></i>Delete Blog
                             </a>
-                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId({{ $blog->BlogId }})"
-                               data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
+                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"
+{{--                               wire:click="getBlogId({{ $blog->BlogId }})" data-bs-toggle="modal" data-bs-target="#addBlogCommentModal"--}}
+                            >
                                 <i class="bi-pencil me-2"></i> Add Comment
                             </a>
-                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$blog->BlogId}})">
+                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"
+{{--                               @click.prevent="window.livewire.emit('readBlogComments', {{$blog->BlogId}})"--}}
+                            >
                                 <i class="bi-book me-2"></i> Read Comment
                             </a>
                             {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
