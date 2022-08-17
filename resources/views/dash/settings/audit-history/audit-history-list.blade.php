@@ -49,7 +49,8 @@
                 @foreach($data as $dt)
                     <tr>
                         <td>{{$dt->user->user_name}}</td>
-                        <td>{{$dt->auditable->getTable()}}</td>
+{{--                        <td>{{$dt->auditable->getTable()}}</td>--}}
+                        <td>{{$dt->user_type}}</td>
                         <td>{{$dt->ip_address}}</td>
                         <td>{{$dt->event}}</td>
                         <td>{{$dt->created_at}}</td>
@@ -58,7 +59,6 @@
                                data-bs-target="#auditHistor{{$dt->id}}Model"
                             >View</a>
                         </td>
-
 
                         <!-- Modal -->
                         <div class="modal fade" id="auditHistor{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,7 +87,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                     </tr>
                 @endforeach
