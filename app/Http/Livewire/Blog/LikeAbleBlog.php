@@ -5,20 +5,27 @@ namespace App\Http\Livewire\Blog;
 use App\Models\Blog\Blog;
 use App\Models\Likes;
 use Livewire\Component;
+use App\Http\Livewire\Traits\Toastr;
 
 class LikeAbleBlog extends Component
 {
     public Blog $post;
+    use Toastr;
+    public $isExistingUser = false;
+
     public $existing_likes;
 
     protected $listeners = [
-        'blog-likes-successfully' => '$refresh',
+        'blog-likes-cu-successfully' => '$refresh',
     ];
 
     public function mount(){
         $blog_Likes = $this->post->likes;
         foreach ($blog_Likes as $like){
             $this->existing_likes += $like->likes;
+        }
+        if ($this->existing_likes > 0){
+            $this->isExistingUser = true;
         }
     }
 
@@ -40,8 +47,11 @@ class LikeAbleBlog extends Component
             ]);
 
             $this->post->likes()->save($like);
-        }
-        $this->emit('blog-likes-successfully');
 
+            $this->existing_likes = $this->existing_likes+1;
+            $this->isExistingUser = true;
+        }
+
+        $this->emit('blog-likes-cu-successfully');
     }
 }

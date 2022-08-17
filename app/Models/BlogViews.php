@@ -19,4 +19,5 @@ class BlogViews extends Model
     {
         return $this->morphTo();
     }
+
 }

@@ -1,17 +1,9 @@
 <div>
 <div class="mb-4">
     <div class="input-group border rounded-1" style="border-color: #E8604C35 !important;">
-        <form>
+{{--        <form>--}}
             <!-- Search -->
-            <div class="input-group input-group-merge input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                    <div wire:loading wire:target="search">
-                        <div class="spinner-border spinner-border-sm" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                    <i class="bi-search" wire:loading.remove wire:target="search"></i>
-                </div>
+{{--            <div class="input-group input-group-merge input-group-flush">--}}
                 <input
                     type="search"
                     class="form-control"
@@ -19,9 +11,17 @@
                     aria-label="Search boards"
                     wire:model.debounce.500ms="search"
                 />
-            </div>
+{{--            </div>--}}
             <!-- End Search -->
-        </form>
+{{--        </form>--}}
+        <div class="input-group-prepend input-group-text">
+            <div wire:loading wire:target="search">
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <i class="bi-search" wire:loading.remove wire:target="search"></i>
+        </div>
     </div>
 </div>
 <div class="card border-0 mb-4">

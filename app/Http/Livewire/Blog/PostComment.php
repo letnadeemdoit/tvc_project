@@ -17,7 +17,7 @@ class PostComment extends Component
 
     public function render()
     {
-        $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->get();
+        $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->get();
         return view('blog.post-comment', compact('BlogComments'));
     }
 
