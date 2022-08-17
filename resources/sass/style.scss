@@ -1051,6 +1051,9 @@ header{
         padding: 12px !important;
         font-size: 10px;
     }
+    .margin-tb {
+        margin-bottom: 40px !important;
+    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -1111,6 +1114,9 @@ header{
     }
     nav.navecation ul li{
         padding-right: 7px !important;
+    }
+    .margin-tb {
+        margin-bottom: 35px !important;
     }
 }
 @media only screen and (max-width:375px){
@@ -1177,6 +1183,7 @@ header{
     nav.navecation ul li{
         padding-right: 6px !important;
     }
+
 }
 
 // bulletin page css
@@ -1284,6 +1291,13 @@ header{
 }
 .bg-guest{
     background-image: url('/images/guest-book/Guest.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 50px;
+}
+.bg-album{
+    background-image: url('/images/photo-album/Album.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

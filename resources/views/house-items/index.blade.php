@@ -49,9 +49,16 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 col-md-6 col-lg-2">saasf</div>
-                                <div class="col-12 col-md-6 col-lg-3">fasdfa</div>
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-12 col-md-6 col-lg-2 border-end">
+                                    <img src="{{asset('/images/house-items/bread.svg')}}" class="img-fluid">
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <div class="d-flex w-100 justify-content-center align-items-center">
+                                        <a  class="btn btn-soft-primary">Food Item:</a>
+                                        <p class="mb-0">Bread</p>
+                                    </div>
+                                </div>
                                 <div class="col-12 col-md-6 col-lg-3">fasdf</div>
                                 <div class="col-12 col-md-6 col-lg-4">fasdfas</div>
                             </div>
