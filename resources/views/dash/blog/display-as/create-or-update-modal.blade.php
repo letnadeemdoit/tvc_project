@@ -63,7 +63,7 @@
 
                         $('.showErrorMsg').addClass('d-none');
 
-                    @this.upload( 'BlogImage', $event.dataTransfer.files[0],
+                    @this.upload( 'image', $event.dataTransfer.files[0],
                         (uploadedFilename) => {
                         }, () => {
 

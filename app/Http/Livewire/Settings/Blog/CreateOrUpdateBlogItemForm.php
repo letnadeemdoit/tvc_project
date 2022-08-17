@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Settings\Blog;
 
 use App\Models\Blog\Blog;
+use App\Http\Livewire\Traits\Toastr;
 use App\Models\Blog\BlogComment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -13,7 +14,7 @@ use Livewire\WithFileUploads;
 class CreateOrUpdateBlogItemForm extends Component
 {
     use WithFileUploads;
-
+    use Toastr;
     public $user;
 
     public $state = [];
@@ -44,7 +45,7 @@ class CreateOrUpdateBlogItemForm extends Component
         $this->reset(['state', 'file']);
 
         if ($blogItem->BlogId) {
-            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Content', 'BlogImage']);
+            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Content', 'image']);
         }
     }
 
@@ -55,17 +56,18 @@ class CreateOrUpdateBlogItemForm extends Component
         $inputs = $this->state;
 
         if ($this->file) {
-            $inputs['BlogImage'] = $this->file;
+            $inputs['image'] = $this->file;
         }else{
-            unset($inputs['BlogImage']);
+            unset($inputs['image']);
         }
-        $slug = Str::slug($inputs['Subject']);
 
         Validator::make($inputs, [
             'Subject' => 'required|string|max:100',
-            'BlogImage' => 'nullable|mimes:png,jpg,gif,tiff',
-            'Content' => 'required',
+            'image' => 'nullable|mimes:png,jpg,gif,tiff',
+            'Content' => 'required|max:1000',
         ])->validateWithBag('saveBlogItemCU');
+
+        $slug = Str::slug($inputs['Subject']);
 
         $this->blogItem->fill([
             'HouseId' => $this->user->HouseId,
@@ -81,11 +83,11 @@ class CreateOrUpdateBlogItemForm extends Component
             'slug' => $slug,
         ])->save();
 
-        $this->blogItem->updateFile($this->file, 'BlogImage');
+        $this->blogItem->updateFile($this->file);
 
         $this->emitSelf('toggle', false);
-        session()->flash('success', 'New Blog Comment Added successfully...');
-//        $this->emit('blog-cu-successfully');
+        $this->emit('user-cu-successfully');
+        $this->success( 'user-cu-successfully');
     }
 
     public function updatedFile() {
@@ -94,8 +96,8 @@ class CreateOrUpdateBlogItemForm extends Component
 
     public function deleteFile() {
         if ($this->blogItem->BlogId) {
-            $this->blogItem->deleteFile('BlogImage');
-            $this->emit('blog-cu-successfully');
+            $this->blogItem->deleteFile('image');
+            $this->emit('blog-deleted-successfully');
         }
     }
 }

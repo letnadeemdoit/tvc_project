@@ -4,6 +4,7 @@ namespace App\Models\Blog;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Likes;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -79,8 +80,8 @@ class Blog extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
-    public function reviews()
+    public function likes()
     {
-        return $this->morphMany(Review::class, 'commentable');
+        return $this->morphMany(Likes::class, 'likeable');
     }
 }

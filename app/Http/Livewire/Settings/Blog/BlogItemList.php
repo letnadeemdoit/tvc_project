@@ -48,10 +48,7 @@ class BlogItemList extends Component
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query
-                        ->where('Subject', 'LIKE', "%$this->search%")
-                        ->orWhere('Author', 'LIKE', "%$this->search%")
-                        ->orWhere('Audit_FirstName', 'LIKE', "%$this->search%")
-                        ->orWhere('Audit_Email', 'LIKE', "%$this->search%");
+                        ->where('Subject', 'LIKE', "%$this->search%");
                 });
             })
             ->orderBy('BlogId', 'DESC')

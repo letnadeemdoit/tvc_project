@@ -43,7 +43,7 @@
 
 {{--                    <label class="form-label" for="">Upload Your Visit Selfie</label>--}}
                     <div class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">
-                        @if($blogItem && !is_null($blogItem->BlogImage))
+                        @if($blogItem && !is_null($blogItem->image))
                             {{--           TODO:  need to fix the design               --}}
                             <div class="col h-100">
                                 <div class="dz-preview dz-file-preview">
@@ -53,7 +53,7 @@
                                     </a>
                                     <div class="dz-details d-flex">
                                         <div class="dz-img flex-shrink-0">
-                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $blogItem->getFileUrl('BlogImage') }}"/>
+                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $blogItem->getFileUrl() }}"/>
                                         </div>
 
                                         <div class="dz-file-wrapper flex-grow-1">
