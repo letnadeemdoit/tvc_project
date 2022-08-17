@@ -5,10 +5,14 @@ namespace App\Models;
 use App\Models\Traits\HasFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class LocalGuide extends Model
+class LocalGuide extends Model implements Auditable
 {
     use HasFactory;
+
+    use \OwenIt\Auditing\Auditable;
 
     use HasFile;
 
@@ -27,6 +31,20 @@ class LocalGuide extends Model
         'address',
         'datetime',
     ];
+
+    protected $attributeModifiers = [
+
+    ];
+
+
+//    public function transformAudit(array $data): array
+//    {
+//        Arr::set($data, 'auditable_table',  $this->getTable());
+//        Arr::set($data, 'version',  $this->version);
+//
+//        return $data;
+//    }
+
 
     protected function defaultFileUrl($column = 'image')
     {
