@@ -253,6 +253,7 @@ body{
 .bg-primary-light{
     background: $primary-light !important;
 }
+
 .border-dashed{
     border: 1px dashed $primary !important;
 }
@@ -265,8 +266,31 @@ fieldset{
         font-size: 19px;
     }
 }
-
-
+.btn-soft-blue{
+    color: #0075EF;
+    background: rgba(0, 117, 239, 0.1);
+    border-color: transparent;
+    &:hover{
+        background-color: #0075EF;
+        color: #fff;
+    }
+}
+.switch-button .active{
+    background-color: #fff;
+    color: $dark-blue !important;
+}
+.btn-soft-green{
+    color: #01B682;
+    background: rgba(1, 182, 130, 0.1);
+    border-color: transparent;
+    &:hover{
+        background-color:  #01B682;
+        color: #fff;
+    }
+}
+.bg-light-primary{
+    background: rgba(248, 172, 161, 0.15);
+}
 .social-img{
     background-image: url('/images/images-home/Social.svg');
     background-repeat: no-repeat;
@@ -276,6 +300,10 @@ fieldset{
 }
 .border-top-thick{
     border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+.border-right-solid{
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    min-height: 60px;
 }
 .bg-social-feed{
     background: url('/images/images-home/map.png');
@@ -797,6 +825,9 @@ header{
             }
         }
     }
+    .border-right-solid{
+        border: none !important;
+    }
     .guest-card-description{
         font-size: 13px !important;
     }
@@ -901,6 +932,7 @@ header{
     .select2-container{
         width: 100% !important;
     }
+
     .rounded-icon {
         width: 35%;
         margin: -31px auto !important;
