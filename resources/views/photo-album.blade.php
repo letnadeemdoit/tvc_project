@@ -89,9 +89,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                    <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -106,9 +106,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                    <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -123,9 +123,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -140,9 +140,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -157,9 +157,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -174,9 +174,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -191,9 +191,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -208,9 +208,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -225,9 +225,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
@@ -242,9 +242,9 @@
                         </a>
                         <div class="p-0">
                             <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text">
-                                <h3 class="text-white">Pathways</h3>
+                                <h3 class="text-white mb-0">Pathways</h3>
                                 <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-2">
+                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
                                     <span>20</span>
                                 </div>
                             </div>
