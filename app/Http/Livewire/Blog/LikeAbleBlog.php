@@ -11,6 +11,8 @@ class LikeAbleBlog extends Component
 {
     public Blog $post;
     use Toastr;
+    public $isExistingUser = false;
+
     public $existing_likes;
 
     protected $listeners = [
@@ -21,6 +23,9 @@ class LikeAbleBlog extends Component
         $blog_Likes = $this->post->likes;
         foreach ($blog_Likes as $like){
             $this->existing_likes += $like->likes;
+        }
+        if ($this->existing_likes > 0){
+            $this->isExistingUser = true;
         }
     }
 
@@ -44,6 +49,7 @@ class LikeAbleBlog extends Component
             $this->post->likes()->save($like);
 
             $this->existing_likes = $this->existing_likes+1;
+            $this->isExistingUser = true;
         }
 
         $this->emit('blog-likes-cu-successfully');

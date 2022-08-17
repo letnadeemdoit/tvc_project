@@ -16,7 +16,6 @@ class PostCard extends Component
     public $BlogComments = [];
     public $existing_likes;
     public $existing_views;
-    public $isExistingUser = false;
 
     protected $listeners = [
         'readBlogComments',
