@@ -6,7 +6,7 @@
 {{--            <div class="input-group input-group-merge input-group-flush">--}}
                 <input
                     type="search"
-                    class="form-control input-group-text"
+                    class="form-control"
                     placeholder="Search Blog"
                     aria-label="Search boards"
                     wire:model.debounce.500ms="search"
