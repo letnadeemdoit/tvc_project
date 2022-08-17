@@ -1,39 +1,39 @@
 <section class=" bg-light pt-55">
-    <div class="bg-food shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
-        <h1 class="text-primary font-vintage mb-0">Food Item</h1>
+    <div class="bg-{{$title}} shadow-1-strong rounded text-center d-flex justify-content-center align-items-center">
+        <h1 class="text-primary font-vintage mb-0">{{$title}} Item</h1>
     </div>
-    <h1 class="pt-2 text-center poppins-bold">View Available Food in House</h1>
+    <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available {{$title}} in House</h1>
 
 
     <div class="container mt-70 mb-5 bg-light-primary p-5">
         <div class="d-block d-sm-flex justify-content-between align-items-center">
             <div class="">
-                <h3 class="mb-0">Food in the House</h3>
+                <h3 class="mb-0 text-capitalize">{{$title}} in the House</h3>
             </div>
             <div class="">
                 <div
                     class="btn-group switch-button nav nav-tabs d-flex justify-content-end bg-dark-blue p-2 rounded-pill"
                     id="myTab" role="tablist">
-                    <button class="active btn rounded-pill text-white"
+                    <a href="#!" class="active btn rounded-pill text-white"
                             id="home-tab"
                             data-bs-toggle="tab"
                             data-bs-target="#home"
-                            type="button"
                             role="tab"
                             aria-controls="home"
                             aria-selected="true"
+                       wire:click.prevent="changeFoodTitle"
                     >Food in House
-                    </button>
-                    <button class="btn rounded-pill text-white"
+                    </a>
+                    <a href="#!" class="btn rounded-pill text-white"
                             id="profile-tab"
                             data-bs-toggle="tab"
                             data-bs-target="#profile"
-                            type="button"
                             role="tab"
                             aria-controls="profile"
                             aria-selected="false"
+                            wire:click.prevent="changeShoppingTitle"
                     >Shopping List
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
