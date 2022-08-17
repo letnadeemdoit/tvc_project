@@ -2,14 +2,14 @@
     @push('stylesheets')
         <style>
 
-            .card-01 {
-                background-image: url("/images/guest-book/quotes.svg") !important;
-                background-repeat: no-repeat;
-                background-position: top left;
-                background-size: 55px;
-                background-position-x: 9.5%;
-                background-position-y: 4%;
-            }
+            /*.card-01 {*/
+            /*    background-image: url("/images/guest-book/quotes.svg") !important;*/
+            /*    background-repeat: no-repeat;*/
+            /*    background-position: top left;*/
+            /*    background-size: 55px;*/
+            /*    background-position-x: 9.5%;*/
+            /*    background-position-y: 4%;*/
+            /*}*/
 
             .card-01 {
                 border-top-left-radius: 12px;
@@ -131,10 +131,9 @@
                         @if($loop->iteration % 2 == 0)
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg my-4 my-md-0" style="min-height: 380px">
-                                    <div class="guest-card-description pt-75 pb-4 px-5" style="min-height: 270px;">
-                                        <h4 class="pt-2">{{$dt->title }}</h4>
-
-
+                                    <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
+                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55" class="img-fluid margin-left-negative pt-3">
+                                        <h4 class="pt-1">{{$dt->title }}</h4>
                                         <div class="comment more">
                                             @if(strlen($dt->content) > 100)
                                                 {{substr($dt->content,0,100)}}
@@ -146,13 +145,13 @@
                                                           <i class="fa fa-angle-up"></i>
                                                     </span>
                                                 </span>
-                                                     @else
+                                            @else
                                                 {!! $dt->content     !!}
                                             @endif
                                         </div>
 
 
-{{--                                        {!! $dt->content     !!}--}}
+                                        {{--                                        {!! $dt->content     !!}--}}
                                     </div>
                                     <div class="card-body bg-primary pb-5">
                                         <span class="badge-box py-4">
@@ -168,8 +167,9 @@
                         @else
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg" style="min-height: 380px">
-                                    <div class="guest-card-description pt-75 pb-4 px-5" style="min-height: 270px;">
-                                        <h4 class="pt-2">{{$dt->title }}</h4>
+                                    <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
+                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55" class="img-fluid margin-left-negative pt-3">
+                                        <h4 class="pt-1">{{$dt->title }}</h4>
                                         <div class="comment more">
                                             @if(strlen($dt->content) > 100)
                                                 {{substr($dt->content,0,100)}}
@@ -206,26 +206,26 @@
     </section>
 
     @push('scripts')
-            <script type="text/javascript">
-                // Hide the extra content initially, using JS so that if JS is disabled, no problemo:
-                $('.read-more-content').addClass('hide_content')
-                $('.read-more-show, .read-more-hide').removeClass('hide_content')
+        <script type="text/javascript">
+            // Hide the extra content initially, using JS so that if JS is disabled, no problemo:
+            $('.read-more-content').addClass('hide_content')
+            $('.read-more-show, .read-more-hide').removeClass('hide_content')
 
-                // Set up the toggle effect:
-                $('.read-more-show').on('click', function(e) {
-                    $(this).next('.read-more-content').removeClass('hide_content');
-                    $(this).addClass('hide_content');
-                    e.preventDefault();
-                });
+            // Set up the toggle effect:
+            $('.read-more-show').on('click', function(e) {
+                $(this).next('.read-more-content').removeClass('hide_content');
+                $(this).addClass('hide_content');
+                e.preventDefault();
+            });
 
-                // Changes contributed by @diego-rzg
-                $('.read-more-hide').on('click', function(e) {
-                    var p = $(this).parent('.read-more-content');
-                    p.addClass('hide_content');
-                    p.prev('.read-more-show').removeClass('hide_content'); // Hide only the preceding "Read More"
-                    e.preventDefault();
-                });
-            </script>
+            // Changes contributed by @diego-rzg
+            $('.read-more-hide').on('click', function(e) {
+                var p = $(this).parent('.read-more-content');
+                p.addClass('hide_content');
+                p.prev('.read-more-show').removeClass('hide_content'); // Hide only the preceding "Read More"
+                e.preventDefault();
+            });
+        </script>
     @endpush()
 </x-guest-layout>
 
