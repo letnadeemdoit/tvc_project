@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog\Blog;
+use App\Models\BlogViews;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -14,9 +15,37 @@ class BlogController extends Controller
     }
 
     public function show(Request $request, Blog $post) {
+        $existing_likes = 0;
+        $blog_Likes = $post->likes;
+        foreach ($blog_Likes as $like){
+            $existing_likes += $like->likes;
+        }
+
+        $existing_views = 0;
+        $blog_views = $post->views;
+        foreach ($blog_views as $view){
+            $existing_views += $view->views;
+        }
+
+        $user = auth()->user();
+        $views = BlogViews::where('blog_id', $post->BlogId)->where('user_id', $user->user_id)->get();
+        if (count($views) == 0){
+            $view = new BlogViews();
+
+            $view->fill([
+                'user_id' => auth()->user()->user_id,
+                'blog_id' => $post->BlogId,
+                'views' => $existing_views+1,
+            ]);
+
+            $post->views()->save($view);
+        }
+
         return view('blog.post', [
             'user' => $request->user(),
-            'post' => $post
+            'post' => $post,
+            'existing_likes' => $existing_likes,
+            'existing_views' => $existing_views
         ]);
     }
 }

@@ -18,7 +18,7 @@ class CreateOrUpdateBlogItemForm extends Component
     public $user;
 
     public $state = [];
-
+    public $isCreating = false;
     public $file;
 
     public ?Blog $blogItem;
@@ -45,7 +45,10 @@ class CreateOrUpdateBlogItemForm extends Component
         $this->reset(['state', 'file']);
 
         if ($blogItem->BlogId) {
+            $this->isCreating = false;
             $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Content', 'image']);
+        }else{
+            $this->isCreating = true;
         }
     }
 
@@ -86,8 +89,8 @@ class CreateOrUpdateBlogItemForm extends Component
         $this->blogItem->updateFile($this->file);
 
         $this->emitSelf('toggle', false);
-        $this->emit('user-cu-successfully');
-        $this->success( 'user-cu-successfully');
+        $this->emit('blog-cu-successfully');
+        $this->success( 'Blog ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
     }
 
     public function updatedFile() {

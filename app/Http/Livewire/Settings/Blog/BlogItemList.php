@@ -29,7 +29,7 @@ class BlogItemList extends Component
 
     protected $listeners = [
         'destroyed-successfully' => '$refresh',
-        'user-cu-successfully' => '$refresh',
+        'Blog-cu-successfully' => '$refresh',
     ];
 
     public function mount()

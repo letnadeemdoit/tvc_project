@@ -2,6 +2,7 @@
 
 namespace App\Models\Blog;
 
+use App\Models\BlogViews;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Likes;
@@ -83,5 +84,10 @@ class Blog extends Model
     public function likes()
     {
         return $this->morphMany(Likes::class, 'likeable');
+    }
+
+    public function views()
+    {
+        return $this->morphMany(BlogViews::class, 'viewable');
     }
 }

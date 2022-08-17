@@ -26,16 +26,26 @@
                             <i class="bi-three-dots-vertical"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">
-                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"
-                               data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $post->BlogId }}Modal"
+{{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#"--}}
+{{--                               data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $post->BlogId }}Modal"--}}
+{{--                            >--}}
+{{--                                <i class="fa-solid fa-trash-can me-2"></i>Delete Blog--}}
+{{--                            </a>--}}
+                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"
                             >
                                 <i class="fa-solid fa-trash-can me-2"></i>Delete Blog
                             </a>
-                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId({{ $post->BlogId }})"
-                               data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">
+{{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" wire:click="getBlogId({{ $post->BlogId }})"--}}
+{{--                               data-bs-toggle="modal" data-bs-target="#addBlogCommentModal">--}}
+{{--                                <i class="fa-solid fa-comment-medical me-2"></i> Add Comment--}}
+{{--                            </a>--}}
+                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!">
                                 <i class="fa-solid fa-comment-medical me-2"></i> Add Comment
                             </a>
-                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$post->BlogId}})">
+{{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#" @click.prevent="window.livewire.emit('readBlogComments', {{$post->BlogId}})">--}}
+{{--                                <i class="fa-solid fa-comments me-2"></i> Read Comment--}}
+{{--                            </a>--}}
+                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!">
                                 <i class="fa-solid fa-comments me-2"></i> Read Comment
                             </a>
                             {{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
@@ -47,20 +57,21 @@
                 </div>
             </div>
             @php
-                $blogcomments = App\Models\Blog\BlogComment::where('BlogId', $post->BlogId )->get();
+                $blogcomments = App\Models\Blog\BlogComment::where('BlogId',$post->BlogId )->get();
                 $numberofcomments = count($blogcomments);
             @endphp
             <div class="card-footer px-0 pb-0 border-top-thick">
                 <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
 
                     <li>
-                        <a href="#">
-                            <img src="/images/blog-images/love.png" class="img-fluid me-1" wire:click="likeBlog({{ $post->BlogId }})">
-                        </a>
-                        <span>200 Likes</span>
+                        <livewire:blog.like-able-blog :post="$post" />
+{{--                        <a href="#">--}}
+{{--                            <img src="/images/blog-images/love.png" class="img-fluid me-1" wire:click="likeBlog({{ $post->BlogId }})">--}}
+{{--                        </a>--}}
+{{--                        <span>{{ isset($existing_likes) ? $existing_likes : 0}} Likes</span>--}}
                     </li>
                     <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>{{$numberofcomments}} Comments</span></li>
-                    <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>200 Views</span></li>
+                    <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
                 </ul>
             </div>
         </div>
