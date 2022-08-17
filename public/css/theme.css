@@ -41650,6 +41650,12 @@ body {
   font-size: 10px;
 }
 
+.bg-dropdown-img {
+  background-color: #E8604C;
+  padding: 4px;
+  border-radius: 3px;
+}
+
 .checked {
   color: #E8604C;
 }
@@ -41715,9 +41721,8 @@ body {
   padding: 0.8rem 0.45rem !important;
   font-size: 0.7rem !important;
 }
-.blog-card .blog-dropdown-item:hover i {
-  background-color: #fff !important;
-  color: #2A3342;
+.blog-card .blog-dropdown-item:hover img {
+  filter: invert(472%) sepia(177%) saturate(51%) hue-rotate(30deg) brightness(80%) contrast(197%);
 }
 .blog-card i:hover {
   color: #2A3342 !important;
@@ -41827,6 +41832,35 @@ fieldset i {
   font-size: 19px;
 }
 
+.btn-soft-blue {
+  color: #0075EF;
+  background: rgba(0, 117, 239, 0.1);
+  border-color: transparent;
+}
+.btn-soft-blue:hover {
+  background-color: #0075EF;
+  color: #fff;
+}
+
+.switch-button .active {
+  background-color: #fff;
+  color: #2A3342 !important;
+}
+
+.btn-soft-green {
+  color: #01B682;
+  background: rgba(1, 182, 130, 0.1);
+  border-color: transparent;
+}
+.btn-soft-green:hover {
+  background-color: #01B682;
+  color: #fff;
+}
+
+.bg-light-primary {
+  background: rgba(248, 172, 161, 0.15);
+}
+
 .social-img {
   background-image: url("/images/images-home/Social.svg");
   background-repeat: no-repeat;
@@ -41837,6 +41871,11 @@ fieldset i {
 
 .border-top-thick {
   border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+.border-right-solid {
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  min-height: 60px;
 }
 
 .bg-social-feed {
@@ -42012,6 +42051,11 @@ header nav button:last-child:hover {
 
 .color-dark {
   color: rgb(0, 0, 0);
+}
+
+.w-94 {
+  width: 94%;
+  margin: 0 auto;
 }
 
 .padding-top {
@@ -42263,7 +42307,7 @@ header nav button:last-child:hover {
 @media only screen and (min-width: 1200px) and (max-width: 1400px) {
   .ul-card-footer li span {
     padding-left: 0px !important;
-    font-size: 10px !important;
+    font-size: 9px !important;
   }
   .fs-13 {
     font-size: 12px !important;
@@ -42278,10 +42322,10 @@ header nav button:last-child:hover {
     font-size: 11px;
   }
   .date-fs {
-    font-size: 9px !important;
+    font-size: 12px !important;
   }
   .title-fs {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
   .feature-cards .card {
     min-height: revert !important;
@@ -42316,11 +42360,14 @@ header nav button:last-child:hover {
   .help-page-tabs .card .card-body {
     min-height: revert !important;
   }
+  .border-right-solid {
+    border: none !important;
+  }
   .guest-card-description {
     font-size: 13px !important;
   }
   .ul-card-footer li span {
-    font-size: 14px !important;
+    font-size: 13px !important;
   }
   .rounded-icon {
     width: 30%;
@@ -42401,9 +42448,6 @@ header nav button:last-child:hover {
   }
   .max-width {
     max-width: 100% !important;
-  }
-  .card-01 {
-    background-position-x: 6% !important;
   }
   .help-page-tabs .nav-tabs .nav-item .nav-link {
     padding: 0px !important;
@@ -42502,12 +42546,12 @@ header nav button:last-child:hover {
     margin-right: 5px !important;
     min-height: revert !important;
   }
-  .card-01 {
-    background-position-x: 6% !important;
-  }
   nav.navecation ul li a {
     padding: 12px !important;
     font-size: 10px;
+  }
+  .margin-tb {
+    margin-bottom: 40px !important;
   }
 }
 @media only screen and (max-width: 430px) {
@@ -42548,9 +42592,6 @@ header nav button:last-child:hover {
   .mt-70 {
     margin-top: 30px !important;
   }
-  .card-01 {
-    background-position-x: 8.5% !important;
-  }
   nav.navecation ul li a {
     padding: 5px !important;
     min-height: 35px !important;
@@ -42558,6 +42599,9 @@ header nav button:last-child:hover {
   }
   nav.navecation ul li {
     padding-right: 7px !important;
+  }
+  .margin-tb {
+    margin-bottom: 35px !important;
   }
 }
 @media only screen and (max-width: 375px) {
@@ -42599,9 +42643,6 @@ header nav button:last-child:hover {
     padding: 7px 7px !important;
     font-size: 9px !important;
     margin-right: 3px !important;
-  }
-  .card-01 {
-    background-position-x: 10.5% !important;
   }
   nav.navecation ul li a {
     padding: 5px !important;
@@ -42719,8 +42760,28 @@ header nav button:last-child:hover {
   height: 50px;
 }
 
+.bg-album {
+  background-image: url("/images/photo-album/Album.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 50px;
+}
+
+.bg-food {
+  background-image: url("/images/house-items/Food.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 50px;
+}
+
 .margin-negative {
   margin-top: -60px;
+}
+
+.margin-left-negative {
+  margin-left: -7px;
 }
 
 .ul-card-footer li span {

@@ -13,7 +13,7 @@
     @include('partials.sub-page-hero-section', ['title' => 'House Items'])
 
     <section class=" bg-light pt-55">
-        <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
+        <div class="bg-food shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
             <h1 class="text-primary font-vintage mb-0">Food Item</h1>
         </div>
         <h1 class="pt-2 text-center poppins-bold">View Available Food in House</h1>
@@ -96,7 +96,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">is is ofor</div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            {{--                    --}}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row justify-content-center align-items-center text-start text-lg-center">
+                                <div class="col-12 col-md-6 col-lg-2 border-right-solid">
+                                    <img src="{{asset('/images/house-items/bread.svg')}}" width="90" class="img-fluid">
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-3  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
+                                    <a  class="btn btn-soft-blue">Food Item :</a>
+                                    <p class="mb-0 ps-5">Bread</p>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-3  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
+                                    <a  class="btn btn-soft-green">Food Item :</a>
+                                    <p class="mb-0 ps-5">Bread</p>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
+                                    <a  class="btn btn-soft-primary">Food Item :</a>
+                                    <p class="mb-0 ps-5">Bread</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{--            --}}
+                </div>
             </div>
         </div>
         </div>
