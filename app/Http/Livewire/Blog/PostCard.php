@@ -7,10 +7,12 @@ use App\Models\Blog\BlogComment;
 use App\Models\Likes;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use App\Http\Livewire\Traits\Toastr;
 
 class PostCard extends Component
 {
     public Blog $post;
+    use Toastr;
     public $BlogComments = [];
     public $existing_likes;
     public $existing_views;

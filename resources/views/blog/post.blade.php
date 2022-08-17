@@ -105,25 +105,7 @@
     </div>
 
     <div class="container my-5">
-        <div class="row mb-5">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex justify-content-between">
-                    <h4>{{$numberofcomments}} comments</h4>
-                    <div><label for="">Sort By</label>
-                        <select name="" id="" class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
-                            <option value="">Sort</option>
-                            <option value="">Sort</option>
-                            <option value="">Sort</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row my-5">
             <livewire:blog.post-comment :user="$user" :blog="$post" />
-        </div>
-
 {{--        <div class="row mt-5 mb-3">--}}
 {{--            <div class="col-12 col-lg-6">--}}
 {{--                <div class="d-flex w-100">--}}
