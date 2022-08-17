@@ -22,8 +22,12 @@ class AuditedListener
      */
     public function handle(Audited $event)
     {
-        $event->audit->house_id = $event->audit->user->HouseId;
-        $event->audit->save();
+
+        if (auth()->check()){
+            $event->audit->house_id = $event->audit->user->HouseId;
+            $event->audit->save();
+        }
+
 
     }
 }
