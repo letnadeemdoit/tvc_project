@@ -6,6 +6,7 @@ use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HouseItemController;
 use App\Http\Controllers\LocalGuideController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\BulletinBoard\BulletinCards\Cards;
@@ -70,6 +71,13 @@ Route::controller(GuestController::class)
         Route::controller(BulletinBoardController::class)
             ->prefix('bulletin-board')
             ->name('bulletin-board.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+            });
+
+        Route::controller(HouseItemController::class)
+            ->prefix('house-items')
+            ->name('house-items.')
             ->group(function () {
                 Route::get('/', 'index')->name('index');
             });
