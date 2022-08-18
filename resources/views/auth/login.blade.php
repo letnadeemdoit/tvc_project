@@ -79,7 +79,16 @@
                                 Go to House
                             </button>
                         </div>
+
                     </div>
+
+                    <div class="text-center mt-4">
+                        <p>Don't have an account?
+                            <a href="{{ route('register') }}"
+                               class="text-decoration-underline text-primary fw-bolder">Create
+                                account</a></p>
+                    </div>
+
                 </div>
                 <div x-show="gotoHouse" style="display: none">
                     {{-- Login Account --}}
@@ -225,14 +234,12 @@
 
                     </div>
                 </div>
+
+
+
             </form>
 
-            <div class="text-center mt-4">
-                <p>Don't have an account?
-                    <a href="{{ route('register') }}"
-                       class="text-decoration-underline text-primary fw-bolder">Create
-                        account</a></p>
-            </div>
+
             <!-- End Form -->
         </div>
 

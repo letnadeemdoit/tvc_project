@@ -59,7 +59,6 @@ class GuestController extends Controller
     {
         return view('help');
     }
-
     public function blog() {
 
         return view('blog');
@@ -95,6 +94,7 @@ class GuestController extends Controller
     public function photoAlbum(){
         return view('photo-album');
     }
+
     public function guestBook(){
         $guestbook = GuestBook::paginate(10);
         return view('guest-book', compact('guestbook'));

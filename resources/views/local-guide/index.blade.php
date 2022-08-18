@@ -13,7 +13,19 @@
         <h1 class="pt-2 text-center poppins-bold">Read Local Guide reviews here</h1>
         </div>
             <div class="container  mb-5">
-            <div class="row">
+                <div class="d-flex justify-content-center justify-content-md-start">
+                    <nav class="navecation mb-3">
+                        <ul id="navi">
+                            <li><a class="menu active" href="#">ALL</a></li>
+                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/food.svg')}}" class="me-2 d-none d-md-inline-block">FOOD & DRINK</a></li>
+                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/clipboard.svg')}}" class="me-2 d-none d-md-inline-block">THINGS TO DO</a></li>
+                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/services.svg')}}" class="me-2 d-none d-md-inline-block">SERVICES</a></li>
+                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/car.svg')}}" class="me-2 d-none d-md-inline-block">TRANSPORTATION</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            <div class="row mt-5">
                 @if(isset($data))
                     @foreach($data as $dt)
                         <div class="col-md-6 col-xl-4 mb-4">
@@ -30,7 +42,7 @@
                                                 alt="{{ $dt->title ?? '' }}"
                                             >
 
-                                            <div class="ps-1">
+                                            <div class="ps-2">
                                                 <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
                                                 <p class="mb-0 date-fs">{{date('Y-M-d',strtotime($dt->created_at))}} <a href="#" class="color-blue fw-normal">View</a> </p>
                                             </div>
