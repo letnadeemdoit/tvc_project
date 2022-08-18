@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+
 
 class LocalGuide extends Model implements Auditable
 {
     use HasFactory;
-
-    use \OwenIt\Auditing\Auditable;
-
+    use AuditableTrait;
     use HasFile;
 
     /**

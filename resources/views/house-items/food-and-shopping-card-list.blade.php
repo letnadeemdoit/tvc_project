@@ -1,18 +1,18 @@
-<section class=" bg-light pt-55">
+<section class=" bg-light">
+    <div class="section-padding">
     <div class="bg-{{$title}} shadow-1-strong rounded text-center d-flex justify-content-center align-items-center">
         <h1 class="text-primary font-vintage mb-0">{{$title}} Item</h1>
     </div>
     <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available {{$title}} in House</h1>
-
-
-    <div class="container mt-70 mb-5 bg-light-primary p-5">
+    </div>
+    <div class="container mt-2 mb-5 bg-light-primary p-5 rounded-2 house-card-border">
         <div class="d-block d-sm-flex justify-content-between align-items-center">
             <div class="">
                 <h3 class="mb-0 text-capitalize">{{$title}} in the House</h3>
             </div>
             <div class="">
                 <div
-                    class="btn-group switch-button nav nav-tabs d-flex justify-content-end bg-dark-blue p-2 rounded-pill"
+                    class="btn-group switch-button nav nav-tabs d-flex justify-content-end bg-dark-blue p-2 rounded-pill mt-3 mt-sm-0"
                     id="myTab" role="tablist">
                     <a href="#!" class="active btn rounded-pill text-white"
                             id="home-tab"
@@ -21,7 +21,7 @@
                             role="tab"
                             aria-controls="home"
                             aria-selected="true"
-                       wire:click.prevent="changeFoodTitle"
+{{--                       wire:click.prevent="changeFoodTitle"--}}
                     >Food in House
                     </a>
                     <a href="#!" class="btn rounded-pill text-white"
@@ -31,7 +31,7 @@
                             role="tab"
                             aria-controls="profile"
                             aria-selected="false"
-                            wire:click.prevent="changeShoppingTitle"
+{{--                            wire:click.prevent="changeShoppingTitle"--}}
                     >Shopping List
                     </a>
                 </div>
@@ -48,7 +48,7 @@
                                         <img
                                             src="{{$dt->getFileUrl('image')}}"
                                             alt="{{ $dt->title ?? '' }}"
-                                            width="90" class="img-fluid">
+                                            style="max-width: 80px;max-height: 70px;" class="rounded-1">
                                     </div>
                                     <div
                                         class="col-12 col-md-6 col-lg-3  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
@@ -81,7 +81,7 @@
                                         <img
                                             src="{{$dt->getFileUrl('image')}}"
                                             alt="{{ $dt->title ?? '' }}"
-                                            width="90" class="img-fluid">
+                                            style="max-width: 80px;max-height:70px;" class="rounded-1">
                                     </div>
                                     <div
                                         class="col-12 col-md-6 col-lg-3  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">

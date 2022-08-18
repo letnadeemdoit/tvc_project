@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HasFile;
 
-class Category extends Model
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+
+class Category extends Model implements Auditable
 {
     use HasFactory;
+    use AuditableTrait;
     use HasFile;
 
     /**
@@ -43,7 +47,7 @@ class Category extends Model
      * @param $query
      * @return mixed
      */
-        public function scopeBlog($query)
+    public function scopeBlog($query)
     {
         return $query->where('type', self::TYPE_BLOG);
     }
@@ -80,6 +84,11 @@ class Category extends Model
     public function bulletinBoards()
     {
         return $this->hasMany(Board::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
     protected function defaultFileUrl($column = 'image'): string

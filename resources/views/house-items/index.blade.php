@@ -10,7 +10,7 @@
     @endpush
 
 
-    @include('partials.sub-page-hero-section', ['title' => 'House Items'])
+    @include('partials.sub-page-hero-section', ['title' => 'Food List'])
 
 
         <livewire:house-items.house-item-front-list/>

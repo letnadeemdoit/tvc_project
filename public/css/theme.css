@@ -41571,6 +41571,10 @@ i:hover {
   background-color: #2A3342;
 }
 
+.house-card-border {
+  border: 1px solid rgba(232, 96, 76, 0.34);
+}
+
 .bg-darkGrey {
   background-color: #DADADA;
 }
@@ -42086,7 +42090,8 @@ header nav button:last-child:hover {
 }
 
 .section-padding {
-  padding-top: 70px;
+  padding-top: 75px;
+  padding-bottom: 55px;
 }
 
 .accordion-section {
@@ -42477,6 +42482,7 @@ header nav button:last-child:hover {
   }
   .section-padding {
     padding-top: 40px !important;
+    padding-bottom: 40px !important;
   }
   .mobile-cards {
     margin: 70px 0px;
@@ -42499,6 +42505,9 @@ header nav button:last-child:hover {
   }
   nav.navecation ul li {
     padding-right: 8px !important;
+  }
+  .moretext {
+    display: none;
   }
 }
 @media only screen and (max-width: 576px) {
@@ -42769,7 +42778,15 @@ header nav button:last-child:hover {
 }
 
 .bg-food {
-  background-image: url("/images/house-items/Food.svg");
+  background-image: url("/images/house-items/food.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 50px;
+}
+
+.bg-food {
+  background-image: url("/images/house-items/shopping.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

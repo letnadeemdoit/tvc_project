@@ -10,7 +10,7 @@
             <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
         </div>
         <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>
-        <div class="container mt-80 pb-5">
+        <div class="container mt-80 mb-5">
             <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card blog-card rounded-2">

@@ -6,10 +6,15 @@ use App\Models\Traits\HasFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Board extends Model
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+
+
+class Board extends Model  implements Auditable
 {
     use HasFile;
     use HasFactory;
+    use AuditableTrait;
 
     protected $table = 'Board';
     public $timestamps = false;
@@ -48,6 +53,5 @@ class Board extends Model
     {
         return $this->belongsTo(House::class, 'HouseId', 'HouseID');
     }
-
 
 }

@@ -20,6 +20,9 @@ i:hover{
 .bg-dark-blue{
     background-color: $dark-blue;
 }
+.house-card-border{
+    border: 1px solid rgba(232, 96, 76, 0.34);;
+}
 .bg-darkGrey{
     background-color: #DADADA;;
 }
@@ -513,7 +516,8 @@ header{
 }
 // select2 ends
 .section-padding{
-    padding-top: 70px;
+    padding-top: 75px;
+    padding-bottom: 55px;
 }
 .accordion-section{
     /* Custom style */
@@ -980,6 +984,7 @@ header{
     }
     .section-padding{
         padding-top: 40px !important;
+        padding-bottom: 40px !important;
     }
     .mobile-cards{
         margin: 70px 0px;
@@ -1012,6 +1017,9 @@ header{
     nav.navecation ul li{
         padding-right: 8px !important;
     }
+    .moretext {
+        display: none;
+    }
 }
 @media only screen and (max-width:576px){
     .bg-process-img{
@@ -1021,6 +1029,7 @@ header{
         width:12%;
         margin: -30px auto !important;
     }
+
     .padding-top{
         padding-top: 6rem !important;
     }

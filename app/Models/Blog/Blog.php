@@ -11,11 +11,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HasFile;
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
 
-class Blog extends Model
+class Blog extends Model implements Auditable
 {
     use HasFactory;
     use HasFile;
+    use AuditableTrait;
 
     /**
      * @var string
