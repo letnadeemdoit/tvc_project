@@ -89,7 +89,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Audit_FirstName' => $this->user->Audit_FirstName,
             'Audit_LastName' => $this->user->Audit_LastName,
             'Audit_Email' => $this->user->Audit_Email,
-            'category_id' => $inputs['category_id'],
+            'category_id' => $inputs['category_id'] ?? null,
             'slug' => $slug,
         ])->save();
 

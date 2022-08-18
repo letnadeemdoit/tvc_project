@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Blog;
 
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogComment;
+use App\Models\Blog\BlogNestedComment;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -12,6 +13,7 @@ class PostComment extends Component
     public $user;
 
     public Blog $blog;
+
 
     public $type;
 
@@ -65,5 +67,23 @@ class PostComment extends Component
             $this->newestComment = false;
             $this->oldestComment = true;
         }
+    }
+
+    public function addBlogSubComment($commentId){
+        $this->resetErrorBag();
+        $inputs = $this->state;
+        Validator::make($inputs, [
+            'nested_content' => 'required|max:1000',
+        ])->validateWithBag('addBlogSubComment');
+
+        BlogNestedComment::create([
+            'comment_id'        => $commentId,
+            'blog_id'        => $this->blog->BlogId,
+            'user_id'        => $this->user->user_id ?? null,
+            'author'        => $this->user->first_name ?? null,
+            'nested_content' => $inputs['nested_content'],
+        ]);
+        $this->reset('state');
+
     }
 }

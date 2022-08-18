@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog\Blog;
 use App\Models\BlogViews;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -47,5 +48,11 @@ class BlogController extends Controller
             'existing_likes' => $existing_likes,
             'existing_views' => $existing_views
         ]);
+    }
+
+    public function items(Category $category) {
+        dd($category);
+//        $data = Blog::where('category_id', $category->id)->get();
+//        return view('blog.blog-list', compact('data'));
     }
 }

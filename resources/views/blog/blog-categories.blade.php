@@ -1,12 +1,12 @@
 <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-        <a href="3" class="nav-link active">
+        <a href="#!" class="nav-link active">
             ALL
         </a>
     </li>
     @foreach($categories as $category)
     <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('guest.blog.items', $category->slug)}}" class="nav-link">
             @if($category->image)
             <img
                 src="{{$category->getFileUrl('image')}}"
