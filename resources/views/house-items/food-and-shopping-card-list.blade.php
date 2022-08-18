@@ -48,7 +48,7 @@
                                         <img
                                             src="{{$dt->getFileUrl('image')}}"
                                             alt="{{ $dt->title ?? '' }}"
-                                            style="max-width: 80px;max-height: 70px;" class="rounded-1">
+                                            style="width: 120px;height: 75px;object-fit: cover" class="rounded-3">
                                     </div>
                                     <div
                                         class="col-12 col-md-6 col-lg-3  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
@@ -81,7 +81,7 @@
                                         <img
                                             src="{{$dt->getFileUrl('image')}}"
                                             alt="{{ $dt->title ?? '' }}"
-                                            style="max-width: 80px;max-height:70px;" class="rounded-1">
+                                            style="width: 120px;height: 75px;object-fit: cover" class="rounded-3">
                                     </div>
                                     <div
                                         class="col-12 col-md-6 col-lg-3  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
