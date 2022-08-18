@@ -41637,6 +41637,10 @@ body {
   color: #E8604C;
 }
 
+.btn-min-115 {
+  min-width: 115px;
+}
+
 .max-width {
   max-width: 360px;
 }
@@ -42434,7 +42438,14 @@ header nav button:last-child:hover {
     margin-right: 4px !important;
   }
   nav.navecation ul li {
-    padding-right: 15px !important;
+    padding-right: 9px !important;
+    font-size: 11px;
+  }
+  .food-item-img {
+    width: 100% !important;
+    height: 208px !important;
+    -o-object-fit: cover !important;
+       object-fit: cover !important;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -42443,6 +42454,10 @@ header nav button:last-child:hover {
   }
   .select2-container {
     width: 100% !important;
+  }
+  .food-item-img {
+    width: 100% !important;
+    height: 200px !important;
   }
   .rounded-icon {
     width: 35%;
@@ -42500,8 +42515,8 @@ header nav button:last-child:hover {
     min-height: revert !important;
   }
   nav.navecation ul li a {
-    padding: 15px !important;
-    font-size: 12px;
+    padding: 13px !important;
+    font-size: 11px;
   }
   nav.navecation ul li {
     padding-right: 8px !important;
@@ -42556,11 +42571,14 @@ header nav button:last-child:hover {
     min-height: revert !important;
   }
   nav.navecation ul li a {
-    padding: 12px !important;
-    font-size: 10px;
+    padding: 9px !important;
+    font-size: 9px;
   }
   .margin-tb {
     margin-bottom: 40px !important;
+  }
+  .food-item-img {
+    height: 180px !important;
   }
 }
 @media only screen and (max-width: 430px) {
@@ -42604,13 +42622,16 @@ header nav button:last-child:hover {
   nav.navecation ul li a {
     padding: 5px !important;
     min-height: 35px !important;
-    font-size: 11px;
+    font-size: 9px;
   }
   nav.navecation ul li {
-    padding-right: 7px !important;
+    padding-right: 5px !important;
   }
   .margin-tb {
     margin-bottom: 35px !important;
+  }
+  .food-item-img {
+    height: 170px !important;
   }
 }
 @media only screen and (max-width: 375px) {
@@ -42627,6 +42648,9 @@ header nav button:last-child:hover {
   }
   .category-cards .nav-link {
     margin-right: 10px !important;
+  }
+  .food-item-img {
+    height: 130px !important;
   }
   .help-page-tabs .nav-tabs .nav-item .nav-link {
     width: 72px !important;
@@ -42654,12 +42678,12 @@ header nav button:last-child:hover {
     margin-right: 3px !important;
   }
   nav.navecation ul li a {
-    padding: 5px !important;
+    padding: 4px !important;
     min-height: 35px !important;
-    font-size: 9px;
+    font-size: 8px;
   }
   nav.navecation ul li {
-    padding-right: 6px !important;
+    padding-right: 2px !important;
   }
 }
 .bulletin-image {
