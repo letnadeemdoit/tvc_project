@@ -35,6 +35,7 @@
                 class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                 <thead class="thead-light">
                 <tr>
+                    <th>id</th>
                     <th>User</th>
                     <th>Type</th>
                     <th>IP</th>
@@ -48,6 +49,7 @@
 
                 @foreach($data as $dt)
                     <tr>
+                        <td>{{$dt->id}}</td>
                         <td>{{$dt->user->user_name}}</td>
 {{--                        <td>{{$dt->auditable->getTable()}}</td>--}}
                         <td>{{$dt->user_type}}</td>

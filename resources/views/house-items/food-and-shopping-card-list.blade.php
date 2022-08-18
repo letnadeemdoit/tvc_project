@@ -21,7 +21,7 @@
                             role="tab"
                             aria-controls="home"
                             aria-selected="true"
-                       wire:click.prevent="changeFoodTitle"
+{{--                       wire:click.prevent="changeFoodTitle"--}}
                     >Food in House
                     </a>
                     <a href="#!" class="btn rounded-pill text-white"
@@ -31,7 +31,7 @@
                             role="tab"
                             aria-controls="profile"
                             aria-selected="false"
-                            wire:click.prevent="changeShoppingTitle"
+{{--                            wire:click.prevent="changeShoppingTitle"--}}
                     >Shopping List
                     </a>
                 </div>

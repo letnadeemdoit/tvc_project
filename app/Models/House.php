@@ -91,4 +91,5 @@ class House extends Model
     {
         return $this->hasMany(User::class, 'HouseId', 'HouseID');
     }
+
 }

@@ -6,10 +6,13 @@ use App\Models\Blog\Blog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+
+class Category extends Model implements Auditable
 {
     use HasFactory;
-
+    use AuditableTrait;
     /**
      * @const string
      */
@@ -78,5 +81,10 @@ class Category extends Model
     public function bulletinBoards()
     {
         return $this->hasMany(Board::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 }

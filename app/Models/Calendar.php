@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Calendar extends Model
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+
+class Calendar extends Model implements Auditable
 {
     use HasFactory;
+    use AuditableTrait;
 
     /**
      * @var string
@@ -35,4 +39,5 @@ class Calendar extends Model
         'Day',
         'RealDate',
     ];
+
 }

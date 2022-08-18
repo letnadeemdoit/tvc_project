@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Models\Traits\HasFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
 
-class ShoppingItem extends Model
+class ShoppingItem extends Model implements Auditable
 {
     use HasFactory;
-
+    use AuditableTrait;
     use HasFile;
 
     /**

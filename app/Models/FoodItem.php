@@ -6,9 +6,13 @@ use App\Models\Traits\HasFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FoodItem extends Model
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+
+class FoodItem extends Model implements Auditable
 {
     use HasFactory;
+    use AuditableTrait;
 
     use HasFile;
 
