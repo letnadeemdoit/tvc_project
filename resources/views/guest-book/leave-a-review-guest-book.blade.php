@@ -1,11 +1,6 @@
 <div class="card rounded border-0">
-
-
-
     <div class="w-lg-50 mx-auto">
-
         <div class="my-5">
-
             <div class="mb-2">
                 @if(session()->has('message'))
                     <div class="alert alert-success">
