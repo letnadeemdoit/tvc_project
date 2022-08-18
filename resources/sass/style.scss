@@ -77,6 +77,9 @@ body{
     background-color: rgba(232, 96, 76, 0.08);
     color: $primary;
 }
+.btn-min-115{
+    min-width: 115px;
+}
 .max-width{
     max-width: 360px;
 }
@@ -821,18 +824,18 @@ header{
         }
     }
 }
-@media only screen and (max-width:991px){
-    .help-page-tabs{
-        .card{
-            .card-body{
+@media only screen and (max-width:991px) {
+    .help-page-tabs {
+        .card {
+            .card-body {
                 min-height: revert !important;
             }
         }
     }
-    .border-right-solid{
+    .border-right-solid {
         border: none !important;
     }
-    .guest-card-description{
+    .guest-card-description {
         font-size: 13px !important;
     }
     .ul-card-footer {
@@ -846,18 +849,18 @@ header{
         width: 30%;
         margin: -30px auto !important;
     }
-    .mt-80{
+    .mt-80 {
         margin-top: 65px !important;
     }
-    .padding-top{
+    .padding-top {
         padding-top: 3rem !important;
         padding-left: 1rem !important;
         padding-right: 1rem !important;
     }
-    .fs-12{
+    .fs-12 {
         font-size: 13px !important;
     }
-    .privacy-policy{
+    .privacy-policy {
         background-position: center !important;
     }
     .help-page-tabs {
@@ -866,6 +869,7 @@ header{
                 .nav-link {
                     font-size: 13px;
                 }
+
                 .card {
                     max-height: 155px;
                     min-width: 120px;
@@ -874,60 +878,69 @@ header{
             }
         }
     }
-    .bg-process-img{
+    .bg-process-img {
         background-position: center !important;
     }
-    .margin-top{
+    .margin-top {
         //margin-top: 50px;
     }
-    .mobile-cards{
-        margin:117px 0px 70px 0px  !important;
-        .bg-card-1{
+    .mobile-cards {
+        margin: 117px 0px 70px 0px !important;
+
+        .bg-card-1 {
             min-height: 255px !important;
         }
-        .bg-card-2{
+
+        .bg-card-2 {
             min-height: 255px !important;
         }
-        .bg-card-3{
+
+        .bg-card-3 {
             min-height: 255px !important;
         }
     }
 
     #header {
-        .nav-item{
-            .nav-link{
+        .nav-item {
+            .nav-link {
                 padding-left: 0px !important;
-                &.active:after{
+
+                &.active:after {
                     margin: revert !important;
                     width: 7% !important;
                 }
             }
         }
     }
-    .padding-y{
+    .padding-y {
         padding: 40px 0px 0px 0px !important;
     }
-    .mobile-cards{
-        .card{
-            .card-body{
-                .card-title{
+    .mobile-cards {
+        .card {
+            .card-body {
+                .card-title {
                     font-size: 15px !important;
                 }
             }
         }
     }
-    .blog-tabs{
-        .nav-item{
-            .nav-link{
+    .blog-tabs {
+        .nav-item {
+            .nav-link {
                 padding: 7px 16px !important;
-                font-size:13px !important;
+                font-size: 13px !important;
                 margin-right: 4px !important;
             }
         }
     }
-    nav.navecation ul li{
+    nav.navecation ul li {
         padding-right: 9px !important;
         font-size: 11px;
+    }
+    .food-item-img {
+        width: 100% !important;
+        height: 208px !important;
+        object-fit: cover !important;
     }
 }
 @media only screen and (max-width:767px) {
@@ -937,7 +950,10 @@ header{
     .select2-container{
         width: 100% !important;
     }
-
+    .food-item-img{
+    width: 100% !important;
+        height: 200px !important;
+    }
     .rounded-icon {
         width: 35%;
         margin: -31px auto !important;
@@ -1096,6 +1112,9 @@ header{
     .margin-tb {
         margin-bottom: 40px !important;
     }
+    .food-item-img{
+        height: 180px !important;
+    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -1160,6 +1179,9 @@ header{
     .margin-tb {
         margin-bottom: 35px !important;
     }
+    .food-item-img{
+        height: 170px !important;
+    }
 }
 @media only screen and (max-width:375px){
     .rounded-icon{
@@ -1178,6 +1200,9 @@ header{
         .nav-link{
             margin-right: 10px !important;
         }
+    }
+    .food-item-img{
+        height: 130px !important;
     }
     .help-page-tabs {
         .nav-tabs {
