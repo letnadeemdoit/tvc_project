@@ -38,7 +38,7 @@
                                     <div class="col-md-6 col-lg-10">
                                         <div class="row">
                                             <div
-                                                class="col-12  col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
+                                                class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                 <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
                                                 <p class="mb-0 ps-5">{{$dt->name}}</p>
                                             </div>
@@ -73,7 +73,7 @@
                                     <div class="col-md-6 col-lg-10">
                                         <div class="row">
                                             <div
-                                                class="col-12  col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
+                                                class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                 <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
                                                 <p class="mb-0 ps-5">{{$dt->name}}</p>
                                             </div>
