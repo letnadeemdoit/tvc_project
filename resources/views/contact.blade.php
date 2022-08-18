@@ -1,9 +1,9 @@
 <x-guest-layout>
-    @include('partials.sub-page-hero-section', ['title' => 'Contact Us']);
+    @include('partials.sub-page-hero-section', ['title' => 'Contact Us'])
 
     <section class="text-center">
         <div class="container">
-            <div class="row mb-5 section-padding">
+            <div class="row section-padding">
                 <div class="col-md-9 col-lg-5 mx-auto">
                     <div class="contact-text shadow-1-strong rounded  d-flex justify-content-center align-items-center">
                         <h1 class="text-primary font-vintage mb-0">Contact US</h1>

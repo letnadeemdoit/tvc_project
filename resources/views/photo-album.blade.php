@@ -74,12 +74,14 @@
 
     @include('partials.sub-page-hero-section', ['title' => 'Photo Album'])
 
-    <section class=" bg-light pt-55">
+    <section class=" bg-light">
+        <div class="section-padding">
         <div class="bg-album shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
             <h1 class="text-primary font-vintage mb-0">Photo Album</h1>
         </div>
         <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>
-        <div class="container my-4">
+        </div>
+        <div class="container mb-4">
             <div class="row masonary-gallery" data-masonry='{"percentPosition": true }'>
                 <div class="col-md-3 mb-3">
                     <div class="card border-0 text-white bg-transparent shadow-none">
