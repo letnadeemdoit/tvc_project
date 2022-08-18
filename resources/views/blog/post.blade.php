@@ -152,7 +152,7 @@
 
 
         @php
-            $relatedBlog = \App\Models\Blog\Blog::where('HouseId', $post->HouseId)->limit(4)->get();
+            $relatedBlog = \App\Models\Blog\Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get();
         @endphp
 
         <div class="row">

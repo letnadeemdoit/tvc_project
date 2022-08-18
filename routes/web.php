@@ -134,6 +134,7 @@ Route::middleware([
                 Route::get('bulletin-boards', 'bulletinBoard')->name('bulletin-boards');
                 Route::get('audit-history', 'auditHistory')->name('audit-history');
                 Route::get('blog', 'blog')->name('blog');
+                Route::get('category', 'category')->name('category');
                 Route::get('guest-books', 'guestBook')->name('guest-books');
             });
     });

@@ -114,6 +114,8 @@
                                    href="{{ route('dash.settings.blog') }}">Blog</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
                                    href="{{ route('dash.settings.guest-books') }}">Guest Book</a>
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
+                                   href="{{ route('dash.settings.category') }}">Categories</a>
                             </div>
                         </div>
                     </div>

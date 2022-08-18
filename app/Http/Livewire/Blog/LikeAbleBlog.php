@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Blog;
 
 use App\Models\Blog\Blog;
 use App\Models\Likes;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Http\Livewire\Traits\Toastr;
 
@@ -24,7 +25,8 @@ class LikeAbleBlog extends Component
         foreach ($blog_Likes as $like){
             $this->existing_likes += $like->likes;
         }
-        if ($this->existing_likes > 0){
+        $likes = Likes::where('blog_id', $this->post->BlogId)->where('user_id', Auth::user()->user_id)->first();
+        if ($likes){
             $this->isExistingUser = true;
         }
     }

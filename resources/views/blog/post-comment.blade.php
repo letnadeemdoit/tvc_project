@@ -4,10 +4,9 @@
         <div class="d-flex justify-content-between">
             <h4>{{count($BlogComments)}} comments</h4>
             <div><label for="">Sort By</label>
-                <select name="" id="" class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
-                    <option value="">Sort</option>
-                    <option value="">Sort</option>
-                    <option value="">Sort</option>
+                <select name="" id="" wire:model.defer="type" wire:change="changeType" class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
+                    <option value="Newest" >Newest</option>
+                    <option value="Oldest">Oldest</option>
                 </select>
             </div>
         </div>
