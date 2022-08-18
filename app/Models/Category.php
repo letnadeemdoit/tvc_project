@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Models\Blog\Blog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\HasFile;
 
 class Category extends Model
 {
     use HasFactory;
+    use HasFile;
 
     /**
      * @const string
@@ -41,7 +43,7 @@ class Category extends Model
      * @param $query
      * @return mixed
      */
-    public function scopeBlog($query)
+        public function scopeBlog($query)
     {
         return $query->where('type', self::TYPE_BLOG);
     }
@@ -78,5 +80,14 @@ class Category extends Model
     public function bulletinBoards()
     {
         return $this->hasMany(Board::class);
+    }
+
+    protected function defaultFileUrl($column = 'image'): string
+    {
+        $name = trim(collect(explode(' ', $this->Subject))->map(function ($segment) {
+            return mb_substr($segment, 0, 1);
+        })->join(' '));
+
+        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
     }
 }

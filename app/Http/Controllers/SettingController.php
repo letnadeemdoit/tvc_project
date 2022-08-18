@@ -75,6 +75,12 @@ class SettingController extends Controller
             'user' => $request->user()
         ]);
     }
+    public function category(Request $request)
+    {
+        return view('dash.settings.category.index', [
+            'user' => $request->user()
+        ]);
+    }
 
     public function guestBook(Request $request)
     {

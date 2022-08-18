@@ -22,19 +22,19 @@ class PostCard extends Component
     ];
 
     public function mount() {
-        $blog_Likes = $this->post->likes;
-        foreach ($blog_Likes as $like){
-            $this->existing_likes += $like->likes;
-        }
+//        $blog_Likes = $this->post->likes;
+//        foreach ($blog_Likes as $like){
+//            $this->existing_likes += $like->likes;
+//        }
 
         $blog_views = $this->post->views;
         foreach ($blog_views as $view){
             $this->existing_views += $view->views;
         }
 
-        if ($this->existing_likes > 0){
-            $this->isExistingUser = true;
-        }
+//        if ($this->existing_likes > 0){
+//            $this->isExistingUser = true;
+//        }
     }
 
     public function render()

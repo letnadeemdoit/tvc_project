@@ -13,11 +13,23 @@ class PostComment extends Component
 
     public Blog $blog;
 
+    public $type;
+
+    public $newestComment = true;
+
+    public $oldestComment = false;
+
     public $state = [];
 
     public function render()
     {
-        $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->get();
+        if ($this->oldestComment){
+            $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'ASC')->get();
+        }
+        else
+        {
+            $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->get();
+        }
         return view('blog.post-comment', compact('BlogComments'));
     }
 
@@ -27,7 +39,7 @@ class PostComment extends Component
         $mydatetime =date("Y-m-d H:i:s");
         $inputs = $this->state;
         Validator::make($inputs, [
-            'Content' => 'required|max:200',
+            'Content' => 'required|max:1000',
         ])->validateWithBag('addBlogComment');
 
         BlogComment::create([
@@ -43,5 +55,15 @@ class PostComment extends Component
             'Content' => $inputs['Content'],
         ]);
         $this->reset('state');
+    }
+    public function changeType() {
+        if ($this->type == 'Newest'){
+            $this->newestComment = true;
+            $this->oldestComment = false;
+        }
+        else{
+            $this->newestComment = false;
+            $this->oldestComment = true;
+        }
     }
 }
