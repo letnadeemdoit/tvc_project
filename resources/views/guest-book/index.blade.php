@@ -126,11 +126,54 @@
             <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>
         </div>
         <div class="container mt-2 mb-5">
-            <div class="row guest-row">
+
+{{--            <div class="text-end mb-4" x-data>--}}
+{{--                <a href="#!"--}}
+{{--                class="btn btn-outline-secondary text-uppercase"--}}
+{{--                   @click.prevent="window.livewire.emit('leaveReviewGuestBookCUModal', true)"--}}
+{{--                >Leave a review</a>--}}
+{{--            </div>--}}
+
+            <div class="row">
 
                 @if(isset($data))
                     @foreach($data as $dt)
                         @if($loop->iteration % 2 == 0)
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card card-01 shadow-lg" style="min-height: 380px">
+                                    <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
+                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
+                                             class="img-fluid margin-left-negative pt-3">
+                                        <h4 class="pt-1">{{$dt->title }}</h4>
+                                        <div class="comment more">
+                                            @if(strlen($dt->content) > 100)
+                                                {{substr($dt->content,0,100)}}
+                                                <span class="read-more-show hide_content">Read More<i
+                                                        class="fa fa-angle-down"></i></span>
+                                                <span class="read-more-content">
+                                                    {!! substr($dt->content,100,strlen($dt->content)) !!}
+                                                    <span class="read-more-hide hide_content">Read Less
+                                                          <i class="fa fa-angle-up"></i>
+                                                    </span>
+                                                </span>
+                                            @else
+                                                {!! $dt->content     !!}
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="card-body bg-dark-blue pb-5">
+                        <span class="badge-box py-4">
+                            <img src="{{$dt->getFileUrl('image')}}"
+                                 alt="{{ $dt->name ?? '' }}"
+                                 class="rounded-circle" width="60"/>
+                                        </span>
+                                        <h3 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h3>
+                                        <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @else
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg my-4 my-md-0" style="min-height: 380px">
                                     <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
@@ -167,47 +210,20 @@
                                     </div>
                                 </div>
                             </div>
-                        @else
-                            <div class="col-md-6 col-lg-4 mb-4">
-                                <div class="card card-01 shadow-lg" style="min-height: 380px">
-                                    <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
-                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
-                                             class="img-fluid margin-left-negative pt-3">
-                                        <h4 class="pt-1">{{$dt->title }}</h4>
-                                        <div class="comment more">
-                                            @if(strlen($dt->content) > 100)
-                                                {{substr($dt->content,0,100)}}
-                                                <span class="read-more-show hide_content">Read More<i
-                                                        class="fa fa-angle-down"></i></span>
-                                                <span class="read-more-content">
-                                                    {!! substr($dt->content,100,strlen($dt->content)) !!}
-                                                    <span class="read-more-hide hide_content">Read Less
-                                                          <i class="fa fa-angle-up"></i>
-                                                    </span>
-                                                </span>
-                                            @else
-                                                {!! $dt->content     !!}
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="card-body bg-dark-blue pb-5">
-                        <span class="badge-box py-4">
-                            <img src="{{$dt->getFileUrl('image')}}"
-                                 alt="{{ $dt->name ?? '' }}"
-                                 class="rounded-circle" width="60"/>
-                                        </span>
-                                        <h3 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h3>
-                                        <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
-                                    </div>
-                                </div>
-                            </div>
                         @endif
                     @endforeach
                 @endif
 
             </div>
         </div>
+
+        <div class="container my-5">
+            <livewire:guest-book.leav-a-review-guest-book :user="$user"/>
+        </div>
+
     </section>
+
+
 
     @push('scripts')
         <script type="text/javascript">

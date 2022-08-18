@@ -1,10 +1,10 @@
 <div class="card mb-3">
   @if(isset($dt->image))
-        <img
-            src="{{$dt->getFileUrl('image')}}"
-            class="card-img-top"
-            alt="{{ $dt->title ?? '' }}"
-        />
+    <img
+        src="{{$dt->getFileUrl('image')}}"
+        class="card-img-top"
+        alt="{{ $dt->title ?? '' }}"
+    />
   @endif
     <div class="card-body">
         <h3 class="card-title">{{$dt->title}}</h3>
