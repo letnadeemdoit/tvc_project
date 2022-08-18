@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('blog_nested_comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('blog_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('comment_id');
+            $table->foreignId('blog_id');
+            $table->foreignId('user_id');
+            $table->foreignId('comment_id');
             $table->string('author');
             $table->text('nested_content');
             $table->timestamps();
