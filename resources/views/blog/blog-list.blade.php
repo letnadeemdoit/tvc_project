@@ -1,28 +1,6 @@
 <div class="container pt-55">
     <div class="category-cards mb-3">
-        <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a href="3" class="nav-link active">
-                    ALL
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/> Awesome finds
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <img src="/images/blog-images/cool.svg" width="30px" class="me-2 d-none d-md-inline-block"/>Cool Stuff
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <img src="/images/blog-images/tips.svg" width="30px" class="me-2 d-none d-md-inline-block"/>Fun Tips
-                    HOUSE
-                </a>
-            </li>
-        </ul>
+        <livewire:blog.blog-categories />
     </div>
     <div class="row category-cards">
         @foreach($data as $dt)

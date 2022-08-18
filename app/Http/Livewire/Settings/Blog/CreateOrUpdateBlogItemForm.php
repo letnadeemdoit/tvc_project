@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Settings\Blog;
 use App\Models\Blog\Blog;
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Blog\BlogComment;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -21,11 +22,16 @@ class CreateOrUpdateBlogItemForm extends Component
     public $isCreating = false;
     public $file;
 
+    public $blogCategories;
+
     public ?Blog $blogItem;
 
     protected $listeners = [
         'showBlogCUModal',
     ];
+    public function mount() {
+        $this->blogCategories = Category::where('type', 'blog')->get();
+    }
 
     public function render()
     {
@@ -83,6 +89,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Audit_FirstName' => $this->user->Audit_FirstName,
             'Audit_LastName' => $this->user->Audit_LastName,
             'Audit_Email' => $this->user->Audit_Email,
+            'category_id' => $inputs['category_id'],
             'slug' => $slug,
         ])->save();
 
