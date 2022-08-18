@@ -1,7 +1,19 @@
 <div class="card rounded border-0">
 
+
+
     <div class="w-lg-50 mx-auto">
+
         <div class="my-5">
+
+            <div class="mb-2">
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+            </div>
+
             <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
                 <h1 class="text-primary font-vintage mb-0">FeedBack</h1>
             </div>

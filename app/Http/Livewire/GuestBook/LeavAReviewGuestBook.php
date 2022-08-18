@@ -47,6 +47,11 @@ class LeavAReviewGuestBook extends Component
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
         ])->validateWithBag('leaveReviewGuestBookCUModal');
 
+
+        if (isset($inputs['image'])){
+            $inputs['image'] = $this->file->store('guestbooks', 'public');
+        }
+
         GuestBook::create([
             'user_id' => auth()->user()->user_id,
             'house_id' => auth()->user()->HouseId,
@@ -54,13 +59,12 @@ class LeavAReviewGuestBook extends Component
             'title' => $inputs['title'],
             'status' => $inputs['status'] ?? 0,
             'content' => $inputs['content'],
+            'image' => $inputs['image'] ?? null,
         ]);
 
+        session()->flash('message', 'Thank you for your FeedBack...');
+
         return redirect()->route('guest.guest-book.index');
-
-//        $this->guestBook->updateFile($this->file);
-
-//        $this->success('saved Successfully');
 
     }
 
