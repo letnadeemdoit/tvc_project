@@ -48,6 +48,9 @@
                 <tbody>
 
                 @foreach($data as $dt)
+
+{{--                    @dd($dt->getMetadata())--}}
+
                     <tr>
                         <td>{{$dt->id}}</td>
                         <td>{{$dt->user->user_name}}</td>
@@ -68,9 +71,9 @@
                                 <div class="modal-content">
                                     <div class="modal-header align-items-start">
                                         <div class="">
-                                            <h5 class="modal-title mb-1">
+                                            <h3 class="modal-title mb-1">
                                                 {{$dt->user->user_name}}
-                                            </h5>
+                                            </h3>
                                             <small class="mb-0 text-muted d-block">{{$dt->url}}</small>
                                             <small class="mb-0 text-muted">{{$dt->user_agent}}</small>
                                         </div>
