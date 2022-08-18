@@ -229,7 +229,7 @@
         {{-- section 3   --}}
 
         <section class=" py-2 py-sm-5 bg-white">
-            <div class="container">
+            <div class="container mt-2 mt-sm-0">
                 <div class="row align-items-center min-height">
 
                     <div class="col-lg-5">
