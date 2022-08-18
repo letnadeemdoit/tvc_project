@@ -1,5 +1,56 @@
 <x-guest-layout>
     @push('stylesheets')
+        <style>
+            @charset "UTF-8";
+
+            .card-columns {
+                -moz-column-count: 1;
+                column-count: 1;
+            }
+
+            @media (min-width: 768px) {
+                .card-columns {
+                    -moz-column-count: 2;
+                    column-count: 2;
+                }
+            }
+
+            @media (min-width: 1200px) {
+                .card-columns {
+                    -moz-column-count: 3;
+                    column-count: 3;
+                }
+            }
+
+            .card-img-overlay .card-block {
+                position: absolute;
+                /* top: 0; */
+                right: 0;
+                bottom: 10px;
+                left: 0;
+                padding: 1.25rem;
+                z-index: 1;
+            }
+            .card-img-overlay::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 0;
+                background-color:transparent;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .card-img-overlay:hover::after {
+                background-color: transparent;
+            }
+            .masonary-gallery img{
+                border-radius: 6px !important;
+            }
+
+        </style>
 
     @endpush
 
@@ -19,7 +70,7 @@
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                                 data-bs-target="#home" type="button" role="tab" aria-controls="home"
                                 aria-selected="true">
-                            <img src="/images/bulletin-images/clipboard.png" width="30px"/>
+                            <img src="/images/bulletin-images/bulletin-clipboard.svg" width="30px"/>
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -70,7 +121,7 @@
                         <section class="text-end">
                             <img src="/images/bulletin-images/Combined Shape.png" class="img-fluid bg-dots-orange"/>
                         </section>
-                        <div class="row">
+                        <div class="row" data-masonry='{"percentPosition": true }'>
                             @if(isset($data))
                                 @foreach($data as $dt)
                                     <div class="col-md-4 col-lg-3">
@@ -78,7 +129,7 @@
                                     </div>
                                 @endforeach
                             @endif
-                        <!-- ends -->
+                            <!-- ends -->
                         </div>
                         <section class="text-center">
                             <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
