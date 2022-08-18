@@ -163,7 +163,7 @@
                                                  class="rounded-circle" width="60"/>
                                         </span>
                                         <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
-                                        <p class="card-text text-center text-white-light fw-light ">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                        <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                     </div>
                                 </div>
                             </div>
