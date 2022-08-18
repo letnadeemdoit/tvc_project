@@ -58,7 +58,7 @@
                                 <a href="#!" class="text-muted">Like</a>
                             </span>
                             <span class="mx-1">
-                                <a class="text-muted" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <a class="text-muted" data-bs-toggle="collapse" href="#collapseExample{{$comment->CommentId}}" role="button" aria-expanded="false" aria-controls="collapseExample">
                                       reply
                                 </a>
                             </span>
@@ -73,7 +73,7 @@
                                 {{$totalDuration}}
                         </span>
                     </p>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapseExample{{$comment->CommentId}}">
                         <div class="flex-grow-1 ms-3">
                             <form wire:submit.prevent="addBlogSubComment({{ $comment->CommentId }})">
                                 <div class="border">

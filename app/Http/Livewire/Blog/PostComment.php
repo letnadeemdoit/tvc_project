@@ -69,6 +69,7 @@ class PostComment extends Component
         }
     }
 
+
     public function addBlogSubComment($commentId){
         $this->resetErrorBag();
         $inputs = $this->state;
