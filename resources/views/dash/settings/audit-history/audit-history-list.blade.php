@@ -61,12 +61,12 @@
                         <td>{{$dt->created_at}}</td>
                         <td><a href="#!"
                                data-bs-toggle="modal"
-                               data-bs-target="#auditHistor{{$dt->id}}Model"
+                               data-bs-target="#auditHistory{{$dt->id}}Model"
                             >View</a>
                         </td>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="auditHistor{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="auditHistory{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header align-items-start">
