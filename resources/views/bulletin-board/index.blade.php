@@ -54,7 +54,7 @@
 
     @endpush
 
-    @include('partials.sub-page-hero-section')
+        @include('partials.sub-page-hero-section', ['title' => 'Bulletin Board'])
     <section class="bg-lightGrey">
         <div class="container  section-padding">
             <div class="row text-center">
