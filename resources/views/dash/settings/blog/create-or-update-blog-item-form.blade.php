@@ -166,11 +166,11 @@
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
                         <label class="form-label" for="exampleFormControlSelect1">Select Category</label>
-                        <select id="exampleFormControlSelect1" class="form-control">
-                            <option>Beach House</option>
-                            <option>Town House</option>
-                            <option>Tiny House</option>
-                            <option>Pool House</option>
+                        <select id="exampleFormControlSelect1" wire:model.defer="state.category_id" class="form-control">
+                            <option>--Select--</option>
+                            @foreach ($blogCategories as $category)
+                                <option value="{{ $category->id }}" wire:key="category-{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
