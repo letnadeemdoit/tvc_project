@@ -103,7 +103,7 @@
 
             <div class="sub-comment ms-2 ps-2 ms-lg-5">
                 @foreach($nestedComments as $ncomment)
-                <div class="d-flex w-100">
+                <div class="d-flex w-100 mt-2">
                     <div class="flex-shrink-0">
                         <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-1" width="50"
                              height="50" style="object-fit: cover" alt="...">
