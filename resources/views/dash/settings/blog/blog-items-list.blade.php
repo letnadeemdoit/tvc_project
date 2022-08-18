@@ -72,21 +72,40 @@
                             </td>
                             <td>{{$dt->Author ?? ''}}</td>
                             <td>
-                                <button
-                                    type="button"
-                                    class="btn btn-success btn-sm"
-                                    wire:click.prevent="$emit('showBlogCUModal', true, {{ $dt->BlogId}})"
-                                >
-                                    <i class="bi-pencil-fill"></i>
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-danger btn-sm"
-                                    wire:click.prevent="destroy({{$dt->BlogId}})"
-                                >
-                                    <i class="bi-trash"></i>
-                                </button>
+                                <div class="btn-group" role="group" aria-label="Edit group">
+                                    <a class="btn btn-white" href="#"
+                                       wire:click.prevent="$emit('showBlogCUModal', true, {{ $dt->BlogId}})"
+                                    >
+                                        <i class="bi-pencil me-1 text-success"></i> Edit
+                                    </a>
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm"
+                                        wire:click.prevent="destroy({{$dt->BlogId}})"
+                                    >
+                                        <i class="bi-trash"></i>
+                                    </button>
+
+                                </div>
                             </td>
+
+{{--                            <td>--}}
+{{--                                <button--}}
+{{--                                    type="button"--}}
+{{--                                    class="btn btn-success btn-sm"--}}
+{{--                                    wire:click.prevent="$emit('showBlogCUModal', true, {{ $dt->BlogId}})"--}}
+{{--                                >--}}
+{{--                                    <i class="bi-pencil-fill"></i>--}}
+{{--                                </button>--}}
+{{--                                <button--}}
+{{--                                    type="button"--}}
+{{--                                    class="btn btn-danger btn-sm"--}}
+{{--                                    wire:click.prevent="destroy({{$dt->BlogId}})"--}}
+{{--                                >--}}
+{{--                                    <i class="bi-trash"></i>--}}
+{{--                                </button>--}}
+{{--                            </td>--}}
                         </tr>
                     @endforeach
 

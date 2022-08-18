@@ -7,11 +7,28 @@ use Livewire\Component;
 
 class HouseRelatedBlog extends Component
 {
-    public Blog $house;
+    public Blog $blog;
+    public $existing_likes;
+    public $existing_views;
+
+    public function mount() {
+        $blog_Likes = $this->blog->likes;
+        foreach ($blog_Likes as $like){
+            $this->existing_likes += $like->likes;
+        }
+
+        $blog_views = $this->blog->views;
+        foreach ($blog_views as $view){
+            $this->existing_views += $view->views;
+        }
+
+        if ($this->existing_likes > 0){
+            $this->isExistingUser = true;
+        }
+    }
 
     public function render()
     {
-        $blogs = Blog::where('BlogId', $this->house->BlogId)->get();
-        return view('blog.latest-post', compact('blogs'));
+        return view('blog.house-related-blogs');
     }
 }

@@ -7,44 +7,41 @@ use App\Models\Blog\BlogComment;
 use App\Models\Likes;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use App\Http\Livewire\Traits\Toastr;
 
 class PostCard extends Component
 {
     public Blog $post;
+    use Toastr;
     public $BlogComments = [];
     public $existing_likes;
+    public $existing_views;
 
     protected $listeners = [
         'readBlogComments',
     ];
 
-    public function render()
-    {
+    public function mount() {
         $blog_Likes = $this->post->likes;
         foreach ($blog_Likes as $like){
             $this->existing_likes += $like->likes;
         }
+
+        $blog_views = $this->post->views;
+        foreach ($blog_views as $view){
+            $this->existing_views += $view->views;
+        }
+
+        if ($this->existing_likes > 0){
+            $this->isExistingUser = true;
+        }
+    }
+
+    public function render()
+    {
         return view('blog.post-card');
     }
 
-
-    public function likeBlog($blogId){
-        $this->existing_likes = 0;
-        $likes = Likes::where('blog_id', $blogId)->get();
-        foreach ($likes as $like){
-            $existing_likes += $like->likes;
-        }
-        $like = new Likes();
-
-        $like->fill([
-            'user_id' => auth()->user()->user_id,
-            'blog_id' => $this->post->BlogId,
-            'likes' => $existing_likes+1,
-        ]);
-
-        $this->post->likes()->save($like);
-
-    }
 
     public function readBlogComments($BlogId){
         dd($BlogId);

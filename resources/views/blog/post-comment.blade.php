@@ -1,3 +1,19 @@
+<div>
+<div class="row mb-5">
+    <div class="col-12 col-lg-6">
+        <div class="d-flex justify-content-between">
+            <h4>{{count($BlogComments)}} comments</h4>
+            <div><label for="">Sort By</label>
+                <select name="" id="" class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
+                    <option value="">Sort</option>
+                    <option value="">Sort</option>
+                    <option value="">Sort</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row my-5">
 <div class="col-12 col-lg-6">
     <div class="d-flex">
         <div class="flex-shrink-0">
@@ -93,4 +109,6 @@
 {{--            @endif--}}
         </div>
     </div>
+</div>
+</div>
 </div>
