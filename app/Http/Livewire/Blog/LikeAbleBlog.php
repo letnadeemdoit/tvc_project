@@ -36,22 +36,33 @@ class LikeAbleBlog extends Component
 
     public function likeBlog(){
         $user = auth()->user();
-        $likes = Likes::where('blog_id', $this->post->BlogId)->where('user_id', $user->user_id)->get();
-        if (count($likes) == 0){
-            $like = new Likes();
+        if ($this->isExistingUser){
+            $likes = Likes::where('blog_id', $this->post->BlogId)->where('user_id', $user->user_id)->first();
+            if ($likes){
+                $likes->delete();
+                $this->existing_likes = $this->existing_likes-1;
+                $this->isExistingUser = false;
+            }
+            $this->emit('blog-likes-cu-successfully');
+        }
+        else{
+            $likes = Likes::where('blog_id', $this->post->BlogId)->where('user_id', $user->user_id)->get();
+            if (count($likes) == 0){
+                $like = new Likes();
+                $like->fill([
+                    'user_id' => auth()->user()->user_id,
+                    'blog_id' => $this->post->BlogId,
+                    'likes' => $this->existing_likes+1,
+                ]);
 
-            $like->fill([
-                'user_id' => auth()->user()->user_id,
-                'blog_id' => $this->post->BlogId,
-                'likes' => $this->existing_likes+1,
-            ]);
+                $this->post->likes()->save($like);
 
-            $this->post->likes()->save($like);
+                $this->existing_likes = $this->existing_likes+1;
+                $this->isExistingUser = true;
+            }
 
-            $this->existing_likes = $this->existing_likes+1;
-            $this->isExistingUser = true;
+            $this->emit('blog-likes-cu-successfully');
         }
 
-        $this->emit('blog-likes-cu-successfully');
     }
 }
