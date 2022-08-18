@@ -100,16 +100,17 @@
         </style>
 
         <style type="text/css">
-            .read-more-show{
-                cursor:pointer;
-                color: #ed8323;
-            }
-            .read-more-hide{
-                cursor:pointer;
+            .read-more-show {
+                cursor: pointer;
                 color: #ed8323;
             }
 
-            .hide_content{
+            .read-more-hide {
+                cursor: pointer;
+                color: #ed8323;
+            }
+
+            .hide_content {
                 display: none;
             }
         </style>
@@ -117,13 +118,14 @@
 
     @include('partials.sub-page-hero-section', ['title' => 'Guest Book'])
 
-    <section class=" bg-light pt-55">
-        <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
-            <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
+    <section class=" bg-light">
+        <div class="section-padding">
+            <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
+                <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
+            </div>
+            <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>
         </div>
-        <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>
-
-        <div class="container mt-80 pb-5">
+        <div class="container mt-2 mb-5">
             <div class="row guest-row">
 
                 @if(isset($data))
@@ -132,7 +134,8 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg my-4 my-md-0" style="min-height: 380px">
                                     <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
-                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55" class="img-fluid margin-left-negative pt-3">
+                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
+                                             class="img-fluid margin-left-negative pt-3">
                                         <h4 class="pt-1">{{$dt->title }}</h4>
                                         <div class="comment more">
                                             @if(strlen($dt->content) > 100)
@@ -168,7 +171,8 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card card-01 shadow-lg" style="min-height: 380px">
                                     <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
-                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55" class="img-fluid margin-left-negative pt-3">
+                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
+                                             class="img-fluid margin-left-negative pt-3">
                                         <h4 class="pt-1">{{$dt->title }}</h4>
                                         <div class="comment more">
                                             @if(strlen($dt->content) > 100)
@@ -212,14 +216,14 @@
             $('.read-more-show, .read-more-hide').removeClass('hide_content')
 
             // Set up the toggle effect:
-            $('.read-more-show').on('click', function(e) {
+            $('.read-more-show').on('click', function (e) {
                 $(this).next('.read-more-content').removeClass('hide_content');
                 $(this).addClass('hide_content');
                 e.preventDefault();
             });
 
             // Changes contributed by @diego-rzg
-            $('.read-more-hide').on('click', function(e) {
+            $('.read-more-hide').on('click', function (e) {
                 var p = $(this).parent('.read-more-content');
                 p.addClass('hide_content');
                 p.prev('.read-more-show').removeClass('hide_content'); // Hide only the preceding "Read More"

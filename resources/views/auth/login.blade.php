@@ -204,7 +204,12 @@
                         </div>
                         <!-- End Form -->
 
-                        <div class="form-check mb-4">
+
+
+                        <div class="d-grid">
+                            <button class="btn btn-dark-secondary btn-lg" type="submit">{{ __('Log in') }}</button>
+                        </div>
+                        <div class="form-check mt-3">
                             <label class="form-check-label" for="remember_me">
                                 {{ __('Remember me') }}
                             </label>
@@ -217,11 +222,6 @@
                             />
 
                         </div>
-
-                        <div class="d-grid">
-                            <button class="btn btn-dark-secondary btn-lg" type="submit">{{ __('Log in') }}</button>
-                        </div>
-
 
                     </div>
                 </div>

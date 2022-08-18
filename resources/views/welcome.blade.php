@@ -251,13 +251,15 @@
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <h1 class="poppins-bold">House Photo Album</h1>
-                                    <p class="lh-lg">This is another favorite for many of the site's users. Since people
+                                    <p class="lh-lg mb-1">This is another favorite for many of the site's users. Since people
                                         were getting more and more use out of the vacation homes thanks to the online
                                         calendar system in TheVacationCalendar.com, we needed to provide a way to
-                                        memorialize the great times you are having. So we added a new photo album. It is
+                                        memorialize the great times you are having.  <a class="moreless-button text-primary ms-2 text-decoration-underline d-inline-block d-md-none">Read more</a>
+                                        <span class="moretext"> So we added a new photo album. It is
                                         pretty simple for the first iteration, just add photos and allow anyone to
                                         comment. As always, the Administrator has the ability to remove any photos or
-                                        comments that are inappropriate.</p>
+                                            comments that are inappropriate.</span></p>
+
                                 </div>
                                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                     <h1 class="poppins-bold">Account Management</h1>
@@ -864,6 +866,16 @@
         <script>
             $("#toggle").on("click", function () {
                 $(".text-content").toggleClass("show");
+            });
+        </script>
+        <script>
+            $('.moreless-button').click(function() {
+                $('.moretext').slideToggle();
+                if ($('.moreless-button').text() == "Read more") {
+                    $(this).text("Read less")
+                } else {
+                    $(this).text("Read more")
+                }
             });
         </script>
     @endpush
