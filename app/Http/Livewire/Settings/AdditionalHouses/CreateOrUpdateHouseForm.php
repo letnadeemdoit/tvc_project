@@ -8,9 +8,12 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateOrUpdateHouseForm extends Component
 {
+    use WithFileUploads;
+
     public $user;
 
     public $state = [];

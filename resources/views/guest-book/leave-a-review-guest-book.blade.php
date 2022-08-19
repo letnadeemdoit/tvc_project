@@ -15,7 +15,7 @@
             <h1 class="pt-2 text-center poppins-bold">Leave a quick thank you</h1>
         </div>
         <div class="card-body">
-            <form wire:submit.prevent="leaveReviewGuestBookCUModal" method="post">
+            <form wire:submit.prevent="saveReviewFeedBackGuestBook" method="post">
 
                 <div class="row">
                     <div class="mb-3 col-12">
