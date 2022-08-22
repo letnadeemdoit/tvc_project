@@ -74,6 +74,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Content' => 'required',
+            'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
         $slug = Str::slug($inputs['Subject']);

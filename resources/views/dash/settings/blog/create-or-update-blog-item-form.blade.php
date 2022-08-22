@@ -172,6 +172,9 @@
                                 <option value="{{ $category->id }}" wire:key="category-{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                        <span class="invalid-feedback d-block">{{$message}}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
