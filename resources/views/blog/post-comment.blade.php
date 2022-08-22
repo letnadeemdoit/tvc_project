@@ -2,7 +2,7 @@
 <div class="row mb-5">
     <div class="col-12 col-lg-6">
         <div class="d-flex justify-content-between">
-            <h4>{{count($BlogComments)}} comments</h4>
+            <h4>{{$totalComments}} comments</h4>
             <div><label for="">Sort By</label>
                 <select name="" id="" wire:model.defer="type" wire:change="changeType" class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
                     <option value="Newest" >Newest</option>
@@ -122,10 +122,16 @@
                                  <span class="text-muted"> Likes</span>
                             </span>
                             <span class="mx-1">
-                                <a href="#!" class="text-muted">Reply</a>
+                                <a href="#!" class="text-muted">reply</a>
                             </span>
+                            @php
+                                $startTime = \Carbon\Carbon::parse($ncomment->created_at);
+                                $finishTime = \Carbon\Carbon::now();
+                                $totalDuration = $startTime->diff($finishTime)->format('%H:%I:%S');
+                                //$totalDuration = $finishTime->diffForHumans($startTime);
+                            @endphp
                             <span class="mx-1 text-muted">
-                                24h
+                                {{$totalDuration}}
                             </span>
                         </p>
                     </div>

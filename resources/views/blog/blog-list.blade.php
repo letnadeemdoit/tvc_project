@@ -28,7 +28,7 @@
     </div>
     <div class="row category-cards">
         @foreach($data as $dt)
-            <livewire:blog.post-card :post="$dt"/>
+            <livewire:blog.post-card :post="$dt" wire:key="{{ $dt->BlogId }}"/>
         @endforeach
 
     </div>

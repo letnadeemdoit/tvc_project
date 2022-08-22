@@ -51,7 +51,6 @@ Route::controller(GuestController::class)
             ->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/{post:slug}', 'show')->name('show');
-//                Route::get('/{category:slug}', 'items')->name('items');
             });
         Route::get('/blog-details/{BlogId}', [BlogDetail::class])->name('blog-details');
 

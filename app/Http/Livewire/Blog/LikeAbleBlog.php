@@ -20,7 +20,9 @@ class LikeAbleBlog extends Component
         'blog-likes-cu-successfully' => '$refresh',
     ];
 
-    public function mount(){
+
+    public function render()
+    {
         $blog_Likes = $this->post->likes;
         foreach ($blog_Likes as $like){
             $this->existing_likes += $like->likes;
@@ -29,10 +31,6 @@ class LikeAbleBlog extends Component
         if ($likes){
             $this->isExistingUser = true;
         }
-    }
-
-    public function render()
-    {
         return view('blog.like-able-blog');
     }
 

@@ -63,7 +63,6 @@ class BlogList extends Component
             ->orderBy('BlogId', 'DESC')
             ->paginate($this->per_page);
 
-
         return view('blog.blog-list', compact('data'));
     }
 }
