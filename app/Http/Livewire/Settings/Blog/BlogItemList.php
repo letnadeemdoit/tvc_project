@@ -28,8 +28,8 @@ class BlogItemList extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
+        'blog-cu-successfully' => '$refresh',
         'destroyed-successfully' => '$refresh',
-        'Blog-cu-successfully' => '$refresh',
     ];
 
     public function mount()

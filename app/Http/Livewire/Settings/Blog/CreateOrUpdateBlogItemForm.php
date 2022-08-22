@@ -74,6 +74,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Content' => 'required',
+            'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
         $slug = Str::slug($inputs['Subject']);
@@ -96,8 +97,9 @@ class CreateOrUpdateBlogItemForm extends Component
         $this->blogItem->updateFile($this->file);
 
         $this->emitSelf('toggle', false);
-        $this->emit('blog-cu-successfully');
+
         $this->success( 'Blog ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
+        $this->emit('blog-cu-successfully');
     }
 
     public function updatedFile() {
