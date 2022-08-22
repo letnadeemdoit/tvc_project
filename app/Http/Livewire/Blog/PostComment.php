@@ -17,6 +17,12 @@ class PostComment extends Component
 
     public $type;
 
+    public $isMoreComments = false;
+
+    public $remainingComments;
+
+    public $showAllComments = false;
+
     public $newestComment = true;
 
     public $oldestComment = false;
@@ -25,12 +31,31 @@ class PostComment extends Component
 
     public function render()
     {
+        $countComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->get();
+
+        if (count($countComments) > 3){
+            $this->remainingComments = count($countComments) - 3;
+            $this->isMoreComments = true;
+        }
+
         if ($this->oldestComment){
-            $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'ASC')->get();
+            if ($this->showAllComments){
+                $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'ASC')->get();
+                $this->isMoreComments = false;
+            }
+            else{
+                $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'ASC')->limit(3)->get();
+            }
         }
         else
         {
-            $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->get();
+            if ($this->showAllComments){
+                $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->get();
+                $this->isMoreComments = false;
+            }
+            else{
+                $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->limit(3)->get();
+            }
         }
         return view('blog.post-comment', compact('BlogComments'));
     }
@@ -67,6 +92,10 @@ class PostComment extends Component
             $this->newestComment = false;
             $this->oldestComment = true;
         }
+    }
+
+    public  function moreComment(){
+        $this->showAllComments = true;
     }
 
 

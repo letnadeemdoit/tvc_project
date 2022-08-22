@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog\Blog;
+use App\Models\Blog\BlogComment;
 use App\Models\BlogViews;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -28,6 +29,13 @@ class BlogController extends Controller
             $existing_views += $view->views;
         }
 
+        $blogcomments = BlogComment::where('BlogId', $post->BlogId )->get();
+        $numberofcomments = count($blogcomments);
+
+        $categories = Category::where('type', 'blog')->get();
+
+        $relatedBlog = Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get();
+
         $user = auth()->user();
         $views = BlogViews::where('blog_id', $post->BlogId)->where('user_id', $user->user_id)->get();
         if (count($views) == 0){
@@ -46,7 +54,11 @@ class BlogController extends Controller
             'user' => $request->user(),
             'post' => $post,
             'existing_likes' => $existing_likes,
-            'existing_views' => $existing_views
+            'existing_views' => $existing_views,
+            'total_comments' => $numberofcomments,
+            'categories' => $categories,
+            'relatedBlog' => $relatedBlog
+
         ]);
     }
 
