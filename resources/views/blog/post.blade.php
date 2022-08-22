@@ -83,7 +83,7 @@
                         <li class="me-2 me-md-3">
                             <livewire:blog.like-able-blog :post="$post" />
                         </li>
-                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/comment.svg"
+                        <li class="me-2 me-md-3"><p class="ps-0" id="demo"><span><img src="/images/blog-images/comment.svg"
                                                                             class="img-fluid me-2"></span>
 {{--                                {{$total_comments}} --}}
                                 Comments
@@ -206,5 +206,18 @@
 
 
 </x-guest-layout>
+
+@push('scripts')
+    <script>
+        setInterval(myTimer, 2000);
+
+        function myTimer() {
+            var cms = document.getElementsByClassName('_50f7')[0].textContent;
+            console.log(cms);
+            document.getElementById("demo").innerHTML = cms;
+        }
+
+    </script>
+@endpush
 
 
