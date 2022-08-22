@@ -96,8 +96,9 @@ class CreateOrUpdateBlogItemForm extends Component
         $this->blogItem->updateFile($this->file);
 
         $this->emitSelf('toggle', false);
-        $this->emit('blog-cu-successfully');
+
         $this->success( 'Blog ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
+        $this->emit('blog-cu-successfully');
     }
 
     public function updatedFile() {
