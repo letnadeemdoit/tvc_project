@@ -5,7 +5,7 @@
         </div>
         <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available {{$title}} in House</h1>
     </div>
-    <div class="container mt-2  bg-light-primary p-3 p-md-5 rounded-2 house-card-border">
+    <div class="container my-2  bg-light-primary p-3 p-md-5 rounded-2 house-card-border">
         <div class="d-block d-sm-flex justify-content-between align-items-center">
             <div class="">
                 <h3 class="mb-0 text-capitalize">{{$title}} in the House</h3>
@@ -39,18 +39,18 @@
                                         <div class="row">
                                             <div
                                                 class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
-                                                <p class="mb-0 ps-5">{{$dt->name}}</p>
+                                                <span class="badge badge-blue p-2 fs-4 fw-normal btn-min-115 ">Food Item :</span>
+                                                <p class="mb-0 ps-5 text-max-width">{{$dt->name}}</p>
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-green btn-min-115 ">Location :</a>
+                                                <span class="badge badge-green p-2 fs-4 fw-normal btn-min-115 ">Location :</span>
                                                 <p class="mb-0 ps-5">{{$dt->location}}</p>
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-primary btn-min-115 ">Expiry Date:</a>
-                                                <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>
+                                                <span class="badge badge-primary p-2 fs-4 fw-normal  btn-min-115 ">Expiry Date:</span>
+                                                <p class="mb-0 ps-5 text-max-width">{{$dt->expiration_date}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                             <div
                                                 class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                 <a class="btn btn-soft-green btn-min-115 ">Location :</a>
-                                                <p class="mb-0 ps-5">{{$dt->location}}</p>
+                                                <p class="mb-0 ps-5 text-max-width">{{$dt->location}}</p>
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
