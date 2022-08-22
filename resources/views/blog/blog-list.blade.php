@@ -2,7 +2,7 @@
     <div class="category-cards mb-3">
         <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a href="javascript:;" class="nav-link active">
+                <a href="javascript:;" class="nav-link active" wire:click="allCategory()">
                     ALL
                 </a>
             </li>
@@ -28,7 +28,7 @@
     </div>
     <div class="row category-cards">
         @foreach($data as $dt)
-            <livewire:blog.post-card :post="$dt"/>
+            <livewire:blog.post-card :post="$dt" wire:key="{{ $dt->BlogId }}"/>
         @endforeach
 
     </div>

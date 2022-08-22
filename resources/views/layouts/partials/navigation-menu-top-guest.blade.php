@@ -84,7 +84,7 @@
                     @endguest
 
                 </ul>
-                <div class="d-md-flex nav-buttons ms-3 ms-lg-0 ">
+                <div class="d-md-flex nav-buttons ms-3 ms-lg-5 ">
                     @auth
                         <!-- Account -->
                         <div class="dropdown">

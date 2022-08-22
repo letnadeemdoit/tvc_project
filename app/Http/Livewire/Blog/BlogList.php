@@ -28,6 +28,9 @@ class BlogList extends Component
         'per_page' => ['except' => 10],
         'category' => ['except' => 'all'],
     ];
+    protected $listeners = [
+        'category-change-cu-successfully' => '$refresh',
+    ];
 
 
     public function mount()
@@ -44,8 +47,13 @@ class BlogList extends Component
     }
 
     public function changeCategory($category) {
+        $this->emit('category-change-cu-successfully');
         $this->category = $category['slug'];
+    }
 
+    public function allCategory() {
+        $this->emit('category-change-cu-successfully');
+        $this->category = 'all';
     }
 
     public function getCategoriesProperty() {
@@ -62,7 +70,6 @@ class BlogList extends Component
             })
             ->orderBy('BlogId', 'DESC')
             ->paginate($this->per_page);
-
 
         return view('blog.blog-list', compact('data'));
     }

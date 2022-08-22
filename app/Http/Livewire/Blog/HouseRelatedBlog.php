@@ -8,7 +8,7 @@ use Livewire\Component;
 class HouseRelatedBlog extends Component
 {
     public Blog $blog;
-    public $existing_likes;
+//    public $existing_likes;
     public $existing_views;
 
     public function mount() {

@@ -21,6 +21,8 @@ class PostComment extends Component
 
     public $remainingComments;
 
+    public $totalComments;
+
     public $showAllComments = false;
 
     public $newestComment = true;
@@ -57,6 +59,11 @@ class PostComment extends Component
                 $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->limit(3)->get();
             }
         }
+
+        $Comments = BlogComment::where('BlogId', $this->blog->BlogId)->get();
+        $NestedComments = BlogNestedComment::where('blog_id', $this->blog->BlogId)->get();
+        $this->totalComments = (count($Comments) + count($NestedComments));
+
         return view('blog.post-comment', compact('BlogComments'));
     }
 

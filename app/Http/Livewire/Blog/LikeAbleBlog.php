@@ -21,11 +21,12 @@ class LikeAbleBlog extends Component
     ];
 
     public function mount(){
+        $user = auth()->user();
         $blog_Likes = $this->post->likes;
         foreach ($blog_Likes as $like){
             $this->existing_likes += $like->likes;
         }
-        $likes = Likes::where('blog_id', $this->post->BlogId)->where('user_id', Auth::user()->user_id)->first();
+        $likes = Likes::where('blog_id', $this->post->BlogId)->where('user_id', $user->user_id)->first();
         if ($likes){
             $this->isExistingUser = true;
         }
@@ -48,8 +49,8 @@ class LikeAbleBlog extends Component
             $this->emit('blog-likes-cu-successfully');
         }
         else{
-            $likes = Likes::where('blog_id', $this->post->BlogId)->where('user_id', $user->user_id)->get();
-            if (count($likes) == 0){
+            $likes = Likes::where('blog_id', $this->post->BlogId)->where('user_id', $user->user_id)->first();
+            if (is_null($likes)){
                 $like = new Likes();
                 $like->fill([
                     'user_id' => auth()->user()->user_id,

@@ -65,7 +65,7 @@
         <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>
         </div>
         <div class="container mb-4">
-            <div class="row masonary-gallery" >
+            <div class="row masonary-gallery"  data-masonry='{"percentPosition": true }'>
                 <div class="col-md-3 mb-3">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->

@@ -5,7 +5,7 @@
         </div>
         <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available {{$title}} in House</h1>
     </div>
-    <div class="container mt-2 mb-5 bg-light-primary p-3 p-md-5 rounded-2 house-card-border">
+    <div class="container mt-2  bg-light-primary p-3 p-md-5 rounded-2 house-card-border">
         <div class="d-block d-sm-flex justify-content-between align-items-center">
             <div class="">
                 <h3 class="mb-0 text-capitalize">{{$title}} in the House</h3>

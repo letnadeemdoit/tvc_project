@@ -84,7 +84,9 @@
                             <livewire:blog.like-able-blog :post="$post" />
                         </li>
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/comment.svg"
-                                                                            class="img-fluid me-2"></span> {{$total_comments}} Comments
+                                                                            class="img-fluid me-2"></span>
+{{--                                {{$total_comments}} --}}
+                                Comments
                             </p></li>
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
                                                                             class="img-fluid me-2"></span> {{ $existing_views }} Views
@@ -107,7 +109,7 @@
                                 <h4 class="fw-normal" style="color: #6D6D6D">{{ $category->name }}</h4>
                             </div>
                             <div>
-                                <p class="mb-0 border-primary category-count">5</p>
+                                <p class="mb-0 border-primary category-count">{{ $category->blogs_count }}</p>
                             </div>
                         </div>
                         @endforeach
@@ -146,6 +148,8 @@
     </div>
 
     <div class="container my-5">
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77"></script>
             <livewire:blog.post-comment :user="$user" :blog="$post" />
 {{--        <div class="row mt-5 mb-3">--}}
 {{--            <div class="col-12 col-lg-6">--}}

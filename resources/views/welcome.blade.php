@@ -233,7 +233,7 @@
                 <div class="row align-items-center min-height">
 
                     <div class="col-lg-5">
-                        <div class="py-4 text-center shadow-1-strong rounded mb-0 text-white bg-process-img" />
+                        <div class="py-4 text-center shadow-1-strong rounded mb-0 text-white bg-process-img text-margin" />
                         <h1 class="mb-0 h2 text-center text-lg-start font-vintage text-primary">Find your vacation house
                         </h1>
                     </div>
