@@ -17,11 +17,11 @@ class BlogController extends Controller
     }
 
     public function show(Request $request, Blog $post) {
-        $existing_likes = 0;
-        $blog_Likes = $post->likes;
-        foreach ($blog_Likes as $like){
-            $existing_likes += $like->likes;
-        }
+//        $existing_likes = 0;
+//        $blog_Likes = $post->likes;
+//        foreach ($blog_Likes as $like){
+//            $existing_likes += $like->likes;
+//        }
 
         $existing_views = 0;
         $blog_views = $post->views;
@@ -53,7 +53,7 @@ class BlogController extends Controller
         return view('blog.post', [
             'user' => $request->user(),
             'post' => $post,
-            'existing_likes' => $existing_likes,
+//            'existing_likes' => $existing_likes,
             'existing_views' => $existing_views,
             'total_comments' => $numberofcomments,
             'categories' => $categories,
