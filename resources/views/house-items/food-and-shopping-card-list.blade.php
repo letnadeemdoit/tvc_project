@@ -46,17 +46,17 @@
                                             <div class="row">
                                                 <div
                                                     class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
-                                                    <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
+                                                    <span class="badge badge-blue btn-min-115 fs-4 p-2 fw-normal">Food Item :</span>
                                                     <p class="mb-0 ps-5 toggle-text">{{$dt->name}}</p>
                                                 </div>
                                                 <div
                                                     class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
-                                                    <a class="btn btn-soft-green btn-min-115 ">Location :</a>
+                                                    <span class="badge badge-green btn-min-115 fs-4 p-2 fw-normal">Location :</span>
                                                     <p class="mb-0 ps-5 toggle-text">{{$dt->location}}</p>
                                                 </div>
                                                 <div
                                                     class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
-                                                    <a class="btn btn-soft-primary btn-min-115 ">Expiry Date:</a>
+                                                    <span class="badge badge-primary btn-min-115 fs-4 p-2 fw-normal">Expiry Date:</span>
                                                     <p class="mb-0 ps-5 toggle-text">{{$dt->expiration_date}}</p>
                                                 </div>
                                             </div>
@@ -84,19 +84,19 @@
                                         <div class="row">
                                             <div
                                                 class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
+                                                <span class="badge badge-blue btn-min-115 fs-4 p-2 fw-normal">Food Item :</span>
                                                 <p class="mb-0 ps-5 toggle-text">{{$dt->name}}</p>
 
 {{--                                                {{$dt->name}}--}}
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-green btn-min-115 ">Location :</a>
+                                                <span class="badge badge-green btn-min-115 fs-4 p-2 fw-normal">Location :</span>
                                                 <p class="mb-0 ps-5 toggle-text">{{$dt->location}}</p>
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-primary btn-min-115 ">Expiry Date:</a>
+                                                <span class="badge badge-primary btn-min-115 fs-4 p-2 fw-normal">Expiry Date:</span>
                                                 <p class="mb-0 ps-5 toggle-text">{{$dt->expiration_date}}</p>
                                             </div>
                                         </div>
