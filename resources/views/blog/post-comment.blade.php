@@ -156,9 +156,12 @@
 @push('scripts')
     <script>
 
+        const myTimeout = setTimeout(myGreeting, 5000);
+
+        function myGreeting() {
             var cms = document.getElementsByClassName('_50f7')[0].textContent;
             console.log(cms);
             document.getElementById("demo").innerHTML = cms;
-
+        }
     </script>
 @endpush
