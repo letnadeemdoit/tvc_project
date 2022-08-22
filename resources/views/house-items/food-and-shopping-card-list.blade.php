@@ -1,14 +1,14 @@
 <section class=" bg-light">
     <div class="section-padding">
         <div class="bg-{{$title}} shadow-1-strong rounded text-center d-flex justify-content-center align-items-center">
-            <h1 class="text-primary font-vintage mb-0">{{$title}} Item</h1>
+            <h1 class="text-primary font-vintage mb-0">{{$title}} list</h1>
         </div>
         <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available {{$title}} in House</h1>
     </div>
     <div class="container my-2  bg-light-primary p-3 p-md-5 rounded-2 house-card-border">
         <div class="d-block d-sm-flex justify-content-between align-items-center">
             <div class="">
-                <h3 class="mb-0 text-capitalize">{{$title}} in the House</h3>
+                <h3 class="mb-0 text-capitalize text-center text-md-start">{{$title}} in the House</h3>
             </div>
             <div class="">
                 <div class="btn-group switch-button nav nav-tabs d-flex justify-content-end bg-dark-blue p-2 rounded-pill mt-3 mt-sm-0"
@@ -40,7 +40,7 @@
                                             <div
                                                 class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                 <span class="badge badge-blue p-2 fs-4 fw-normal btn-min-115 ">Food Item :</span>
-                                                <p class="mb-0 ps-5 text-max-width">{{$dt->name}}</p>
+                                                <p class="mb-0 ps-5 text-max-width toggle-text">{{$dt->name}}</p>
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
@@ -76,11 +76,13 @@
                                                 class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                 <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
                                                 <p class="mb-0 ps-5">{{$dt->name}}</p>
+
+{{--                                                {{$dt->name}}--}}
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                 <a class="btn btn-soft-green btn-min-115 ">Location :</a>
-                                                <p class="mb-0 ps-5 text-max-width">{{$dt->location}}</p>
+                                                <p class="mb-0 ps-5">{{$dt->location}}</p>
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">

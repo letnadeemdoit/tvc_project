@@ -619,7 +619,9 @@ header{
         outline: 0 !important;
     }
 }
-
+.fs-12{
+    font-size: 12px;
+}
 .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link{
     //padding: 0.75rem !important;
 }
@@ -1473,4 +1475,19 @@ nav.navecation  .active img{
 }
 .color-blue{
     color: #0075EF !important;
+}
+.toggle-text {
+    max-width: 400px;
+    text-align: center;
+}
+.toggle-text-content  {
+
+    span {
+        display: none;
+    }
+}
+
+.toggle-text-link {
+    display: block;
+    margin: 3px 0;
 }
