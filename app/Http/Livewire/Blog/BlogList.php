@@ -18,6 +18,8 @@ class BlogList extends Component
     public $page = 1;
     public $per_page = 10;
 
+    public $categories;
+
     public $category = 'all';
 
     protected $queryString = [
@@ -27,9 +29,11 @@ class BlogList extends Component
         'category' => ['except' => 'all'],
     ];
 
+
     public function mount()
     {
         $this->model = Blog::class;
+        $this->categories = Category::where('type', 'blog')->get();
     }
 
     protected $paginationTheme = 'bootstrap';
@@ -37,6 +41,11 @@ class BlogList extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+    public function changeCategory($category) {
+        $this->category = $category['slug'];
+
     }
 
     public function getCategoriesProperty() {

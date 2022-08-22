@@ -74,10 +74,7 @@
             </div>
         </div>
     </div>
-    @php
-        $blogcomments = App\Models\Blog\BlogComment::where('BlogId', $post->BlogId )->get();
-        $numberofcomments = count($blogcomments);
-    @endphp
+
     <div class="container my-5 pt-5">
         <div class="row">
             <div class="col-12 col-lg-9 pe-0 pe-lg-5">
@@ -87,7 +84,7 @@
                             <livewire:blog.like-able-blog :post="$post" />
                         </li>
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/comment.svg"
-                                                                            class="img-fluid me-2"></span> {{$numberofcomments}} Comments
+                                                                            class="img-fluid me-2"></span> {{$total_comments}} Comments
                             </p></li>
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
                                                                             class="img-fluid me-2"></span> {{ $existing_views }} Views
@@ -100,6 +97,50 @@
             </div>
             <div class="col-12 col-lg-3">
                 <livewire:blog.latest-post :user="$user" :post="$post" />
+
+                <div class="card border-0 mb-4 categories-card">
+                    <div class="card-body">
+                        <h4 class="mb-3">Categories</h4>
+                        @foreach($categories as $category)
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div>
+                                <h4 class="fw-normal" style="color: #6D6D6D">{{ $category->name }}</h4>
+                            </div>
+                            <div>
+                                <p class="mb-0 border-primary category-count">5</p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="card border-0 mb-4 tags-card">
+                    <div class="card-body">
+                        <h4 class="mb-3">Tags</h4>
+                        <div>
+                            <span>
+                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Business</a>
+                            </span>
+                            <span>
+                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Graphic Design</a>
+                            </span>
+                            <span>
+                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Technology</a>
+                            </span>
+                            <span>
+                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">App Development</a>
+                            </span>
+                            <span>
+                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Website Design</a>
+                            </span>
+                            <span>
+                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Business Idea</a>
+                            </span>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -150,10 +191,6 @@
     <div class="container my-5 py-5">
         <h3>Keep Reading</h3>
 
-
-        @php
-            $relatedBlog = \App\Models\Blog\Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get();
-        @endphp
 
         <div class="row">
             @foreach($relatedBlog as $blog)

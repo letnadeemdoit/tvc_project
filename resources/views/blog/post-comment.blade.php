@@ -55,7 +55,10 @@
                     <p class="mb-0" style="font-size: 12px">{!! $comment->Content !!}</p>
                     <p class="mb-0" style="font-size: 12px">
                             <span class="me-1">
-                                <a href="#!" class="text-muted">Like</a>
+                                <a href="#!">
+                                    <img src="/images/blog-images/love.png" class="img-fluid me-1">
+                                </a>
+                                 <span class="text-muted"> Likes</span>
                             </span>
                             <span class="mx-1">
                                 <a class="text-muted" data-bs-toggle="collapse" href="#collapseExample{{$comment->CommentId}}" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -113,11 +116,14 @@
                         <p class="mb-0" style="font-size: 12px">{{ $ncomment->nested_content }}</p>
                         <p class="mb-0" style="font-size: 12px">
                             <span class="me-1">
-                                <a href="#!" class="text-muted">Like</a>
-                            </span>.
+                                <a href="#!">
+                                    <img src="/images/blog-images/love.png" class="img-fluid me-1">
+                                </a>
+                                 <span class="text-muted"> Likes</span>
+                            </span>
                             <span class="mx-1">
                                 <a href="#!" class="text-muted">Reply</a>
-                            </span>.
+                            </span>
                             <span class="mx-1 text-muted">
                                 24h
                             </span>
@@ -128,11 +134,11 @@
             </div>
 
             @endforeach
-{{--            @if(count($BlogComments)>3)--}}
-{{--                <div class="">--}}
-{{--                    <button class="w-100 btn btn-primary">Load More comments</button>--}}
-{{--                </div>--}}
-{{--            @endif--}}
+            @if($isMoreComments)
+                <div class="">
+                    <button class="w-100 btn btn-primary" wire:click="moreComment()">Load More {{$remainingComments}} comments</button>
+                </div>
+            @endif
         </div>
     </div>
 </div>
