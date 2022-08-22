@@ -144,7 +144,7 @@
                     <label class="form-label" for="">Select Category</label>
                     <select name="parent_id" id="parent_id"
                             wire:model.defer="state.parent_id" class="form-control">
-                        <option value="">Select parent Category...</option>
+                        <option>Select parent Category...</option>
                         @if(isset($albumCategory))
                             @foreach($albumCategory as $ac)
                                 <option value="{{$ac->id}}">{{$ac->name}}</option>
