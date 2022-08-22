@@ -19,7 +19,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search By Subject"
+                            placeholder="Search by subject"
                             aria-label="Search boards"
                             wire:model.debounce.500ms="search"
                         />

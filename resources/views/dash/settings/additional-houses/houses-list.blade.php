@@ -19,7 +19,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search house by name"
+                            placeholder="Search by name"
                             aria-label="Search users"
                             wire:model.debounce.500ms="search"
                         />
@@ -60,7 +60,7 @@
                         {{--                            </div>--}}
                         {{--                        </td>--}}
                         <td>
-                            <a class="d-flex align-items-center" href="javascript;">
+                            <a class="d-flex align-items-center" href="#!">
                                 <div class="avatar avatar-circle">
                                     <img class="avatar-img" src="{{ $dt->getFileUrl() }}" alt="Image Description">
                                 </div>

@@ -39,7 +39,7 @@
                     <th>Name</th>
                     <th>Location</th>
                     <th>Expiration Date</th>
-                    <th>Create at</th>
+                    <th>Created at</th>
                     <th>Action</th>
                 </tr>
                 </thead>

@@ -18,7 +18,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search vacations by name"
+                            placeholder="Search by name"
                             aria-label="Search vacations by name"
                             wire:model.debounce.500ms="search"
                         />
