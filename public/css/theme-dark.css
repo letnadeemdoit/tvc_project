@@ -33774,6 +33774,10 @@ header nav button:last-child:hover {
   outline: 0 !important;
 }
 
+.fs-12 {
+  font-size: 12px;
+}
+
 #header .nav-item {
   position: relative;
 }
@@ -34482,4 +34486,18 @@ nav.navecation .active img {
 
 .color-blue {
   color: #0075EF !important;
+}
+
+.toggle-text {
+  max-width: 400px;
+  text-align: center;
+}
+
+.toggle-text-content span {
+  display: none;
+}
+
+.toggle-text-link {
+  display: block;
+  margin: 3px 0;
 }
