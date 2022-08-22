@@ -41678,8 +41678,27 @@ body {
   color: #fff !important;
 }
 
+.guest-card-cont p {
+  max-height: 250px;
+  overflow-y: scroll;
+  padding-right: 14px;
+}
+
 .footer-primary i:hover {
   color: #2A3342 !important;
+}
+
+.badge-primary {
+  background: rgba(232, 96, 76, 0.1);
+  color: #E8604C;
+}
+
+.guest-modal .btn-close {
+  background: transparent url("/images/guest-book/cross-circle.svg") center/1em auto no-repeat !important;
+}
+
+.text-max-width {
+  max-width: 150px;
 }
 
 .quote-card .avatar {
@@ -41844,14 +41863,10 @@ fieldset i {
   font-size: 19px;
 }
 
-.btn-soft-blue {
+.badge-blue {
   color: #0075EF;
-  background: rgba(0, 117, 239, 0.1);
+  background: rgba(0, 117, 239, 0.1) !important;
   border-color: transparent;
-}
-.btn-soft-blue:hover {
-  background-color: #0075EF;
-  color: #fff;
 }
 
 .switch-button .active {
@@ -41859,14 +41874,10 @@ fieldset i {
   color: #2A3342 !important;
 }
 
-.btn-soft-green {
+.badge-green {
   color: #01B682;
-  background: rgba(1, 182, 130, 0.1);
+  background: rgba(1, 182, 130, 0.1) !important;
   border-color: transparent;
-}
-.btn-soft-green:hover {
-  background-color: #01B682;
-  color: #fff;
 }
 
 .bg-light-primary {
@@ -42586,6 +42597,9 @@ header nav button:last-child:hover {
   }
   .food-item-img {
     height: 180px !important;
+  }
+  .text-margin {
+    margin-top: 11px !important;
   }
 }
 @media only screen and (max-width: 430px) {
