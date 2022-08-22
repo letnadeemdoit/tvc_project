@@ -1,5 +1,5 @@
 <!-- Footer -->
-<div class="bg-dark-blue border-top">
+<div class="bg-primary footer-primary">
     <div class="container py-3">
         <div class="row row-max-width align-items-center">
             <div class="col-12 col-lg-6 col-xl-6">
@@ -14,7 +14,7 @@
                     <a href="#" class="text-decoration-none text-white">
                         <i class="bi-instagram fs-3"></i>
                     </a>
-                    <div class="border-end border-secondary ps-3 d-none d-lg-block h-20"></div>
+                    <div class="border-end border-light ps-3 d-none d-lg-block h-20"></div>
                 </div>
             </div>
             <!-- End Col -->

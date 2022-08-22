@@ -42,6 +42,8 @@ Route::controller(GuestController::class)
 //        Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
         Route::get('/local-guide','localGuide')->name('local-guide');
         Route::get('/photo-album','photoAlbum')->name('photo-album');
+        Route::get('/single-album',  'singleAlbum')->name('single-album');
+
 
         Route::controller(BlogController::class)
             ->prefix('blog')
@@ -114,11 +116,10 @@ Route::middleware([
         Route::get('/photo-albums', [DashboardController::class, 'photoAlbum'])->name('photo-albums');
         Route::get('/photo-albums/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album');
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
-        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
+//        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
         Route::get('/food-item-list', [DashboardController::class, 'foodItemList'])->name('food-item-list');
         Route::get('/shopping-item-list', [DashboardController::class, 'shoppingItemList'])->name('shopping-item-list');
-
         Route::put('/current-house', [DashboardController::class, 'switchHouse'])->name('switch-house');
         Route::controller(\App\Http\Controllers\SettingController::class)
             ->prefix('settings')
@@ -139,3 +140,4 @@ Route::middleware([
                 Route::get('guest-books', 'guestBook')->name('guest-books');
             });
     });
+

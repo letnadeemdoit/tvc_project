@@ -4,7 +4,7 @@
     <!-- End Hero -->
 
     <!-- FAQ -->
-    <section class="bg-crystals">
+    <section class="bg-crystals mb-6rem">
         <div class="container content-space-2 content-space-b-lg-3">
             <!-- nav tabs -->
             <section class="text-center">
