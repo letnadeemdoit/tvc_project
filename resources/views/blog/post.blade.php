@@ -109,7 +109,7 @@
                                 <h4 class="fw-normal" style="color: #6D6D6D">{{ $category->name }}</h4>
                             </div>
                             <div>
-                                <p class="mb-0 border-primary category-count">5</p>
+                                <p class="mb-0 border-primary category-count">{{ $category->blogs_count }}</p>
                             </div>
                         </div>
                         @endforeach
