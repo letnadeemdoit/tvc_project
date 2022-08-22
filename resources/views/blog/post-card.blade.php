@@ -60,7 +60,7 @@
                         <livewire:blog.like-able-blog :post="$post" />
                     </li>
                     <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
-                    <li><img src="/images/blog-images/eye.png" class="img-fluid me-1"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
+                    <li><img src="/images/blog-images/eye.svg" class="img-fluid me-1"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
                 </ul>
             </div>
         </div>
