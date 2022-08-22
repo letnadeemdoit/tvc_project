@@ -84,7 +84,9 @@
                             <livewire:blog.like-able-blog :post="$post" />
                         </li>
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/comment.svg"
-                                                                            class="img-fluid me-2"></span> {{$total_comments}} Comments
+                                                                            class="img-fluid me-2"></span>
+{{--                                {{$total_comments}} --}}
+                                Comments
                             </p></li>
                         <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
                                                                             class="img-fluid me-2"></span> {{ $existing_views }} Views
