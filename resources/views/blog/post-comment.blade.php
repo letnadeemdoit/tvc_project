@@ -19,7 +19,7 @@
 {{--            <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-1" width="50"--}}
 {{--                 height="50" style="object-fit: cover" alt="...">--}}
 {{--        </div>--}}
-        <div class="fb-comments" data-href="http://dev.devdimensions.com/" data-width="" data-numposts="3">
+        <div class="fb-comments" data-href="{{ route('guest.blog.show', $blog->BlogID) }}" data-width="" data-numposts="3">
 
         </div>
 {{--        <div class="flex-grow-1 ms-3">--}}
