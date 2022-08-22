@@ -47,7 +47,14 @@
                         </div>
 
                         <div class="nav-item">
-                            <a class="nav-link" href="{{route('dash.local-guide')}}" data-placement="left">
+                            <a class="nav-link {{ link_is_active_with_class(['dash.photo-albums']) }}" href="{{route('dash.photo-albums')}}" data-placement="left">
+                                <i class="bi-images nav-icon"></i>
+                                <span class="nav-link-title">Photo Albums</span>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
+                            <a class="nav-link  {{ link_is_active_with_class(['dash.local-guide']) }}" href="{{route('dash.local-guide')}}" data-placement="left">
                                 <i class="bi-calendar-month nav-icon"></i>
                                 <span class="nav-link-title">Local Guide</span>
                             </a>
