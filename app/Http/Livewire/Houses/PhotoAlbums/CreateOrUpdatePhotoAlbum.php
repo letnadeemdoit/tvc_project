@@ -58,7 +58,7 @@ class CreateOrUpdatePhotoAlbum extends Component
     {
         $this->resetErrorBag();
 
-        $inputs = $this->state;
+        $inputs = array_filter($this->state);
 
         if ($this->file) {
             $inputs['image'] = $this->file;
