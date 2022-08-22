@@ -155,13 +155,10 @@
 
 @push('scripts')
     <script>
-        setInterval(myTimer, 2000);
 
-        function myTimer() {
             var cms = document.getElementsByClassName('_50f7')[0].textContent;
             console.log(cms);
             document.getElementById("demo").innerHTML = cms;
-        }
 
     </script>
 @endpush
