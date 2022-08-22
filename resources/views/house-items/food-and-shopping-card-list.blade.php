@@ -47,17 +47,17 @@
                                                 <div
                                                     class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                     <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
-                                                    <p class="mb-0 ps-5">{{$dt->name}}</p>
+                                                    <p class="mb-0 ps-5 toggle-text">{{$dt->name}}</p>
                                                 </div>
                                                 <div
                                                     class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                     <a class="btn btn-soft-green btn-min-115 ">Location :</a>
-                                                    <p class="mb-0 ps-5">{{$dt->location}}</p>
+                                                    <p class="mb-0 ps-5 toggle-text">{{$dt->location}}</p>
                                                 </div>
                                                 <div
                                                     class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
                                                     <a class="btn btn-soft-primary btn-min-115 ">Expiry Date:</a>
-                                                    <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>
+                                                    <p class="mb-0 ps-5 toggle-text">{{$dt->expiration_date}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,17 +85,19 @@
                                             <div
                                                 class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                 <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
-                                                <p class="mb-0 ps-5">{{$dt->name}}</p>
+                                                <p class="mb-0 ps-5 toggle-text">{{$dt->name}}</p>
+
+{{--                                                {{$dt->name}}--}}
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
                                                 <a class="btn btn-soft-green btn-min-115 ">Location :</a>
-                                                <p class="mb-0 ps-5">{{$dt->location}}</p>
+                                                <p class="mb-0 ps-5 toggle-text">{{$dt->location}}</p>
                                             </div>
                                             <div
                                                 class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
                                                 <a class="btn btn-soft-primary btn-min-115 ">Expiry Date:</a>
-                                                <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>
+                                                <p class="mb-0 ps-5 toggle-text">{{$dt->expiration_date}}</p>
                                             </div>
                                         </div>
                                     </div>
