@@ -1,14 +1,21 @@
 <div class="card rounded border-0">
-
     <div class="w-lg-50 mx-auto">
         <div class="my-5">
+            <div class="mb-2">
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+            </div>
+
             <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
                 <h1 class="text-primary font-vintage mb-0">FeedBack</h1>
             </div>
             <h1 class="pt-2 text-center poppins-bold">Leave a quick thank you</h1>
         </div>
         <div class="card-body">
-            <form wire:submit.prevent="leaveReviewGuestBookCUModal" method="post">
+            <form wire:submit.prevent="saveReviewFeedBackGuestBook" method="post">
 
                 <div class="row">
                     <div class="mb-3 col-12">

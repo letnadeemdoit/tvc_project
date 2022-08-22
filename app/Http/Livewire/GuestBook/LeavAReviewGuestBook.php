@@ -27,9 +27,8 @@ class LeavAReviewGuestBook extends Component
         return view('guest-book.leave-a-review-guest-book');
     }
 
-    public function leaveReviewGuestBookCUModal()
+    public function saveReviewFeedBackGuestBook()
     {
-
         $this->resetErrorBag();
 
         $inputs = $this->state;
@@ -45,7 +44,11 @@ class LeavAReviewGuestBook extends Component
             'title' => 'required|string|max:100',
             'content' => 'required',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-        ])->validateWithBag('leaveReviewGuestBookCUModal');
+        ])->validateWithBag('saveReviewFeedBackGuestBook');
+
+        if (isset($inputs['image'])){
+            $inputs['image'] = $this->file->store('guestbooks', 'public');
+        }
 
         GuestBook::create([
             'user_id' => auth()->user()->user_id,
@@ -54,13 +57,12 @@ class LeavAReviewGuestBook extends Component
             'title' => $inputs['title'],
             'status' => $inputs['status'] ?? 0,
             'content' => $inputs['content'],
+            'image' => $inputs['image'] ?? null,
         ]);
 
+        session()->flash('message', 'Thank you for your FeedBack...');
+
         return redirect()->route('guest.guest-book.index');
-
-//        $this->guestBook->updateFile($this->file);
-
-//        $this->success('saved Successfully');
 
     }
 

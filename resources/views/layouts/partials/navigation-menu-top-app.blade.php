@@ -1380,7 +1380,8 @@
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-sm avatar-circle">
                                         <img
-                                            class="avatar-img"
+                                            class="rounded-circle"
+                                            style="width: 45px;height: 45px"
                                             src="{{ auth()->user()->house->getFileUrl() }}"
                                             alt="{{ auth()->user()->house->HouseName }}"
 
