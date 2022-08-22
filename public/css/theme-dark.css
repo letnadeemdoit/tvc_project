@@ -33261,6 +33261,10 @@ body {
   color: #fff !important;
 }
 
+.footer-primary i:hover {
+  color: #2A3342 !important;
+}
+
 .quote-card .avatar {
   width: 5rem !important;
   height: 5rem !important;
@@ -33660,7 +33664,7 @@ header nav button:last-child:hover {
 }
 
 .footer-text a:hover {
-  color: #E8604C !important;
+  color: #2A3342 !important;
 }
 
 .select2-container .select2-selection--single {
@@ -33903,6 +33907,9 @@ header nav button:last-child:hover {
   }
   .fs-13 {
     font-size: 12px !important;
+  }
+  .feature-cards .card {
+    min-height: 555px !important;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -34326,6 +34333,7 @@ header nav button:last-child:hover {
   border: none !important;
   padding: 18px;
   margin-right: 14px;
+  border-radius: 5px;
 }
 .category-cards .nav-link.active {
   background: rgba(232, 96, 76, 0.06) !important;

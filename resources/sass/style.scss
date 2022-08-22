@@ -115,6 +115,13 @@ body{
         }
     }
 }
+.footer-primary{
+    i{
+        &:hover{
+            color: $dark-blue !important;
+        }
+    }
+}
 .quote-card{
     .avatar {
         width:5rem !important;
@@ -498,7 +505,7 @@ header{
 .footer-text{
     a {
         &:hover {
-            color: $primary !important;
+            color: $dark-blue !important;
         }
     }
 }
@@ -769,6 +776,11 @@ header{
     }
     .fs-13 {
         font-size: 12px !important;
+    }
+    .feature-cards {
+        .card{
+            min-height: 555px !important;
+        }
     }
 }
 @media only screen and (min-width:992px) and (max-width:1200px) {
@@ -1315,6 +1327,7 @@ header{
         border: none !important;
         padding: 18px;
         margin-right: 14px;
+        border-radius: 5px;
         &.active{
             background:rgba(232, 96, 76, 0.06) !important;
             img{

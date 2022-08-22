@@ -3,9 +3,11 @@
         <div class="my-5">
             <div class="mb-2">
                 @if(session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span class="fw-semi-bold">Congrats!</span>   {{ session('message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+
                 @endif
             </div>
 
@@ -140,7 +142,7 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="dz-message d-flex justify-content-center align-items-center">
+                        <div class="dz-message d-block d-sm-flex justify-content-center align-items-center">
                             <div class="text-center"
                                  x-on:livewire-upload-start="isUploadingFile = true"
                                  x-on:livewire-upload-finish=""
@@ -160,7 +162,7 @@
                                         @click.prevent="$refs.file_upload.click()">Upload Image
                                 </button>
                             </div>
-                            <p class="mb-0 mx-3">or</p>
+                            <p class="mb-0 mx-3 py-2 py-sm-0">or</p>
                             <h5 class="mb-0">Drag and drop your Visit Selfie here</h5>
                         </div>
 
@@ -235,7 +237,9 @@
 
                 <div class="btn gap-3 text-center my-4 d-block d-md-flex justify-content-center">
                     <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">SEND</button>
-                    <a href="#" onclick="resetForm()" class="btn  btn-lg bg-skin btn-min-160  rounded px-5 mt-3 mt-sm-0 border-0">RESET</a>
+                    <a href="#!" onclick="resetForm()"
+                       wire:click.prevent="resetFeedbackForm"
+                       class="btn  btn-lg bg-skin btn-min-160  rounded px-5 mt-3 mt-sm-0 border-0">RESET</a>
                 </div>
 
 {{--                <div class="my-3 d-flex">--}}
