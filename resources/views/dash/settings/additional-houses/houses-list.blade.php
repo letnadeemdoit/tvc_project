@@ -19,7 +19,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search house by name"
+                            placeholder="Search by name"
                             aria-label="Search users"
                             wire:model.debounce.500ms="search"
                         />

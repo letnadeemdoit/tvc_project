@@ -60,11 +60,18 @@ class LeavAReviewGuestBook extends Component
             'image' => $inputs['image'] ?? null,
         ]);
 
-        session()->flash('message', 'Thank you for your FeedBack...');
+        session()->flash('message', 'Your feedback is submitted successfully...');
 
         return redirect()->route('guest.guest-book.index');
 
     }
+
+    public function resetFeedbackForm(){
+
+        $this->state = "";
+
+    }
+
 
     public function updatedFile() {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);

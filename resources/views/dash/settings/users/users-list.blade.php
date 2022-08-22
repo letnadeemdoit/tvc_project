@@ -121,7 +121,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search users by username, first or last name, email etc"
+                            placeholder="Search by username"
                             aria-label="Search users"
                             wire:model.debounce.500ms="search"
                         />
