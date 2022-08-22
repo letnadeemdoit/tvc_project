@@ -119,7 +119,7 @@
                 <div class="tab-content bg-waves" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <section class="text-end">
-                            <img src="/images/bulletin-images/Combined Shape.png" class="img-fluid bg-dots-orange"/>
+                            <img src="/images/bulletin-images/orange-dots" class="img-fluid bg-dots-orange"/>
                         </section>
                         <div class="row" data-masonry='{"percentPosition": true }'>
                             @if(isset($data))
@@ -130,10 +130,11 @@
                                 @endforeach
                             @endif
                             <!-- ends -->
+                                <section class="text-center">
+                                    <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
+                                </section>
                         </div>
-                        <section class="text-center">
-                            <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
-                        </section>
+
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...
                     </div>
