@@ -112,8 +112,17 @@ Route::middleware([
         Route::resource('users', UserController::class);
         Route::get('/blogs', [DashboardController::class, 'blogs'])->name('blogs');
         Route::get('/houses', [DashboardController::class, 'houses'])->name('houses');
-        Route::get('/photo-albums', [DashboardController::class, 'photoAlbum'])->name('photo-albums');
-        Route::get('/photo-albums/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album');
+
+//        Route::get('/photo-albums-old', [DashboardController::class, 'photoAlbum'])->name('photo-albums-old');
+//        Route::get('/photo-albums-old/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album-old');
+
+
+        Route::get('/photo-albums', [DashboardController::class, 'photoAlbums'])->name('photo-albums');
+        Route::get('/photo-albums/{id}/photos', [DashboardController::class, 'photos'])->name('photo-albums.photos');
+
+
+
+
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
 //        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');

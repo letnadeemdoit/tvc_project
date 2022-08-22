@@ -41,7 +41,7 @@
                                 vacation house</h1>
                         </div>
                         <div>
-                            <h1 class="poppins-bold">What is the Vacation Calendar?</h1>
+                            <h1 class="poppins-bold pt-2">What is the Vacation Calendar?</h1>
                             <p class="pe-0 pe-lg-4 lh-lg">This is the main view of online calendar on
                                 TheVacationCalendar.com which allows everyone to see when the vacation home is in
                                 use.
