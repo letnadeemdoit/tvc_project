@@ -140,7 +140,7 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="dz-message d-flex justify-content-center align-items-center">
+                        <div class="dz-message d-block d-sm-flex justify-content-center align-items-center">
                             <div class="text-center"
                                  x-on:livewire-upload-start="isUploadingFile = true"
                                  x-on:livewire-upload-finish=""
@@ -160,7 +160,7 @@
                                         @click.prevent="$refs.file_upload.click()">Upload Image
                                 </button>
                             </div>
-                            <p class="mb-0 mx-3">or</p>
+                            <p class="mb-0 mx-3 py-2 py-sm-0">or</p>
                             <h5 class="mb-0">Drag and drop your Visit Selfie here</h5>
                         </div>
 

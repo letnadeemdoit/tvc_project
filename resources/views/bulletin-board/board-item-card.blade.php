@@ -2,7 +2,7 @@
   @if(isset($dt->image))
     <img
         src="{{$dt->getFileUrl('image')}}"
-        class="card-img-top"
+        class="card-img-top rounded-2"
         alt="{{ $dt->title ?? '' }}"
     />
   @endif

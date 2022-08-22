@@ -16,7 +16,7 @@
     </section>
     <!-- Contact Form -->
     <div class="contact-page">
-        <div class="container content-space-2 content-space-lg-3 " style="padding-top: 0 !important;">
+        <div class="container content-space-2 content-space-lg-3" style="padding-top: 0 !important;">
             <div class="row gx-1">
                 <div class="col-lg-6">
                     <!-- Card -->
