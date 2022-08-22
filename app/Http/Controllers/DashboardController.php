@@ -89,6 +89,26 @@ class DashboardController extends Controller
 
     }
 
+    public function photoAlbums(Request $request){
+
+        return view('dash.houses.photo-albums.index', [
+            'user' => $request->user()
+        ]);
+
+    }
+
+    public function photos(Request $request, $id){
+
+        $album = Album::findOrFail($id);
+
+        return view('dash.houses.photo-albums.photos.index', [
+            'album' => $album,
+            'user' => $request->user()
+        ]);
+
+    }
+
+
     public function switchHouse(Request $request) {
         $user = User::where([
             'HouseId' => $request->house_id,

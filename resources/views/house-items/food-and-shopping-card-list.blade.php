@@ -11,14 +11,16 @@
                 <h3 class="mb-0 text-capitalize">{{$title}} in the House</h3>
             </div>
             <div class="">
-                <div class="btn-group switch-button nav nav-tabs d-flex justify-content-end bg-dark-blue p-2 rounded-pill mt-3 mt-sm-0"
-                     id="myTab" role="tablist">
+                <div
+                    class="btn-group switch-button nav nav-tabs d-flex justify-content-end bg-dark-blue p-2 rounded-pill mt-3 mt-sm-0"
+                    id="myTab" role="tablist">
                     <a href="#!" class="{{$title == 'food' ? 'active' : ''}} btn rounded-pill text-white" id="home-tab"
                        data-bs-target="#home" role="tab" aria-controls="home" aria-selected="true"
                        wire:click.prevent="changeFoodTitle"
                     >Food in House
                     </a>
-                    <a href="#!" class="{{$title == 'shopping' ? 'active' : ''}} btn rounded-pill text-white" id="profile-tab"
+                    <a href="#!" class="{{$title == 'shopping' ? 'active' : ''}} btn rounded-pill text-white"
+                       id="profile-tab"
                        data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="false"
                        wire:click.prevent="changeShoppingTitle"
                     >Shopping List
@@ -26,17 +28,19 @@
                 </div>
             </div>
         </div>
-        <div class="tab-content  mt-5" id="myTabContent">
+        <div class="tab-content mt-5" id="myTabContent">
             @if($title == 'food')
                 <div class="" id="home" role="tabpanel" aria-labelledby="home-tab">
                     @if(isset($foodItems))
                         @foreach($foodItems as $dt)
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <div class="row justify-content-center justify-content-md-start align-items-center text-start text-lg-center">
+                                    <div
+                                        class="row justify-content-center justify-content-md-start align-items-center text-start text-lg-center">
                                         <div class="col-md-6 col-lg-2  border-right-solid text-center">
                                             <img src="{{$dt->getFileUrl('image')}}" alt="{{ $dt->title ?? '' }}"
-                                                 style="width: 120px;height: 75px;object-fit: cover" class="rounded-3 food-item-img">
+                                                 style="width: 120px;height: 75px;object-fit: cover"
+                                                 class="rounded-3 food-item-img">
                                         </div>
                                         <div class="col-md-6 col-lg-10">
                                             <div class="row">
@@ -67,42 +71,43 @@
 
             @if($title == 'shopping')
                 <div class="" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                @if(isset($shoppingItems))
-                    @foreach($shoppingItems as $dt)
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row justify-content-center justify-content-md-start align-items-center text-start text-lg-center">
-                                    <div class="col-md-6 col-lg-2  border-right-solid text-center">
-                                        <img src="{{$dt->getFileUrl('image')}}" alt="{{ $dt->title ?? '' }}"
-                                             style="width: 120px;height: 75px;object-fit: cover" class="rounded-3 food-item-img">
-                                    </div>
-                                    <div class="col-md-6 col-lg-10">
-                                        <div class="row">
-                                            <div
-                                                class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
-                                                <p class="mb-0 ps-5">{{$dt->name}}</p>
-                                            </div>
-                                            <div
-                                                class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-green btn-min-115 ">Location :</a>
-                                                <p class="mb-0 ps-5">{{$dt->location}}</p>
-                                            </div>
-                                            <div
-                                                class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
-                                                <a class="btn btn-soft-primary btn-min-115 ">Expiry Date:</a>
-                                                <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>
+                    @if(isset($shoppingItems))
+                        @foreach($shoppingItems as $dt)
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div
+                                        class="row justify-content-center justify-content-md-start align-items-center text-start text-lg-center">
+                                        <div class="col-md-6 col-lg-2  border-right-solid text-center">
+                                            <img src="{{$dt->getFileUrl('image')}}" alt="{{ $dt->title ?? '' }}"
+                                                 style="width: 120px;height: 75px;object-fit: cover"
+                                                 class="rounded-3 food-item-img">
+                                        </div>
+                                        <div class="col-md-6 col-lg-10">
+                                            <div class="row">
+                                                <div
+                                                    class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
+                                                    <a class="btn btn-soft-blue btn-min-115 ">Food Item :</a>
+                                                    <p class="mb-0 ps-5">{{$dt->name}}</p>
+                                                </div>
+                                                <div
+                                                    class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex justify-content-start justify-content-lg-center align-items-center">
+                                                    <a class="btn btn-soft-green btn-min-115 ">Location :</a>
+                                                    <p class="mb-0 ps-5">{{$dt->location}}</p>
+                                                </div>
+                                                <div
+                                                    class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex  justify-content-start justify-content-lg-center align-items-center">
+                                                    <a class="btn btn-soft-primary btn-min-115 ">Expiry Date:</a>
+                                                    <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-             @endif
-
+                        @endforeach
+                    @endif
+                </div>
+            @endif
         </div>
     </div>
 </section>

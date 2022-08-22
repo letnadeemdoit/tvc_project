@@ -1,4 +1,4 @@
-<x-app-layout>
+
     <x-dashboard-layout>
         <x-slot name="breadcrumbs">
             <li class="breadcrumb-item active" aria-current="page">Manage House</li>
@@ -9,4 +9,4 @@
 
 
     </x-dashboard-layout>
-</x-app-layout>
+
