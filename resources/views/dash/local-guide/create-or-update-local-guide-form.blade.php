@@ -250,7 +250,7 @@
                     <input
                         id="office_address"
                         x-ref="office_address"
-                        type="text" class="form-control-lg"
+                        type="text" class="form-control"
                         name="address"
                         wire:model.defer="state.address"
                     />
