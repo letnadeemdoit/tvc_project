@@ -39,6 +39,7 @@
         "select2": "^4.1.0-rc.0",
         "smoothscroll-polyfill": "^0.4.4",
         "tinymce": "^6.1.2",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "watch-run": "^1.2.5"
     }
 }

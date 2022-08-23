@@ -88,7 +88,7 @@
 {{--                                {{$total_comments}} --}}
                                 Comments
                             </p></li>
-                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
+                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.svg"
                                                                             class="img-fluid me-2"></span> {{ $existing_views }} Views
                             </p></li>
                     </ul>
