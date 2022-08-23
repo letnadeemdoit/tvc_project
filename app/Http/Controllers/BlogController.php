@@ -32,7 +32,7 @@ class BlogController extends Controller
         $blogcomments = BlogComment::where('BlogId', $post->BlogId )->get();
         $numberofcomments = count($blogcomments);
 
-        $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
+            $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
 
         $relatedBlog = Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get();
 
