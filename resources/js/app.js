@@ -14,8 +14,10 @@ window.toastr = require('toastr');
 window.jSuites = require('jsuites');
 
 import {Loader} from 'google-maps';
-
 window.googleMaps = new Loader(process.env.MIX_GOOGLE_MAPS_API_KEY, {libraries: ['places']});
+
+window.Cropper = require('cropperjs');
+window.Lightbox2 = require('lightbox2');
 
 window.livewire.on('toastr', function (data) {
     let toastr = window.toastr;
