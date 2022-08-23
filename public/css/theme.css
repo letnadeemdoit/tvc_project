@@ -42353,6 +42353,9 @@ header nav button:last-child:hover {
   .recipe-card-footer span {
     font-size: 12px !important;
   }
+  .toggle-text {
+    max-width: 136px !important;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1570px) {
   .row-max-width {
@@ -42382,6 +42385,9 @@ header nav button:last-child:hover {
   .help-page-tabs .card {
     min-width: 190px !important;
     max-width: 190px !important;
+  }
+  .toggle-text {
+    max-width: 89px !important;
   }
   .fs-13 {
     font-size: 11px;
@@ -42940,7 +42946,7 @@ nav.navecation .active img {
 }
 
 .toggle-text {
-  max-width: 400px;
+  max-width: 230px;
   text-align: center;
 }
 
