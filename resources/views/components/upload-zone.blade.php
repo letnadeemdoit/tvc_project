@@ -89,14 +89,16 @@
             </template>
         </div>
 
-        <div class="progress mt-3" style="display: none" x-show="isUploadingFile">
-            <div
-                class="progress-bar"
-                role="progressbar"
-                :style="`width: ${uploadingProgress}%`"
-                :aria-valuenow="uploadingProgress"
-                aria-valuemin="0"
-                aria-valuemax="100"></div>
+        <div class="px-5">
+            <div class="progress mt-3" style="display: none" x-show="isUploadingFile">
+                <div
+                    class="progress-bar"
+                    role="progressbar"
+                    :style="`width: ${uploadingProgress}%`"
+                    :aria-valuenow="uploadingProgress"
+                    aria-valuemin="0"
+                    aria-valuemax="100"></div>
+            </div>
         </div>
     </div>
 </div>
