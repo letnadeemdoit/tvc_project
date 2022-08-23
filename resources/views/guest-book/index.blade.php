@@ -160,7 +160,7 @@
                                  alt="{{ $dt->name ?? '' }}"
                                  class="rounded-circle" width="60"/>
                                         </span>
-                                        <h3 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h3>
+                                        <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
                                         <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
                                  alt="{{ $dt->name ?? '' }}"
                                  class="rounded-circle" width="60"/>
                                         </span>
-                                                    <h3 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h3>
+                                                    <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
                                                     <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                                 </div>
                                             </div>
