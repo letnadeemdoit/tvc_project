@@ -31,6 +31,7 @@
         "dropzone": "^6.0.0-beta.2",
         "flag-icons": "^6.6.0",
         "fullcalendar": "^5.10.1",
+        "google-maps": "^4.3.3",
         "jquery": "^3.6.0",
         "jquery-ui": "^1.13.2",
         "jquery-ui-timepicker-addon": "^1.6.3",
@@ -38,6 +39,7 @@
         "select2": "^4.1.0-rc.0",
         "smoothscroll-polyfill": "^0.4.4",
         "tinymce": "^6.1.2",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "watch-run": "^1.2.5"
     }
 }

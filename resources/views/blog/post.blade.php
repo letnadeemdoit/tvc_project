@@ -88,7 +88,7 @@
 {{--                                {{$total_comments}} --}}
                                 Comments
                             </p></li>
-                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
+                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.svg"
                                                                             class="img-fluid me-2"></span> {{ $existing_views }} Views
                             </p></li>
                     </ul>
@@ -150,7 +150,11 @@
     <div class="container my-5">
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77"></script>
-            <livewire:blog.post-comment :user="$user" :blog="$post" />
+
+        <div class="fb-comments" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">
+
+        </div>
+{{--            <livewire:blog.post-comment :user="$user" :blog="$post" />--}}
 {{--        <div class="row mt-5 mb-3">--}}
 {{--            <div class="col-12 col-lg-6">--}}
 {{--                <div class="d-flex w-100">--}}

@@ -30,7 +30,7 @@ class CreateOrUpdateBlogItemForm extends Component
         'showBlogCUModal',
     ];
     public function mount() {
-        $this->blogCategories = Category::where('type', 'blog')->get();
+        $this->blogCategories = Category::where('type', 'blog')->where('house_id', $this->user->HouseId)->get();
     }
 
     public function render()

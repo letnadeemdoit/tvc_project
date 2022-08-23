@@ -75,6 +75,7 @@ class CreateOrUpdateCategoryItem extends Component
 
         $this->categoryItem->fill([
             'user_id' => $this->user->user_id,
+            'house_id' => $this->user->HouseId,
             'name' => $inputs['name'],
             'description' => $inputs['description'],
             'type' => $inputs['type'],

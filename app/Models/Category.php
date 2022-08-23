@@ -36,6 +36,7 @@ class Category extends Model implements Auditable
      */
     protected $fillable = [
         'user_id',
+        'house_id',
         'image',
         'name',
         'slug',
