@@ -83,7 +83,7 @@
                         <li class="me-2 me-md-3">
                             <livewire:blog.like-able-blog :post="$post" />
                         </li>
-                        <li class="me-2 me-md-3"><p class="ps-0" id="demo"><span><img src="/images/blog-images/comment.svg"
+                        <li class="me-2 me-md-3"><p class="ps-0" id="content"><span><img src="/images/blog-images/comment.svg"
                                                                             class="img-fluid me-2"></span>
 {{--                                {{$total_comments}} --}}
                                 Comments
@@ -210,12 +210,12 @@
 @push('scripts')
     <script>
 
-        const myTimeout = setTimeout(myGreeting, 5000);
+        const myTimeout = setTimeout(updateComment, 5000);
 
-        function myGreeting() {
+        function updateComment() {
             var cms = document.getElementsByClassName('_50f7')[0].textContent;
             console.log(cms);
-            document.getElementById("demo").innerHTML = cms;
+            document.getElementById("content").innerHTML = cms;
         }
     </script>
 @endpush

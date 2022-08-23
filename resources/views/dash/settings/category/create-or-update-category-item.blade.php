@@ -172,6 +172,9 @@
                             <option value="bulletin-board">Bulletins</option>
                             <option value="local-guide">LocalGuide</option>
                         </select>
+                        @error('type')
+                        <span class="invalid-feedback d-block">{{$message}}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
