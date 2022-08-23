@@ -30,12 +30,12 @@
                 <br />
 
                 <div class="mb-3">
-                    <label class="form-label" for="exampleFormControlSelect1">Select Category</label>
-                    <select id="exampleFormControlSelect1" class="form-control">
+                    <label class="form-label" for="category_id">Select Category</label>
+                    <select id="category_id" wire:model.defer="state.category_id" class="form-control">
                         <option>Choose Category</option>
-                        <option>category one</option>
-                        <option>category two</option>
-                        <option>category three</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
                 </div>
 
