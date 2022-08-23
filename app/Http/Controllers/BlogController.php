@@ -15,7 +15,6 @@ class BlogController extends Controller
             'user' => $request->user()
         ]);
     }
-
     public function show(Request $request, Blog $post) {
 //        $existing_likes = 0;
 //        $blog_Likes = $post->likes;

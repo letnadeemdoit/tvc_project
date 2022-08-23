@@ -2,13 +2,13 @@
     <div class="category-cards mb-3">
         <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a href="javascript:;" class="nav-link active" wire:click="allCategory()">
+                <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link active">
                     ALL
                 </a>
             </li>
             @foreach($categories as $category)
                 <li class="nav-item">
-                    <a href="javascript:;" class="nav-link" wire:click="changeCategory({{$category}})">
+                    <a href="{{ route('guest.blog.index', ['category' => $category->slug]) }}" class="nav-link">
                         @if($category->image)
                             <img
                                 src="{{$category->getFileUrl('image')}}"

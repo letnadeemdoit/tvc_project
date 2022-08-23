@@ -32,7 +32,6 @@ class BlogList extends Component
         'category-change-cu-successfully' => '$refresh',
     ];
 
-
     public function mount()
     {
         $this->model = Blog::class;
@@ -45,15 +44,6 @@ class BlogList extends Component
         $this->resetPage();
     }
 
-    public function changeCategory($category) {
-        $this->emit('category-change-cu-successfully');
-        $this->category = $category['slug'];
-    }
-
-    public function allCategory() {
-        $this->emit('category-change-cu-successfully');
-        $this->category = 'all';
-    }
 
     public function getCategoriesProperty() {
         return Category::blog()->get();

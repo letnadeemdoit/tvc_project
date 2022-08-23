@@ -106,7 +106,9 @@
                         @foreach($categories as $category)
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <div>
+                                <a href="{{ route('guest.blog.index', ['category' => $category->slug]) }}">
                                 <h4 class="fw-normal" style="color: #6D6D6D">{{ $category->name }}</h4>
+                                    </a>
                             </div>
                             <div>
                                 <p class="mb-0 border-primary category-count">{{ $category->blogs_count }}</p>
@@ -149,7 +151,7 @@
 
     <div class="container my-5">
         <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77"></script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>
 
         <div class="fb-comments" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">
 
