@@ -33263,7 +33263,7 @@ body {
 
 .guest-card-cont p {
   max-height: 250px;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-right: 14px;
 }
 
@@ -33277,11 +33277,15 @@ body {
 }
 
 .guest-modal .btn-close {
-  background: transparent url("/images/guest-book/cross-circle.svg") center/1em auto no-repeat !important;
+  background: transparent url("/images/guest-book/rounded-close.svg") center/1em auto no-repeat !important;
 }
 
 .text-max-width {
   max-width: 150px;
+}
+
+.w-90 {
+  width: 92%;
 }
 
 .quote-card .avatar {
@@ -33365,6 +33369,7 @@ body {
   border-radius: 6px;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .features-img-2 {
