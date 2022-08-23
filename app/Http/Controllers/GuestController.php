@@ -73,6 +73,9 @@ class GuestController extends Controller
         return view('privacy-policy');
 
     }
+    public function singleAlbum(){
+        return view('photo-album-detail');
+    }
     public function guestLogin() {
         return view('guest-login');
     }

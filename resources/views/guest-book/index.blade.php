@@ -139,7 +139,7 @@
                 @if(isset($data))
                     @foreach($data as $dt)
                         @if($loop->iteration % 2 == 0)
-                            <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                                 <div class="card card-01 shadow-lg" style="min-height: 380px">
                                     <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
@@ -204,7 +204,7 @@
 
                             {{--            modal ends                --}}
                         @else
-                            <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                                 <div class="card card-01 shadow-lg my-4 my-md-0 border-0" style="min-height: 380px">
                                     <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
@@ -278,7 +278,7 @@
             </div>
         </div>
 
-        <div class="container my-5">
+        <div class="container mt-80 padding-bottom ">
             <livewire:guest-book.leav-a-review-guest-book :user="$user"/>
         </div>
 
