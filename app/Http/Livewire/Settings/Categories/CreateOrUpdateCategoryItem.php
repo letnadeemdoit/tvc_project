@@ -39,6 +39,7 @@ class CreateOrUpdateCategoryItem extends Component
     public function showCategoryCUModal($toggle, ?Category $categoryItem)
     {
 //        dd($blogItem);
+        dd($categoryItem);
         $this->emitSelf('toggle', $toggle);
         $this->categoryItem = $categoryItem;
         $this->reset(['state', 'file']);
@@ -68,7 +69,7 @@ class CreateOrUpdateCategoryItem extends Component
             'name' => 'required|string|max:255',
             'type' => 'required',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'description' => 'required',
+            'description' => 'required|string|max:255',
         ])->validateWithBag('saveCategoryItemCU');
 
         $slug = Str::slug($inputs['name']);
