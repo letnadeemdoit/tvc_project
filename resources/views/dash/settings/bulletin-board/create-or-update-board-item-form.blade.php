@@ -12,13 +12,20 @@
         <div class="modal-body">
             <form wire:submit.prevent="saveBulletinBoardCU" method="post">
                 <x-jet-validation-errors />
-                <x-upload-zone
-                    wire:model="file"
 
-                    @if($boardItem && $boardItem->id)
-                        :files="[$boardItem->]"
-                    @endif
-                />
+                @if($boardItem && $boardItem->image)
+                    <div class="d-flex mb-3">
+                        <div class="mx-auto position-relative">
+                            <a
+                                href="#"
+                                class="position-absolute btn btn-soft-danger btn-icon btn-sm" style="right: 5px; top: 5px"
+                                wire:click.prevent="deleteFile"
+                            ><i class="bi-trash3-fill"></i></a>
+                            <img src="{{ $boardItem->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                        </div>
+                    </div>
+                @endif
+                <x-upload-zone wire:model="file" />
                 <x-jet-input-error for="image" />
                 <br />
 

@@ -88,6 +88,7 @@ class CreateOrUpdateBoardItemForm extends Component
     public function deleteFile() {
         if ($this->boardItem->id) {
             $this->boardItem->deleteFile();
+            $this->success('Image deleted Successfully');
             $this->emit('bulletin-board-cu-successfully');
         }
     }
