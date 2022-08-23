@@ -12,7 +12,7 @@
             </div>
             <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>
         </div>
-        <div class="container">
+        <div class="container padding-bottom">
         <div class="row">
             <div class="col-md-4">
                 <div class="card mb-3 shadow-lg">
