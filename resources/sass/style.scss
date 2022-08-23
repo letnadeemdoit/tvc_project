@@ -133,7 +133,24 @@ body{
     color: #E8604C;
 }
 .guest-modal .btn-close{
-background: transparent url("/images/guest-book/rounded-close.svg") center/1em auto no-repeat !Important;
+background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em auto no-repeat !Important;
+    opacity: 1 !important;
+    padding: 1rem 1.3rem !important;
+}
+.guest-modal ::-webkit-scrollbar-thumb {
+    background: url("/images/guest-book/scrolling.svg") !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% !important;
+    background-position: center !important;
+}
+.guest-modal ::-webkit-scrollbar {
+    width: 10px;
+    background:#000 !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 .text-max-width{
     max-width: 150px;
