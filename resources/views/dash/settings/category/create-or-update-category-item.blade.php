@@ -53,13 +53,13 @@
                                     </a>
                                     <div class="dz-details d-flex">
                                         <div class="dz-img flex-shrink-0">
-                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $categoryItem->getFileUrl() }}"/>
+                                            <img class="dz-img-inner" data-dz-thumbnail src="{{ $categoryItem->getFileUrl() }}" width="75px" />
                                         </div>
 
-                                        <div class="dz-file-wrapper flex-grow-1">
+                                        <div class="dz-file-wrapper flex-grow-1 d-flex align-items-center">
                                             <h6 class="dz-filename">
                                                 @if($file)
-                                                    <span class="dz-title" data-dz-name>
+                                                    <span class="dz-title ps-5" data-dz-name>
                                                         {{ $file->getClientOriginalName() }}
                                                     </span>
                                                 @endif
@@ -104,15 +104,15 @@
                                 <div class="dz-details d-flex">
                                     <div class="dz-img flex-shrink-0">
                                         @if($file && in_array($file->getClientOriginalExtension(), config('livewire.temporary_file_upload.preview_mimes')))
-                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail
-                                                 src="{{ $file->temporaryUrl() }}"/>
+                                            <img class="dz-img-inner" data-dz-thumbnail
+                                                 src="{{ $file->temporaryUrl() }}" width="75px" />
                                         @endif
                                     </div>
 
-                                    <div class="dz-file-wrapper flex-grow-1">
+                                    <div class="dz-file-wrapper flex-grow-1 d-flex align-items-center">
                                         <h6 class="dz-filename">
                                             @if($file)
-                                                <span class="dz-title" data-dz-name>
+                                                <span class="dz-title ps-5" data-dz-name>
                                                     {{ $file->getClientOriginalName() }}
                                                 </span>
                                             @endif

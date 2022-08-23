@@ -144,11 +144,11 @@
                                     <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                              class="img-fluid margin-left-negative pt-3">
-                                        <h4 class="pt-1">{{$dt->title }}</h4>
+                                        <h3 class="pt-1">{{$dt->title }}</h3>
                                         <div class="">
                                             {!! substr($dt->content,0,160) !!}
                                             @if(isset($dt->content) && strlen($dt->content) > 60)
-                                            <a class="text-primary text-decoration-underline" data-bs-toggle="modal"
+                                            <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
                                                data-bs-target="#guestBook{{$dt->id}}Modal">Read More</a>
                                                 @endif
 
@@ -182,7 +182,7 @@
                                                      style="min-height: 270px;">
                                                     <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                          class="img-fluid margin-left-negative">
-                                                    <h4 class="pt-1">{{$dt->title }}</h4>
+                                                    <h3 class="pt-1">{{$dt->title }}</h3>
                                                     <div class="guest-card-cont">
                                                         <p> {!! $dt->content !!}</p>
                                                     </div>
@@ -209,11 +209,11 @@
                                     <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                              class="img-fluid margin-left-negative pt-3">
-                                        <h4 class="pt-1">{{$dt->title }}</h4>
+                                        <h3 class="pt-1">{{$dt->title }}</h3>
                                         <div class="">
                                             {!! substr($dt->content,0,160) !!}
                                             @if(isset($dt->content) && strlen($dt->content) > 60)
-                                            <a class="text-primary text-decoration-underline" data-bs-toggle="modal"
+                                            <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
                                                data-bs-target="#guestBook{{$dt->id}}Model">Read More</a>
                                             @endif
                                         </div>
@@ -248,7 +248,7 @@
                                                      style="min-height: 270px;">
                                                     <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                          class="img-fluid margin-left-negative">
-                                                    <h4 class="pt-1">{{$dt->title }}</h4>
+                                                    <h3 class="pt-1">{{$dt->title }}</h3>
                                                     <div class="guest-card-cont">
                                                         <p> {!! $dt->content !!}</p>
                                                     </div>
