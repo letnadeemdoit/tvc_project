@@ -46,7 +46,7 @@
             console.log(this.files);
         }
     }"
-{{--    @modal-is-shown="errors = []; files = []; uploadingProgress = 0;"--}}
+    @modal-is-hidden.window="errors = []; files = []; uploadingProgress = 0;"
 >
     <div
         class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto"

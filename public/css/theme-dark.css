@@ -33299,6 +33299,10 @@ body {
   background-position: center !important;
 }
 
+.padding-bottom {
+  padding-bottom: 5rem;
+}
+
 .guest-modal ::-webkit-scrollbar {
   width: 10px;
   background: #000 !important;
@@ -33399,6 +33403,10 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+#lightboxOverlay .lb-container {
+  padding: 0px !important;
 }
 
 .features-img-2 {
@@ -33780,6 +33788,14 @@ header nav button:last-child:hover {
   margin-top: 80px;
 }
 
+.guest-nav .dropdown-item:hover {
+  background: #2A3342 !important;
+  color: #fff !important;
+}
+.guest-nav .dropdown-item:hover img {
+  filter: invert(67%) sepia(81%) saturate(51%) hue-rotate(30deg) brightness(80000%) contrast(197%) !important;
+}
+
 .help-page-tabs p {
   color: #6D6D6D !important;
 }
@@ -34013,6 +34029,9 @@ header nav button:last-child:hover {
 @media only screen and (max-width: 991px) {
   .help-page-tabs .card .card-body {
     min-height: revert !important;
+  }
+  .padding-bottom {
+    padding-bottom: 3rem !important;
   }
   .border-right-solid {
     border: none !important;
