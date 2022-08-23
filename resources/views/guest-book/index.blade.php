@@ -147,8 +147,10 @@
                                         <h4 class="pt-1">{{$dt->title }}</h4>
                                         <div class="">
                                             {!! substr($dt->content,0,160) !!}
+                                            @if(isset($dt->content) && strlen($dt->content) > 60)
                                             <a class="text-primary text-decoration-underline" data-bs-toggle="modal"
-                                               data-bs-target="#secondaryModal">Read More</a>
+                                               data-bs-target="#guestBook{{$dt->id}}Modal">Read More</a>
+                                                @endif
 
                                         </div>
                                     </div>
@@ -165,7 +167,7 @@
                             </div>
 
                             {{--            modal starts            --}}
-                            <div class="modal guest-modal fade" id="secondaryModal" tabindex="-1"
+                            <div class="modal guest-modal fade" id="guestBook{{$dt->id}}Modal" tabindex="-1"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content bg-transparent border-0">
@@ -179,7 +181,7 @@
                                                 <div class="guest-card-description pb-4 px-4"
                                                      style="min-height: 270px;">
                                                     <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
-                                                         class="img-fluid margin-left-negative pt-3">
+                                                         class="img-fluid margin-left-negative">
                                                     <h4 class="pt-1">{{$dt->title }}</h4>
                                                     <div class="guest-card-cont">
                                                         <p> {!! $dt->content !!}</p>
@@ -210,8 +212,10 @@
                                         <h4 class="pt-1">{{$dt->title }}</h4>
                                         <div class="">
                                             {!! substr($dt->content,0,160) !!}
+                                            @if(isset($dt->content) && strlen($dt->content) > 60)
                                             <a class="text-primary text-decoration-underline" data-bs-toggle="modal"
-                                               data-bs-target="#primaryModal">Read More</a>
+                                               data-bs-target="#guestBook{{$dt->id}}Model">Read More</a>
+                                            @endif
                                         </div>
 
 
@@ -229,13 +233,13 @@
                                 </div>
                             </div>
                             {{--              modal              --}}
-                            <div class="modal guest-modal fade" id="primaryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal guest-modal fade" id="guestBook{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel"
                                  aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content bg-transparent border-0">
 
                                         <div class="modal-body">
-                                            <div class="card card-01 shadow-lg my-4 my-md-0 border-0" style="min-height: 380px">
+                                            <div class="card card-01 shadow-lg my-4 my-md-0 border-0">
                                                 <div class="modal-header text-end p-3">
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
@@ -243,7 +247,7 @@
                                                 <div class="guest-card-description pb-4 px-4"
                                                      style="min-height: 270px;">
                                                     <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
-                                                         class="img-fluid margin-left-negative pt-3">
+                                                         class="img-fluid margin-left-negative">
                                                     <h4 class="pt-1">{{$dt->title }}</h4>
                                                     <div class="guest-card-cont">
                                                         <p> {!! $dt->content !!}</p>

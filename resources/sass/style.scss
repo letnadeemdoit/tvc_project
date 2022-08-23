@@ -117,7 +117,7 @@ body{
 }
 .guest-card-cont p{
     max-height: 250px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-right: 14px;
 
 }
@@ -133,10 +133,13 @@ body{
     color: #E8604C;
 }
 .guest-modal .btn-close{
-background: transparent url("/images/guest-book/cross-circle.svg") center/1em auto no-repeat !Important;
+background: transparent url("/images/guest-book/rounded-close.svg") center/1em auto no-repeat !Important;
 }
 .text-max-width{
     max-width: 150px;
+}
+.w-90{
+    width: 92%;
 }
 .quote-card{
     .avatar {
@@ -227,6 +230,7 @@ background: transparent url("/images/guest-book/cross-circle.svg") center/1em au
             border-radius:6px;
             display: flex;
             align-items: center;
+            margin-bottom: 10px;
         }
     }
 }
