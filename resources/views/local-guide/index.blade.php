@@ -71,6 +71,7 @@
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
                                                 <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                                     <span class="ps-2 text-dark">({{$dt->reviews->count()}} Reviews)</span>
                                                 </a>
