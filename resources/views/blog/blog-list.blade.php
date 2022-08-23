@@ -33,7 +33,7 @@
 
     </div>
 
-    <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+    <div class="row justify-content-center justify-content-sm-between align-items-sm-center my-3">
             <div class="col-sm mb-2 mb-sm-0">
                 <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
                     <span class="me-2">Per Page:</span>
@@ -66,7 +66,7 @@
             <!-- End Col -->
 
             <div class="col-sm-auto pt-2">
-                <div class="table-responsive d-flex align-items-center justify-content-center justify-content-sm-end">
+                <div class="table-responsive d-flex align-items-center justify-content-center justify-content-sm-end my-3">
                     <!-- Pagination -->
                     {{ $data->links() }}
                 </div>
