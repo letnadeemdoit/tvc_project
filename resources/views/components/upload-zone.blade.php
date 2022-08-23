@@ -42,9 +42,11 @@
             });
 
             this.startUploading();
+
+            console.log(this.files);
         }
     }"
-    @modal-is-shown.window="errors = []; files = []; uploadingProgress = 0;"
+{{--    @modal-is-shown="errors = []; files = []; uploadingProgress = 0;"--}}
 >
     <div
         class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto"
@@ -84,7 +86,7 @@
         <div class="row" :class="{'mt-3': files.length > 0}">
             <template x-for="(f, i) in files" :key="i">
                 <div class="col-md-2 mx-auto">
-                    <img :src="URL.createObjectURL(f)" class="img-thumbnail"/>
+                    <img :src="URL.createObjectURL(f)" class="img-fluid"/>
                 </div>
             </template>
         </div>
