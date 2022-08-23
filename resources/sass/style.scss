@@ -143,11 +143,13 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
     background-size: 100% !important;
     background-position: center !important;
 }
+.padding-bottom{
+    padding-bottom: 5rem;
+}
 .guest-modal ::-webkit-scrollbar {
     width: 10px;
     background:#000 !important;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
@@ -251,7 +253,11 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         }
     }
 }
-
+#lightboxOverlay{
+    .lb-container{
+        padding: 0px !important;
+    }
+}
 .features-img-2{
     background-image: url('/images/images-home/feature-2.svg');
     background-repeat: no-repeat;
@@ -607,6 +613,17 @@ header{
 .mt-80{
     margin-top: 80px;
 }
+.guest-nav{
+    .dropdown-item {
+        &:hover {
+            background: $dark-blue !important;
+            color: #fff !important;
+            img {
+                    filter:  invert(67%) sepia(81%) saturate(51%) hue-rotate(30deg) brightness(80000%) contrast(197%); !important;
+            }
+        }
+    }
+}
 .help-page-tabs{
     p {
         color: #6D6D6D !important;
@@ -780,6 +797,7 @@ header{
     .toggle-text {
         max-width: 136px !important;
     }
+
 }
 @media only screen and (min-width:1200px) and (max-width:1570px) {
     .row-max-width{
@@ -880,6 +898,9 @@ header{
                 min-height: revert !important;
             }
         }
+    }
+    .padding-bottom{
+        padding-bottom: 3rem !important;
     }
     .border-right-solid {
         border: none !important;

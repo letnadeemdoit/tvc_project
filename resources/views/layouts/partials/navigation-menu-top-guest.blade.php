@@ -34,7 +34,7 @@
 <header id="header" class="navbar navbar-expand-lg navbar-bordered bg-white  ">
     <div class="container">
         <!--   nav     -->
-        <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center py-2">
+        <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center py-2 guest-nav">
             <a class="navbar-brand" href="{{route('guest.welcome')}}">
                 <img class="navbar-brand-logo"
                      src="<?php echo e(asset('logo/logo.svg')); ?>"
@@ -105,26 +105,23 @@
                             <div
                                 class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account"
                                 aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
-                                <div class="dropdown-item-text">
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar avatar-sm avatar-circle">
-                                            <img class="avatar-img" src="{{asset('images/avatar.png')}}"
-                                                 alt="Image Description">
-                                        </div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <h5 class="mb-0">{{Auth::user()->user_name ?? ''}}</h5>
-                                            <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('dash.index') }}">Dashboard</a>
-                                <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings</a>
-                                <div class="dropdown-divider"></div>
+{{--                                <div class="dropdown-item-text">--}}
+{{--                                    <div class="d-flex align-items-center">--}}
+{{--                                        <div class="avatar avatar-sm avatar-circle">--}}
+{{--                                            <img class="avatar-img" src="{{asset('images/avatar.png')}}"--}}
+{{--                                                 alt="Image Description">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="flex-grow-1 ms-3">--}}
+{{--                                            <h5 class="mb-0">{{Auth::user()->user_name ?? ''}}</h5>--}}
+{{--                                            <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="dropdown-divider"></div>--}}
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button class="dropdown-item" type="submit">Sign out</button>
+                                    <button class="dropdown-item" type="submit"><img src="{{asset('/images/images-home/signout.svg')}}" class="img-fluid me-2" />Sign out</button>
                                 </form>
                             </div>
                         </div>
