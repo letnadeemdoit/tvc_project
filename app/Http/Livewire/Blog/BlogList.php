@@ -36,9 +36,8 @@ class BlogList extends Component
     public function mount()
     {
         $this->model = Blog::class;
-        $this->categories = Category::where('type', 'blog')->get();
+        $this->categories = Category::where('type', 'blog')->where('house_id', $this->user->HouseId)->get();
     }
-
     protected $paginationTheme = 'bootstrap';
 
     public function updatingSearch()
