@@ -19,9 +19,9 @@
 {{--            <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-1" width="50"--}}
 {{--                 height="50" style="object-fit: cover" alt="...">--}}
 {{--        </div>--}}
-        <div class="fb-comments" data-href="{{ route('guest.blog.show', $blog->BlogId) }}" data-width="" data-numposts="3">
+{{--        <div class="fb-comments" data-href="{{ route('guest.blog.show', $blog->BlogId) }}" data-width="" data-numposts="3">--}}
 
-        </div>
+{{--        </div>--}}
 {{--        <div class="flex-grow-1 ms-3">--}}
 {{--            <form wire:submit.prevent="addBlogComment()">--}}
 {{--                <div class="border">--}}
