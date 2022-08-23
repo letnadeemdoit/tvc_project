@@ -39,7 +39,6 @@ class CreateOrUpdateCategoryItem extends Component
     public function showCategoryCUModal($toggle, ?Category $categoryItem)
     {
 //        dd($blogItem);
-        dd($categoryItem);
         $this->emitSelf('toggle', $toggle);
         $this->categoryItem = $categoryItem;
         $this->reset(['state', 'file']);
