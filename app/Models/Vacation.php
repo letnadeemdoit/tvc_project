@@ -112,8 +112,8 @@ class Vacation extends Model implements Auditable
      */
     public function getScheduledDatesAttribute(): string
     {
-        $startDateTime = $this->getStartDatetimeAttribute()->format('m/d/Y h:i');
-        $endDateTime = $this->getEndDatetimeAttribute()->format('m/d/Y h:i');
+        $startDateTime = $this->getStartDatetimeAttribute()->format('m/d/Y H:i');
+        $endDateTime = $this->getEndDatetimeAttribute()->format('m/d/Y H:i');
 
         return "Scheduled from $startDateTime to $endDateTime";
     }

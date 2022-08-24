@@ -38,6 +38,8 @@ class ScheduleVacationForm extends Component
             ];
         } else {
             $this->state = [
+                'background_color' => '#000000',
+                'font_color' => '#000000',
             ];
         }
     }
