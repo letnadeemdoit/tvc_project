@@ -23,15 +23,15 @@
                 @foreach($categories as $category)
                     <li class="menu">
                         <a href="{{ route('guest.bulletin-board.index', ['category' => $category->slug]) }}" class="nav-link">
-                            @if($category->image)
-                                <img
-                                    src="{{$category->getFileUrl('image')}}"
-                                    class="me-2 d-none d-md-inline-block"
-                                    alt="img"
-                                />
-                            @else
-                                <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/>
-                            @endif
+{{--                            @if($category->image)--}}
+{{--                                <img--}}
+{{--                                    src="{{$category->getFileUrl('image')}}"--}}
+{{--                                    class="me-2 d-none d-md-inline-block"--}}
+{{--                                    alt="img"--}}
+{{--                                />--}}
+{{--                            @else--}}
+{{--                                <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/>--}}
+{{--                            @endif--}}
                             {{ $category->name }}
                         </a>
                     </li>
