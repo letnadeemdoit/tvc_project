@@ -8,16 +8,16 @@
         .mb-100{
             margin-bottom: 100px;
         }
-        .bg-food{
-            background-image: url('/images/house-items/food.svg') !important;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            height: 50px;
-        }
+        /*.bg-food{*/
+        /*    background-image: url('/images/house-items/food.svg') !important;*/
+        /*    background-repeat: no-repeat;*/
+        /*    background-position: center;*/
+        /*    background-size: contain;*/
+        /*    height: 50px;*/
+        /*}*/
 
         .bg-shopping{
-            background-image: url('/images/house-items/shopping.svg');
+            background-image: url('/images/house-items/shopping.svg') !important;
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
@@ -32,14 +32,14 @@
     ])
 
 
-    <section class=" bg-light">
+    <section class=" bg-light" style="padding-bottom: 100px !important;">
         <div class="section-padding">
             <div class="bg-{{$title}} shadow-1-strong rounded text-center d-flex justify-content-center align-items-center">
                 <h1 class="text-primary font-vintage mb-0">{{$title}} list</h1>
             </div>
             <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available {{$title}} in House</h1>
         </div>
-        <div class="container mt-2  bg-light-primary p-3 p-md-5 rounded-2 house-card-border mb-100">
+        <div class="container mt-2  bg-light-primary p-3 p-md-5 rounded-2 house-card-border">
             <div class="d-block d-sm-flex justify-content-between align-items-center">
                 <div class="">
                     <h3 class="mb-0 text-capitalize text-center text-md-start">{{$title}} in the House</h3>

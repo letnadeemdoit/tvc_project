@@ -138,8 +138,8 @@
                                                  class="img-fluid margin-left-negative pt-3">
                                             <h3 class="pt-1">{{$dt->title }}</h3>
                                             <div class="">
-                                                {!! substr($dt->content,0,160) !!}
-                                                @if(isset($dt->content) && strlen($dt->content) > 60)
+                                                {!! substr($dt->content,0,120) !!}
+                                                @if(isset($dt->content) && strlen($dt->content) > 120)
                                                 <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
                                                    data-bs-target="#guestBook{{$dt->id}}Modal">Read More</a>
                                                     @endif
@@ -203,8 +203,8 @@
                                                  class="img-fluid margin-left-negative pt-3">
                                             <h3 class="pt-1">{{$dt->title }}</h3>
                                             <div class="">
-                                                {!! substr($dt->content,0,160) !!}
-                                                @if(isset($dt->content) && strlen($dt->content) > 60)
+                                                {!! substr($dt->content,0,120) !!}
+                                                @if(isset($dt->content) && strlen($dt->content) > 120)
                                                 <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
                                                    data-bs-target="#guestBook{{$dt->id}}Model">Read More</a>
                                                 @endif
