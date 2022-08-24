@@ -172,33 +172,33 @@
 
             <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
                 <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center guest-menu">
-                    <li class="nav-item my-1 my-lg-0">
-                        <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
-                           aria-current="page" href="{{route('guest.welcome')}}">CALENDAR</a>
-                    </li>
+{{--                    <li class="nav-item my-1 my-lg-0">--}}
+{{--                        <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"--}}
+{{--                           aria-current="page" href="#">CALENDAR</a>--}}
+{{--                    </li>--}}
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
-                           href="{{route('guest.privacy-policy')}}">BULLETIN BOARD</a>
+                           href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
                     </li>
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
-                           href="{{route('guest.contact')}}" tabindex="-1">BLOG</a>
+                           href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
                     </li>
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.photo-album') ? 'active' : '' }}"
-                           href="{{route('guest.help')}}" tabindex="-1">PHOTO ALBUM</a>
+                           href="{{route('guest.photo-album')}}" tabindex="-1">PHOTO ALBUM</a>
                     </li>
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
-                           href="{{route('guest.help')}}" tabindex="-1">LOCAL GUIDE</a>
+                           href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
                     </li>
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
-                           href="{{route('guest.help')}}" tabindex="-1">FOOD LIST</a>
+                           href="{{route('guest.house-items.index')}}" tabindex="-1">HOUSE LIST</a>
                     </li>
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
-                           href="{{route('guest.help')}}" tabindex="-1">GUEST BOOK</a>
+                           href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
                     </li>
                     @guest
                         <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
