@@ -174,11 +174,11 @@
 
                                         <div class="modal-body">
                                             <div class="card card-01 shadow-lg border-0" style="min-height: 380px">
-                                                <div class="modal-header text-end p-3">
+                                                <div class="modal-header text-end p-3 mt-1">
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
-                                                <div class="guest-card-description pb-4 px-4"
+                                                <div class="guest-card-description pb-4 px-2"
                                                      style="min-height: 270px;">
                                                     <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                          class="img-fluid margin-left-negative">
@@ -240,11 +240,11 @@
 
                                         <div class="modal-body">
                                             <div class="card card-01 shadow-lg my-4 my-md-0 border-0">
-                                                <div class="modal-header text-end p-3">
+                                                <div class="modal-header text-end p-3 mt-1">
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
-                                                <div class="guest-card-description pb-4 px-4"
+                                                <div class="guest-card-description pb-4 px-2"
                                                      style="min-height: 270px;">
                                                     <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                          class="img-fluid margin-left-negative">

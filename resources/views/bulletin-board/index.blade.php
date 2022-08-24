@@ -118,21 +118,23 @@
 
                 <div class="tab-content bg-waves" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <section class="text-end">
-                            <img src="/images/bulletin-images/orange-dots" class="img-fluid bg-dots-orange"/>
-                        </section>
+
                         <div class="row" data-masonry='{"percentPosition": true }'>
                             @if(isset($data))
                                 @foreach($data as $dt)
                                     <div class="col-md-4 col-lg-3">
+                                        <section class="text-end">
+                                            <img src="/images/bulletin-images/orange-dots.svg" class="img-fluid bg-dots-orange"/>
+                                        </section>
                                         @include('bulletin-board.board-item-card')
+                                        <section class="text-center">
+                                            <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
+                                        </section>
                                     </div>
                                 @endforeach
                             @endif
                             <!-- ends -->
-                                <section class="text-center">
-                                    <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
-                                </section>
+
                         </div>
 
                     </div>

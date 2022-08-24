@@ -623,6 +623,32 @@ header{
             }
         }
     }
+    .dropdown-menu{
+        width: 14rem !important;
+    }
+}
+.login-nav{
+    .dropdown-item {
+        &:hover {
+            background: $dark-blue !important;
+            color: #fff !important;
+            img{
+                filter:  invert(67%) sepia(81%) saturate(51%) hue-rotate(30deg) brightness(80000%) contrast(197%) !important;
+                background-color: #fff !important;
+            }
+        }
+        img {
+            background-color: $primary !important;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    }
+    .dropdown-menu{
+        width: 12rem !important;
+    }
+}
+.navbar-dropdown-account-wrapper:hover{
+    background-color: transparent !important;
 }
 .help-page-tabs{
     p {
@@ -1031,10 +1057,14 @@ header{
     .padding-top{
         padding-top: 3rem !important;
     }
+    .guest-nav{
+        .dropdown-menu{
+            width: 11rem !important;
+        }
+    }
     .max-width{
         max-width: 100% !important;
     }
-
     .help-page-tabs {
         .nav-tabs{
             .nav-item {
@@ -1126,6 +1156,11 @@ header{
             font-size: 8px !important;
             min-height: 100px !important;
             min-width: revert !important;
+        }
+    }
+    .guest-nav{
+        .dropdown-menu{
+            width: 11rem !important;
         }
     }
     .navbar-expand-lg .navbar-nav-wrap-secondary-content{
