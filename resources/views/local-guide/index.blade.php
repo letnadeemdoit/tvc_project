@@ -12,7 +12,7 @@
         </div>
         <h1 class="pt-2 text-center poppins-bold">Read Local Guide reviews here</h1>
         </div>
-            <div class="container  mb-5">
+            <div class="container  padding-bottom">
                 <div class="d-flex justify-content-center justify-content-md-start">
                     <nav class="navecation mb-3">
                         <ul id="navi">
