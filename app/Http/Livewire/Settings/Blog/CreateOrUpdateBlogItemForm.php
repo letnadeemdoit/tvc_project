@@ -81,6 +81,7 @@ class CreateOrUpdateBlogItemForm extends Component
 
         $this->blogItem->fill([
             'HouseId' => $this->user->HouseId,
+            'user_id' => $this->user->user_id,
             'Subject' => $inputs['Subject'],
             'Content' => $inputs['Content'],
             'Author' => $this->user->first_name,
