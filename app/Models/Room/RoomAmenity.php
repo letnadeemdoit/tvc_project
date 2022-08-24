@@ -3,13 +3,12 @@
 namespace App\Models\Room;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class RoomAmenity extends Model
+class RoomAmenity extends Pivot
 {
-    use HasFactory;
 
-    protected $table = 'amenitytype';
+    protected $table = 'RoomAmenity';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +16,8 @@ class RoomAmenity extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'RoomID',
+        'AmenityID',
     ];
 
 

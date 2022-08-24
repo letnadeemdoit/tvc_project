@@ -9,8 +9,9 @@ class AmenityType extends Model
 {
     use HasFactory;
 
-    protected $table = 'amenitytype';
+    protected $table = 'AmenityType';
 
+    protected $primaryKey = 'AmenityID';
     /**
      * The attributes that are mass assignable.
      *
