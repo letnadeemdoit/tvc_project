@@ -45,9 +45,9 @@
     <!-- dots img -->
 
     <div class="tab-content bg-waves" id="myTabContent">
-        <section class="text-end">
-            <img src="/images/bulletin-images/orange-dots.svg" class="img-fluid bg-dots-orange"/>
-        </section>
+{{--        <section class="text-end position-absolute end-0 ">--}}
+{{--            <img src="/images/bulletin-images/orange-dots.svg" class="img-fluid bg-dots-orange"/>--}}
+{{--        </section>--}}
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
             <div class="row" data-masonry='{"percentPosition": true }'>
@@ -55,9 +55,7 @@
                     <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                     @endforeach
                     <!-- ends -->
-                <section class="text-center">
-                    <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
-                </section>
+
             </div>
 
         </div>
@@ -74,5 +72,7 @@
             ...
         </div>
     </div>
-
+    <section class="text-center">
+        <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
+    </section>
 </div>

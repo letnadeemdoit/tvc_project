@@ -66,7 +66,7 @@
         </div>
         <div class="container padding-bottom">
             <div class="row masonary-gallery"  data-masonry='{"percentPosition": true }'>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660678732383-1ad7842ed297?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')}}" data-lightbox="homePortfolio">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660679745214-2bf5ad599863?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660673399641-0e1bc98a7cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660679867941-2f2d560d008f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')}}" data-lightbox="homePortfolio">
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660655641795-8a68ca5da6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">
@@ -151,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660659236367-710aa4ae7e19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">
@@ -168,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660646654254-08a09f8589ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">
@@ -185,7 +185,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660586179082-775abddd8386?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">
@@ -202,7 +202,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660629813449-2f621228cc68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">
@@ -219,7 +219,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-4">
                     <div class="card border-0 text-white bg-transparent shadow-none">
                         <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
                         <a href="{{asset('https://images.unsplash.com/photo-1660632531779-b363f16acdbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')}}" data-lightbox="homePortfolio">
