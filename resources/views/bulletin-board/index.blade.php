@@ -64,71 +64,7 @@
                 </div>
                 <h3 class="pt-2 poppins-bold">Choose your Category</h3>
             </div>
-            <div class="mt-5  category-cards">
-
-
-{{--                <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">--}}
-{{--                    <li class="nav-item" role="presentation">--}}
-{{--                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"--}}
-{{--                                data-bs-target="#home" type="button" role="tab" aria-controls="home"--}}
-{{--                                aria-selected="true">--}}
-{{--                            <img src="/images/bulletin-images/bulletin-clipboard.svg" width="30px"/>--}}
-{{--                        </button>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-
-
-                <div class="d-flex justify-content-center justify-content-md-start">
-                    <nav class="navecation mb-3">
-                        <ul id="navi">
-                            <li><a class="menu active" href="#">ALL</a></li>
-                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/food.svg')}}" class="me-2 d-none d-md-inline-block">FOOD & DRINK</a></li>
-                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/clipboard.svg')}}" class="me-2 d-none d-md-inline-block">THINGS TO DO</a></li>
-                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/services.svg')}}" class="me-2 d-none d-md-inline-block">SERVICES</a></li>
-                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/car.svg')}}" class="me-2 d-none d-md-inline-block">TRANSPORTATION</a></li>
-                        </ul>
-                    </nav>
-
-                </div>
-
-
-                <!-- dots img -->
-
-                <div class="tab-content bg-waves" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <section class="text-end">
-                            <img src="/images/bulletin-images/orange-dots" class="img-fluid bg-dots-orange"/>
-                        </section>
-                        <div class="row" data-masonry='{"percentPosition": true }'>
-                            @if(isset($data))
-                                @foreach($data as $dt)
-                                    <div class="col-md-4 col-lg-3">
-                                        @include('bulletin-board.board-item-card')
-                                    </div>
-                                @endforeach
-                            @endif
-                            <!-- ends -->
-                                <section class="text-center">
-                                    <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
-                                </section>
-                        </div>
-
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...
-                    </div>
-                    <div class="tab-pane fade" id="shopping" role="tabpanel" aria-labelledby="shopping-tab">...
-                    </div>
-                    <div class="tab-pane fade" id="clipboard" role="tabpanel" aria-labelledby="clipboard-tab">
-                        ...
-                    </div>
-                    <div class="tab-pane fade" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
-                        ...
-                    </div>
-                </div>
-
-            </div>
+            <livewire:bulletin-board.board-items-list :user="$user" />
         </div>
     </section>
 

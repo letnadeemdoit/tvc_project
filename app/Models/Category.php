@@ -87,6 +87,11 @@ class Category extends Model implements Auditable
         return $this->hasMany(Board::class);
     }
 
+    public function localGuides()
+    {
+        return $this->hasMany(LocalGuide::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');

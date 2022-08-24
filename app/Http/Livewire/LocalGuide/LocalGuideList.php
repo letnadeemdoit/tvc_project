@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\LocalGuide;
 
 use App\Http\Livewire\Traits\Destroyable;
+use App\Models\Category;
 use App\Models\LocalGuide;
 use App\Models\LocalGuideCategory;
 use Livewire\Component;
@@ -18,6 +19,10 @@ class LocalGuideList extends Component
 
     public $search = '';
 
+    public $categories;
+
+    public $category = 'all';
+
     public $page = 1;
 
     public $per_page = 15;
@@ -26,18 +31,19 @@ class LocalGuideList extends Component
         'search' => ['except' => ''],
         'page' => ['except' => 1],
         'per_page' => ['except' => 15],
+        'category' => ['except' => 'all'],
     ];
 
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
-        'destroyed-successfully' => '$refresh',
-        'local-guide-cu-successfully' => '$refresh',
+        'category-change-cu-successfully' => '$refresh',
     ];
 
     public function mount()
     {
         $this->model = LocalGuide::class;
+        $this->categories = Category::where('type', 'local-guide')->where('house_id', $this->user->HouseId)->get();
     }
 
     public function updatingSearch()
@@ -47,18 +53,16 @@ class LocalGuideList extends Component
 
     public function render()
     {
-
+//        dd($this->category);
         $data = LocalGuide::where('house_id', $this->user->HouseId)
-            ->when($this->search !== '', function ($query) {
-                $query->where(function ($query) {
-                    $query
-                        ->where('title', 'LIKE', "%$this->search%")
-                        ->orWhere('address', 'LIKE', "%$this->search%")
-                        ->orWhere('datetime', 'LIKE', "%$this->search%");
+            ->when($this->category !== 'all', function ($query) {
+                $query->whereHas('category', function ($query) {
+                    $query->where('slug', $this->category);
                 });
             })
+            ->orderBy('id', 'DESC')
             ->paginate($this->per_page);
 
-        return view('dash.local-guide.local-guide-list',compact('data'));
+        return view('local-guide.local-guide-list',compact('data'));
     }
 }

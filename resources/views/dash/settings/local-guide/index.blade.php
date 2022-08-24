@@ -18,8 +18,8 @@
 
             </div>
         </div>
-        <livewire:local-guide.local-guide-list :user="$user"/>
-        <livewire:local-guide.create-or-update-local-guide-form :user="$user"/>
+        <livewire:settings.local-guide.local-guide-list :user="$user"/>
+        <livewire:settings.local-guide.create-or-update-local-guide-form :user="$user"/>
 
     </div>
 </x-app-layout>

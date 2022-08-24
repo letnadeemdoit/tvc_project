@@ -22,7 +22,7 @@ class LocalGuide extends Model implements Auditable
      * @var string[]
      */
     protected $fillable = [
-        'local_guide_category_id',
+        'category_id',
         'user_id',
         'house_id',
         'title',
@@ -59,6 +59,11 @@ class LocalGuide extends Model implements Auditable
     public function localGuideCategory()
     {
         return $this->belongsTo(LocalGuideCategory::class);
+    }
+
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
 

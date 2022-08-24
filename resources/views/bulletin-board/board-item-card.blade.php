@@ -1,3 +1,4 @@
+<div class="col-md-4 col-lg-3">
 <div class="card mb-3">
   @if(isset($dt->image))
     <img
@@ -13,4 +14,4 @@
         </div>
     </div>
 </div>
-
+</div>
