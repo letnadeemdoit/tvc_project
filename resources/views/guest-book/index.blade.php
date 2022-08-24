@@ -119,164 +119,156 @@
     @include('partials.sub-page-hero-section', ['title' => 'Guest Book'])
 
     <section class=" bg-light">
-        <div class="section-padding">
-            <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
-                <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
+        @if(isset($data))
+            <div class="section-padding">
+                <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
+                    <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
+                </div>
+                <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>
             </div>
-            <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>
-        </div>
-        <div class="container mt-2 mb-5">
+            <div class="container mt-2 mb-5">
+                <div class="row">
 
-            {{--            <div class="text-end mb-4" x-data>--}}
-            {{--                <a href="#!"--}}
-            {{--                class="btn btn-outline-secondary text-uppercase"--}}
-            {{--                   @click.prevent="window.livewire.emit('leaveReviewGuestBookCUModal', true)"--}}
-            {{--                >Leave a review</a>--}}
-            {{--            </div>--}}
-
-            <div class="row">
-
-                @if(isset($data))
                     @foreach($data as $dt)
-                        @if($loop->iteration % 2 == 0)
-                            <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                                <div class="card card-01 shadow-lg" style="min-height: 380px">
-                                    <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
-                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
-                                             class="img-fluid margin-left-negative pt-3">
-                                        <h3 class="pt-1">{{$dt->title }}</h3>
-                                        <div class="">
-                                            {!! substr($dt->content,0,160) !!}
-                                            @if(isset($dt->content) && strlen($dt->content) > 60)
-                                            <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
-                                               data-bs-target="#guestBook{{$dt->id}}Modal">Read More</a>
+                            @if($loop->iteration % 2 == 0)
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                                    <div class="card card-01 shadow-lg" style="min-height: 380px">
+                                        <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
+                                            <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
+                                                 class="img-fluid margin-left-negative pt-3">
+                                            <h3 class="pt-1">{{$dt->title }}</h3>
+                                            <div class="">
+                                                {!! substr($dt->content,0,160) !!}
+                                                @if(isset($dt->content) && strlen($dt->content) > 60)
+                                                <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
+                                                   data-bs-target="#guestBook{{$dt->id}}Modal">Read More</a>
+                                                    @endif
+
+                                            </div>
+                                        </div>
+                                        <div class="card-body bg-dark-blue pb-5">
+                            <span class="badge-box py-4">
+                                <img src="{{$dt->getFileUrl('image')}}"
+                                     alt="{{ $dt->name ?? '' }}"
+                                     class="rounded-circle" width="60"/>
+                                            </span>
+                                            <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
+                                            <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{--            modal starts            --}}
+                                <div class="modal guest-modal fade" id="guestBook{{$dt->id}}Modal" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content bg-transparent border-0">
+
+                                            <div class="modal-body">
+                                                <div class="card card-01 shadow-lg border-0" style="min-height: 380px">
+                                                    <div class="modal-header text-end p-3">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="guest-card-description pb-4 px-4"
+                                                         style="min-height: 270px;">
+                                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
+                                                             class="img-fluid margin-left-negative">
+                                                        <h3 class="pt-1">{{$dt->title }}</h3>
+                                                        <div class="guest-card-cont">
+                                                            <p> {!! $dt->content !!}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body bg-dark-blue pb-5">
+                            <span class="badge-box py-4">
+                                <img src="{{$dt->getFileUrl('image')}}"
+                                     alt="{{ $dt->name ?? '' }}"
+                                     class="rounded-circle" width="60"/>
+                                            </span>
+                                                        <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
+                                                        <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{--            modal ends                --}}
+                            @else
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                                    <div class="card card-01 shadow-lg my-4 my-md-0 border-0" style="min-height: 380px">
+                                        <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
+                                            <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
+                                                 class="img-fluid margin-left-negative pt-3">
+                                            <h3 class="pt-1">{{$dt->title }}</h3>
+                                            <div class="">
+                                                {!! substr($dt->content,0,160) !!}
+                                                @if(isset($dt->content) && strlen($dt->content) > 60)
+                                                <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
+                                                   data-bs-target="#guestBook{{$dt->id}}Model">Read More</a>
                                                 @endif
+                                            </div>
 
+
+                                            {{--                                        {!! $dt->content     !!}--}}
+                                        </div>
+                                        <div class="card-body bg-primary pb-5">
+                                            <span class="badge-box py-4">
+                                                <img src="{{$dt->getFileUrl('image')}}"
+                                                     alt="{{ $dt->title ?? '' }}"
+                                                     class="rounded-circle" width="60"/>
+                                            </span>
+                                            <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
+                                            <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                         </div>
                                     </div>
-                                    <div class="card-body bg-dark-blue pb-5">
-                        <span class="badge-box py-4">
-                            <img src="{{$dt->getFileUrl('image')}}"
-                                 alt="{{ $dt->name ?? '' }}"
-                                 class="rounded-circle" width="60"/>
-                                        </span>
-                                        <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
-                                        <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
-                                    </div>
                                 </div>
-                            </div>
+                                {{--              modal              --}}
+                                <div class="modal guest-modal fade" id="guestBook{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content bg-transparent border-0">
 
-                            {{--            modal starts            --}}
-                            <div class="modal guest-modal fade" id="guestBook{{$dt->id}}Modal" tabindex="-1"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content bg-transparent border-0">
-
-                                        <div class="modal-body">
-                                            <div class="card card-01 shadow-lg border-0" style="min-height: 380px">
-                                                <div class="modal-header text-end p-3">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="guest-card-description pb-4 px-4"
-                                                     style="min-height: 270px;">
-                                                    <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
-                                                         class="img-fluid margin-left-negative">
-                                                    <h3 class="pt-1">{{$dt->title }}</h3>
-                                                    <div class="guest-card-cont">
-                                                        <p> {!! $dt->content !!}</p>
+                                            <div class="modal-body">
+                                                <div class="card card-01 shadow-lg my-4 my-md-0 border-0">
+                                                    <div class="modal-header text-end p-3">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
                                                     </div>
-                                                </div>
-                                                <div class="card-body bg-dark-blue pb-5">
-                        <span class="badge-box py-4">
-                            <img src="{{$dt->getFileUrl('image')}}"
-                                 alt="{{ $dt->name ?? '' }}"
-                                 class="rounded-circle" width="60"/>
-                                        </span>
-                                                    <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
-                                                    <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                                    <div class="guest-card-description pb-4 px-4"
+                                                         style="min-height: 270px;">
+                                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
+                                                             class="img-fluid margin-left-negative">
+                                                        <h3 class="pt-1">{{$dt->title }}</h3>
+                                                        <div class="guest-card-cont">
+                                                            <p> {!! $dt->content !!}</p>
+                                                        </div>
+
+
+                                                        {{--                                        {!! $dt->content     !!}--}}
+                                                    </div>
+                                                    <div class="card-body bg-primary pb-5">
+                                            <span class="badge-box py-4">
+                                                <img src="{{$dt->getFileUrl('image')}}"
+                                                     alt="{{ $dt->title ?? '' }}"
+                                                     class="rounded-circle" width="60"/>
+                                            </span>
+                                                        <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
+                                                        <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                {{--              modal ends              --}}
+                            @endif
+                        @endforeach
 
-                            {{--            modal ends                --}}
-                        @else
-                            <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                                <div class="card card-01 shadow-lg my-4 my-md-0 border-0" style="min-height: 380px">
-                                    <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
-                                        <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
-                                             class="img-fluid margin-left-negative pt-3">
-                                        <h3 class="pt-1">{{$dt->title }}</h3>
-                                        <div class="">
-                                            {!! substr($dt->content,0,160) !!}
-                                            @if(isset($dt->content) && strlen($dt->content) > 60)
-                                            <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
-                                               data-bs-target="#guestBook{{$dt->id}}Model">Read More</a>
-                                            @endif
-                                        </div>
-
-
-                                        {{--                                        {!! $dt->content     !!}--}}
-                                    </div>
-                                    <div class="card-body bg-primary pb-5">
-                                        <span class="badge-box py-4">
-                                            <img src="{{$dt->getFileUrl('image')}}"
-                                                 alt="{{ $dt->title ?? '' }}"
-                                                 class="rounded-circle" width="60"/>
-                                        </span>
-                                        <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
-                                        <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {{--              modal              --}}
-                            <div class="modal guest-modal fade" id="guestBook{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content bg-transparent border-0">
-
-                                        <div class="modal-body">
-                                            <div class="card card-01 shadow-lg my-4 my-md-0 border-0">
-                                                <div class="modal-header text-end p-3">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="guest-card-description pb-4 px-4"
-                                                     style="min-height: 270px;">
-                                                    <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
-                                                         class="img-fluid margin-left-negative">
-                                                    <h3 class="pt-1">{{$dt->title }}</h3>
-                                                    <div class="guest-card-cont">
-                                                        <p> {!! $dt->content !!}</p>
-                                                    </div>
-
-
-                                                    {{--                                        {!! $dt->content     !!}--}}
-                                                </div>
-                                                <div class="card-body bg-primary pb-5">
-                                        <span class="badge-box py-4">
-                                            <img src="{{$dt->getFileUrl('image')}}"
-                                                 alt="{{ $dt->title ?? '' }}"
-                                                 class="rounded-circle" width="60"/>
-                                        </span>
-                                                    <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
-                                                    <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{--              modal ends              --}}
-                        @endif
-                    @endforeach
-                @endif
-
+                </div>
             </div>
-        </div>
+        @endif
 
         <div class="container mt-80 padding-bottom ">
             <livewire:guest-book.leav-a-review-guest-book :user="$user"/>
