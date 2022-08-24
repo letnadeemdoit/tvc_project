@@ -33,6 +33,7 @@ class Board extends Model  implements Auditable
         'title',
         'image',
         'Board',
+        'category_id'
     ];
 
     /**

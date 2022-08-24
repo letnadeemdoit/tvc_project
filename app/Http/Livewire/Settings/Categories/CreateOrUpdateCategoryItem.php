@@ -68,13 +68,14 @@ class CreateOrUpdateCategoryItem extends Component
             'name' => 'required|string|max:255',
             'type' => 'required',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'description' => 'required',
+            'description' => 'required|max:255',
         ])->validateWithBag('saveCategoryItemCU');
 
         $slug = Str::slug($inputs['name']);
 
         $this->categoryItem->fill([
             'user_id' => $this->user->user_id,
+            'house_id' => $this->user->HouseId,
             'name' => $inputs['name'],
             'description' => $inputs['description'],
             'type' => $inputs['type'],

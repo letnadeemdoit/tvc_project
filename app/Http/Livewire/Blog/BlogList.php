@@ -32,13 +32,11 @@ class BlogList extends Component
         'category-change-cu-successfully' => '$refresh',
     ];
 
-
     public function mount()
     {
         $this->model = Blog::class;
-        $this->categories = Category::where('type', 'blog')->get();
+        $this->categories = Category::where('type', 'blog')->where('house_id', $this->user->HouseId)->get();
     }
-
     protected $paginationTheme = 'bootstrap';
 
     public function updatingSearch()
@@ -46,15 +44,6 @@ class BlogList extends Component
         $this->resetPage();
     }
 
-    public function changeCategory($category) {
-        $this->emit('category-change-cu-successfully');
-        $this->category = $category['slug'];
-    }
-
-    public function allCategory() {
-        $this->emit('category-change-cu-successfully');
-        $this->category = 'all';
-    }
 
     public function getCategoriesProperty() {
         return Category::blog()->get();

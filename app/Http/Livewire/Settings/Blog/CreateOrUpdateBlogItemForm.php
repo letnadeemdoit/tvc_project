@@ -30,7 +30,7 @@ class CreateOrUpdateBlogItemForm extends Component
         'showBlogCUModal',
     ];
     public function mount() {
-        $this->blogCategories = Category::where('type', 'blog')->get();
+        $this->blogCategories = Category::where('type', 'blog')->where('house_id', $this->user->HouseId)->get();
     }
 
     public function render()
@@ -52,7 +52,7 @@ class CreateOrUpdateBlogItemForm extends Component
 
         if ($blogItem->BlogId) {
             $this->isCreating = false;
-            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Content', 'image']);
+            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Content', 'image', 'category_id']);
         }else{
             $this->isCreating = true;
         }
@@ -81,6 +81,7 @@ class CreateOrUpdateBlogItemForm extends Component
 
         $this->blogItem->fill([
             'HouseId' => $this->user->HouseId,
+            'user_id' => $this->user->user_id,
             'Subject' => $inputs['Subject'],
             'Content' => $inputs['Content'],
             'Author' => $this->user->first_name,

@@ -19,9 +19,9 @@
 {{--            <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-1" width="50"--}}
 {{--                 height="50" style="object-fit: cover" alt="...">--}}
 {{--        </div>--}}
-        <div class="fb-comments" data-href="{{ route('guest.blog.show', $blog->BlogId) }}" data-width="" data-numposts="3">
+{{--        <div class="fb-comments" data-href="{{ route('guest.blog.show', $blog->BlogId) }}" data-width="" data-numposts="3">--}}
 
-        </div>
+{{--        </div>--}}
 {{--        <div class="flex-grow-1 ms-3">--}}
 {{--            <form wire:submit.prevent="addBlogComment()">--}}
 {{--                <div class="border">--}}
@@ -156,12 +156,12 @@
 @push('scripts')
     <script>
 
-        const myTimeout = setTimeout(myGreeting, 5000);
+        const myTimeout = setTimeout(updateComment, 5000);
 
-        function myGreeting() {
+        function updateComment() {
             var cms = document.getElementsByClassName('_50f7')[0].textContent;
             console.log(cms);
-            document.getElementById("demo").innerHTML = cms;
+            document.getElementById("content").innerHTML = cms;
         }
     </script>
 @endpush

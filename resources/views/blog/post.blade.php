@@ -83,12 +83,12 @@
                         <li class="me-2 me-md-3">
                             <livewire:blog.like-able-blog :post="$post" />
                         </li>
-                        <li class="me-2 me-md-3"><p class="ps-0" id="demo"><span><img src="/images/blog-images/comment.svg"
+                        <li class="me-2 me-md-3"><p class="ps-0" id="content"><span><img src="/images/blog-images/comment.svg"
                                                                             class="img-fluid me-2"></span>
 {{--                                {{$total_comments}} --}}
                                 Comments
                             </p></li>
-                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
+                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.svg"
                                                                             class="img-fluid me-2"></span> {{ $existing_views }} Views
                             </p></li>
                     </ul>
@@ -106,7 +106,9 @@
                         @foreach($categories as $category)
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <div>
+                                <a href="{{ route('guest.blog.index', ['category' => $category->slug]) }}">
                                 <h4 class="fw-normal" style="color: #6D6D6D">{{ $category->name }}</h4>
+                                    </a>
                             </div>
                             <div>
                                 <p class="mb-0 border-primary category-count">{{ $category->blogs_count }}</p>
@@ -149,8 +151,12 @@
 
     <div class="container my-5">
         <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77"></script>
-            <livewire:blog.post-comment :user="$user" :blog="$post" />
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>
+
+        <div class="fb-comments" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">
+
+        </div>
+{{--            <livewire:blog.post-comment :user="$user" :blog="$post" />--}}
 {{--        <div class="row mt-5 mb-3">--}}
 {{--            <div class="col-12 col-lg-6">--}}
 {{--                <div class="d-flex w-100">--}}
@@ -210,12 +216,12 @@
 @push('scripts')
     <script>
 
-        const myTimeout = setTimeout(myGreeting, 5000);
+        const myTimeout = setTimeout(updateComment, 5000);
 
-        function myGreeting() {
+        function updateComment() {
             var cms = document.getElementsByClassName('_50f7')[0].textContent;
             console.log(cms);
-            document.getElementById("demo").innerHTML = cms;
+            document.getElementById("content").innerHTML = cms;
         }
     </script>
 @endpush

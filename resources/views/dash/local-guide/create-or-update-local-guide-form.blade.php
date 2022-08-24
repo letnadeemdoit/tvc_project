@@ -171,19 +171,103 @@
                     <span class="invalid-feedback">{{$message}}</span>
                     @enderror
                 </div>
+                <div
+                    class="mb-3"
+                    x-data
+                    x-init="() => {
+                            googleMaps.load().then(function (google) {
+                                $refs.office_address.style.height = '5px';
+                                var options = {
+                                    componentRestrictions: { country: 'us' },
+                                    fields: ['address_components', 'geometry'],
+                                    types: ['address'],
+                                };
 
-                <div class="mb-3">
-                    <label class="form-label" for="title">Address</label>
+                                let autocomplete = new google.maps.places.Autocomplete($refs.office_address, options);
+
+                                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                                    var address = '';
+                                    var zipcode = '';
+                                    var country = '';
+                                    var state = '';
+                                    var city = '';
+
+                                    $wire.set('state.address', $refs.office_address.value, true);
+                                    let place = autocomplete.getPlace();
+
+                                     // Get each component of the address from the place details,
+                                    // and then fill-in the corresponding field on the form.
+                                    // place.address_components are google.maps.GeocoderAddressComponent objects
+                                    // which are documented at http://goo.gle/3l5i5Mr
+                                    for (const component of place.address_components) {
+                                        // @ts-ignore remove once typings fixed
+                                        const componentType = component.types[0];
+
+                                        switch (componentType) {
+                                            case 'street_number': {
+                                                break;
+                                            }
+
+                                            case 'route': {
+
+                                                break;
+                                            }
+
+                                            case 'postal_code': {
+                                                zipcode = component.long_name;
+                                                break;
+                                            }
+
+                                            case 'postal_code_suffix': {
+
+                                                break;
+                                            }
+
+                                            case 'locality':
+                                                city = component.long_name;
+                                                break;
+
+                                            case 'administrative_area_level_1': {
+                                                state = component.short_name;
+                                                break;
+                                            }
+
+                                            case 'country': {
+                                                country = component.long_name;
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    $wire.set('state.address_components', {city,state,country, zipcode}, true);
+
+                                });
+                            });
+                        }
+                        "
+                >
+                    <label class="fw-bold mb-2" for="office_address">Address</label>
                     <input
-                        type="text"
-                        id="address"
-                        wire:model.defer="state.address"
+                        id="office_address"
+                        x-ref="office_address"
+                        type="text" class="form-control"
                         name="address"
-                        class="form-control"
-                        placeholder="Address Url"
+                        wire:model.defer="state.address"
                     />
-
                 </div>
+
+{{--                <div class="mb-3">--}}
+{{--                    <label class="form-label" for="title">Address1</label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        id="address"--}}
+{{--                        wire:model.defer="state.address"--}}
+{{--                        name="address"--}}
+{{--                        class="form-control"--}}
+{{--                        placeholder="Address Url"--}}
+{{--                    />--}}
+
+{{--                </div>--}}
 
                 <div class="mb-3">
                     <label class="form-label" for="title">Date & Time</label>

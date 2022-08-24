@@ -22,10 +22,8 @@ class PostCard extends Component
     ];
 
     public function mount() {
-        $blog_views = $this->post->views;
-        foreach ($blog_views as $view){
-            $this->existing_views += $view->views;
-        }
+        $blog_views = Blog::where('BlogId' ,$this->post->BlogId)->withCount('views')->first();
+        $this->existing_views = $blog_views->views_count;
     }
 
     public function render()

@@ -78,7 +78,7 @@
 
         </div>
         <div class="card-body p-2">
-            <div class="w-80 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 210px">
+            <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 210px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
                         <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
@@ -88,29 +88,29 @@
                             <p class="mb-0 fs-13 pt-1">{{\Carbon\Carbon::parse($blog->BlogDate)->format('d M Y')}}</p>
                         </div>
                     </div>
-{{--                    <div class="dropdown" x-data>--}}
-{{--                        <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">--}}
-{{--                            <i class="bi-three-dots-vertical"></i>--}}
-{{--                        </button>--}}
-{{--                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">--}}
-{{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"--}}
-{{--                                --}}{{--                               data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $post->BlogId }}Modal"--}}
-{{--                            >--}}
-{{--                                <img src="{{asset('/images/blog-images/trash.svg')}}" class="img-fluid bg-dropdown-img me-1"> Delete Blog--}}
-{{--                            </a>--}}
-{{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"--}}
-{{--                                --}}{{--                               wire:click="getBlogId({{ $post->BlogId }})" data-bs-toggle="modal" data-bs-target="#addBlogCommentModal"--}}
-{{--                            >--}}
-{{--                                <img src="{{asset('/images/blog-images/ad-comment.svg')}}" class="img-fluid bg-dropdown-img me-1"> Add Comment--}}
-{{--                            </a>--}}
-{{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"--}}
-{{--                                --}}{{--                               @click.prevent="window.livewire.emit('readBlogComments', {{$post->BlogId}})"--}}
-{{--                            >--}}
-{{--                                <img src="{{asset('/images/blog-images/read-message.svg')}}" class="img-fluid bg-dropdown-img me-1"> Read Comment--}}
-{{--                            </a>--}}
-{{--                            --}}{{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="dropdown" x-data>--}}
+                    {{--                        <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle list-btn" id="connectionsDropdown2" data-bs-toggle="dropdown" aria-expanded="false">--}}
+                    {{--                            <i class="bi-three-dots-vertical"></i>--}}
+                    {{--                        </button>--}}
+                    {{--                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end blog-dropdown" aria-labelledby="connectionsDropdown2">--}}
+                    {{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"--}}
+                    {{--                               data-bs-toggle="modal" data-bs-target="#deleteConfirmation{{ $post->BlogId }}Modal"--}}
+                    {{--                            >--}}
+                    {{--                                <img src="{{asset('/images/blog-images/trash.svg')}}" class="img-fluid bg-dropdown-img me-1"> Delete Blog--}}
+                    {{--                            </a>--}}
+                    {{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"--}}
+                    {{--                               wire:click="getBlogId({{ $post->BlogId }})" data-bs-toggle="modal" data-bs-target="#addBlogCommentModal"--}}
+                    {{--                            >--}}
+                    {{--                                <img src="{{asset('/images/blog-images/ad-comment.svg')}}" class="img-fluid bg-dropdown-img me-1"> Add Comment--}}
+                    {{--                            </a>--}}
+                    {{--                            <a class="btn btn-white dropdown-item blog-dropdown-item" href="#!"--}}
+                    {{--                               @click.prevent="window.livewire.emit('readBlogComments', {{$post->BlogId}})"--}}
+                    {{--                            >--}}
+                    {{--                                <img src="{{asset('/images/blog-images/read-message.svg')}}" class="img-fluid bg-dropdown-img me-1"> Read Comment--}}
+                    {{--                            </a>--}}
+                    {{--                            --}}{{--                            <a class="dropdown-item text-danger" href="#">Delete Blog</a>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
                     <p>{!!  (Str::limit(strip_tags($blog->Content), 80))  !!}</p>

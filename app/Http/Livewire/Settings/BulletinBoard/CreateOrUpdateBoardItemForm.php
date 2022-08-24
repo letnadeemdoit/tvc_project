@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Settings\BulletinBoard;
 
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Board;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,9 @@ class CreateOrUpdateBoardItemForm extends Component
 
     public function render()
     {
-        return view('dash.settings.bulletin-board.create-or-update-board-item-form');
+        $categories = Category::bulletinBoard()->get();
+
+        return view('dash.settings.bulletin-board.create-or-update-board-item-form', compact('categories'));
     }
 
     public function hydrate()
@@ -56,19 +59,21 @@ class CreateOrUpdateBoardItemForm extends Component
 
         if ($this->file) {
             $inputs['image'] = $this->file;
-        }else{
+        } else {
             unset($inputs['image']);
         }
 
         Validator::make($inputs, [
             'title' => 'required|string|max:100',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
+            'category_id' => 'nullable|exists:categories,id',
             'Board' => 'required',
         ])->validateWithBag('saveBulletinBoardCU');
 
         $this->boardItem->fill([
             'HouseId' => auth()->user()->HouseId,
             'title' => $inputs['title'] ?? '',
+            'category_id' => $inputs['category_id'] ?? null,
             'Board' => $inputs['Board'],
         ])->save();
 
@@ -81,13 +86,16 @@ class CreateOrUpdateBoardItemForm extends Component
         $this->emit('bulletin-board-cu-successfully');
     }
 
-    public function updatedFile() {
+    public function updatedFile()
+    {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
     }
 
-    public function deleteFile() {
+    public function deleteFile()
+    {
         if ($this->boardItem->id) {
             $this->boardItem->deleteFile();
+            $this->success('Image deleted Successfully');
             $this->emit('bulletin-board-cu-successfully');
         }
     }
