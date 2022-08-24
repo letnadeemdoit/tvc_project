@@ -35,8 +35,6 @@ class LeavAReviewGuestBook extends Component
 
         if ($this->file) {
             $inputs['image'] = $this->file;
-        }else{
-            unset($inputs['image']);
         }
 
         Validator::make($inputs, [
@@ -60,7 +58,9 @@ class LeavAReviewGuestBook extends Component
             'image' => $inputs['image'] ?? null,
         ]);
 
-        session()->flash('message', 'Your feedback is submitted successfully...');
+        session()->flash('success', 'Your feedback is submitted successfully...');
+
+        $this->state = "";
 
         return redirect()->route('guest.guest-book.index');
 
