@@ -22,27 +22,26 @@ class BlogController extends Controller
 //            $existing_likes += $like->likes;
 //        }
         $user = $request->user();
-        $existing_views = 0;
-        $blog_views = $post->views;
-        foreach ($blog_views as $view){
-            $existing_views += $view->views;
-        }
 
-        $blogcomments = BlogComment::where('BlogId', $post->BlogId )->get();
-        $numberofcomments = count($blogcomments);
+        $blog_views = Blog::where('BlogId' ,$post->BlogId)->withCount('views')->first();
+        $existing_views = $blog_views->views_count;
+
+//        $blogcomments = BlogComment::where('BlogId', $post->BlogId )->get();
+//        $numberofcomments = count($blogcomments);
 
             $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
 
         $relatedBlog = Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get();
 
-        $views = BlogViews::where('blog_id', $post->BlogId)->where('user_id', $user->user_id)->get();
+        $views = BlogViews::where('blog_id' ,$post->BlogId)->where('user_id', $user->user_id)->get();
+
         if (count($views) == 0){
             $view = new BlogViews();
 
             $view->fill([
                 'user_id' => $user->user_id,
                 'blog_id' => $post->BlogId,
-                'views' => $existing_views+1,
+                'views' => 1,
             ]);
 
             $post->views()->save($view);
@@ -53,7 +52,7 @@ class BlogController extends Controller
             'post' => $post,
 //            'existing_likes' => $existing_likes,
             'existing_views' => $existing_views,
-            'total_comments' => $numberofcomments,
+//            'total_comments' => $numberofcomments,
             'categories' => $categories,
             'relatedBlog' => $relatedBlog
 
