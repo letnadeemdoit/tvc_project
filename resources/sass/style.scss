@@ -1424,7 +1424,7 @@ header{
     .nav-link{
         background-color: rgba(163, 163, 163, 0.12) !important;
         border: none !important;
-        padding: 18px;
+        padding: 10px;
         margin-right: 14px;
         border-radius: 5px;
         &.active{
@@ -1529,8 +1529,7 @@ header{
 nav.navecation ul li{
     list-style:none;
     float:left;
-    padding-right:14px;
-
+    margin-right: 14px;
 }
 nav.navecation ul li a{
     text-decoration:none;
@@ -1543,7 +1542,11 @@ nav.navecation ul li a{
     align-items: center;
     padding: 10px 15px 10px 15px;
     cursor: pointer;
-    min-height: 47px;
+    min-height: 55px;
+    max-height: 55px;
+    img{
+        width: 50px;
+    }
 }
 nav.navecation  .active{
     background: rgba(232, 96, 76, 0.06) !important;
