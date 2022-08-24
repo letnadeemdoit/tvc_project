@@ -88,6 +88,13 @@ class DashboardController extends Controller
         ]);
 
     }
+    public function planAndPricing(Request $request){
+
+        return view('dash.plans-and-pricing.index', [
+            'user' => $request->user()
+        ]);
+
+    }
 
     public function photoAlbums(Request $request){
 
