@@ -51,7 +51,7 @@ class BlogList extends Component
 
     public function render()
     {
-        dd($this->category);
+//        dd($this->category);
         $data = Blog::where('HouseId', $this->user->HouseId)
             ->when($this->category !== 'all', function ($query) {
                 $query->whereHas('category', function ($query) {

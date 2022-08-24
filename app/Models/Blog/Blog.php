@@ -65,11 +65,12 @@ class Blog extends Model implements Auditable
      */
     protected function defaultFileUrl($column = 'image'): string
     {
-        $name = trim(collect(explode(' ', $this->Subject))->map(function ($segment) {
-            return mb_substr($segment, 0, 1);
-        })->join(' '));
-
-        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
+//        $name = trim(collect(explode(' ', $this->Subject))->map(function ($segment) {
+//            return mb_substr($segment, 0, 1);
+//        })->join(' '));
+//
+//        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
+        return '/images/blog-images/blog.png';
     }
 
     /**

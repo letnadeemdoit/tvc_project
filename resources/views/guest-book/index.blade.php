@@ -133,7 +133,7 @@
                             @if($loop->iteration % 2 == 0)
                                 <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                                     <div class="card card-01 shadow-lg" style="min-height: 380px">
-                                        <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
+                                        <div class="guest-card-description pb-4 ps-4 pe-2" style="min-height: 270px;">
                                             <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                  class="img-fluid margin-left-negative pt-3">
                                             <h3 class="pt-1">{{$dt->title }}</h3>
@@ -170,7 +170,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
-                                                    <div class="guest-card-description pb-4 px-4"
+                                                    <div class="guest-card-description pb-4 ps-4 pe-2"
                                                          style="min-height: 270px;">
                                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                              class="img-fluid margin-left-negative">
@@ -198,7 +198,7 @@
                             @else
                                 <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                                     <div class="card card-01 shadow-lg my-4 my-md-0 border-0" style="min-height: 380px">
-                                        <div class="guest-card-description pb-4 px-4" style="min-height: 270px;">
+                                        <div class="guest-card-description pb-4 ps-4 pe-2" style="min-height: 270px;">
                                             <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                  class="img-fluid margin-left-negative pt-3">
                                             <h3 class="pt-1">{{$dt->title }}</h3>
@@ -236,7 +236,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
-                                                    <div class="guest-card-description pb-4 px-4"
+                                                    <div class="guest-card-description pb-4 ps-4 pe-2"
                                                          style="min-height: 270px;">
                                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                              class="img-fluid margin-left-negative">
