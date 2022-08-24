@@ -1,7 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/theme-dark.css": "/css/theme-dark.css",
-    "/css/theme.css": "/css/theme.css",
     "/css/bootstrap.css": "/css/bootstrap.css",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/theme-dark.css": "/css/theme-dark.css",
+    "/css/theme.css": "/css/theme.css"
 }
