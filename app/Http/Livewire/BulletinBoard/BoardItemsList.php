@@ -60,7 +60,6 @@ class BoardItemsList extends Component
             })
             ->orderBy('id', 'DESC')
             ->paginate($this->per_page);
-//        dd($data);
 
         return view('bulletin-board.board-items-list',compact('data'));
     }
