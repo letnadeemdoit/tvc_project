@@ -11,7 +11,7 @@ class RoomType extends Model
 
     protected $table = 'RoomType';
 
-    protected $primaryKey = 'RoomTypeID';
+//    protected $primaryKey = 'RoomTypeID';
 
     /**
      * The attributes that are mass assignable.

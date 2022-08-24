@@ -14,6 +14,7 @@ class Room extends Model
 
     protected $primaryKey = 'RoomID';
 
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +26,7 @@ class Room extends Model
         'RoomTypeID',
         'RoomName',
         'Beds',
+        'HouseID'
     ];
 
 

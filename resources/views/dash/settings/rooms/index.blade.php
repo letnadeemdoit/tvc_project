@@ -15,4 +15,5 @@
     </x-slot>
 
     <livewire:settings.rooms.rooms-list :user="$user" />
+    <livewire:settings.rooms.add-or-update-room-form :user="$user" />
 </x-settings>

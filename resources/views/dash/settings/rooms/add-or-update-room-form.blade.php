@@ -3,7 +3,7 @@
 >
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $room && $room->RoomName ? "Update '$room->RoomNam'" : 'Add' }} Room</h5>
+            <h5 class="modal-title">{{ $room && $room->RoomName ? "Update '$room->RoomName'" : 'Add' }} Room</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -12,114 +12,80 @@
                 @click.click="hide()"
             ></button>
         </div>
-        <form wire:submit.prevent="saveUserCU" class="modal-body">
+        <form wire:submit.prevent="saveRoomCU" class="modal-body">
+            <div class="form-group mb-3">
+                <label class="form-label" for="name">Name:*</label>
+                <input
+                    type="text"
+                    class="form-control @error('name') is-invalid @enderror"
+                    name="name"
+                    id="name"
+                    wire:model.defer="state.name"
+                />
+                @error('name')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
             <div class="row mb-3">
                 <div class="form-group col-md-6">
-                    <label class="form-label" for="user_name">Username:</label>
+                    <label class="form-label" for="beds">Beds:*</label>
                     <input
                         type="text"
-                        class="form-control @error('user_name') is-invalid @enderror"
-                        name="user_name"
-                        id="user_name"
-                        wire:model.defer="state.user_name"
+                        class="form-control @error('beds') is-invalid @enderror"
+                        name="beds"
+                        id="beds"
+                        wire:model.defer="state.beds"
                     />
-                    @error('user_name')
+                    @error('beds')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
-                    <label class="form-label" for="role">Role:</label>
+                    <label class="form-label" for="type">Type:</label>
                     <select
                         type="text"
-                        class="form-control @error('role') is-invalid @enderror"
-                        name="role"
-                        id="role"
-                        wire:model.defer="state.role"
+                        class="form-control @error('type') is-invalid @enderror"
+                        name="type"
+                        id="type"
+                        wire:model.defer="state.type"
                     >
-                        <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
-                        <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
-                        <option value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists ? 'disabled' : '' }}>Guest</option>
+                        <option>Choose room type</option>
+                        @foreach($this->roomTypes as $roomType)
+                            <option value="{{ $roomType->RoomTypeID }}">{{ $roomType->RoomTypeVal }}</option>
+                        @endforeach
                     </select>
-                    @error('role')
-                    <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="first_name">First Name:</label>
-                    <input
-                        type="text"
-                        class="form-control @error('first_name') is-invalid @enderror"
-                        name="first_name"
-                        id="first_name"
-                        wire:model.defer="state.first_name"
-                    />
-                    @error('first_name')
-                    <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="last_name">Last Name:</label>
-                    <input
-                        type="text"
-                        class="form-control @error('last_name') is-invalid @enderror"
-                        name="last_name"
-                        id="last_name"
-                        wire:model.defer="state.last_name"
-                    />
-                    @error('last_name')
+                    @error('type')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label class="form-label" for="email">Email:</label>
-                <input
+                <label class="form-label" for="amenities">Amenities:*</label>
+                <select
                     type="text"
-                    class="form-control @error('email') is-invalid @enderror"
-                    name="email"
-                    id="email"
-                    wire:model.defer="state.email"
-                />
-                @error('email')
-                <span class="invalid-feedback">{{ $message }}</span>
+                    class="form-control @error('amenities') is-invalid @enderror"
+                    name="amenities"
+                    id="amenities"
+                    wire:model.defer="state.amenities"
+                    multiple
+                >
+                    <option>Choose amenities</option>
+                    @foreach($this->amenities as $amenity)
+                        <option value="{{ $amenity->AmenityID }}">{{ $amenity->AmenityName }}</option>
+                    @endforeach
+                </select>
+                @error('amenities')
+                    <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="row mb-3">
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="password">Password:</label>
-                    <input
-                        type="password"
-                        class="form-control @error('password') is-invalid @enderror"
-                        name="password"
-                        id="password"
-                        wire:model.defer="state.password"
-                    />
-                    @error('password')
-                    <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="confirm_password">Confirm Password:</label>
-                    <input
-                        type="password"
-                        class="form-control @error('password_confirmation') is-invalid @enderror"
-                        name="password_confirmation"
-                        id="confirm_password"
-                        wire:model.defer="state.password_confirmation"
-                    />
-                    @error('password_confirmation')
-                    <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
+
             <div class="d-flex">
                 <button
                     type="submit"
                     class="btn btn-primary ms-auto"
                 >
-                    {{ $room && $room->RoomName ? "Update '$room->RoomNam'" : 'Add' }} Room
+                    {{ $room && $room->RoomName ? "Update '$room->RoomName'" : 'Add' }} Room
                 </button>
             </div>
         </form>
