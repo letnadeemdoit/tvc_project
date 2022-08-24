@@ -33795,6 +33795,30 @@ header nav button:last-child:hover {
 .guest-nav .dropdown-item:hover img {
   filter: invert(67%) sepia(81%) saturate(51%) hue-rotate(30deg) brightness(80000%) contrast(197%) !important;
 }
+.guest-nav .dropdown-menu {
+  width: 14rem !important;
+}
+
+.login-nav .dropdown-item:hover {
+  background: #2A3342 !important;
+  color: #fff !important;
+}
+.login-nav .dropdown-item:hover img {
+  filter: invert(67%) sepia(81%) saturate(51%) hue-rotate(30deg) brightness(80000%) contrast(197%) !important;
+  background-color: #fff !important;
+}
+.login-nav .dropdown-item img {
+  background-color: #E8604C !important;
+  padding: 5px;
+  border-radius: 5px;
+}
+.login-nav .dropdown-menu {
+  width: 12rem !important;
+}
+
+.navbar-dropdown-account-wrapper:hover {
+  background-color: transparent !important;
+}
 
 .help-page-tabs p {
   color: #6D6D6D !important;
@@ -34130,6 +34154,9 @@ header nav button:last-child:hover {
   .padding-top {
     padding-top: 3rem !important;
   }
+  .guest-nav .dropdown-menu {
+    width: 11rem !important;
+  }
   .max-width {
     max-width: 100% !important;
   }
@@ -34205,6 +34232,9 @@ header nav button:last-child:hover {
     font-size: 8px !important;
     min-height: 100px !important;
     min-width: revert !important;
+  }
+  .guest-nav .dropdown-menu {
+    width: 11rem !important;
   }
   .navbar-expand-lg .navbar-nav-wrap-secondary-content {
     margin-left: 0 !important;
