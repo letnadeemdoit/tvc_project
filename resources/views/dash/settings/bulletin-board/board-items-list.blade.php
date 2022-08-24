@@ -37,6 +37,7 @@
                 <tr>
                     <th style="width: 100px" class="text-center">Image</th>
                     <th>Title</th>
+                    <th>Category</th>
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
@@ -56,6 +57,7 @@
                             </div>
                         </td>
                         <td>{{$dt->title ?? ''}}</td>
+                        <td>{{$dt->category->name ?? ''}}</td>
                         <td>{{ str(strip_tags($dt->Board))->limit(60) }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">

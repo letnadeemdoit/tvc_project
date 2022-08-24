@@ -65,55 +65,33 @@
                 <h3 class="pt-2 poppins-bold">Choose your Category</h3>
             </div>
             <div class="mt-5  category-cards">
-                <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                data-bs-target="#home" type="button" role="tab" aria-controls="home"
-                                aria-selected="true">
-                            <img src="/images/bulletin-images/bulletin-clipboard.svg" width="30px"/>
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                                type="button" role="tab" aria-controls="profile" aria-selected="true">
-                            <img src="/images/bulletin-images/fastfood.png" width="30px"/>
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-                                type="button" role="tab" aria-controls="contact" aria-selected="true">
-                            <img src="/images/bulletin-images/volume.png" width="30px"/>
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="shopping-tab" data-bs-toggle="tab"
-                                data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping"
-                                aria-selected="true">
-                            <img src="/images/bulletin-images/clock-img.png" width="30px"/>
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="clipboard-tab" data-bs-toggle="tab"
-                                data-bs-target="#clipboard" type="button" role="tab" aria-controls="clipboard"
-                                aria-selected="true">
-                            <img src="/images/bulletin-images/shopping-bag.png" width="30px"/>
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="gallery-tab" data-bs-toggle="tab"
-                                data-bs-target="#gallery" type="button" role="tab" aria-controls="gallery"
-                                aria-selected="true">
-                            <img src="/images/bulletin-images/calculator.png" width="30px"/>
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="gallery-tab" data-bs-toggle="tab"
-                                data-bs-target="#gallery" type="button" role="tab" aria-controls="gallery"
-                                aria-selected="true">
-                            <img src="/images/bulletin-images/Photo.png" width="30px"/>
-                        </button>
-                    </li>
-                </ul>
+
+
+{{--                <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">--}}
+{{--                    <li class="nav-item" role="presentation">--}}
+{{--                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"--}}
+{{--                                data-bs-target="#home" type="button" role="tab" aria-controls="home"--}}
+{{--                                aria-selected="true">--}}
+{{--                            <img src="/images/bulletin-images/bulletin-clipboard.svg" width="30px"/>--}}
+{{--                        </button>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+
+
+                <div class="d-flex justify-content-center justify-content-md-start">
+                    <nav class="navecation mb-3">
+                        <ul id="navi">
+                            <li><a class="menu active" href="#">ALL</a></li>
+                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/food.svg')}}" class="me-2 d-none d-md-inline-block">FOOD & DRINK</a></li>
+                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/clipboard.svg')}}" class="me-2 d-none d-md-inline-block">THINGS TO DO</a></li>
+                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/services.svg')}}" class="me-2 d-none d-md-inline-block">SERVICES</a></li>
+                            <li><a class="menu" href="#"><img src="{{asset('/images/local-guide/car.svg')}}" class="me-2 d-none d-md-inline-block">TRANSPORTATION</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+
                 <!-- dots img -->
 
                 <div class="tab-content bg-waves" id="myTabContent">

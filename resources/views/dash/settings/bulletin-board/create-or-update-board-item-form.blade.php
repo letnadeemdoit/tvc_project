@@ -29,6 +29,7 @@
                 <x-jet-input-error for="image" />
                 <br />
 
+
                 <div class="mb-3">
                     <label class="form-label" for="category_id">Select Category</label>
                     <select id="category_id" wire:model.defer="state.category_id" class="form-control">
@@ -38,6 +39,8 @@
                         @endforeach
                     </select>
                 </div>
+
+
 
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
