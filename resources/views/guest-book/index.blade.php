@@ -169,7 +169,7 @@
                             {{--            modal starts            --}}
                             <div class="modal guest-modal fade" id="guestBook{{$dt->id}}Modal" tabindex="-1"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content bg-transparent border-0">
 
                                         <div class="modal-body">
@@ -178,7 +178,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
-                                                <div class="guest-card-description pb-4 px-2"
+                                                <div class="guest-card-description pb-4 ps-4 pe-2"
                                                      style="min-height: 270px;">
                                                     <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                          class="img-fluid margin-left-negative">
@@ -235,7 +235,7 @@
                             {{--              modal              --}}
                             <div class="modal guest-modal fade" id="guestBook{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel"
                                  aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content bg-transparent border-0">
 
                                         <div class="modal-body">
@@ -244,7 +244,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
-                                                <div class="guest-card-description pb-4 px-2"
+                                                <div class="guest-card-description pb-4 ps-4 pe-2"
                                                      style="min-height: 270px;">
                                                     <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                          class="img-fluid margin-left-negative">

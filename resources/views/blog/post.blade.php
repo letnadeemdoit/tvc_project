@@ -5,7 +5,9 @@
                 height: 400px;
                 object-fit: cover;
             }
-
+            body{
+                background-color: #fff !important;
+            }
             .rounded-20 {
                 border-radius: 20px;
             }
@@ -44,7 +46,7 @@
             }
         </style>
     @endpush
-
+<main style="background-color:#fff !important;">
     <div class="">
             <img src="{{ $post->getFileUrl() }}" class="w-100 blog-detail-image" alt="" />
     </div>
@@ -111,7 +113,7 @@
                                     </a>
                             </div>
                             <div>
-                                <p class="mb-0 border-primary category-count">{{ $category->blogs_count }}</p>
+                                <p class="mb-0 border-primary category-count text-primary">{{ $category->blogs_count }}</p>
                             </div>
                         </div>
                         @endforeach
@@ -210,7 +212,7 @@
         </div>
     </div>
 
-
+</main>
 </x-guest-layout>
 
 @push('scripts')

@@ -244,12 +244,13 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .blog-tabs{
     .nav-item{
         .nav-link{
-            min-height: 50px;
+            min-height: 55px;
             padding: 8px 18px;
             border-radius:6px;
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            max-height:50px;
         }
     }
 }
@@ -309,7 +310,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .bg-primary-light{
     background: $primary-light !important;
 }
-
+.border-color-primary{
+    border: 1px solid rgba(232, 96, 76, 0.35);
+}
 .border-dashed{
     border: 1px dashed $primary !important;
 }

@@ -26,7 +26,7 @@
             </div>
         </section>
         <section class="accordion-section mt-80">
-            <div class="container mb-5 pb-5">
+            <div class="container padding-bottom">
                 <div class="accordion" id="myAccordion">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
