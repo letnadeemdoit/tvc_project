@@ -26,7 +26,13 @@
                         $datePicker.css('z-index', zIndexModal + 1);
                     },
                     onSelect: function (date, datepicker) {
-                        @this.set('state.' + datepicker.id, date, true);
+                        let id = datepicker.id;
+
+                        if(id === undefined) {
+                            id = datepicker.$input[0].id;
+                        }
+
+                        @this.set('state.' + id, date, true);
                     },
                     hour: 12,
                     minute: 0,
