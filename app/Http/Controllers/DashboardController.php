@@ -67,7 +67,7 @@ class DashboardController extends Controller
 
     public function localGuide(Request $request){
 
-        return view('dash.local-guide.index', [
+        return view('dash.settings.local-guide.index', [
             'user' => $request->user()
         ]);
 

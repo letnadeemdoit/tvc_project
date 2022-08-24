@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\LocalGuide;
+namespace App\Http\Livewire\Settings\LocalGuide;
 
 use App\Http\Livewire\Traits\Toastr;
+use App\Models\Category;
 use App\Models\LocalGuide;
 use App\Models\LocalGuideCategory;
 use Illuminate\Support\Facades\Validator;
@@ -28,9 +29,12 @@ class CreateOrUpdateLocalGuideForm extends Component
 
     public function render()
     {
-        $localGuideCategories = LocalGuideCategory::all();
+        $user = auth()->user();
+        $localGuideCategories = Category::where('type', 'local-guide')->where('house_id', $user->HouseId)->get();
+//        $localGuideCategories = Category::localGuides()->get();
+//        $localGuideCategories = LocalGuideCategory::all();
 
-        return view('dash.local-guide.create-or-update-local-guide-form',compact('localGuideCategories')) ;
+        return view('dash.settings.local-guide.create-or-update-local-guide-form',compact('localGuideCategories')) ;
     }
 
     public function hydrate()
@@ -45,7 +49,7 @@ class CreateOrUpdateLocalGuideForm extends Component
         $this->reset(['state', 'file']);
 
         if ($localGuide) {
-            $this->state = \Arr::only($localGuide->toArray(), ['local_guide_category_id','title','description','image','address','datetime']);
+            $this->state = \Arr::only($localGuide->toArray(), ['category_id','title','description','image','address','datetime']);
         }
     }
 
@@ -63,14 +67,14 @@ class CreateOrUpdateLocalGuideForm extends Component
 
         Validator::make($inputs, [
             'title' => 'required|string|max:100',
-            'local_guide_category_id' => 'required',
+            'category_id' => 'required',
         ])->validateWithBag('saveLocalGuideCU');
 
 
         $this->localGuide->fill([
             'user_id' => auth()->user()->user_id,
             'house_id' => auth()->user()->HouseId,
-            'local_guide_category_id' => $inputs['local_guide_category_id'] ?? null,
+            'category_id' => $inputs['category_id'] ?? null,
             'title' => $inputs['title'],
             'description' => $inputs['description'] ?? null,
             'address' => $inputs['address'] ?? null,

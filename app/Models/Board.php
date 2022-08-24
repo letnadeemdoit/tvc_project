@@ -55,10 +55,9 @@ class Board extends Model  implements Auditable
         return $this->belongsTo(House::class, 'HouseId', 'HouseID');
     }
 
-
-    public function category()
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Category::class,'category_id','id');
+        return $this->belongsTo(Category::class);
     }
 
 }

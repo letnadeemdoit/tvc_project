@@ -36,7 +36,7 @@
                 <thead class="thead-light">
                 <tr>
                     <th style="width: 100px" class="text-center">Image</th>
-                    <th>Category</th>
+{{--                    <th>Category</th>--}}
                     <th>Title</th>
                     <th>Description</th>
                     <th>Address</th>
@@ -59,7 +59,7 @@
                             </div>
 
                         </td>
-                        <td class="fw-600">{{$dt->localGuideCategory->name ?? ''}}</td>
+{{--                        <td class="fw-600">{{$dt->localGuideCategory->name ?? ''}}</td>--}}
                         <td>{{$dt->title ?? ''}}</td>
                         <td>{!! substr($dt->description,0,40) ?? '' !!}
 

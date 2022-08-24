@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class LocalGuideController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        $data = LocalGuide::where('house_id', auth()->user()->HouseId)->get();
-
-        return view('local-guide.index',compact('data'));
+        return view('local-guide.index', [
+            'user' => $request->user()
+        ]);
+//        return view('local-guide.index',compact('data'));
 
     }
 
