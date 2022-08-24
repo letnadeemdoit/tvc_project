@@ -45,10 +45,11 @@
     <!-- dots img -->
 
     <div class="tab-content bg-waves" id="myTabContent">
+        <section class="text-end">
+            <img src="/images/bulletin-images/orange-dots.svg" class="img-fluid bg-dots-orange"/>
+        </section>
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <section class="text-end">
-                <img src="/images/bulletin-images/orange-dots" class="img-fluid bg-dots-orange"/>
-            </section>
+
             <div class="row" data-masonry='{"percentPosition": true }'>
                     @foreach($data as $dt)
                     <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>

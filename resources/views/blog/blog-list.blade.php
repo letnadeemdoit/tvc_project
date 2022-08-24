@@ -33,7 +33,7 @@
 
     </div>
 
-    <div class="row justify-content-center justify-content-sm-between align-items-sm-center py-3">
+    <div class="row justify-content-center justify-content-sm-between align-items-sm-center pt-3">
             <div class="col-sm mb-2 mb-sm-0">
                 <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
                     <span class="me-2">Per Page:</span>
