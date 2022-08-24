@@ -18,4 +18,5 @@ import HSBsDropdown from './hs.bs-dropdown'
 HSBsDropdown.init()
 window.HSBsDropdown = HSBsDropdown;
 
-
+import HSTomSelect from './hs.tom-select';
+window.HSTomSelect = HSTomSelect;

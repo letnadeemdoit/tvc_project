@@ -126,7 +126,7 @@ class User extends Authenticatable implements Auditable
      */
     protected function getIsOwnerAttribute(): bool
     {
-        return $this->role === self::ROLE_OWNER || $this->admin_owner;
+        return $this->role === self::ROLE_OWNER || ($this->is_admin && $this->admin_owner);
     }
 
     /**

@@ -19,6 +19,20 @@ window.googleMaps = new Loader(process.env.MIX_GOOGLE_MAPS_API_KEY, {libraries: 
 window.Cropper = require('cropperjs');
 window.Lightbox2 = require('lightbox2');
 
+import * as Calendar from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+
+window.FullCalendar = Calendar;
+window.dayGridPlugin = dayGridPlugin;
+window.timeGridPlugin = timeGridPlugin;
+window.listPlugin = listPlugin;
+window.interactionPlugin = interactionPlugin;
+window.bootstrap5Plugin = bootstrap5Plugin;
+
 window.livewire.on('toastr', function (data) {
     let toastr = window.toastr;
     toastr.options = {
