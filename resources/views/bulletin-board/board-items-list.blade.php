@@ -15,8 +15,8 @@
     <div class="d-flex justify-content-center justify-content-md-start">
         <nav class="navecation mb-3">
             <ul id="navi">
-                <li class="menu active">
-                    <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}">
+                <li class="menu">
+                    <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}" class="nav-link active">
                         ALL
                     </a>
                 </li>
