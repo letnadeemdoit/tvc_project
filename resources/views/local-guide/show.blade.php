@@ -58,8 +58,10 @@
             <div class="card border-0 rounded-20 py-3" style="margin-top: -70px;">
                 <div class="card-body">
                     {{--                <h1 class="text-w-50 lh-30">{{ $blogDetail->Subject ? $blogDetail->Subject : '' }}</h1>--}}
-                    <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
-
+                 <div class="d-block d-sm-flex justify-content-between align-items-center">
+                    <h1 class="lh-30 mb-0">{{$localGuide->title ?? ''}}</h1>
+                     <a class="btn btn-soft-primary px-5 mt-2 mt-sm-0">Food & Drink</a>
+                 </div>
                     <div class="d-flex align-items-center mt-4">
                         <div class="flex-shrink-0">
                             <img
@@ -70,7 +72,7 @@
                                 width="60" height="60" style="object-fit: cover"
                             />
                         </div>
-                        <div class="flex-grow-1 ms-3 d-block d-sm-flex justify-content-between align-items-center">
+                        <div class="flex-grow-1 ms-3 d-flex">
                             <div>
                                 <h4 class="mb-0 text-dark" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0 py-1" style="color: #B6B4B4">
@@ -87,9 +89,6 @@
                                     <span class="ps-2">(34 Reviews)</span>
                                 </div>
                             </div>
-                            <div class="mt-3 mt-sm-0">
-                                <a class="btn btn-soft-primary px-5">Food & Drink</a>
-                            </div>
                         </div>
                     </div>
 
@@ -101,15 +100,9 @@
                 <div class="col-12 col-lg-9 pe-0 pe-lg-5">
                     <div class="border-bottom">
                         <ul class="d-flex list-unstyled ul-card-footer mb-0">
-                            <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/love.png"
-                                                                                class="img-fluid me-2"></span> 200 Likes
-                                </p>
-                            </li>
-                            <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/comment.svg"
-                                                                                class="img-fluid me-2"></span> {{$localGuide->comments->count()}}
-                                    Comments
-                                </p></li>
-                            <li class="me-2 me-md-3 ms-auto"><p class="ps-0">22-10-2022 | 3:00PM
+
+
+                            <li class="me-2 me-md-3"><p class="ps-0">22-10-2022 | 3:00PM
                                 </p></li>
                         </ul>
                     </div>
@@ -129,7 +122,7 @@
                     </div>
                     <div class="card border-0 mb-4">
                         <div class="card-body">
-                            <h4 class="mb-3">Latest Post</h4>
+                            <h4 class="mb-3">Latest  Local Guide</h4>
                             <div class="d-flex align-items-center mb-4">
                                 <div class="flex-shrink-0">
                                     <img
