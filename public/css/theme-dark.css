@@ -33412,6 +33412,18 @@ body {
   padding: 0px !important;
 }
 
+.lb-data .lb-number {
+  margin-top: 7px;
+}
+
+.lb-data .lb-close {
+  margin-top: 7px;
+}
+
+.lb-nav a.lb-prev {
+  margin-left: 8px;
+}
+
 .features-img-2 {
   background-image: url("/images/images-home/feature-2.svg");
   background-repeat: no-repeat;
@@ -34503,6 +34515,14 @@ header nav button:last-child:hover {
 
 .bg-guest {
   background-image: url("/images/guest-book/Guest.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 50px;
+}
+
+.bg-review {
+  background-image: url("/images/guest-book/Review.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
