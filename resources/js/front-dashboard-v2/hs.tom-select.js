@@ -296,10 +296,6 @@ const HSTomSelect = {
         tomSelect.on('dropdown_open', () => tomSelect.$menu.style.width = settings.dropdownWidth)
     },
 
-    width(tomSelect, settings) {
-        tomSelect.wrapper.style.width = settings.width
-    },
-
     renderPlaceholder(tomSelect, settings) {
         if (settings.singleMultiple || tomSelect.items.length) return
         const defaultPlaceholder = tomSelect.input.getAttribute('placeholder') || settings.placeholder

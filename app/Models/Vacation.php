@@ -143,4 +143,17 @@ class Vacation extends Model implements Auditable
             set: fn ($value) => ltrim($value, '#'),
         );
     }
+
+    public function toCalendar() {
+        return [
+            'id' => $this->VacationId,
+            'title' => $this->VacationName,
+            'start' => $this->start_datetime->format('Y-m-d H:i'),
+            'end' => $this->end_datetime->format('Y-m-d H:i'),
+            'allDay' => false,
+            'color' => $this->back_grnd_color,
+            'textColor' => $this->font_color,
+            'className' => 'way'
+        ];
+    }
 }

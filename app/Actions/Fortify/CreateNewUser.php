@@ -26,7 +26,7 @@ class CreateNewUser implements CreatesNewUsers
             'City' => ['required'],
             'State' => ['required'],
             'image' => 'image|mimes:png,jpg,gif,tiff|max:1024|nullable',
-            'ReferredBy' => ['required'],
+            'paypal_account' => ['required'],
             'user_name' => ['required', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required'],
@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
             'HouseName' => $input['HouseName'],
             'City' => $input['City'],
             'State' => $input['State'],
-            'ReferredBy' => $input['ReferredBy'],
+            'ReferredBy' => $input['paypal_account'],
         ]);
 
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();

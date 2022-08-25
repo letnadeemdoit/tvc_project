@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Calendar;
 
+use App\Models\Vacation;
 use Livewire\Component;
 
 class CalendarView extends Component
@@ -10,6 +11,12 @@ class CalendarView extends Component
 
     public function render()
     {
-        return view('dash.calendar.calendar-view');
+        $vacations = Vacation::where('HouseId', $this->user->HouseId)->get();
+
+        $events = [];
+        foreach ($vacations as $vacation) {
+            $events[] = $vacation->toCalendar();
+        }
+        return view('dash.calendar.calendar-view', compact('events'));
     }
 }

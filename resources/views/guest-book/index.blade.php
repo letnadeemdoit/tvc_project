@@ -166,7 +166,7 @@
 
                                             <div class="modal-body">
                                                 <div class="card card-01 shadow-lg border-0" style="min-height: 380px">
-                                                    <div class="modal-header text-end p-3">
+                                                    <div class="modal-header text-end pt-3 pe-2">
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
@@ -180,11 +180,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-body bg-dark-blue pb-5">
-                            <span class="badge-box py-4">
-                                <img src="{{$dt->getFileUrl('image')}}"
-                                     alt="{{ $dt->name ?? '' }}"
-                                     class="rounded-circle" width="60"/>
-                                            </span>
+                                                        <span class="badge-box py-4">
+                                                            <img src="{{$dt->getFileUrl('image')}}"
+                                                                 alt="{{ $dt->name ?? '' }}"
+                                                         class="rounded-circle" width="60"/>
+                                                                </span>
                                                         <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
                                                         <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
                                                     </div>
@@ -232,7 +232,7 @@
 
                                             <div class="modal-body">
                                                 <div class="card card-01 shadow-lg my-4 my-md-0 border-0">
-                                                    <div class="modal-header text-end p-3">
+                                                    <div class="modal-header text-end pt-3 pe-2">
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
@@ -270,7 +270,7 @@
             </div>
         @endif
 
-        <div class="container mt-80 padding-bottom ">
+        <div class="container padding-bottom " style="padding-top: 80px">
             <livewire:guest-book.leav-a-review-guest-book :user="$user"/>
         </div>
 
