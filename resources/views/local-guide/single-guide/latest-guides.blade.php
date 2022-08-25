@@ -7,7 +7,7 @@
             <input
                 type="search"
                 class="form-control border-end-0"
-                placeholder="Search Blog"
+                placeholder="Search here..."
                 aria-label="Search boards"
                 wire:model.debounce.500ms="search"
             />

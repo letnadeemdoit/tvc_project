@@ -25,7 +25,7 @@ class LocalGuideController extends Controller
         $guide_views = LocalGuide::where('id' ,$dt->id)->withCount('views')->first();
         $existing_views = $guide_views->views_count;
 
-        $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->inRandomOrder()->limit(4)->get()->except($dt->id);
+        $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->inRandomOrder()->limit(3)->get()->except($dt->id);
 
         $guide_views = LocalGuide::where('user_id' ,$dt->user_id)->where('id' ,$dt->id)->first();
 
