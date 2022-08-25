@@ -31,6 +31,9 @@
             /*    color: #000000;*/
             /*}*/
 
+            i:hover {
+                color: unset !important;
+            }
         </style>
 
     </head>

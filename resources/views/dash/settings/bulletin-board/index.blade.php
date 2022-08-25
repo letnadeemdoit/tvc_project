@@ -9,7 +9,7 @@
                 href="javascript:;"
                 @click.prevent="window.livewire.emit('showBulletinBoardCUModal', true)"
             >
-                <i class="bi-plus me-1"></i> Add New Board Item
+                <i class="bi-plus me-1"></i> Add New Bulletin Board Item
             </a>
         </div>
     </x-slot>

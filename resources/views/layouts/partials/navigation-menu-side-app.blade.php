@@ -115,7 +115,7 @@
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
                                    href="{{ route('dash.settings.rooms') }}">Rooms</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
-                                   href="{{ route('dash.settings.additional-houses') }}">Additional Homes</a>
+                                   href="{{ route('dash.settings.additional-houses') }}">Additional Houses</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
                                    href="{{ route('dash.settings.notifications') }}">Notifications</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
