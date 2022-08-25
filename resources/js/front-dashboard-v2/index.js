@@ -20,3 +20,6 @@ window.HSBsDropdown = HSBsDropdown;
 
 import HSTomSelect from './hs.tom-select';
 window.HSTomSelect = HSTomSelect;
+
+import HSFullCalendar from './hs.fullcalendar';
+window.HSFullCalendar = HSFullCalendar;
