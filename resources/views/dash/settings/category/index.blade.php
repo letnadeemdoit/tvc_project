@@ -9,7 +9,7 @@
                 href="javascript:;"
                 @click.prevent="window.livewire.emit('showCategoryCUModal', true)"
             >
-                <i class="bi-plus me-1"></i> Add New Category Item
+                <i class="bi-plus me-1"></i> Add New Category
             </a>
         </div>
     </x-slot>

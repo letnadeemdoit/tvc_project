@@ -105,7 +105,7 @@
     <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
-            <div class="mb-2 mb-md-0">
+            <div class="mb-2 mb-md-0 w-100">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
@@ -121,7 +121,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search by username"
+                            placeholder="Search user by username"
                             aria-label="Search users"
                             wire:model.debounce.500ms="search"
                         />

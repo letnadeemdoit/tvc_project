@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="mb-3 d-flex">
-                    <button type="submit" class="btn btn-primary px-5 ms-auto">{{ $boardItem && $boardItem->id ? "Update" : 'Add' }} Board Item</button>
+                    <button type="submit" class="btn btn-primary px-5 ms-auto">{{ $boardItem && $boardItem->id ? "Update" : 'Add' }} Bulletin Board Item</button>
                 </div>
 
             </form>

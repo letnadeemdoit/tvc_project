@@ -253,7 +253,7 @@
                                 <div class="dropdown-divider d-block d-lg-none"></div>
 
                                 <a href="{{route('dash.index')}}" class="dropdown-item"> <i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
-                                <a href="{{route('dash.settings.index')}}" class="dropdown-item"><i class="bi bi-gear me-2"></i>Settings</a>
+                                <a href="{{route('dash.settings.')}}" class="dropdown-item"><i class="bi bi-gear me-2"></i>Settings</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button class="dropdown-item" type="submit"> <i class="bi bi-speedometer2 me-2"></i>Dashboard</button>
