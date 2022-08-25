@@ -1559,11 +1559,11 @@ a.ui-button:active,
 
 /* Shortened version style */
 .ui-timepicker-div.ui-timepicker-oneLine { padding-right: 2px; }
-.ui-timepicker-div.ui-timepicker-oneLine .ui_tpicker_time,
+.ui-timepicker-div.ui-timepicker-oneLine .ui_tpicker_time, 
 .ui-timepicker-div.ui-timepicker-oneLine dt { display: none; }
 .ui-timepicker-div.ui-timepicker-oneLine .ui_tpicker_time_label { display: block; padding-top: 2px; }
 .ui-timepicker-div.ui-timepicker-oneLine dl { text-align: right; }
-.ui-timepicker-div.ui-timepicker-oneLine dl dd,
+.ui-timepicker-div.ui-timepicker-oneLine dl dd, 
 .ui-timepicker-div.ui-timepicker-oneLine dl dd > div { display:inline-block; margin:0; }
 .ui-timepicker-div.ui-timepicker-oneLine dl dd.ui_tpicker_minute:before,
 .ui-timepicker-div.ui-timepicker-oneLine dl dd.ui_tpicker_second:before { content:':'; display:inline-block; }
@@ -1804,7 +1804,7 @@ button.toast-close-button {
  */
 
 :root {
-    --button-color: #298BA8;
+    --button-color: #298BA8; 
     --active-color: #007aff;
     --safe-area-top: env(safe-area-inset-top);
     --safe-area-bottom: env(safe-area-inset-bottom);
@@ -1860,7 +1860,7 @@ div[data-before]:before {
 
 .jupload img {
     width: 100%;
-}
+} 
 
 .jupload.input img {
     width: initial;
@@ -1892,7 +1892,7 @@ div[data-before]:before {
 }
 
 .jupload:not(.input):before {
-    content: "\e2c3";
+    content: "\e2c3"; 
     font-family: "Material Icons";
     font-size: 90px;
     color: #eee;
@@ -2078,7 +2078,7 @@ div[data-before]:before {
     0% { left: -100%; }
     100% { left: 0%; }
 }
-
+    
 @keyframes slide-left-out {
     0% { left: 0%; }
     100% { left: -100%; }
@@ -2100,7 +2100,7 @@ div[data-before]:before {
     0% { left: 100%; }
     100% { left: 0%; }
 }
-
+    
 @keyframes slide-right-out {
     0% { left: 0%; }
     100% { left: 100%; }
@@ -2121,7 +2121,7 @@ div[data-before]:before {
     0% { transform: translateY(-100%); }
     100% { -webkit-transform: translateY(0%); }
 }
-
+    
 @keyframes slide-top-out {
     0% { transform: translateY(0%); }
     100% { transform: translateY(-100%); }
@@ -2142,7 +2142,7 @@ div[data-before]:before {
     0% { transform: translateY(100%); }
     100% { -webkit-transform: translateY(0%); }
 }
-
+    
 @keyframes slide-bottom-out {
     0% { transform: translateY(0%); }
     100% { transform: translateY(100%); }
@@ -2273,7 +2273,7 @@ div[data-before]:before {
 
 .jcalendar-months td, .jcalendar-years td {
     height:24px;
-}
+} 
 
 .jcalendar-input {
     padding-right:18px;
@@ -2477,7 +2477,7 @@ div[data-before]:before {
     padding: 0px;
     z-index: 8000;
     display: none;
-
+    
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */ /* Konqueror HTML */
        -moz-user-select: none; /* Firefox */
@@ -3760,11 +3760,11 @@ div[data-before]:before {
 .jpicker-content::-webkit-scrollbar-track {
     background: #eee;
 }
-
+ 
 .jpicker-content::-webkit-scrollbar-thumb {
     background: #888;
 }
-
+ 
 .jpicker-content > div {
     padding: 6px;
     padding-left: 15px;
@@ -3908,7 +3908,7 @@ div[data-before]:before {
     padding: 5px 10px;
     user-select: none;
     align-items: center;
-
+    
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -4360,7 +4360,7 @@ div[data-before]:before {
     justify-content: flex-start;
     padding: 2px;
     border: 1px solid #ccc;
-}
+} 
 
 .jtags.jtags-empty:not(.jtags-focus)::before {
     position: absolute;
@@ -4481,7 +4481,7 @@ div[data-before]:before {
 .jtoolbar-mobile .jtoolbar-item {
     position: relative;
     flex:1;
-}
+} 
 
 .jtoolbar .jtoolbar-divisor {
     width: 2px;
@@ -33408,8 +33408,20 @@ body {
   max-height: 50px;
 }
 
-#lightboxOverlay .lb-container {
+.lb-container {
   padding: 0px !important;
+}
+
+.lb-data .lb-number {
+  margin-top: 7px;
+}
+
+.lb-data .lb-close {
+  margin-top: 7px;
+}
+
+.lb-nav a.lb-prev {
+  margin-left: 8px;
 }
 
 .features-img-2 {
@@ -34509,6 +34521,14 @@ header nav button:last-child:hover {
   height: 50px;
 }
 
+.bg-review {
+  background-image: url("/images/guest-book/Review.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 50px;
+}
+
 .bg-album {
   background-image: url("/images/photo-album/Album.svg");
   background-repeat: no-repeat;
@@ -34557,7 +34577,6 @@ header nav button:last-child:hover {
 nav.navecation ul li {
   list-style: none;
   float: left;
-  margin-right: 14px;
 }
 
 nav.navecation ul li a {
