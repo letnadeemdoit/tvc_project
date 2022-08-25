@@ -24,8 +24,10 @@ class LikeAbleGuide extends Component
         $guide_Likes = $this->post->likes;
         $this->existing_likes = count($guide_Likes);
 
-        $guide_Likes = LocalGuide::where('user_id' ,$this->post->user_id)->where('id' ,$this->post->id)->first();
-        if (count($guide_Likes->likes) > 0){
+        $user = auth()->user();
+
+        $guide_Likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->id)->first();
+        if ($guide_Likes){
             $this->isExistingUser = true;
         }
     }
@@ -37,8 +39,9 @@ class LikeAbleGuide extends Component
 
     public function likeBlog(Request $request){
 
+        $user = auth()->user();
         if ($this->isExistingUser){
-            $guide_Likes = Likes::where('user_id' ,$this->post->user_id)->where('likeable_id' ,$this->post->id)->first();
+            $guide_Likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->id)->first();
             if ($guide_Likes){
                 $guide_Likes->delete();
                 $this->existing_likes = $this->existing_likes-1;
@@ -47,11 +50,11 @@ class LikeAbleGuide extends Component
             $this->emit('guide-likes-cu-successfully');
         }
         else{
-            $guide_Likes = LocalGuide::where('user_id' ,$this->post->user_id)->where('id' ,$this->post->id)->first();
-            if (count($guide_Likes->likes) == 0){
+            $guide_Likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->id)->first();
+            if (is_null($guide_Likes)){
                 $like = new Likes();
                 $like->fill([
-                    'user_id' => $this->post->user_id,
+                    'user_id' => $user->user_id,
                     'ip_address' => $request->getClientIp(),
                     'likes' => 1,
                 ]);

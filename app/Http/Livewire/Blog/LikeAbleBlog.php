@@ -22,11 +22,13 @@ class LikeAbleBlog extends Component
     ];
 
     public function mount(){
+
         $blog_Likes = $this->post->likes;
         $this->existing_likes = count($blog_Likes);
+        $user = auth()->user();
 
-        $blog_likes = Blog::where('user_id' ,$this->post->user_id)->where('BlogId' ,$this->post->BlogId)->first();
-        if (count($blog_likes->likes) > 0){
+        $blog_likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->BlogId)->first();
+        if ($blog_likes){
             $this->isExistingUser = true;
         }
     }
@@ -37,9 +39,9 @@ class LikeAbleBlog extends Component
     }
 
     public function likeBlog(Request $request){
-
+        $user = auth()->user();
         if ($this->isExistingUser){
-            $blog_likes = Likes::where('user_id' ,$this->post->user_id)->where('likeable_id' ,$this->post->BlogId)->first();
+            $blog_likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->BlogId)->first();
             if ($blog_likes){
                 $blog_likes->delete();
                 $this->existing_likes = $this->existing_likes-1;
@@ -48,11 +50,11 @@ class LikeAbleBlog extends Component
             $this->emit('blog-likes-cu-successfully');
         }
         else{
-            $blog_likes = Blog::where('user_id' ,$this->post->user_id)->where('BlogId' ,$this->post->BlogId)->first();
-            if (count($blog_likes->likes) == 0){
+            $blog_likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->BlogId)->first();
+            if (is_null($blog_likes)){
                 $like = new Likes();
                 $like->fill([
-                    'user_id' => $this->post->user_id,
+                    'user_id' => $user->user_id,
                     'ip_address' => $request->getClientIp(),
                     'likes' => 1,
                 ]);
