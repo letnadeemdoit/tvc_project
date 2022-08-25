@@ -67,7 +67,7 @@ Route::controller(GuestController::class)
             ->name('local-guide.')
             ->group(function () {
                 Route::get('/', 'index')->name('index');
-                Route::get('/{dt:title}', 'show')->name('show');
+                Route::get('/{dt:id}', 'show')->name('show');
             });
 
         Route::controller(BulletinBoardController::class)
