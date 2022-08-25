@@ -234,7 +234,7 @@
 
                     <div class="col-lg-5">
                         <div class="py-4 text-center shadow-1-strong rounded mb-0 text-white bg-process-img text-margin" />
-                        <h1 class="mb-0 h2 text-center text-lg-start font-vintage text-primary">Find your vacation house
+                        <h1 class="mb-0 h2 text-center text-lg-start font-vintage text-primary">Find Your Vacation House
                         </h1>
                     </div>
                     <div>
@@ -335,7 +335,7 @@
             <div class="container d-none d-lg-block">
                 <div
                     class="mt-70 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">
-                    <h1 class="text-primary font-vintage pt-2 mb-0">Find your vacation house</h1>
+                    <h1 class="text-primary font-vintage pt-2 mb-0">Find Your Vacation House</h1>
                 </div>
                 <h1 class="text-center text-white">See our social media feed.</h1>
 
@@ -617,7 +617,7 @@
             <div class="container d-block d-lg-none">
                 <div
                     class="mt-70 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">
-                    <h1 class="text-primary font-vintage pt-2 mb-0">Find your vacation house</h1>
+                    <h1 class="text-primary font-vintage pt-2 mb-0">Find Your Vacation House</h1>
                 </div>
                 <h1 class="text-center text-white">See our social media feed.</h1>
 

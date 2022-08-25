@@ -109,8 +109,7 @@
                                                                                 class="img-fluid me-2"></span> {{$localGuide->comments->count()}}
                                     Comments
                                 </p></li>
-                            <li class="me-2 me-md-3 ms-auto"><p class="ps-0"><span><img src="/images/blog-images/eye.png"
-                                                                                class="img-fluid me-2"></span> 22-10-2022 | 3:00PM
+                            <li class="me-2 me-md-3 ms-auto"><p class="ps-0">22-10-2022 | 3:00PM
                                 </p></li>
                         </ul>
                     </div>
@@ -382,17 +381,7 @@
                                 feugiat vitae vitae quis id consectetur. Aenean urna, lectus enim suscipit eget.
                                 Tristique
                                 bibendum nib.</p>
-                            <p class="mb-0" style="font-size: 12px">
-                            <span class="me-1">
-                                <a href="" class="text-muted">Like</a>
-                            </span>.
-                                <span class="mx-1">
-                                <a href="" class="text-muted">Reply</a>
-                            </span>.
-                                <span class="mx-1 text-muted">
-                                24h
-                            </span>
-                            </p>
+
                         </div>
                     </div>
 
