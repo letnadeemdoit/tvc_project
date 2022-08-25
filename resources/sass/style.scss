@@ -239,7 +239,7 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height: 40px;
+    height: 50px;
 }
 .blog-tabs{
     .nav-item{
@@ -254,11 +254,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         }
     }
 }
-#lightboxOverlay{
     .lb-container{
         padding: 0px !important;
     }
-}
 .features-img-2{
     background-image: url('/images/images-home/feature-2.svg');
     background-repeat: no-repeat;
@@ -632,18 +630,21 @@ header{
 }
 .login-nav{
     .dropdown-item {
+        margin-top: 10px;
         &:hover {
             background: $dark-blue !important;
             color: #fff !important;
-            img{
-                filter:  invert(67%) sepia(81%) saturate(51%) hue-rotate(30deg) brightness(80000%) contrast(197%) !important;
-                background-color: #fff !important;
+            i{
+                color: $dark-blue;
+                background-color: #fff;
             }
         }
-        img {
-            background-color: $primary !important;
-            padding: 5px;
+        i {
+            background-color: $primary;
+            padding:4px 7px;
             border-radius: 5px;
+            font-size: 16px;
+            color: #fff;
         }
     }
     .dropdown-menu{
@@ -818,6 +819,11 @@ header{
     .date-fs{
         font-size: 12px !important;
     }
+    .masonary-gallery{
+        h3{
+            font-size: 16px !important;
+        }
+    }
     .recipe-card-footer {
         span {
             font-size: 12px !important;
@@ -854,6 +860,9 @@ header{
                 font-size: 9px !important;
             }
         }
+    }
+    .toggle-text {
+        max-width: 140px !important;
     }
     .fs-13 {
         font-size: 12px !important;
@@ -1424,7 +1433,7 @@ header{
     .nav-link{
         background-color: rgba(163, 163, 163, 0.12) !important;
         border: none !important;
-        padding: 18px;
+        padding: 10px;
         margin-right: 14px;
         border-radius: 5px;
         &.active{
@@ -1529,8 +1538,6 @@ header{
 nav.navecation ul li{
     list-style:none;
     float:left;
-    padding-right:14px;
-
 }
 nav.navecation ul li a{
     text-decoration:none;
@@ -1543,7 +1550,11 @@ nav.navecation ul li a{
     align-items: center;
     padding: 10px 15px 10px 15px;
     cursor: pointer;
-    min-height: 47px;
+    min-height: 55px;
+    max-height: 55px;
+    img{
+        width: 50px;
+    }
 }
 nav.navecation  .active{
     background: rgba(232, 96, 76, 0.06) !important;

@@ -7,7 +7,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-no-gutter">
                             <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('dash.index') }};">Dashboard</a></li>
-                            {{ $breadcrubms ?? '' }}
+                            {{ $breadcrumbs ?? '' }}
                         </ol>
                     </nav>
 

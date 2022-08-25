@@ -1,4 +1,4 @@
-<div class="container  mb-5">
+<div class="container  pb-5">
     <div class="d-flex justify-content-center justify-content-md-start">
         <nav class="navecation mb-3">
             <ul id="navi">
@@ -94,44 +94,8 @@
         @endif
     </div>
 
-    <div class="row justify-content-center justify-content-sm-between align-items-sm-center py-3">
-        <div class="col-sm mb-2 mb-sm-0">
-            <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
-                <span class="me-2">Per Page:</span>
-                <!-- Select -->
-                <div class="tom-select-custom">
-                    <select
-                        id="datatableEntries"
-                        class="js-select form-select form-select-borderless w-auto"
-                        autocomplete="off"
-                        data-hs-tom-select-options='{
-                                    "searchInDropdown": false,
-                                    "hideSearch": true
-                                 }'
-                        wire:model="per_page"
-                    >
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                    </select>
-                </div>
-                <!-- End Select -->
+  <div class="text-center pt-5 padding-bottom">
+      <a class="btn btn-lg btn-soft-primary px-5">See more</a>
 
-                <span class="text-secondary ms-2 me-2">{{ $data->currentPage() }}</span>
-                <span class="text-secondary me-2">of</span>
-
-                <!-- Pagination Quantity -->
-                <span id="datatableWithPaginationInfoTotalQty">{{ $data->lastPage() }}</span>
-            </div>
-        </div>
-        <!-- End Col -->
-
-        <div class="col-sm-auto pt-2">
-            <div class="table-responsive d-flex align-items-center justify-content-center justify-content-sm-end my-3">
-                <!-- Pagination -->
-                {{ $data->links() }}
-            </div>
-        </div>
-        <!-- End Col -->
-    </div>
+  </div>
 </div>

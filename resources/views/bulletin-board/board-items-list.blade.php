@@ -15,8 +15,8 @@
     <div class="d-flex justify-content-center justify-content-md-start">
         <nav class="navecation mb-3">
             <ul id="navi">
-                <li class="menu active">
-                    <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}">
+                <li class="menu">
+                    <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}" class="nav-link active">
                         ALL
                     </a>
                 </li>
@@ -45,18 +45,17 @@
     <!-- dots img -->
 
     <div class="tab-content bg-waves" id="myTabContent">
+{{--        <section class="text-end position-absolute end-0 ">--}}
+{{--            <img src="/images/bulletin-images/orange-dots.svg" class="img-fluid bg-dots-orange"/>--}}
+{{--        </section>--}}
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <section class="text-end">
-                <img src="/images/bulletin-images/orange-dots" class="img-fluid bg-dots-orange"/>
-            </section>
+
             <div class="row" data-masonry='{"percentPosition": true }'>
                     @foreach($data as $dt)
                     <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                     @endforeach
                     <!-- ends -->
-                <section class="text-center">
-                    <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
-                </section>
+
             </div>
 
         </div>
@@ -73,5 +72,7 @@
             ...
         </div>
     </div>
-
+    <section class="text-center">
+        <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
+    </section>
 </div>

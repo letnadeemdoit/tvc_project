@@ -15,57 +15,71 @@ use phpDocumentor\Reflection\Utils;
 class DashboardController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
 
-        $users= User::paginate(20);
+        $users = User::paginate(20);
 
-        return view('dash.index',compact('users'));
+        return view('dash.index', compact('users'));
 
     }
 
+    public function calendar(Request $request)
+    {
+        return view('dash.calendar.index', [
+            'user' => $request->user()
+        ]);
+    }
 
-    public function blogs(){
+    public function blogs()
+    {
 
         return view('dash.blog.display-as.index');
 
     }
 
-    public function houses(){
+    public function houses()
+    {
 
         return view('dash.houses.index');
 
     }
 
-    public function photoAlbum(){
+    public function photoAlbum()
+    {
 
         return view('dash.houses.photo-album.index');
 
     }
 
-    public function showSingleAlbum($id){
+    public function showSingleAlbum($id)
+    {
 
         $album = Album::findOrFail($id);
 
-        return view('dash.houses.photo-album.show',compact('album'));
+        return view('dash.houses.photo-album.show', compact('album'));
     }
 
 
-    public function bulletins(){
+    public function bulletins()
+    {
 
         return view('dash.bulletin-board.display-list.list');
 
     }
 
-    public function bulletinBoard(){
+    public function bulletinBoard()
+    {
 
 
-        $boards = Board::where('HouseId',\Auth::user()->HouseId)->get();
+        $boards = Board::where('HouseId', \Auth::user()->HouseId)->get();
 
-        return view('dash.bulletin-board.index',compact('boards'));
+        return view('dash.bulletin-board.index', compact('boards'));
 
     }
 
-    public function localGuide(Request $request){
+    public function localGuide(Request $request)
+    {
 
         return view('dash.settings.local-guide.index', [
             'user' => $request->user()
@@ -73,7 +87,8 @@ class DashboardController extends Controller
 
     }
 
-    public function foodItemList(Request $request){
+    public function foodItemList(Request $request)
+    {
 
         return view('dash.house-items.food-item-list.index', [
             'user' => $request->user()
@@ -81,7 +96,8 @@ class DashboardController extends Controller
 
     }
 
-    public function shoppingItemList(Request $request){
+    public function shoppingItemList(Request $request)
+    {
 
         return view('dash.house-items.shopping-item-list.index', [
             'user' => $request->user()
@@ -96,7 +112,8 @@ class DashboardController extends Controller
 
     }
 
-    public function photoAlbums(Request $request){
+    public function photoAlbums(Request $request)
+    {
 
         return view('dash.houses.photo-albums.index', [
             'user' => $request->user()
@@ -104,7 +121,8 @@ class DashboardController extends Controller
 
     }
 
-    public function photos(Request $request, $id){
+    public function photos(Request $request, $id)
+    {
 
         $album = Album::findOrFail($id);
 
@@ -116,13 +134,14 @@ class DashboardController extends Controller
     }
 
 
-    public function switchHouse(Request $request) {
+    public function switchHouse(Request $request)
+    {
         $user = User::where([
             'HouseId' => $request->house_id,
             'email' => auth()->user()->email,
         ])->first();
 
-        abort_if(!$user, 500,'Sorry! unable to switch house something went wrong. Try again later.');
+        abort_if(!$user, 500, 'Sorry! unable to switch house something went wrong. Try again later.');
 
         auth()->loginUsingId($user->user_id);
 
