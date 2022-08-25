@@ -70,7 +70,7 @@
                                 width="60" height="60" style="object-fit: cover"
                             />
                         </div>
-                        <div class="flex-grow-1 ms-3 d-flex justify-content-between align-items-center">
+                        <div class="flex-grow-1 ms-3 d-block d-sm-flex justify-content-between align-items-center">
                             <div>
                                 <h4 class="mb-0 text-dark" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0 py-1" style="color: #B6B4B4">
@@ -87,7 +87,7 @@
                                     <span class="ps-2">(34 Reviews)</span>
                                 </div>
                             </div>
-                            <div>
+                            <div class="mt-3 mt-sm-0">
                                 <a class="btn btn-soft-primary px-5">Food & Drink</a>
                             </div>
                         </div>
