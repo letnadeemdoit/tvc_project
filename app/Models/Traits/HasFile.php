@@ -72,7 +72,7 @@ trait HasFile
 //        })->join(' '));
 //
 //        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=e8604c&background=e8604c70';
-        return '/images/blog-images/blog.png';
+        return '/images/blog-images/single.png';
     }
 
     /**

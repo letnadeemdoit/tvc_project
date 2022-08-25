@@ -8,13 +8,13 @@
         .mb-100{
             margin-bottom: 100px;
         }
-        /*.bg-food{*/
-        /*    background-image: url('/images/house-items/food.svg') !important;*/
-        /*    background-repeat: no-repeat;*/
-        /*    background-position: center;*/
-        /*    background-size: contain;*/
-        /*    height: 50px;*/
-        /*}*/
+        .bg-food{
+            background-image: url('/images/house-items/food.svg') !important;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            height: 50px;
+        }
 
         .bg-shopping{
             background-image: url('/images/house-items/shopping.svg') !important;

@@ -1,4 +1,4 @@
-<x-modals.bs-modal class="modal-lg">
+    <x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
@@ -270,6 +270,19 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label" for="title">City</label>
+                    <input
+                        type="text"
+                        id="city"
+                        wire:model.defer="state.city"
+                        name="city"
+                        class="form-control"
+                        placeholder="Add City"
+                    />
+
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label" for="title">Date & Time</label>
                     <input
                         type="datetime-local"
@@ -310,7 +323,7 @@
 
                 <div class="mb-3 d-flex">
                     <button type="submit" class="btn btn-primary px-5 ms-auto">
-                        {{ $localGuide && $localGuide->id ? "Update" . ($localGuide->title ? " '$localGuide->title'" : '') : 'Add' }} Local Guide
+                        {{ $localGuide && $localGuide->id ? "Update" : 'Add' }} Local Guide
                     </button>
                 </div>
 

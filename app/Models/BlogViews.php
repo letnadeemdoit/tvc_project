@@ -11,8 +11,7 @@ class BlogViews extends Model
 
     protected $fillable = [
         'user_id',
-        'blog_id',
-        'views',
+        'ip_address'
     ];
 
     public function viewable()

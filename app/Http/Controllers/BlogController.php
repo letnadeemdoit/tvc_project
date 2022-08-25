@@ -16,32 +16,26 @@ class BlogController extends Controller
         ]);
     }
     public function show(Request $request, Blog $post) {
-//        $existing_likes = 0;
-//        $blog_Likes = $post->likes;
-//        foreach ($blog_Likes as $like){
-//            $existing_likes += $like->likes;
-//        }
+
         $user = $request->user();
 
         $blog_views = Blog::where('BlogId' ,$post->BlogId)->withCount('views')->first();
         $existing_views = $blog_views->views_count;
 
-//        $blogcomments = BlogComment::where('BlogId', $post->BlogId )->get();
-//        $numberofcomments = count($blogcomments);
 
-            $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
+        $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
 
-        $relatedBlog = Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get();
+        $relatedBlog = Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
-        $views = BlogViews::where('blog_id' ,$post->BlogId)->where('user_id', $user->user_id)->get();
+        $views = Blog::where('user_id' ,$post->user_id)->where('BlogId' ,$post->BlogId)->first();
 
-        if (count($views) == 0){
+
+        if (count($views->views) == 0){
             $view = new BlogViews();
 
             $view->fill([
                 'user_id' => $user->user_id,
-                'blog_id' => $post->BlogId,
-                'views' => 1,
+                'ip_address' => $request->getClientIp()
             ]);
 
             $post->views()->save($view);
@@ -50,9 +44,7 @@ class BlogController extends Controller
         return view('blog.post', [
             'user' => $request->user(),
             'post' => $post,
-//            'existing_likes' => $existing_likes,
             'existing_views' => $existing_views,
-//            'total_comments' => $numberofcomments,
             'categories' => $categories,
             'relatedBlog' => $relatedBlog
 

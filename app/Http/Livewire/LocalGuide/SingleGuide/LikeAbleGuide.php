@@ -1,34 +1,33 @@
 <?php
 
-namespace App\Http\Livewire\Blog;
+namespace App\Http\Livewire\LocalGuide\SingleGuide;
 
-use App\Models\Blog\Blog;
-use App\Models\Likes;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 use App\Http\Livewire\Traits\Toastr;
+use App\Models\Likes;
+use App\Models\LocalGuide;
+use Illuminate\Http\Request;
+use Livewire\Component;
 
-class LikeAbleBlog extends Component
+class LikeAbleGuide extends Component
 {
-    public Blog $post;
+    public LocalGuide $post;
     use Toastr;
     public $isExistingUser = false;
 
     public $existing_likes;
 
     protected $listeners = [
-        'blog-likes-cu-successfully' => '$refresh',
+        'guide-likes-cu-successfully' => '$refresh',
     ];
 
     public function mount(){
+        $guide_Likes = $this->post->likes;
+        $this->existing_likes = count($guide_Likes);
 
-        $blog_Likes = $this->post->likes;
-        $this->existing_likes = count($blog_Likes);
         $user = auth()->user();
 
-        $blog_likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->BlogId)->first();
-        if ($blog_likes){
+        $guide_Likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->id)->first();
+        if ($guide_Likes){
             $this->isExistingUser = true;
         }
     }
@@ -39,19 +38,20 @@ class LikeAbleBlog extends Component
     }
 
     public function likeBlog(Request $request){
+
         $user = auth()->user();
         if ($this->isExistingUser){
-            $blog_likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->BlogId)->first();
-            if ($blog_likes){
-                $blog_likes->delete();
+            $guide_Likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->id)->first();
+            if ($guide_Likes){
+                $guide_Likes->delete();
                 $this->existing_likes = $this->existing_likes-1;
                 $this->isExistingUser = false;
             }
-            $this->emit('blog-likes-cu-successfully');
+            $this->emit('guide-likes-cu-successfully');
         }
         else{
-            $blog_likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->BlogId)->first();
-            if (is_null($blog_likes)){
+            $guide_Likes = Likes::where('user_id' ,$user->user_id)->where('likeable_id' ,$this->post->id)->first();
+            if (is_null($guide_Likes)){
                 $like = new Likes();
                 $like->fill([
                     'user_id' => $user->user_id,
@@ -65,7 +65,7 @@ class LikeAbleBlog extends Component
                 $this->isExistingUser = true;
             }
 
-            $this->emit('blog-likes-cu-successfully');
+            $this->emit('guide-likes-cu-successfully');
         }
 
     }
