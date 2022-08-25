@@ -270,7 +270,7 @@
             </div>
         @endif
 
-        <div class="container mt-80 padding-bottom ">
+        <div class="container padding-bottom " style="padding-top: 80px">
             <livewire:guest-book.leav-a-review-guest-book :user="$user"/>
         </div>
 

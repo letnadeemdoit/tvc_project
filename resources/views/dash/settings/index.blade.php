@@ -125,6 +125,14 @@
                                 <i class="bi-bell nav-icon"></i> Guest Book
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
+                                   href="{{ route('dash.settings.category') }}">
+                                    <i class="bi-bell nav-icon"></i> Categories
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                     <!-- End Navbar Collapse -->
