@@ -53,7 +53,7 @@
     </div>
 
     <div class="container">
-        <div class="card border-0 rounded-20 py-3" style="margin-top: -70px;">
+        <div class="card border-0 rounded-20 py-3 shadow-none" style="margin-top: -70px;">
             <div class="card-body">
                 <h1 class="text-w-50 lh-30">{{ $post->Subject ? $post->Subject : '' }}</h1>
 
