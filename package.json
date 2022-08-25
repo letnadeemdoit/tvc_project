@@ -36,7 +36,6 @@
         "cropperjs": "^1.5.12",
         "dropzone": "^6.0.0-beta.2",
         "flag-icons": "^6.6.0",
-        "fullcalendar": "^5.11.3",
         "google-maps": "^4.3.3",
         "jquery": "^3.6.0",
         "jquery-ui": "^1.13.2",
@@ -47,6 +46,6 @@
         "smoothscroll-polyfill": "^0.4.4",
         "tinymce": "^6.1.2",
         "toastr": "^2.1.4",
-        "tom-select": "^2.1.0"
+        "tom-select": "^1.7.6"
     }
 }

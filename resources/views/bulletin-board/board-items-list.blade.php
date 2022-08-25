@@ -44,13 +44,16 @@
 
     <!-- dots img -->
 
-    <div class="tab-content bg-waves" id="myTabContent">
+    <div class="tab-content bg-waves" id="myTabContent" style="background-image: url('/images/bulletin-images/combined-shape.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: top right;">
 {{--        <section class="text-end position-absolute end-0 ">--}}
 {{--            <img src="/images/bulletin-images/orange-dots.svg" class="img-fluid bg-dots-orange"/>--}}
 {{--        </section>--}}
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-            <div class="row" data-masonry='{"percentPosition": true }'>
+            <div class="row" data-masonry='{"percentPosition": true }'  style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                     @foreach($data as $dt)
                     <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                     @endforeach
@@ -72,7 +75,7 @@
             ...
         </div>
     </div>
-    <section class="text-center">
-        <img src="/images/bulletin-images/dark-dots.png" class="img-fluid cards-dots-green"/>
-    </section>
+{{--    <section class="text-center">--}}
+{{--        <img src="" class="img-fluid cards-dots-green"/>--}}
+{{--    </section>--}}
 </div>

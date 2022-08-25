@@ -2,13 +2,17 @@
     <div class="row align-items-sm-center mb-4">
         <div class="col-lg-5 mb-2 mb-lg-0">
             <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-white me-3" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-fc-today>Today</button>
+                <button type="button" class="btn btn-white me-3" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="" data-fc-today>Today
+                </button>
 
-                <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm btn-no-focus rounded-circle me-1" data-fc-prev-month data-bs-toggle="tooltip" data-bs-placement="top" title="Previous month">
+                <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm btn-no-focus rounded-circle me-1"
+                        data-fc-prev-month data-bs-toggle="tooltip" data-bs-placement="top" title="Previous month">
                     <i class="bi-chevron-left"></i>
                 </button>
 
-                <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm btn-no-focus rounded-circle ms-1" data-fc-next-month data-bs-toggle="tooltip" data-bs-placement="top" title="Next month">
+                <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm btn-no-focus rounded-circle ms-1"
+                        data-fc-next-month data-bs-toggle="tooltip" data-bs-placement="top" title="Next month">
                     <i class="bi-chevron-right"></i>
                 </button>
 
@@ -33,11 +37,13 @@
                 <div class="d-flex align-items-center">
                     <!-- Dropdown -->
                     <div class="dropdown me-2">
-                        <button type="button" class="btn btn-white dropdown-toggle" id="calendarFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                        <button type="button" class="btn btn-white dropdown-toggle" id="calendarFilterDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                             <i class="bi-filter me-1"></i> Filter
                         </button>
 
-                        <div class="dropdown-menu dropdown-card" aria-labelledby="calendarFilterDropdown" style="min-width: 15rem;">
+                        <div class="dropdown-menu dropdown-card" aria-labelledby="calendarFilterDropdown"
+                             style="min-width: 15rem;">
                             <!-- Card -->
                             <div class="card">
                                 <div class="card-body">
@@ -45,21 +51,26 @@
 
                                     <!-- Form Check -->
                                     <div class="form-check" data-filter>
-                                        <input class="form-check-input" type="checkbox" value="fullcalendar-custom-event-hs-team" id="calendarPersonalCheck" checked>
+                                        <input class="form-check-input" type="checkbox"
+                                               value="fullcalendar-custom-event-hs-team" id="calendarPersonalCheck"
+                                               checked>
                                         <label class="form-check-label" for="calendarPersonalCheck">HS Team</label>
                                     </div>
                                     <!-- End Form Check -->
 
                                     <!-- Form Check -->
                                     <div class="form-check form-check-danger" data-filter>
-                                        <input class="form-check-input" type="checkbox" value="fullcalendar-custom-event-reminders" id="calendarRemindersCheck" checked>
+                                        <input class="form-check-input" type="checkbox"
+                                               value="fullcalendar-custom-event-reminders" id="calendarRemindersCheck"
+                                               checked>
                                         <label class="form-check-label" for="calendarRemindersCheck">Reminders</label>
                                     </div>
                                     <!-- End Form Check -->
 
                                     <!-- Form Check -->
                                     <div class="form-check form-check-warning" data-filter>
-                                        <input class="form-check-input" type="checkbox" value="fullcalendar-custom-event-tasks" id="calendarTasksCheck" checked>
+                                        <input class="form-check-input" type="checkbox"
+                                               value="fullcalendar-custom-event-tasks" id="calendarTasksCheck" checked>
                                         <label class="form-check-label" for="calendarTasksCheck">Tasks</label>
                                     </div>
                                     <!-- End Form Check -->
@@ -72,7 +83,9 @@
 
                                     <!-- Form Check -->
                                     <div class="form-check form-check-success" data-filter>
-                                        <input class="form-check-input" type="checkbox" value="fullcalendar-custom-event-holidays" id="calendarHolidaysCheck" checked>
+                                        <input class="form-check-input" type="checkbox"
+                                               value="fullcalendar-custom-event-holidays" id="calendarHolidaysCheck"
+                                               checked>
                                         <label class="form-check-label" for="calendarHolidaysCheck">Holidays</label>
                                     </div>
                                     <!-- End Form Check -->
@@ -85,11 +98,13 @@
 
                     <!-- Dropdown -->
                     <div class="dropdown me-2">
-                        <button type="button" class="btn btn-white dropdown-toggle" id="calendarEventsDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                        <button type="button" class="btn btn-white dropdown-toggle" id="calendarEventsDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                             <i class="bi-calendar-event me-1"></i> Events
                         </button>
 
-                        <div class="dropdown-menu dropdown-menu-sm-end dropdown-card" aria-labelledby="calendarFilterDropdown" style="width: 17rem;">
+                        <div class="dropdown-menu dropdown-menu-sm-end dropdown-card"
+                             aria-labelledby="calendarFilterDropdown" style="width: 17rem;">
                             <!-- Card -->
                             <div class="card">
                                 <div class="card-body card-body-height">
@@ -98,7 +113,9 @@
                                     <!-- External Events -->
                                     <div id="external-events" class="fullcalendar-custom">
                                         <!-- Event -->
-                                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-hs-team' style="background-color: #eaf1ff; border-color: #eaf1ff;" data-event='{
+                                        <div
+                                            class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-hs-team'
+                                            style="background-color: #eaf1ff; border-color: #eaf1ff;" data-event='{
                              "title": "Open a new task on Jira",
                              "image": "./assets/svg/brands/jira-icon.svg",
                              "className": "",
@@ -106,7 +123,9 @@
                            }'>
                                             <div class='fc-event-title' style="max-width: 14rem;">
                                                 <div class='d-flex'>
-                                                    <img class="avatar avatar-xss me-2" src="./assets/svg/brands/jira-icon.svg" alt="Image Description">
+                                                    <img class="avatar avatar-xss me-2"
+                                                         src="./assets/svg/brands/jira-icon.svg"
+                                                         alt="Image Description">
                                                     <span class="text-truncate">Open a new task on Jira</span>
                                                 </div>
                                             </div>
@@ -114,7 +133,9 @@
                                         <!-- End Event -->
 
                                         <!-- Event -->
-                                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-reminders' style="background-color: #fdeef2; border-color: #fdeef2;" data-event='{
+                                        <div
+                                            class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-reminders'
+                                            style="background-color: #fdeef2; border-color: #fdeef2;" data-event='{
                                "title": "Send weekly invoice to John",
                                "image": "./assets/svg/brands/excel-icon.svg",
                                "className": "fc-event-success",
@@ -122,7 +143,9 @@
                              }'>
                                             <div class='fc-event-title' style="max-width: 14rem;">
                                                 <div class='d-flex'>
-                                                    <img class="avatar avatar-xss me-2" src="./assets/svg/brands/excel-icon.svg" alt="Image Description">
+                                                    <img class="avatar avatar-xss me-2"
+                                                         src="./assets/svg/brands/excel-icon.svg"
+                                                         alt="Image Description">
                                                     <span class="text-truncate">Send weekly invoice to John</span>
                                                 </div>
                                             </div>
@@ -130,7 +153,9 @@
                                         <!-- End Event -->
 
                                         <!-- Event -->
-                                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-hs-team' style="background-color: #eaf1ff; border-color: #eaf1ff;" data-event='{
+                                        <div
+                                            class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-hs-team'
+                                            style="background-color: #eaf1ff; border-color: #eaf1ff;" data-event='{
                                "title": "Shoot a message to Christina on Slack",
                                "image": "./assets/svg/brands/slack-icon.svg",
                                "className": "",
@@ -138,15 +163,20 @@
                              }'>
                                             <div class='fc-event-title' style="max-width: 14rem;">
                                                 <div class='d-flex'>
-                                                    <img class="avatar avatar-xss me-2" src="./assets/svg/brands/slack-icon.svg" alt="Image Description">
-                                                    <span class="text-truncate">Shoot a message to Christina on Slack</span>
+                                                    <img class="avatar avatar-xss me-2"
+                                                         src="./assets/svg/brands/slack-icon.svg"
+                                                         alt="Image Description">
+                                                    <span
+                                                        class="text-truncate">Shoot a message to Christina on Slack</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- End Event -->
 
                                         <!-- Event -->
-                                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-tasks' style="background-color: #fdf3e8; border-color: #fdf3e8;" data-event='{
+                                        <div
+                                            class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-tasks'
+                                            style="background-color: #fdf3e8; border-color: #fdf3e8;" data-event='{
                                "title": "First team timeline",
                                "image": "",
                                "className": "fc-event-success",
@@ -164,7 +194,9 @@
                                         <!-- End Event -->
 
                                         <!-- Event -->
-                                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-reminders' style="background-color: #fdeef2; border-color: #fdeef2;" data-event='{
+                                        <div
+                                            class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-reminders'
+                                            style="background-color: #fdeef2; border-color: #fdeef2;" data-event='{
                                "title": "Download monthly data in DigitalOcean",
                                "image": "./assets/svg/brands/digitalocean-icon.svg",
                                "className": "",
@@ -172,15 +204,20 @@
                              }'>
                                             <div class='fc-event-title' style="max-width: 14rem;">
                                                 <div class='d-flex'>
-                                                    <img class="avatar avatar-xss me-2" src="./assets/svg/brands/digitalocean-icon.svg" alt="Image Description">
-                                                    <span class="text-truncate">Download monthly data in DigitalOcean</span>
+                                                    <img class="avatar avatar-xss me-2"
+                                                         src="./assets/svg/brands/digitalocean-icon.svg"
+                                                         alt="Image Description">
+                                                    <span
+                                                        class="text-truncate">Download monthly data in DigitalOcean</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- End Event -->
 
                                         <!-- Event -->
-                                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-tasks' style="background-color: #fdf3e8; border-color: #fdf3e8;" data-event='{
+                                        <div
+                                            class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-tasks'
+                                            style="background-color: #fdf3e8; border-color: #fdf3e8;" data-event='{
                                "title": "Hire a Figma designer",
                                "image": "./assets/svg/brands/figma-icon.svg",
                                "className": "",
@@ -188,7 +225,9 @@
                              }'>
                                             <div class='fc-event-title' style="max-width: 14rem;">
                                                 <div class='d-flex'>
-                                                    <img class="avatar avatar-xss me-2" src="./assets/svg/brands/figma-icon.svg" alt="Image Description">
+                                                    <img class="avatar avatar-xss me-2"
+                                                         src="./assets/svg/brands/figma-icon.svg"
+                                                         alt="Image Description">
                                                     <span class="text-truncate">Hire a Figma designer</span>
                                                 </div>
                                             </div>
@@ -196,7 +235,9 @@
                                         <!-- End Event -->
 
                                         <!-- Event -->
-                                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-hs-team' style="background-color: #eaf1ff; border-color: #eaf1ff;" data-event='{
+                                        <div
+                                            class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event fc-daygrid-inline-block-event fullcalendar-custom-event-hs-team'
+                                            style="background-color: #eaf1ff; border-color: #eaf1ff;" data-event='{
                                "title": "Mobile App rework for (Pixeel)",
                                "image": "",
                                "className": "",
@@ -249,9 +290,22 @@
     @push('scripts')
         <script>
             $(document).ready(function () {
+                // Fullcalendar controls
+                const
+                    $prevMonthBtn = document.querySelector('[data-fc-prev-month]'),
+                    $nextMonthBtn = document.querySelector('[data-fc-next-month]'),
+                    $todayBtn = document.querySelector('[data-fc-today]'),
+                    $dateTitle = document.querySelector('[data-fc-title]'),
+                    $gridViewSelect = document.querySelector('[data-fc-grid-view]')
+
+                // Filter controls
+                const
+                    $filterByTitle = document.querySelector('#filter-by-title'),
+                    $filters = document.querySelectorAll('[data-filter]')
+
                 // INITIALIZATION OF SELECT
                 // =======================================================
-               window.HSTomSelect.init('.js-select', {
+                window.HSTomSelect.init('.js-select', {
                     hideSearch: true
                 })
 
@@ -260,13 +314,15 @@
                 var m = date.getMonth() + 1;
                 var y = date.getFullYear();
                 var calendarEl = document.getElementById('calendar');
-                var calendar = new window.FullCalendar.Calendar(calendarEl, {
-                    plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin ],
+                HSFullCalendar.init('#calendar', {
+                    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
                     themeSystem: 'bootstrap5',
                     headerToolbar: false,
                     editable: true,
                     defaultAllDay: false,
-
+                    datesSet(dateSet) {
+                        $dateTitle.textContent = dateSet.view.title
+                    },
                     eventClick: function (calEvent, jsEvent, view) {
                         if (calEvent.className != 'noway') {
                             $('#newvacationfooter').hide();
@@ -304,14 +360,57 @@
                     events: []
                 });
 
-                calendar.render();
 
-                $('#BackGrndColor').css("background-color", '#' + $('#BackGrndColor').val()).change(function () {
-                    $('#BackGrndColor').css("background-color", '#' + $('#BackGrndColor').val());
+                let
+                    guestsField = HSTomSelect.getItem("eventGuestsLabel"),
+                    repeatField = HSTomSelect.getItem("eventRepeatLabel"),
+                    eventColorField = HSTomSelect.getItem("eventColorLabel"),
+                    fullcalendarEditable = HSFullCalendar.getItem('calendar');
+
+                document.addEventListener('scroll', function () {
+                    if ($popover && $popover._element) {
+                        $popover.dispose();
+                    }
                 });
-                $('#FontColor').css("background-color", '#' + $('#FontColor').val()).change(function () {
-                    $('#FontColor').css("background-color", '#' + $('#FontColor').val());
+
+                $prevMonthBtn.addEventListener('click', function () {
+                    fullcalendarEditable.prev();
+
+                    HSCore.hideTooltips();
                 });
+
+                $nextMonthBtn.addEventListener('click', function () {
+                    fullcalendarEditable.next();
+
+                    HSCore.hideTooltips();
+                });
+
+                $gridViewSelect.addEventListener('change', function (event) {
+                    fullcalendarEditable.changeView(event.target.value);
+                });
+
+                $todayBtn.addEventListener('click', function () {
+                    fullcalendarEditable.today();
+                });
+
+                $todayBtn.title = new Date().toDateString();
+
+                $addEventToCalendarModal.addEventListener('hide.bs.modal', function () {
+                    $titleField.style.height = 'auto';
+                });
+                $addEventToCalendarModal.addEventListener('show.bs.modal', function () {
+                    clearForm();
+                });
+                $addEventToCalendarModal.addEventListener('shown.bs.modal', function () {
+                    $titleField.style.height = `${$titleField.scrollHeight}px`;
+
+                    $titleField.focus();
+                });
+
+                $titleField.addEventListener('input', function () {
+                    $titleField.style.height = `${$titleField.scrollHeight}px`;
+                });
+
 
             });
         </script>
