@@ -202,8 +202,8 @@
                         window.tinymce.init({
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#Content',
-                        plugins: 'image',
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                        plugins: 'image code',
+  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
   /* enable title field in the Image dialog*/
   image_title: false,
 
