@@ -14,7 +14,7 @@
 
                     <div class="ps-2">
                         <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
-                        <p class="mb-0 date-fs">{{date('Y-M-d',strtotime($dt->created_at))}} <a href="#" class="color-blue fw-normal">View</a> </p>
+                        <p class="mb-0 date-fs">{{ $dt->city }} <a href="#" class="color-blue fw-normal">View</a> </p>
                     </div>
                 </div>
                 {{--                                        <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->category->name}}</a>--}}
@@ -26,7 +26,7 @@
         </div>
         <div class="w-100">
             <a class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE HOUSE</a>
-            <a href="{{route('guest.local-guide.show',$dt->id)}}">
+            <a href="{{route('guest.local-guide.show',$dt->title)}}">
                 <img src="/images/blog-images/house-5.png" class="card-img-top  position-relative p-2" style="height: 320px !important;object-fit: cover;border-radius:17px;" alt="..." />
             </a>
 

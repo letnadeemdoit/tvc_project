@@ -70,7 +70,7 @@ class Blog extends Model implements Auditable
 //        })->join(' '));
 //
 //        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
-        return '/images/blog-images/blog.png';
+        return '/images/blog-images/single.png';
     }
 
     /**

@@ -65,7 +65,7 @@
 {{--                            alt="Image"--}}
 {{--                            width="60" height="60" style="object-fit: cover"--}}
 {{--                        />--}}
-                        <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">
+                        <img src="/images/blog-images/beach.png" class="img-fluid position-relative" alt="...">
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>

@@ -10,16 +10,16 @@
                 @foreach($categories as $category)
                     <li>
                         <a href="{{ route('guest.local-guide.index', ['category' => $category->slug]) }}" class="menu active">
-                            @if($category->image)
-                                <img
-                                    src="{{$category->getFileUrl('image')}}"
-                                    class="avatar-initials me-2 d-none d-md-inline-block"
-                                    width="30px"
-                                    alt="img"
-                                />
-                            @else
-                                <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/>
-                            @endif
+{{--                            @if($category->image)--}}
+{{--                                <img--}}
+{{--                                    src="{{$category->getFileUrl('image')}}"--}}
+{{--                                    class="avatar-initials me-2 d-none d-md-inline-block"--}}
+{{--                                    width="30px"--}}
+{{--                                    alt="img"--}}
+{{--                                />--}}
+{{--                            @else--}}
+{{--                                <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/>--}}
+{{--                            @endif--}}
                             {{ $category->name }}
                         </a>
                     </li>

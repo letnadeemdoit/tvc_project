@@ -30,7 +30,7 @@ class CreateOrUpdateBoardItemForm extends Component
 
     public function render()
     {
-        $categories = Category::bulletinBoard()->get();
+        $categories = Category::where('type', 'bulletin-board')->where('house_id', $this->user->HouseId)->get();
 
         return view('dash.settings.bulletin-board.create-or-update-board-item-form', compact('categories'));
     }
