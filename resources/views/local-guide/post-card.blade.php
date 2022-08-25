@@ -1,4 +1,4 @@
-<div class="col-md-6 col-xl-4 mb-4">
+<div class="col-md-6 col-xl-4 mb-4 item">
     <div class="card blog-card rounded-2">
         <div class="card-header border-0 pt-3 pb-1">
             <div class="d-block d-sm-flex justify-content-between align-items-center">
