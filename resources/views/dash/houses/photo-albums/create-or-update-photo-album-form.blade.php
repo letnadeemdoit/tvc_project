@@ -198,7 +198,7 @@
 
                 <div class="mb-3 d-flex">
                     <button type="submit" class="btn btn-primary px-5 ms-auto">
-                        {{ $album && $album->id ? "Update" . ($album->name ? " '$album->name'" : '') : 'Add' }} Photo Album
+                        {{ $album && $album->id ? "Update" : 'Add' }} Photo Album
                     </button>
                 </div>
 

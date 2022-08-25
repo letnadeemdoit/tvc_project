@@ -1,4 +1,4 @@
-<x-modals.bs-modal class="modal-lg">
+<x-modals.bs-modal class="modal-xl">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
@@ -11,142 +11,50 @@
             ></button>
         </div>
         <div class="modal-body">
-            <form wire:submit.prevent="savePhotoCU" method="post">
 
-                <div
-                    class="mb-3"
-                    x-data="{isFileDropping: false, isUploadingFile: false, uploadingProgress: 0}"
-                    x-on:drop="isFileDropping = false"
-                    x-on:drop.prevent="
-                        if ($event.dataTransfer.files.length > 0 ) {
-                            isUploadingFile = true;
-                            var allowedExtensions = /(\/jpg|\/jpeg|\/png|\/gif)$/i;
-                            var fileTypeCheck = $event.dataTransfer.files[0].type;
-                            if (!allowedExtensions.exec(fileTypeCheck)) {
-                                $('.showErrorMsg').addClass('d-block');
-                                return;
-                             }
-                            $('.showErrorMsg').addClass('d-none');
-                            @this.upload( 'file', $event.dataTransfer.files[0],
-                                (uploadedFilename) => {
-                                }, () => {
+            <div class="row">
 
-                                }, (event) => {
-                                    uploadingProgress = event.detail.progress;
-                                });
-                        }
-                    "
-                    x-on:dragover.prevent="isFileDropping = true"
-                    x-on:dragleave.prevent="isFileDropping = false"
-                    @modal-is-showing
-                >
-
-                    <label class="form-label" for="">Upload Your Image</label>
-                    <div class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">
-                        @if($photo && !is_null($photo->image))
-                            {{--           TODO:  need to fix the design               --}}
-                            <div class="col h-100">
-                                <div class="dz-preview dz-file-preview">
-                                    <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"
-                                       wire:click.prevent="deleteFile">
-                                        <small class="bi-x" data-dz-remove></small>
-                                    </a>
-                                    <div class="dz-details d-flex">
-                                        <div class="dz-img flex-shrink-0">
-                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $photo->getFileUrl() }}"/>
-                                        </div>
-
-                                        <div class="dz-file-wrapper flex-grow-1">
-                                            <h6 class="dz-filename">
-                                                @if($file)
-                                                    <span class="dz-title" data-dz-name>
-                                                        {{ $file->getClientOriginalName() }}
-                                                    </span>
-                                                @endif
-                                            </h6>
-                                            <div class="dz-size" data-dz-size></div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        <div class="dz-message">
-                            <h5>Drag and drop your file here</h5>
-                            <p class="mb-2">or</p>
-                            <div class="text-center"
-                                 x-on:livewire-upload-start="isUploadingFile = true"
-                                 x-on:livewire-upload-finish=""
-                                 x-on:livewire-upload-error=""
-                                 x-on:livewire-upload-progress="uploadingProgress = $event.detail.progress"
-                            >
-                                <input
-                                    id="file_upload"
-                                    type="file"
-                                    name="image"
-                                    hidden="hidden"
-                                    wire:model="file"
-                                    x-ref="file_upload"
-                                    accept=".jpg,.png,.jpeg,.gif,.tiff"
-                                />
-                                <button class="btn bg-primary btn-sm text-white"
-                                        @click.prevent="$refs.file_upload.click()">Upload Image
-                                </button>
-                            </div>
-                        </div>
-
-
-                        <div class="col h-100 mt-4" style="display: none" x-show="isUploadingFile">
-                            <div class="dz-preview dz-file-preview">
-                                <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"
-                                   @click.prevent="$wire.set('file', null); isUploadingFile = false">
-                                    <small class="bi-x" data-dz-remove></small>
-                                </a>
-                                <div class="dz-details d-flex">
-                                    <div class="dz-img flex-shrink-0">
-                                        @if($file && in_array($file->getClientOriginalExtension(), config('livewire.temporary_file_upload.preview_mimes')))
-                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail
-                                                 src="{{ $file->temporaryUrl() }}"/>
-                                        @endif
-                                    </div>
-
-                                    <div class="dz-file-wrapper flex-grow-1">
-                                        <h6 class="dz-filename">
-                                            @if($file)
-                                                <span class="dz-title" data-dz-name>
-                                                    {{ $file->getClientOriginalName() }}
-                                                </span>
-                                            @endif
-                                        </h6>
-                                        <div class="dz-size" data-dz-size></div>
-                                    </div>
-                                </div>
-
-                                <div class="dz-progress progress">
-                                    <div
-                                        class="dz-upload progress-bar bg-success"
-                                        role="progressbar"
-                                        x-bind:style="'width:' + `${uploadingProgress}%`"
-                                        aria-valuenow="0"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"
-                                        data-dz-uploadprogress>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="showErrorMsg fw-semi-bold mt-1" style="font-size: 13px !important;color: #ff0000 !important;display: none">Only jpg,png,giff,tiff are allowed</span>
-                    @error('image')
-                    <span class="invalid-feedback d-block">{{$message}}</span>
-                    @enderror
-
+                <div class="box-2 col-12 col-lg-5">
+                    <div class="result"></div>
                 </div>
 
+                <div class="box-2 col-12 col-lg-7 text-center align-self-center img-result hide">
+                    <!-- result of crop -->
+                    <img class="cropped" src="" alt="">
+                </div>
+                <!-- input file -->
 
+                <div class="box d-flex justify-content-between align-items-center my-3">
+                    <div class="options hide">
+                        <label> Width</label>
+                        <input type="number" class="img-w" value="300" min="100" max="1200"/>
+                    </div>
+                    <!-- save btn -->
+                    <div class="">
+                        <button class="btn save btn-primary btn-sm hide">Crop</button>
+                        <!-- download btn -->
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <form wire:submit.prevent="savePhotoCU" method="post">
+
+                <div class="mb-3">
+                    <input type="file"
+                           class="form-control"
+{{--                           wire:model.defer="state.image"--}}
+                           name=""
+                           id="file-input"
+                    >
+                </div>
+
+                <input type="text"
+                       name="image"
+                       wire:model.defer="state.image"
+                       value=""
+                       class="form-control" id="cropImagePath">
 
                 <div
                     class="mb-3"
@@ -172,4 +80,72 @@
             </form>
         </div>
     </div>
+
+    @push('scripts')
+
+        <script>
+            let result = document.querySelector('.result'),
+                img_result = document.querySelector('.img-result'),
+                img_w = document.querySelector('.img-w'),
+                img_h = document.querySelector('.img-h'),
+                options = document.querySelector('.options'),
+                save = document.querySelector('.save'),
+                cropped = document.querySelector('.cropped'),
+                dwn = document.querySelector('.download'),
+                upload = document.querySelector('#file-input'),
+                cropper = '';
+
+            // on change show image with crop options
+            upload.addEventListener('change', (e) => {
+                if (e.target.files.length) {
+                    // start file reader
+                    const reader = new FileReader();
+                    reader.onload = (e)=> {
+                        if(e.target.result){
+                            // create new image
+                            let img = document.createElement('img');
+
+
+                            img.id = 'image';
+                            img.src = e.target.result
+                            // clean result before
+                            result.innerHTML = '';
+                            // append new image
+                            result.appendChild(img);
+                            // show save btn and options
+                            save.classList.remove('hide');
+                            options.classList.remove('hide');
+                            // init cropper
+                            cropper = new Cropper(img);
+                        }
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+
+            // save on click
+            save.addEventListener('click',(e)=>{
+                e.preventDefault();
+                // get result to data uri
+                let imgSrc = cropper.getCroppedCanvas({
+
+                    width: img_w.value // input value
+                }).toDataURL();
+
+                document.getElementById('cropImagePath').value = imgSrc;
+
+                @this.set('state.image',imgSrc,true)
+
+                cropped.classList.remove('hide');
+                img_result.classList.remove('hide');
+                // show image cropped
+                cropped.src = imgSrc;
+                dwn.classList.remove('hide');
+                dwn.download = 'imagename.png';
+                dwn.setAttribute('href',imgSrc);
+            });
+        </script>
+
+    @endpush
+
 </x-modals.bs-modal>

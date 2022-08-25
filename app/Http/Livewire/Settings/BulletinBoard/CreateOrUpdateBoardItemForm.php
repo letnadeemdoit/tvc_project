@@ -26,6 +26,7 @@ class CreateOrUpdateBoardItemForm extends Component
 
     protected $listeners = [
         'showBulletinBoardCUModal',
+//        'refresh-cu' => '$refresh',
     ];
 
     public function render()
@@ -42,6 +43,8 @@ class CreateOrUpdateBoardItemForm extends Component
 
     public function showBulletinBoardCUModal($toggle, ?Board $boardItem)
     {
+//        $this->emitSelf('refresh-cu');
+
         $this->emitSelf('toggle', $toggle);
         $this->boardItem = $boardItem;
         $this->reset(['state', 'file']);

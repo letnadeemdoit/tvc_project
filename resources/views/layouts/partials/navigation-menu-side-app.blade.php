@@ -61,6 +61,13 @@
                         </div>
 
                         <div class="nav-item">
+                            <a class="nav-link  {{ link_is_active_with_class(['dash.plans-and-pricing']) }}" href="{{route('dash.plans-and-pricing')}}" data-placement="left">
+                                <i class="bi-router nav-icon"></i>
+                                <span class="nav-link-title">Plans &amp; Pricing</span>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
                             <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list']) }}
                                 "
                                href="#navbarVerticalHouseItemList" role="button" data-bs-toggle="collapse"

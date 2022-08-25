@@ -129,6 +129,7 @@ Route::middleware([
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
         Route::get('/food-item-list', [DashboardController::class, 'foodItemList'])->name('food-item-list');
         Route::get('/shopping-item-list', [DashboardController::class, 'shoppingItemList'])->name('shopping-item-list');
+        Route::get('/plans-and-pricing', [DashboardController::class, 'planAndPricing'])->name('plans-and-pricing');
         Route::put('/current-house', [DashboardController::class, 'switchHouse'])->name('switch-house');
         Route::controller(\App\Http\Controllers\SettingController::class)
             ->prefix('settings')
