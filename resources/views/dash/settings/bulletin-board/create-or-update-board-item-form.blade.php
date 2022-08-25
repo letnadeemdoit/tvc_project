@@ -11,16 +11,16 @@
         </div>
         <div class="modal-body">
             <form wire:submit.prevent="saveBulletinBoardCU" method="post">
-                <x-jet-validation-errors />
+{{--                <x-jet-validation-errors />--}}
 
                 @if($boardItem && $boardItem->image)
                     <div class="d-flex mb-3">
                         <div class="mx-auto position-relative">
                             <a
                                 href="#"
-                                class="position-absolute btn btn-soft-danger btn-icon btn-sm" style="right: 5px; top: 5px"
+                                class="position-absolute" style="right: 5px; top: 5px"
                                 wire:click.prevent="deleteFile"
-                            ><i class="bi-trash3-fill"></i></a>
+                            ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
                             <img src="{{ $boardItem->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="mb-3 d-flex">
-                    <button type="submit" class="btn btn-primary px-5 ms-auto">{{ $boardItem && $boardItem->id ? "Update" . ($boardItem->title ? " '$boardItem->title'" : '') : 'Add' }} Board Item</button>
+                    <button type="submit" class="btn btn-primary px-5 ms-auto">{{ $boardItem && $boardItem->id ? "Update" : 'Add' }} Board Item</button>
                 </div>
 
             </form>

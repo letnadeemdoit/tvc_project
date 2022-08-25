@@ -1,4 +1,4 @@
-<x-modals.bs-modal class="modal-lg">
+    <x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
@@ -323,7 +323,7 @@
 
                 <div class="mb-3 d-flex">
                     <button type="submit" class="btn btn-primary px-5 ms-auto">
-                        {{ $localGuide && $localGuide->id ? "Update" . ($localGuide->title ? " '$localGuide->title'" : '') : 'Add' }} Local Guide
+                        {{ $localGuide && $localGuide->id ? "Update" : 'Add' }} Local Guide
                     </button>
                 </div>
 

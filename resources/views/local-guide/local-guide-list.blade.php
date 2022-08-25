@@ -94,8 +94,11 @@
         @endif
     </div>
 
-  <div class="text-center pt-5 padding-bottom">
-      <a class="btn btn-lg btn-soft-primary px-5">See more</a>
+    @if(isset($data) && count($data) >6 )
+        <div class="text-center pt-5 padding-bottom">
+            <a class="btn btn-lg btn-soft-primary px-5" id="next">See more</a>
+        </div>
+    @endif
 
-  </div>
+
 </div>

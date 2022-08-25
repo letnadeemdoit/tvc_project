@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label class="form-label" for="amenities">Amenities:*</label>
+                <label class="form-label" for="amenities">Amenities:* <span class="ms-2 fw-semi-bold fs-12">(CTRL or CMD + Click to Select Multiple Amenities)</span></label>
                 <select
                     type="text"
                     class="form-control @error('amenities') is-invalid @enderror"
@@ -70,7 +70,6 @@
                     wire:model.defer="state.amenities"
                     multiple
                 >
-                    <option>Choose amenities</option>
                     @foreach($this->amenities as $amenity)
                         <option value="{{ $amenity->AmenityID }}">{{ $amenity->AmenityName }}</option>
                     @endforeach
