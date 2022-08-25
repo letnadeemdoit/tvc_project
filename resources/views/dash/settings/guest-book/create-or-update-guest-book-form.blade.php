@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
-                {{ $guestBook && $guestBook->id ? "Update" . ($guestBook->title ? " '$guestBook->title'" : '') : 'Add' }}
+                {{ $guestBook && $guestBook->id ? "Update" : 'Add' }}
                 Guest Book</h5>
             <button
                 type="button"
