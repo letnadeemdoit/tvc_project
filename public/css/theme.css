@@ -43390,7 +43390,7 @@ body {
 }
 @font-face {
   font-family: poppins-bold;
-  src: url("/fonts/Poppins-Bold.ttf");
+  src: url("/fonts/Poppins-SemiBold.ttf");
 }
 .poppins-bold {
   font-family: poppins-bold;
@@ -43828,6 +43828,10 @@ header nav button:last-child:hover {
   background-size: auto;
   max-width: 100%;
   height: 40px;
+}
+
+.btn-dark-secondary:hover {
+  color: #2A3342 !important;
 }
 
 .bg-crystals {
@@ -44563,6 +44567,9 @@ header nav button:last-child:hover {
     margin-right: 3px !important;
     padding: 2px !important;
     min-height: 92px !important;
+  }
+  .switch-button a {
+    font-size: 12px;
   }
   .category-cards .nav-link {
     margin-right: 10px !important;
