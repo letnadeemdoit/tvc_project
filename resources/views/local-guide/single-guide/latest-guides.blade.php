@@ -40,7 +40,7 @@
 {{--                        <img src="/images/blog-images/rounded-image.png" class="img-fluid position-relative" alt="...">--}}
                     </div>
                     <div class="flex-grow-1 ms-3">
-                        <a href="{{route('guest.local-guide.show', $dt->title)}}">
+                        <a href="{{route('guest.local-guide.show', $dt->id)}}">
                             <h4 class="mb-0" style="color: #6D6D6D">{{ $dt->title }}</h4>
                         </a>
                         <p class="mb-0" style="color: #B6B4B4">{{\Carbon\Carbon::parse($dt->BlogDate)->format('d M Y')}}</p>
