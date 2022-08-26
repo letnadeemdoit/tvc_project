@@ -204,10 +204,26 @@
                         window.tinymce.init({
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#Content',
-                        plugins: 'image code',
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+                        plugins: 'fullscreen image code lists',
+  toolbar: 'insertfile undo redo | styleselect fontfamily fontsize blocks lineheight  | bold italic | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor | link image | code',
   /* enable title field in the Image dialog*/
   image_title: false,
+
+  block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
+
+  line_height_formats: '1 1.2 1.4 1.6 2',
+
+  font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+
+  font_family_formats: 'Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace; AkrutiKndPadmini=Akpdmi-n',
+
+  formats: {
+    // Changes the alignment buttons to add a class to each of the matching selector elements
+    alignleft: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'left' },
+    aligncenter: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'center' },
+    alignright: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'right' },
+    alignjustify: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'full' }
+  },
 
   browser_spellcheck: true,
 
