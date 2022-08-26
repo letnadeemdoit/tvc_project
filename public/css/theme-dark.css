@@ -34288,7 +34288,7 @@ body {
 }
 @font-face {
   font-family: poppins-bold;
-  src: url("/fonts/Poppins-SemiBold.ttf");
+  src: url("/fonts/Poppins-Bold.woff");
 }
 .poppins-bold {
   font-family: poppins-bold;
