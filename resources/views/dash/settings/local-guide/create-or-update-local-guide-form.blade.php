@@ -268,20 +268,6 @@
 {{--                    />--}}
 
 {{--                </div>--}}
-
-                <div class="mb-3">
-                    <label class="form-label" for="title">City</label>
-                    <input
-                        type="text"
-                        id="city"
-                        wire:model.defer="state.city"
-                        name="city"
-                        class="form-control"
-                        placeholder="Add City"
-                    />
-
-                </div>
-
                 <div class="mb-3">
                     <label class="form-label" for="title">Date & Time</label>
                     <input

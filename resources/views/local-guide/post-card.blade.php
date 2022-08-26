@@ -52,11 +52,11 @@
                             <span class="ps-2 text-dark">({{$dt->reviews->count()}} Reviews)</span>
                         </a>
                     </li>
-                    <li class="pt-2 pt-md-0"><img src="/images/local-guide/chat-comment.svg" class="img-fluid me-1">
-                        <a href="{{route('guest.local-guide.show',$dt->id)}}">
-                            <span class="text-dark">{{$dt->comments->count()}}  Comments</span>
-                        </a>
-                    </li>
+{{--                    <li class="pt-2 pt-md-0"><img src="/images/local-guide/chat-comment.svg" class="img-fluid me-1">--}}
+{{--                        <a href="{{route('guest.local-guide.show',$dt->id)}}">--}}
+{{--                            <span class="text-dark">{{$dt->comments->count()}}  Comments</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
         </div>

@@ -26,4 +26,15 @@ class Review extends Model implements Auditable
         return $this->morphTo();
     }
 
+
+    public function house()
+    {
+        return $this->belongsTo(House::class, 'HouseId', 'house_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
 }

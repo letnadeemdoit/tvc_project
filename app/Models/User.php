@@ -221,6 +221,11 @@ class User extends Authenticatable implements Auditable
         return $this->belongsTo(House::class, 'HouseId', 'HouseID');
     }
 
+    public function review()
+    {
+        return $this->hasOne(Review::class);
+    }
+
     public function getAdditionalHousesAttribute()
     {
         return House::whereHas('users', function ($query) {

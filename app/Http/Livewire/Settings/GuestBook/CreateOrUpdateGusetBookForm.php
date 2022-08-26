@@ -60,7 +60,7 @@ class CreateOrUpdateGusetBookForm extends Component
 
         Validator::make($inputs, [
             'name' => 'required|string|max:40',
-            'title' => 'required|string|max:100',
+            'title' => 'required|string|max:80',
             'content' => 'required',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
         ])->validateWithBag('saveGuestBookCU');
