@@ -15,14 +15,20 @@ class PostCard extends Component
 
     public $existing_views;
 
-
-//    public function mount() {
-//        $blog_views = LocalGuide::where('id' ,$this->post->id)->withCount('views')->first();
-//        $this->existing_views = $blog_views->views_count;
-//    }
-
     public function render()
     {
-        return view('local-guide.post-card');
+        $totalReviewLocalGuide = $this->dt->reviews()->get();
+
+        $sumTotalReviews = count($totalReviewLocalGuide);
+
+        if (isset($sumTotalReviews) && $sumTotalReviews > 0) {
+            $avgRating = intval($totalReviewLocalGuide->sum('rating') / $sumTotalReviews);
+            return view('local-guide.post-card',compact('avgRating'));
+
+        }else{
+
+            return view('local-guide.post-card');
+        }
+
     }
 }

@@ -31,7 +31,6 @@ class ReviewForm extends Component
 
         $sumTotalReviews = count($totalReviewLocalGuide);
 
-
         $countAllRatingOne = count($this->localGuide->reviews()->where('rating', 1)->get());
         $countAllRatingTwo = count($this->localGuide->reviews()->where('rating', 2)->get());
         $countAllRatingThree = count($this->localGuide->reviews()->where('rating', 3)->get());
@@ -39,8 +38,9 @@ class ReviewForm extends Component
         $countAllRatingFive = count($this->localGuide->reviews()->where('rating', 5)->get());
 
 
-
         if (isset($sumTotalReviews) && $sumTotalReviews > 0){
+
+            $avgRating = intval($totalReviewLocalGuide->sum('rating') / $sumTotalReviews);
 
             $allRatingOne = ($countAllRatingOne * 100) / $sumTotalReviews;
             $allRatingTwo = ($countAllRatingTwo * 100) / $sumTotalReviews;
@@ -50,7 +50,8 @@ class ReviewForm extends Component
 
             return view('reviews.review-card',compact('reviews','user','totalReviewLocalGuide',
                 'allRatingOne', 'allRatingTwo', 'allRatingThree', 'allRatingFour', 'allRatingFive',
-                'countAllRatingOne', 'countAllRatingTwo', 'countAllRatingThree', 'countAllRatingFour', 'countAllRatingFive'
+                'countAllRatingOne', 'countAllRatingTwo', 'countAllRatingThree', 'countAllRatingFour', 'countAllRatingFive',
+            'avgRating'
             ));
         }else{
 
