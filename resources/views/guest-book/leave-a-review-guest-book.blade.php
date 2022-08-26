@@ -1,7 +1,7 @@
 <div class="card rounded border-0">
     <div class="w-lg-50 mx-auto">
         <div class="my-5">
-            <div class="mb-2">
+            <div class="mb-2 pt-2">
 
                 @include('flash-messages')
 
@@ -238,7 +238,7 @@
                 </div>
 
 
-                <div class="btn gap-3 text-center my-4 d-block d-md-flex justify-content-center">
+                <div class="btn gap-3 text-center my-3 d-block d-md-flex justify-content-center">
                     <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">SEND</button>
                     <a href="#!" onclick="resetForm()"
                        wire:click.prevent="resetFeedbackForm"

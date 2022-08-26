@@ -113,7 +113,7 @@
                     {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <p>{!!  (Str::limit(strip_tags($blog->Content), 80))  !!}</p>
+                    <p class="text-dark-blue">{!!  (Str::limit(strip_tags($blog->Content), 80))  !!}</p>
                 </div>
             </div>
             @php

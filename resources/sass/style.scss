@@ -14,6 +14,9 @@ i:hover{
 .color-secondary{
     color: #606368;;
 }
+.text-dark-blue{
+    color: $dark-blue;
+}
 .border-solid{
     border: 1px solid $primary !important;
 }
@@ -121,16 +124,13 @@ body{
     padding-right: 14px;
 
 }
-.footer-primary{
-    i{
-        &:hover{
-            color: $dark-blue !important;
-        }
-    }
-}
+
 .badge-primary{
     background: rgba(232, 96, 76, 0.1);
     color: #E8604C;
+}
+.text-light-secondary{
+    color: #626262;
 }
 .guest-modal .btn-close{
 background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em auto no-repeat !Important;
@@ -187,6 +187,11 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
     &:focus{
         color: $dark-blue !important;
         background-color: transparent !important;
+    }
+}
+.local-guide-tabs{
+    nav.navecation ul li {
+        padding-right: 14px;
     }
 }
 .blog-card{
@@ -550,7 +555,7 @@ header{
 .footer-text{
     a {
         &:hover {
-            color: $dark-blue !important;
+            color: $primary !important;
         }
     }
 }
@@ -600,7 +605,8 @@ header{
             word-wrap: break-word !important;
             p{
                 line-height: 30px;
-                color: rgba(42, 51, 66, 1);
+                color: $dark-blue;
+                padding: 13px 20px;
             }
         }
     }
