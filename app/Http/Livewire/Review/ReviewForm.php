@@ -31,24 +31,36 @@ class ReviewForm extends Component
 
         $sumTotalReviews = count($totalReviewLocalGuide);
 
+
         $countAllRatingOne = count($this->localGuide->reviews()->where('rating', 1)->get());
         $countAllRatingTwo = count($this->localGuide->reviews()->where('rating', 2)->get());
         $countAllRatingThree = count($this->localGuide->reviews()->where('rating', 3)->get());
         $countAllRatingFour = count($this->localGuide->reviews()->where('rating', 4)->get());
         $countAllRatingFive = count($this->localGuide->reviews()->where('rating', 5)->get());
 
-        $allRatingOne = ($countAllRatingOne * 100) / $sumTotalReviews;
-        $allRatingTwo = ($countAllRatingTwo * 100) / $sumTotalReviews;
-        $allRatingThree = ($countAllRatingThree * 100) / $sumTotalReviews;
-        $allRatingFour = ($countAllRatingFour * 100) / $sumTotalReviews;
-        $allRatingFive = ($countAllRatingFive * 100) / $sumTotalReviews;
 
 
+        if (isset($sumTotalReviews) && $sumTotalReviews > 0){
 
-        return view('reviews.review-card',compact('reviews','user','totalReviewLocalGuide',
-            'allRatingOne', 'allRatingTwo', 'allRatingThree', 'allRatingFour', 'allRatingFive',
-            'countAllRatingOne', 'countAllRatingTwo', 'countAllRatingThree', 'countAllRatingFour', 'countAllRatingFive'
-        ));
+            $allRatingOne = ($countAllRatingOne * 100) / $sumTotalReviews;
+            $allRatingTwo = ($countAllRatingTwo * 100) / $sumTotalReviews;
+            $allRatingThree = ($countAllRatingThree * 100) / $sumTotalReviews;
+            $allRatingFour = ($countAllRatingFour * 100) / $sumTotalReviews;
+            $allRatingFive = ($countAllRatingFive * 100) / $sumTotalReviews;
+
+            return view('reviews.review-card',compact('reviews','user','totalReviewLocalGuide',
+                'allRatingOne', 'allRatingTwo', 'allRatingThree', 'allRatingFour', 'allRatingFive',
+                'countAllRatingOne', 'countAllRatingTwo', 'countAllRatingThree', 'countAllRatingFour', 'countAllRatingFive'
+            ));
+        }else{
+
+            return view('reviews.review-card',compact('reviews','user','totalReviewLocalGuide',
+                'countAllRatingOne', 'countAllRatingTwo', 'countAllRatingThree', 'countAllRatingFour', 'countAllRatingFive'
+            ));
+
+        }
+
+
     }
 
     public function saveRatingForm(){
