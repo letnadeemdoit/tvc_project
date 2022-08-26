@@ -2,13 +2,13 @@
     <div class="category-cards mb-3">
         <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link active">
+                <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">
                     ALL
                 </a>
             </li>
-            @foreach($categories as $category)
+            @foreach($categories as $cat)
                 <li class="nav-item">
-                    <a href="{{ route('guest.blog.index', ['category' => $category->slug]) }}" class="nav-link">
+                    <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
 {{--                        @if($category->image)--}}
 {{--                            <img--}}
 {{--                                src="{{$category->getFileUrl('image')}}"--}}
@@ -19,7 +19,7 @@
 {{--                        @else--}}
 {{--                            <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/>--}}
 {{--                        @endif--}}
-                        {{ $category->name }}
+                        {{ $cat->name }}
                     </a>
                 </li>
             @endforeach

@@ -43,10 +43,11 @@
                  }'>
                 <thead class="thead-light">
                 <tr>
-                    <th>User</th>
+                    <th style="width: 100px" class="text-center">Image</th>
                     <th>Subject</th>
-                    <th>Author</th>
-                    <th class="text-center">Action</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th class="align-center">Action</th>
                 </tr>
                 </thead>
 
@@ -54,23 +55,22 @@
 
                 @foreach($data as $dt)
                         <tr>
-                            <td>
-                                <a class="d-flex align-items-center" href="javascript;">
-                                    <div class="avatar avatar-circle">
-                                        <img class="avatar-img" src="{{ auth()->user()->profile_photo_url }}" alt="Image Description">
-                                    </div>
-                                    <div class="ms-3">
-                                    <span class="d-block h5 text-inherit mb-0">{{$dt->Audit_FirstName ?? ''}} <i
-                                            class="bi-patch-check-fill text-primary" data-toggle="tooltip"
-                                            data-bs-placement="top" title="Top endorsed"></i></span>
-                                        <span class="d-block fs-5 text-body">{{$dt->Audit_Email ?? ''}}</span>
-                                    </div>
-                                </a>
+                            <td style="width: 100px" class="text-center">
+                                <div class="avatar avatar-soft-primary avatar-circle">
+                                    <img
+                                        src="{{$dt->getFileUrl('image')}}"
+                                        class="avatar-initials"
+                                        alt="{{ $dt->Subject ?? '' }}"
+                                    />
+                                </div>
                             </td>
                             <td>
                                 {{$dt->Subject ?? ''}}
                             </td>
-                            <td>{{$dt->Author ?? ''}}</td>
+                            <td>
+                                {{$dt->category->name ?? ''}}
+                            </td>
+                            <td>{{ str(strip_tags($dt->Content))->limit(50) }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Edit group">
                                     <a class="btn btn-white" href="#"

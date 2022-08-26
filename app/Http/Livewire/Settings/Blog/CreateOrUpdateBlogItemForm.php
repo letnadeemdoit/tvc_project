@@ -45,7 +45,6 @@ class CreateOrUpdateBlogItemForm extends Component
 
     public function showBlogCUModal($toggle, ?Blog $blogItem)
     {
-//        dd($blogItem);
         $this->emitSelf('toggle', $toggle);
         $this->blogItem = $blogItem;
         $this->reset(['state', 'file']);

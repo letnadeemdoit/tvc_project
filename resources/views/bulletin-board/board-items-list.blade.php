@@ -16,13 +16,13 @@
         <nav class="navecation mb-3">
             <ul id="navi">
                 <li class="menu">
-                    <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}" class="nav-link active">
+                    <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}" class="nav-link {{$category == 'all' ? 'active' : ''}}">
                         ALL
                     </a>
                 </li>
-                @foreach($categories as $category)
+                @foreach($categories as $cat)
                     <li class="menu">
-                        <a href="{{ route('guest.bulletin-board.index', ['category' => $category->slug]) }}" class="nav-link">
+                        <a href="{{ route('guest.bulletin-board.index', ['category' => $cat->slug]) }}" class="nav-link {{$cat->slug == $category ? 'active' : ''}}">
 {{--                            @if($category->image)--}}
 {{--                                <img--}}
 {{--                                    src="{{$category->getFileUrl('image')}}"--}}
@@ -32,7 +32,7 @@
 {{--                            @else--}}
 {{--                                <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/>--}}
 {{--                            @endif--}}
-                            {{ $category->name }}
+                            {{ $cat->name }}
                         </a>
                     </li>
                 @endforeach
