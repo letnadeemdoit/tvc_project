@@ -42,7 +42,7 @@
                         </div>
                         <div>
                             <h1 class="poppins-bold pt-2">What is the Vacation Calendar?</h1>
-                            <p class="pe-0 pe-lg-4 lh-lg">This is the main view of online calendar on
+                            <p class="pe-0 pe-lg-4 lh-lg text-light-secondary">This is the main view of online calendar on
                                 TheVacationCalendar.com which allows everyone to see when the vacation home is in
                                 use.
                                 When a vacation is scheduled the user can set the online calendar to show that the
@@ -123,7 +123,7 @@
                             </div>
                             <div class="card-body pt-5 padding-top">
                                 <h3 class="card-title">Organize your vacation home schedule</h3>
-                                <p class="card-text">Spend more time enjoying your getaway home</p>
+                                <p class="card-text text-light-secondary">Spend more time enjoying your getaway home</p>
 
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                             </div>
                             <div class="card-body pt-5 padding-top">
                                 <h3 class="card-title">Share information on the house bulletin board and house blog</h3>
-                                <p class="card-text">Direct all of your guests to a single location that has all of the
+                                <p class="card-text text-light-secondary">Direct all of your guests to a single location that has all of the
                                     house
                                     details.</p>
 
@@ -155,7 +155,7 @@
                             </div>
                             <div class="card-body pt-5 padding-top">
                                 <h3 class="card-title">Let friends and family see when they can visit</h3>
-                                <p class="card-text">Allows visitors to see when the house is going to be free.</p>
+                                <p class="card-text text-light-secondary">Allows visitors to see when the house is going to be free.</p>
 
                             </div>
                         </div>
@@ -180,7 +180,7 @@
                                  alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">House Bulletin Board</h3>
-                                <p class="card-text">The House Bulletin Board is the perfect solution to that all
+                                <p class="card-text text-light-secondary">The House Bulletin Board is the perfect solution to that all
                                     important piece paper that is always getting misplaced. This is a great place for
                                     contact information, house instructions, rules, cleaning services.</p>
                                 <button class="btn btn-lg w-100 btn-primary text-white">Learn More<i
@@ -196,7 +196,7 @@
                                  alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">Managing Vacations</h3>
-                                <p class="card-text">So this is the money shot of TheVacationCalendar.com. Using this
+                                <p class="card-text text-light-secondary">So this is the money shot of TheVacationCalendar.com. Using this
                                     simple screen anyone who is authorized to schedule a vacation can do so. The site
                                     checks that there are no conflicts on the online calendar <span
                                         class="text-content"> and prevents you from ever having multiple parties showing
@@ -213,7 +213,7 @@
                             <img class="card-img-top" src="/images/images-home/blog-image.svg" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">House Blog</h3>
-                                <p class="card-text">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house,
+                                <p class="card-text text-light-secondary">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house,
                                     the House Blog gives everyone a place to share thoughts, provide updates,<span
                                         class="text-content"> and generally make fun of
                                       each other.</span></p>
@@ -244,14 +244,14 @@
                                 <div class="tab-pane fade show active" id="home" role="tabpanel"
                                      aria-labelledby="home-tab">
                                     <h1 class="poppins-bold">House Blog</h1>
-                                    <p class="lh-lg">How have you ever lived without a vacation home blog?!?! Since the
+                                    <p class="lh-lg text-light-secondary">How have you ever lived without a vacation home blog?!?! Since the
                                         House Bulletin Board is only updated by the administrator of the house, the
                                         House Blog gives everyone a place to share thoughts, provide updates, and
                                         generally make fun of each other.</p>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <h1 class="poppins-bold">House Photo Album</h1>
-                                    <p class="lh-lg mb-1">This is another favorite for many of the site's users. Since people
+                                    <p class="lh-lg mb-1 text-light-secondary">This is another favorite for many of the site's users. Since people
                                         were getting more and more use out of the vacation homes thanks to the online
                                         calendar system in TheVacationCalendar.com, we needed to provide a way to
                                         memorialize the great times you are having.  <a class="moreless-button text-primary ms-2 text-decoration-underline d-inline-block d-md-none">Read more</a>
@@ -263,13 +263,13 @@
                                 </div>
                                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                     <h1 class="poppins-bold">Account Management</h1>
-                                    <p class="lh-lg">This is your basic profile page that allows the administrator to
+                                    <p class="lh-lg text-light-secondary">This is your basic profile page that allows the administrator to
                                         update passwords, change the site picture, and {cough}{cough} cancel the
                                         subscription.</p>
                                 </div>
                                 <div class="tab-pane fade" id="shopping" role="tabpanel" aria-labelledby="shopping-tab">
                                     <h1 class="poppins-bold">User Management</h1>
-                                    <p class="lh-lg">This simple screen lets the Administrator of the house control the
+                                    <p class="lh-lg text-light-secondary">This simple screen lets the Administrator of the house control the
                                         users. If you forget your password you can either use the automated password
                                         reset functionality or you can call the Administrator and he/she can update your
                                         account in a few clicks using this screen.</p>

@@ -22,7 +22,7 @@ class PostCard extends Component
     ];
 
     public function mount() {
-        $blog_views = Blog::where('BlogId' ,$this->post->BlogId)->withCount('views')->first();
+        $blog_views = Blog::where('HouseId' , $this->post->HouseId)->where('BlogId' ,$this->post->BlogId)->withCount('views')->first();
         $this->existing_views = $blog_views->views_count;
     }
 

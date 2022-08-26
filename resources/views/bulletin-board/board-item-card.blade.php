@@ -9,7 +9,7 @@
   @endif
     <div class="card-body">
         <h3 class="card-title">{{$dt->title}}</h3>
-        <div class="card-text">
+        <div class="card-text text-light-secondary">
             {!! $dt->Board !!}
         </div>
     </div>

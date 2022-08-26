@@ -19,7 +19,7 @@ class BlogController extends Controller
 
         $user = $request->user();
 
-        $blog_views = Blog::where('BlogId' ,$post->BlogId)->withCount('views')->first();
+        $blog_views = Blog::where('HouseId' , $post->HouseId)->where('BlogId' ,$post->BlogId)->withCount('views')->first();
         $existing_views = $blog_views->views_count;
 
 
@@ -27,10 +27,11 @@ class BlogController extends Controller
 
         $relatedBlog = Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
-        $views = Blog::where('user_id' ,$post->user_id)->where('BlogId' ,$post->BlogId)->first();
+        $views = BlogViews::where('user_id' ,$user->user_id)->where('viewable_id' ,$post->BlogId)->first();
 
+//        $views = Blog::where('user_id' ,$user->user_id)->where('BlogId' ,$post->BlogId)->first();
 
-        if (count($views->views) == 0){
+        if (is_null($views)){
             $view = new BlogViews();
 
             $view->fill([
@@ -51,9 +52,4 @@ class BlogController extends Controller
         ]);
     }
 
-    public function items(Category $category) {
-        dd($category);
-//        $data = Blog::where('category_id', $category->id)->get();
-//        return view('blog.blog-list', compact('data'));
-    }
 }
