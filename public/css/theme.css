@@ -43369,7 +43369,7 @@ i:hover {
 }
 
 body {
-  font-family: poppins;
+  font-family: "Poppins", sans-serif;
 }
 
 .hero-text {
@@ -43384,10 +43384,6 @@ body {
   color: #000;
 }
 
-@font-face {
-  font-family: poppins;
-  src: url("/fonts/Poppins-Regular.ttf");
-}
 .poppins-bold {
   font-weight: bolder !important;
 }
