@@ -209,6 +209,14 @@
   /* enable title field in the Image dialog*/
   image_title: false,
 
+  formats: {
+    // Changes the alignment buttons to add a class to each of the matching selector elements
+    alignleft: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'left' },
+    aligncenter: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'center' },
+    alignright: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'right' },
+    alignjustify: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'full' }
+  },
+
   browser_spellcheck: true,
 
   paste_block_drop: false,
