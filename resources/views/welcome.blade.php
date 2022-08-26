@@ -37,8 +37,8 @@
                     <div class="col-lg-5 col-xl-4 text-center text-lg-start">
                         <!-- Jumbotron -->
                         <div class="py-4 text-center  rounded mb-0 text-white bg-process-img">
-                            <h1 class="h2 text-center text-lg-start text-primary font-vintage mb-0">Find your
-                                vacation house</h1>
+                            <h1 class="h2 text-center text-lg-start text-primary font-vintage mb-0">Find Your Vacation House
+                            </h1>
                         </div>
                         <div>
                             <h1 class="poppins-bold pt-2">What is the Vacation Calendar?</h1>
