@@ -33,16 +33,16 @@ Route::controller(GuestController::class)
         Route::get('/help', 'help')->name('help');
 //        Route::get('/blog-cards','blog')->name('blog');
 //      Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
-        Route::get('/privacy-policy','PrivacyPolicy')->name('privacy-policy');
+        Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy-policy');
 //        Route::get('/guest-login','guestLogin')->name('guest-login');
 //        Route::get('/book-cards','guestBook')->name('guest-book');
 //        Route::get('/login-account','loginAccount')->name('login-account');
-        Route::get('/search-house','searchHouse')->name('search-house');
+        Route::get('/search-house', 'searchHouse')->name('search-house');
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
 //        Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
-        Route::get('/local-guide','localGuide')->name('local-guide');
-        Route::get('/photo-album','photoAlbum')->name('photo-album');
-        Route::get('/single-album',  'singleAlbum')->name('single-album');
+        Route::get('/local-guide', 'localGuide')->name('local-guide');
+        Route::get('/photo-album', 'photoAlbum')->name('photo-album');
+        Route::get('/single-album', 'singleAlbum')->name('single-album');
 
 
         Route::controller(BlogController::class)
@@ -122,8 +122,6 @@ Route::middleware([
         Route::get('/photo-albums/{id}/photos', [DashboardController::class, 'photos'])->name('photo-albums.photos');
 
 
-
-
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
 //        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
@@ -148,6 +146,16 @@ Route::middleware([
                 Route::get('blog', 'blog')->name('blog');
                 Route::get('category', 'category')->name('category');
                 Route::get('guest-books', 'guestBook')->name('guest-books');
+            });
+
+        Route::controller(\App\Http\Controllers\PaypalController::class)
+            ->prefix('paypal')
+            ->name('paypal.')
+            ->group(function () {
+                Route::get('/process', 'process')->name('process');
+                Route::get('/success', 'succeeded')->name('succeeded');
+                Route::get('/cancel', 'canceled')->name('canceled');
+                Route::get('/ipn', 'ipn')->name('ipn');
             });
     });
 

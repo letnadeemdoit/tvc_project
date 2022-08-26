@@ -23,8 +23,8 @@
             .categories-card .category-count {
                 border-radius: 6px;
                 border: 2px solid #E8604C;
-                padding: 6px 10px;
-                max-width:30px;
+                padding: 5px 10px;
+                min-width:30px;
 
             }
 

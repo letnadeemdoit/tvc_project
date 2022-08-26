@@ -1,5 +1,5 @@
 <div class="container  pb-5">
-    <div class="d-flex justify-content-center justify-content-md-start">
+    <div class="d-flex justify-content-center justify-content-md-start local-guide-tabs">
         <nav class="navecation mb-3">
             <ul id="navi">
                 <li>
@@ -99,6 +99,5 @@
             <a class="btn btn-lg btn-soft-primary px-5" id="next">See more</a>
         </div>
     @endif
-
 
 </div>

@@ -1,5 +1,5 @@
 <!-- Footer -->
-<div class="bg-primary footer-primary">
+<div class="bg-dark-blue footer-primary">
     <div class="container py-3">
         <div class="row row-max-width align-items-center">
             <div class="col-12 col-lg-6 col-xl-6">
