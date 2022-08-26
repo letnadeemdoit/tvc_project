@@ -53,7 +53,6 @@ class LocalGuideList extends Component
 
     public function render()
     {
-//        dd($this->category);
         $data = LocalGuide::where('house_id', $this->user->HouseId)
             ->when($this->category !== 'all', function ($query) {
                 $query->whereHas('category', function ($query) {
@@ -62,7 +61,6 @@ class LocalGuideList extends Component
             })
             ->orderBy('id', 'DESC')
             ->paginate($this->per_page);
-
         return view('local-guide.local-guide-list',compact('data'));
     }
 }

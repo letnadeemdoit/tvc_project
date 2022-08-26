@@ -58,111 +58,112 @@
 
     <div class="container my-5">
 
-        <div class="row py-5 my-4">
-            <div class="col-12 col-lg-6">
-                <div class="row align-items-center">
-                    <div class="col-md-5">
-                        <div>
-                            <h1 class="text-primary">5.0</h1>
-                            <div class="rate">
-                                <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
-                                    <li>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
+        @if(isset($avgRating))
+            <div class="row py-5 my-4">
+                <div class="col-12 col-lg-6">
+                    <div class="row align-items-center">
+                        <div class="col-md-5">
+                            <div>
+                                <h1 class="text-primary">{{$avgRating ?? 0}}</h1>
+                                <div class="rate px-0">
+                                    <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
+                                        <li>
+                                            @php
+                                                $i = 0;
+                                            @endphp
+                                            @while (++$i <= ($avgRating ?? 0))
+                                                <span class="fa fa-star checked"></span>
+                                            @endwhile
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row align-items-center">
+                                <div class="col-1">
+                                    <span>5.0</span>
+                                </div>
+                                <div class="col-10">
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$allRatingFive ?? 0}}%" role="progressbar" aria-valuenow="100"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <span>({{ $countAllRatingFive ?? 0 }})</span>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-1">
+                                    <span>4.0</span>
+                                </div>
+                                <div class="col-10">
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$allRatingFour ?? 0}}%" role="progressbar" aria-valuenow="75"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <span>({{ $countAllRatingFour ?? 0}})</span>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-1">
+                                    <span>3.0</span>
+                                </div>
+                                <div class="col-10">
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$allRatingThree ?? 0}}%"  role="progressbar" aria-valuenow="50"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <span>({{ $countAllRatingThree ?? 0 }})</span>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-1">
+                                    <span>2.0</span>
+                                </div>
+                                <div class="col-10">
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$allRatingTwo ?? 0}}% !important;"  role="progressbar" aria-valuenow="25"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <span>({{ $countAllRatingTwo ?? 0 }})</span>
+                                </div>
+                            </div>
 
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="row align-items-center">
-                            <div class="col-1">
-                                <span>5.0</span>
-                            </div>
-                            <div class="col-10">
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: {{$allRatingFive ?? 0}}%" role="progressbar" aria-valuenow="100"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"></div>
+                            <div class="row align-items-center">
+                                <div class="col-1">
+                                    <span>1.0</span>
+                                </div>
+                                <div class="col-10">
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$allRatingOne ?? 0}}%"  role="progressbar" aria-valuenow="25"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <span>({{ $countAllRatingOne ?? 0}})</span>
                                 </div>
                             </div>
-                            <div class="col-1">
-                                <span>({{ $countAllRatingFive ?? 0 }})</span>
-                            </div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col-1">
-                                <span>4.0</span>
-                            </div>
-                            <div class="col-10">
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: {{$allRatingFour ?? 0}}%" role="progressbar" aria-valuenow="75"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <span>({{ $countAllRatingFour ?? 0}})</span>
-                            </div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col-1">
-                                <span>3.0</span>
-                            </div>
-                            <div class="col-10">
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: {{$allRatingThree ?? 0}}%"  role="progressbar" aria-valuenow="50"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <span>({{ $countAllRatingThree ?? 0 }})</span>
-                            </div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col-1">
-                                <span>2.0</span>
-                            </div>
-                            <div class="col-10">
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: {{$allRatingTwo ?? 0}}% !important;"  role="progressbar" aria-valuenow="25"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <span>({{ $countAllRatingTwo ?? 0 }})</span>
-                            </div>
-                        </div>
 
-                        <div class="row align-items-center">
-                            <div class="col-1">
-                                <span>1.0</span>
-                            </div>
-                            <div class="col-10">
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: {{$allRatingOne ?? 0}}%"  role="progressbar" aria-valuenow="25"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <span>({{ $countAllRatingOne ?? 0}})</span>
-                            </div>
                         </div>
-
                     </div>
                 </div>
+                <div class="col-6">
+                </div>
             </div>
-            <div class="col-6">
-            </div>
-        </div>
-
+        @endif
 
         <div class="row mb-5 mt-5">
             <div class="col-12 col-lg-6">
