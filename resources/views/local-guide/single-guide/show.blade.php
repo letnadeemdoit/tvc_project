@@ -69,7 +69,9 @@
                                 <h4 class="mb-0 text-dark" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0 py-1" style="color: #B6B4B4">
                                     <small>{{$localGuide->address}}</small><span
-                                        class="color-blue ps-2">View</span></p>
+                                        class="color-blue ps-2">
+                                        <a href="https://google.com/maps?q={{$localGuide->address}}" target="_blank" class="color-blue fw-normal">View</a>
+                                    </span></p>
 {{--                                <div class="d-flex align-items-center ">--}}
 {{--                                    <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">--}}
 {{--                                        <li>--}}

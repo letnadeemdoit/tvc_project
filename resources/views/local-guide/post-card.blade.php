@@ -10,7 +10,9 @@
                     >
                     <div class="ps-2">
                         <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
-                        <p class="mb-0 date-fs">{{ substr($dt->address , 0 ,25) }} <a href="#" class="color-blue fw-normal">View</a> </p>
+                        <p class="mb-0 date-fs">{{ substr($dt->address , 0 ,25) }}
+                            <a href="https://google.com/maps?q={{$dt->address}}" class="color-blue fw-normal" target="_blank">View</a>
+                        </p>
                     </div>
                 </div>
                 <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->category->name}}</a>
