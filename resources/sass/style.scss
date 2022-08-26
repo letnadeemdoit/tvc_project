@@ -52,10 +52,14 @@ body{
     font-family: poppins;
     src: url('/fonts/Poppins-Regular.ttf');
 }
+@font-face {
+    font-family: poppins-bold;
+    src: url('/fonts/Poppins-Bold.ttf');
+}
 
 .poppins-bold{
-    //font-family: poppins-bold;
-    font-weight: bolder !important;
+    font-family: poppins-bold;
+    //font-weight: bolder !important;
 }
 
 @font-face {
