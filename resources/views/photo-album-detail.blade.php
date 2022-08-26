@@ -5,7 +5,7 @@
 
     @include('partials.sub-page-hero-section', ['title' => 'Photo Album'])
 
-    <section class="bg-light">
+    <section>
         <div class="section-padding">
             <div class="bg-album shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
                 <h1 class="text-primary font-vintage mb-0">Photo Album</h1>
