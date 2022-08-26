@@ -255,7 +255,7 @@
   },
                         setup: function(editor) {
                                 editor.on('change', function(e) {
-                                    @this.set('state.Content', editor.getContent(), true);
+                                    @this.set('state.Contents', editor.getContent(), true);
                                 });
                             }
                         })
@@ -264,15 +264,15 @@
                     >
                         <label class="form-label" for="board_textarea">Content</label>
                         <textarea
-                            class="form-control @error('Content') is-invalid @enderror"
-                            wire:model.defer="state.Content"
+                            class="form-control @error('Contents') is-invalid @enderror"
+                            wire:model.defer="state.Contents"
                             name="Content"
                             placeholder=""
                             rows="3"
                             id="Content"
 
                         ></textarea>
-                        @error('Content')
+                        @error('Contents')
                         <span class="invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
