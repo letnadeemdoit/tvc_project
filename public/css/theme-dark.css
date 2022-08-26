@@ -34282,10 +34282,6 @@ body {
   color: #000;
 }
 
-.poppins-bold {
-  font-weight: bolder !important;
-}
-
 @font-face {
   font-family: vintage-clothes;
   src: url("/fonts/vintage/vintage-clothes.otf");
