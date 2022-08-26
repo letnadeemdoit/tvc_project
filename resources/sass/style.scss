@@ -1,4 +1,5 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 .bg-primary{
     background-color: $primary !important;
 }
@@ -24,10 +25,10 @@ i:hover{
     background-color: $dark-blue;
 }
 .house-card-border{
-    border: 1px solid rgba(232, 96, 76, 0.34);;
+    border: 1px solid rgba(232, 96, 76, 0.34);
 }
 .bg-darkGrey{
-    background-color: #DADADA;;
+    background-color: #DADADA;
 }
 .bg-lightGrey{
     background-color: #f5f3f3 !important;
@@ -36,7 +37,7 @@ i:hover{
     color: #000 !important;
 }
 body{
-    font-family: poppins;
+    font-family: 'Poppins', sans-serif;
 }
 .hero-text{
     font-size: 2.8rem;
@@ -48,16 +49,17 @@ body{
         color: #000;
     }
 }
-@font-face {
-    font-family: poppins;
-    src: url('/fonts/Poppins-Regular.ttf');
-}
-@font-face {
-    font-family: poppins-bold;
-    src: url('/fonts/Poppins-Bold.ttf');
-}
+//@font-face {
+//    font-family: poppins;
+//    src: url('/fonts/Poppins-Regular.ttf');
+//}
+//@font-face {
+//    font-family: poppins-bold;
+//    src: url('/fonts/Poppins-Bold.ttf');
+//}
+
 .poppins-bold{
-    font-family: poppins-bold;
+    font-weight: 600 !important;
 }
 
 @font-face {
@@ -462,6 +464,11 @@ header{
     background-size:contain !important;
     @include background-text;
     height: 40px;
+}
+.btn-dark-secondary{
+        &:hover{
+            color: $dark-blue !important;
+        }
 }
 .bg-crystals{
     background-image: url('/images/privacy-policy/mirror.png');
@@ -1329,6 +1336,11 @@ header{
         margin-right: 3px !important;
         padding: 2px !important;
         min-height : 92px !important;
+    }
+    .switch-button{
+        a{
+            font-size: 12px;
+        }
     }
     .category-cards
     {
