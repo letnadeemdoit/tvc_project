@@ -71,6 +71,27 @@
                 </div>
 
                 <div class="card-footer border-0 text-center">
+                    <div id="paypal-button-container-P-7K271521FJ429705GMMEF62A"></div>
+                    <script src="https://www.paypal.com/sdk/js?client-id=AdSqJ0MimC0olnFXkIkii8bmO7IFEJNKpSBQoWVFuKKI1XCN5ieL7XWzKk-TgqX0Yedsc6Omx-IzVDU9&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+                    <script>
+                        paypal.Buttons({
+                            style: {
+                                shape: 'pill',
+                                color: 'black',
+                                layout: 'horizontal',
+                                label: 'subscribe'
+                            },
+                            createSubscription: function(data, actions) {
+                                return actions.subscription.create({
+                                    /* Creates the subscription */
+                                    plan_id: 'P-7K271521FJ429705GMMEF62A'
+                                });
+                            },
+                            onApprove: function(data, actions) {
+                                alert(data.subscriptionID); // You can add optional success message for the subscriber here
+                            }
+                        }).render('#paypal-button-container-P-7K271521FJ429705GMMEF62A'); // Renders the PayPal button
+                    </script>
                     <div class="d-grid mb-2">
                         <button type="button" class="form-check-select-stretched-btn btn btn-outline-primary">Select plan</button>
                     </div>

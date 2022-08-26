@@ -137,7 +137,7 @@
                                             <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                  class="img-fluid margin-left-negative pt-3">
                                             <h3 class="pt-1">{{$dt->title }}</h3>
-                                            <div class="">
+                                            <div class="text-light-secondary">
                                                 {!! substr($dt->content,0,130) !!}
                                                 @if(isset($dt->content) && strlen($dt->content) > 130)
                                                 <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"
@@ -202,7 +202,7 @@
                                             <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                  class="img-fluid margin-left-negative pt-3">
                                             <h3 class="pt-1">{{$dt->title }}</h3>
-                                            <div class="">
+                                            <div class="text-light-secondary">
                                                 {!! substr($dt->content,0,130) !!}
                                                 @if(isset($dt->content) && strlen($dt->content) > 130)
                                                 <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal"

@@ -13,9 +13,9 @@
 
     @include('partials.sub-page-hero-section', ['title' => 'Local Guide'])
 
-    <section class=" bg-light">
+    <section class="bg-lightGrey">
         <div class="section-padding">
-        <div class="bg-guide shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
+        <div class="bg-guide shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center local-guide-tabs">
             <h1 class="text-primary font-vintage mb-0">Local Guide</h1>
         </div>
         <h1 class="pt-2 text-center poppins-bold">Read Local Guide reviews here</h1>

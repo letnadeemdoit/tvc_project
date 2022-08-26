@@ -34238,6 +34238,10 @@ i:hover {
   color: #606368;
 }
 
+.text-dark-blue {
+  color: #2A3342;
+}
+
 .border-solid {
   border: 1px solid #E8604C !important;
 }
@@ -34359,13 +34363,13 @@ body {
   padding-right: 14px;
 }
 
-.footer-primary i:hover {
-  color: #2A3342 !important;
-}
-
 .badge-primary {
   background: rgba(232, 96, 76, 0.1);
   color: #E8604C;
+}
+
+.text-light-secondary {
+  color: #626262;
 }
 
 .guest-modal .btn-close {
@@ -34430,6 +34434,10 @@ body {
 .list-btn:focus {
   color: #2A3342 !important;
   background-color: transparent !important;
+}
+
+.local-guide-tabs nav.navecation ul li {
+  padding-right: 14px;
 }
 
 .blog-card .blog-dropdown {
@@ -34816,7 +34824,7 @@ header nav button:last-child:hover {
 }
 
 .footer-text a:hover {
-  color: #2A3342 !important;
+  color: #E8604C !important;
 }
 
 .select2-container .select2-selection--single {
@@ -34865,7 +34873,8 @@ header nav button:last-child:hover {
 }
 .accordion-section .accordion-item .card-body p {
   line-height: 30px;
-  color: rgb(42, 51, 66);
+  color: #2A3342;
+  padding: 13px 20px;
 }
 .accordion-section .bottom-box-shadow {
   box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);

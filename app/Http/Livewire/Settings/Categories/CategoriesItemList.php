@@ -48,7 +48,8 @@ class CategoriesItemList extends Component
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query
-                        ->where('name', 'LIKE', "%$this->search%");
+                        ->where('name', 'LIKE', "%$this->search%")
+                        ->orWhere('type', 'LIKE', "%$this->search%");
                 });
             })
             ->orderBy('id', 'DESC')

@@ -229,7 +229,7 @@
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
 {{--                            <p class="mb-0 px-0 px-lg-3 py-2 py-lg-0 d-none d-lg-block">Guest</p>--}}
-                            <h5 class="mb-0 d-none d-lg-block px-0 px-lg-3">{{Auth::user()->user_name ?? ''}}</h5>
+                            <h5 class="mb-0 d-none d-lg-block px-0 px-lg-3">{{Auth::user()->first_name ?? ''}}</h5>
                             <a class="navbar-dropdown-account-wrapper ms-3 ms-lg-0" href="javascript:;" id="accountNavbarDropdown"
                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
                                data-bs-dropdown-animation>
