@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="mt-3 mt-sm-0">
-                                <a class="btn btn-soft-primary px-5">Food & Drink</a>
+                                <a class="btn btn-soft-primary px-5">{{$localGuide->category->name}}</a>
                             </div>
                         </div>
                     </div>
