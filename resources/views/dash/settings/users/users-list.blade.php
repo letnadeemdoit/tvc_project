@@ -150,7 +150,7 @@
                     <th>Full name</th>
                     <th>Role</th>
                     <th style="width: 120px">Enabled</th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
                 </thead>
 
@@ -178,10 +178,11 @@
                             <span class="d-block h5 mb-0">{{ $dt->name }}</span>
                         </td>
                         <td>{{ $dt->role }}</td>
-                        <td x-data="" style="width: 120px">
+                        <td x-data="" class="" style="width: 120px">
                             <div class="form-check">
                                 <input
-                                    class="form-check-input"
+                                    class="form-check-input border-primary"
+                                    style="width: 20px;height: 20px"
                                     type="checkbox"
                                     value="1"
                                     id="enable_or_disable_{{$dt->user_id}}"
@@ -194,26 +195,54 @@
                                 </label>
                             </div>
                         </td>
+
+
                         <td>
-                            @can('update', $dt)
-                                <button
-                                    type="button"
-                                    class="btn btn-white btn-sm"
-                                    wire:click.prevent="$emit('showUserCUModal', true, {{ $dt->user_id}})"
-                                >
-                                    <i class="bi-pencil-fill"></i>
-                                </button>
-                            @endcan
-                            @can('delete', $dt)
-                                <button
-                                    type="button"
-                                    class="btn btn-danger btn-sm trash-btn"
-                                    wire:click.prevent="destroy({{$dt->user_id}})"
-                                >
-                                    <i class="bi-trash"></i>
-                                </button>
-                            @endcan
+                            <div class="btn-group" role="group" aria-label="Edit group">
+
+                                @can('update', $dt)
+                                    <a class="btn btn-white" href="#"
+                                       wire:click.prevent="$emit('showUserCUModal', true, {{ $dt->user_id}})"
+                                    >
+                                        <i class="bi-pencil me-1 text-success"></i> Edit
+                                    </a>
+                                @endcan
+
+                                @can('delete', $dt)
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm"
+                                        wire:click.prevent="destroy({{$dt->user_id}})"
+                                    >
+                                        <i class="bi-trash"></i>
+                                    </button>
+                                @endcan
+
+                            </div>
                         </td>
+
+
+
+{{--                        <td>--}}
+{{--                            @can('update', $dt)--}}
+{{--                                <button--}}
+{{--                                    type="button"--}}
+{{--                                    class="btn btn-white btn-sm"--}}
+{{--                                    wire:click.prevent="$emit('showUserCUModal', true, {{ $dt->user_id}})"--}}
+{{--                                >--}}
+{{--                                    <i class="bi-pencil-fill"></i>--}}
+{{--                                </button>--}}
+{{--                            @endcan--}}
+{{--                            @can('delete', $dt)--}}
+{{--                                <button--}}
+{{--                                    type="button"--}}
+{{--                                    class="btn btn-danger btn-sm trash-btn"--}}
+{{--                                    wire:click.prevent="destroy({{$dt->user_id}})"--}}
+{{--                                >--}}
+{{--                                    <i class="bi-trash"></i>--}}
+{{--                                </button>--}}
+{{--                            @endcan--}}
+{{--                        </td>--}}
                     </tr>
                 @endforeach
                 </tbody>

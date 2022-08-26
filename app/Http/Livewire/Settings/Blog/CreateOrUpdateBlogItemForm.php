@@ -51,7 +51,7 @@ class CreateOrUpdateBlogItemForm extends Component
 
         if ($blogItem->BlogId) {
             $this->isCreating = false;
-            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Content', 'image', 'category_id']);
+            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'image', 'category_id']);
         }else{
             $this->isCreating = true;
         }
@@ -72,7 +72,7 @@ class CreateOrUpdateBlogItemForm extends Component
         Validator::make($inputs, [
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'Content' => 'required',
+            'Contents' => 'required',
             'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
@@ -82,7 +82,8 @@ class CreateOrUpdateBlogItemForm extends Component
             'HouseId' => $this->user->HouseId,
             'user_id' => $this->user->user_id,
             'Subject' => $inputs['Subject'],
-            'Content' => $inputs['Content'],
+            'Contents' => $inputs['Contents'],
+            'Content' => null,
             'Author' => $this->user->first_name,
             'BlogDate' => $date,
             'Audit_user_name' => $this->user->Audit_user_name,

@@ -3,7 +3,7 @@
 >
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $userCU && $userCU->user_name ? "Update '$userCU->user_name'" : 'Add' }} User</h5>
+            <h5 class="modal-title">{{ $userCU && $userCU->user_name ? "Update" : 'Add' }} User</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -119,7 +119,7 @@
                     type="submit"
                     class="btn btn-primary ms-auto"
                 >
-                    {{ $userCU && $userCU->user_name ? "Update '$userCU->user_name'" : 'Add' }} User
+                    {{ $userCU && $userCU->user_name ? "Update" : 'Add' }} User
                 </button>
             </div>
         </form>

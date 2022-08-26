@@ -97,7 +97,7 @@
                     </ul>
                 </div>
                 <div class="py-4">
-                    {!! $post->Content !!}
+                    {!! $post->Contents !!}
                 </div>
             </div>
             <div class="col-12 col-lg-3">

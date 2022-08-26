@@ -45,6 +45,7 @@ class Blog extends Model implements Auditable
         'HouseId',
         'user_id',
         'Subject',
+        'Contents',
         'Content',
         'Author',
         'BlogDate',
@@ -56,6 +57,11 @@ class Blog extends Model implements Auditable
         'image',
         'slug',
         'category_id'
+    ];
+
+    protected $auditExclude = [
+        'Content',
+        'Contents'
     ];
 
 
