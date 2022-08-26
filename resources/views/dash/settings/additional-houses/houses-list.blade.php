@@ -3,7 +3,7 @@
     <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
-            <div class="mb-2 mb-md-0">
+            <div class="mb-2 mb-md-0 w-100">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
@@ -45,8 +45,8 @@
                     {{--                        </div>--}}
                     {{--                    </th>--}}
                     <th>Name</th>
-                    <th>Status</th>
-                    <th></th>
+{{--                    <th>Status</th>--}}
+                    <th>Action</th>
                 </tr>
                 </thead>
 
@@ -72,23 +72,44 @@
                                 </div>
                             </a>
                         </td>
-                        <td>{{ $dt->Status }}</td>
+{{--                        <td>{{ $dt->Status }}</td>--}}
+
+
                         <td>
-                            <button
-                                type="button"
-                                class="btn btn-white btn-sm"
-                                wire:click.prevent="$emit('showAdditionalHouseCUModal', true, {{ $dt->HouseID}})"
-                            >
-                                <i class="bi-pencil-fill"></i>
-                            </button>
-                            <button
-                                type="button"
-                                class="btn btn-danger btn-sm trash-btn"
-                                wire:click.prevent="destroy({{ $dt->HouseID }})"
-                            >
-                                <i class="bi-trash"></i>
-                            </button>
+                            <div class="btn-group" role="group" aria-label="Edit group">
+                                <a class="btn btn-white" href="#"
+                                   wire:click.prevent="$emit('showAdditionalHouseCUModal', true, {{ $dt->HouseID}})"
+                                >
+                                    <i class="bi-pencil me-1 text-success"></i> Edit
+                                </a>
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm"
+                                    wire:click.prevent="destroy({{ $dt->HouseID }})"
+                                >
+                                    <i class="bi-trash"></i>
+                                </button>
+
+                            </div>
                         </td>
+
+
+{{--                        <td>--}}
+{{--                            <button--}}
+{{--                                type="button"--}}
+{{--                                class="btn btn-white btn-sm"--}}
+{{--                                wire:click.prevent="$emit('showAdditionalHouseCUModal', true, {{ $dt->HouseID}})"--}}
+{{--                            >--}}
+{{--                                <i class="bi-pencil-fill"></i>--}}
+{{--                            </button>--}}
+{{--                            <button--}}
+{{--                                type="button"--}}
+{{--                                class="btn btn-danger btn-sm trash-btn"--}}
+{{--                                wire:click.prevent="destroy({{ $dt->HouseID }})"--}}
+{{--                            >--}}
+{{--                                <i class="bi-trash"></i>--}}
+{{--                            </button>--}}
+{{--                        </td>--}}
                     </tr>
                 @endforeach
                 </tbody>

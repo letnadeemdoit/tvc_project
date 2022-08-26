@@ -49,7 +49,7 @@ class CreateOrUpdateLocalGuideForm extends Component
         $this->reset(['state', 'file']);
 
         if ($localGuide) {
-            $this->state = \Arr::only($localGuide->toArray(), ['category_id','title','description','image','address','datetime']);
+            $this->state = \Arr::only($localGuide->toArray(), ['category_id','title','description','image','address','city','datetime']);
         }
     }
 
@@ -78,6 +78,7 @@ class CreateOrUpdateLocalGuideForm extends Component
             'title' => $inputs['title'],
             'description' => $inputs['description'] ?? null,
             'address' => $inputs['address'] ?? null,
+            'city' => $inputs['city'] ?? null,
             'datetime' => $inputs['datetime'] ?? null,
         ])->save();
 

@@ -7,6 +7,9 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+
+        <link rel="icon" type="image/x-icon" href="/logo/logo.svg">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -28,6 +31,9 @@
             /*    color: #000000;*/
             /*}*/
 
+            i:hover {
+                color: unset !important;
+            }
         </style>
 
     </head>

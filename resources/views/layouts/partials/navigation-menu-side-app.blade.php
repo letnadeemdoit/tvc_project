@@ -61,6 +61,13 @@
                         </div>
 
                         <div class="nav-item">
+                            <a class="nav-link  {{ link_is_active_with_class(['dash.plans-and-pricing']) }}" href="{{route('dash.plans-and-pricing')}}" data-placement="left">
+                                <i class="bi-router nav-icon"></i>
+                                <span class="nav-link-title">Plans &amp; Pricing</span>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
                             <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list']) }}
                                 "
                                href="#navbarVerticalHouseItemList" role="button" data-bs-toggle="collapse"
@@ -95,7 +102,7 @@
                             {{--                                <a class="nav-link {{ link_is_active_with_class('dash.account.invoices') }}" href="{{ route('dash.account.invoices') }}">Invoices</a>--}}
                             {{--                            </div>--}}
                             <div id="navbarVerticalMenuPagesAccountMenu"
-                                 class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-houses', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.bulletin-boards', 'dash.settings.audit-history', 'dash.settings.blog', 'dash.settings.guest-books'], 'show') }}"
+                                 class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-houses', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.bulletin-boards', 'dash.settings.audit-history', 'dash.settings.blog', 'dash.settings.guest-books','dash.settings.category'], 'show') }}"
                                  data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}"
                                    href="{{ route('dash.settings.account-information') }}">Account Information</a>
@@ -108,7 +115,7 @@
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
                                    href="{{ route('dash.settings.rooms') }}">Rooms</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
-                                   href="{{ route('dash.settings.additional-houses') }}">Additional Homes</a>
+                                   href="{{ route('dash.settings.additional-houses') }}">Additional Houses</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
                                    href="{{ route('dash.settings.notifications') }}">Notifications</a>
                                 <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"

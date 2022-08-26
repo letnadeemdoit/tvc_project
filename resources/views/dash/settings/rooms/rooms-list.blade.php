@@ -3,7 +3,7 @@
     <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
-            <div class="mb-2 mb-md-0">
+            <div class="mb-2 mb-md-0 w-100">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
@@ -47,7 +47,7 @@
                     <th>Type</th>
                     <th>Amenities</th>
                     <th>Beds</th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
                 </thead>
 
@@ -68,25 +68,47 @@
                         </td>
                         <td>{{ implode(', ', $dt->amenities->pluck('AmenityName')->toArray()) }}</td>
                         <td>{{ $dt->Beds }}</td>
+
+
                         <td>
+                            <div class="btn-group" role="group" aria-label="Edit group">
+                                <a class="btn btn-white" href="#"
+                                   wire:click.prevent="$emit('showRoomCUModal', true, {{ $dt->RoomID}})"
+                                >
+                                    <i class="bi-pencil me-1 text-success"></i> Edit
+                                </a>
 
-                            <button
-                                type="button"
-                                class="btn btn-white btn-sm"
-                                wire:click.prevent="$emit('showRoomCUModal', true, {{ $dt->RoomID}})"
-                            >
-                                <i class="bi-pencil-fill"></i>
-                            </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm"
+                                    wire:click.prevent="destroy({{$dt->RoomID}})"
+                                >
+                                    <i class="bi-trash"></i>
+                                </button>
 
-                            <button
-                                type="button"
-                                class="btn btn-danger btn-sm trash-btn"
-                                wire:click.prevent="destroy({{$dt->RoomID}})"
-                            >
-                                <i class="bi-trash"></i>
-                            </button>
-
+                            </div>
                         </td>
+
+
+{{--                        <td>--}}
+
+{{--                            <button--}}
+{{--                                type="button"--}}
+{{--                                class="btn btn-white btn-sm"--}}
+{{--                                wire:click.prevent="$emit('showRoomCUModal', true, {{ $dt->RoomID}})"--}}
+{{--                            >--}}
+{{--                                <i class="bi-pencil-fill"></i>--}}
+{{--                            </button>--}}
+
+{{--                            <button--}}
+{{--                                type="button"--}}
+{{--                                class="btn btn-danger btn-sm trash-btn"--}}
+{{--                                wire:click.prevent="destroy({{$dt->RoomID}})"--}}
+{{--                            >--}}
+{{--                                <i class="bi-trash"></i>--}}
+{{--                            </button>--}}
+
+{{--                        </td>--}}
                     </tr>
                 @endforeach
                 </tbody>

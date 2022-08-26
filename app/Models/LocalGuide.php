@@ -29,6 +29,7 @@ class LocalGuide extends Model implements Auditable
         'description',
         'image',
         'address',
+        'city',
         'datetime',
     ];
 
@@ -64,6 +65,15 @@ class LocalGuide extends Model implements Auditable
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+    public function likes()
+    {
+        return $this->morphMany(Likes::class, 'likeable');
+    }
+
+    public function views()
+    {
+        return $this->morphMany(BlogViews::class, 'viewable');
     }
 
 

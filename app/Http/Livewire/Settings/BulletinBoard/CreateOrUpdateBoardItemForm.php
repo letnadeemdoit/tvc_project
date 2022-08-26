@@ -26,11 +26,12 @@ class CreateOrUpdateBoardItemForm extends Component
 
     protected $listeners = [
         'showBulletinBoardCUModal',
+//        'refresh-cu' => '$refresh',
     ];
 
     public function render()
     {
-        $categories = Category::bulletinBoard()->get();
+        $categories = Category::where('type', 'bulletin-board')->where('house_id', $this->user->HouseId)->get();
 
         return view('dash.settings.bulletin-board.create-or-update-board-item-form', compact('categories'));
     }
@@ -42,6 +43,8 @@ class CreateOrUpdateBoardItemForm extends Component
 
     public function showBulletinBoardCUModal($toggle, ?Board $boardItem)
     {
+//        $this->emitSelf('refresh-cu');
+
         $this->emitSelf('toggle', $toggle);
         $this->boardItem = $boardItem;
         $this->reset(['state', 'file']);
