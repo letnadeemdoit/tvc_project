@@ -32,6 +32,10 @@ class LocalGuide extends Model implements Auditable
         'datetime',
     ];
 
+    protected $auditExclude = [
+        'description',
+    ];
+
     protected $attributeModifiers = [
 
     ];
