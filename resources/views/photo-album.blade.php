@@ -32,6 +32,7 @@
                 padding: 1.25rem;
                 z-index: 1;
             }
+
             .card-img-overlay::after {
                 content: "";
                 position: absolute;
@@ -40,14 +41,15 @@
                 bottom: 0;
                 left: 0;
                 z-index: 0;
-                background-color:transparent;
+                background-color: transparent;
                 transition: all 0.3s ease-in-out;
             }
 
             .card-img-overlay:hover::after {
                 background-color: transparent;
             }
-            .masonary-gallery img{
+
+            .masonary-gallery img {
                 border-radius: 6px !important;
             }
 
@@ -59,192 +61,252 @@
 
     <section class=" bg-light">
         <div class="section-padding">
-        <div class="bg-album shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
-            <h1 class="text-primary font-vintage mb-0">Photo Album</h1>
-        </div>
-        <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>
-        </div>
-        <div class="container padding-bottom">
-            <div class="row masonary-gallery"  data-masonry='{"percentPosition": true }'>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660678732383-1ad7842ed297?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660678732383-1ad7842ed297?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center">
-                                    <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660679745214-2bf5ad599863?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660679745214-2bf5ad599863?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center">
-                                    <img src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660673399641-0e1bc98a7cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660673399641-0e1bc98a7cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660679867941-2f2d560d008f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660679867941-2f2d560d008f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660655641795-8a68ca5da6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660655641795-8a68ca5da6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660659236367-710aa4ae7e19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660659236367-710aa4ae7e19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660646654254-08a09f8589ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660646654254-08a09f8589ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660586179082-775abddd8386?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660586179082-775abddd8386?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660629813449-2f621228cc68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660629813449-2f621228cc68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
-{{--                        <a href="{{asset('https://images.unsplash.com/photo-1660632531779-b363f16acdbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')}}" data-lightbox="homePortfolio">--}}
-                            <img src="{{asset('https://images.unsplash.com/photo-1660632531779-b363f16acdbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')}}" class="card-img" />
-{{--                        </a>--}}
-                        <div class="p-0">
-                            <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
-                                <h3 class="text-white mb-0">Pathways</h3>
-                                <div class="d-flex align-items-center"> <img
-                                        src="{{asset('/images/photo-album/camera.svg')}}" class="img-fluid me-1 me-lg-2">
-                                    <span>20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="bg-album shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
+                <h1 class="text-primary font-vintage mb-0">Photo Album</h1>
             </div>
+            <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>
+        </div>
+        <div id="massonary">
+        <div class="container padding-bottom">
+
+            <div class="row masonary-gallery" data-masonry='{"percentPosition": true }'>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660678732383-1ad7842ed297?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660678732383-1ad7842ed297?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{asset('/images/photo-album/camera.svg')}}"
+                                             class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-2.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660679745214-2bf5ad599863?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660679745214-2bf5ad599863?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{asset('/images/photo-album/camera.svg')}}"
+                                             class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660673399641-0e1bc98a7cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660673399641-0e1bc98a7cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center"><img
+                                            src="{{asset('/images/photo-album/camera.svg')}}"
+                                            class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660679867941-2f2d560d008f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660679867941-2f2d560d008f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center"><img
+                                            src="{{asset('/images/photo-album/camera.svg')}}"
+                                            class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660655641795-8a68ca5da6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660655641795-8a68ca5da6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center"><img
+                                            src="{{asset('/images/photo-album/camera.svg')}}"
+                                            class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660659236367-710aa4ae7e19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660659236367-710aa4ae7e19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center"><img
+                                            src="{{asset('/images/photo-album/camera.svg')}}"
+                                            class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660646654254-08a09f8589ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660646654254-08a09f8589ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center"><img
+                                            src="{{asset('/images/photo-album/camera.svg')}}"
+                                            class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660586179082-775abddd8386?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660586179082-775abddd8386?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center"><img
+                                            src="{{asset('/images/photo-album/camera.svg')}}"
+                                            class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660629813449-2f621228cc68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660629813449-2f621228cc68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center"><img
+                                            src="{{asset('/images/photo-album/camera.svg')}}"
+                                            class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 text-white bg-transparent shadow-none">
+                            <!-- <img class="card-img rounded-0" src="{{asset('/images/photo-album/album-3.svg')}}"> -->
+                            {{--                        <a href="{{asset('https://images.unsplash.com/photo-1660632531779-b363f16acdbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')}}" data-lightbox="homePortfolio">--}}
+                            <img
+                                src="{{asset('https://images.unsplash.com/photo-1660632531779-b363f16acdbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')}}"
+                                class="card-img"/>
+                            {{--                        </a>--}}
+                            <div class="p-0">
+                                <div
+                                    class="card-block d-flex w-100 justify-content-between px-2 px-lg-5 img-card-text align-items-center">
+                                    <h3 class="text-white mb-0">Pathways</h3>
+                                    <div class="d-flex align-items-center"><img
+                                            src="{{asset('/images/photo-album/camera.svg')}}"
+                                            class="img-fluid me-1 me-lg-2">
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
         </div>
     </section>
     @push('scripts')
-{{--        <script>--}}
-{{--            lightbox.option({--}}
-{{--                'resizeDuration': 200,--}}
-{{--                'wrapAround': true--}}
-{{--            })--}}
-{{--        </script>--}}
-            <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
-        @endpush()
+        {{--        <script>--}}
+        {{--            lightbox.option({--}}
+        {{--                'resizeDuration': 200,--}}
+        {{--                'wrapAround': true--}}
+        {{--            })--}}
+        {{--        </script>--}}
+        <script>
+            $('#masonry').imagesLoaded(function() {
+                $('#masonry').masonry({
+                    itemSelector : '.item',
+                    columnWidth : 460,
+                    isAnimated: true,
+                    gutter: 20,
+                    isFitWidth: true,
+                    animationOptions: {
+                        duration: 700,
+                        easing: 'linear',
+                        queue: false
+                    }
+                });
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+    @endpush()
 </x-guest-layout>
