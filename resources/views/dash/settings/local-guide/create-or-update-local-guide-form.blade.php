@@ -22,7 +22,7 @@
                                 class="position-absolute" style="right: 5px; top: 5px"
                                 wire:click.prevent="deleteFile"
                             ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
-                            <img src="{{ $boardItem->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                            <img src="{{ $localGuide->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
                         </div>
                     </div>
                 @endif

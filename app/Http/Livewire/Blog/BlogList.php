@@ -57,7 +57,9 @@ class BlogList extends Component
                    $query->where('slug', $this->category);
                 });
             })
-            ->orderBy('BlogId', 'DESC');
+            ->orderBy('BlogId', 'DESC')
+            ->get();
+
         return view('blog.blog-list', compact('data'));
     }
 }
