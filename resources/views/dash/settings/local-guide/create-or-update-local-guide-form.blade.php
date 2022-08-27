@@ -158,17 +158,17 @@
 {{--                    />--}}
 
 {{--                </div>--}}
-{{--                <div class="mb-3">--}}
-{{--                    <label class="form-label" for="title">Date & Time</label>--}}
-{{--                    <input--}}
-{{--                        type="datetime-local"--}}
-{{--                        id="datetime"--}}
-{{--                        wire:model.defer="state.datetime"--}}
-{{--                        name="datetime"--}}
-{{--                        class="form-control"--}}
-{{--                    />--}}
+                <div class="mb-3">
+                    <label class="form-label" for="title">Date & Time</label>
+                    <input
+                        type="datetime-local"
+                        id="datetime"
+                        wire:model.defer="state.datetime"
+                        name="datetime"
+                        class="form-control"
+                    />
 
-{{--                </div>--}}
+                </div>
 
 
                 <div
