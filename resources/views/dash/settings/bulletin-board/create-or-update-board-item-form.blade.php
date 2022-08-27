@@ -63,10 +63,9 @@
                         window.tinymce.init({
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#board_textarea',
-                        plugins: 'fullscreen image code lists',
-  toolbar: 'insertfile undo redo | bold italic underline | styleselect fontfamily fontsize blocks lineheight  alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor | link image | code',
+                        plugins: 'fullscreen code lists',
+  toolbar: 'insertfile undo redo | bold italic underline | styleselect fontfamily fontsize blocks lineheight  alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor',
   /* enable title field in the Image dialog*/
-  image_title: false,
 
   block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
 
@@ -87,8 +86,6 @@
   browser_spellcheck: true,
 
   paste_block_drop: false,
-
-  paste_data_images: true,
 
   /* enable automatic uploads of images represented by blob or data URIs*/
   automatic_uploads: true,

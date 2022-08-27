@@ -36,10 +36,6 @@ class Board extends Model  implements Auditable
         'category_id'
     ];
 
-    protected $auditExclude = [
-        'Board',
-    ];
-
     /**
      * Get the default file URL if no file has been uploaded.
      *
