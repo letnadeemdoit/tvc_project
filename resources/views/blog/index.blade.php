@@ -16,7 +16,7 @@
             $(document).ready(function(){
 
                 var list = $(".item");
-                var numToShow = 8;
+                var numToShow = 12;
                 var button = $("#next");
                 var numInList = list.length;
                 list.hide();

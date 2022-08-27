@@ -51,16 +51,13 @@ class BlogList extends Component
 
     public function render()
     {
-//        dd($this->category);
         $data = Blog::where('HouseId', $this->user->HouseId)
             ->when($this->category !== 'all', function ($query) {
                 $query->whereHas('category', function ($query) {
                    $query->where('slug', $this->category);
                 });
             })
-            ->orderBy('BlogId', 'DESC')
-            ->paginate($this->per_page);
-
+            ->orderBy('BlogId', 'DESC');
         return view('blog.blog-list', compact('data'));
     }
 }
