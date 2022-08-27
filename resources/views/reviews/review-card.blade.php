@@ -56,7 +56,7 @@
 
     @endpush
 
-    <div class="container my-5">
+    <div class="container my-5 pb-4">
 
         @if(isset($avgRating))
             <div class="row py-5 my-4">

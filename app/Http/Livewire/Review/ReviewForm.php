@@ -37,7 +37,6 @@ class ReviewForm extends Component
         $countAllRatingFour = count($this->localGuide->reviews()->where('rating', 4)->get());
         $countAllRatingFive = count($this->localGuide->reviews()->where('rating', 5)->get());
 
-
         if (isset($sumTotalReviews) && $sumTotalReviews > 0){
 
             $avgRating = intval($totalReviewLocalGuide->sum('rating') / $sumTotalReviews);
@@ -60,8 +59,6 @@ class ReviewForm extends Component
             ));
 
         }
-
-
     }
 
     public function saveRatingForm(){
@@ -90,5 +87,4 @@ class ReviewForm extends Component
         $this->emit('refresh-reviews');
 
     }
-
 }
