@@ -12,6 +12,21 @@
             <div class="col-md-6">
                 <div
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-md-end">
+                   @auth
+                        <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            <a href="{{route('guest.privacy-policy')}}" class="mb-0 text-white fs-12">Privacy &amp; Policy</a>
+                        </div>
+                        <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            <a href="{{route('guest.help')}}" class="mb-0 text-white fs-12">Help</a>
+                        </div>
+                        <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            <a href="{{route('guest.contact')}}" class="mb-0 text-white fs-12">Contact us</a>
+                        </div>
+                   @endauth
+
                     <div
                         class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
                         <i class="fas fa-phone me-2 text-white"></i>
@@ -86,18 +101,22 @@
 
                     @endauth
 
-                    <li class="nav-item my-1 my-lg-0">
-                        <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
-                           href="{{route('guest.privacy-policy')}}">POLICIES</a>
-                    </li>
-                    <li class="nav-item my-1 my-lg-0">
-                        <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
-                           href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
-                    </li>
-                    <li class="nav-item my-1 my-lg-0">
-                        <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
-                           href="{{route('guest.help')}}" tabindex="-1">HELP</a>
-                    </li>
+                  @guest
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
+                               href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
+                               href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                               href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                        </li>
+
+                  @endguest
 
                     @guest
                         <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
