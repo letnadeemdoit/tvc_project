@@ -57,6 +57,8 @@ class CreateOrUpdateLocalGuideForm extends Component
     {
         $this->resetErrorBag();
 
+        $date = date('Y/m/d H:i:s');
+
         $inputs = $this->state;
 
         if ($this->file) {
@@ -78,7 +80,7 @@ class CreateOrUpdateLocalGuideForm extends Component
             'title' => $inputs['title'],
             'description' => $inputs['description'] ?? null,
             'address' => $inputs['address'] ?? null,
-            'datetime' => $inputs['datetime'] ?? null,
+            'datetime' => $date ?? null,
         ])->save();
 
         $this->localGuide->updateFile($this->file);

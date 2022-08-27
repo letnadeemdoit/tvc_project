@@ -52,6 +52,7 @@ class BoardItemsList extends Component
                         ->orWhere('Board', 'LIKE', "%$this->search%");
                 });
             })
+            ->orderBy('id', 'DESC')
             ->paginate($this->per_page);
 
         return view('dash.settings.bulletin-board.board-items-list',compact('data'));
