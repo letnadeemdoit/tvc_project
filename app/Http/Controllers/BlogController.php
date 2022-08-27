@@ -25,7 +25,7 @@ class BlogController extends Controller
 
         $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
 
-        $relatedBlog = Blog::where('HouseId', $post->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
+        $relatedBlog = Blog::where('category_id', $post->category_id)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
         $views = BlogViews::where('user_id' ,$user->user_id)->where('viewable_id' ,$post->BlogId)->first();
 
