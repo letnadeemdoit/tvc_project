@@ -1,11 +1,13 @@
 <div class="container pt-55">
     <div class="category-cards mb-3">
         <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
+            @if(count($categories) >0)
             <li class="nav-item">
                 <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">
                     ALL
                 </a>
             </li>
+            @endif
             @foreach($categories as $cat)
                 <li class="nav-item">
                     <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
