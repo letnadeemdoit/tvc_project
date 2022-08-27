@@ -205,7 +205,7 @@
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#Content',
                         plugins: 'fullscreen image code lists',
-  toolbar: 'insertfile undo redo | styleselect fontfamily fontsize blocks lineheight  | bold italic | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor | link image | code',
+  toolbar: 'insertfile undo redo | bold italic underline | styleselect fontfamily fontsize blocks lineheight  alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor | link image | code',
   /* enable title field in the Image dialog*/
   image_title: false,
 
