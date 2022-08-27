@@ -2,14 +2,14 @@
 <div class="topnav py-1 bg-topnav  d-none d-md-block">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="d-flex justify-content-center justify-content-md-start">
                     <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
                     <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
                     <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-md-end">
                    @auth
@@ -70,16 +70,16 @@
 
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
-                           href="{{route('guest.welcome')}}">Home</a>
+                           href="{{route('guest.welcome')}}">HOME</a>
                     </li>
 
                     @auth
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.bulletin-board.index') ? 'active' : '' }}"
                                href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.blog.index') ? 'active' : '' }}"
                                href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
@@ -87,15 +87,15 @@
                                href="{{route('guest.photo-album')}}" tabindex="-1">PHOTO ALBUM</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.local-guide.index') ? 'active' : '' }}"
                                href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.house-items.index') ? 'active' : '' }}"
                                href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD LIST</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
                                href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
                         </li>
 
