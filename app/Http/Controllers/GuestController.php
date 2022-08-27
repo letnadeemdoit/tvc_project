@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog\Blog;
 use App\Models\GuestBook;
+use App\Models\Photo\Album;
 use App\Notifications\ContactUsNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -95,7 +96,10 @@ class GuestController extends Controller
         return view('local-guide');
     }
     public function photoAlbum(){
-        return view('photo-album');
+
+        $photoAlbum = Album::where('house_id',auth()->user()->HouseId)->get();
+
+        return view('photo-album',compact('photoAlbum'));
     }
 
     public function guestBook(){
