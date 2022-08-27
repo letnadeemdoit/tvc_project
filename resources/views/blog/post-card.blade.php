@@ -46,7 +46,7 @@
 {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <p>{!!  (Str::limit(strip_tags($post->Content), 80))  !!}</p>
+                    <p>{!!  (Str::limit(strip_tags($post->Contents), 80))  !!}</p>
                 </div>
             </div>
             @php
