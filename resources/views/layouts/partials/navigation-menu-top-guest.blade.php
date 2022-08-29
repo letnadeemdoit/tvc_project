@@ -15,7 +15,7 @@
                    @auth
                         <div
                             class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
-                            <a href="{{route('guest.privacy-policy')}}" class="mb-0 text-white fs-12">Privacy &amp; Policy</a>
+                            <a href="{{route('guest.privacy-policy')}}" class="mb-0 text-white fs-12">Policies</a>
                         </div>
                         <div
                             class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
