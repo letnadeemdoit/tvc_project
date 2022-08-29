@@ -59,7 +59,7 @@ body{
 //}
 
 .poppins-bold{
-    font-weight: 600 !important;
+    font-weight: 700 !important;
 }
 
 @font-face {
@@ -289,6 +289,11 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .margin-tb{
     margin-top: 45px;
     margin-bottom: 90px;
+}
+.detail-img{
+    img{
+        max-width: 100% !important;
+    }
 }
 .hero-image{
     background-image: url('/images/images-home/hero-image.png');
@@ -1257,6 +1262,9 @@ header{
     .text-margin{
         margin-top: 11px !important;
     }
+    .masonry {
+        column-count: 1 !important;
+    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -1324,6 +1332,7 @@ header{
     .food-item-img{
         height: 170px !important;
     }
+
 }
 @media only screen and (max-width:375px){
     .rounded-icon{
@@ -1412,7 +1421,7 @@ header{
         .nav-item{
             .nav-link{
                 color: grey;
-                font-weight: 800 !important;
+                font-weight: 600 !important;
                 &.active{
                     color: #E8604C !important;
                 }
