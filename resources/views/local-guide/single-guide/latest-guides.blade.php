@@ -1,9 +1,6 @@
 <div>
     <div class="mb-4">
         <div class="input-group  rounded-1 border-color-primary">
-        {{--        <form>--}}
-        <!-- Search -->
-            {{--            <div class="input-group input-group-merge input-group-flush">--}}
             <input
                 type="search"
                 class="form-control border-end-0"
@@ -11,9 +8,6 @@
                 aria-label="Search boards"
                 wire:model.debounce.500ms="search"
             />
-            {{--            </div>--}}
-        <!-- End Search -->
-            {{--        </form>--}}
             <div class="input-group-prepend input-group-text border-start-0">
                 <div wire:loading wire:target="search">
                     <div class="spinner-border spinner-border-sm" role="status">
