@@ -52,14 +52,14 @@
         <div class="container">
             <div class="card border-0 rounded-20 py-3 shadow-none" style="margin-top: -70px;">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-self-center">
+                    <div class="d-flex justify-content-between align-items-center">
                         <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
-                        <a class="btn btn-soft-primary px-5">{{$localGuide->category->name}}</a>
+                        <a style="cursor: text" class="btn btn-soft-primary px-5">{{$localGuide->category->name}}</a>
                     </div>
                     <div class="d-flex align-items-center mt-4">
                         <div class="flex-shrink-0">
                             <img
-                                class="avatar-img rounded-circle border-rounded-red"
+                                class="rounded-circle border-rounded-red"
                                 src="{{ auth()->user()->profile_photo_url }}"
                                 :src="avatarUrl"
                                 alt="Image"
@@ -69,30 +69,78 @@
                         <div class="flex-grow-1 ms-3 d-block d-sm-flex justify-content-between align-items-center">
                             <div>
                                 <h4 class="mb-0 text-dark" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
-                                <p class="mb-0 py-1" style="color: #B6B4B4">
+                                <p class="mb-0" style="color: #B6B4B4">
                                     <small>{{$localGuide->address}}</small><span
                                         class="color-blue ps-2">
                                         <a href="https://google.com/maps?q={{$localGuide->address}}" target="_blank" class="color-blue fw-normal">View</a>
                                     </span></p>
                                 <div class="d-flex align-items-center ">
                                     <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
-                                        <li>
-                                            <span class="text-primary fw-bolder fs-4">
-                                                @if(isset($avgRating))
-                                                    {{ $avgRating ??  ''}}.0
-                                                @else
-                                                    0
-                                                @endif
-                                            </span>
-                                            @php
-                                                $i = 0;
-                                            @endphp
-                                            @while (++$i <= ($avgRating ?? 0))
-                                                <span class="fa fa-star checked"></span>
-                                            @endwhile
-                                            <span class="ps-2 text-dark">({{$localGuide->reviews->count()}} Reviews)</span>
 
-                                        </li>
+                                        @if(isset($avgRating))
+                                            <li>
+                                                <span class="text-primary fw-bolder fs-4">
+                                                    {{ $avgRating ?? 0}}.0
+                                                </span>
+                                                @php
+                                                    $i = 0;
+                                                @endphp
+
+                                                @while (++$i <= ($avgRating ?? 0))
+                                                    <span class="fa fa-star checked"></span>
+                                                @endwhile
+                                                @php
+                                                    $r = 1;
+                                                    $t_rating = 5;
+                                                @endphp
+
+                                                @for ($r; $r <= $t_rating - $avgRating; $r++)
+                                                    <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px" alt="">
+                                                @endfor
+
+                                                <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
+                                                    <span class="ps-2 text-dark">({{$localGuide->reviews->count()}} Reviews)</span>
+                                                </a>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <span class="text-primary fw-bolder fs-4">
+                                                   0
+                                                </span>
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                     alt="">
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                     alt="">
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                     alt="">
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                     alt="">
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                     alt="">
+                                                <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
+                                                    <span class="ps-2 text-dark">(0 Reviews)</span>
+                                                </a>
+                                            </li>
+                                        @endif
+
+
+
+{{--                                        <li>--}}
+{{--                                            <span class="text-primary fw-bolder fs-4">--}}
+{{--                                                @if(isset($avgRating))--}}
+{{--                                                    {{ $avgRating ??  ''}}.0--}}
+{{--                                                @else--}}
+{{--                                                    0--}}
+{{--                                                @endif--}}
+{{--                                            </span>--}}
+{{--                                            @php--}}
+{{--                                                $i = 0;--}}
+{{--                                            @endphp--}}
+{{--                                            @while (++$i <= ($avgRating ?? 0))--}}
+{{--                                                <span class="fa fa-star checked"></span>--}}
+{{--                                            @endwhile--}}
+{{--                                            <span class="ps-2 text-dark">({{$localGuide->reviews->count()}} Reviews)</span>--}}
+{{--                                        </li>--}}
                                     </ul>
                                 </div>
                             </div>
@@ -164,7 +212,7 @@
                                         <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->category->name}}</a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
-                                        <b class="text-dark">{{$dt->title}}</b>
+                                        <b class="text-dark">{{ substr($dt->title , 0, 30) }}</b>
                                         <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
                                     </div>
                                 </div>
@@ -177,26 +225,73 @@
                                 <div class="card-body p-2">
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
                                         <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
-                                            <li>
-                                            <span class="text-primary fw-bolder fs-4">
 
-{{--                                                @if(isset($totalReviews))--}}
-{{--                                                    {{ $totalReviews ??  ''}}.0--}}
+                                            @if(isset($avgRating))
+                                                <li>
+                        <span class="text-primary fw-bolder fs-4">
+                            {{ $avgRating ?? 0}}.0
+                        </span>
+                                                    @php
+                                                        $i = 0;
+                                                    @endphp
+
+                                                    @while (++$i <= ($avgRating ?? 0))
+                                                        <span class="fa fa-star checked"></span>
+                                                    @endwhile
+                                                    @php
+                                                        $r = 1;
+                                                        $t_rating = 5;
+                                                    @endphp
+
+                                                    @for ($r; $r <= $t_rating - $avgRating; $r++)
+                                                        <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px" alt="">
+                                                    @endfor
+
+                                                    <a href="{{route('guest.local-guide.show',$dt->id)}}">
+                                                        <span class="ps-2 text-dark">({{$dt->reviews->count()}} Reviews)</span>
+                                                    </a>
+                                                </li>
+                                            @else
+                                                <li>
+                        <span class="text-primary fw-bolder fs-4">
+                           0
+                        </span>
+                                                    <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                         alt="">
+                                                    <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                         alt="">
+                                                    <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                         alt="">
+                                                    <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                         alt="">
+                                                    <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 16px"
+                                                         alt="">
+                                                    <a href="{{route('guest.local-guide.show',$dt->id)}}">
+                                                        <span class="ps-2 text-dark">(0 Reviews)</span>
+                                                    </a>
+                                                </li>
+                                            @endif
+
+{{--                                           --}}
+{{--                                            <li>--}}
+{{--                                            <span class="text-primary fw-bolder fs-4">--}}
+{{--                                                @if(isset($avgRating))--}}
+{{--                                                    {{ $avgRating ??  ''}}.0--}}
 {{--                                                @else--}}
 {{--                                                    0--}}
 {{--                                                @endif--}}
-                                            </span>
+{{--                                            </span>--}}
 {{--                                                @php--}}
 {{--                                                    $i = 0;--}}
 {{--                                                @endphp--}}
-{{--                                                @while (++$i <= ($totalReviews ?? 0))--}}
+{{--                                                @while (++$i <= ($avgRating ?? 0))--}}
 {{--                                                    <span class="fa fa-star checked"></span>--}}
 {{--                                                @endwhile--}}
 
 {{--                                                <a href="{{route('guest.local-guide.show',$dt->id)}}">--}}
 {{--                                                    <span class="ps-2 text-dark">({{$dt->reviews->count()}} Reviews)</span>--}}
 {{--                                                </a>--}}
-                                            </li>
+{{--                                            </li>--}}
                                         </ul>
                                     </div>
                                 </div>
