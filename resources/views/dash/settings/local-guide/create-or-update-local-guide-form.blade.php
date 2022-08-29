@@ -178,8 +178,8 @@
                         window.tinymce.init({
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#description',
-                          plugins: 'fullscreen image code lists',
-   toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor',
+                          plugins: 'fullscreen image code lists table',
+  toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
   /* enable title field in the Image dialog*/
 toolbar_mode: 'sliding',
  /* enable title field in the Image dialog*/
