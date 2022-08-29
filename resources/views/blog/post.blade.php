@@ -219,7 +219,7 @@
 @push('scripts')
     <script>
 
-        const myTimeout = setTimeout(updateComment, 5000);
+        const myTimeout = setTimeout(updateComment, 9000);
 
         function updateComment() {
             var fb = document.getElementsByClassName('clearfix');

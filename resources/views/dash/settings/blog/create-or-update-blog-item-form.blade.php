@@ -181,10 +181,10 @@
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="exampleFormControlSelect1">Select Category</label>
-                        <select id="exampleFormControlSelect1" wire:model.defer="state.category_id"
+                        <label class="form-label" for="category_id">Select Category</label>
+                        <select id="category_id" wire:model.defer="state.category_id"
                                 class="form-control">
-                            <option>--Select--</option>
+                            <option>Choose Category</option>
                             @foreach ($blogCategories as $category)
                                 <option value="{{ $category->id }}"
                                         wire:key="category-{{ $category->id }}">{{ $category->name }}</option>
