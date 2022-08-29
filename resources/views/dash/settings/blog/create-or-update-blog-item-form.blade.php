@@ -205,8 +205,9 @@
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#Content',
                         plugins: 'fullscreen image code lists',
-  toolbar: 'insertfile undo redo | bold italic underline | styleselect fontfamily fontsize blocks lineheight  alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor | link image | code',
+  toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor',
   /* enable title field in the Image dialog*/
+toolbar_mode: 'sliding',
   image_title: false,
 
   block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
