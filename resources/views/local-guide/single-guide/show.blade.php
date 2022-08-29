@@ -110,20 +110,15 @@
                                                 <span class="text-primary fw-bolder fs-4">
                                                    0
                                                 </span>
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                     style="width: 17px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                                      alt="">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                     style="width: 17px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                                      alt="">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                     style="width: 17px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                                      alt="">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                     style="width: 17px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                                      alt="">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                     style="width: 17px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                                      alt="">
                                                 <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
                                                     <span class="ps-2 text-dark">(0 Reviews)</span>
