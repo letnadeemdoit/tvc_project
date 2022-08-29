@@ -64,7 +64,13 @@
                     <div class="row align-items-center">
                         <div class="col-md-5">
                             <div>
-                                <h1 class="text-primary">{{$avgRating ?? 0}}</h1>
+                                <h1 class="text-primary">
+                                    @if($avgRating)
+                                        {{$avgRating ?? 0}}.0
+                                    @else
+                                        0
+                                    @endif
+                                </h1>
                                 <div class="rate px-0">
                                     <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
                                         <li>
@@ -74,6 +80,15 @@
                                             @while (++$i <= ($avgRating ?? 0))
                                                 <span class="fa fa-star checked"></span>
                                             @endwhile
+                                            @php
+                                                $r = 1;
+                                                $t_rating = 5;
+                                            @endphp
+
+                                            @for ($r; $r <= $t_rating - $avgRating; $r++)
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -1px" alt="">
+                                            @endfor
+
                                         </li>
                                     </ul>
                                 </div>
@@ -206,6 +221,15 @@
                                             @while (++$i <= ($user->rating))
                                                 <span class="fa fa-star checked"></span>
                                             @endwhile
+
+                                            @php
+                                                $r = 1;
+                                                $t_rating = 5;
+                                            @endphp
+
+                                            @for ($r; $r <= $t_rating - $user->rating; $r++)
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -1px" alt="">
+                                            @endfor
                                         </li>
                                     </ul>
                                 @else
@@ -266,6 +290,15 @@
                                             @while (++$i <= ($review->rating))
                                                 <span class="fa fa-star checked"></span>
                                             @endwhile
+
+                                            @php
+                                                $r = 1;
+                                                $t_rating = 5;
+                                            @endphp
+
+                                            @for ($r; $r <= $t_rating - $review->rating; $r++)
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -1px" alt="">
+                                            @endfor
                                         </li>
                                     </ul>
                                 </div>
