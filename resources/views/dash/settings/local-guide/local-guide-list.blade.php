@@ -40,7 +40,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Address</th>
-                    <th>DateTime</th>
+                    <th>Date Time</th>
                     <th>Action</th>
                 </tr>
                 </thead>

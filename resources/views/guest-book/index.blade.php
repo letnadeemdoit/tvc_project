@@ -136,7 +136,11 @@
                                         <div class="guest-card-description pb-4 ps-4 pe-2" style="min-height: 270px;">
                                             <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                  class="img-fluid margin-left-negative pt-3">
-                                            <h3 class="pt-1">{{$dt->title }}</h3>
+                                            @if(isset($dt->content) && strlen($dt->content) > 130)
+                                                <h3 class="pt-1">{{ substr($dt->title , 0, 25) }}</h3>
+                                            @else
+                                                <h3 class="pt-1">{{ $dt->title , 0, 25 }}</h3>
+                                            @endif
                                             <div class="text-light-secondary">
                                                 {!! substr($dt->content,0,130) !!}
                                                 @if(isset($dt->content) && strlen($dt->content) > 130)
@@ -201,7 +205,13 @@
                                         <div class="guest-card-description pb-4 ps-4 pe-2" style="min-height: 270px;">
                                             <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                  class="img-fluid margin-left-negative pt-3">
-                                            <h3 class="pt-1">{{$dt->title }}</h3>
+
+                                            @if(isset($dt->content) && strlen($dt->content) > 130)
+                                            <h3 class="pt-1">{{ substr($dt->title , 0, 25) }}</h3>
+                                            @else
+                                                <h3 class="pt-1">{{ $dt->title , 0, 25 }}</h3>
+                                            @endif
+
                                             <div class="text-light-secondary">
                                                 {!! substr($dt->content,0,130) !!}
                                                 @if(isset($dt->content) && strlen($dt->content) > 130)
