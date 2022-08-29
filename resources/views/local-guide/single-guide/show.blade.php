@@ -130,25 +130,6 @@
                                                 </a>
                                             </li>
                                         @endif
-
-
-
-                                        {{--                                        <li>--}}
-                                        {{--                                            <span class="text-primary fw-bolder fs-4">--}}
-                                        {{--                                                @if(isset($avgRating))--}}
-                                        {{--                                                    {{ $avgRating ??  ''}}.0--}}
-                                        {{--                                                @else--}}
-                                        {{--                                                    0--}}
-                                        {{--                                                @endif--}}
-                                        {{--                                            </span>--}}
-                                        {{--                                            @php--}}
-                                        {{--                                                $i = 0;--}}
-                                        {{--                                            @endphp--}}
-                                        {{--                                            @while (++$i <= ($avgRating ?? 0))--}}
-                                        {{--                                                <span class="fa fa-star checked"></span>--}}
-                                        {{--                                            @endwhile--}}
-                                        {{--                                            <span class="ps-2 text-dark">({{$localGuide->reviews->count()}} Reviews)</span>--}}
-                                        {{--                                        </li>--}}
                                     </ul>
                                 </div>
                             </div>
