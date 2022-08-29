@@ -1,4 +1,4 @@
-<x-modals.bs-modal class="modal-lg">
+    <x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
@@ -22,13 +22,13 @@
                                 class="position-absolute" style="right: 5px; top: 5px"
                                 wire:click.prevent="deleteFile"
                             ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
-                            <img src="{{ $localGuide->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px"/>
+                            <img src="{{ $localGuide->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
                         </div>
                     </div>
                 @endif
-                <x-upload-zone wire:model="file"/>
-                <x-jet-input-error for="image"/>
-                <br/>
+                <x-upload-zone wire:model="file" />
+                <x-jet-input-error for="image" />
+                <br />
 
 
                 <div class="mb-3">
@@ -147,29 +147,29 @@
                     />
                 </div>
 
-                {{--                <div class="mb-3">--}}
-                {{--                    <label class="form-label" for="title">Address1</label>--}}
-                {{--                    <input--}}
-                {{--                        type="text"--}}
-                {{--                        id="address"--}}
-                {{--                        wire:model.defer="state.address"--}}
-                {{--                        name="address"--}}
-                {{--                        class="form-control"--}}
-                {{--                        placeholder="Address Url"--}}
-                {{--                    />--}}
+{{--                <div class="mb-3">--}}
+{{--                    <label class="form-label" for="title">Address1</label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        id="address"--}}
+{{--                        wire:model.defer="state.address"--}}
+{{--                        name="address"--}}
+{{--                        class="form-control"--}}
+{{--                        placeholder="Address Url"--}}
+{{--                    />--}}
 
-                {{--                </div>--}}
-                {{--                <div class="mb-3">--}}
-                {{--                    <label class="form-label" for="title">Date & Time</label>--}}
-                {{--                    <input--}}
-                {{--                        type="datetime-local"--}}
-                {{--                        id="datetime"--}}
-                {{--                        wire:model.defer="state.datetime"--}}
-                {{--                        name="datetime"--}}
-                {{--                        class="form-control"--}}
-                {{--                    />--}}
+{{--                </div>--}}
+                <div class="mb-3">
+                    <label class="form-label" for="title">Date & Time</label>
+                    <input
+                        type="datetime-local"
+                        id="datetime"
+                        wire:model.defer="state.datetime"
+                        name="datetime"
+                        class="form-control"
+                    />
 
-                {{--                </div>--}}
+                </div>
 
 
                 <div
