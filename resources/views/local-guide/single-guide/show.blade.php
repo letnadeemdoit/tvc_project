@@ -52,8 +52,10 @@
         <div class="container">
             <div class="card border-0 rounded-20 py-3 shadow-none" style="margin-top: -70px;">
                 <div class="card-body">
-                    <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
-
+                    <div class="d-flex justify-content-between align-self-center">
+                        <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
+                        <a class="btn btn-soft-primary px-5">{{$localGuide->category->name}}</a>
+                    </div>
                     <div class="d-flex align-items-center mt-4">
                         <div class="flex-shrink-0">
                             <img
@@ -93,9 +95,6 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="mt-3 mt-sm-0">
-                                <a class="btn btn-soft-primary px-5">{{$localGuide->category->name}}</a>
                             </div>
                         </div>
                     </div>

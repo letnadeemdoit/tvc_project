@@ -2,7 +2,7 @@
     <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
-            <div class="mb-2 mb-md-0">
+            <div class="mb-2 mb-md-0 w-50">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
