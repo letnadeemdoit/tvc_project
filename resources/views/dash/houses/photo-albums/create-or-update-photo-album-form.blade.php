@@ -141,10 +141,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="">Select Category</label>
+                    <label class="form-label" for="">Select Parent Album</label>
                     <select name="parent_id" id="parent_id"
                             wire:model.defer="state.parent_id" class="form-control">
-                        <option value="">Select parent Category...</option>
+                        <option value="">Select parent Album...</option>
                         @if(isset($albumCategory))
                             @foreach($albumCategory as $ac)
                                 <option value="{{$ac->id}}">{{$ac->name}}</option>
@@ -172,17 +172,17 @@
 
                 <div
                     class="mb-3"
-                    @modal-is-shown.window="
-                        window.tinymce.init({
-                        ...window.TINYMCE_DEFAULT_CONFIG,
-                        selector: 'textarea#description',
-                        setup: function(editor) {
-                                editor.on('change', function(e) {
-                                    @this.set('state.description', editor.getContent(), true);
-                                });
-                            }
-                        })
-                    "
+{{--                    @modal-is-shown.window="--}}
+{{--                        window.tinymce.init({--}}
+{{--                        ...window.TINYMCE_DEFAULT_CONFIG,--}}
+{{--                        selector: 'textarea#description',--}}
+{{--                        setup: function(editor) {--}}
+{{--                                editor.on('change', function(e) {--}}
+{{--                                    @this.set('state.description', editor.getContent(), true);--}}
+{{--                                });--}}
+{{--                            }--}}
+{{--                        })--}}
+{{--                    "--}}
                 >
                     <label class="form-label" for="description">Description</label>
                     <textarea
@@ -190,7 +190,7 @@
                         wire:model.defer="state.description"
                         name="description"
                         placeholder=""
-                        rows="3"
+                        rows="5"
                         id="description"
 
                     ></textarea>

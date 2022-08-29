@@ -78,7 +78,7 @@ class ReviewForm extends Component
             'remarks' => $inputs['remarks'] ?? null,
         ]);
 
-        $this->success('Your review saved Successfully');
+        session()->flash('success', 'Your Review has been submitted successfully...');
 
         $this->localGuide->reviews()->save($remark);
 

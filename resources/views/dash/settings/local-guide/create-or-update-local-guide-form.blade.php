@@ -34,7 +34,8 @@
                 <div class="mb-3">
                     <label class="form-label" for="title">Select Category</label>
                     <select name="local_guide_category_id" id="local_guide_category_id"
-                            wire:model.defer="state.category_id" class="form-control @error('category_id') is-invalid @enderror">
+                            wire:model.defer="state.category_id"
+                            class="form-control @error('category_id') is-invalid @enderror">
                         <option value="">Select Your Category...</option>
                         @if(isset($localGuideCategories))
                             @foreach($localGuideCategories as $lgc)
