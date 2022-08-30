@@ -87,6 +87,7 @@
                             <a href="{{ route('register') }}"
                                class="text-decoration-underline text-primary fw-bolder">Create
                                 account</a></p>
+                        <a href="{{ url('/') }}" class="text-decoration-underline text-primary fw-600 fs-4 mt-3">Back</a>
                     </div>
 
                 </div>
@@ -106,6 +107,9 @@
                             </a>
                             <a class="btn bg-light-primary border-solid btn-lg mt-3 text-dark"
                                     @click.prevent="loginAsGuest = true; role = 'Guest';">{{ __('Guest') }}</a>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="{{ url('/') }}" class="text-decoration-underline text-primary fs-4 fw-600">Back</a>
                         </div>
                     </div>
 
@@ -203,10 +207,9 @@
                                         <a class="form-label-link mb-0 text-secondary fw-lighter"
                                            style="outline-color: transparent !important;"
                                            href="{{ route('password.request') }}">
-                                            <span class="text-decoration-underline text-primary"> Reset</span>
+                                            <span class="text-decoration-underline text-primary fw-bolder"> Reset</span>
                                         </a>
                                     @endif
-
                                 </span>
                             </label>
                             <span class="invalid-feedback">Please enter a valid password.</span>
@@ -231,7 +234,9 @@
                             />
 
                         </div>
-
+                        <div class="text-center mt-3">
+                            <a href="{{ url('/') }}" class="text-decoration-underline text-primary fs-4 fw-600">Back</a>
+                        </div>
                     </div>
                 </div>
 
