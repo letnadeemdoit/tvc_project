@@ -2,16 +2,7 @@
     <div class="w-lg-50 mx-auto">
         <div class="my-5">
             <div class="mb-2 pt-2">
-
                 @include('flash-messages')
-
-{{--                @if(session()->has('message'))--}}
-{{--                    <div class="alert alert-success alert-dismissible fade show" role="alert">--}}
-{{--                        <span class="fw-semi-bold">Congrats!</span>   {{ session('message') }}--}}
-{{--                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>--}}
-{{--                    </div>--}}
-
-{{--                @endif--}}
             </div>
 
             <div class="bg-review shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
