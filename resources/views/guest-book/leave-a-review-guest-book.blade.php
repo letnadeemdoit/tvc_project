@@ -17,7 +17,7 @@
                     <div class="mb-3 col-12">
 
                         <fieldset class="input-group  rounded-1 ps-1">
-                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">First Name</legend>
+                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Name</legend>
                             <input
                                 type="text"
                                 class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -36,23 +36,23 @@
                     </div>
 
 
-                    <div class="mb-3 col-12">
+{{--                    <div class="mb-3 col-12">--}}
 
-                        <fieldset class="input-group  rounded-1 ps-1">
-                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Last Name</legend>
-                            <input
-                                type="text"
-                                class="form-control form-control-lg border-0 shadow-none outline-0"
-                                id="last_name"
-                                wire:model.defer="state.last_name"
-                                name="last_name"
-                                class="form-control"
-                                value="{{ old('last_name') }}"
-                            />
+{{--                        <fieldset class="input-group  rounded-1 ps-1">--}}
+{{--                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Last Name</legend>--}}
+{{--                            <input--}}
+{{--                                type="text"--}}
+{{--                                class="form-control form-control-lg border-0 shadow-none outline-0"--}}
+{{--                                id="last_name"--}}
+{{--                                wire:model.defer="state.last_name"--}}
+{{--                                name="last_name"--}}
+{{--                                class="form-control"--}}
+{{--                                value="{{ old('last_name') }}"--}}
+{{--                            />--}}
 
-                        </fieldset>
+{{--                        </fieldset>--}}
 
-                    </div>
+{{--                    </div>--}}
 
 
                 </div>

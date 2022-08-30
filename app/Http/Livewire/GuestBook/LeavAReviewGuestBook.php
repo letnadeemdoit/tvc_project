@@ -51,7 +51,7 @@ class LeavAReviewGuestBook extends Component
         GuestBook::create([
             'user_id' => auth()->user()->user_id,
             'house_id' => auth()->user()->HouseId,
-            'name' => $inputs['name'].' '.$inputs['last_name'] ?? null,
+            'name' => $inputs['name'],
             'title' => $inputs['title'],
             'status' => $inputs['status'] ?? 0,
             'content' => $inputs['content'],

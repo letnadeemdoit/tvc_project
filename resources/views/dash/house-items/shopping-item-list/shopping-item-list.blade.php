@@ -18,7 +18,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search"
+                            placeholder="Search by name"
                             aria-label="Search"
                             wire:model.debounce.500ms="search"
                         />
