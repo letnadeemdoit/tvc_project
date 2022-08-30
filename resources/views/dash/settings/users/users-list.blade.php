@@ -121,7 +121,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search user by username"
+                            placeholder="Search by username"
                             aria-label="Search users"
                             wire:model.debounce.500ms="search"
                         />
@@ -175,7 +175,7 @@
                             </a>
                         </td>
                         <td>
-                            <span class="d-block h5 mb-0">{{ $dt->name }}</span>
+                            <span class="d-block mb-0">{{ $dt->name }}</span>
                         </td>
                         <td>{{ $dt->role }}</td>
                         <td x-data="" class="" style="width: 120px">

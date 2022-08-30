@@ -19,7 +19,7 @@
                 <p class="mb-0 badge badge-primary fs-13 fw-semi-bold" style="padding: 10px">{{$dt->category->name}}</p>
             </div>
             <div class="d-flex align-items-center justify-content-between pt-3">
-                <b class="text-dark">{{ substr($dt->title, 0, 30) }}</b>
+                <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>
                 <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
             </div>
         </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="card-body p-2">
             <div class="card-footer px-1 pb-0 border-0 pt-1">
-                <ul class="d-block d-sm-flex list-unstyled recipe-card-footer align-self-center justify-content-between mb-2">
+                <ul class="d-block d-sm-flex list-unstyled recipe-card-footer align-items-center justify-content-between mb-2">
                     @if(isset($avgRating))
                         <li>
                         <span class="text-primary fw-bolder fs-4">
@@ -64,15 +64,15 @@
                         <span class="text-primary fw-bolder fs-4">
                            0
                         </span>
-                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px"
+                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                  alt="">
-                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px"
+                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                  alt="">
-                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px"
+                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                  alt="">
-                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px"
+                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                  alt="">
-                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px"
+                            <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                  alt="">
                             <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                 <span class="ps-2 text-dark">(0 Reviews)</span>

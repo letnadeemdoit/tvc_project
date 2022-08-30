@@ -1,4 +1,4 @@
-<x-modals.bs-modal class="modal-lg">
+<x-modals.bs-modal class="modal-lg modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
@@ -25,9 +25,9 @@
                         </div>
                     </div>
                 @endif
-                <x-upload-zone wire:model="file"/>
-                <x-jet-input-error for="image"/>
-                <br/>
+{{--                <x-upload-zone wire:model="file"/>--}}
+{{--                <x-jet-input-error for="image"/>--}}
+{{--                <br/>--}}
 
                 <div class="row">
 

@@ -1,7 +1,7 @@
 <x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $boardItem && $boardItem->id ? "Update" . ($boardItem->title ? " '$boardItem->title'" : '') : 'Add' }} Board Item</h5>
+            <h5 class="modal-title">{{ $boardItem && $boardItem->id ? "Update" . ($boardItem->title ? " '$boardItem->title'" : '') : 'Add' }} Bulletin Board Item</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -47,7 +47,7 @@
                         wire:model.defer="state.title"
                         name="title"
                         class="form-control @error('title') is-invalid @enderror"
-                        placeholder="Board Title"
+                        placeholder="Bulletin Board Title"
                     />
                     @error('title')
                         <span class="invalid-feedback">{{$message}}</span>
@@ -132,7 +132,7 @@
                     "
 
                 >
-                    <label class="form-label" for="board_textarea">Board Detail</label>
+                    <label class="form-label" for="board_textarea">Bulletin Board Detail</label>
                     <textarea
                         class="form-control @error('Board') is-invalid @enderror"
                         wire:model.defer="state.Board"

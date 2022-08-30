@@ -21,7 +21,7 @@ class HouseItemFrontList extends Component
 
     public function changeFoodTitle(){
 
-        $this->title = 'food';
+       $this->title = 'food';
 
     }
 

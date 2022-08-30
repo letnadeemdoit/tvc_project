@@ -315,7 +315,7 @@
         @endif
 
 
-        @if(isset($totalReviewLocalGuide) && count($totalReviewLocalGuide) > 6)
+        @if(isset($totalReviewLocalGuide) && count($totalReviewLocalGuide) > 2)
             <div class="row mt-5 mb-3">
                 <div class="col-12 col-lg-6">
                     <button class="w-100 btn btn-primary" id="moreReviews">Load More comments</button>
@@ -331,7 +331,7 @@
             $(document).ready(function () {
 
                 var list = $(".more-reviews");
-                var numToShow = 5;
+                var numToShow = 2;
                 var button = $("#moreReviews");
                 var numInList = list.length;
                 list.hide();

@@ -226,7 +226,7 @@
                                         <div class="card-body bg-primary pb-5">
                                             <span class="badge-box py-4">
                                                 <img src="{{$dt->getFileUrl('image')}}"
-                                                     alt="{{ $dt->title ?? '' }}"
+                                                     alt="{{ $dt->name ?? '' }}"
                                                      class="rounded-circle" width="60"/>
                                             </span>
                                             <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
@@ -261,7 +261,7 @@
                                                     <div class="card-body bg-primary pb-5">
                                             <span class="badge-box py-4">
                                                 <img src="{{$dt->getFileUrl('image')}}"
-                                                     alt="{{ $dt->title ?? '' }}"
+                                                     alt="{{ $dt->name ?? '' }}"
                                                      class="rounded-circle" width="60"/>
                                             </span>
                                                         <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
