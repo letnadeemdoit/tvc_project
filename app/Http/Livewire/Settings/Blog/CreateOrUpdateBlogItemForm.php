@@ -6,6 +6,7 @@ use App\Models\Blog\Blog;
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Blog\BlogComment;
 use App\Models\Category;
+use App\Models\Tags;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -25,6 +26,8 @@ class CreateOrUpdateBlogItemForm extends Component
     public $blogCategories;
 
     public ?Blog $blogItem;
+
+    public ?Tags $tag;
 
     protected $listeners = [
         'showBlogCUModal',
@@ -96,6 +99,13 @@ class CreateOrUpdateBlogItemForm extends Component
         ])->save();
 
         $this->blogItem->updateFile($this->file);
+
+        Tags::create([
+            'blog_id' => $this->blogItem->BlogId,
+            'name' => $inputs['name'],
+        ]);
+
+
 
         $this->emitSelf('toggle', false);
 
