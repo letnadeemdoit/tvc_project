@@ -1,6 +1,6 @@
 <x-settings>
     <x-slot name="title">
-        Category Board
+        Categories
     </x-slot>
     <x-slot name="headerRightActions">
         <div class="col-sm-auto" x-data>

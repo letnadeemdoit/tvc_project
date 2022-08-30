@@ -7,6 +7,7 @@ use App\Http\Livewire\Traits\Toastr;
 use App\Models\Blog\BlogComment;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -17,6 +18,8 @@ class CreateOrUpdateBlogItemForm extends Component
     use WithFileUploads;
     use Toastr;
     public $user;
+
+    public $siteUrl;
 
     public $state = [];
     public $isCreating = false;
@@ -95,10 +98,26 @@ class CreateOrUpdateBlogItemForm extends Component
             'slug' => $slug,
         ])->save();
 
+        $this->siteUrl = route('guest.blog.show',$slug);
         $this->blogItem->updateFile($this->file);
 
-        $this->emitSelf('toggle', false);
+        if (isset($this->user->house->BlogEmailList)){
 
+            Mail::send([], [], function ($message) use($inputs) {
+
+                $message->to('noreply@thevacationcalendar.com')
+                    ->cc(explode(',',$this->user->house->BlogEmailList))
+                    ->subject($inputs['Subject']. ' '.'Blog' )
+                    ->Html(
+                        '<div style="padding: 10px; 20px">'.
+                        '<h2>New Blog Created Successfully </h2>'.
+                        '<h2>Blog Name: '.$inputs['Subject'].'</h2>'.
+                        '<h4>Blog Link: '."<a href='$this->siteUrl' target='_blank'> Click To Check Blog </a>" .'<h4/>' .
+                        '</div>', 'text/html');
+            });
+        }
+
+        $this->emitSelf('toggle', false);
         $this->success( 'Blog ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
         $this->emit('blog-cu-successfully');
     }
