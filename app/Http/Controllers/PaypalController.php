@@ -83,11 +83,15 @@ class PaypalController extends Controller
      */
     public function succeeded($plan, House $house)
     {
+        $house->update(['Status' => 'A', 'plan' => $plan]);
+
         return redirect()->route('dash.plans-and-pricing')->with('status', "Thank you for your order! You have been successfully subscribed $plan plan");
     }
 
-    public function canceled()
+    public function canceled($plan, House $house)
     {
+        $house->update(['Status' => 'C', 'plan' => null]);
+
         return redirect()->route('dash.plans-and-pricing')->with('status', 'You have been cancelled order.');
     }
 

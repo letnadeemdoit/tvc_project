@@ -8,6 +8,7 @@ use App\Models\Blog\BlogComment;
 use App\Models\Category;
 use App\Models\Tags;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -19,6 +20,8 @@ class CreateOrUpdateBlogItemForm extends Component
     use Toastr;
     public $user;
 
+    public $siteUrl;
+
     public $state = [];
     public $isCreating = false;
     public $file;
@@ -26,8 +29,6 @@ class CreateOrUpdateBlogItemForm extends Component
     public $blogCategories;
 
     public ?Blog $blogItem;
-
-    public ?Tags $tag;
 
     protected $listeners = [
         'showBlogCUModal',
@@ -98,7 +99,24 @@ class CreateOrUpdateBlogItemForm extends Component
             'slug' => $slug,
         ])->save();
 
+        $this->siteUrl = route('guest.blog.show',$slug);
         $this->blogItem->updateFile($this->file);
+
+        if (isset($this->user->house->BlogEmailList)){
+
+            Mail::send([], [], function ($message) use($inputs) {
+
+                $message->to('noreply@thevacationcalendar.com')
+                    ->cc(explode(',',$this->user->house->BlogEmailList))
+                    ->subject($inputs['Subject']. ' '.'Blog' )
+                    ->Html(
+                        '<div style="padding: 10px; 20px">'.
+                        '<h2>New Blog Created Successfully </h2>'.
+                        '<h2>Blog Name: '.$inputs['Subject'].'</h2>'.
+                        '<h4>Blog Link: '."<a href='$this->siteUrl' target='_blank'> Click To Check Blog </a>" .'<h4/>' .
+                        '</div>', 'text/html');
+            });
+        }
 
         Tags::create([
             'blog_id' => $this->blogItem->BlogId,

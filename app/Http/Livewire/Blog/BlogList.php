@@ -35,7 +35,9 @@ class BlogList extends Component
     public function mount()
     {
         $this->model = Blog::class;
-        $this->categories = Category::where('type', 'blog')->where('house_id', $this->user->HouseId)->get();
+        $this->categories = Category::where('type', 'blog')
+                ->where('house_id', $this->user->HouseId)
+                ->get();
     }
     protected $paginationTheme = 'bootstrap';
 
@@ -59,7 +61,6 @@ class BlogList extends Component
             })
             ->orderBy('BlogId', 'DESC')
             ->get();
-
         return view('blog.blog-list', compact('data'));
     }
 }

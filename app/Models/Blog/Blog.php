@@ -5,6 +5,7 @@ namespace App\Models\Blog;
 use App\Models\BlogViews;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\House;
 use App\Models\Likes;
 use App\Models\Review;
 use App\Models\Tags;
@@ -90,6 +91,11 @@ class Blog extends Model implements Auditable
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
+    public function house(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(House::class, 'HouseId', 'HouseID');
     }
 
     public function likes()

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vacation;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -110,6 +111,25 @@ class ScheduleVacationForm extends Component
             'EndTimeId' => $endTime->timeid,
             'HouseId' => $this->user->HouseId
         ])->save();
+
+
+        $inputs =$this->state;
+
+        if (isset($this->user->house->CalEmailList)){
+
+            Mail::send([], [], function ($message) use($inputs) {
+
+                $message->to('noreply@thevacationcalendar.com')
+                    ->cc(explode(',',$this->user->house->CalEmailList))
+                    ->subject($inputs['vacation_name']. ' '.'Calendar' )
+                    ->Html(
+                        '<div style="padding: 10px; 20px">'.
+                        '<h4>Calendar Name: '.$inputs['vacation_name'].'</h4>'.
+                        '<p>Calendar Name: '.$inputs['vacation_name'].' '.'has been changed by'.$this->user->first_name.' '.$this->user->last_name.'</p>'.
+                        '</div>', 'text/html');
+            });
+
+        }
 
         $this->emitSelf('toggle', false);
         $this->emit('vacation-schedule-successfully');

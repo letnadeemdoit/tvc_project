@@ -35,7 +35,7 @@
                 class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                 <thead class="thead-light">
                 <tr>
-                    <th style="width: 100px" class="text-center">Image</th>
+{{--                    <th style="width: 100px" class="text-center">Image</th>--}}
                     <th>Name</th>
                     <th>Type</th>
                     <th>Description</th>
@@ -47,15 +47,15 @@
 
                 @foreach($data as $dt)
                     <tr>
-                        <td style="width: 100px" class="text-center">
-                            <div class="avatar avatar-soft-primary avatar-circle">
-                                <img
-                                    src="{{$dt->getFileUrl('image')}}"
-                                    class="avatar-initials"
-                                    alt="{{ $dt->title ?? '' }}"
-                                />
-                            </div>
-                        </td>
+    {{--                        <td style="width: 100px" class="text-center">--}}
+    {{--                            <div class="avatar avatar-soft-primary avatar-circle">--}}
+    {{--                                <img--}}
+    {{--                                    src="{{$dt->getFileUrl('image')}}"--}}
+    {{--                                    class="avatar-initials"--}}
+    {{--                                    alt="{{ $dt->title ?? '' }}"--}}
+    {{--                                />--}}
+    {{--                            </div>--}}
+    {{--                        </td>--}}
                         <td>{{$dt->name ?? ''}}</td>
                         <td>{{$dt->type ?? ''}}</td>
                         <td>{{ str(strip_tags($dt->description))->limit(60) }}</td>

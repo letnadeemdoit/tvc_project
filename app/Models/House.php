@@ -38,6 +38,7 @@ class House extends Model
         'EmergencyPhone',
         'ReferredBy',
         'Status',
+        'plan',
         'Guest',
         'CalEmailList',
         'BlogEmailList',
