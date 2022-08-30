@@ -11,6 +11,8 @@ class CartInfo extends Model
 
     protected $table = 'paypal_cart_info';
 
+    protected $primaryKey = 'txnid';
+
     /**
      * The attributes that are mass assignable.
      *

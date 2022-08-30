@@ -25,6 +25,23 @@ class User extends Authenticatable implements Auditable
     const ROLE_OWNER = 'Owner';
     const ROLE_GUEST = 'Guest';
 
+    const PAYPAL_PRODUCT_ID = 'PROD-5NU26276VJ273353M';
+    const PAYPAL_BASIC_PLAN_ID = 'P-7K271521FJ429705GMMEF62A';
+
+    const PLANS = [
+        'basic' => [
+            'title' => 'Basic',
+            'yearly' => 20.00
+        ],
+        'standard' => [
+            'title' => 'Standard',
+            'yearly' => 30.00
+        ],
+        'premium' => [
+            'title' => 'Premium',
+            'yearly' => 40.00
+        ],
+    ];
     /**
      * Attribute modifiers.
      *
