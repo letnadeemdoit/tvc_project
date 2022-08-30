@@ -41,14 +41,15 @@ class Photo extends Model
     public function getFileUrl($column = 'path')
     {
 
-        $photoPath = "photos/photo_".$this->HouseId."_".$this->PhotoId.".jpg";
-        if (Storage::disk($this->fileDisk())->exists($photoPath)) {
-            $this->{$column} = "photos/photo_".$this->HouseId."_".$this->PhotoId.".jpg";
-        }
-
-        return $this->{$column}
-            ? Storage::disk($this->fileDisk())->url($this->{$column})
-            : $this->defaultFileUrl($column);
+//        $photoPath = "photos/photo_".$this->HouseId."_".$this->PhotoId.".jpg";
+//        if (Storage::disk($this->fileDisk())->exists($photoPath)) {
+//            $this->{$column} = "photos/photo_".$this->HouseId."_".$this->PhotoId.".jpg";
+//        }
+//
+//        return $this->{$column}
+//            ? Storage::disk($this->fileDisk())->url($this->{$column})
+//            : $this->defaultFileUrl($column);
+        return '/images/photo-album/album-detail.svg';
     }
 
     public function getImageAttribute()
@@ -65,12 +66,14 @@ class Photo extends Model
 
     protected function defaultFileUrl($column = 'image')
     {
-        $name = trim(collect(explode(' ', $this->house ? $this->house->HouseName : ''))->map(function ($segment) {
-            return mb_substr($segment, 0, 1);
-        })->join(' '));
+//        $name = trim(collect(explode(' ', $this->house ? $this->house->HouseName : ''))->map(function ($segment) {
+//            return mb_substr($segment, 0, 1);
+//        })->join(' '));
 
-        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
+//        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
+        return '/images/photo-album/album-detail.svg';
     }
+
 
     public function house()
     {
