@@ -130,13 +130,14 @@
                                         <i class="bi-bell nav-icon"></i> Blog
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
-                                       href="{{ route('dash.settings.guest-books') }}">
-                                        <i class="bi-bell nav-icon"></i> Guest Book
-                                    </a>
-                                </li>
-
+                                @if(auth()->user()->is_admin)
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
+                                           href="{{ route('dash.settings.guest-books') }}">
+                                            <i class="bi-bell nav-icon"></i> Guest Book
+                                        </a>
+                                    </li>
+                                @endif
                                 <li class="nav-item">
                                     <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
                                        href="{{ route('dash.settings.category') }}">
