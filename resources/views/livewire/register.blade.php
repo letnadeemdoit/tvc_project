@@ -267,7 +267,7 @@
                         </label>
                         <input
                             type="checkbox"
-                            class="form-check-input"
+                            class="form-check-input check-input"
                             name="AdminOwner"
                             wire:model.defer="state.AdminOwner"
                             value="Y"
@@ -388,7 +388,7 @@
                             <label class="form-check-label" for="terms_and_conditions">
                                 I accept <a href="{{route('guest.privacy-policy')}}" class="text-decoration-underline">Terms and Conditions</a>
                             </label>
-                            <input type="checkbox" class="form-check-input" name="terms" wire:model.defer="state.terms" value="yes"
+                            <input type="checkbox" class="form-check-input check-input" name="terms" wire:model.defer="state.terms" value="yes"
                                    id="terms_and_conditions">
                         </div>
                         @error('terms')
