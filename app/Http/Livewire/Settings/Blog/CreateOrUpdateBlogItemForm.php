@@ -118,10 +118,10 @@ class CreateOrUpdateBlogItemForm extends Component
             });
         }
 
-        Tags::create([
-            'blog_id' => $this->blogItem->BlogId,
-            'name' => $inputs['name'],
-        ]);
+//        Tags::create([
+//            'blog_id' => $this->blogItem->BlogId,
+//            'name' => $inputs['name'],
+//        ]);
 
 
 
