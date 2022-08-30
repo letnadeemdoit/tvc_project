@@ -1,5 +1,5 @@
 <div class="brick">
-    <div class="card border-0 text-white bg-transparent shadow-none">
+    <div class="card border-0 text-white shadow-none">
         {{--    @if(!empty($album->image))--}}
             {{--    <img--}}
             {{--        src="https://images.unsplash.com/photo-1661688625912-8d0191156923?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"--}}
