@@ -1368,43 +1368,45 @@
                 {{--                    </div>--}}
                 {{--                    <!-- End Notification -->--}}
                 {{--                </li>--}}
-                <li class="nav-item">
-                    <!-- Account -->
-                    <div class="dropdown">
-                        <a class="btn btn-soft-primary btn-sm dropdown-toggle" href="javascript:;"
-                           id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
-                            <i class="bi bi-house-fill me-1 fs-13"></i> Properties ({{ auth()->user()->house->HouseName }})
-                        </a>
+                @if(auth()->user()->is_admin)
+                    <li class="nav-item">
+                        <!-- Account -->
+                        <div class="dropdown">
+                            <a class="btn btn-soft-primary btn-sm dropdown-toggle" href="javascript:;"
+                               id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
+                                <i class="bi bi-house-fill me-1 fs-13"></i> Properties ({{ auth()->user()->house->HouseName }})
+                            </a>
 
-                        <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account" aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
-                            <div class="dropdown-item-text">
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-sm avatar-circle">
-                                        <img
-                                            class="rounded-circle"
-                                            style="width: 45px;height: 45px"
-                                            src="{{ auth()->user()->house->getFileUrl() }}"
-                                            alt="{{ auth()->user()->house->HouseName }}"
+                            <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account" aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
+                                <div class="dropdown-item-text">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm avatar-circle">
+                                            <img
+                                                class="rounded-circle"
+                                                style="width: 45px;height: 45px"
+                                                src="{{ auth()->user()->house->getFileUrl() }}"
+                                                alt="{{ auth()->user()->house->HouseName }}"
 
-                                        />
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="mb-0">{{ auth()->user()->house->HouseName }}</h5>
-                                        <p class="card-text text-body">{{ auth()->user()->house->address }}</p>
+                                            />
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="mb-0">{{ auth()->user()->house->HouseName }}</h5>
+                                            <p class="card-text text-body">{{ auth()->user()->house->address }}</p>
+                                        </div>
                                     </div>
                                 </div>
+                                <a class="dropdown-item"
+                                   href="{{ route('dash.settings.house-setting') }}">
+                                    <i class="bi bi-gear-wide-connected me-1"></i>Settings</a>
+                                <div class="dropdown-divider"></div>
+                                @foreach(auth()->user()->additional_houses as $additionalHouse)
+                                    <x-switchable-property :house="$additionalHouse" />
+                                @endforeach
                             </div>
-                            <a class="dropdown-item"
-                               href="{{ route('dash.settings.house-setting') }}">
-                                <i class="bi bi-gear-wide-connected me-1"></i>Settings</a>
-                            <div class="dropdown-divider"></div>
-                            @foreach(auth()->user()->additional_houses as $additionalHouse)
-                                <x-switchable-property :house="$additionalHouse" />
-                            @endforeach
                         </div>
-                    </div>
-                    <!-- End Account -->
-                </li>
+                        <!-- End Account -->
+                    </li>
+                @endif
                 <li class="nav-item">
                     <!-- Account -->
                     <div class="dropdown">

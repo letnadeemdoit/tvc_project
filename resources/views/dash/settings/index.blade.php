@@ -6,8 +6,11 @@
                 <div class="col-sm mb-2 mb-sm-0">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-no-gutter">
-                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('dash.settings.account-information') }}">Settings</a></li>
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                                           href="{{ route('dash.settings.account-information') }}">Settings</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $title ?? '' }}</li>
                         </ol>
                     </nav>
@@ -49,7 +52,9 @@
 
                     <!-- Navbar Collapse -->
                     <div id="navbarVerticalNavMenu" class="collapse navbar-collapse">
-                        <ul id="navbarSettings" class="js-sticky-block js-scrollspy card card-navbar-nav nav nav-tabs nav-lg nav-vertical" data-hs-sticky-block-options='{
+                        <ul id="navbarSettings"
+                            class="js-sticky-block js-scrollspy card card-navbar-nav nav nav-tabs nav-lg nav-vertical"
+                            data-hs-sticky-block-options='{
                      "parentSelector": "#navbarVerticalNavMenu",
                      "targetSelector": "#header",
                      "breakpoint": "lg",
@@ -57,82 +62,88 @@
                      "endPoint": "#stickyBlockEndPoint",
                      "stickyOffsetTop": 20
                    }'>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}"
-                                   href="{{ route('dash.settings.account-information') }}">
-                                    <i class="bi-person nav-icon"></i> Account Information
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}"
-                                href="{{ route('dash.settings.billing') }}">
-                                <i class="bi-at nav-icon"></i> Billing
-                                </a>
-                            </li>
-                            @can('viewAny', \App\Models\User::class)
+                            @if(!auth()->user()->is_guest)
                                 <li class="nav-item">
-                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}"
-                                    href="{{ route('dash.settings.users') }}">
-                                    <i class="bi-key nav-icon"></i> Users
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}"
+                                       href="{{ route('dash.settings.account-information') }}">
+                                        <i class="bi-person nav-icon"></i> Account Information
                                     </a>
                                 </li>
-                            @endcan
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
-                                href="{{ route('dash.settings.rooms') }}">
-                                <i class="bi-key nav-icon"></i> Rooms
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
-                                href="{{ route('dash.settings.additional-houses') }}">
-                                <i class="bi-gear nav-icon"></i> Additional Houses
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
-                                href="{{ route('dash.settings.notifications') }}">
-                                <i class="bi-phone nav-icon"></i> Notifications
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
-                                href="{{ route('dash.settings.vacations') }}">
-                                <i class="bi-bell nav-icon"></i> Vacations
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-boards') }}"
-                                href="{{ route('dash.settings.bulletin-boards') }}">
-                                <i class="bi-bell nav-icon"></i> Bulletin Board
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.audit-history') }}"
-                                href="{{ route('dash.settings.audit-history') }}">
-                                <i class="bi-bell nav-icon"></i> Audit History
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.blog') }}"
-                                href="{{ route('dash.settings.blog') }}">
-                                <i class="bi-bell nav-icon"></i> Blog
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
-                                href="{{ route('dash.settings.guest-books') }}">
-                                <i class="bi-bell nav-icon"></i> Guest Book
-                                </a>
-                            </li>
+                            @endif
+                            @if(auth()->user()->is_admin)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}"
+                                       href="{{ route('dash.settings.billing') }}">
+                                        <i class="bi-at nav-icon"></i> Billing
+                                    </a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
-                                   href="{{ route('dash.settings.category') }}">
-                                    <i class="bi-bell nav-icon"></i> Categories
-                                </a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}"
+                                       href="{{ route('dash.settings.users') }}">
+                                        <i class="bi-key nav-icon"></i> Users
+                                    </a>
+                                </li>
+                            @endif
+                            @if(auth()->user()->is_admin)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
+                                       href="{{ route('dash.settings.rooms') }}">
+                                        <i class="bi-key nav-icon"></i> Rooms
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
+                                       href="{{ route('dash.settings.additional-houses') }}">
+                                        <i class="bi-gear nav-icon"></i> Additional Houses
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
+                                       href="{{ route('dash.settings.notifications') }}">
+                                        <i class="bi-phone nav-icon"></i> Notifications
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
+                                       href="{{ route('dash.settings.vacations') }}">
+                                        <i class="bi-bell nav-icon"></i> Vacations
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-boards') }}"
+                                       href="{{ route('dash.settings.bulletin-boards') }}">
+                                        <i class="bi-bell nav-icon"></i> Bulletin Board
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.audit-history') }}"
+                                       href="{{ route('dash.settings.audit-history') }}">
+                                        <i class="bi-bell nav-icon"></i> Audit History
+                                    </a>
+                                </li>
+                            @endif
+                            @if(!auth()->user()->is_guest)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.blog') }}"
+                                       href="{{ route('dash.settings.blog') }}">
+                                        <i class="bi-bell nav-icon"></i> Blog
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
+                                       href="{{ route('dash.settings.guest-books') }}">
+                                        <i class="bi-bell nav-icon"></i> Guest Book
+                                    </a>
+                                </li>
 
+                                <li class="nav-item">
+                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
+                                       href="{{ route('dash.settings.category') }}">
+                                        <i class="bi-bell nav-icon"></i> Categories
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                     <!-- End Navbar Collapse -->
@@ -196,11 +207,11 @@
                 //     target: '#navbarSettings',
                 //     offset: 100
                 // });
-            //
-            //     new HSScrollspy('#navbarVerticalNavMenu', {
-            //         breakpoint: 'lg',
-            //         scrollOffset: -20
-            //     })
+                //
+                //     new HSScrollspy('#navbarVerticalNavMenu', {
+                //         breakpoint: 'lg',
+                //         scrollOffset: -20
+                //     })
             })
         </script>
     @endpush
