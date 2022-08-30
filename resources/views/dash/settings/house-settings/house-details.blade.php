@@ -6,7 +6,7 @@
         </div>
         <div class="card-body">
 
-            <form wire:submit.prevent="saveAdditionalHouseCU" method="post">
+            <form wire:submit.prevent="saveHouseDetails" method="post">
 {{--                <div--}}
 {{--                    class="mb-3"--}}
 {{--                    x-data="{isFileDropping: false, isUploadingFile: false, uploadingProgress: 0}"--}}

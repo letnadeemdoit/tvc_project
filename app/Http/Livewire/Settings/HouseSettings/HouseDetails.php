@@ -49,7 +49,7 @@ class HouseDetails extends Component
 
     }
 
-    public function saveAdditionalHouseCU()
+    public function saveHouseDetails()
     {
         $this->resetErrorBag();
 
@@ -74,7 +74,7 @@ class HouseDetails extends Component
             'city' => ['nullable', 'string', 'max:40'],
             'state' => ['nullable', 'string', 'max:20'],
             'zipcode' => ['nullable', 'string', 'max:10'],
-        ])->validateWithBag('saveAdditionalHouseCU');
+        ])->validateWithBag('saveHouseDetails');
 
         $this->house->fill([
             'HouseName' => $this->state['name'],
