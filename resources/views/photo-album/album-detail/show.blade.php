@@ -15,9 +15,9 @@
         <div class="container padding-bottom">
             <div class="row">
                 @foreach($nestedAlbums as $dt)
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="">
                         <div class="card mb-3 shadow-lg">
-                            <img class="card-img-top" src="{{ $dt->getFileUrl() }}" alt="Card image cap">
+                            <img class="card-img-top" src="{{ $dt->getFileUrl() }}" alt="Card image cap" style="max-height: 340px">
 
 {{--                            <img class="card-img-top" src="{{asset('/images/photo-album/album-detail.svg')}}" alt="Card image cap">--}}
                             <div class="card-body">
