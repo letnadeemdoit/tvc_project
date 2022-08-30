@@ -7,7 +7,7 @@
         "watch-poll": "npm i &&  NODE_ENV=development mix watch -- --watch-options-poll=1000",
         "hot": "npm i &&  mix watch --hot",
         "prod": "npm i && npm run production",
-        "production": "NODE_ENV=production mix --production"
+        "production": "mix --production"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",

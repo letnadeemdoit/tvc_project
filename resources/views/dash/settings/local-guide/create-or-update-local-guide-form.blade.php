@@ -34,7 +34,8 @@
                 <div class="mb-3">
                     <label class="form-label" for="title">Select Category</label>
                     <select name="local_guide_category_id" id="local_guide_category_id"
-                            wire:model.defer="state.category_id" class="form-control @error('category_id') is-invalid @enderror">
+                            wire:model.defer="state.category_id"
+                            class="form-control @error('category_id') is-invalid @enderror">
                         <option value="">Select Your Category...</option>
                         @if(isset($localGuideCategories))
                             @foreach($localGuideCategories as $lgc)
@@ -158,17 +159,17 @@
 {{--                    />--}}
 
 {{--                </div>--}}
-{{--                <div class="mb-3">--}}
-{{--                    <label class="form-label" for="title">Date & Time</label>--}}
-{{--                    <input--}}
-{{--                        type="datetime-local"--}}
-{{--                        id="datetime"--}}
-{{--                        wire:model.defer="state.datetime"--}}
-{{--                        name="datetime"--}}
-{{--                        class="form-control"--}}
-{{--                    />--}}
+                <div class="mb-3">
+                    <label class="form-label" for="title">Date & Time</label>
+                    <input
+                        type="datetime-local"
+                        id="datetime"
+                        wire:model.defer="state.datetime"
+                        name="datetime"
+                        class="form-control"
+                    />
 
-{{--                </div>--}}
+                </div>
 
 
                 <div
@@ -177,9 +178,11 @@
                         window.tinymce.init({
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#description',
-                          plugins: 'fullscreen image code lists',
-  toolbar: 'insertfile undo redo | bold italic underline | styleselect fontfamily fontsize blocks lineheight  alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor | link image | code',
+                          plugins: 'fullscreen image code lists table',
+  toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
   /* enable title field in the Image dialog*/
+toolbar_mode: 'sliding',
+ /* enable title field in the Image dialog*/
   image_title: false,
 
   block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',

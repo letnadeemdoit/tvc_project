@@ -2,11 +2,13 @@
     <div class="d-flex justify-content-center justify-content-md-start local-guide-tabs">
         <nav class="navecation mb-3">
             <ul id="navi">
+                @if(count($categories) > 0)
                 <li>
                     <a href="{{ route('guest.local-guide.index', ['category' => 'all']) }}" class="menu {{ $category == 'all' ? 'active' : '' }}">
                         ALL
                     </a>
                 </li>
+                @endif
                 @foreach($categories as $cat)
                     <li>
                         <a href="{{ route('guest.local-guide.index', ['category' => $cat->slug]) }}" class="menu {{ $cat->slug == $category ? 'active' : '' }}">

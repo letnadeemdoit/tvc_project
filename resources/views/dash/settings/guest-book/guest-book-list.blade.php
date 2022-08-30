@@ -2,7 +2,7 @@
     <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
-            <div class="mb-2 mb-md-0 w-100">
+            <div class="mb-2 mb-md-0 w-50">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
@@ -18,7 +18,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search by  title"
+                            placeholder="Search by title"
                             aria-label="Search"
                             wire:model.debounce.500ms="search"
                         />

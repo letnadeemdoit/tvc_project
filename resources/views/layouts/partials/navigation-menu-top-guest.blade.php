@@ -15,7 +15,7 @@
                    @auth
                         <div
                             class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
-                            <a href="{{route('guest.privacy-policy')}}" class="mb-0 text-white fs-12">Privacy &amp; Policy</a>
+                            <a href="{{route('guest.privacy-policy')}}" class="mb-0 text-white fs-12">Policies</a>
                         </div>
                         <div
                             class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
@@ -29,14 +29,15 @@
 
                     <div
                         class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
-                        <i class="fas fa-phone me-2 text-white"></i>
-                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">000-000-000</a>
+                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">
+                            <i class="fas fa-phone me-2 text-white"></i> 000-000-000</a>
                     </div>
                     <div
-                        class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
+                        class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start ">
                         {{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
-                        <i class="fa-regular fa-envelope text-white me-2 fs-3"></i>
-                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">trips.calendar@gmail.com</a>
+
+                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
+                            <i class="fa-regular fa-envelope text-white me-2 fs-5"></i>trips.calendar@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -83,8 +84,8 @@
                                href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.photo-album') ? 'active' : '' }}"
-                               href="{{route('guest.photo-album')}}" tabindex="-1">PHOTO ALBUM</a>
+                            <a class="nav-link {{ request()->routeIs('guest.photo-album.index') ? 'active' : '' }}"
+                               href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link {{ request()->routeIs('guest.local-guide.index') ? 'active' : '' }}"

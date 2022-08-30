@@ -15,11 +15,13 @@
     <div class="d-flex justify-content-center justify-content-md-start">
         <nav class="navecation mb-3">
             <ul id="navi">
+                @if(count($categories) >0)
                 <li class="menu">
                     <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}" class="nav-link {{$category == 'all' ? 'active' : ''}}">
                         ALL
                     </a>
                 </li>
+                @endif
                 @foreach($categories as $cat)
                     <li class="menu">
                         <a href="{{ route('guest.bulletin-board.index', ['category' => $cat->slug]) }}" class="nav-link {{$cat->slug == $category ? 'active' : ''}}">
