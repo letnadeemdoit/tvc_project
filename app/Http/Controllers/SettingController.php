@@ -40,6 +40,12 @@ class SettingController extends Controller
             'user' => $request->user()
         ]);
     }
+    public function houseSetting(Request $request)
+    {
+        return view('dash.settings.house-settings.index', [
+            'user' => $request->user()
+        ]);
+    }
 
     public function notifications(Request $request)
     {

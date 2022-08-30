@@ -9,7 +9,7 @@
                 <div class="col-sm-auto" x-data>
                     <a
                         class="btn btn-primary"
-                        href="javascript:;"
+                        href="javascript:void(0);"
                         @click.prevent="window.livewire.emit('showFoodItemCUModal', true)"
                     >
                         <i class="bi-plus me-1"></i> Add New Food Item
@@ -18,8 +18,9 @@
 
             </div>
         </div>
-                <livewire:house-items.food-item.food-item-list :user="$user"/>
-                <livewire:house-items.food-item.create-or-update-food-item-form :user="$user"/>
+
+        <livewire:house-items.food-item.food-item-list :user="$user"/>
+        <livewire:house-items.food-item.create-or-update-food-item-form :user="$user"/>
 
     </div>
 </x-app-layout>

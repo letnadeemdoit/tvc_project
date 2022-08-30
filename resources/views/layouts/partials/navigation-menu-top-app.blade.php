@@ -1371,7 +1371,8 @@
                 <li class="nav-item">
                     <!-- Account -->
                     <div class="dropdown">
-                        <a class="btn btn-soft-primary btn-sm dropdown-toggle" href="javascript:;" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
+                        <a class="btn btn-soft-primary btn-sm dropdown-toggle" href="javascript:;"
+                           id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
                             <i class="bi bi-house-fill me-1 fs-13"></i> Properties ({{ auth()->user()->house->HouseName }})
                         </a>
 
@@ -1393,7 +1394,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}"><i class="bi bi-gear-wide-connected me-1"></i>Settings</a>
+                            <a class="dropdown-item"
+                               href="{{ route('dash.settings.house-setting') }}">
+                                <i class="bi bi-gear-wide-connected me-1"></i>Settings</a>
                             <div class="dropdown-divider"></div>
                             @foreach(auth()->user()->additional_houses as $additionalHouse)
                                 <x-switchable-property :house="$additionalHouse" />

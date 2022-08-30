@@ -2,7 +2,7 @@
     <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
-            <div class="mb-2 mb-md-0">
+            <div class="mb-2 mb-md-0 w-50">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
@@ -18,7 +18,7 @@
                             id="datatableSearch"
                             type="search"
                             class="form-control"
-                            placeholder="Search"
+                            placeholder="Search by name"
                             aria-label="Search"
                             wire:model.debounce.500ms="search"
                         />
@@ -40,8 +40,8 @@
                     <th>Name</th>
                     <th>Parent Album</th>
                     <th>Description</th>
-                    <th>Action</th>
                     <th>Photos</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
 
@@ -93,6 +93,16 @@
 
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
+                                <a class="btn btn-primary"
+                                   href="{{route('dash.photo-albums.photos',$dt->id)}}"
+                                >
+                                    Photos <i class="bi-arrow-right me-1 text-white"></i>
+                                </a>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Edit group">
                                 <a class="btn btn-white" href="#"
                                    wire:click="$emit('showAlbumCUModal', true, {{$dt->id}})"
                                 >
@@ -110,16 +120,6 @@
                             </div>
                         </td>
 
-
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Edit group">
-                                <a class="btn btn-primary"
-                                   href="{{route('dash.photo-albums.photos',$dt->id)}}"
-                                >
-                                    Photos <i class="bi-arrow-right me-1 text-white"></i>
-                                </a>
-                            </div>
-                        </td>
 
                     </tr>
                 @endforeach

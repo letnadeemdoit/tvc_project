@@ -21,7 +21,17 @@
                 <div class="box-2 col-12 col-lg-7 text-center align-self-center img-result hide">
                     <!-- result of crop -->
                     <img class="cropped" src="" alt="">
+
+
                 </div>
+
+                <div class="box d-flex justify-content-between align-items-center my-3">
+                    <div class="options hide">
+                        <button class="btn-primary rotate btn-sm hide">Rotate</button>
+                    </div>
+                    <!-- save btn -->
+                </div>
+
                 <!-- input file -->
 
                 <div class="box d-flex justify-content-between align-items-center my-3">
@@ -90,6 +100,7 @@
                 img_h = document.querySelector('.img-h'),
                 options = document.querySelector('.options'),
                 save = document.querySelector('.save'),
+                rotate = document.querySelector('.rotate'),
                 cropped = document.querySelector('.cropped'),
                 dwn = document.querySelector('.download'),
                 upload = document.querySelector('#file-input'),
@@ -117,6 +128,8 @@
                             options.classList.remove('hide');
                             // init cropper
                             cropper = new Cropper(img);
+
+
                         }
                     };
                     reader.readAsDataURL(e.target.files[0]);
@@ -143,6 +156,25 @@
                 dwn.classList.remove('hide');
                 dwn.download = 'imagename.png';
                 dwn.setAttribute('href',imgSrc);
+            });
+            function handleCropChange() {
+                console.log("## cropped !");
+                const croppedImgData = cropper.getCroppedCanvas({
+
+                    width: img_w.value // input value
+                }).toDataURL();
+
+                @this.set('state.image',croppedImgData,true)
+
+                // this.setState({ croppedImgSrc: croppedImgData });
+            }
+            rotate.addEventListener('click',(e)=>{
+                e.preventDefault();
+                // get result to data uri
+                console.log(cropper);
+                cropper.rotate(90);
+                handleCropChange();
+
             });
         </script>
 

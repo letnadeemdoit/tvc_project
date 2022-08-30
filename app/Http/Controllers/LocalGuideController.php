@@ -14,40 +14,31 @@ class LocalGuideController extends Controller
         return view('local-guide.index', [
             'user' => $request->user()
         ]);
-//        return view('local-guide.index',compact('data'));
-
     }
 
     public function show(Request $request, LocalGuide $dt){
 
         $categories = Category::where('type', 'local-guide')->where('house_id',$dt->house_id)->withCount('localGuides')->get();
 
-        $guide_views = LocalGuide::where('id' ,$dt->id)->withCount('views')->first();
-        $existing_views = $guide_views->views_count;
+        $relatedGuides = LocalGuide::where('category_id', $dt->category_id)->inRandomOrder()->limit(3)->get()->except($dt->id);
 
-        $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->inRandomOrder()->limit(3)->get()->except($dt->id);
+        $totalReviewLocalGuide = $dt->reviews()->get();
 
-        $guide_views = LocalGuide::where('user_id' ,$dt->user_id)->where('id' ,$dt->id)->first();
+        $sumTotalReviews = count($totalReviewLocalGuide);
 
-        if (count($guide_views->views) == 0){
-            $view = new BlogViews();
+        if (isset($sumTotalReviews) && $sumTotalReviews > 0) {
 
-            $view->fill([
-                'user_id' => $dt->user_id,
-                'ip_address' => $request->getClientIp()
-            ]);
+            $avgRating = intval($totalReviewLocalGuide->sum('rating') / $sumTotalReviews);
 
-            $dt->views()->save($view);
         }
 
         return view('local-guide.single-guide.show',[
             'user' => $request->user(),
             'localGuide' => $dt,
             'categories' => $categories,
-            'existingViews' =>$existing_views,
-            'relatedGuides' => $relatedGuides
+            'relatedGuides' => $relatedGuides,
+            'avgRating' => $avgRating ?? 0,
 
         ]);
-
     }
 }

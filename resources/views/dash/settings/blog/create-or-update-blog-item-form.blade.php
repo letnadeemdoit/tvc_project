@@ -181,10 +181,10 @@
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="exampleFormControlSelect1">Select Category</label>
-                        <select id="exampleFormControlSelect1" wire:model.defer="state.category_id"
+                        <label class="form-label" for="category_id">Select Category</label>
+                        <select id="category_id" wire:model.defer="state.category_id"
                                 class="form-control">
-                            <option>--Select--</option>
+                            <option>Choose Category</option>
                             @foreach ($blogCategories as $category)
                                 <option value="{{ $category->id }}"
                                         wire:key="category-{{ $category->id }}">{{ $category->name }}</option>
@@ -204,10 +204,29 @@
                         window.tinymce.init({
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#Content',
-                        plugins: 'image code',
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+                        plugins: 'fullscreen image code lists table',
+  toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
   /* enable title field in the Image dialog*/
+   image_advtab: true,
+    visual: false,
+toolbar_mode: 'sliding',
   image_title: false,
+
+  block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
+
+  line_height_formats: '1 1.2 1.4 1.6 2',
+
+  font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+
+  font_family_formats: 'Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace; AkrutiKndPadmini=Akpdmi-n',
+
+  formats: {
+    // Changes the alignment buttons to add a class to each of the matching selector elements
+    alignleft: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'left' },
+    aligncenter: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'center' },
+    alignright: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'right' },
+    alignjustify: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'full' }
+  },
 
   browser_spellcheck: true,
 

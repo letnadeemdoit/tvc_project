@@ -3,7 +3,7 @@
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
             @include('flash-messages')
-            <div class="mb-2 mb-md-0 w-100">
+            <div class="mb-2 mb-md-0 w-50">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
@@ -70,7 +70,7 @@
                             <td>
                                 {{$dt->category->name ?? ''}}
                             </td>
-                            <td>{{ str(strip_tags($dt->Content))->limit(50) }}</td>
+                            <td>{{ str(strip_tags($dt->Contents))->limit(50) }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Edit group">
                                     <a class="btn btn-white" href="#"

@@ -56,7 +56,7 @@
 
     @endpush
 
-    <div class="container my-5">
+    <div class="container my-5 pb-4">
 
         @if(isset($avgRating))
             <div class="row py-5 my-4">
@@ -64,7 +64,13 @@
                     <div class="row align-items-center">
                         <div class="col-md-5">
                             <div>
-                                <h1 class="text-primary">{{$avgRating ?? 0}}</h1>
+                                <h1 class="text-primary">
+                                    @if($avgRating)
+                                        {{$avgRating ?? 0}}.0
+                                    @else
+                                        0
+                                    @endif
+                                </h1>
                                 <div class="rate px-0">
                                     <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
                                         <li>
@@ -74,6 +80,15 @@
                                             @while (++$i <= ($avgRating ?? 0))
                                                 <span class="fa fa-star checked"></span>
                                             @endwhile
+                                            @php
+                                                $r = 1;
+                                                $t_rating = 5;
+                                            @endphp
+
+                                            @for ($r; $r <= $t_rating - $avgRating; $r++)
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -1px" alt="">
+                                            @endfor
+
                                         </li>
                                     </ul>
                                 </div>
@@ -86,7 +101,8 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="progress">
-                                        <div class="progress-bar" style="width: {{$allRatingFive ?? 0}}%" role="progressbar" aria-valuenow="100"
+                                        <div class="progress-bar" style="width: {{$allRatingFive ?? 0}}%"
+                                             role="progressbar" aria-valuenow="100"
                                              aria-valuemin="0"
                                              aria-valuemax="100"></div>
                                     </div>
@@ -101,7 +117,8 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="progress">
-                                        <div class="progress-bar" style="width: {{$allRatingFour ?? 0}}%" role="progressbar" aria-valuenow="75"
+                                        <div class="progress-bar" style="width: {{$allRatingFour ?? 0}}%"
+                                             role="progressbar" aria-valuenow="75"
                                              aria-valuemin="0"
                                              aria-valuemax="100"></div>
                                     </div>
@@ -116,7 +133,8 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="progress">
-                                        <div class="progress-bar" style="width: {{$allRatingThree ?? 0}}%"  role="progressbar" aria-valuenow="50"
+                                        <div class="progress-bar" style="width: {{$allRatingThree ?? 0}}%"
+                                             role="progressbar" aria-valuenow="50"
                                              aria-valuemin="0"
                                              aria-valuemax="100"></div>
                                     </div>
@@ -131,7 +149,8 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="progress">
-                                        <div class="progress-bar" style="width: {{$allRatingTwo ?? 0}}% !important;"  role="progressbar" aria-valuenow="25"
+                                        <div class="progress-bar" style="width: {{$allRatingTwo ?? 0}}% !important;"
+                                             role="progressbar" aria-valuenow="25"
                                              aria-valuemin="0"
                                              aria-valuemax="100"></div>
                                     </div>
@@ -147,7 +166,8 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="progress">
-                                        <div class="progress-bar" style="width: {{$allRatingOne ?? 0}}%"  role="progressbar" aria-valuenow="25"
+                                        <div class="progress-bar" style="width: {{$allRatingOne ?? 0}}%"
+                                             role="progressbar" aria-valuenow="25"
                                              aria-valuemin="0"
                                              aria-valuemax="100"></div>
                                     </div>
@@ -201,6 +221,15 @@
                                             @while (++$i <= ($user->rating))
                                                 <span class="fa fa-star checked"></span>
                                             @endwhile
+
+                                            @php
+                                                $r = 1;
+                                                $t_rating = 5;
+                                            @endphp
+
+                                            @for ($r; $r <= $t_rating - $user->rating; $r++)
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -1px" alt="">
+                                            @endfor
                                         </li>
                                     </ul>
                                 @else
@@ -261,6 +290,15 @@
                                             @while (++$i <= ($review->rating))
                                                 <span class="fa fa-star checked"></span>
                                             @endwhile
+
+                                            @php
+                                                $r = 1;
+                                                $t_rating = 5;
+                                            @endphp
+
+                                            @for ($r; $r <= $t_rating - $review->rating; $r++)
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -1px" alt="">
+                                            @endfor
                                         </li>
                                     </ul>
                                 </div>
@@ -277,7 +315,7 @@
         @endif
 
 
-        @if(isset($totalReviewLocalGuide) && count($totalReviewLocalGuide) > 6)
+        @if(isset($totalReviewLocalGuide) && count($totalReviewLocalGuide) > 2)
             <div class="row mt-5 mb-3">
                 <div class="col-12 col-lg-6">
                     <button class="w-100 btn btn-primary" id="moreReviews">Load More comments</button>
@@ -287,34 +325,34 @@
 
     </div>
 
-        @push('scripts')
+    @push('scripts')
 
-            <script>
-                $(document).ready(function(){
+        <script>
+            $(document).ready(function () {
 
-                    var list = $(".more-reviews");
-                    var numToShow = 5;
-                    var button = $("#moreReviews");
-                    var numInList = list.length;
-                    list.hide();
-                    if (numInList > numToShow) {
-                        button.show();
+                var list = $(".more-reviews");
+                var numToShow = 2;
+                var button = $("#moreReviews");
+                var numInList = list.length;
+                list.hide();
+                if (numInList > numToShow) {
+                    button.show();
+                }
+                list.slice(0, numToShow).show();
+
+                button.click(function () {
+                    var showing = list.filter(':visible').length;
+                    list.slice(showing - 1, showing + numToShow).fadeIn();
+                    var nowShowing = list.filter(':visible').length;
+                    if (nowShowing >= numInList) {
+                        button.hide();
                     }
-                    list.slice(0, numToShow).show();
-
-                    button.click(function(){
-                        var showing = list.filter(':visible').length;
-                        list.slice(showing - 1, showing + numToShow).fadeIn();
-                        var nowShowing = list.filter(':visible').length;
-                        if (nowShowing >= numInList) {
-                            button.hide();
-                        }
-                    });
-
                 });
-            </script>
+
+            });
+        </script>
 
 
-        @endpush()
+    @endpush()
 </div>
 

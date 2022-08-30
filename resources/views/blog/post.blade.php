@@ -80,19 +80,20 @@
 
     <div class="container my-5 pt-5">
         <div class="row">
-            <div class="col-12 col-lg-9 pe-0 pe-lg-5">
+            <div class="col-12 col-lg-9 pe-0 pe-lg-5 detail-img">
                 <div class="border-bottom">
                     <ul class="d-flex list-unstyled ul-card-footer mb-0">
                         <li class="me-2 me-md-3">
                             <livewire:blog.like-able-blog :post="$post" />
                         </li>
-                        <li class="me-2 me-md-3"><p class="ps-0" id="content"><span><img src="/images/blog-images/comment.svg"
-                                                                            class="img-fluid me-2"></span>
+                        <li class="me-2 me-md-3"><p class="ps-0" id="content"><a><img src="/images/blog-images/comment.svg"
+                                                                            class="img-fluid me-2"></a>
 {{--                                {{$total_comments}} --}}
-                                Comments
+                                <span>  Comments </span>
                             </p></li>
-                        <li class="me-2 me-md-3"><p class="ps-0"><span><img src="/images/blog-images/eye.svg"
-                                                                            class="img-fluid me-2"></span> {{ $existing_views }} Views
+                        <li class="me-2 me-md-3"><p class="ps-0"><a href="#"><img src="/images/blog-images/eye.svg"
+                                                                            class="img-fluid me-2"></a>
+                             <span>   {{ $existing_views }} Views </span>
                             </p></li>
                     </ul>
                 </div>
@@ -219,12 +220,15 @@
 @push('scripts')
     <script>
 
-        const myTimeout = setTimeout(updateComment, 5000);
+        const myTimeout = setTimeout(updateComment, 9000);
 
         function updateComment() {
+            var fb = document.getElementsByClassName('clearfix');
+            console.log(fb);
             var cms = document.getElementsByClassName('_50f7')[0].textContent;
             console.log(cms);
             document.getElementById("content").innerHTML = cms;
+
         }
     </script>
 @endpush

@@ -40,7 +40,7 @@
                     <div id="navbarVerticalMenuPagesMenu">
 
                         <div class="nav-item">
-                            <a class="nav-link" href="#" data-placement="left">
+                            <a class="nav-link" href="{{route('dash.calendar')}}" data-placement="left">
                                 <i class="bi-calendar-month nav-icon"></i>
                                 <span class="nav-link-title">Calendar</span>
                             </a>

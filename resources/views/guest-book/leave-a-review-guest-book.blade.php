@@ -2,16 +2,7 @@
     <div class="w-lg-50 mx-auto">
         <div class="my-5">
             <div class="mb-2 pt-2">
-
                 @include('flash-messages')
-
-{{--                @if(session()->has('message'))--}}
-{{--                    <div class="alert alert-success alert-dismissible fade show" role="alert">--}}
-{{--                        <span class="fw-semi-bold">Congrats!</span>   {{ session('message') }}--}}
-{{--                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>--}}
-{{--                    </div>--}}
-
-{{--                @endif--}}
             </div>
 
             <div class="bg-review shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
@@ -26,7 +17,7 @@
                     <div class="mb-3 col-12">
 
                         <fieldset class="input-group  rounded-1 ps-1">
-                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">First Name</legend>
+                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Name</legend>
                             <input
                                 type="text"
                                 class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -45,23 +36,23 @@
                     </div>
 
 
-                    <div class="mb-3 col-12">
+{{--                    <div class="mb-3 col-12">--}}
 
-                        <fieldset class="input-group  rounded-1 ps-1">
-                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Last Name</legend>
-                            <input
-                                type="text"
-                                class="form-control form-control-lg border-0 shadow-none outline-0"
-                                id="last_name"
-                                wire:model.defer="state.last_name"
-                                name="last_name"
-                                class="form-control"
-                                value="{{ old('last_name') }}"
-                            />
+{{--                        <fieldset class="input-group  rounded-1 ps-1">--}}
+{{--                            <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Last Name</legend>--}}
+{{--                            <input--}}
+{{--                                type="text"--}}
+{{--                                class="form-control form-control-lg border-0 shadow-none outline-0"--}}
+{{--                                id="last_name"--}}
+{{--                                wire:model.defer="state.last_name"--}}
+{{--                                name="last_name"--}}
+{{--                                class="form-control"--}}
+{{--                                value="{{ old('last_name') }}"--}}
+{{--                            />--}}
 
-                        </fieldset>
+{{--                        </fieldset>--}}
 
-                    </div>
+{{--                    </div>--}}
 
 
                 </div>

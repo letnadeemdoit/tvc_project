@@ -68,5 +68,9 @@
         </div>
     </section>
 
+    @push('scripts')
+            <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+    @endpush
+
 </x-guest-layout>
 

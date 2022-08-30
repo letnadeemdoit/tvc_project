@@ -1,4 +1,4 @@
-<x-modals.bs-modal class="modal-lg">
+<x-modals.bs-modal class="modal-lg modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
@@ -25,9 +25,9 @@
                         </div>
                     </div>
                 @endif
-                <x-upload-zone wire:model="file"/>
-                <x-jet-input-error for="image"/>
-                <br/>
+{{--                <x-upload-zone wire:model="file"/>--}}
+{{--                <x-jet-input-error for="image"/>--}}
+{{--                <br/>--}}
 
                 <div class="row">
 
@@ -64,29 +64,13 @@
                     </div>
                 </div>
                 <div class="row">
-
-
-                    <div
-                        class="mb-3"
-                        @modal-is-shown.window="
-                        window.tinymce.init({
-                        ...window.TINYMCE_DEFAULT_CONFIG,
-                        selector: 'textarea#description',
-                        setup: function(editor) {
-                                editor.on('change', function(e) {
-                                    @this.set('state.description', editor.getContent(), true);
-                                });
-                            }
-                        })
-                    "
-
-                    >
+                    <div class="mb-3 col-12 col-lg-12">
                         <label class="form-label" for="description_textarea">Description</label>
                         <textarea
                             class="form-control @error('description') is-invalid @enderror"
                             wire:model.defer="state.description"
                             name="description"
-                            placeholder=""
+                            placeholder="add description"
                             rows="3"
                             id="description"
 

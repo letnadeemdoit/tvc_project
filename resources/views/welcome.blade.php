@@ -331,7 +331,7 @@
 
 
         </section>
-        <section class="p-2 p-lg-5 bg-social-feed social-feeds">
+        <section class="p-2 p-lg-5 bg-social-feed social-feeds" style="border-bottom:2px solid #FFFFFF27">
             <div class="container d-none d-lg-block">
                 <div
                     class="mt-70 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">

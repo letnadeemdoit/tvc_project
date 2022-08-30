@@ -2,26 +2,42 @@
 <div class="topnav py-1 bg-topnav  d-none d-md-block">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
-                <div class="d-flex justify-content-center justify-content-md-start">
+            <div class="col-lg-3">
+                <div class="d-flex justify-content-center justify-content-lg-start">
                     <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
                     <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
                     <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-9">
                 <div
-                    class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-md-end">
+                    class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-lg-end">
+                   @auth
+                        <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            <a href="{{route('guest.privacy-policy')}}" class="mb-0 text-white fs-12">Policies</a>
+                        </div>
+                        <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            <a href="{{route('guest.help')}}" class="mb-0 text-white fs-12">Help</a>
+                        </div>
+                        <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            <a href="{{route('guest.contact')}}" class="mb-0 text-white fs-12">Contact us</a>
+                        </div>
+                   @endauth
+
                     <div
                         class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
-                        <i class="fas fa-phone me-2 text-white"></i>
-                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">000-000-000</a>
+                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">
+                            <i class="fas fa-phone me-2 text-white"></i> 000-000-000</a>
                     </div>
                     <div
-                        class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start">
+                        class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start ">
                         {{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
-                        <i class="fa-regular fa-envelope text-white me-2 fs-3"></i>
-                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">trips.calendar@gmail.com</a>
+
+                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
+                            <i class="fa-regular fa-envelope text-white me-2 fs-5"></i>trips.calendar@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -55,49 +71,53 @@
 
                     <li class="nav-item my-1 my-lg-0">
                         <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
-                           href="{{route('guest.welcome')}}">Home</a>
+                           href="{{route('guest.welcome')}}">HOME</a>
                     </li>
 
                     @auth
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.bulletin-board.index') ? 'active' : '' }}"
                                href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.blog.index') ? 'active' : '' }}"
                                href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.photo-album') ? 'active' : '' }}"
-                               href="{{route('guest.photo-album')}}" tabindex="-1">PHOTO ALBUM</a>
+                            <a class="nav-link {{ request()->routeIs('guest.photo-album.index') ? 'active' : '' }}"
+                               href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.local-guide.index') ? 'active' : '' }}"
                                href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.house-items.index') ? 'active' : '' }}"
                                href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD LIST</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
                                href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
                         </li>
 
                     @endauth
 
-                    <li class="nav-item my-1 my-lg-0">
-                        <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
-                           href="{{route('guest.privacy-policy')}}">POLICIES</a>
-                    </li>
-                    <li class="nav-item my-1 my-lg-0">
-                        <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
-                           href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
-                    </li>
-                    <li class="nav-item my-1 my-lg-0">
-                        <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
-                           href="{{route('guest.help')}}" tabindex="-1">HELP</a>
-                    </li>
+                  @guest
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
+                               href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
+                               href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                               href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                        </li>
+
+                  @endguest
 
                     @guest
                         <li class="nav-item my-1 my-lg-0 d-block d-lg-none">

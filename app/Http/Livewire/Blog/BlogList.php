@@ -51,7 +51,6 @@ class BlogList extends Component
 
     public function render()
     {
-//        dd($this->category);
         $data = Blog::where('HouseId', $this->user->HouseId)
             ->when($this->category !== 'all', function ($query) {
                 $query->whereHas('category', function ($query) {
@@ -59,7 +58,7 @@ class BlogList extends Component
                 });
             })
             ->orderBy('BlogId', 'DESC')
-            ->paginate($this->per_page);
+            ->get();
 
         return view('blog.blog-list', compact('data'));
     }

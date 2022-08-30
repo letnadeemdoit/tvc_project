@@ -5,6 +5,7 @@ use App\Http\Controllers\BulletinBoardController;
 use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HouseController;
+use App\Http\Controllers\PhotoAlbumController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HouseItemController;
 use App\Http\Controllers\LocalGuideController;
@@ -83,6 +84,14 @@ Route::controller(GuestController::class)
             ->group(function () {
                 Route::get('/', 'index')->name('index');
             });
+        Route::controller(PhotoAlbumController::class)
+            ->prefix('photo-album')
+            ->name('photo-album.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{album:name}', 'show')->name('show');
+            });
+
     });
 
 
@@ -108,7 +117,7 @@ Route::middleware([
     ->name('dash.')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
-        Route::get('/calendar', [DashboardController::class, 'calendar'])->name('index');
+        Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
 
         Route::resource('users', UserController::class);
         Route::get('/blogs', [DashboardController::class, 'blogs'])->name('blogs');
@@ -139,6 +148,7 @@ Route::middleware([
                 Route::get('users', 'users')->name('users');
                 Route::get('rooms', 'rooms')->name('rooms');
                 Route::get('additional-houses', 'additionalHouses')->name('additional-houses');
+                Route::get('house-setting', 'houseSetting')->name('house-setting');
                 Route::get('notifications', 'notifications')->name('notifications');
                 Route::get('vacations', 'vacations')->name('vacations');
                 Route::get('bulletin-boards', 'bulletinBoard')->name('bulletin-boards');

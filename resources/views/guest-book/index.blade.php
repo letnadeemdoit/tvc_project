@@ -136,7 +136,11 @@
                                         <div class="guest-card-description pb-4 ps-4 pe-2" style="min-height: 270px;">
                                             <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                  class="img-fluid margin-left-negative pt-3">
-                                            <h3 class="pt-1">{{$dt->title }}</h3>
+                                            @if(isset($dt->content) && strlen($dt->content) > 130)
+                                                <h3 class="pt-1">{{ substr($dt->title , 0, 25) }}</h3>
+                                            @else
+                                                <h3 class="pt-1">{{ $dt->title , 0, 25 }}</h3>
+                                            @endif
                                             <div class="text-light-secondary">
                                                 {!! substr($dt->content,0,130) !!}
                                                 @if(isset($dt->content) && strlen($dt->content) > 130)
@@ -174,8 +178,8 @@
                                                          style="min-height: 270px;">
                                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                              class="img-fluid margin-left-negative">
-                                                        <h3 class="pt-1">{{$dt->title }}</h3>
                                                         <div class="guest-card-cont">
+                                                            <h3 class="pt-1">{{$dt->title }}</h3>
                                                             <p> {!! $dt->content !!}</p>
                                                         </div>
                                                     </div>
@@ -201,7 +205,13 @@
                                         <div class="guest-card-description pb-4 ps-4 pe-2" style="min-height: 270px;">
                                             <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                  class="img-fluid margin-left-negative pt-3">
-                                            <h3 class="pt-1">{{$dt->title }}</h3>
+
+                                            @if(isset($dt->content) && strlen($dt->content) > 130)
+                                            <h3 class="pt-1">{{ substr($dt->title , 0, 25) }}</h3>
+                                            @else
+                                                <h3 class="pt-1">{{ $dt->title , 0, 25 }}</h3>
+                                            @endif
+
                                             <div class="text-light-secondary">
                                                 {!! substr($dt->content,0,130) !!}
                                                 @if(isset($dt->content) && strlen($dt->content) > 130)
@@ -216,7 +226,7 @@
                                         <div class="card-body bg-primary pb-5">
                                             <span class="badge-box py-4">
                                                 <img src="{{$dt->getFileUrl('image')}}"
-                                                     alt="{{ $dt->title ?? '' }}"
+                                                     alt="{{ $dt->name ?? '' }}"
                                                      class="rounded-circle" width="60"/>
                                             </span>
                                             <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
@@ -240,8 +250,8 @@
                                                          style="min-height: 270px;">
                                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                              class="img-fluid margin-left-negative">
-                                                        <h3 class="pt-1">{{$dt->title }}</h3>
                                                         <div class="guest-card-cont">
+                                                            <h3 class="pt-1">{{$dt->title }}</h3>
                                                             <p> {!! $dt->content !!}</p>
                                                         </div>
 
@@ -251,7 +261,7 @@
                                                     <div class="card-body bg-primary pb-5">
                                             <span class="badge-box py-4">
                                                 <img src="{{$dt->getFileUrl('image')}}"
-                                                     alt="{{ $dt->title ?? '' }}"
+                                                     alt="{{ $dt->name ?? '' }}"
                                                      class="rounded-circle" width="60"/>
                                             </span>
                                                         <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
