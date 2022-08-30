@@ -148,6 +148,7 @@ Route::middleware([
                 Route::get('users', 'users')->name('users');
                 Route::get('rooms', 'rooms')->name('rooms');
                 Route::get('additional-houses', 'additionalHouses')->name('additional-houses');
+                Route::get('house-setting', 'houseSetting')->name('house-setting');
                 Route::get('notifications', 'notifications')->name('notifications');
                 Route::get('vacations', 'vacations')->name('vacations');
                 Route::get('bulletin-boards', 'bulletinBoard')->name('bulletin-boards');
