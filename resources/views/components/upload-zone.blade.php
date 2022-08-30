@@ -83,7 +83,7 @@
                 <li x-text="e" class="text-danger"></li>
             </template>
         </ul>
-        <div class="row" :class="{'mt-3': files.length > 0}">
+        <div class="row ms-0" :class="{'mt-3': files.length > 0}">
             <template x-for="(f, i) in files" :key="i">
                 <div class="col-md-2 mx-auto">
                     <img :src="URL.createObjectURL(f)" class="img-fluid"/>
