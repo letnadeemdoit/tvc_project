@@ -152,9 +152,9 @@ Route::middleware([
             ->prefix('paypal')
             ->name('paypal.')
             ->group(function () {
-                Route::get('/process', 'process')->name('process');
-                Route::get('/success', 'succeeded')->name('succeeded');
-                Route::get('/cancel', 'canceled')->name('canceled');
+                Route::get('/{plan}/processing', 'process')->name('process');
+                Route::get('/{plan}/{house}/succeeded', 'succeeded')->name('succeeded');
+                Route::get('/{plan}/{house}/canceled', 'canceled')->name('canceled');
                 Route::get('/ipn', 'ipn')->name('ipn');
             });
     });
