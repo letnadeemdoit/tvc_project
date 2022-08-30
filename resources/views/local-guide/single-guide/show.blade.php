@@ -50,11 +50,11 @@
     </div>
     <main style="background-color:#fff !important;">
         <div class="container">
-            <div class="card border-0 rounded-20 py-3 shadow-none" style="margin-top: -70px;">
+            <div class="card border-0 rounded-20 py-3 shadow-none p-4" style="margin-top: -70px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
-                        <a style="cursor: text" class="btn btn-soft-primary px-5">{{$localGuide->category->name}}</a>
+                        <p class="mb-0 badge badge-primary fs-13 fw-semi-bold" style="padding: 10px 20px !important;">{{$localGuide->category->name}}</p>
                     </div>
                     <div class="d-flex align-items-center mt-4">
                         <div class="flex-shrink-0">
