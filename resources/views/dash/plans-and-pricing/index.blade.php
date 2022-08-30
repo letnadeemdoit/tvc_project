@@ -18,7 +18,11 @@
 
             </div>
         </div>
-
+        @if(session()->has('status'))
+            <div class="alert alert-soft-success" role="alert">
+                {{ session()->get('status') }}
+            </div>
+        @endif
         <livewire:plans-and-pricing.plans-and-pricing-list :user="$user"/>
 
 {{--        <livewire:local-guide.create-or-update-local-guide-form :user="$user"/>--}}

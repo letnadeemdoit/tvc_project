@@ -47,3 +47,10 @@ if (!function_exists('get_class_name')) {
         return \Illuminate\Support\Str::plural(strtolower($classname));
     }
 }
+
+if (!function_exists('current_house')) {
+    function current_house()
+    {
+        return auth()->user()->house;
+    }
+}
