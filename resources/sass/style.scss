@@ -263,9 +263,7 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         }
     }
 }
-.btn:hover{
-    border-color: transparent !important;
-}
+
     .lb-container{
         padding: 0px !important;
     }
@@ -554,13 +552,13 @@ header{
     width: 94%;
     margin: 0 auto;
 }
-//.form-check-input:checked[type=checkbox] {
-//    background-image: url("/images/images-home/tick.svg") !important;
-//}
-//.form-check-input:checked {
-//    background-color: #fff;
-//    border: 2px solid #e8604c;
-//}
+.check-input:checked[type=checkbox] {
+    background-image: url("/images/images-home/tick.svg") !important;
+}
+.check-input:checked {
+    background-color: #fff !important;
+    border: 2px solid #e8604c !important;
+}
 .padding-top{
     padding-left: 4rem;
     padding-right:3.5rem
