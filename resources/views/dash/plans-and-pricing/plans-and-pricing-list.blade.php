@@ -28,7 +28,13 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        <a href="{{ route('dash.paypal.process', 'basic') }}" class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
+                        @if(current_house()->plan !== 'basic')
+                            <a href="{{ route('dash.paypal.process', 'basic') }}"
+                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
+                        @elseif(current_house()->plan === 'basic')
+                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
+                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @endif
                     </div>
 
                 </div>
@@ -65,7 +71,13 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        <a href="{{ route('dash.paypal.process', 'standard') }}" class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
+                        @if(current_house()->plan !== 'standard')
+                            <a href="{{ route('dash.paypal.process', 'standard') }}"
+                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
+                        @elseif(current_house()->plan === 'standard')
+                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
+                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @endif
                     </div>
 
                 </div>
@@ -102,7 +114,13 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        <a href="{{ route('dash.paypal.process', 'premium') }}" class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
+                        @if(current_house()->plan !== 'premium')
+                            <a href="{{ route('dash.paypal.process', 'premium') }}"
+                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
+                        @elseif(current_house()->plan === 'premium')
+                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
+                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @endif
                     </div>
 
                 </div>
