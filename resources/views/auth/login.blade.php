@@ -63,9 +63,6 @@
                                 @if(old('house_id') !== null)
                                     @php
                                         $selectedHouse = \App\Models\House::where('HouseID', old('house_id'))->first();
-
-                                    dd($selectedHouse);
-                                    
                                     @endphp
                                     @if($selectedHouse)
                                         <option value="{{ old('house_id') }}" selected>{{ $selectedHouse->HouseName }}</option>
