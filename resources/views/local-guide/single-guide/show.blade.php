@@ -200,7 +200,7 @@
                                         <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->category->name}}</a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
-                                        <b class="text-dark">{{ substr($dt->title , 0, 30) }}</b>
+                                        <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>
                                         <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
                                     </div>
                                 </div>
