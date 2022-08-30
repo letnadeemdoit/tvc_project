@@ -81,6 +81,11 @@
             <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 210px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
+{{--                        @if(isset($blog->user->profile_photo_path))--}}
+{{--                            <img src="{{$blog->user->profile_photo_url }}" class="img-fluid position-relative rounded-circle" alt="..." style="width:60px; height:60px;">--}}
+{{--                        @else--}}
+{{--                            <img src="/images/blog-images/beach.png" class="img-fluid position-relative" alt="..." style="width:60px; height:60px">--}}
+{{--                        @endif--}}
                         <img
                             src="{{ $blog->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
