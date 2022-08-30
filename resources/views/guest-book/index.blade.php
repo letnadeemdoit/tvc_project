@@ -178,8 +178,8 @@
                                                          style="min-height: 270px;">
                                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                              class="img-fluid margin-left-negative">
-                                                        <h3 class="pt-1">{{$dt->title }}</h3>
                                                         <div class="guest-card-cont">
+                                                            <h3 class="pt-1">{{$dt->title }}</h3>
                                                             <p> {!! $dt->content !!}</p>
                                                         </div>
                                                     </div>
@@ -250,8 +250,8 @@
                                                          style="min-height: 270px;">
                                                         <img src="{{asset('/images/guest-book/quotes.svg')}}" width="55"
                                                              class="img-fluid margin-left-negative">
-                                                        <h3 class="pt-1">{{$dt->title }}</h3>
                                                         <div class="guest-card-cont">
+                                                            <h3 class="pt-1">{{$dt->title }}</h3>
                                                             <p> {!! $dt->content !!}</p>
                                                         </div>
 
