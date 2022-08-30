@@ -263,6 +263,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         }
     }
 }
+.btn:hover{
+    border-color: transparent !important;
+}
     .lb-container{
         padding: 0px !important;
     }
@@ -726,6 +729,10 @@ header{
     .nav-item{
         position: relative;
         .nav-link {
+            &.active{
+                font-weight: 600;
+                color: $dark-blue;
+            }
             &.active:after {
                 padding-left: 0.6rem !important;
                 color: #000 !important;
