@@ -1402,10 +1402,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="dropdown-item"
-                                   href="{{ route('dash.settings.house-setting') }}">
-                                    <i class="bi bi-gear-wide-connected me-1"></i>Settings</a>
-                                <div class="dropdown-divider"></div>
+                                @if(!auth()->user()->is_guest)
+                                    <a class="dropdown-item"
+                                       href="{{ route('dash.settings.house-setting') }}">
+                                        <i class="bi bi-gear-wide-connected me-1"></i>Settings</a>
+                                    <div class="dropdown-divider"></div>
+                                @endif
                                 @foreach(auth()->user()->additional_houses as $additionalHouse)
                                     <x-switchable-property :house="$additionalHouse" />
                                 @endforeach
