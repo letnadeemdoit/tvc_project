@@ -2,12 +2,15 @@
 
 namespace App\Models\Blog;
 
+use App\Models\BlogPivot;
 use App\Models\BlogViews;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\House;
 use App\Models\Likes;
 use App\Models\Review;
+use App\Models\Tag;
+use App\Models\TagBlog;
 use App\Models\Tags;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -108,7 +111,8 @@ class Blog extends Model implements Auditable
         return $this->morphMany(BlogViews::class, 'viewable');
     }
 
-    public function tags() {
-        return $this->hasMany(Tags::class);
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tag_blogs', 'blog_id', 'tag_id');
     }
 }

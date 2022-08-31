@@ -19,13 +19,20 @@ class BlogController extends Controller
 
         $user = $request->user();
 
-        $blog_views = Blog::where('HouseId' , $user->HouseId)->where('BlogId' ,$post->BlogId)->withCount('views')->first();
-        $existing_views = $blog_views->views_count;
+        $existing_views = 0;
 
+//        $blog_views = Blog::where('HouseId' , $user->HouseId)->where('BlogId' ,$post->BlogId)->withCount('views')->first();
+        $blog_views = BlogViews::where('user_id' ,$user->user_id)->where('viewable_id' ,$post->BlogId)->get();
+        if (!is_null($blog_views)){
+            $existing_views = count($blog_views);
+        }
 
         $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
 
         $relatedBlog = Blog::where('HouseId' , $user->HouseId)->where('category_id', $post->category_id)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
+
+        $existingTags = $post->tags;
+//        dd($existingTags);
 
         $views = BlogViews::where('user_id' ,$user->user_id)->where('viewable_id' ,$post->BlogId)->first();
 
@@ -47,7 +54,8 @@ class BlogController extends Controller
             'post' => $post,
             'existing_views' => $existing_views,
             'categories' => $categories,
-            'relatedBlog' => $relatedBlog
+            'relatedBlog' => $relatedBlog,
+            'existingTags' => $existingTags
 
         ]);
     }

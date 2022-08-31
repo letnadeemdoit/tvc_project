@@ -131,25 +131,11 @@
                     <div class="card-body">
                         <h4 class="mb-3">Tags</h4>
                         <div>
+                            @foreach($existingTags as $tag)
                             <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Business</a>
+                                <a href="{{ route('guest.blog.index', ['tag' => $tag['name']]) }}" class="btn btn-sm me-3 btn-soft-primary mb-3">{{$tag['name']}}</a>
                             </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Graphic Design</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Technology</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">App Development</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Website Design</a>
-                            </span>
-                            <span>
-                                <a href="" class="btn btn-sm me-3 btn-soft-primary mb-3">Business Idea</a>
-                            </span>
-
+                            @endforeach
                         </div>
 
                     </div>
