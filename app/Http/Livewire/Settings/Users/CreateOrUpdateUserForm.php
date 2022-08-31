@@ -69,6 +69,12 @@ class CreateOrUpdateUserForm extends Component
     {
         $this->resetErrorBag();
 
+        if (isset($this->state['role']) && $this->state['role'] === User::ROLE_GUEST) {
+            $this->state['user_name'] = 'Guest';
+            $this->state['first_name'] = 'Guest';
+            $this->state['last_name'] = 'Guest';
+        }
+
         Validator::make($this->state, [
             'user_name' => [
                 'required',
@@ -78,7 +84,7 @@ class CreateOrUpdateUserForm extends Component
                     $query->where('HouseId', $this->user->HouseId);
                 })],
             'email' => [
-                'required',
+                Rule::requiredIf(isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST),
                 'string',
                 'email',
                 'max:255',
@@ -101,7 +107,7 @@ class CreateOrUpdateUserForm extends Component
 
         $this->userCU->fill([
             'user_name' => $this->state['user_name'],
-            'email' => $this->state['email'],
+            'email' => $this->state['email'] ?? null,
             'role' => $this->state['role'],
             'first_name' => $this->state['first_name'],
             'last_name' => $this->state['last_name'],
