@@ -104,12 +104,16 @@
                                         <i class="bi-phone nav-icon"></i> Notifications
                                     </a>
                                 </li>
+                            @endif
+                            @if(!auth()->user()->is_guest)
                                 <li class="nav-item">
                                     <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
                                        href="{{ route('dash.settings.vacations') }}">
                                         <i class="bi-bell nav-icon"></i> Vacations
                                     </a>
                                 </li>
+                            @endif
+                            @if(auth()->user()->is_admin)
                                 <li class="nav-item">
                                     <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-boards') }}"
                                        href="{{ route('dash.settings.bulletin-boards') }}">
@@ -137,13 +141,14 @@
                                             <i class="bi-bell nav-icon"></i> Guest Book
                                         </a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
+                                           href="{{ route('dash.settings.category') }}">
+                                            <i class="bi-bell nav-icon"></i> Categories
+                                        </a>
+                                    </li>
                                 @endif
-                                <li class="nav-item">
-                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
-                                       href="{{ route('dash.settings.category') }}">
-                                        <i class="bi-bell nav-icon"></i> Categories
-                                    </a>
-                                </li>
                             @endif
                         </ul>
                     </div>

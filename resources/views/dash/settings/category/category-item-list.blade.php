@@ -66,14 +66,26 @@
                                 >
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
-                                <button
-                                    type="button"
-                                    class="btn btn-danger btn-sm"
-                                    wire:click.prevent="destroy({{$dt->id}})"
-                                >
-                                    <i class="bi-trash"></i>
-                                </button>
-
+                                @if($dt->blogs->count() > 0 )
+                                    <button
+                                        type="button"
+                                        class="btn btn-outline-danger btn-sm"
+                                        disabled
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        title="Move the associated blog entries to other categories and then return to delete the category"
+                                    >
+                                        <i class="bi-trash"></i>
+                                    </button>
+                                @else
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm"
+                                        wire:click.prevent="destroy({{$dt->id}})"
+                                    >
+                                        <i class="bi-trash"></i>
+                                    </button>
+                                @endif
                             </div>
                         </td>
 
