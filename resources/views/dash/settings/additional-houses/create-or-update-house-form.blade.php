@@ -1,7 +1,7 @@
 <x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $house && $house->HouseID ? "Update" . ($house->HouseName ? " '$house->HouseName'" : '') : 'Add' }} House</h5>
+            <h5 class="modal-title">{{ $house && $house->HouseID ? "Update" : 'Add' }} House</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -228,7 +228,7 @@
                 </div>
 
                 <div class="mb-3 d-flex">
-                    <button type="submit" class="btn btn-primary px-5 ms-auto">{{ $house && $house->HouseID ? "Update" . ($house->HouseName ? " '$house->HouseName'" : '') : 'Add' }} House</button>
+                    <button type="submit" class="btn btn-primary px-5 ms-auto">{{ $house && $house->HouseID ? "Update" : 'Add' }} House</button>
                 </div>
 
             </form>
