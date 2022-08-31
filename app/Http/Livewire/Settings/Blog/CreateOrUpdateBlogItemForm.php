@@ -24,6 +24,8 @@ class CreateOrUpdateBlogItemForm extends Component
     use Toastr;
     public $user;
 
+    public $name;
+
     public $siteUrl;
 
     public $state = [];
@@ -59,7 +61,7 @@ class CreateOrUpdateBlogItemForm extends Component
 
         if ($blogItem->BlogId) {
             $this->isCreating = false;
-            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'image', 'category_id']);
+            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'image', 'category_id',' name']);
         }else{
             $this->isCreating = true;
         }
@@ -67,6 +69,7 @@ class CreateOrUpdateBlogItemForm extends Component
 
     public function saveBlogItemCU()
     {
+        dd($this->name);
         $this->resetErrorBag();
         $date = date('Y/m/d H:i:s');
         $inputs = $this->state;

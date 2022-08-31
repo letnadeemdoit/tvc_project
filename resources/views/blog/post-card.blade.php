@@ -16,9 +16,9 @@
                     <div class="user-img d-flex align-items-center">
 
                         <img
-                            src="{{ $post->user->profile_photo_url }}"
+                            src="{{ auth()->user()->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
-                            alt="{{ $post->user->name ?? '' }}"
+                            alt="{{ auth()->user()->user_name ?? '' }}"
                         >
 
                         <div class="ps-3">

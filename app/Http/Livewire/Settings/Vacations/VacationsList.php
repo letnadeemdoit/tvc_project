@@ -40,6 +40,9 @@ class VacationsList extends Component
     public function render()
     {
         $data = Vacation::where('HouseId', $this->user->HouseId)
+            ->when($this->user->is_owner_only, function ($query) {
+                $query->where('OwnerId', $this->user->user_id);
+            })
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query

@@ -11,7 +11,7 @@ class HouseRelatedBlog extends Component
     public $existing_views;
 
     public function mount() {
-        $blog_views = Blog::where('HouseId' , $this->blog->HouseId)->where('BlogId' ,$this->blog->BlogId)->withCount('views')->first();
+        $blog_views = Blog::where('HouseId' , auth()->user()->HouseId)->where('BlogId' ,$this->blog->BlogId)->withCount('views')->first();
         $this->existing_views = $blog_views->views_count;
     }
 

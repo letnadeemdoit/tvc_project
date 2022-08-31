@@ -147,6 +147,16 @@ class User extends Authenticatable implements Auditable
     }
 
     /**
+     * Check user is owner.
+     *
+     * @return mixed
+     */
+    protected function getIsOwnerOnlyAttribute(): bool
+    {
+        return $this->role === self::ROLE_OWNER;
+    }
+
+    /**
      * Check user is guest.
      *
      * @return mixed
