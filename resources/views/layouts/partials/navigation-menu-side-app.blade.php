@@ -67,7 +67,8 @@
                                     <span class="nav-link-title">Plans &amp; Pricing</span>
                                 </a>
                             </div>
-
+                        @endif
+                        @if(!auth()->user()->is_guest)
                             <div class="nav-item">
                                 <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list']) }}
                                     "
@@ -122,8 +123,12 @@
                                            href="{{ route('dash.settings.additional-houses') }}">Additional Houses</a>
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
                                            href="{{ route('dash.settings.notifications') }}">Notifications</a>
+                                    @endif
+                                    @if(!auth()->user()->is_guest)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
                                            href="{{ route('dash.settings.vacations') }}">Vacations</a>
+                                    @endif
+                                    @if(auth()->user()->is_admin)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-boards') }}"
                                            href="{{ route('dash.settings.bulletin-boards') }}">Bulletin Board</a>
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.audit-history') }}"
@@ -134,9 +139,10 @@
                                     @if(auth()->user()->is_admin)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
                                            href="{{ route('dash.settings.guest-books') }}">Guest Book</a>
+
+                                        <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
+                                           href="{{ route('dash.settings.category') }}">Categories</a>
                                     @endif
-                                    <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
-                                       href="{{ route('dash.settings.category') }}">Categories</a>
                                 </div>
                             </div>
                         @endif

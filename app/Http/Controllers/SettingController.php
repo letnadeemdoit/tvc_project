@@ -65,7 +65,7 @@ class SettingController extends Controller
 
     public function vacations(Request $request)
     {
-        abort_if(!$request->user()->is_admin, 403);
+        abort_if($request->user()->is_guest, 403);
         return view('dash.settings.vacations.index', [
             'user' => $request->user()
         ]);
@@ -97,7 +97,7 @@ class SettingController extends Controller
 
     public function category(Request $request)
     {
-        abort_if($request->user()->is_guest, 403);
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.category.index', [
             'user' => $request->user()
         ]);
