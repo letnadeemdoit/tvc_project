@@ -44,6 +44,7 @@ Route::controller(GuestController::class)
         Route::get('/local-guide', 'localGuide')->name('local-guide');
         Route::get('/photo-album', 'photoAlbum')->name('photo-album');
         Route::get('/single-album', 'singleAlbum')->name('single-album');
+        Route::get('/album-photo', 'photoGalleryView')->name('album-photo');
 
 
         Route::controller(BlogController::class)
