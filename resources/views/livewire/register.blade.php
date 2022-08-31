@@ -67,18 +67,18 @@
             </div>
             <div class="mb-3">
                 <fieldset class="input-group rounded-1 ps-1">
-                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Paypal Account</legend>
+                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Referral Paypal Account</legend>
                     <input
                         type="number"
                         class="form-control form-control-lg border-0 shadow-none outline-0"
                         id="ReferredBy"
-                        name="paypal_account"
-                        wire:model.defer="state.paypal_account"
+                        name="Referral_paypal_account"
+                        wire:model.defer="state.Referral_paypal_account"
                         placeholder=""
-                        value="{{old('paypal_account')}}"
+                        value="{{old('Referral_paypal_account')}}"
                     />
                 </fieldset>
-                @error('paypal_account')
+                @error('Referral_paypal_account')
                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                 @enderror
             </div>
