@@ -108,12 +108,5 @@
     </div>
         <livewire:photo-album.photo-album-list :user="$user" />
     @push('scripts')
-        {{--        <script>--}}
-        {{--            lightbox.option({--}}
-        {{--                'resizeDuration': 200,--}}
-        {{--                'wrapAround': true--}}
-        {{--            })--}}
-        {{--        </script>--}}
-        {{--               <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>--}}
     @endpush()
 </x-guest-layout>
