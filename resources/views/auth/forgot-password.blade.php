@@ -1,5 +1,4 @@
 <x-auth-layout>
-    @include('layouts.partials.navigation-menu-top-guest')
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{--            <x-jet-authentication-card-logo />--}}

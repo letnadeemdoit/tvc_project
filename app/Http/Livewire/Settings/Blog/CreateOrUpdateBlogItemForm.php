@@ -5,8 +5,11 @@ namespace App\Http\Livewire\Settings\Blog;
 use App\Models\Blog\Blog;
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Blog\BlogComment;
+use App\Models\BlogPivot;
 use App\Models\Category;
 use App\Models\House;
+use App\Models\Tag;
+use App\Models\TagBlog;
 use App\Models\User;
 use App\Notifications\BlogNotify;
 use App\Models\Tags;
@@ -31,6 +34,8 @@ class CreateOrUpdateBlogItemForm extends Component
     public $state = [];
     public $isCreating = false;
     public $file;
+
+    public $existingTags;
 
     public $blogCategories;
 
@@ -62,6 +67,7 @@ class CreateOrUpdateBlogItemForm extends Component
         if ($blogItem->BlogId) {
             $this->isCreating = false;
             $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'image', 'category_id',' name']);
+            $this->existingTags = $blogItem->tags;
         }else{
             $this->isCreating = true;
         }
@@ -113,32 +119,51 @@ class CreateOrUpdateBlogItemForm extends Component
 
         $this->blogItem->updateFile($this->file);
 
-        if (!is_null($this->user->house->BlogEmailList)){
-            $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
+//        if (!is_null($this->user->house->BlogEmailList)){
+//            $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
+//
+//            if (count($blogEmailsList) > 0) {
+//
+//                $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                Notification::send($users, new BlogNotify($items,$blogUrl));
+//
+//                $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+//
+//                if (count($blogEmailsList) > 0) {
+//
+//                    Notification::route('mail', $blogEmailsList)
+//                    ->notify(new BlogNotify($items,$blogUrl));
+//
+//                }
+//            }
+//
+//
+//        }
 
-            if (count($blogEmailsList) > 0) {
+        $tagsArray = $this->state['tags'];
+        foreach ($tagsArray as $tag){
+            $tagExist = Tag::where('name', '=', $tag)->first();
+            if ($tagExist === null) {
+                $newTag = new Tag();
+                $newTag->fill([
+                    'name' => $tag,
+                ]);
 
-                $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+                $this->blogItem->tags()->save($newTag);
+//
+//                TagBlog::create([
+//                    'blog_id' => $this->blogItem->BlogId,
+//                    'tag_id' => $newTag->id
+//                ]);
 
-                Notification::send($users, new BlogNotify($items,$blogUrl));
-
-                $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
-
-                if (count($blogEmailsList) > 0) {
-
-                    Notification::route('mail', $blogEmailsList)
-                    ->notify(new BlogNotify($items,$blogUrl));
-
-                }
             }
-
-
         }
-
-//        Tags::create([
-//            'blog_id' => $this->blogItem->BlogId,
-//            'name' => $inputs['name'],
+//        $tag = new Tags();
+//        $tag->fill([
+//            'name' => $tag,
 //        ]);
+//        $tag->save();
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Blog;
 
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogComment;
+use App\Models\BlogViews;
 use App\Models\Likes;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -22,8 +23,9 @@ class PostCard extends Component
     ];
 
     public function mount() {
-        $blog_views = Blog::where('HouseId' , auth()->user()->HouseId)->where('BlogId' ,$this->post->BlogId)->withCount('views')->first();
-        $this->existing_views = $blog_views->views_count;
+        $blog_views = BlogViews::where('user_id' ,auth()->user()->user_id)->where('viewable_id' ,$this->post->BlogId)->get();
+        if ($blog_views)
+        $this->existing_views = count($blog_views);
     }
 
     public function render()

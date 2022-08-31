@@ -148,14 +148,14 @@
                 </div>
 
 {{--                <div class="mb-3">--}}
-{{--                    <label class="form-label" for="title">Address1</label>--}}
+{{--                    <label class="form-label" for="url">URL</label>--}}
 {{--                    <input--}}
 {{--                        type="text"--}}
 {{--                        id="address"--}}
-{{--                        wire:model.defer="state.address"--}}
-{{--                        name="address"--}}
+{{--                        wire:model.defer="state.url"--}}
+{{--                        name="url"--}}
 {{--                        class="form-control"--}}
-{{--                        placeholder="Address Url"--}}
+{{--                        placeholder="Url"--}}
 {{--                    />--}}
 
 {{--                </div>--}}

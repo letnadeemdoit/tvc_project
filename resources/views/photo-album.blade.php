@@ -83,8 +83,8 @@
                 page-break-inside: avoid;
                 break-inside: avoid;
                 counter-increment: brick-counter;
-                margin-bottom: 12px;
-                margin-left: 6px;
+                padding-bottom: 13px;
+                padding-left: 6px;
             }
             .masonry img {
                 width: 100%;
@@ -197,8 +197,8 @@
                 </div>
                 <div class="brick">
                     <div class="card border-0 text-white bg-transparent shadow-none">
-                        <a class="" data-fancybox="demo" data-src="https://images.unsplash.com/photo-1659535907680-0e219b46c01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" data-caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
-                            <img src="https://images.unsplash.com/photo-1659535907680-0e219b46c01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"></a>
+                        <a class="" data-fancybox="demo" data-src="https://images.unsplash.com/photo-1661860859715-d963b4d51268?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" data-caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+                            <img src="https://images.unsplash.com/photo-1661860859715-d963b4d51268?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"></a>
                         <div class="p-0">
                             <div
                                 class="card-block d-flex w-100 justify-content-between px-2 px-lg-4 img-card-text align-items-center align-items-center">
@@ -231,8 +231,8 @@
                 </div>
                 <div class="brick">
                     <div class="card border-0 text-white bg-transparent shadow-none">
-                        <a class="" data-fancybox="demo" data-src="https://images.unsplash.com/photo-1475087542963-13ab5e611954?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" data-caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
-                            <img src="https://images.unsplash.com/photo-1475087542963-13ab5e611954?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"></a>
+                        <a class="" data-fancybox="demo" data-src="https://images.unsplash.com/photo-1519160450767-b159c73fe437?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" data-caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+                            <img src="https://images.unsplash.com/photo-1519160450767-b159c73fe437?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"></a>
                         <div class="p-0">
                             <div
                                 class="card-block d-flex w-100 justify-content-between px-2 px-lg-4 img-card-text align-items-center align-items-center">
@@ -248,8 +248,8 @@
                 </div>
                 <div class="brick">
                     <div class="card border-0 text-white bg-transparent shadow-none">
-                        <a class="" data-fancybox="demo" data-src="https://images.unsplash.com/photo-1519160450767-b159c73fe437?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" data-caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
-                            <img src="https://images.unsplash.com/photo-1519160450767-b159c73fe437?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"></a>
+                        <a class="" data-fancybox="demo" data-src="https://images.unsplash.com/photo-1661796428181-ffc414240d58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" data-caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+                            <img src="https://images.unsplash.com/photo-1661796428181-ffc414240d58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"></a>
                         <div class="p-0">
                             <div
                                 class="card-block d-flex w-100 justify-content-between px-2 px-lg-4 img-card-text align-items-center align-items-center">

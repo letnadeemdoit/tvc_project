@@ -20,6 +20,8 @@ class BlogList extends Component
 
     public $categories;
 
+    public $tag = 'all';
+
     public $category = 'all';
 
     protected $queryString = [
@@ -27,6 +29,7 @@ class BlogList extends Component
         'page' => ['except' => 1],
         'per_page' => ['except' => 10],
         'category' => ['except' => 'all'],
+        'tag' => ['except' => 'all'],
     ];
     protected $listeners = [
         'category-change-cu-successfully' => '$refresh',
@@ -57,6 +60,11 @@ class BlogList extends Component
             ->when($this->category !== 'all', function ($query) {
                 $query->whereHas('category', function ($query) {
                    $query->where('slug', $this->category);
+                });
+            })
+            ->when($this->tag !== 'all', function ($query) {
+                $query->whereHas('tags', function ($query) {
+                    $query->where('name', $this->tag);
                 });
             })
             ->orderBy('BlogId', 'DESC')

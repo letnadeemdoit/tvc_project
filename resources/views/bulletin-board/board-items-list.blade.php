@@ -49,7 +49,7 @@
     <div class="tab-content bg-waves" id="myTabContent" style="background-image: url('/images/bulletin-images/combined-shape.png');
     background-repeat: no-repeat;
     background-size: auto;
-    background-position: top right;">
+    background-position: top right 150px;">
 {{--        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">--}}
 
 {{--            <div class="row"  style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">--}}
@@ -61,7 +61,7 @@
 
 {{--        </div>--}}
         <div class="container padding-bottom massonary-container">
-            <div class="masonry tab-pane fade show active" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
+            <div class="masonry tab-pane fade show active pt-5 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
                     <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                 @endforeach
