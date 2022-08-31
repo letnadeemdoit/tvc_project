@@ -8,6 +8,7 @@ class SettingController extends Controller
 {
     public function accountInformation(Request $request)
     {
+        abort_if($request->user()->is_guest, 403);
         return view('dash.settings.account-information.index', [
             'user' => $request->user()
         ]);
@@ -15,6 +16,7 @@ class SettingController extends Controller
 
     public function billing(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.billing.index', [
             'user' => $request->user()
         ]);
@@ -22,6 +24,7 @@ class SettingController extends Controller
 
     public function users(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.users.index', [
             'user' => $request->user()
         ]);
@@ -29,6 +32,7 @@ class SettingController extends Controller
 
     public function rooms(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.rooms.index', [
             'user' => $request->user()
         ]);
@@ -36,13 +40,24 @@ class SettingController extends Controller
 
     public function additionalHouses(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.additional-houses.index', [
+            'user' => $request->user()
+        ]);
+    }
+
+    public function houseSetting(Request $request)
+    {
+        abort_if(!$request->user()->is_admin, 403);
+
+        return view('dash.settings.house-settings.index', [
             'user' => $request->user()
         ]);
     }
 
     public function notifications(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.notifications.index', [
             'user' => $request->user()
         ]);
@@ -50,6 +65,7 @@ class SettingController extends Controller
 
     public function vacations(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.vacations.index', [
             'user' => $request->user()
         ]);
@@ -57,6 +73,7 @@ class SettingController extends Controller
 
     public function bulletinBoard(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.bulletin-board.index', [
             'user' => $request->user()
         ]);
@@ -64,6 +81,7 @@ class SettingController extends Controller
 
     public function auditHistory(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.audit-history.index', [
             'user' => $request->user()
         ]);
@@ -71,12 +89,15 @@ class SettingController extends Controller
 
     public function blog(Request $request)
     {
+        abort_if($request->user()->is_guest, 403);
         return view('dash.settings.blog.index', [
             'user' => $request->user()
         ]);
     }
+
     public function category(Request $request)
     {
+        abort_if($request->user()->is_guest, 403);
         return view('dash.settings.category.index', [
             'user' => $request->user()
         ]);
@@ -84,6 +105,7 @@ class SettingController extends Controller
 
     public function guestBook(Request $request)
     {
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.guest-book.index', [
             'user' => $request->user()
         ]);

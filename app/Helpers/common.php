@@ -47,3 +47,45 @@ if (!function_exists('get_class_name')) {
         return \Illuminate\Support\Str::plural(strtolower($classname));
     }
 }
+
+if (!function_exists('current_house')) {
+    function current_house()
+    {
+        return auth()->user()->house;
+    }
+}
+
+if (!function_exists('is_subscribed')) {
+    function is_subscribed($plan)
+    {
+        return current_house()->plan === $plan;
+    }
+}
+
+if (!function_exists('is_basic_subscribed')) {
+    function is_basic_subscribed()
+    {
+        return is_subscribed('basic');
+    }
+}
+
+if (!function_exists('is_standard_subscribed')) {
+    function is_standard_subscribed()
+    {
+        return is_subscribed('standard');
+    }
+}
+
+if (!function_exists('is_premium_subscribed')) {
+    function is_premium_subscribed()
+    {
+        return is_subscribed('premium');
+    }
+}
+
+if (!function_exists('is_any_subscribed')) {
+    function is_any_subscribed()
+    {
+        return current_house()->plan !== null;
+    }
+}

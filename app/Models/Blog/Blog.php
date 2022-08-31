@@ -5,8 +5,10 @@ namespace App\Models\Blog;
 use App\Models\BlogViews;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\House;
 use App\Models\Likes;
 use App\Models\Review;
+use App\Models\Tags;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -91,6 +93,11 @@ class Blog extends Model implements Auditable
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
+    public function house(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(House::class, 'HouseId', 'HouseID');
+    }
+
     public function likes()
     {
         return $this->morphMany(Likes::class, 'likeable');
@@ -99,5 +106,9 @@ class Blog extends Model implements Auditable
     public function views()
     {
         return $this->morphMany(BlogViews::class, 'viewable');
+    }
+
+    public function tags() {
+        return $this->hasMany(Tags::class);
     }
 }

@@ -151,7 +151,6 @@ class Paypal
      */
     public function submitPaypal()
     {
-
         // this function actually generates an entire HTML page consisting of
         // a form with hidden elements which is submitted to paypal via the
         // BODY element's onLoad attribute.  We do this so that you can validate
@@ -194,18 +193,18 @@ class Paypal
         // script.
         $post_string = '';
         foreach ($_POST as $field => $value) {
-            $this->ipn_data["$field"] = $value;
+            $this->ipnData["$field"] = $value;
             $post_string .= $field . '=' . urlencode($value) . '&';
         }
         $post_string .= "cmd=_notify-validate"; // append ipn command
 
         // open the connection to paypal
-        $fp = fsockopen($url_parsed[host], "80", $err_num, $err_str, 30);
+        $fp = fsockopen($url_parsed['host'], "80", $err_num, $err_str, 30);
         if (!$fp) {
 
             // could not open the connection.  If loggin is on, the error message
             // will be in the log.
-            $this->last_error = "fsockopen error no. $errnum: $errstr";
+            $this->lastError = "fsockopen error no. $errnum: $errstr";
             $this->logIpnResults(false);
             return false;
 
@@ -237,7 +236,7 @@ class Paypal
         } else {
 
             // Invalid IPN transaction.  Check the log for details.
-            $this->last_error = 'IPN Validation Failed.';
+            $this->lastError = 'IPN Validation Failed.';
             $this->logIpnResults(false);
             return false;
 
@@ -259,16 +258,16 @@ class Paypal
 
         // Success or failure being logged?
         if ($success) $text .= "SUCCESS!\n";
-        else $text .= 'FAIL: ' . $this->last_error . "\n";
+        else $text .= 'FAIL: ' . $this->lastError . "\n";
 
         // Log the POST variables
         $text .= "IPN POST Vars from Paypal:\n";
-        foreach ($this->ipn_data as $key => $value) {
+        foreach ($this->ipnData as $key => $value) {
             $text .= "$key=$value, ";
         }
 
         // Log the response from the paypal server
-        $text .= "\nIPN Response from Paypal Server:\n " . $this->ipn_response;
+        $text .= "\nIPN Response from Paypal Server:\n " . $this->ipnResponse;
 
         // Write to log
         $fp = fopen($this->ipnLogFile, 'a');

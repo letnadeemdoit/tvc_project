@@ -6,7 +6,9 @@ use App\Models\Blog\Blog;
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Blog\BlogComment;
 use App\Models\Category;
+use App\Models\Tags;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -17,6 +19,8 @@ class CreateOrUpdateBlogItemForm extends Component
     use WithFileUploads;
     use Toastr;
     public $user;
+
+    public $siteUrl;
 
     public $state = [];
     public $isCreating = false;
@@ -73,7 +77,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Contents' => 'required',
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
         $slug = Str::slug($inputs['Subject']);
@@ -95,7 +99,31 @@ class CreateOrUpdateBlogItemForm extends Component
             'slug' => $slug,
         ])->save();
 
+        $this->siteUrl = route('guest.blog.show',$slug);
         $this->blogItem->updateFile($this->file);
+
+        if (isset($this->user->house->BlogEmailList)){
+
+            Mail::send([], [], function ($message) use($inputs) {
+
+                $message->to('noreply@thevacationcalendar.com')
+                    ->cc(explode(',',$this->user->house->BlogEmailList))
+                    ->subject($inputs['Subject']. ' '.'Blog' )
+                    ->Html(
+                        '<div style="padding: 10px; 20px">'.
+                        '<h2>New Blog Created Successfully </h2>'.
+                        '<h2>Blog Name: '.$inputs['Subject'].'</h2>'.
+                        '<h4>Blog Link: '."<a href='$this->siteUrl' target='_blank'> Click To Check Blog </a>" .'<h4/>' .
+                        '</div>', 'text/html');
+            });
+        }
+
+//        Tags::create([
+//            'blog_id' => $this->blogItem->BlogId,
+//            'name' => $inputs['name'],
+//        ]);
+
+
 
         $this->emitSelf('toggle', false);
 

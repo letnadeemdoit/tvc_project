@@ -148,6 +148,7 @@ Route::middleware([
                 Route::get('users', 'users')->name('users');
                 Route::get('rooms', 'rooms')->name('rooms');
                 Route::get('additional-houses', 'additionalHouses')->name('additional-houses');
+                Route::get('house-setting', 'houseSetting')->name('house-setting');
                 Route::get('notifications', 'notifications')->name('notifications');
                 Route::get('vacations', 'vacations')->name('vacations');
                 Route::get('bulletin-boards', 'bulletinBoard')->name('bulletin-boards');
@@ -161,9 +162,9 @@ Route::middleware([
             ->prefix('paypal')
             ->name('paypal.')
             ->group(function () {
-                Route::get('/process', 'process')->name('process');
-                Route::get('/success', 'succeeded')->name('succeeded');
-                Route::get('/cancel', 'canceled')->name('canceled');
+                Route::get('/{plan}/processing', 'process')->name('process');
+                Route::get('/{plan}/{house}/succeeded', 'succeeded')->name('succeeded');
+                Route::get('/{plan}/{house}/canceled', 'canceled')->name('canceled');
                 Route::get('/ipn', 'ipn')->name('ipn');
             });
     });
