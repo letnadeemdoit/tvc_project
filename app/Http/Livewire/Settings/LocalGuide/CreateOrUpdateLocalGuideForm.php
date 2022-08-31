@@ -31,9 +31,6 @@ class CreateOrUpdateLocalGuideForm extends Component
     {
         $user = auth()->user();
         $localGuideCategories = Category::where('type', 'local-guide')->where('house_id', $user->HouseId)->get();
-//        $localGuideCategories = Category::localGuides()->get();
-//        $localGuideCategories = LocalGuideCategory::all();
-
         return view('dash.settings.local-guide.create-or-update-local-guide-form',compact('localGuideCategories')) ;
     }
 
@@ -49,7 +46,7 @@ class CreateOrUpdateLocalGuideForm extends Component
         $this->reset(['state', 'file']);
 
         if ($localGuide) {
-            $this->state = \Arr::only($localGuide->toArray(), ['category_id','title','description','image','address','datetime']);
+            $this->state = \Arr::only($localGuide->toArray(), ['category_id','title','url','description','image','address','datetime']);
         }
     }
 
@@ -78,6 +75,7 @@ class CreateOrUpdateLocalGuideForm extends Component
             'title' => $inputs['title'],
             'description' => $inputs['description'] ?? null,
             'address' => $inputs['address'] ?? null,
+            'url' => $inputs['url'] ?? null,
             'datetime' => $inputs['datetime'] ?? null,
         ])->save();
 
