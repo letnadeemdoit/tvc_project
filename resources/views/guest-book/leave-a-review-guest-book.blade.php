@@ -229,7 +229,7 @@
                 </div>
 
 
-                <div class="btn gap-3 text-center my-3 d-block d-md-flex justify-content-center">
+                <div class="gap-3 text-center my-3 d-block d-md-flex justify-content-center">
                     <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">SEND</button>
                     <a href="#!" onclick="resetForm()"
                        wire:click.prevent="resetFeedbackForm"
