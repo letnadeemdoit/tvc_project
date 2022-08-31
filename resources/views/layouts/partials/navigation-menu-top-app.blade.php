@@ -1368,6 +1368,17 @@
                 {{--                    </div>--}}
                 {{--                    <!-- End Notification -->--}}
                 {{--                </li>--}}
+
+
+                <li class="nav-item me-3">
+
+
+                    <a href="{{ route('dash.notifications') }}" class="btn btn-ghost-secondary btn-icon rounded-circle bg-light-primary">
+                        <i class="bi-bell text-primary"></i>
+                        <span class="btn-status btn-sm-status btn-status-danger"></span>
+                    </a>
+
+                </li>
                 <li class="nav-item">
                     <!-- Account -->
                     <div class="dropdown">

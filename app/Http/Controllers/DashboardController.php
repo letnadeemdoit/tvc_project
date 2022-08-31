@@ -17,9 +17,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-
         $users = User::paginate(20);
-
         return view('dash.index', compact('users'));
 
     }
@@ -33,55 +31,49 @@ class DashboardController extends Controller
 
     public function blogs()
     {
-
         return view('dash.blog.display-as.index');
-
     }
 
     public function houses()
     {
-
         return view('dash.houses.index');
-
     }
 
     public function photoAlbum()
     {
-
         return view('dash.houses.photo-album.index');
-
     }
 
     public function showSingleAlbum($id)
     {
-
         $album = Album::findOrFail($id);
-
         return view('dash.houses.photo-album.show', compact('album'));
     }
 
 
     public function bulletins()
     {
-
         return view('dash.bulletin-board.display-list.list');
-
     }
 
     public function bulletinBoard()
     {
-
-
         $boards = Board::where('HouseId', \Auth::user()->HouseId)->get();
-
         return view('dash.bulletin-board.index', compact('boards'));
 
     }
 
     public function localGuide(Request $request)
     {
-
         return view('dash.settings.local-guide.index', [
+            'user' => $request->user()
+        ]);
+
+    }
+
+    public function notifications(Request $request)
+    {
+        return view('dash.notifications.index', [
             'user' => $request->user()
         ]);
 
@@ -89,7 +81,6 @@ class DashboardController extends Controller
 
     public function foodItemList(Request $request)
     {
-
         return view('dash.house-items.food-item-list.index', [
             'user' => $request->user()
         ]);
@@ -98,7 +89,6 @@ class DashboardController extends Controller
 
     public function shoppingItemList(Request $request)
     {
-
         return view('dash.house-items.shopping-item-list.index', [
             'user' => $request->user()
         ]);
@@ -114,7 +104,6 @@ class DashboardController extends Controller
 
     public function photoAlbums(Request $request)
     {
-
         return view('dash.houses.photo-albums.index', [
             'user' => $request->user()
         ]);
@@ -123,16 +112,13 @@ class DashboardController extends Controller
 
     public function photos(Request $request, $id)
     {
-
         $album = Album::findOrFail($id);
-
         return view('dash.houses.photo-albums.photos.index', [
             'album' => $album,
             'user' => $request->user()
         ]);
 
     }
-
 
     public function switchHouse(Request $request)
     {

@@ -6,8 +6,12 @@ use App\Models\Blog\Blog;
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Blog\BlogComment;
 use App\Models\Category;
+use App\Models\House;
+use App\Models\User;
+use App\Notifications\BlogNotify;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -99,22 +103,33 @@ class CreateOrUpdateBlogItemForm extends Component
         ])->save();
 
         $this->siteUrl = route('guest.blog.show',$slug);
+
+        $items = $this->blogItem;
+
+        $blogUrl = $this->siteUrl;
+
         $this->blogItem->updateFile($this->file);
 
-        if (isset($this->user->house->BlogEmailList)){
+        if (!is_null($this->user->house->BlogEmailList)){
+            $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
 
-            Mail::send([], [], function ($message) use($inputs) {
+            if (count($blogEmailsList) > 0) {
 
-                $message->to('noreply@thevacationcalendar.com')
-                    ->cc(explode(',',$this->user->house->BlogEmailList))
-                    ->subject($inputs['Subject']. ' '.'Blog' )
-                    ->Html(
-                        '<div style="padding: 10px; 20px">'.
-                        '<h2>New Blog Created Successfully </h2>'.
-                        '<h2>Blog Name: '.$inputs['Subject'].'</h2>'.
-                        '<h4>Blog Link: '."<a href='$this->siteUrl' target='_blank'> Click To Check Blog </a>" .'<h4/>' .
-                        '</div>', 'text/html');
-            });
+                $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+                
+                Notification::send($users, new BlogNotify($items,$blogUrl));
+
+                $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+
+                if (count($blogEmailsList) > 0) {
+
+                    Notification::route('mail', $blogEmailsList)
+                    ->notify(new BlogNotify($items,$blogUrl));
+
+                }
+            }
+
+
         }
 
         $this->emitSelf('toggle', false);

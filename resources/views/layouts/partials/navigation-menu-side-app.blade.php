@@ -132,6 +132,15 @@
                                    href="{{ route('dash.settings.category') }}">Categories</a>
                             </div>
                         </div>
+
+
+{{--                        <div class="nav-item">--}}
+{{--                            <a class="nav-link  {{ link_is_active_with_class(['dash.notifications']) }}" href="{{route('dash.notifications')}}" data-placement="left">--}}
+{{--                                <i class="bi-router nav-icon"></i>--}}
+{{--                                <span class="nav-link-title">Notifications</span>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+
                     </div>
                 </div>
 
