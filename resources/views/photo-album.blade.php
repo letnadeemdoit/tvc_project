@@ -221,11 +221,8 @@
                 </div>
                 <div class="brick">
                     <div class="card border-0 text-white bg-transparent shadow-none">
-                        <!-- <img class="card-img rounded-0" src="http://dev.devdimensions.com/images/photo-album/album-2.svg"> -->
-                        {{--                                    <a href="https://images.unsplash.com/photo-1660678732383-1ad7842ed297?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" data-lightbox="homePortfolio">--}}
                         <img
                             src="https://images.unsplash.com/photo-1660659236367-710aa4ae7e19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60">
-                        {{--                                    </a>--}}
                         <div class="p-0">
                             <div
                                 class="card-block d-flex w-100 justify-content-between px-2 px-lg-4 img-card-text align-items-center align-items-center">

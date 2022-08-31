@@ -559,6 +559,9 @@ header{
     width: 94%;
     margin: 0 auto;
 }
+.check-input{
+    border-color: #BEC4C8;
+}
 .check-input:checked[type=checkbox] {
     background-image: url("/images/images-home/tick.svg") !important;
 }
