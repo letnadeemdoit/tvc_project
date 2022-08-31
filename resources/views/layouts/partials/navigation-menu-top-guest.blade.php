@@ -190,8 +190,10 @@
 
                                 <a href="{{route('dash.index')}}" class="dropdown-item"> <i
                                         class="bi bi-speedometer2 me-2"></i>Dashboard</a>
-                                <a href="{{route('dash.settings.')}}" class="dropdown-item"><i
-                                        class="bi bi-gear me-2"></i>Settings</a>
+                                @if(!auth()->user()->is_guest)
+                                    <a href="{{route('dash.settings.')}}" class="dropdown-item"><i
+                                            class="bi bi-gear me-2"></i>Settings</a>
+                                @endif
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button class="dropdown-item" type="submit"><i
