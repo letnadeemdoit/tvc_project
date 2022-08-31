@@ -6,9 +6,11 @@ use App\Models\Calendar;
 use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
+use App\Notifications\CalendarEmailNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -112,24 +114,45 @@ class ScheduleVacationForm extends Component
             'HouseId' => $this->user->HouseId
         ])->save();
 
+        $items =$this->vacation;
 
-        $inputs =$this->state;
+        if (!is_null($this->user->house->CalEmailList)){
 
-        if (isset($this->user->house->CalEmailList)){
+            $CalEmailList = explode(',',$this->user->house->CalEmailList);
 
-            Mail::send([], [], function ($message) use($inputs) {
+            if (count($CalEmailList) > 0) {
 
-                $message->to('noreply@thevacationcalendar.com')
-                    ->cc(explode(',',$this->user->house->CalEmailList))
-                    ->subject($inputs['vacation_name']. ' '.'Calendar' )
-                    ->Html(
-                        '<div style="padding: 10px; 20px">'.
-                        '<h4>Calendar Name: '.$inputs['vacation_name'].'</h4>'.
-                        '<p>Calendar Name: '.$inputs['vacation_name'].' '.'has been changed by'.$this->user->first_name.' '.$this->user->last_name.'</p>'.
-                        '</div>', 'text/html');
-            });
+                $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+
+                Notification::send($users, new CalendarEmailNotification($items));
+
+                $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+
+                if (count($CalEmailList) > 0) {
+
+                    Notification::route('mail', $CalEmailList)
+                        ->notify(new CalendarEmailNotification($items));
+
+                }
+            }
 
         }
+
+//        if (isset($this->user->house->CalEmailList)){
+//
+//            Mail::send([], [], function ($message) use($inputs) {
+//
+//                $message->to('noreply@thevacationcalendar.com')
+//                    ->cc(explode(',',$this->user->house->CalEmailList))
+//                    ->subject($inputs['vacation_name']. ' '.'Calendar' )
+//                    ->Html(
+//                        '<div style="padding: 10px; 20px">'.
+//                        '<h4>Calendar Name: '.$inputs['vacation_name'].'</h4>'.
+//                        '<p>Calendar Name: '.$inputs['vacation_name'].' '.'has been changed by'.$this->user->first_name.' '.$this->user->last_name.'</p>'.
+//                        '</div>', 'text/html');
+//            });
+//
+//        }
 
         $this->emitSelf('toggle', false);
         $this->emit('vacation-schedule-successfully');

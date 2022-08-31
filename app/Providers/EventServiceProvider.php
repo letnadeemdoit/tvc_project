@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\ModelAudited;
 use App\Listeners\AuditedListener;
 use App\Listeners\LogModelAudit;
+use App\Notifications\BlogNotify;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

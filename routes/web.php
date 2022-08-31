@@ -134,6 +134,7 @@ Route::middleware([
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
 //        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
+        Route::get('/notifications', [DashboardController::class, 'notifications'])->name('notifications');
         Route::get('/food-item-list', [DashboardController::class, 'foodItemList'])->name('food-item-list');
         Route::get('/shopping-item-list', [DashboardController::class, 'shoppingItemList'])->name('shopping-item-list');
         Route::get('/plans-and-pricing', [DashboardController::class, 'planAndPricing'])->name('plans-and-pricing');

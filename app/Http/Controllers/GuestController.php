@@ -86,6 +86,9 @@ class GuestController extends Controller
     public function searchHouse() {
         return view('search-house');
     }
+    public function photoGalleryView(){
+        return view ('photo-album');
+    }
     public function bulletinBoard(){
         return view('bulletinBoard');
     }
