@@ -1106,6 +1106,9 @@ header{
         height: 208px !important;
         object-fit: cover !important;
     }
+    .masonry .brick{
+        margin-left: 0px !important;
+    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -1118,6 +1121,7 @@ header{
     width: 100% !important;
         height: 200px !important;
     }
+
     .rounded-icon {
         width: 35%;
         margin: -31px auto !important;
@@ -1214,7 +1218,9 @@ header{
         width:12%;
         margin: -30px auto !important;
     }
-
+    .fancybox__caption{
+        max-width: 470px;
+    }
     .padding-top{
         padding-top: 6rem !important;
     }
