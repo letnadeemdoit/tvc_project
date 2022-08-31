@@ -4,30 +4,44 @@
     x-data="{
         isUploadingFile: false,
         uploadingProgress: 0,
+        previewAndEdit: false,
         files: [],
         errors: [],
+        cropper: null,
+        isCropEnabled: false,
         multiple: !!{{ $multiple ? 1 : 0 }},
         startUploading() {
             this.isUploadingFile = true;
-            if (this.multiple) {
-                @this.uploadMultiple('{{ $attributes->get('wire:model') }}', this.files,
-                    (uploadedFilename) => {
-                        this.isUploadingFile = false;
-                    }, () => {
-                        this.isUploadingFile = false;
-                    }, (event) => {
-                        this.uploadingProgress = event.detail.progress;
-                    });
-            } else {
-                @this.upload('{{ $attributes->get('wire:model') }}', this.files[0],
-                    (uploadedFilename) => {
-                        this.isUploadingFile = false;
-                    }, () => {
-                        this.isUploadingFile = false;
-                    }, (event) => {
-                        this.uploadingProgress = event.detail.progress;
-                    });
-            }
+            this.previewAndEdit = false;
+{{--            if (this.multiple) {--}}
+{{--                @this.uploadMultiple('{{ $attributes->get('wire:model') }}', this.files,--}}
+{{--                    (uploadedFilename) => {--}}
+{{--                        this.isUploadingFile = false;--}}
+{{--                    }, () => {--}}
+{{--                        this.isUploadingFile = false;--}}
+{{--                    }, (event) => {--}}
+{{--                        this.uploadingProgress = event.detail.progress;--}}
+{{--                    });--}}
+{{--            } else {--}}
+{{--                @this.upload('{{ $attributes->get('wire:model') }}', this.files[0],--}}
+{{--                    (uploadedFilename) => {--}}
+{{--                        this.isUploadingFile = false;--}}
+{{--                    }, () => {--}}
+{{--                        this.isUploadingFile = false;--}}
+{{--                    }, (event) => {--}}
+{{--                        this.uploadingProgress = event.detail.progress;--}}
+{{--                    });--}}
+{{--            }--}}
+            this.cropper.getCroppedCanvas().toBlob((blob) => {
+                this.files[0] = blob;
+                @this.upload('{{ $attributes->get('wire:model') }}', blob, (uploadedFilename) => {
+                    this.isUploadingFile = false;
+                }, () => {
+                    this.isUploadingFile = false;
+                }, (event) => {
+                    this.uploadingProgress = event.detail.progress;
+                });
+            });
         },
         validateAndPreviewImages() {
             this.errors = [];
@@ -41,14 +55,70 @@
                return allowedExtensions.exec(f.type);
             });
 
-            this.startUploading();
+            this.previewAndEdit = this.errors.length === 0;
 
-            console.log(this.files);
+            if (this.previewAndEdit) {
+                setTimeout(() => {
+                    this.cropper = new Cropper($refs.cropper, {
+                        autoCrop: false,
+                        crop: (event) => {
+                            this.isCropEnabled = true;
+                        }
+                    });
+
+                }, 200)
+
+            }
         }
     }"
     @modal-is-hidden.window="errors = []; files = []; uploadingProgress = 0;"
 >
+    <div x-show="previewAndEdit">
+        <template x-for="(f, i) in files" :key="i">
+            <div class="position-relative">
+                <div class="position-absolute" style="bottom: 10px; right: 10px; z-index: 100">
+                    <a
+                        href="#"
+                        class="btn btn-primary btn-xs"
+                        @click.prevent="isCropEnabled ? cropper.clear() : cropper.crop(); isCropEnabled = !isCropEnabled"
+                    >
+                        <i class="bi bi-crop"></i>
+                    </a>
+                    <a
+                        href="#"
+                        class="btn btn-primary btn-xs"
+                        @click.prevent="cropper.rotate(-25)"
+                    >
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                    </a>
+                    <a
+                        href="#"
+                        class="btn btn-primary btn-xs"
+                        @click.prevent="cropper.rotate(25)"
+                    >
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </a>
+                    <a
+                        href="#"
+                        class="btn btn-primary btn-xs"
+                        @click.prevent="cropper.reset()"
+                    >
+                        <i class="bi bi-arrow-repeat"></i>
+                    </a>
+                    <a
+                        href="#"
+                        class="btn btn-primary btn-xs"
+                        @click.prevent="startUploading()"
+                    >
+                        <i class="bi bi-check2"></i>
+                    </a>
+                </div>
+                <img :src="URL.createObjectURL(files[0])" x-ref="cropper" style="max-height: 400px"/>
+            </div>
+        </template>
+    </div>
     <div
+        x-show="!previewAndEdit"
         class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto"
         x-on:drop="isFileDropping = false"
         x-on:drop.prevent="

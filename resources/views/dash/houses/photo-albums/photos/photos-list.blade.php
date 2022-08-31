@@ -1,38 +1,83 @@
 <div>
-    <div class="">
-        <div class="row"data-masonry='{"percentPosition": true }'>
+    @push('stylesheets')
+        <style>
+            .massonary-container {
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+            }
+            .masonry {
+                column-count: 2;
+                column-gap: 5px;
+            }
+            @media (min-width: 768px) {
+                .masonry {
+                    column-count: 3;
+                }
+            }
+            @media (min-width: 992px) {
+                .masonry {
+                    column-count: 4;
+                }
+            }
+            @media (min-width: 1199px) {
+                .masonry {
+                    column-count: 4;
+                }
+            }
+            .masonry .brick {
+                box-sizing: border-box;
+                -webkit-column-break-inside: avoid;
+                page-break-inside: avoid;
+                break-inside: avoid;
+                counter-increment: brick-counter;
+                margin-bottom: 12px;
+                margin-left: 6px;
+            }
+            .masonry img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 6px;
+            }
 
-            @if(isset($data))
-                @foreach($data as $dt)
-                    <div class="col-md-3 mb-4">
-                        <div class="card shadow-lg">
-                            <img class="card-img-top"
-                                 src="{{$dt->getFileUrl()}}"
-                                 alt="photo image"
+        </style>
+    @endpush
+    <div class="masonry">
+        @foreach($data as $dt)
+            <div
+                class="brick"
+                x-data="{mouseIn: false}"
+                @mouseenter="mouseIn = true"
+                @mouseleave="mouseIn = false"
+            >
+                <div
+                    class="card border-0 rounded shadow"
+                >
+                    <img src="{{ $dt->getFileUrl() }}" class="card-img rounded" />
+                    <div
+                        class="p-4 rounded"
+                        style="background: rgba(0,0,0, 0.3); position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: none"
+                        x-show="mouseIn"
+                    >
+                        <p class="card-text text-white">{{ $dt->description }}</p>
+                        <div class="d-flex justify-content-center">
+                            <button
+                                class="btn btn-primary btn-xs me-2"
+                                wire:click.prevent="$emit('showPhotoCUModal', true, {{$dt->PhotoId}})"
                             >
-                            <div class="card-body">
-                                <p class="card-text">{!! $dt->description ?? '' !!}</p>
-                            </div>
-                            <div class="d-flex mt-2" aria-label="Edit group">
-                                <a class="btn btn-outline-info rounded-2 mx-3 mb-1 w-50" href="#!"
-                                   wire:click="$emit('showPhotoCUModal', true, {{$dt->PhotoId}})"
-                                >
-                                    <i class="bi-pencil me-1"></i> Edit
-                                </a>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-danger rounded-2 mx-3 mb-1 w-50 btn-sm"
-                                    wire:click.prevent="destroy({{$dt->PhotoId}})"
-                                >
-                                    <i class="bi-trash"></i>
-                                </button>
-
-                            </div>
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                            <button
+                                class="btn btn-danger btn-xs d-inline-block"
+                                wire:click.prevent="destroy({{$dt->PhotoId}})"
+                            >
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
                         </div>
                     </div>
-                @endforeach
-            @endif
-        </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>

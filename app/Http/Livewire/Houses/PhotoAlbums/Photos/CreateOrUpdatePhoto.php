@@ -63,60 +63,16 @@ class CreateOrUpdatePhoto extends Component
 
         $inputs = $this->state;
 
-        if ($inputs['image']) {
-
-//            $inputs['image'] = $this->file;
-
-//            $getFileSize = $inputs['image']->getSize();
-
-            $baseImage = $inputs['image'];
-
-            $folderPath = public_path('new-albums/');
-
-            $image_parts = explode(";base64,", $inputs['image']);
-
-            $image_type_aux = explode("image/", $image_parts[0]);
-
-            $image_type = $image_type_aux[1];
-
-            $image_base64 = base64_decode($image_parts[1]);
-
-            $file = $folderPath . uniqid() . '.png';
-
-
-           $filePutContent =  file_put_contents($file, $image_base64);
-
-
-//            $fileNameWithExtension = $file->getClientOriginalName();
-//
-//            $filename = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
-
-//            $extension = $file->getClientOriginalExtension();
-//
-//            $fileNameStore = $filename.'_'.time().'.'.$extension;
-//
-//            $file->storeAs('public/new-albums', $fileNameStore);
-
-//            $file->storeAs('public/new-albums/thumbnail', $file);
-
-            $thumbnailPath = public_path($file);
-
-            $img = Image::make($thumbnailPath)->resize(250,250, function ($constraint){
-
-                $constraint->aspectRatio();
-
-            });
-
-            $img->save($thumbnailPath);
-
-        }else{
-
-            unset($inputs['image']);
-
+        if ($this->file) {
+            $inputs['image'] = $this->file;
         }
 
         Validator::make($inputs, [
-            'image' => 'required|mimes:png,jpg,gif,tiff',
+            'image' => [
+                $this->isCreating ? 'required' : 'nullable',
+                'mimes:png,jpg,gif,tiff'
+            ],
+            'description' => ['nullable', 'string', 'max:255']
         ])->validateWithBag('savePhotoCU');
 
         $this->photo->fill([
@@ -125,8 +81,9 @@ class CreateOrUpdatePhoto extends Component
             'description' => $inputs['description'] ?? null,
         ])->save();
 
-        $this->photo->updateFile($this->file,'path');
-
+        if ($this->file) {
+            $this->photo->updateFile($this->file, 'path');
+        }
         $this->emitSelf('toggle', false);
 
         $this->emit('photo-cu-successfully');

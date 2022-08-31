@@ -41,15 +41,14 @@ class Photo extends Model
     public function getFileUrl($column = 'path')
     {
 
-//        $photoPath = "photos/photo_".$this->HouseId."_".$this->PhotoId.".jpg";
-//        if (Storage::disk($this->fileDisk())->exists($photoPath)) {
-//            $this->{$column} = "photos/photo_".$this->HouseId."_".$this->PhotoId.".jpg";
-//        }
-//
-//        return $this->{$column}
-//            ? Storage::disk($this->fileDisk())->url($this->{$column})
-//            : $this->defaultFileUrl($column);
-        return '/images/photo-album/album-detail.svg';
+        $photoPath = "photos/photo_".$this->HouseId."_".$this->PhotoId.".jpg";
+        if (Storage::disk($this->fileDisk())->exists($photoPath)) {
+            $this->{$column} = "photos/photo_".$this->HouseId."_".$this->PhotoId.".jpg";
+        }
+
+        return $this->{$column}
+            ? Storage::disk($this->fileDisk())->url($this->{$column})
+            : $this->defaultFileUrl($column);
     }
 
     public function getImageAttribute()
