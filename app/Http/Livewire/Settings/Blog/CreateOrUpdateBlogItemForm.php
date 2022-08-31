@@ -67,7 +67,7 @@ class CreateOrUpdateBlogItemForm extends Component
         if ($blogItem->BlogId) {
             $this->isCreating = false;
             $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'image', 'category_id',' name']);
-            $this->existingTags = $blogItem->tags;
+            $this->state['tags'] = $blogItem->tags->pluck('name')->toArray();
         }else{
             $this->isCreating = true;
         }

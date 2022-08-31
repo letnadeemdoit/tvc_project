@@ -80,12 +80,13 @@ $('.tokenize-demo').tokenize2({
                         <div class="mb-3 col-12 col-lg-12">
                             <label class="form-label" for="tags">Add Tags</label>
                             <select id="tokenize-tags" class="tokenize-demo form-control" multiple wire:model.defer="state.tags">
-                                @if(!is_null($existingTags) && is_array($existingTags))
-                                @foreach ($existingTags as $tag)
-                                    <option value="{{ $tag->id }}"
-                                            wire:key="tag-{{ $tag->id }}">{{ $tag->name }}</option>
-                                @endforeach
-                                @endif
+                                @isset($state['tags'])
+                                    @if(is_array($state['tags']))
+                                        @foreach($state['tags'] as $tag)
+                                            <option value="{{ $tag }}" selected>{{ $tag }}</option>
+                                        @endforeach
+                                    @endif
+                                @endisset
                             </select>
                         </div>
                     </div>
