@@ -24,7 +24,6 @@ $id = 'x' . ($id ?? md5(time())) . 'Modal';
             this.modalEl.modal('hide')
         },
         setUpModalEvents() {
-            console.log('ok');
             this.modalEl.on('shown.bs.modal', function () {
                 $dispatch('modal-is-shown', {modal: this.modalEl});
             });

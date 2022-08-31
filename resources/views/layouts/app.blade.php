@@ -45,10 +45,13 @@
             @include('layouts.partials.footer-app')
         </main>
         <livewire:modals.destroyable-confirmation-modal />
+        @stack('modals')
+
         @livewireScripts
         <script src="{{ mix('js/app.js') }}"></script>
+
         @stack('scripts')
-        @stack('modals')
+
         <script>
             $(document).ready(function () {
                 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
