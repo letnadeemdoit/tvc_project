@@ -43,7 +43,7 @@ class LocalGuideList extends Component
     public function mount()
     {
         $this->model = LocalGuide::class;
-        $this->categories = Category::where('type', 'local-guide')->get();
+        $this->categories = Category::where('type', 'local-guide')->where('house_id', $this->user->HouseId)->get();
     }
 
     public function updatingSearch()
