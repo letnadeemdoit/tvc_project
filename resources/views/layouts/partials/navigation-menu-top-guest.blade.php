@@ -119,6 +119,23 @@
 
                   @endguest
 
+                    @auth
+                        <li class="nav-item my-1 my-lg-0 d-lg-none">
+                            <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
+                               href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                        </li>
+
+                        <li class="nav-item my-1 my-lg-0 d-lg-none">
+                            <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                               href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                        </li>
+
+                        <li class="nav-item my-1 my-lg-0 d-lg-none">
+                            <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
+                               href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                        </li>
+                    @endauth
+
                     @guest
                         <li class="nav-item my-1 my-lg-0 d-block d-lg-none">
                             <a href="{{route('register')}}"

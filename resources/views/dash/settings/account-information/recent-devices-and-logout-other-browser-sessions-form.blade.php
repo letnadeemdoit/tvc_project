@@ -66,7 +66,7 @@
             </button>
         </div>
     @endif
-    @push('modals')
+{{--    @push('modals')--}}
         <x-modals.bs-modal>
             <div class="modal-content">
                 <div class="modal-header">
@@ -112,5 +112,5 @@
                 </div>
             </div>
         </x-modals.bs-modal>
-    @endpush
+{{--    @endpush--}}
 </div>
