@@ -54,7 +54,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
-                        <p class="mb-0 badge badge-primary fs-13 fw-semi-bold" style="padding: 10px 20px !important;">{{$localGuide->category->name}}</p>
+                        <p class="mb-0 badge badge-primary fs-13 fw-semi-bold" style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
                     </div>
                     <div class="d-flex align-items-center mt-4">
                         <div class="flex-shrink-0">
@@ -197,7 +197,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->category->name}}</a>
+                                        <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->category->name ?? ''}}</a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
                                         <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>

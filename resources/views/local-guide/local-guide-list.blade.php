@@ -4,15 +4,15 @@
             <ul id="navi">
                 @if(count($categories) > 0)
                 <li>
-                    <a href="{{ route('guest.local-guide.index', ['category' => 'all']) }}" class="menu {{ $category == 'all' ? 'active' : '' }}">
+                    <a href="{{ route('guest.local-guide.index', ['category' => 'all']) }}" class="menu mb-2 {{ $category == 'all' ? 'active' : '' }}">
                         ALL
                     </a>
                 </li>
                 @endif
                 @foreach($categories as $cat)
                     <li>
-                        <a href="{{ route('guest.local-guide.index', ['category' => $cat->slug]) }}" class="menu {{ $cat->slug == $category ? 'active' : '' }}">
-                            {{ $cat->name }}
+                        <a href="{{ route('guest.local-guide.index', ['category' => $cat->slug]) }}" class="menu mb-2 {{ $cat->slug == $category ? 'active' : '' }}">
+                            {{ $cat->name ?? '' }}
                         </a>
                     </li>
                 @endforeach

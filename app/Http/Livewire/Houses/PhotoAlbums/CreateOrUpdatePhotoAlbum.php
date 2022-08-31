@@ -13,6 +13,7 @@ class CreateOrUpdatePhotoAlbum extends Component
 
     use WithFileUploads;
     use Toastr;
+    public $user;
 
     public $isCreating = false;
 
@@ -30,7 +31,7 @@ class CreateOrUpdatePhotoAlbum extends Component
 
     public function render()
     {
-        $albumCategory = Album::all();
+        $albumCategory = Album::where('house_id', $this->user->HouseId)->get();
 
         return view('dash.houses.photo-albums.create-or-update-photo-album-form',compact('albumCategory'));
     }
@@ -72,8 +73,8 @@ class CreateOrUpdatePhotoAlbum extends Component
         ])->validateWithBag('saveAlbumCU');
 
         $this->album->fill([
-            'user_id' => auth()->user()->user_id,
-            'house_id' => auth()->user()->HouseId,
+            'user_id' => $this->user->user_id,
+            'house_id' => $this->user->HouseId,
             'parent_id' => $inputs['parent_id'] ?? null,
             'name' => $inputs['name'],
             'description' => $inputs['description'] ?? null,

@@ -12,7 +12,7 @@
                 @click.click="hide()"
             ></button>
         </div>
-        <form wire:submit.prevent="saveUserCU" class="modal-body">
+        <form wire:submit.prevent="saveUserCU" class="modal-body" x-data="{role: '{{ \App\Models\User::ROLE_OWNER }}'}">
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label class="form-label" for="user_name">Username:</label>
@@ -21,6 +21,7 @@
                         class="form-control @error('user_name') is-invalid @enderror"
                         name="user_name"
                         id="user_name"
+                        x-bind:disabled="role === '{{ \App\Models\User::ROLE_GUEST }}'"
                         wire:model.defer="state.user_name"
                     />
                     @error('user_name')
@@ -34,7 +35,8 @@
                         class="form-control @error('role') is-invalid @enderror"
                         name="role"
                         id="role"
-                        wire:model.defer="state.role"
+                        x-model="role"
+                        wire:model="state.role"
                     >
                         <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
                         <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
@@ -53,6 +55,7 @@
                         class="form-control @error('first_name') is-invalid @enderror"
                         name="first_name"
                         id="first_name"
+                        x-bind:disabled="role === '{{ \App\Models\User::ROLE_GUEST }}'"
                         wire:model.defer="state.first_name"
                     />
                     @error('first_name')
@@ -66,6 +69,7 @@
                         class="form-control @error('last_name') is-invalid @enderror"
                         name="last_name"
                         id="last_name"
+                        x-bind:disabled="role === '{{ \App\Models\User::ROLE_GUEST }}'"
                         wire:model.defer="state.last_name"
                     />
                     @error('last_name')
@@ -80,6 +84,7 @@
                     class="form-control @error('email') is-invalid @enderror"
                     name="email"
                     id="email"
+                    x-bind:disabled="role === '{{ \App\Models\User::ROLE_GUEST }}'"
                     wire:model.defer="state.email"
                 />
                 @error('email')

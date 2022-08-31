@@ -16,7 +16,7 @@
                         </p>
                     </div>
                 </div>
-                <p class="mb-0 badge badge-primary fs-13 fw-semi-bold" style="padding: 10px">{{$dt->category->name}}</p>
+                <p class="mb-0 badge badge-primary fs-13 fw-semi-bold" style="padding: 10px">{{$dt->category->name ?? ''}}</p>
             </div>
             <div class="d-flex align-items-center justify-content-between pt-3">
                 <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>

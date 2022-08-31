@@ -36,7 +36,7 @@ $id = 'x' . ($id ?? md5(time())) . 'Modal';
         // Initialize modal
         modalEl = $($refs.{{ $id }});
 
-        $wire.on('toggle', function (toggle) {
+        @this.on('toggle', function (toggle) {
             if (toggle) {
                 show();
             } else {

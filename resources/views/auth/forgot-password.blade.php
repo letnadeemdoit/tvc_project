@@ -51,9 +51,9 @@
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-dark-secondary btn-lg">{{ __('Email Password Reset Link') }}</button>
 
-                    <div class="text-center">
-                        <a class="btn btn-link text-secondary" href="{{ route('login') }}">
-                            <img src="{{asset('/images/reset-password/back-arrow.png')}}"> Back to <span class="text-primary text-decoration-underline">Login</span>
+                    <div class="text-center mt-3">
+                        <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center" href="{{ route('login') }}">
+                            <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to <span class="ms-1 fw-semibold text-primary text-decoration-underline">Login</span>
                         </a>
                     </div>
                 </div>
