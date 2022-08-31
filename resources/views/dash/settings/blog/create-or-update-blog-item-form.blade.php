@@ -1,5 +1,11 @@
 <x-modals.bs-modal class="modal-lg">
-    <div class="modal-content">
+    <div class="modal-content" @modal-is-shown.window="
+$('.tokenize-demo').tokenize2({
+                            tokensAllowCustom: true,
+                            dropdownSelectFirstItem: false
+                    })
+{{--                    $('#tokenize-tags').tokenize2().trigger('tokenize:tokens:add', ['value', 'Text', true]);--}}
+">
         <div class="modal-header">
             <h5 class="modal-title">
                 {{ $blogItem && $blogItem->BlogId ? "Update" : 'Add' }}
@@ -47,24 +53,6 @@
                         @enderror
                     </div>
                 </div>
-                    <div class="row">
-                        <div class="mb-3 col-12 col-lg-12">
-                            <label class="form-label" for="title">Tag Name</label>
-                            <input
-                                type="text"
-                                data-role="tagsinput" id="tags"
-                                id="Subject"
-                                wire:model.defer="state.name"
-                                name="name"
-                                class="form-control @error('name') is-invalid @enderror"
-                                placeholder="name"
-                            />
-                            @error('name')
-                            <span class="invalid-feedback">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
                         <label class="form-label" for="category_id">Select Category</label>
@@ -83,8 +71,8 @@
                 </div>
                     <div class="row">
                         <div class="mb-3 col-12 col-lg-12">
-                            <label class="form-label" for="tags">Select Tags</label>
-                            <select id="tags" class="form-control tokenize-demo">
+                            <label class="form-label" for="tags">Add Tags</label>
+                            <select id="tokenize-tags" class="tokenize-demo form-control" multiple>
                                 <option value="Africa">Africa</option>
                                 <option value="Americas">Americas</option>
                                 <option value="Asia">Asia</option>
@@ -192,7 +180,6 @@ toolbar_mode: 'sliding',
                         @enderror
                     </div>
 
-
                     {{--                    <div class="mb-3 col-12 col-lg-12">--}}
                     {{--                        <label class="form-label" for="title">Content</label>--}}
                     {{--                        <textarea--}}
@@ -222,4 +209,27 @@ toolbar_mode: 'sliding',
             </form>
         </div>
     </div>
+    @push('scripts')
+        <script src="{{asset('vendors/tokenize2/tokenize2.min.js')}}"></script>
+        <script>
+            $(document).ready(function (){
+                var tags = [];
+            //     setTimeout(() => {
+            //         $('.tokenize-demo').tokenize2({
+            //                 tokensAllowCustom: true,
+            //                 dropdownSelectFirstItem: false
+            //         });
+            //     }, 3000)
+            });
+            $('.tokenize-demo').on('tokenize:tokens:added', function(e, value){
+                console.log(value);
+                var select = document.getElementById('tokenize-tags');
+                var valuea = select.options[select.selectedIndex].value;
+                tags.push(valuea);
+                console.log(tags);
+                console.log(valuea);
+            });
+
+        </script>
+    @endpush
 </x-modals.bs-modal>

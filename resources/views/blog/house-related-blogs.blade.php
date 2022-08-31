@@ -87,9 +87,9 @@
 {{--                            <img src="/images/blog-images/beach.png" class="img-fluid position-relative" alt="..." style="width:60px; height:60px">--}}
 {{--                        @endif--}}
                         <img
-                            src="{{ $blog->user->profile_photo_url }}"
+                            src="{{ auth()->user()->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
-                            alt="{{ $blog->user->name ?? '' }}"
+                            alt="{{ auth()->user()->user_name ?? '' }}"
                         >
 
                         <div class="ps-3">

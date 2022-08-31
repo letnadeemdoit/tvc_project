@@ -31,9 +31,9 @@
         <div class="d-flex align-items-center mb-4">
             <div class="flex-shrink-0">
                 <img
-                    src="{{ $dt->user->profile_photo_url }}"
+                    src="{{ auth()->user()->profile_photo_url }}"
                     class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
-                    alt="{{ $dt->user->name ?? '' }}"
+                    alt="{{ auth()->user()->user_name ?? '' }}"
                 >
             </div>
             <div class="flex-grow-1 ms-3">
