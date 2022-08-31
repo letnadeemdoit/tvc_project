@@ -3,7 +3,7 @@
 >
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $room && $room->RoomName ? "Update '$room->RoomName'" : 'Add' }} Room</h5>
+            <h5 class="modal-title">{{ $room && $room->RoomName ? "Update" : 'Add' }} Room</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -84,7 +84,7 @@
                     type="submit"
                     class="btn btn-primary ms-auto"
                 >
-                    {{ $room && $room->RoomName ? "Update '$room->RoomName'" : 'Add' }} Room
+                    {{ $room && $room->RoomName ? "Update" : 'Add' }} Room
                 </button>
             </div>
         </form>
