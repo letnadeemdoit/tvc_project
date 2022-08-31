@@ -80,7 +80,7 @@ class DashboardController extends Controller
 
     public function localGuide(Request $request)
     {
-
+        abort_if($request->user()->is_guest, 403);
         return view('dash.settings.local-guide.index', [
             'user' => $request->user()
         ]);
@@ -89,7 +89,7 @@ class DashboardController extends Controller
 
     public function foodItemList(Request $request)
     {
-
+        abort_if($request->user()->is_guest, 403);
         return view('dash.house-items.food-item-list.index', [
             'user' => $request->user()
         ]);
@@ -98,14 +98,14 @@ class DashboardController extends Controller
 
     public function shoppingItemList(Request $request)
     {
-
+        abort_if($request->user()->is_guest, 403);
         return view('dash.house-items.shopping-item-list.index', [
             'user' => $request->user()
         ]);
 
     }
     public function planAndPricing(Request $request){
-
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.plans-and-pricing.index', [
             'user' => $request->user()
         ]);
@@ -114,7 +114,7 @@ class DashboardController extends Controller
 
     public function photoAlbums(Request $request)
     {
-
+        abort_if($request->user()->is_guest, 403);
         return view('dash.houses.photo-albums.index', [
             'user' => $request->user()
         ]);
