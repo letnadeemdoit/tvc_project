@@ -69,7 +69,6 @@ class CreateOrUpdateBlogItemForm extends Component
 
     public function saveBlogItemCU()
     {
-        dd($this->name);
         $this->resetErrorBag();
         $date = date('Y/m/d H:i:s');
         $inputs = $this->state;
