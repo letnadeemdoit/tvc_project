@@ -87,7 +87,6 @@ class CreateOrUpdateBlogItemForm extends Component
         ])->validateWithBag('saveBlogItemCU');
 
         $slug = Str::slug($inputs['Subject']);
-        dd($inputs['Contents']);
 
         $this->blogItem->fill([
             'HouseId' => $this->user->HouseId,
