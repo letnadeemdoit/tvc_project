@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\House;
 use App\Models\Likes;
 use App\Models\Review;
+use App\Models\Tags;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -105,5 +106,9 @@ class Blog extends Model implements Auditable
     public function views()
     {
         return $this->morphMany(BlogViews::class, 'viewable');
+    }
+
+    public function tags() {
+        return $this->hasMany(Tags::class);
     }
 }

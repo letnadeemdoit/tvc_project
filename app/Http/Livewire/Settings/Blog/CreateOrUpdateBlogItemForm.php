@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\House;
 use App\Models\User;
 use App\Notifications\BlogNotify;
+use App\Models\Tags;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -80,7 +81,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Contents' => 'required',
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
         $slug = Str::slug($inputs['Subject']);
@@ -116,7 +117,7 @@ class CreateOrUpdateBlogItemForm extends Component
             if (count($blogEmailsList) > 0) {
 
                 $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
-                
+
                 Notification::send($users, new BlogNotify($items,$blogUrl));
 
                 $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
@@ -132,7 +133,15 @@ class CreateOrUpdateBlogItemForm extends Component
 
         }
 
+//        Tags::create([
+//            'blog_id' => $this->blogItem->BlogId,
+//            'name' => $inputs['name'],
+//        ]);
+
+
+
         $this->emitSelf('toggle', false);
+
         $this->success( 'Blog ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
         $this->emit('blog-cu-successfully');
     }

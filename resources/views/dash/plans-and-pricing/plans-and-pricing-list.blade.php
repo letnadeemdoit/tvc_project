@@ -28,10 +28,10 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(current_house()->plan !== 'basic')
+                        @if(!is_basic_subscribed())
                             <a href="{{ route('dash.paypal.process', 'basic') }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(current_house()->plan === 'basic')
+                        @elseif(is_basic_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
                                class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
                         @endif
@@ -71,10 +71,10 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(current_house()->plan !== 'standard')
+                        @if(!is_standard_subscribed())
                             <a href="{{ route('dash.paypal.process', 'standard') }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(current_house()->plan === 'standard')
+                        @elseif(is_standard_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
                                class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
                         @endif
@@ -114,10 +114,10 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(current_house()->plan !== 'premium')
+                        @if(!is_premium_subscribed())
                             <a href="{{ route('dash.paypal.process', 'premium') }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(current_house()->plan === 'premium')
+                        @elseif(is_premium_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
                                class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
                         @endif

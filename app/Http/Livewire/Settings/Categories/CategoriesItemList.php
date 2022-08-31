@@ -44,7 +44,10 @@ class CategoriesItemList extends Component
 
     public function render()
     {
-        $data = Category::where('user_id', $this->user->user_id)
+        $data = Category::where('house_id', $this->user->HouseId)
+            ->when($this->user->is_owner, function ($query) {
+                $query->where('user_id', $this->user->user_id);
+            })
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query
@@ -52,6 +55,7 @@ class CategoriesItemList extends Component
                         ->orWhere('type', 'LIKE', "%$this->search%");
                 });
             })
+
             ->orderBy('id', 'DESC')
             ->paginate($this->per_page);
         return view('dash.settings.category.category-item-list', compact('data'));

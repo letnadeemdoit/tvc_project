@@ -50,19 +50,22 @@
     background-repeat: no-repeat;
     background-size: auto;
     background-position: top right;">
-{{--        <section class="text-end position-absolute end-0 ">--}}
-{{--            <img src="/images/bulletin-images/orange-dots.svg" class="img-fluid bg-dots-orange"/>--}}
-{{--        </section>--}}
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+{{--        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">--}}
 
-            <div class="row" data-masonry='{"percentPosition": true }'  style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
-                    @foreach($data as $dt)
+{{--            <div class="row"  style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">--}}
+{{--                    @foreach($data as $dt)--}}
+{{--                    <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>--}}
+{{--                    @endforeach--}}
+
+{{--            </div>--}}
+
+{{--        </div>--}}
+        <div class="container padding-bottom massonary-container">
+            <div class="masonry tab-pane fade show active" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
+                @foreach($data as $dt)
                     <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
-                    @endforeach
-                    <!-- ends -->
-
+                @endforeach
             </div>
-
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...
         </div>
@@ -77,7 +80,4 @@
             ...
         </div>
     </div>
-{{--    <section class="text-center">--}}
-{{--        <img src="" class="img-fluid cards-dots-green"/>--}}
-{{--    </section>--}}
 </div>
