@@ -6,7 +6,10 @@
 
     <!-- Hidden Team ID -->
     <input type="hidden" name="house_id" value="{{ $house->HouseID }}">
-    <a href="#" class="nav-link" x-on:click.prevent="$root.submit();">
-        <i class="bi bi-house me-1"></i>  {{ $house->HouseName }}
+    <span class="d-flex justify-content-start align-items-center">
+       <i class="bi bi-house me-1"></i>
+        <a href="#" class="nav-link" x-on:click.prevent="$root.submit();">
+         {{ $house->HouseName }}
     </a>
+    </span>
 </form>
