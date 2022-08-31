@@ -1,7 +1,8 @@
 <x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $boardItem && $boardItem->id ? "Update" . ($boardItem->title ? " '$boardItem->title'" : '') : 'Add' }} Bulletin Board Item</h5>
+            <h5 class="modal-title">{{ $boardItem && $boardItem->id ? "Update" . ($boardItem->title ? " '$boardItem->title'" : '') : 'Add' }}
+                Bulletin Board Item</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -11,7 +12,7 @@
         </div>
         <div class="modal-body">
             <form wire:submit.prevent="saveBulletinBoardCU" method="post">
-{{--                <x-jet-validation-errors />--}}
+                {{--                <x-jet-validation-errors />--}}
 
                 @if($boardItem && $boardItem->image)
                     <div class="d-flex mb-3">
@@ -21,13 +22,13 @@
                                 class="position-absolute" style="right: 5px; top: 5px"
                                 wire:click.prevent="deleteFile"
                             ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
-                            <img src="{{ $boardItem->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                            <img src="{{ $boardItem->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px"/>
                         </div>
                     </div>
                 @endif
-                <x-upload-zone wire:model="file" />
-                <x-jet-input-error for="image" />
-                <br />
+                <x-upload-zone wire:model="file"/>
+                <x-jet-input-error for="image"/>
+                <br/>
 
                 <div class="mb-3">
                     <label class="form-label" for="category_id">Select Category</label>
@@ -50,7 +51,7 @@
                         placeholder="Bulletin Board Title"
                     />
                     @error('title')
-                        <span class="invalid-feedback">{{$message}}</span>
+                    <span class="invalid-feedback">{{$message}}</span>
                     @enderror
                 </div>
 
@@ -128,6 +129,7 @@
                                     @this.set('state.Board', editor.getContent(), true);
                                 });
                             }
+
                         })
                     "
 
@@ -143,12 +145,15 @@
 
                     ></textarea>
                     @error('Board')
-                        <span class="invalid-feedback">{{$message}}</span>
+                    <span class="invalid-feedback">{{$message}}</span>
                     @enderror
                 </div>
 
                 <div class="mb-3 d-flex">
-                    <button type="submit" class="btn btn-primary px-5 ms-auto">{{ $boardItem && $boardItem->id ? "Update" : 'Add' }} Bulletin Board Item</button>
+                    <button type="submit"
+                            class="btn btn-primary px-5 ms-auto">{{ $boardItem && $boardItem->id ? "Update" : 'Add' }}
+                        Bulletin Board Item
+                    </button>
                 </div>
 
             </form>

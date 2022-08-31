@@ -147,18 +147,18 @@
                     />
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="url">URL</label>
-                    <input
-                        type="text"
-                        id="address"
-                        wire:model.defer="state.url"
-                        name="url"
-                        class="form-control"
-                        placeholder="Url"
-                    />
+{{--                <div class="mb-3">--}}
+{{--                    <label class="form-label" for="url">URL</label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        id="address"--}}
+{{--                        wire:model.defer="state.url"--}}
+{{--                        name="url"--}}
+{{--                        class="form-control"--}}
+{{--                        placeholder="Url"--}}
+{{--                    />--}}
 
-                </div>
+{{--                </div>--}}
                 <div class="mb-3">
                     <label class="form-label" for="title">Date & Time</label>
                     <input

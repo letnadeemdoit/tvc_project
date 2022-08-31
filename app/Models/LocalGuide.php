@@ -28,7 +28,6 @@ class LocalGuide extends Model implements Auditable
         'title',
         'description',
         'image',
-        'url',
         'address',
         'datetime',
     ];
