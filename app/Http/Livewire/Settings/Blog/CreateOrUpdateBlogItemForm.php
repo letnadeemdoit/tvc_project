@@ -69,7 +69,6 @@ class CreateOrUpdateBlogItemForm extends Component
 
     public function saveBlogItemCU()
     {
-        dd($this->name);
         $this->resetErrorBag();
         $date = date('Y/m/d H:i:s');
         $inputs = $this->state;
@@ -88,6 +87,7 @@ class CreateOrUpdateBlogItemForm extends Component
         ])->validateWithBag('saveBlogItemCU');
 
         $slug = Str::slug($inputs['Subject']);
+        dd($inputs['Contents']);
 
         $this->blogItem->fill([
             'HouseId' => $this->user->HouseId,
