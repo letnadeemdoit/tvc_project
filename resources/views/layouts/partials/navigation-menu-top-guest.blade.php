@@ -80,7 +80,7 @@
                                href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.blog.index') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.blog.index') || request()->routeIs('guest.blog.show') ? 'active' : '' }}"
                                href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
@@ -88,7 +88,7 @@
                                href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.local-guide.index') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.local-guide.index') || request()->routeIs('guest.local-guide.show') ? 'active' : '' }}"
                                href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
