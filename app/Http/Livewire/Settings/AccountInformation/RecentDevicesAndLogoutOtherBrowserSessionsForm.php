@@ -29,9 +29,9 @@ class RecentDevicesAndLogoutOtherBrowserSessionsForm extends Component
     {
         $this->password = '';
 
-        $this->dispatchBrowserEvent('confirming-logout-other-browser-sessions');
-
         $this->emitSelf('toggle', true);
+
+        $this->dispatchBrowserEvent('confirming-logout-other-browser-sessions');
     }
 
     /**
@@ -45,7 +45,6 @@ class RecentDevicesAndLogoutOtherBrowserSessionsForm extends Component
         if (config('session.driver') !== 'database') {
             return;
         }
-
         $this->resetErrorBag();
 
         if (! Hash::check($this->password, Auth::user()->password)) {
