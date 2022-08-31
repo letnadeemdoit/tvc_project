@@ -1,4 +1,4 @@
-<div class="brick">
+<div class="brick mb-4 me-2">
     <div class="card border-0 text-white shadow-none">
         {{--    @if(!empty($album->image))--}}
             {{--    <img--}}
