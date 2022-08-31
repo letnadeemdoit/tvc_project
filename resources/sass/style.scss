@@ -850,6 +850,13 @@ header{
 
 
 // Dropdown end
+@media only screen and (min-width:1200px){
+    .topnav{
+        .fs-12{
+            font-size: 14px !important;
+        }
+    }
+}
 @media only screen and (max-width:1400px){
     .rounded-icon{
         margin-left: -30px;
