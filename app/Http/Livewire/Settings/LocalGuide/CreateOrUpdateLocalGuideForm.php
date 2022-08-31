@@ -30,7 +30,7 @@ class CreateOrUpdateLocalGuideForm extends Component
     public function render()
     {
         $user = auth()->user();
-        $localGuideCategories = Category::where('type', 'local-guide')->where('house_id', $user->HouseId)->get();
+        $localGuideCategories = Category::where('type', 'local-guide')->get();
 //        $localGuideCategories = Category::localGuides()->get();
 //        $localGuideCategories = LocalGuideCategory::all();
 
