@@ -2,6 +2,37 @@
     @push('stylesheets')
         <style>
             @charset "UTF-8";
+            .card-img-overlay .card-block {
+                position: absolute;
+                /* top: 0; */
+                right: 0;
+                bottom: 10px;
+                left: 0;
+                padding: 1.25rem;
+                z-index: 1;
+            }
+            .card-img-overlay::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 0;
+                background-color:transparent;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .card-img-overlay:hover::after {
+                background-color: transparent;
+            }
+            .masonary-gallery img{
+                border-radius: 6px !important;
+            }
+
+        </style>
+        <style>
+            @charset "UTF-8";
 
             .card-columns {
                 -moz-column-count: 1;
@@ -31,6 +62,7 @@
                 padding: 1.25rem;
                 z-index: 1;
             }
+
             .card-img-overlay::after {
                 content: "";
                 position: absolute;
@@ -39,15 +71,56 @@
                 bottom: 0;
                 left: 0;
                 z-index: 0;
-                background-color:transparent;
+                background-color: transparent;
                 transition: all 0.3s ease-in-out;
             }
 
             .card-img-overlay:hover::after {
                 background-color: transparent;
             }
-            .masonary-gallery img{
-                border-radius: 6px !important;
+
+
+        </style>
+
+        <style>
+            .massonary-container {
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+            }
+            .masonry {
+                column-count: 2;
+                column-gap: 5px;
+            }
+            @media (min-width: 768px) {
+                .masonry {
+                    column-count: 3;
+                }
+            }
+            @media (min-width: 992px) {
+                .masonry {
+                    column-count: 4;
+                }
+            }
+            @media (min-width: 1199px) {
+                .masonry {
+                    column-count: 4;
+                }
+            }
+            .masonry .brick {
+                box-sizing: border-box;
+                -webkit-column-break-inside: avoid;
+                page-break-inside: avoid;
+                break-inside: avoid;
+                counter-increment: brick-counter;
+                margin-bottom: 12px;
+                margin-left: 6px;
+            }
+            .masonry img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 6px;
             }
 
         </style>

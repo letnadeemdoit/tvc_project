@@ -30,7 +30,11 @@
         @foreach($data as $dt)
         <div class="d-flex align-items-center mb-4">
             <div class="flex-shrink-0">
-                <img src="/images/blog-images/beach.png" class="img-fluid position-relative" alt="...">
+                <img
+                    src="{{ $dt->user->profile_photo_url }}"
+                    class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
+                    alt="{{ $dt->user->name ?? '' }}"
+                >
             </div>
             <div class="flex-grow-1 ms-3">
                 <a href="{{route('guest.blog.show', $dt->slug)}}">

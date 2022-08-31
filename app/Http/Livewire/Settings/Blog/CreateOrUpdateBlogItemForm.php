@@ -6,6 +6,7 @@ use App\Models\Blog\Blog;
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Blog\BlogComment;
 use App\Models\Category;
+use App\Models\Tags;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -76,7 +77,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Contents' => 'required',
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
         $slug = Str::slug($inputs['Subject']);
@@ -117,7 +118,15 @@ class CreateOrUpdateBlogItemForm extends Component
             });
         }
 
+//        Tags::create([
+//            'blog_id' => $this->blogItem->BlogId,
+//            'name' => $inputs['name'],
+//        ]);
+
+
+
         $this->emitSelf('toggle', false);
+
         $this->success( 'Blog ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
         $this->emit('blog-cu-successfully');
     }

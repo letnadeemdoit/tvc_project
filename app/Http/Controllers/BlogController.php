@@ -18,14 +18,17 @@ class BlogController extends Controller
     public function show(Request $request, Blog $post) {
 
         $user = $request->user();
+        $existing_views = null;
 
-        $blog_views = Blog::where('HouseId' , $post->HouseId)->where('BlogId' ,$post->BlogId)->withCount('views')->first();
-        $existing_views = $blog_views->views_count;
+        $blog_views = Blog::where('HouseId' , $user->HouseId)->where('BlogId' ,$post->BlogId)->withCount('views')->first();
+        if (!is_null($blog_views)){
+            $existing_views = $blog_views->views_count;
+        }
 
 
         $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
 
-        $relatedBlog = Blog::where('category_id', $post->category_id)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
+        $relatedBlog = Blog::where('HouseId',$user->HouseId)->where('category_id', $post->category_id)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
         $views = BlogViews::where('user_id' ,$user->user_id)->where('viewable_id' ,$post->BlogId)->first();
 

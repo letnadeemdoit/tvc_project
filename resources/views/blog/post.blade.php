@@ -66,7 +66,12 @@
 {{--                            alt="Image"--}}
 {{--                            width="60" height="60" style="object-fit: cover"--}}
 {{--                        />--}}
-                        <img src="/images/blog-images/beach.png" class="img-fluid position-relative" alt="...">
+                        <img
+                            src="{{ $post->user->profile_photo_url }}"
+                            class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
+                            alt="{{ $post->user->name ?? '' }}"
+                        >
+
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <h4 class="mb-0" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>

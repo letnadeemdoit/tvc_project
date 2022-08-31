@@ -14,7 +14,12 @@
             <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 210px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
-                        <img src="/images/blog-images/beach.png" class="img-fluid position-relative" alt="...">
+
+                        <img
+                            src="{{ $post->user->profile_photo_url }}"
+                            class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
+                            alt="{{ $post->user->name ?? '' }}"
+                        >
 
                         <div class="ps-3">
                             <strong class="mb-1 text-black fs-4">{{$post->Author}}</strong>
