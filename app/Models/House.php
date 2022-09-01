@@ -28,6 +28,7 @@ class House extends Model
         'HouseID',
         'image',
         'HouseName',
+        'primary_house_name',
         'Address1',
         'Address2',
         'City',

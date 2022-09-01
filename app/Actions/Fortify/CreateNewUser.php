@@ -40,6 +40,7 @@ class CreateNewUser implements CreatesNewUsers
 
         $house = House::create([
             'HouseName' => $input['HouseName'],
+            'primary_house_name' => $input['HouseName'],
             'City' => $input['City'],
             'State' => $input['State'],
             'ReferredBy' => $input['Referral_paypal_account'],

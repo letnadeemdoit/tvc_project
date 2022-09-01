@@ -19,6 +19,8 @@ class CreateOrUpdateLocalGuideForm extends Component
 
     public $state = [];
 
+    public $user;
+
     public $file;
 
     public ?LocalGuide $localGuide;
@@ -29,10 +31,13 @@ class CreateOrUpdateLocalGuideForm extends Component
 
     public function render()
     {
-        $user = auth()->user();
-        $localGuideCategories = Category::where('type', 'local-guide')->where('house_id', $user->HouseId)->get();
-//        $localGuideCategories = Category::localGuides()->get();
-//        $localGuideCategories = LocalGuideCategory::all();
+
+        $localGuideCategories = Category::where('type', 'local-guide')
+           ->where(function ($query){
+               $query->where('house_id', $this->user->HouseId)
+                   ->orWhere('house_id', null);
+           })
+            ->get();
 
         return view('dash.settings.local-guide.create-or-update-local-guide-form',compact('localGuideCategories')) ;
     }
