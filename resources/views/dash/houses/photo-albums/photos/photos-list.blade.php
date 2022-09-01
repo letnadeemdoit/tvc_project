@@ -56,25 +56,27 @@
                 >
                     <img src="{{ $dt->getFileUrl() }}" class="card-img rounded" />
                     <div
-                        class="p-4 rounded"
+                        class="p-4 rounded d-flex align-items-center justify-content-center "
                         style="background: rgba(0,0,0, 0.3); position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: none"
-                        x-show="mouseIn"
+
                     >
-                        <p class="card-text text-white">{{ $dt->description }}</p>
-                        <div class="d-flex justify-content-center">
-                            <button
-                                class="btn btn-primary btn-xs me-2"
-                                wire:click.prevent="$emit('showPhotoCUModal', true, {{$dt->PhotoId}})"
-                            >
-                                <i class="bi bi-pencil-fill"></i>
-                            </button>
-                            <button
-                                class="btn btn-danger btn-xs d-inline-block"
-                                wire:click.prevent="destroy({{$dt->PhotoId}})"
-                            >
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
-                        </div>
+                       <div x-show="mouseIn">
+                           <p class="card-text text-white">{{ $dt->description }}</p>
+                           <div class="d-flex justify-content-center">
+                               <button
+                                   class="btn btn-primary btn-xs me-2"
+                                   wire:click.prevent="$emit('showPhotoCUModal', true, {{$dt->PhotoId}})"
+                               >
+                                   <i class="bi bi-pencil-fill"></i>
+                               </button>
+                               <button
+                                   class="btn btn-danger btn-xs d-inline-block"
+                                   wire:click.prevent="destroy({{$dt->PhotoId}})"
+                               >
+                                   <i class="bi bi-trash-fill"></i>
+                               </button>
+                           </div>
+                       </div>
                     </div>
                 </div>
             </div>

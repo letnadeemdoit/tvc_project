@@ -26,9 +26,10 @@
                         </div>
                     </div>
                 @endif
-                <x-upload-zone wire:model="file" />
-                <x-jet-input-error for="image" />
-                <br />
+
+                    <x-upload-zone wire:model="file" />
+                    <x-jet-input-error for="image" />
+                    <br/>
 
                 <div class="mb-3">
                     <label class="form-label fw-normal" for="title">Select Category</label>

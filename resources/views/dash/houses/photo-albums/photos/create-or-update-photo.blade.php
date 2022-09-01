@@ -1,4 +1,4 @@
-<x-modals.bs-modal>
+<x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
@@ -16,7 +16,18 @@
             x-data="{}"
         >
             <form wire:submit.prevent="savePhotoCU" method="post">
+
+                @if($photo && $photo->path)
+                    <div class="d-flex mb-3">
+                        <div class="mx-auto">
+                            <img src="{{ $photo->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                        </div>
+                    </div>
+                @endif
+
                 <x-upload-zone wire:model="file" />
+                <x-jet-input-error for="image" />
+                    <br/>
 
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
