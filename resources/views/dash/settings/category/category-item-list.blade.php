@@ -69,11 +69,8 @@
                                 @if($dt->blogs->count() > 0 )
                                     <button
                                         type="button"
-                                        class="btn btn-outline-danger btn-sm"
-                                        disabled
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        title="Move the associated blog entries to other categories and then return to delete the category"
+                                        class="btn btn-secondary"
+                                        data-bs-toggle="modal" data-bs-target="#category{{$dt->id}}Model"
                                     >
                                         <i class="bi-trash"></i>
                                     </button>
@@ -88,6 +85,45 @@
                                 @endif
                             </div>
                         </td>
+
+
+                        <div class="modal fade hideableModal" id="category{{$dt->id}}Model" tabindex="-1"
+                             aria-labelledby="deleteConfirmation{{ $dt->id ?? 0 }}ModalLabel" aria-hidden="true"
+                             wire:ignore.self>
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <div>
+                                          <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                                            <i class="bi-exclamation"></i>
+                                        </span>
+                                        </div>
+
+                                        <h4 class="fw-bold text-center my-3"
+                                            style="color: #00000090">You can't be delete this category?</h4>
+                                        <p class="fw-500 fs-15">First of all you need to move your item to another category!</p>
+                                        <div class="btn-group my-2">
+
+{{--                                            <button type="button"--}}
+{{--                                                    class="btn btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"--}}
+{{--                                                    wire:click.prevent="{{$action}}">--}}
+{{--                                                <div wire:loading.remove wire:target="{{$action}}">--}}
+{{--                                                    Yes,Delete!--}}
+{{--                                                </div>--}}
+{{--                                                <div wire:loading wire:target="{{$action}}">--}}
+{{--                                                    Deleting...--}}
+{{--                                                </div>--}}
+{{--                                            </button>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
 
                     </tr>
                 @endforeach
@@ -142,5 +178,6 @@
         </div>
         <!-- End Footer -->
     </div>
+
 
 </div>

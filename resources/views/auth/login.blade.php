@@ -188,6 +188,7 @@
                                        autocomplete="new-password"
                                        aria-label="8+ characters required"
                                        minlength="8"
+                                       tabindex="2"
                                        required
                                 />
                                 <a

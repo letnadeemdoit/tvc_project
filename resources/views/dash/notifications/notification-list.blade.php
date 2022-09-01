@@ -42,47 +42,32 @@
                 <tr>
                     <th style="width: 25%">Type</th>
                     <th>Name</th>
-                    <th>Action</th>
                 </tr>
                 </thead>
 
                 <tbody>
 
-
                     @foreach($data as $dt)
 
                         <tr>
                             <td class="fw-600">
-
                                 @if($dt->type == 'App\Notifications\BlogNotify')
                                     Blog
                                 @else
                                     Calendar
                                 @endif
-
                             </td>
-
-
 
                             @if($dt->type == 'App\Notifications\BlogNotify')
-                                <td class="fw-600">New Blog <span class="text-primary text-capitalize text-decoration-underline">{{ $dt->data['Name'] ?? '' }}</span> Created</td>
+
+                                <td class="fw-600">New Blog <a href="{{ $dt->data['slug'] ?? '' }}" class="text-primary text-capitalize text-decoration-underline">{{ $dt->data['Name'] ?? '' }}</a> Created</td>
 
                             @else
-                                <td class="fw-600">New Vacation Calendar <span class="text-primary text-capitalize text-decoration-underline">{{ $dt->data['Name'] ?? '' }}</span> Created</td>
+                                <td class="fw-600">New Vacation <span  class="text-primary text-capitalize text-decoration-underline">{{ $dt->data['Name'] ?? '' }}</span> Created</td>
 
                             @endif
-
-                            <td class="fw-600">
-                                @if(isset($dt->data['slug']))
-                                    <a href="{{ $dt->data['slug'] ?? '' }}" target="_blank">Click to Check</a>
-                                @else
-                                    ---
-                                @endif
-                            </td>
-
                         </tr>
                     @endforeach
-
 
                 </tbody>
             </table>

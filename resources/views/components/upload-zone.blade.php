@@ -22,6 +22,9 @@
                 }, (event) => {
                     this.uploadingProgress = event.detail.progress;
                 });
+
+                this.cropper.destroy();
+                this.cropper = null;
             });
         },
         validateAndPreviewImages() {
@@ -48,11 +51,10 @@
                     });
 
                 }, 200)
-
             }
         }
     }"
-    @modal-is-hidden.window="errors = []; files = []; uploadingProgress = 0;"
+    @modal-is-hidden.window="errors = []; files = []; uploadingProgress = 0; cropper = null; previewAndEdit = false"
 >
     <div x-show="previewAndEdit">
         <template x-for="(f, i) in files" :key="i">
@@ -68,14 +70,14 @@
                     <a
                         href="#"
                         class="btn btn-primary btn-xs"
-                        @click.prevent="cropper.rotate(-25)"
+                        @click.prevent="cropper.rotate(-45)"
                     >
                         <i class="bi bi-arrow-counterclockwise"></i>
                     </a>
                     <a
                         href="#"
                         class="btn btn-primary btn-xs"
-                        @click.prevent="cropper.rotate(25)"
+                        @click.prevent="cropper.rotate(45)"
                     >
                         <i class="bi bi-arrow-clockwise"></i>
                     </a>
@@ -121,10 +123,10 @@
                     name="image"
                     hidden="hidden"
                     x-ref="file_upload"
-                    x-on:change="files = Array.from($el.files); validateAndPreviewImages()"
+                    x-on:change.prevent="files = Array.from($el.files); validateAndPreviewImages();"
                     {{ $multiple ? 'multiple' : '' }}
                 />
-                <button class="btn bg-primary btn-sm text-white" @click.prevent="$refs.file_upload.click()">Upload Image</button>
+                <button class="btn bg-primary btn-sm text-white" onclick="event.preventDefault(); document.getElementById('file_upload').click()">Upload Image</button>
             </div>
         </div>
 

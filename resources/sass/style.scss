@@ -3,9 +3,9 @@
 .bg-primary{
     background-color: $primary !important;
 }
-i:hover{
-    color: $primary !important;
-}
+//i:hover{
+//    color: $primary !important;
+//}
 .text-primary{
     color: $primary;
 }
@@ -299,6 +299,19 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
     margin-top: 45px;
     margin-bottom: 90px;
 }
+.primary-hover{
+    a{
+        &:hover{
+            color: $primary !important;
+            i{
+                color: $primary !important;
+            }
+        }
+
+    }
+}
+
+
 .detail-img{
     img{
         max-width: 100% !important;
@@ -435,11 +448,11 @@ header{
 .bg-topnav{
     background: $dark-blue;
 }
-.topnav{
-    a:hover{
-        color: $primary !important;
-    }
-}
+//.topnav{
+//    a:hover{
+//        color: $primary !important;
+//    }
+//}
 .bg-cards-section{
     background: url('/images/images-home/union-waves.png');
     background-repeat: no-repeat;
