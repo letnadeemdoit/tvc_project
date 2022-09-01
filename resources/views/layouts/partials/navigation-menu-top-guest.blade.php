@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-3">
-                <div class="d-flex justify-content-center justify-content-lg-start">
+                <div class="d-flex justify-content-center justify-content-lg-start border-0">
                     <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
                     <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
                     <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
@@ -11,7 +11,7 @@
             </div>
             <div class="col-lg-9">
                 <div
-                    class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-lg-end">
+                    class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-lg-end border-0">
                    @auth
                         <div
                             class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
