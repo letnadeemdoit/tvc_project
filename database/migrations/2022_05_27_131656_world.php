@@ -11,7 +11,7 @@ return new class extends Migration {
      */
     public function up()
     {
-//        \DB::unprepared(file_get_contents(database_path('world.sql')));
+        \DB::unprepared(file_get_contents(database_path('world.sql')));
     }
 
     /**
