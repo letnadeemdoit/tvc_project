@@ -25,13 +25,23 @@ class ScheduleVacationForm extends Component
         'showVacationScheduleModal'
     ];
 
-    public function showVacationScheduleModal($toggle, $vacation = null, $initialDate = null)
+    public function showVacationScheduleModal($toggle, $vacationId = null, $initialDate = null)
     {
-        $this->emitSelf('toggle', $toggle);
-        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacation]);
+
+        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
         $this->reset('state');
 
         if ($this->vacation->VacationName) {
+            if ($this->vacation->OwnerId !== $this->user->user_id) {
+                $this->emit('showRequestToJoinVacationModal', true, $vacationId);
+                return;
+            }
+        }
+
+        $this->emitSelf('toggle', $toggle);
+
+        if ($this->vacation->VacationName) {
+
             $this->state = [
                 'vacation_name' => $this->vacation->VacationName,
                 'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
