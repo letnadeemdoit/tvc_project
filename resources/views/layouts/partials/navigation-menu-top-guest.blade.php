@@ -33,11 +33,11 @@
                             <i class="fas fa-phone me-2 text-white"></i> 000-000-000</a>
                     </div>
                     <div
-                        class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start ">
+                        class="d-flex align-items-center  justify-content-center justify-content-md-start ">
                         {{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
 
                         <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
-                            <i class="bi-envelope text-white me-2 fs-5"></i>trips.calendar@gmail.com</a>
+                            <i class="bi-envelope text-white me-2 fs-5 px-2"></i>trips.calendar@gmail.com</a>
                     </div>
                 </div>
             </div>
