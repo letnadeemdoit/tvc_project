@@ -137,7 +137,7 @@
                         }
                         "
                 >
-                    <label class="mb-2" for="office_address">Address</label>
+                    <label class="form-label fw-normal" for="office_address">Address</label>
                     <input
                         id="office_address"
                         x-ref="office_address"
