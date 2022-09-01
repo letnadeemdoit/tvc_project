@@ -13,25 +13,6 @@
         startUploading() {
             this.isUploadingFile = true;
             this.previewAndEdit = false;
-{{--            if (this.multiple) {--}}
-{{--                @this.uploadMultiple('{{ $attributes->get('wire:model') }}', this.files,--}}
-{{--                    (uploadedFilename) => {--}}
-{{--                        this.isUploadingFile = false;--}}
-{{--                    }, () => {--}}
-{{--                        this.isUploadingFile = false;--}}
-{{--                    }, (event) => {--}}
-{{--                        this.uploadingProgress = event.detail.progress;--}}
-{{--                    });--}}
-{{--            } else {--}}
-{{--                @this.upload('{{ $attributes->get('wire:model') }}', this.files[0],--}}
-{{--                    (uploadedFilename) => {--}}
-{{--                        this.isUploadingFile = false;--}}
-{{--                    }, () => {--}}
-{{--                        this.isUploadingFile = false;--}}
-{{--                    }, (event) => {--}}
-{{--                        this.uploadingProgress = event.detail.progress;--}}
-{{--                    });--}}
-{{--            }--}}
             this.cropper.getCroppedCanvas().toBlob((blob) => {
                 this.files[0] = blob;
                 @this.upload('{{ $attributes->get('wire:model') }}', blob, (uploadedFilename) => {

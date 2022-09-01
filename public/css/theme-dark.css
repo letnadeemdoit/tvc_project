@@ -34271,6 +34271,10 @@ a:focus {
   outline: none !important;
 }
 
+button:focus {
+  outline: none !important;
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -34578,7 +34582,13 @@ body {
 }
 
 .switch-button .btn:hover {
-  border: none;
+  border-color: transparent !important;
+}
+.switch-button .btn:focus {
+  outline: none !important;
+}
+.switch-button .btn.active {
+  outline: none !important;
 }
 
 .bg-primary-light {

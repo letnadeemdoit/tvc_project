@@ -13,23 +13,25 @@
         </div>
         <div class="modal-body">
             <form wire:submit.prevent="saveLocalGuideCU" method="post">
-
-                @if($localGuide && $localGuide->image)
-                    <div class="d-flex mb-3">
-                        <div class="mx-auto position-relative">
-                            <a
-                                href="#"
-                                class="position-absolute" style="right: 5px; top: 5px"
-                                wire:click.prevent="deleteFile"
-                            ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
-                            <img src="{{ $localGuide->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                <div>
+                    @if($localGuide && $localGuide->image)
+                        <div class="d-flex mb-3">
+                            <div class="mx-auto position-relative">
+                                <a
+                                    href="#"
+                                    class="position-absolute" style="right: 5px; top: 5px"
+                                    wire:click.prevent="deleteFile"
+                                ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
+                                <img src="{{ $localGuide->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                            </div>
                         </div>
-                    </div>
-                @endif
-
+                    @endif
+                </div>
+                <div>
                     <x-upload-zone wire:model="file" />
                     <x-jet-input-error for="image" />
-                    <br/>
+                </div>
+                <br/>
 
                 <div class="mb-3">
                     <label class="form-label fw-normal" for="title">Select Category</label>
