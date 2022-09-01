@@ -1,31 +1,20 @@
-<x-app-layout>
-    <div class="content container-fluid">
-        <div class="page-header">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h1 class="page-header-title">Plans &amp; Pricing</h1>
-                </div>
+<x-dashboard-layout>
 
-{{--                <div class="col-sm-auto" x-data>--}}
-{{--                    <a--}}
-{{--                        class="btn btn-primary"--}}
-{{--                        href="javascript:;"--}}
-{{--                        @click.prevent="window.livewire.emit('showLocalGuideCUModal', true)"--}}
-{{--                    >--}}
-{{--                        <i class="bi-plus me-1"></i> Add New Local Guide--}}
-{{--                    </a>--}}
-{{--                </div>--}}
+    <x-slot name="breadcrumbs">
+        <li class="breadcrumb-item active" aria-current="page">Plans &amp; Pricing</li>
+    </x-slot>
+    <x-slot name="title">
+        <h1 class="page-header-title">Plans &amp; Pricing</h1>
+    </x-slot>
 
-            </div>
+    @if(session()->has('status'))
+        <div class="alert alert-soft-success" role="alert">
+            {{ session()->get('status') }}
         </div>
-        @if(session()->has('status'))
-            <div class="alert alert-soft-success" role="alert">
-                {{ session()->get('status') }}
-            </div>
-        @endif
-        <livewire:plans-and-pricing.plans-and-pricing-list :user="$user"/>
+    @endif
 
-{{--        <livewire:local-guide.create-or-update-local-guide-form :user="$user"/>--}}
+    <livewire:plans-and-pricing.plans-and-pricing-list :user="$user"/>
 
-    </div>
-</x-app-layout>
+</x-dashboard-layout>
+
+

@@ -1,7 +1,6 @@
 <x-dashboard-layout>
 
     <x-slot name="breadcrumbs">
-        <li class="breadcrumb-item active" aria-current="page">Manage House</li>
         <li class="breadcrumb-item active" aria-current="page">Photo Album</li>
     </x-slot>
 
@@ -29,3 +28,4 @@
 
     </div>
 </x-dashboard-layout>
+

@@ -1,25 +1,30 @@
-<x-app-layout>
-    <div class="content container-fluid">
-        <div class="page-header">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h1 class="page-header-title">Shopping Items</h1>
-                </div>
+<x-dashboard-layout>
 
-                <div class="col-sm-auto" x-data>
-                    <a
-                        class="btn btn-primary"
-                        href="javascript:;"
-                        @click.prevent="window.livewire.emit('showShoppingItemCUModal', true)"
-                    >
-                        <i class="bi-plus me-1"></i> Add New Shopping Item
-                    </a>
-                </div>
+    <x-slot name="breadcrumbs">
+        <li class="breadcrumb-item active" aria-current="page">Shopping Items</li>
+    </x-slot>
+    <x-slot name="title">
+        <h1 class="page-header-title">Shopping Items</h1>
+    </x-slot>
 
-            </div>
+    <x-slot name="headerRightActions">
+
+        <div class="col-sm-auto" x-data>
+            <a
+                class="btn btn-primary"
+                href="#!"
+                @click.prevent="window.livewire.emit('showShoppingItemCUModal', true)"
+            >
+                <i class="bi-plus me-1"></i> Add New Shopping Item
+            </a>
         </div>
-        <livewire:house-items.shopping-item.shopping-item-list :user="$user"/>
-        <livewire:house-items.shopping-item.create-or-update-shopping-item-form :user="$user"/>
 
-    </div>
-</x-app-layout>
+    </x-slot>
+
+    <livewire:house-items.shopping-item.shopping-item-list :user="$user"/>
+    <livewire:house-items.shopping-item.create-or-update-shopping-item-form :user="$user"/>
+
+</x-dashboard-layout>
+
+
+
