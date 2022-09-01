@@ -24,7 +24,9 @@
                 border-radius: 6px;
                 border: 2px solid #E8604C;
                 padding: 5px 10px;
-                min-width:30px;
+                min-width:35px;
+                max-width: 35px;
+                text-align: center;
 
             }
 
@@ -128,7 +130,7 @@
                 </div>
 
                 <div class="card border-0 mb-4 tags-card">
-                    <div class="card-body">
+                    <div class="card-body text-break">
                         <h4 class="mb-3">Tags</h4>
                         <div>
                             @foreach($existingTags as $tag)
