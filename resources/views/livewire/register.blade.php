@@ -386,7 +386,7 @@
 
                         <div class="form-check mt-3">
                             <label class="form-check-label" for="terms_and_conditions">
-                                I accept <a href="{{route('guest.privacy-policy')}}" class="text-decoration-underline">Terms and Conditions</a>
+                                I accept <a href="{{route('guest.privacy-policy')}}" target="_blank" class="text-decoration-underline">Terms and Conditions</a>
                             </label>
                             <input type="checkbox" class="form-check-input check-input" name="terms" wire:model.defer="state.terms" value="yes"
                                    id="terms_and_conditions">

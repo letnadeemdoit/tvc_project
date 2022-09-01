@@ -87,7 +87,6 @@
                             <a href="{{ route('register') }}"
                                class="text-decoration-underline text-primary fw-bolder">Create
                                 account</a></p>
-                        <a href="{{ url('/') }}" class="text-decoration-underline text-primary fw-600 fs-4 mt-3">Back</a>
                     </div>
 
                 </div>
@@ -109,7 +108,12 @@
                                     @click.prevent="loginAsGuest = true; role = 'Guest';">{{ __('Guest') }}</a>
                         </div>
                         <div class="text-center mt-3">
-                            <a href="{{ url('/') }}" class="text-decoration-underline text-primary fs-4 fw-600">Back</a>
+
+                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center" href="{{ route('login') }}">
+                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to
+                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Login</span>
+                            </a>
+
                         </div>
                     </div>
 
@@ -235,7 +239,12 @@
 
                         </div>
                         <div class="text-center mt-3">
-                            <a href="{{ url('/') }}" class="text-decoration-underline text-primary fs-4 fw-600">Back</a>
+
+                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center" href="{{ route('login') }}">
+                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to
+                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Login</span>
+                            </a>
+
                         </div>
                     </div>
                 </div>
