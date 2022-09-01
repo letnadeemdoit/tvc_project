@@ -52,7 +52,7 @@
             }
         }
     }"
-    @modal-is-hidden.window="errors = []; files = []; uploadingProgress = 0;"
+    @modal-is-hidden.window="errors = []; files = []; uploadingProgress = 0; cropper = null; previewAndEdit = false"
 >
     <div x-show="previewAndEdit">
         <template x-for="(f, i) in files" :key="i">
