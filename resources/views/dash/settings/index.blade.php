@@ -105,7 +105,7 @@
                                     </a>
                                 </li>
                             @endif
-                            @if(!auth()->user()->is_guest)
+                            @if(!auth()->user()->is_guest && auth()->user()->ShowOldSave)
                                 <li class="nav-item">
                                     <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
                                        href="{{ route('dash.settings.vacations') }}">

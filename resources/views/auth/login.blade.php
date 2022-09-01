@@ -109,9 +109,13 @@
                         </div>
                         <div class="text-center mt-3">
 
-                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center" href="{{ route('login') }}">
-                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to
-                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Login</span>
+                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
+{{--                               href="{{ route('login') }}">--}}
+                                    href="#!"
+                                     @click.prevent="gotoHouse = false; loginAsGuest = null">
+
+                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2">Go Back to
+                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
                             </a>
 
                         </div>
@@ -156,10 +160,10 @@
                                     <i class="bi bi-person text-primary"></i>
                                 </a>
                             </fieldset>
-                            @error('email')
-                            <span class="text-danger fw-semi-bold"
-                                  style="font-size: 13px !important;">{{$message}}</span>
-                            @enderror
+{{--                            @error('email')--}}
+{{--                            <span class="text-danger fw-semi-bold"--}}
+{{--                                  style="font-size: 13px !important;">{{$message}}</span>--}}
+{{--                            @enderror--}}
 
                             <span class="invalid-feedback">Please enter a valid email address.</span>
                         </div>
@@ -197,7 +201,7 @@
                                        :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
                                 </a>
                             </fieldset>
-                            @error('password')
+                            @error('email')
                             <span class="text-danger fw-semi-bold"
                                   style="font-size: 13px !important;">{{$message}}</span>
                             @enderror
@@ -240,9 +244,12 @@
                         </div>
                         <div class="text-center mt-3">
 
-                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center" href="{{ route('login') }}">
-                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to
-                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Login</span>
+                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
+                               href="#!"
+                               @click.prevent="gotoHouse = false; loginAsGuest = null">
+
+                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Go Back to
+                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
                             </a>
 
                         </div>

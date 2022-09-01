@@ -43,35 +43,51 @@
         <!-- End Col -->
 
         <div class="col-lg-7">
-            <div class="d-sm-flex align-items-sm-center">
-                <!-- Input Group -->
-                <div class="input-group input-group-merge me-2 mb-2 mb-sm-0">
-                    <div class="input-group-prepend input-group-text">
-                        <i class="bi-search"></i>
-                    </div>
-                    <input type="text" id="filter-by-title" class="form-control" placeholder="Search by title">
-                </div>
-                <!-- End Input Group -->
+            <div class="input-group input-group-sm-vertical">
+                <!-- Radio Check -->
+                <label class="form-control" for="month">
+                    <span class="form-check">
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="month" value="dayGridMonth" checked />
+                      <span class="form-check-label">Month</span>
+                    </span>
+                </label>
+                <!-- End Radio Check -->
 
-                <div class="d-flex align-items-center">
-                    <!-- Select -->
-                    <div class="tom-select-custom">
-                        <select
-                            class="js-select form-select"
-                            data-fc-grid-view
-                            data-hs-tom-select-options='{
-                                "searchInDropdown": false,
-                                "hideSearch": true
-                            }'
-                        >
-                            <option value="dayGridMonth">Month</option>
-                            <option value="timeGridWeek">Week</option>
-                            <option value="timeGridDay">Day</option>
-                            <option value="listWeek">List</option>
-                        </select>
-                    </div>
-                    <!-- End Select -->
-                </div>
+                <!-- Radio Check -->
+                <label class="form-control" for="week">
+                    <span class="form-check">
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="week" value="timeGridWeek" />
+                      <span class="form-check-label">Week</span>
+                    </span>
+                </label>
+                <!-- End Radio Check -->
+
+                <!-- Radio Check -->
+                <label class="form-control" for="day">
+                    <span class="form-check">
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="day" value="timeGridDay" />
+                      <span class="form-check-label">Day</span>
+                    </span>
+                </label>
+                <!-- End Radio Check -->
+
+                <!-- Radio Check -->
+                <label class="form-control" for="list">
+                    <span class="form-check">
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="list" value="listWeek" />
+                      <span class="form-check-label">List</span>
+                    </span>
+                </label>
+                <!-- End Radio Check -->
+
+                <!-- Radio Check -->
+                <label class="form-control" for="rooms">
+                    <span class="form-check">
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="rooms" value="resourceTimeline" />
+                      <span class="form-check-label">Rooms</span>
+                    </span>
+                </label>
+                <!-- End Radio Check -->
             </div>
         </div>
         <!-- End Col -->
@@ -88,8 +104,7 @@
                     $prevMonthBtn = document.querySelector('[data-fc-prev-month]'),
                     $nextMonthBtn = document.querySelector('[data-fc-next-month]'),
                     $todayBtn = document.querySelector('[data-fc-today]'),
-                    $dateTitle = document.querySelector('[data-fc-title]'),
-                    $gridViewSelect = document.querySelector('[data-fc-grid-view]')
+                    $dateTitle = document.querySelector('[data-fc-title]')
 
                 // Filter controls
                 const
@@ -108,7 +123,17 @@
                 var y = date.getFullYear();
                 var calendarEl = document.getElementById('calendar');
                 HSFullCalendar.init('#calendar', {
-                    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
+                    schedulerLicenseKey: '0575425642-fcs-1661876207',
+                    resourceAreaHeaderContent: 'Rooms',
+                    resources: @js($resourceTimeline),
+                    plugins: [
+                        interactionPlugin,
+                        dayGridPlugin,
+                        timeGridPlugin,
+                        listPlugin,
+                        resourceTimelinePlugin,
+                        bootstrap5Plugin
+                    ],
                     themeSystem: 'bootstrap5',
                     headerToolbar: false,
                     editable: true,
@@ -152,8 +177,8 @@
                     HSCore.hideTooltips();
                 });
 
-                $gridViewSelect.addEventListener('change', function (event) {
-                    fullcalendarEditable.changeView(event.target.value);
+                $('input[name=calendar_view]').on('change', function (event) {
+                    fullcalendarEditable.changeView($( 'input[name=calendar_view]:checked').val());
                 });
 
                 $todayBtn.addEventListener('click', function () {

@@ -44,6 +44,7 @@
                           id="name"
                           wire:model.defer="state.name"
                           name="name"
+                          disabled
                           class="form-control @error('name') is-invalid @enderror"
                           placeholder="House Name"
                       />

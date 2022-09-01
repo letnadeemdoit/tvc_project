@@ -31,7 +31,7 @@
                 <br />
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Select Category</label>
+                    <label class="form-label fw-normal" for="title">Select Category</label>
                     <select name="local_guide_category_id" id="local_guide_category_id"
                             wire:model.defer="state.category_id"
                             class="form-control @error('category_id') is-invalid @enderror">
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
+                    <label class="form-label fw-normal" for="title">Title</label>
                     <input
                         type="text"
                         id="title"
@@ -137,12 +137,13 @@
                         }
                         "
                 >
-                    <label class="mb-2" for="office_address">Address</label>
+                    <label class="form-label fw-normal" for="office_address">Address</label>
                     <input
                         id="office_address"
                         x-ref="office_address"
                         type="text" class="form-control"
                         name="address"
+                        placeholder="Address"
                         wire:model.defer="state.address"
                     />
                 </div>
@@ -160,7 +161,7 @@
 
 {{--                </div>--}}
                 <div class="mb-3">
-                    <label class="form-label" for="title">Date & Time</label>
+                    <label class="form-label fw-normal" for="title">Date & Time</label>
                     <input
                         type="datetime-local"
                         id="datetime"
@@ -251,7 +252,7 @@ toolbar_mode: 'sliding',
                         })
                     "
                 >
-                    <label class="form-label" for="description">Description</label>
+                    <label class="form-label fw-normal" for="description">Description</label>
                     <textarea
                         class="form-control"
                         wire:model.defer="state.description"

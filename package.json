@@ -30,6 +30,7 @@
         "@fullcalendar/daygrid": "^5.11.3",
         "@fullcalendar/interaction": "^5.11.3",
         "@fullcalendar/list": "^5.11.3",
+        "@fullcalendar/resource-timeline": "^5.11.3",
         "@fullcalendar/timegrid": "^5.11.3",
         "aos": "^2.3.4",
         "bootstrap-icons": "^1.8.1",
