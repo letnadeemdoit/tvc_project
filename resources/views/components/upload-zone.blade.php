@@ -68,14 +68,14 @@
                     <a
                         href="#"
                         class="btn btn-primary btn-xs"
-                        @click.prevent="cropper.rotate(-25)"
+                        @click.prevent="cropper.rotate(-45)"
                     >
                         <i class="bi bi-arrow-counterclockwise"></i>
                     </a>
                     <a
                         href="#"
                         class="btn btn-primary btn-xs"
-                        @click.prevent="cropper.rotate(25)"
+                        @click.prevent="cropper.rotate(45)"
                     >
                         <i class="bi bi-arrow-clockwise"></i>
                     </a>
