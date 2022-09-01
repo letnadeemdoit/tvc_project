@@ -71,7 +71,7 @@
                         <img
                             src="{{ auth()->user()->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ auth()->user()->user_name ?? '' }}" width="45px" height="45px"
+                            alt="{{ auth()->user()->user_name ?? '' }}" style="width:60px;height:60px !important;"
                         >
 
                     </div>
