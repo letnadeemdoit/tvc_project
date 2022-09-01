@@ -2,14 +2,14 @@
 <div class="topnav py-1 bg-topnav  d-none d-md-block">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-3  border-0">
+            <div class="col-lg-3">
                 <div class="d-flex justify-content-center justify-content-lg-start">
                     <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
                     <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
                     <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
                 </div>
             </div>
-            <div class="col-lg-9  border-0">
+            <div class="col-lg-9">
                 <div
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-lg-end">
                    @auth
@@ -37,7 +37,7 @@
                         {{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
 
                         <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
-                            <i class="fa-regular fa-envelope text-white me-2 fs-5"></i>trips.calendar@gmail.com</a>
+                            <i class="bi-envelope text-white me-2 fs-5"></i>trips.calendar@gmail.com</a>
                     </div>
                 </div>
             </div>
