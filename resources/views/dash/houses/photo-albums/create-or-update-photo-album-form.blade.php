@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
-                {{ $album && $album->id ? "Update" . ($album->title ? " '$album->title'" : '') : 'Add' }} Photo Album</h5>
+                {{ $album && $album->id ? "Update" : 'Add' }} Photo Album</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -144,12 +144,12 @@
                     <label class="form-label" for="">Select Parent Album</label>
                     <select name="parent_id" id="parent_id"
                             wire:model.defer="state.parent_id" class="form-control">
-                        <option value="">Select parent Album...</option>
-                        @if(isset($albumCategory))
-                            @foreach($albumCategory as $ac)
-                                <option value="{{$ac->id}}">{{$ac->name}}</option>
-                            @endforeach
-                        @endif
+                        <option value="" selected>Select parent Album...</option>
+                        @forelse($albumCategory as $ac)
+                            <option value="{{$ac->id}}">{{$ac->name}}</option>
+                        @empty
+                            <option value="" disabled selected>No album exist</option>
+                        @endforelse
                     </select>
 
                 </div>
