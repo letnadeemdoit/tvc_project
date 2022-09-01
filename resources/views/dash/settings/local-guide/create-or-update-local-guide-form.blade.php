@@ -16,13 +16,8 @@
                 <div>
                     @if($localGuide && $localGuide->image)
                         <div class="d-flex mb-3">
-                            <div class="mx-auto position-relative">
-                                <a
-                                    href="#"
-                                    class="position-absolute" style="right: 5px; top: 5px"
-                                    wire:click.prevent="deleteFile"
-                                ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
-                                <img src="{{ $localGuide->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                            <div class="mx-auto">
+                                <img src="{{ $localGuide->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>
                             </div>
                         </div>
                     @endif

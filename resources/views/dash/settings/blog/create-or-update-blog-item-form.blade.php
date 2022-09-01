@@ -27,22 +27,21 @@ $('.tokenize-demo').tokenize2({
         <div class="modal-body">
             <form wire:submit.prevent="saveBlogItemCU" method="post">
 
-                @if($blogItem && $blogItem->image)
-                    <div class="d-flex mb-3">
-                        <div class="mx-auto position-relative">
-                            <a
-                                href="#"
-                                class="position-absolute" style="right: 5px; top: 5px"
-                                wire:click.prevent="deleteFile"
-                            ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
-                            <img src="{{ $blogItem->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px"/>
+                <div>
+                    @if($blogItem && $blogItem->image)
+                        <div class="d-flex mb-3">
+                            <div class="mx-auto">
+                                <img src="{{ $blogItem->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>
+                            </div>
                         </div>
-                    </div>
-                @endif
-                <x-upload-zone wire:model="file"/>
-                <x-jet-input-error for="image"/>
-                <br/>
+                    @endif
+                </div>
 
+                <div>
+                    <x-upload-zone wire:model="file" />
+                    <x-jet-input-error for="image" />
+                </div>
+                <br/>
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">

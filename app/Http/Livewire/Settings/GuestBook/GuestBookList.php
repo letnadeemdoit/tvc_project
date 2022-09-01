@@ -58,6 +58,7 @@ class GuestBookList extends Component
                         ->orWhere('content', 'LIKE', "%$this->search%");
                 });
             })
+            ->latest()
             ->paginate($this->per_page);
 
         return view('dash.settings.guest-book.guest-book-list',compact('data'));

@@ -62,8 +62,8 @@
                         </td>
                         <td>{{$dt->title}}</td>
 
-                        <td>{!! substr($dt->content,0,60) ?? '' !!}
-                            @if(isset($dt->content) && strlen($dt->content) > 60)
+                        <td>{!! substr($dt->content,0,40) ?? '' !!}
+                            @if(isset($dt->content) && strlen($dt->content) > 40)
                                 <a href="#!"
                                    class="fw-600"
                                    data-bs-toggle="modal"

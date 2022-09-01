@@ -17,17 +17,21 @@
         >
             <form wire:submit.prevent="savePhotoCU" method="post">
 
-                @if($photo && $photo->path)
-                    <div class="d-flex mb-3">
-                        <div class="mx-auto">
-                            <img src="{{ $photo->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                <div>
+                    @if($photo && $photo->path)
+                        <div class="d-flex mb-3">
+                            <div class="mx-auto">
+                                <img src="{{ $photo->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>
+                            </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                </div>
+                <div>
+                    <x-upload-zone wire:model="file" />
+                    <x-jet-input-error for="image" />
+                </div>
+                <br/>
 
-                <x-upload-zone wire:model="file" />
-                <x-jet-input-error for="image" />
-                    <br/>
 
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
