@@ -303,12 +303,11 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
     a{
         &:hover{
             color: $primary !important;
-        }
-        i{
-            &:hover{
+            i{
                 color: $primary !important;
             }
         }
+
     }
 }
 
