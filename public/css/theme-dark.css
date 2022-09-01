@@ -34537,7 +34537,7 @@ body {
 .primary-hover a:hover {
   color: #E8604C !important;
 }
-.primary-hover a i:hover {
+.primary-hover a:hover i {
   color: #E8604C !important;
 }
 
