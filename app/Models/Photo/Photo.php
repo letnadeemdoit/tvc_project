@@ -63,6 +63,10 @@ class Photo extends Model
         return null;
     }
 
+    public function album() {
+        return $this->belongsTo(Album::class);
+    }
+
     protected function defaultFileUrl($column = 'image')
     {
 //        $name = trim(collect(explode(' ', $this->house ? $this->house->HouseName : ''))->map(function ($segment) {

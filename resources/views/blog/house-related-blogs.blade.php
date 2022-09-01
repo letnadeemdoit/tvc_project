@@ -88,7 +88,7 @@
 {{--                        @endif--}}
                         <img
                             src="{{ auth()->user()->profile_photo_url }}"
-                            class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
+                            class="avatar-initials img-fluid position-relative rounded-circle"
                             alt="{{ auth()->user()->user_name ?? '' }}"
                         >
 
