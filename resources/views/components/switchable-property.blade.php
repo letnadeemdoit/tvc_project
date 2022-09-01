@@ -10,6 +10,16 @@
        <i class="bi bi-house me-1"></i>
         <a href="#" class="nav-link" x-on:click.prevent="$root.submit();">
          {{ $house->HouseName }}
+
+
+            <span class="fs-10">
+                  @if(isset(auth()->user()->house->primary_house_name))
+                    ({{ auth()->user()->house->HouseName }})
+                @else
+                    ({{ auth()->user()->house->HouseName }})
+                @endif
+            </span>
+
     </a>
     </span>
 </form>
