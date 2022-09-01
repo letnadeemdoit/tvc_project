@@ -151,20 +151,9 @@ class CreateOrUpdateBlogItemForm extends Component
                 ]);
 
                 $this->blogItem->tags()->save($newTag);
-//
-//                TagBlog::create([
-//                    'blog_id' => $this->blogItem->BlogId,
-//                    'tag_id' => $newTag->id
-//                ]);
 
             }
         }
-//        $tag = new Tags();
-//        $tag->fill([
-//            'name' => $tag,
-//        ]);
-//        $tag->save();
-
 
 
         $this->emitSelf('toggle', false);
