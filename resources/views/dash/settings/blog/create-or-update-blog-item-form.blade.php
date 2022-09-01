@@ -1,18 +1,21 @@
 <x-modals.bs-modal class="modal-lg">
-    <div class="modal-content" @modal-is-shown.window="
-$('.tokenize-demo').tokenize2({
-                            tokensAllowCustom: true,
-                            dropdownSelectFirstItem: false
-                    });
-                $('.tokenize-demo').on('tokenize:tokens:added', function(e, value){
-                    let selected = [];
-                    $('#tokenize-tags').find(':selected').each(function () {
-                        selected.push($(this).val());
-                    })
-                    @this.set('state.tags', selected, true);
-                });
-{{--                    $('#tokenize-tags').tokenize2().trigger('tokenize:tokens:add', ['value', 'Text', true]);--}}
-">
+    <div
+        x-data="{tokenizeInitialized: false}"
+        class="modal-content"
+        @modal-is-shown.window="
+            $('#tokenize-tags').tokenize2({
+                tokensAllowCustom: true,
+                dropdownSelectFirstItem: false
+            });
+            $('#tokenize-tags').on('tokenize:tokens:added', function(e, value){
+                let selected = [];
+                $('#tokenize-tags').find(':selected').each(function () {
+                    selected.push($(this).val());
+                })
+                @this.set('state.tags', selected, true);
+            });
+        "
+    >
         <div class="modal-header">
             <h5 class="modal-title">
                 {{ $blogItem && $blogItem->BlogId ? "Update" : 'Add' }}
@@ -26,27 +29,29 @@ $('.tokenize-demo').tokenize2({
         </div>
         <div class="modal-body">
             <form wire:submit.prevent="saveBlogItemCU" method="post">
-
-                @if($blogItem && $blogItem->image)
-                    <div class="d-flex mb-3">
-                        <div class="mx-auto position-relative">
-                            <a
-                                href="#"
-                                class="position-absolute" style="right: 5px; top: 5px"
-                                wire:click.prevent="deleteFile"
-                            ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
-                            <img src="{{ $blogItem->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px"/>
+                <div>
+                    @if($blogItem && $blogItem->image)
+                        <div class="d-flex mb-3">
+                            <div class="mx-auto position-relative">
+                                <a
+                                    href="#"
+                                    class="position-absolute" style="right: 5px; top: 5px"
+                                    wire:click.prevent="deleteFile"
+                                ><i class="bi-trash fs-3 pe-1 pt-1 text-dark text-white"></i></a>
+                                <img src="{{ $blogItem->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px"/>
+                            </div>
                         </div>
-                    </div>
-                @endif
-                <x-upload-zone wire:model="file"/>
-                <x-jet-input-error for="image"/>
+                    @endif
+                </div>
+                <div>
+                    <x-upload-zone wire:model="file"/>
+                    <x-jet-input-error for="image"/>
+                </div>
                 <br/>
-
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="title">Subject</label>
+                        <label class="form-label" for="Subject">Subject</label>
                         <input
                             type="text"
                             id="Subject"
@@ -56,7 +61,7 @@ $('.tokenize-demo').tokenize2({
                             placeholder="Subject"
                         />
                         @error('Subject')
-                        <span class="invalid-feedback">{{$message}}</span>
+                        <   span class="invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
                 </div>
@@ -65,16 +70,16 @@ $('.tokenize-demo').tokenize2({
                         <label class="form-label" for="category_id">Select Category</label>
                         <select id="category_id" wire:model.defer="state.category_id"
                                 class="form-control">
-                            <option>Choose Category</option>
+                            <option value="" selected>Choose Category</option>
                             @forelse($blogCategories as $category)
                                 <option value="{{ $category->id }}"
                                         wire:key="category-{{ $category->id }}">{{ $category->name }}</option>
                             @empty
-                                <option>No category exist To add category go to category section</option>
+                                <option value="" disabled selected>No category exist To add category go to category section</option>
                             @endforelse
                         </select>
                         @error('category_id')
-                        <span class="invalid-feedback d-block">{{$message}}</span>
+                            <span class="invalid-feedback d-block">{{$message}}</span>
                         @enderror
                     </div>
                 </div>
@@ -97,77 +102,68 @@ $('.tokenize-demo').tokenize2({
                         class="mb-3"
                         @modal-is-shown.window="
                         window.tinymce.init({
-                        ...window.TINYMCE_DEFAULT_CONFIG,
-                        selector: 'textarea#Content',
-                        plugins: 'fullscreen image code lists table',
-  toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
-  /* enable title field in the Image dialog*/
-   image_advtab: true,
-    visual: false,
-toolbar_mode: 'sliding',
-  image_title: false,
+                            ...window.TINYMCE_DEFAULT_CONFIG,
+                            selector: 'textarea#Content',
+                            plugins: 'fullscreen image code lists table',
+                            toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
+                            /* enable title field in the Image dialog*/
+                            image_advtab: true,
+                            visual: false,
+                            toolbar_mode: 'sliding',
+                            image_title: false,
+                            block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
+                            line_height_formats: '1 1.2 1.4 1.6 2',
+                            font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+                            font_family_formats: 'Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace; AkrutiKndPadmini=Akpdmi-n',
+                            formats: {
+                                // Changes the alignment buttons to add a class to each of the matching selector elements
+                                alignleft: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'left' },
+                                aligncenter: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'center' },
+                                alignright: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'right' },
+                                alignjustify: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'full' }
+                            },
+                            browser_spellcheck: true,
+                            paste_block_drop: false,
+                            paste_data_images: true,
+                            /* enable automatic uploads of images represented by blob or data URIs*/
+                            automatic_uploads: true,
+                            /*
+                                URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
+                                images_upload_url: 'postAcceptor.php',
+                                here we add custom filepicker only to Image dialog
+                            */
+                            file_picker_types: 'image',
+                            /* and here's our custom image picker*/
+                            file_picker_callback: (cb, value, meta) => {
+                                const input = document.createElement('input');
+                                input.setAttribute('type', 'file');
+                                input.setAttribute('accept', 'image/*');
 
-  block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
+                                input.addEventListener('change', (e) => {
+                                    const file = e.target.files[0];
 
-  line_height_formats: '1 1.2 1.4 1.6 2',
+                                    const reader = new FileReader();
+                                    reader.addEventListener('load', () => {
+                                        /*
+                                          Note: Now we need to register the blob in TinyMCEs image blob
+                                          registry. In the next release this part hopefully won't be
+                                          necessary, as we are looking to handle it internally.
+                                        */
+                                        const id = 'blobid' + (new Date()).getTime();
+                                        const blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                                        const base64 = reader.result.split(',')[1];
+                                        const blobInfo = blobCache.create(id, file, base64);
+                                        blobCache.add(blobInfo);
 
-  font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+                                        /* call the callback and populate the Title field with the file name */
+                                        cb(blobInfo.blobUri(), { title: file.name });
+                                    });
+                                    reader.readAsDataURL(file);
+                                });
 
-  font_family_formats: 'Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace; AkrutiKndPadmini=Akpdmi-n',
-
-  formats: {
-    // Changes the alignment buttons to add a class to each of the matching selector elements
-    alignleft: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'left' },
-    aligncenter: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'center' },
-    alignright: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'right' },
-    alignjustify: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,img', classes: 'full' }
-  },
-
-  browser_spellcheck: true,
-
-  paste_block_drop: false,
-
-  paste_data_images: true,
-
-  /* enable automatic uploads of images represented by blob or data URIs*/
-  automatic_uploads: true,
-  /*
-    URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
-    images_upload_url: 'postAcceptor.php',
-    here we add custom filepicker only to Image dialog
-  */
-  file_picker_types: 'image',
-  /* and here's our custom image picker*/
-  file_picker_callback: (cb, value, meta) => {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
-
-    input.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-
-      const reader = new FileReader();
-      reader.addEventListener('load', () => {
-        /*
-          Note: Now we need to register the blob in TinyMCEs image blob
-          registry. In the next release this part hopefully won't be
-          necessary, as we are looking to handle it internally.
-        */
-        const id = 'blobid' + (new Date()).getTime();
-        const blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-        const base64 = reader.result.split(',')[1];
-        const blobInfo = blobCache.create(id, file, base64);
-        blobCache.add(blobInfo);
-
-        /* call the callback and populate the Title field with the file name */
-        cb(blobInfo.blobUri(), { title: file.name });
-      });
-      reader.readAsDataURL(file);
-    });
-
-    input.click();
-  },
-                        setup: function(editor) {
+                                input.click();
+                            },
+                            setup: function(editor) {
                                 editor.on('change', function(e) {
                                     @this.set('state.Contents', editor.getContent(), true);
                                 });
@@ -222,12 +218,5 @@ toolbar_mode: 'sliding',
     </div>
     @push('scripts')
         <script src="{{asset('vendors/tokenize2/tokenize2.min.js')}}"></script>
-        <script>
-            $(document).ready(function (){
-
-            });
-
-
-        </script>
     @endpush
 </x-modals.bs-modal>
