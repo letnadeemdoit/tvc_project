@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Settings\HouseSettings;
 
 use App\Models\House;
 use App\Models\User;
+use App\Models\World\City;
+use App\Models\World\Country;
+use App\Models\World\State;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -14,6 +17,8 @@ class HouseDetails extends Component
     use WithFileUploads;
 
     public $user;
+
+//    public $country;
 
     public $state = [];
 
@@ -28,7 +33,13 @@ class HouseDetails extends Component
 
     public function render()
     {
-        return view('dash.settings.house-settings.house-details');
+        $countries = Country::all();
+
+        $states = State::where('country_id', $this->state['country_id'] ?? '')->get();
+
+        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->get();
+
+        return view('dash.settings.house-settings.house-details',compact('countries','states','cities'));
     }
 
     public function mount(){
@@ -40,8 +51,9 @@ class HouseDetails extends Component
             'primary_house_name' => $this->house->primary_house_name,
             'address_1' => $this->house->Address1,
             'address_2' => $this->house->Address2,
-            'city' => $this->house->City,
-            'state' => $this->house->state,
+            'country_id' => $this->house->country,
+            'state_id' => $this->house->State,
+            'city_id' => $this->house->City,
             'zipcode' => $this->house->ZipCode,
             'home_phone' => $this->house->HousePhone,
             'fax' => $this->house->Fax,
@@ -72,6 +84,7 @@ class HouseDetails extends Component
             ],
             'address_1' => ['nullable', 'string', 'max:40'],
             'address_2' => ['nullable', 'string', 'max:40'],
+            'country' => ['nullable', 'string', 'max:40'],
             'city' => ['nullable', 'string', 'max:40'],
             'state' => ['nullable', 'string', 'max:20'],
             'zipcode' => ['nullable', 'string', 'max:10'],
@@ -82,8 +95,9 @@ class HouseDetails extends Component
             'primary_house_name' => $this->state['primary_house_name'],
             'Address1' => $this->state['address_1'] ?? null,
             'Address2' => $this->state['address_2'] ?? null,
-            'City' => $this->state['city'] ?? null,
-            'State' => $this->state['state'] ?? null,
+            'country' => $this->state['country_id'] ?? null,
+            'State' => $this->state['state_id'] ?? null,
+            'City' => $this->state['city_id'] ?? null,
             'ZipCode' => $this->state['zipcode'] ?? null,
         ])->save();
 
