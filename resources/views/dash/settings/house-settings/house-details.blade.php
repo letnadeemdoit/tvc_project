@@ -24,20 +24,34 @@
                 <br />
 
 
-                <div class="mb-3">
-                    <label class="form-label" for="name">Name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        wire:model.defer="state.name"
-                        name="name"
-                        class="form-control @error('name') is-invalid @enderror"
-                        placeholder="House Name"
-                    />
-                    @error('name')
-                    <span class="invalid-feedback">{{$message}}</span>
-                    @enderror
-                </div>
+              <div class="row">
+                  <div class="mb-3 col-12 col-lg-6">
+                      <label class="form-label" for="primary_house_name">Primary House Name</label>
+                      <input
+                          type="text"
+                          id="primary_house_name"
+                          wire:model.defer="state.primary_house_name"
+                          name="primary_house_name"
+                          class="form-control"
+                          placeholder="Primary House Name"
+                      />
+                  </div>
+
+                  <div class="mb-3 col-12 col-lg-6">
+                      <label class="form-label" for="name">House Name</label>
+                      <input
+                          type="text"
+                          id="name"
+                          wire:model.defer="state.name"
+                          name="name"
+                          class="form-control @error('name') is-invalid @enderror"
+                          placeholder="House Name"
+                      />
+                      @error('name')
+                      <span class="invalid-feedback">{{$message}}</span>
+                      @enderror
+                  </div>
+              </div>
                 <div class="mb-3">
                     <label class="form-label" for="address_1">Address 1:</label>
                     <input

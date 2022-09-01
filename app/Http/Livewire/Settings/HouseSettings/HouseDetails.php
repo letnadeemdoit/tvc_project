@@ -37,6 +37,7 @@ class HouseDetails extends Component
 
         $this->state = [
             'name' => $this->house->HouseName,
+            'primary_house_name' => $this->house->primary_house_name,
             'address_1' => $this->house->Address1,
             'address_2' => $this->house->Address2,
             'city' => $this->house->City,
@@ -78,6 +79,7 @@ class HouseDetails extends Component
 
         $this->house->fill([
             'HouseName' => $this->state['name'],
+            'primary_house_name' => $this->state['primary_house_name'],
             'Address1' => $this->state['address_1'] ?? null,
             'Address2' => $this->state['address_2'] ?? null,
             'City' => $this->state['city'] ?? null,

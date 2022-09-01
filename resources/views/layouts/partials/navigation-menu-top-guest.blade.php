@@ -174,18 +174,18 @@
                             <div
                                 class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account start-0"
                                 aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
-                                <div class="dropdown-item-text">
-                                    <div class="d-flex align-items-center">
-                                        {{--                                        <div class="avatar avatar-sm avatar-circle">--}}
-                                        {{--                                            <img class="avatar-img" src="{{asset('images/avatar.png')}}"--}}
-                                        {{--                                                 alt="Image Description">--}}
-                                        {{--                                        </div>--}}
-                                        <div class="flex-grow-1 ms-3">
-                                            <h5 class="mb-0  d-block d-lg-none">{{Auth::user()->user_name ?? ''}}</h5>
-                                            {{--                                            <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>--}}
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="dropdown-item-text">--}}
+{{--                                    <div class="d-flex align-items-center">--}}
+{{--                                        --}}{{--                                        <div class="avatar avatar-sm avatar-circle">--}}
+{{--                                        --}}{{--                                            <img class="avatar-img" src="{{asset('images/avatar.png')}}"--}}
+{{--                                        --}}{{--                                                 alt="Image Description">--}}
+{{--                                        --}}{{--                                        </div>--}}
+{{--                                        <div class="flex-grow-1 ms-3">--}}
+{{--                                            <h5 class="mb-0  d-block d-lg-none">{{Auth::user()->user_name ?? ''}}</h5>--}}
+{{--                                            --}}{{--                                            <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="dropdown-divider d-block d-lg-none"></div>
 
                                 <a href="{{route('dash.index')}}" class="dropdown-item"> <i
