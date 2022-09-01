@@ -33,11 +33,11 @@
                     <select name="local_guide_category_id" id="local_guide_category_id"
                             wire:model.defer="state.category_id"
                             class="form-control @error('category_id') is-invalid @enderror">
-                            <option>Choose Category</option>
+                        <option value="" selected>Choose Category</option>
                         @forelse($localGuideCategories as $lgc)
                             <option value="{{$lgc->id}}">{{$lgc->name}}</option>
                         @empty
-                            <option>No category exist To add category go to category section</option>
+                            <option value="" disabled selected>No category exist To add category go to category section</option>
                         @endforelse
                     </select>
                     @error('category_id')

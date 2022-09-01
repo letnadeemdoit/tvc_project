@@ -34,11 +34,11 @@
                 <div class="mb-3">
                     <label class="form-label" for="category_id">Select Category</label>
                     <select id="category_id" wire:model.defer="state.category_id" class="form-control">
-                        <option>Choose Category</option>
+                        <option value="" selected>Choose Category</option>
                         @forelse($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @empty
-                            <option>No category exist To add category go to category section</option>
+                            <option value="" disabled selected>No category exist To add category go to category section</option>
                         @endforelse
 
                     </select>
