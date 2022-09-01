@@ -149,6 +149,27 @@
                             window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
                         // }
                     },
+                    eventContent: function(arg) {
+                        let arrayOfDomNodes = []
+                        // title event
+                        let titleEvent = document.createElement('div')
+                        if(arg.event._def.title) {
+                            titleEvent.innerHTML = arg.event._def.title
+                            titleEvent.classList = "fc-event-title fc-sticky mx-2"
+                        }
+
+                        // image event
+                        let imgEventWrap = document.createElement('div')
+                        if(arg.event.extendedProps.imageUrl) {
+                            let imgEvent = '<img src="' + arg.event.extendedProps.imageUrl + '" class="mx-2 mt-2" style="width: 30px; height: 30px; border-radius: 100%">'
+                            imgEventWrap.classList = "fc-event-img"
+                            imgEventWrap.innerHTML = imgEvent;
+                        }
+
+                        arrayOfDomNodes = [ imgEventWrap, titleEvent ]
+
+                        return { domNodes: arrayOfDomNodes }
+                    },
                     events: @js($events)
                 });
 

@@ -84,7 +84,7 @@
                                href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.photo-album.index') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('guest.photo-album.index') || request()->routeIs('guest.photo-album.show') ? 'active' : '' }}"
                                href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
                         </li>
                         <li class="nav-item my-1 my-lg-0">

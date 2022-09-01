@@ -149,6 +149,11 @@ class Vacation extends Model implements Auditable
         return $this->hasMany(Schedule::class, 'VacationId', 'VacationID');
     }
 
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'OwnerId', 'user_id');
+    }
+
     public function toCalendar() {
         return [
             'id' => $this->VacationId,
@@ -158,8 +163,9 @@ class Vacation extends Model implements Auditable
             'allDay' => false,
             'color' => $this->back_grnd_color,
             'textColor' => $this->font_color,
-            'className' => 'way',
-            'resourceIds' => $this->schedules->pluck('RoomId')->toArray()
+            'className' => 'fullcalendar-custom-event-hs-team',
+            'resourceIds' => $this->schedules->pluck('RoomId')->toArray(),
+            'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
         ];
     }
 }

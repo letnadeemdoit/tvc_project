@@ -24,8 +24,7 @@ class CalendarView extends Component
         foreach ($rooms as $room) {
             $resourceTimeline[] = $room->toCalendarResource();
         }
-
-
+//        dd($events);
         return view('dash.calendar.calendar-view', compact('events', 'resourceTimeline'));
     }
 }
