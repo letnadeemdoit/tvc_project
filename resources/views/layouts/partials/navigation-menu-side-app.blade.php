@@ -124,7 +124,7 @@
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
                                            href="{{ route('dash.settings.notifications') }}">Notifications</a>
                                     @endif
-                                    @if(!auth()->user()->is_guest)
+                                    @if(!auth()->user()->is_guest && auth()->user()->ShowOldSave)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
                                            href="{{ route('dash.settings.vacations') }}">Vacations</a>
                                     @endif
