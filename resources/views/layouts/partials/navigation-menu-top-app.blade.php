@@ -1382,11 +1382,15 @@
                             <a class="btn btn-soft-primary btn-sm dropdown-toggle" href="javascript:;"
                                id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
                                 <i class="bi bi-house-fill me-1 fs-13"></i> Properties
+
                                 @if(isset(auth()->user()->house->primary_house_name))
                                     ({{ auth()->user()->house->primary_house_name }})
                                 @else
-                                    ({{ auth()->user()->house->HouseName }})
+                                <span class="ps-1">
+                                     ({{ auth()->user()->house->HouseName }})
+                                </span>
                                 @endif
+
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account" aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
