@@ -109,9 +109,13 @@
                         </div>
                         <div class="text-center mt-3">
 
-                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center" href="{{ route('login') }}">
+                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
+{{--                               href="{{ route('login') }}">--}}
+                                    href="#!"
+                                     @click.prevent="gotoHouse = false">
+
                                 <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to
-                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Login</span>
+                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
                             </a>
 
                         </div>
@@ -240,9 +244,12 @@
                         </div>
                         <div class="text-center mt-3">
 
-                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center" href="{{ route('login') }}">
+                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
+                               href="#!"
+                               @click.prevent="gotoHouse = false">
+
                                 <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to
-                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Login</span>
+                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
                             </a>
 
                         </div>
