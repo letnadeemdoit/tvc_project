@@ -30,7 +30,6 @@
                 <x-jet-input-error for="image" />
                 <br />
 
-
                 <div class="mb-3">
                     <label class="form-label" for="title">Select Category</label>
                     <select name="local_guide_category_id" id="local_guide_category_id"
@@ -62,6 +61,7 @@
                     <span class="invalid-feedback">{{$message}}</span>
                     @enderror
                 </div>
+
                 <div
                     class="mb-3"
                     x-data
@@ -137,7 +137,7 @@
                         }
                         "
                 >
-                    <label class="fw-bold mb-2" for="office_address">Address</label>
+                    <label class="mb-2" for="office_address">Address</label>
                     <input
                         id="office_address"
                         x-ref="office_address"
@@ -168,9 +168,7 @@
                         name="datetime"
                         class="form-control"
                     />
-
                 </div>
-
 
                 <div
                     class="mb-3"
