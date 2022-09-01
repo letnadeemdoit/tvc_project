@@ -1,7 +1,7 @@
 <x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $boardItem && $boardItem->id ? "Update" . ($boardItem->title ? " '$boardItem->title'" : '') : 'Add' }}
+            <h5 class="modal-title">{{ $boardItem && $boardItem->id ? "Update" : 'Add' }}
                 Bulletin Board Item</h5>
             <button
                 type="button"
@@ -34,9 +34,12 @@
                     <label class="form-label" for="category_id">Select Category</label>
                     <select id="category_id" wire:model.defer="state.category_id" class="form-control">
                         <option>Choose Category</option>
-                        @foreach($categories as $category)
+                        @forelse($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
+                        @empty
+                            <option>No category exist To add category go to category section</option>
+                        @endforelse
+
                     </select>
                 </div>
 

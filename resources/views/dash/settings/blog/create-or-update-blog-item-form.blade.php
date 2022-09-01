@@ -66,10 +66,12 @@ $('.tokenize-demo').tokenize2({
                         <select id="category_id" wire:model.defer="state.category_id"
                                 class="form-control">
                             <option>Choose Category</option>
-                            @foreach ($blogCategories as $category)
+                            @forelse($blogCategories as $category)
                                 <option value="{{ $category->id }}"
                                         wire:key="category-{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
+                            @empty
+                                <option>No category exist To add category go to category section</option>
+                            @endforelse
                         </select>
                         @error('category_id')
                         <span class="invalid-feedback d-block">{{$message}}</span>
