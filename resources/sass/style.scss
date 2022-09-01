@@ -39,6 +39,9 @@ i:hover{
 a:focus{
     outline: none !important;
 }
+button:focus{
+    outline:none !important;
+}
 body{
     font-family: 'Poppins', sans-serif;
 }
@@ -335,7 +338,13 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .switch-button{
     .btn{
         &:hover{
-            border: none;
+            border-color:transparent !important;
+        }
+        &:focus{
+            outline: none !important;
+        }
+        &.active{
+            outline: none !important;
         }
     }
 }

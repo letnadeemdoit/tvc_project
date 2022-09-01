@@ -85,7 +85,7 @@
                     <div class="text-center mt-4">
                         <p>Don't have an account?
                             <a href="{{ route('register') }}"
-                               class="text-decoration-underline text-primary fw-bolder">Create
+                               class="text-decoration-underline text-primary fw-600">Create
                                 account</a></p>
                         <a href="{{ url('/') }}" class="text-decoration-underline text-primary fw-600 fs-4 mt-3">Back</a>
                     </div>
@@ -240,10 +240,7 @@
                     </div>
                 </div>
 
-
-
             </form>
-
 
             <!-- End Form -->
         </div>

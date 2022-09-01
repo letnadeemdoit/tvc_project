@@ -12,7 +12,7 @@
     {{--                </ul>--}}
 
 
-    <div class="d-flex justify-content-center justify-content-md-start">
+    <div class="d-flex justify-content-center justify-content-md-start ms-0 ms-md-3">
         <nav class="navecation mb-3">
             <ul id="navi">
                 @if(count($categories) >0)
