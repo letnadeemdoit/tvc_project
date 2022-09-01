@@ -121,7 +121,8 @@ class ScheduleVacationForm extends Component
             'StartTimeId' => $startTime->timeid,
             'EndDateId' => $endDate->DateId,
             'EndTimeId' => $endTime->timeid,
-            'HouseId' => $this->user->HouseId
+            'HouseId' => $this->user->HouseId,
+            'OwnerId' => $this->user->user_id,
         ])->save();
 
         $items =$this->vacation;
