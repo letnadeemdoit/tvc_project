@@ -1,7 +1,7 @@
 {{--    topnav    --}}
 <div class="topnav py-1 bg-topnav  d-none d-md-block">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center primary-hover">
             <div class="col-lg-3">
                 <div class="d-flex justify-content-center justify-content-lg-start">
                     <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
@@ -35,7 +35,7 @@
                     <div>
                         {{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
 
-                        <a class="mb-0 text-white fs-12 primary-hover" href="mailto:someone@example.com">
+                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
                             <i class="bi-envelope text-white fs-5 px-2"></i>trips.calendar@gmail.com</a>
                     </div>
                 </div>
