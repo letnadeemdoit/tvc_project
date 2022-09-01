@@ -31,6 +31,7 @@ class House extends Model
         'primary_house_name',
         'Address1',
         'Address2',
+        'country',
         'City',
         'State',
         'ZipCode',

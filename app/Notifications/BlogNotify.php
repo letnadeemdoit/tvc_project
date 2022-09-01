@@ -49,7 +49,7 @@ class BlogNotify extends Notification
         return (new MailMessage)
             ->greeting('Vacation Calendar Blog!')
             ->line('Blog Name'.' '.$this->items->Subject)
-            ->action('View Invoice', $url);
+            ->action('click to check blog', $url);
     }
 
     /**
