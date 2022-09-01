@@ -43325,10 +43325,6 @@ a:hover .text-inherit {
   background-color: #E8604C !important;
 }
 
-i:hover {
-  color: #E8604C !important;
-}
-
 .text-primary {
   color: #E8604C;
 }
@@ -43640,7 +43636,10 @@ body {
   margin-bottom: 90px;
 }
 
-.primary-hover:hover {
+.primary-hover a:hover {
+  color: #E8604C !important;
+}
+.primary-hover a i:hover {
   color: #E8604C !important;
 }
 
@@ -43795,10 +43794,6 @@ header nav button:last-child:hover {
 
 .bg-topnav {
   background: #2A3342;
-}
-
-.topnav a:hover {
-  color: #E8604C !important;
 }
 
 .bg-cards-section {
