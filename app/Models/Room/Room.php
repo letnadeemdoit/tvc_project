@@ -37,4 +37,12 @@ class Room extends Model
     public function amenities() {
         return $this->belongsToMany(AmenityType::class, RoomAmenity::class, 'RoomID', 'AmenityID');
     }
+
+    public function toCalendarResource() {
+
+        return [
+            'id' => $this->RoomID,
+            'title' => $this->RoomName,
+        ];
+    }
 }

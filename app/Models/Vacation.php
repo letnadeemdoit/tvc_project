@@ -144,16 +144,22 @@ class Vacation extends Model implements Auditable
         );
     }
 
+    public function schedules(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Schedule::class, 'VacationId', 'VacationID');
+    }
+
     public function toCalendar() {
         return [
             'id' => $this->VacationId,
             'title' => $this->VacationName,
-            'start' => $this->start_datetime->format('Y-m-d H:i'),
-            'end' => $this->end_datetime->format('Y-m-d H:i'),
+            'start' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
+            'end' => str_replace(' ', 'T', $this->end_datetime->format('Y-m-d H:i:s')),
             'allDay' => false,
             'color' => $this->back_grnd_color,
             'textColor' => $this->font_color,
-            'className' => 'way'
+            'className' => 'way',
+            'resourceIds' => $this->schedules->pluck('RoomId')->toArray()
         ];
     }
 }
