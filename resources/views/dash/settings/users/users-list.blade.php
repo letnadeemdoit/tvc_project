@@ -164,9 +164,9 @@
                         {{--                            </div>--}}
                         {{--                        </td>--}}
                         <td>
-                            <a class="d-flex align-items-center" href="javascript;">
+                            <a class="d-flex align-items-center" href="#!">
                                 <div class="avatar avatar-circle">
-                                    <img class="avatar-img" src="{{ $dt->profile_photo_url }}" alt="Image Description">
+                                    <img class="avatar-img" src="{{ $dt->profile_photo_url }}" alt="user">
                                 </div>
                                 <div class="ms-3">
                                     <span class="d-block h5 text-inherit mb-0">{{ $dt->user_name }}</span>
