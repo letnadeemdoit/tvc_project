@@ -49,6 +49,7 @@
                 </div>
                 <br/>
 
+
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
                         <label class="form-label" for="Subject">Subject</label>
@@ -61,7 +62,7 @@
                             placeholder="Subject"
                         />
                         @error('Subject')
-                        <   span class="invalid-feedback">{{$message}}</span>
+                        <span class="invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
                 </div>

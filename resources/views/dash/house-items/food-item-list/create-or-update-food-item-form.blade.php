@@ -14,16 +14,19 @@
         <div class="modal-body">
             <form wire:submit.prevent="saveFoodItemCU" method="post">
 
-                @if($foodItemList && $foodItemList->image)
-                    <div class="d-flex mb-3">
-                        <div class="mx-auto">
-                            <img src="{{ $foodItemList->getFileUrl() }}" class="img-thumbnail" style="max-height: 200px" />
+                <div>
+                    @if($foodItemList && $foodItemList->image)
+                        <div class="d-flex mb-3">
+                            <div class="mx-auto">
+                                <img src="{{ $foodItemList->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>
+                            </div>
                         </div>
-                    </div>
-                @endif
-
-                <x-upload-zone wire:model="file" />
-                <x-jet-input-error for="image" />
+                    @endif
+                </div>
+                <div>
+                    <x-upload-zone wire:model="file" />
+                    <x-jet-input-error for="image" />
+                </div>
                 <br/>
 
                 <div class="mb-3">

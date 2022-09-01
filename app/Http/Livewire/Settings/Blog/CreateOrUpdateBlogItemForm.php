@@ -119,27 +119,27 @@ class CreateOrUpdateBlogItemForm extends Component
 
         $this->blogItem->updateFile($this->file);
 
-//        if (!is_null($this->user->house->BlogEmailList)){
-//            $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
-//
-//            if (count($blogEmailsList) > 0) {
-//
-//                $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
-//
-//                Notification::send($users, new BlogNotify($items,$blogUrl));
-//
-//                $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
-//
-//                if (count($blogEmailsList) > 0) {
-//
-//                    Notification::route('mail', $blogEmailsList)
-//                    ->notify(new BlogNotify($items,$blogUrl));
-//
-//                }
-//            }
-//
-//
-//        }
+        if (!is_null($this->user->house->BlogEmailList)){
+            $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
+
+            if (count($blogEmailsList) > 0) {
+
+                $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                Notification::send($users, new BlogNotify($items,$blogUrl));
+
+                $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+
+                if (count($blogEmailsList) > 0) {
+
+                    Notification::route('mail', $blogEmailsList)
+                    ->notify(new BlogNotify($items,$blogUrl));
+
+                }
+            }
+
+
+        }
 
         $tagsArray = $this->state['tags'];
         foreach ($tagsArray as $tag){
