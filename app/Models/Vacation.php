@@ -161,9 +161,9 @@ class Vacation extends Model implements Auditable
             'start' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
             'end' => str_replace(' ', 'T', $this->end_datetime->format('Y-m-d H:i:s')),
             'allDay' => false,
-            'color' => $this->back_grnd_color,
-            'textColor' => $this->font_color,
-            'className' => 'fullcalendar-custom-event-hs-team',
+            'display' => 'block',
+            'backgroundColor' => $this->BackGrndColor,
+            'textColor' => $this->FontColor,
             'resourceIds' => $this->schedules->pluck('RoomId')->toArray(),
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
         ];

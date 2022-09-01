@@ -25,25 +25,35 @@ class ScheduleVacationForm extends Component
         'showVacationScheduleModal'
     ];
 
-    public function showVacationScheduleModal($toggle, ?Vacation $vacation)
+    public function showVacationScheduleModal($toggle, $vacation = null, $initialDate = null)
     {
         $this->emitSelf('toggle', $toggle);
-        $this->vacation = $vacation;
+        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacation]);
         $this->reset('state');
 
-        if ($vacation->VacationName) {
+        if ($this->vacation->VacationName) {
             $this->state = [
-                'vacation_name' => $vacation->VacationName,
-                'start_datetime' => $vacation->start_datetime->format('m/d/Y h:i'),
-                'end_datetime' => $vacation->end_datetime->format('m/d/Y h:i'),
-                'background_color' => $vacation->BackGrndColor,
-                'font_color' => $vacation->FontColor,
+                'vacation_name' => $this->vacation->VacationName,
+                'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
+                'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
+                'background_color' => $this->vacation->BackGrndColor,
+                'font_color' => $this->vacation->FontColor,
             ];
         } else {
             $this->state = [
                 'background_color' => '#000000',
                 'font_color' => '#000000',
             ];
+
+            if ($initialDate) {
+                try {
+                    $initialDatetime = Carbon::parse($initialDate);
+                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                } catch (\Exception $e) {
+
+                }
+            }
         }
     }
 
@@ -137,22 +147,6 @@ class ScheduleVacationForm extends Component
             }
 
         }
-
-//        if (isset($this->user->house->CalEmailList)){
-//
-//            Mail::send([], [], function ($message) use($inputs) {
-//
-//                $message->to('noreply@thevacationcalendar.com')
-//                    ->cc(explode(',',$this->user->house->CalEmailList))
-//                    ->subject($inputs['vacation_name']. ' '.'Calendar' )
-//                    ->Html(
-//                        '<div style="padding: 10px; 20px">'.
-//                        '<h4>Calendar Name: '.$inputs['vacation_name'].'</h4>'.
-//                        '<p>Calendar Name: '.$inputs['vacation_name'].' '.'has been changed by'.$this->user->first_name.' '.$this->user->last_name.'</p>'.
-//                        '</div>', 'text/html');
-//            });
-//
-//        }
 
         $this->emitSelf('toggle', false);
         $this->emit('vacation-schedule-successfully');

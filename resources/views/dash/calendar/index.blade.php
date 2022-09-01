@@ -23,4 +23,5 @@
     <livewire:calendar.calendar-view :user="$user" />
 
     <livewire:settings.vacations.schedule-vacation-form :user="$user" />
+    <livewire:settings.vacations.request-to-join-vacation-form :user="$user" />
 </x-dashboard-layout>
