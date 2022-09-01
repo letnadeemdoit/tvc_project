@@ -1,4 +1,4 @@
-    <x-modals.bs-modal class="modal-lg">
+<x-modals.bs-modal class="modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
