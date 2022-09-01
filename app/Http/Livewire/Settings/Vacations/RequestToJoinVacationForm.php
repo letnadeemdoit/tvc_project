@@ -29,20 +29,30 @@ class RequestToJoinVacationForm extends Component
         'showRequestToJoinVacationModal'
     ];
 
-    public function showRequestToJoinVacationModal($toggle, ?Vacation $vacation)
+    public function showRequestToJoinVacationModal($toggle, $vacationId, $initialDate = null)
     {
         $this->emitSelf('toggle', $toggle);
-        $this->vacation = $vacation;
+        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
         $this->reset('state');
 
         if ($this->vacation->VacationName) {
             $this->state = [
-                'vacation_name' => $vacation->VacationName,
-                'start_datetime' => $vacation->start_datetime->format('m/d/Y h:i'),
-                'end_datetime' => $vacation->end_datetime->format('m/d/Y h:i'),
+                'vacation_name' => $this->vacation->VacationName,
+                'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
+                'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
             ];
         } else {
             $this->state = [];
+
+            if ($initialDate) {
+                try {
+                    $initialDatetime = Carbon::parse($initialDate);
+                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                } catch (\Exception $e) {
+
+                }
+            }
         }
     }
 

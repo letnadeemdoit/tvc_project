@@ -136,7 +136,7 @@
                     ],
                     themeSystem: 'bootstrap5',
                     headerToolbar: false,
-                    editable: false,
+                    editable: true,
                     defaultAllDay: false,
                     datesSet(dateSet) {
                         $dateTitle.textContent = dateSet.view.title
@@ -144,6 +144,8 @@
                     dateClick: function(info) {
                         @if($user->is_owner)
                             window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr);
+                        @elseif($user->is_guest)
+                            window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
                         @endif
                     },
                     eventClick: function (calEvent, jsEvent, view) {
