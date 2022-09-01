@@ -34267,6 +34267,10 @@ i:hover {
   color: #000 !important;
 }
 
+a:focus {
+  outline: none !important;
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -34898,11 +34902,11 @@ header nav button:last-child:hover {
 }
 .accordion-section .accordion-item .card-body {
   word-wrap: break-word !important;
+  padding: 1rem !important;
 }
 .accordion-section .accordion-item .card-body p {
   line-height: 30px;
   color: #2A3342;
-  padding: 13px 20px;
 }
 .accordion-section .bottom-box-shadow {
   box-shadow: 0px 11px 24px rgba(135, 135, 135, 0.11);
