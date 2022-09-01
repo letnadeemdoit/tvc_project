@@ -1,7 +1,7 @@
 {{--    topnav    --}}
 <div class="topnav py-1 bg-topnav  d-none d-md-block">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center primary-hover">
             <div class="col-lg-3">
                 <div class="d-flex justify-content-center justify-content-lg-start">
                     <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
@@ -14,30 +14,29 @@
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-lg-end">
                    @auth
                         <div
-                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            class="py-1 py-md-0 pe-3">
                             <a href="{{route('guest.privacy-policy')}}" class="mb-0 text-white fs-12">Policies</a>
                         </div>
                         <div
-                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            class="py-1 py-md-0 pe-3">
                             <a href="{{route('guest.help')}}" class="mb-0 text-white fs-12">Help</a>
                         </div>
                         <div
-                            class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                            class="py-1 py-md-0 pe-3">
                             <a href="{{route('guest.contact')}}" class="mb-0 text-white fs-12">Contact us</a>
                         </div>
                    @endauth
 
                     <div
-                        class="d-flex align-items-center justify-content-center justify-content-md-start py-1 py-md-0 pe-3">
+                        class="py-1 py-md-0 pe-3">
                         <a href="tel:0000-000-0" class="mb-0 text-white fs-12">
                             <i class="fas fa-phone me-2 text-white"></i> 000-000-000</a>
                     </div>
-                    <div
-                        class="d-flex align-items-center ms-md-2 ms-4 justify-content-center justify-content-md-start ">
+                    <div>
                         {{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
 
                         <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
-                            <i class="bi-envelope text-white me-2 fs-5"></i>trips.calendar@gmail.com</a>
+                            <i class="bi-envelope text-white fs-5 px-2"></i>trips.calendar@gmail.com</a>
                     </div>
                 </div>
             </div>

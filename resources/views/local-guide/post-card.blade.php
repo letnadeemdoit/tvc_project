@@ -32,7 +32,7 @@
             </a>
         </div>
         <div class="card-body p-2">
-            <div class="card-footer px-1 pb-0 border-0 pt-1">
+            <div class="card-footer px-1 pb-1 border-0 pt-1">
                 <ul class="d-block d-sm-flex list-unstyled recipe-card-footer align-items-center justify-content-between mb-2">
                     @if(isset($avgRating))
                         <li>
