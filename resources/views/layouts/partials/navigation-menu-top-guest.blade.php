@@ -36,7 +36,9 @@
                         {{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
 
                         <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
-                            <i class="bi-envelope text-white fs-5 px-2"></i>trips.calendar@gmail.com</a>
+                            <i class="bi-envelope text-white fs-5 px-2"></i>
+                            trips.calendar@gmail.com
+                        </a>
                     </div>
                 </div>
             </div>
