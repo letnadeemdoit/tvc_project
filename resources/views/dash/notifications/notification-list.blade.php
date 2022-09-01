@@ -87,6 +87,11 @@
                 </tbody>
             </table>
         </div>
+
+    <div class="mt-3">
+        {{ $data->links() }}
+    </div>
+
         <!-- End Table -->
     </div>
 
