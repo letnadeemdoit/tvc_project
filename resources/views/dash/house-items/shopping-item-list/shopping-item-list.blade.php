@@ -57,7 +57,7 @@
                                 />
                             </div>
                         </td>
-                        <td class="fw-600">{{$dt->name ?? ''}}</td>
+                        <td class="">{{$dt->name ?? ''}}</td>
                         <td>{{$dt->location ?? ''}}</td>
                         <td>{{$dt->expiration_date ?? ''}}</td>
                         <td>{{$dt->created_at ?? ''}}</td>
