@@ -85,7 +85,7 @@
                     <div class="text-center mt-4">
                         <p>Don't have an account?
                             <a href="{{ route('register') }}"
-                               class="text-decoration-underline text-primary fw-bolder">Create
+                               class="text-decoration-underline text-primary fw-600">Create
                                 account</a></p>
                     </div>
 
@@ -112,9 +112,9 @@
                             <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
 {{--                               href="{{ route('login') }}">--}}
                                     href="#!"
-                                     @click.prevent="gotoHouse = false">
+                                     @click.prevent="gotoHouse = false; loginAsGuest = null">
 
-                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to
+                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2">Go Back to
                                 <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
                             </a>
 
@@ -160,10 +160,10 @@
                                     <i class="bi bi-person text-primary"></i>
                                 </a>
                             </fieldset>
-                            @error('email')
-                            <span class="text-danger fw-semi-bold"
-                                  style="font-size: 13px !important;">{{$message}}</span>
-                            @enderror
+{{--                            @error('email')--}}
+{{--                            <span class="text-danger fw-semi-bold"--}}
+{{--                                  style="font-size: 13px !important;">{{$message}}</span>--}}
+{{--                            @enderror--}}
 
                             <span class="invalid-feedback">Please enter a valid email address.</span>
                         </div>
@@ -201,7 +201,7 @@
                                        :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
                                 </a>
                             </fieldset>
-                            @error('password')
+                            @error('email')
                             <span class="text-danger fw-semi-bold"
                                   style="font-size: 13px !important;">{{$message}}</span>
                             @enderror
@@ -246,9 +246,9 @@
 
                             <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
                                href="#!"
-                               @click.prevent="gotoHouse = false">
+                               @click.prevent="gotoHouse = false; loginAsGuest = null">
 
-                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Back to
+                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Go Back to
                                 <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
                             </a>
 
@@ -256,10 +256,7 @@
                     </div>
                 </div>
 
-
-
             </form>
-
 
             <!-- End Form -->
         </div>

@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
-                {{ $localGuide && $localGuide->id ? "Update" . ($localGuide->title ? " '$localGuide->title'" : '') : 'Add' }}
+                {{ $localGuide && $localGuide->id ? "Update" : 'Add' }}
                 Local Guide</h5>
             <button
                 type="button"
@@ -35,12 +35,12 @@
                     <select name="local_guide_category_id" id="local_guide_category_id"
                             wire:model.defer="state.category_id"
                             class="form-control @error('category_id') is-invalid @enderror">
-                        <option value="">Select Your Category...</option>
-                        @if(isset($localGuideCategories))
-                            @foreach($localGuideCategories as $lgc)
-                                <option value="{{$lgc->id}}">{{$lgc->name}}</option>
-                            @endforeach
-                        @endif
+                            <option>Choose Category</option>
+                        @forelse($localGuideCategories as $lgc)
+                            <option value="{{$lgc->id}}">{{$lgc->name}}</option>
+                        @empty
+                            <option>No category exist To add category go to category section</option>
+                        @endforelse
                     </select>
                     @error('category_id')
                     <span class="invalid-feedback">{{$message}}</span>
@@ -137,12 +137,13 @@
                         }
                         "
                 >
-                    <label class="mb-2" for="office_address">Address</label>
+                    <label class="form-label fw-normal" for="office_address">Address</label>
                     <input
                         id="office_address"
                         x-ref="office_address"
                         type="text" class="form-control"
                         name="address"
+                        placeholder="Address"
                         wire:model.defer="state.address"
                     />
                 </div>
