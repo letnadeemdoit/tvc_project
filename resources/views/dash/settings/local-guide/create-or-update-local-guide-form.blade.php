@@ -143,6 +143,7 @@
                         x-ref="office_address"
                         type="text" class="form-control"
                         name="address"
+                        placeholder="Address"
                         wire:model.defer="state.address"
                     />
                 </div>
