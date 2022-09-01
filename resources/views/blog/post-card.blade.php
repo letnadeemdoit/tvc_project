@@ -23,7 +23,7 @@
 
                         <div class="ps-3">
                             <strong class="mb-1 text-black fs-4">{{$post->Author}}</strong>
-                            <p class="mb-0 fs-13 pt-1">{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</p>
+                            <p class="mb-0 fs-13">{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</p>
                         </div>
                     </div>
 {{--                    <div class="dropdown" x-data>--}}

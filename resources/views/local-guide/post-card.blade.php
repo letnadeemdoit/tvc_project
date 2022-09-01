@@ -26,8 +26,8 @@
         <div class="w-100">
             <a class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE HOUSE</a>
             <a href="{{route('guest.local-guide.show',$dt->id)}}">
-                <img src="{{$dt->getFileUrl('image')}}" class="card-img-top  position-relative p-2"
-                     style="height: 320px !important;object-fit: cover;border-radius:17px;"
+                <img src="{{$dt->getFileUrl('image')}}" class="card-img-top  position-relative p-3"
+                     style="height: 355px !important;object-fit: cover;border-radius:23px;"
                      alt="{{ $dt->title ?? '' }}"/>
             </a>
         </div>

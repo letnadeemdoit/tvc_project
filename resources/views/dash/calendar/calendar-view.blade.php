@@ -141,13 +141,19 @@
                     datesSet(dateSet) {
                         $dateTitle.textContent = dateSet.view.title
                     },
+                    dateClick: function(info) {
+                        @if($user->is_owner)
+                            window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr);
+                        @elseif($user->is_guest)
+                            window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
+                        @endif
+                    },
                     eventClick: function (calEvent, jsEvent, view) {
-                        console.log(calEvent);
-                        // if (calEvent.className !== 'noway') {
-                        //
-                        // } else {
+                        @if($user->is_guest)
+                            window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
+                        @else
                             window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
-                        // }
+                        @endif
                     },
                     eventContent: function(arg) {
                         let arrayOfDomNodes = []
@@ -170,7 +176,7 @@
 
                         return { domNodes: arrayOfDomNodes }
                     },
-                    events: @js($events)
+                    events: @js($events),
                 });
 
 
@@ -224,7 +230,9 @@
                 //     $titleField.style.height = `${$titleField.scrollHeight}px`;
                 // });
 
-
+                window.livewire.on('vacation-schedule-successfully', function () {
+                    window.location.reload();
+                });
             });
         </script>
     @endpush

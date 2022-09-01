@@ -10,6 +10,10 @@ class CalendarView extends Component
 {
     public $user;
 
+    protected $listeners = [
+        'vacation-schedule-successfully' => '$refresh'
+    ];
+
     public function render()
     {
         $vacations = Vacation::where('HouseId', $this->user->HouseId)->get();
@@ -24,7 +28,7 @@ class CalendarView extends Component
         foreach ($rooms as $room) {
             $resourceTimeline[] = $room->toCalendarResource();
         }
-//        dd($events);
+
         return view('dash.calendar.calendar-view', compact('events', 'resourceTimeline'));
     }
 }
