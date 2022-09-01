@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Calendar;
 
+use App\Models\Room\Room;
 use App\Models\Vacation;
 use Livewire\Component;
 
@@ -12,11 +13,19 @@ class CalendarView extends Component
     public function render()
     {
         $vacations = Vacation::where('HouseId', $this->user->HouseId)->get();
+        $rooms = Room::where('HouseId', $this->user->HouseId)->get();
 
         $events = [];
         foreach ($vacations as $vacation) {
             $events[] = $vacation->toCalendar();
         }
-        return view('dash.calendar.calendar-view', compact('events'));
+
+        $resourceTimeline = [];
+        foreach ($rooms as $room) {
+            $resourceTimeline[] = $room->toCalendarResource();
+        }
+
+
+        return view('dash.calendar.calendar-view', compact('events', 'resourceTimeline'));
     }
 }
