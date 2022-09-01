@@ -22,6 +22,9 @@
                 }, (event) => {
                     this.uploadingProgress = event.detail.progress;
                 });
+
+                this.cropper.destroy();
+                this.cropper = null;
             });
         },
         validateAndPreviewImages() {
@@ -121,10 +124,10 @@
                     name="image"
                     hidden="hidden"
                     x-ref="file_upload"
-                    x-on:change="files = Array.from($el.files); validateAndPreviewImages()"
+                    x-on:change.prevent="files = Array.from($el.files); validateAndPreviewImages();"
                     {{ $multiple ? 'multiple' : '' }}
                 />
-                <button class="btn bg-primary btn-sm text-white" @click.prevent="$refs.file_upload.click()">Upload Image</button>
+                <button class="btn bg-primary btn-sm text-white" onclick="event.preventDefault(); document.getElementById('file_upload').click()">Upload Image</button>
             </div>
         </div>
 
