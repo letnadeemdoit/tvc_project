@@ -1,7 +1,7 @@
 <div class="container pt-55">
   @if(isset($data))
         <div class="category-cards mb-3">
-            <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll" id="myTab" role="tablist">
                 @if(count($categories) >0)
                     <li class="nav-item">
                         <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">
