@@ -30,6 +30,10 @@ class Album extends Model
         return $this->hasMany(Album::class, 'parent_id');
     }
 
+    public function photos() {
+        return $this->hasMany(Photo::class);
+    }
+
 
     protected function defaultFileUrl($column = 'image')
     {

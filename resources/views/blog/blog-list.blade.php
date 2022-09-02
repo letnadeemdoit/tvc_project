@@ -11,20 +11,15 @@
             @foreach($categories as $cat)
                 <li class="nav-item">
                     <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
-{{--                        @if($category->image)--}}
-{{--                            <img--}}
-{{--                                src="{{$category->getFileUrl('image')}}"--}}
-{{--                                class="avatar-initials me-2 d-none d-md-inline-block"--}}
-{{--                                width="30px"--}}
-{{--                                alt="img"--}}
-{{--                            />--}}
-{{--                        @else--}}
-{{--                            <img src="/images/blog-images/beach.svg" width="30px" class="me-2 d-none d-md-inline-block"/>--}}
-{{--                        @endif--}}
                         {{ $cat->name }}
                     </a>
                 </li>
             @endforeach
+{{--            @if(isset($categories) && count($categories) >5 )--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="btn btn-lg btn-soft-primary px-5" id="next-categories">See more</a>--}}
+{{--                </li>--}}
+{{--            @endif--}}
         </ul>
 {{--        <livewire:blog.blog-categories />--}}
     </div>

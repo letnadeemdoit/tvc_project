@@ -13,7 +13,8 @@ class PhotoAlbumCard extends Component
 
     public function render()
     {
-        return view('photo-album.photo-album-cards');
+        $childAlbum  = Album::where('house_id', $this->album->house_id)->where('parent_id', $this->album->id)->first();
+        return view('photo-album.photo-album-cards', compact('childAlbum'));
     }
 
 }

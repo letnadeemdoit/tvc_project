@@ -88,7 +88,7 @@ class CreateOrUpdateBlogItemForm extends Component
         Validator::make($inputs, [
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'Contents' => 'required',
+            'Contents' => 'required |max:100000',
             'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
@@ -115,6 +115,8 @@ class CreateOrUpdateBlogItemForm extends Component
 
         $items = $this->blogItem;
 
+        $createdHouseName = $this->user->house->HouseName;
+
         $blogUrl = $this->siteUrl;
 
         $this->blogItem->updateFile($this->file);
@@ -126,35 +128,34 @@ class CreateOrUpdateBlogItemForm extends Component
 
                 $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
-                Notification::send($users, new BlogNotify($items,$blogUrl));
+                Notification::send($users, new BlogNotify($items,$blogUrl,$createdHouseName));
 
                 $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
 
                 if (count($blogEmailsList) > 0) {
 
                     Notification::route('mail', $blogEmailsList)
-                    ->notify(new BlogNotify($items,$blogUrl));
+                    ->notify(new BlogNotify($items,$blogUrl,$createdHouseName));
+                }
+            }
+        }
+
+        if (isset($this->state['tags']) && !empty($this->state['tags'])){
+            $tagsArray = $this->state['tags'];
+            foreach ($tagsArray as $tag){
+                $tagExist = Tag::where('name', '=', $tag)->first();
+                if ($tagExist === null) {
+                    $newTag = new Tag();
+                    $newTag->fill([
+                        'name' => $tag,
+                    ]);
+
+                    $this->blogItem->tags()->save($newTag);
 
                 }
             }
 
-
         }
-
-        $tagsArray = $this->state['tags'];
-        foreach ($tagsArray as $tag){
-            $tagExist = Tag::where('name', '=', $tag)->first();
-            if ($tagExist === null) {
-                $newTag = new Tag();
-                $newTag->fill([
-                    'name' => $tag,
-                ]);
-
-                $this->blogItem->tags()->save($newTag);
-
-            }
-        }
-
 
         $this->emitSelf('toggle', false);
 

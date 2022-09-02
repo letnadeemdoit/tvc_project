@@ -143,7 +143,7 @@
                         class="form-control @error('Board') is-invalid @enderror"
                         wire:model.defer="state.Board"
                         name="Board"
-                        placeholder=""
+                        placeholder="Write your Detail here"
                         rows="4"
                         id="board_textarea"
 

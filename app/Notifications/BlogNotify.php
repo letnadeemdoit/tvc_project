@@ -7,22 +7,25 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 
 class BlogNotify extends Notification
 {
     use Queueable;
     public $items;
     public $blogUrl;
+    public $createdHouseName;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($items,$blogUrl)
+    public function __construct($items,$blogUrl,$createdHouseName)
     {
         $this->items = $items;
         $this->blogUrl = $blogUrl;
+        $this->createdHouseName = $createdHouseName;
     }
 
     /**
@@ -47,8 +50,8 @@ class BlogNotify extends Notification
         $url = $this->blogUrl;
 
         return (new MailMessage)
-            ->greeting('Vacation Calendar Blog!')
-            ->line('Blog Name'.' '.$this->items->Subject)
+            ->greeting('Blog!')
+            ->line(new HtmlString('New Blog <strong>' . $this->items->Subject.'</strong>'. ' has been Created against ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
             ->action('click to check blog', $url);
     }
 
@@ -62,6 +65,7 @@ class BlogNotify extends Notification
     {
         return [
             'Name' => $this->items->Subject,
+            'house_name' => $this->createdHouseName,
             'slug' => $this->blogUrl,
         ];
     }

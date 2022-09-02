@@ -6,21 +6,28 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 
 class CalendarEmailNotification extends Notification
 {
     use Queueable;
 
     public $items;
+    public $createdHouseName;
+    public $startDate;
+    public $endDate;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($items)
+    public function __construct($items,$createdHouseName,$startDate,$endDate)
     {
         $this->items = $items;
+        $this->createdHouseName = $createdHouseName;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
     }
 
     /**
@@ -45,8 +52,13 @@ class CalendarEmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+
             ->greeting('Vacation Calendar')
-            ->line('Vacation Calendar:'.' '.$this->items->VacationName);
+
+            ->line(new HtmlString('New Vacation <strong>' . $this->items->VacationName.'</strong>'. ' has been Scheduled against ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
+
+            ->line(new HtmlString('This Vacation has been Scheduled from <strong>' . $this->startDate->RealDate.'</strong>'. ' to ' . '<strong>'. $this->endDate->RealDate .' '.'Date'.'</strong>'));
+
     }
 
     /**
@@ -59,6 +71,9 @@ class CalendarEmailNotification extends Notification
     {
         return [
             'Name' => $this->items->VacationName,
+            'house_name' => $this->createdHouseName,
+            'start_date' => $this->startDate->RealDate,
+            'end_date' => $this->endDate->RealDate,
         ];
     }
 }

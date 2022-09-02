@@ -35,43 +35,33 @@
 
 
 
-        <div class="table-responsive datatable-custom">
-            <table
-                class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-                <thead class="thead-light">
-                <tr>
-                    <th style="width: 25%">Type</th>
-                    <th>Name</th>
-                </tr>
-                </thead>
-
-                <tbody>
-
+            <div class="p-3">
+                <ul class="list-group list-group-flush">
                     @foreach($data as $dt)
+                        @if($dt->type == 'App\Notifications\BlogNotify')
+                            <li class="list-group-item border-bottom rounded-0 d-flex justify-content-start align-items-center">
+                                <h4 class="mb-0 me-3">Blog: </h4>
+                                <p class="mb-0">New Blog <b class="text-primary text-capitalize">{{$dt->data['Name']}}</b>
+                                    has been created against <b class="text-primary text-capitalize">{{$dt->data['house_name']}}</b> House </p>
+                            </li>
+                        @else
+                            <li class="list-group-item border-bottom rounded-0 d-flex justify-content-start align-items-center">
+                                <h4 class="mb-0 me-3">Calendar: </h4>
 
-                        <tr>
-                            <td class="fw-600">
-                                @if($dt->type == 'App\Notifications\BlogNotify')
-                                    Blog
-                                @else
-                                    Calendar
-                                @endif
-                            </td>
+                                <p class="mb-0">This Vacation has been Scheduled from
+                                    <b class="text-primary text-capitalize">{{$dt->data['start_date']}}</b>
+                                    to
+                                    <b class="text-primary text-capitalize">{{$dt->data['end_date']}}</b>
+                                    Date against <b class="text-primary text-capitalize">{{$dt->data['house_name']}}</b> House
+                                </p>
 
-                            @if($dt->type == 'App\Notifications\BlogNotify')
-
-                                <td class="fw-600">New Blog <a href="{{ $dt->data['slug'] ?? '' }}" class="text-primary text-capitalize text-decoration-underline">{{ $dt->data['Name'] ?? '' }}</a> Created</td>
-
-                            @else
-                                <td class="fw-600">New Vacation <span  class="text-primary text-capitalize text-decoration-underline">{{ $dt->data['Name'] ?? '' }}</span> Created</td>
-
-                            @endif
-                        </tr>
+                            </li>
+                        @endif
                     @endforeach
+                </ul>
+            </div>
 
-                </tbody>
-            </table>
-        </div>
+
 
     <div class="mt-3">
         {{ $data->links() }}

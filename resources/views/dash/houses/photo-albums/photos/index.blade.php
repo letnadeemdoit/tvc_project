@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-dashboard-layout>
 
     @push('stylesheets')
         <style>
@@ -54,26 +54,28 @@
         </style>
     @endpush
 
+    <x-slot name="breadcrumbs">
+        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('dash.photo-albums') }}">Photo Albums</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Photos</li>
+    </x-slot>
+
+    <x-slot name="title">
+        Album Name: {{$album->name}}
+    </x-slot>
+
+    <x-slot name="headerRightActions">
+        <div class="col-sm-auto" x-data>
+            <a
+                class="btn btn-primary"
+                href="#!"
+                @click.prevent="window.livewire.emit('showPhotoCUModal', true)"
+            >
+                <i class="bi-plus me-1"></i> Add New Photo
+            </a>
+        </div>
+    </x-slot>
 
     <div class="content container-fluid">
-        <div class="page-header">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h1 class="page-header-title">Album Name: {{$album->name}} </h1>
-                </div>
-
-                <div class="col-sm-auto" x-data>
-                    <a
-                        class="btn btn-primary"
-                        href="#!"
-                        @click.prevent="window.livewire.emit('showPhotoCUModal', true)"
-                    >
-                        <i class="bi-plus me-1"></i> Add New Photo
-                    </a>
-                </div>
-
-            </div>
-        </div>
 
         <livewire:houses.photo-albums.photos.photos-list :user="$user" :album="$album" />
 
@@ -81,7 +83,7 @@
 
     </div>
 
-    @push('scripts')
+        @push('scripts')
             <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
 
 
@@ -150,6 +152,6 @@
                     });
                 });
             </script>
-    @endpush
+        @endpush
+</x-dashboard-layout>
 
-</x-app-layout>
