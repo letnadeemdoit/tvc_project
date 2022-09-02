@@ -18,7 +18,7 @@
             </a>
         @elseif($album->photos)
             @foreach($album->photos as $key => $photo)
-                <a href="" class="" data-fancybox="photos"
+                <a href="" class="" data-fancybox="photo"
                    data-src="{{ $photo->getFileUrl('path') }}"
                    data-caption="{{ $photo->description }}"
                 >
