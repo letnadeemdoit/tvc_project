@@ -115,6 +115,8 @@ class CreateOrUpdateBlogItemForm extends Component
 
         $items = $this->blogItem;
 
+        $createdHouseName = $this->user->house->HouseName;
+
         $blogUrl = $this->siteUrl;
 
         $this->blogItem->updateFile($this->file);
@@ -126,14 +128,14 @@ class CreateOrUpdateBlogItemForm extends Component
 
                 $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
-                Notification::send($users, new BlogNotify($items,$blogUrl));
+                Notification::send($users, new BlogNotify($items,$blogUrl,$createdHouseName));
 
                 $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
 
                 if (count($blogEmailsList) > 0) {
 
                     Notification::route('mail', $blogEmailsList)
-                    ->notify(new BlogNotify($items,$blogUrl));
+                    ->notify(new BlogNotify($items,$blogUrl,$createdHouseName));
                 }
             }
         }

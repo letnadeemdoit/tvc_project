@@ -13,7 +13,7 @@ class NotificationList extends Component
 
 
 
-        $data = $this->user->notifications()->paginate(20);
+        $data = $this->user->notifications()->paginate(10);
 
         return view('dash.notifications.notification-list',compact('data'));
     }

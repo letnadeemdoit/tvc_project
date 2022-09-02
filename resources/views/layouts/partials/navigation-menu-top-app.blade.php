@@ -816,34 +816,34 @@
             <!-- Search Form -->
             <div class="dropdown ms-2">
                 <!-- Input Group -->
-                <div class="d-none d-lg-block">
-                    <div class="input-group input-group-merge input-group-borderless input-group-hover-light navbar-input-group">
-                        <div class="input-group-prepend input-group-text">
-                            <i class="bi-search"></i>
-                        </div>
+{{--                <div class="d-none d-lg-block">--}}
+{{--                    <div class="input-group input-group-merge input-group-borderless input-group-hover-light navbar-input-group">--}}
+{{--                        <div class="input-group-prepend input-group-text">--}}
+{{--                            <i class="bi-search"></i>--}}
+{{--                        </div>--}}
 
-                        <input type="search" class="js-form-search form-control" placeholder="Search in Vacation Calendar" aria-label="Search in Vacation Calendar" data-hs-form-search-options='{
-                       "clearIcon": "#clearSearchResultsIcon",
-                       "dropMenuElement": "#searchDropdownMenu",
-                       "dropMenuOffset": 20,
-                       "toggleIconOnFocus": true,
-                       "activeClass": "focus"
-                     }'>
-                        <a class="input-group-append input-group-text" href="javascript:;">
-                            <i id="clearSearchResultsIcon" class="bi-x-lg" style="display: none;"></i>
-                        </a>
-                    </div>
-                </div>
+{{--                        <input type="search" class="js-form-search form-control" placeholder="Search in Vacation Calendar" aria-label="Search in Vacation Calendar" data-hs-form-search-options='{--}}
+{{--                       "clearIcon": "#clearSearchResultsIcon",--}}
+{{--                       "dropMenuElement": "#searchDropdownMenu",--}}
+{{--                       "dropMenuOffset": 20,--}}
+{{--                       "toggleIconOnFocus": true,--}}
+{{--                       "activeClass": "focus"--}}
+{{--                     }'>--}}
+{{--                        <a class="input-group-append input-group-text" href="javascript:;">--}}
+{{--                            <i id="clearSearchResultsIcon" class="bi-x-lg" style="display: none;"></i>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <button class="js-form-search js-form-search-mobile-toggle btn btn-ghost-secondary btn-icon rounded-circle d-lg-none" type="button" data-hs-form-search-options='{
-                       "clearIcon": "#clearSearchResultsIcon",
-                       "dropMenuElement": "#searchDropdownMenu",
-                       "dropMenuOffset": 20,
-                       "toggleIconOnFocus": true,
-                       "activeClass": "focus"
-                     }'>
-                    <i class="bi-search"></i>
-                </button>
+{{--                <button class="js-form-search js-form-search-mobile-toggle btn btn-ghost-secondary btn-icon rounded-circle d-lg-none" type="button" data-hs-form-search-options='{--}}
+{{--                       "clearIcon": "#clearSearchResultsIcon",--}}
+{{--                       "dropMenuElement": "#searchDropdownMenu",--}}
+{{--                       "dropMenuOffset": 20,--}}
+{{--                       "toggleIconOnFocus": true,--}}
+{{--                       "activeClass": "focus"--}}
+{{--                     }'>--}}
+{{--                    <i class="bi-search"></i>--}}
+{{--                </button>--}}
                 <!-- End Input Group -->
 
                 <!-- Card Search Content -->
@@ -1454,7 +1454,7 @@
                                     <div class="avatar avatar-sm avatar-circle">
                                         <img class="avatar-img" src="{{asset('images/avatar.png')}}" alt="Image Description">
                                     </div>
-                                    <div class="flex-grow-1 ms-3">
+                                    <div class="flex-grow-1 ms-3 text-break">
                                         <h5 class="mb-0">{{Auth::user()->user_name ?? ''}}</h5>
                                         <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>
                                     </div>
