@@ -6,6 +6,7 @@ use App\Models\Traits\HasFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Arr;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -50,6 +51,19 @@ class GuestBook extends Model implements Auditable
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function transformAudit(array $data): array
+    {
+        if (Arr::has($data, 'new_values.status')) {
+            $data['old_values']['status'] = $this->getOriginal('status') === 0 ? 'Active' : 'Inactive';
+            $data['new_values']['status'] = $this->getAttribute('status') === 0 ? 'Active' : 'Inactive';
+        }
+
+        return $data;
     }
 
 }

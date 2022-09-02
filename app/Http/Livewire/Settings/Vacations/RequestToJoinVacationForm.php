@@ -103,7 +103,7 @@ class RequestToJoinVacationForm extends Component
         }
 
         $this->emitSelf('toggle', false);
-        $this->success('Your request to join vacation has been submitted successfull.');
+        $this->success('Your request to join vacation has been submitted successful.');
     }
 
     public function render()
