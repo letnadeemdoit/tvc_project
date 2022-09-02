@@ -78,7 +78,7 @@
                         wire:model.defer="state.email"
                     />
                     @error('email')
-                    <span class="invalid-feedback">{{ $message }}</span>
+                        <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
@@ -105,7 +105,6 @@
                         name="end_datetime"
                         id="end_datetime"
                         wire:model.defer="state.end_datetime"
-
                     />
                     @error('end_datetime')
                         <span class="invalid-feedback">{{ $message }}</span>
