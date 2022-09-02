@@ -1,12 +1,22 @@
 <div class="container pt-55">
   @if(isset($data))
-        <div class="category-cards mb-3">
+        <div class="category-cards mb-3 d-flex scrollbar">
+            @if(count($categories) >0)
+                <ul class="nav nav-tabs border-bottom-0 blog-tabs">
+                <li class="nav-item">
+                    <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">
+                        ALL
+                    </a>
+                </li>
+                </ul>
+            @endif
             <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll" id="myTab" role="tablist">
+
                 @if(count($categories) >0)
                     <li class="nav-item">
-                        <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">
-                            ALL
-                        </a>
+{{--                        <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">--}}
+{{--                          ALL--}}
+{{--                        </a>--}}
                     </li>
                 @endif
                 @foreach($categories as $cat)
