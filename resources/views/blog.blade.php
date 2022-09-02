@@ -15,7 +15,7 @@
         <div class="container  pt-5">
             <div class="row my-5  category-cards">
                 <div class="col-12">
-                    <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs border-bottom-0 blog-tabs" id="myTab" role="tablist" style="overflow-x: scroll;">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                                     type="button" role="tab" aria-controls="home" aria-selected="true">
