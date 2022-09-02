@@ -194,7 +194,7 @@
                                 wire:model="orderBy"
                                 class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
                             <option value="DESC">Latest</option>
-                            <option value="ASC">Old</option>
+                            <option value="ASC">Oldest</option>
                         </select>
                     </div>
                 </div>
@@ -209,61 +209,64 @@
                              width="50"
                              height="50" style="object-fit: cover" alt="...">
                     </div>
-                    <div class="flex-grow-1 ms-3">
-                        <form wire:submit.prevent="saveRatingForm">
-                            <div class="rate my-2 px-0">
-                                @if(isset($user))
-                                    <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
-                                        <li>
-                                            @php
-                                                $i = 0;
-                                            @endphp
-                                            @while (++$i <= ($user->rating))
-                                                <span class="fa fa-star checked"></span>
-                                            @endwhile
 
-                                            @php
-                                                $r = 1;
-                                                $t_rating = 5;
-                                            @endphp
+                    @if(!auth()->user()->is_guest)
+                        <div class="flex-grow-1 ms-3">
+                            <form wire:submit.prevent="saveRatingForm">
+                                <div class="rate my-2 px-0">
+                                    @if(isset($user))
+                                        <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
+                                            <li>
+                                                @php
+                                                    $i = 0;
+                                                @endphp
+                                                @while (++$i <= ($user->rating))
+                                                    <span class="fa fa-star checked"></span>
+                                                @endwhile
 
-                                            @for ($r; $r <= $t_rating - $user->rating; $r++)
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -1px" alt="">
-                                            @endfor
-                                        </li>
-                                    </ul>
-                                @else
-                                    <input type="radio" class="" hidden id="star5" wire:model.defer="state.rating"
-                                           name="rating"
-                                           value="5"/>
-                                    <label for="star5" class="" title="text">5 stars</label>
-                                    <input type="radio" hidden id="star4" wire:model.defer="state.rating" name="rating"
-                                           value="4"/>
-                                    <label for="star4" title="text">4 stars</label>
-                                    <input type="radio" hidden id="star3" wire:model.defer="state.rating" name="rating"
-                                           value="3"/>
-                                    <label for="star3" title="text">3 stars</label>
-                                    <input type="radio" hidden id="star2" wire:model.defer="state.rating" name="rating"
-                                           value="2"/>
-                                    <label for="star2" title="text">2 stars</label>
-                                    <input type="radio" hidden id="star1" wire:model.defer="state.rating" name="rating"
-                                           value="1"/>
-                                    <label for="star1" title="text">1 star</label>
-                                @endif
-                            </div>
-                            <div class="">
+                                                @php
+                                                    $r = 1;
+                                                    $t_rating = 5;
+                                                @endphp
+
+                                                @for ($r; $r <= $t_rating - $user->rating; $r++)
+                                                    <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -1px" alt="">
+                                                @endfor
+                                            </li>
+                                        </ul>
+                                    @else
+                                        <input type="radio" class="" hidden id="star5" wire:model.defer="state.rating"
+                                               name="rating"
+                                               value="5"/>
+                                        <label for="star5" class="" title="text">5 stars</label>
+                                        <input type="radio" hidden id="star4" wire:model.defer="state.rating" name="rating"
+                                               value="4"/>
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" hidden id="star3" wire:model.defer="state.rating" name="rating"
+                                               value="3"/>
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" hidden id="star2" wire:model.defer="state.rating" name="rating"
+                                               value="2"/>
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" hidden id="star1" wire:model.defer="state.rating" name="rating"
+                                               value="1"/>
+                                        <label for="star1" title="text">1 star</label>
+                                    @endif
+                                </div>
+                                <div class="">
                         <textarea id="remarks" name="remarks" wire:model.defer="state.remarks" class="form-control"
                                   placeholder="Leave a review"
                                   rows="6"></textarea>
-                            </div>
-                            <div class="text-start text-lg-end py-3 px-3" style="background-color: #2D394C10">
-                                <button class="btn btn-secondary px-5 {{ $user ? 'disabled' : '' }} "
-                                        style="background-color: #2D394C">Review
-                                </button>
-                            </div>
-                        </form>
+                                </div>
+                                <div class="text-start text-lg-end py-3 px-3" style="background-color: #2D394C10">
+                                    <button class="btn btn-secondary px-5 {{ $user ? 'disabled' : '' }} "
+                                            style="background-color: #2D394C">Review
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    @endif
 
-                    </div>
 
                 </div>
             </div>
