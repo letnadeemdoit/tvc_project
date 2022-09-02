@@ -67,32 +67,39 @@ class RequestToJoinVacationForm extends Component
         ])->validateWithBag('saveVacationSchedule');
 
         $owner = $this->vacation->owner ?? new User();
-
-        Mail::send([], [], function (Message $message) use ($owner) {
-            $message->to($this->state['email'])
-                ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
-                ->subject('The Vacation Calendar Vacation Request Confirmation')
-                ->Html(
-                    "<div style='padding: 10px; 20px'>" .
-                    "<h2>{$this->state['name']}</h2>" .
-                    "<p>You have requested to join $owner->first_name $owner->last_name's vacation from {$this->state['start_datetime']} to {$this->state['end_datetime']}<p/>" .
-                    "</div>", 'text/plain'
-                );
-        });
-
-        if ($this->vacation->owner) {
+        try {
             Mail::send([], [], function (Message $message) use ($owner) {
-                $message->to($owner->email)
+                $message->to($this->state['email'])
                     ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
-                    ->subject('The Vacation Calendar Vacation Request')
+                    ->subject('The Vacation Calendar Vacation Request Confirmation')
                     ->Html(
                         "<div style='padding: 10px; 20px'>" .
-                        "<h2>{$owner->first_name} {$owner->last_name},</h2>" .
-                        "<p>{$this->state['name']} has requested to join your vacation from {$this->state['start_datetime']} to {$this->state['end_datetime']}<p/>" .
-                        "<p>They can be reached at the following email address: {$this->state['email']}<p/>" .
+                        "<h2>{$this->state['name']}</h2>" .
+                        "<p>You have requested to join $owner->first_name $owner->last_name's vacation from {$this->state['start_datetime']} to {$this->state['end_datetime']}<p/>" .
                         "</div>", 'text/plain'
                     );
             });
+        } catch (\Exception $e) {
+
+        }
+
+        if ($this->vacation->owner) {
+            try {
+                Mail::send([], [], function (Message $message) use ($owner) {
+                    $message->to($owner->email)
+                        ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
+                        ->subject('The Vacation Calendar Vacation Request')
+                        ->Html(
+                            "<div style='padding: 10px; 20px'>" .
+                            "<h2>{$owner->first_name} {$owner->last_name},</h2>" .
+                            "<p>{$this->state['name']} has requested to join your vacation from {$this->state['start_datetime']} to {$this->state['end_datetime']}<p/>" .
+                            "<p>They can be reached at the following email address: {$this->state['email']}<p/>" .
+                            "</div>", 'text/plain'
+                        );
+                });
+            } catch (\Exception $e) {
+
+            }
         }
 
         $this->emitSelf('toggle', false);
