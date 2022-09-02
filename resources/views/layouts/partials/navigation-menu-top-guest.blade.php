@@ -38,25 +38,25 @@
                         </div>
                     @endauth
 
-{{--                    <div--}}
-{{--                        class="py-1 py-md-0 pe-3">--}}
-{{--                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">--}}
-{{--                            <i class="fas fa-phone me-2 text-white"></i> 000-000-000</a>--}}
-{{--                    </div>--}}
-{{--                    <div>--}}
-{{--                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">--}}
-{{--                            <i class="bi-envelope text-white fs-5 px-2"></i>--}}
-{{--                            trips.calendar@gmail.com--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-                    <ul class="list-unstyled d-flex mb-0">
-                        <li> <a href="tel:0000-000-0" class="mb-0 text-white fs-12 px-3">
-                                <i class="fas fa-phone  text-white pe-2"></i> 000-000-000</a>
-                        </li>
-                        <li> <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
-                                <i class="fa-regular fa-envelope text-white pe-3"></i>trips.calendar@gmail.com
-                            </a>
-                        </li>
+                    <div
+                        class="py-1 py-md-0 pe-3">
+                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">
+                            <i class="fas fa-phone me-2 text-white fs-4"></i> 000-000-000</a>
+                    </div>
+                    <div>
+                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
+                            <i class="bi-envelope text-white fs-5 px-2"></i>
+                            trips.calendar@gmail.com
+                        </a>
+                    </div>
+{{--                    <ul class="list-unstyled d-flex mb-0">--}}
+{{--                        <li> <a href="tel:0000-000-0" class="mb-0 text-white fs-12 px-3">--}}
+{{--                                <i class="fas fa-phone  text-white pe-2"></i> 000-000-000</a>--}}
+{{--                        </li>--}}
+{{--                        <li> <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">--}}
+{{--                                <i class="fa-regular fa-envelope text-white pe-3"></i>trips.calendar@gmail.com--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
