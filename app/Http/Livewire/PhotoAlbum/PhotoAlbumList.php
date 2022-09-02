@@ -26,7 +26,6 @@ class PhotoAlbumList extends Component
             })
             ->orderBy('id', 'DESC')
             ->get();
-
         return view('photo-album.photo-album-list',compact('data'));
     }
 }

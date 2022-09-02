@@ -1,5 +1,5 @@
 <div class="container pt-55">
-  @if(isset($data))
+    @if(isset($data))
         <div class="category-cards mb-3">
             <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll" id="myTab" role="tablist">
                 @if(count($categories) >0)
@@ -34,6 +34,6 @@
 
     @else
         @include('partials.no-data-available',['title' => 'Blog'])
-  @endif
+    @endif
 
 </div>

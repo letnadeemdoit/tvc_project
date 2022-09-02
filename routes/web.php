@@ -136,6 +136,8 @@ Route::middleware([
 //        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
         Route::get('/notifications', [DashboardController::class, 'notifications'])->name('notifications');
+        Route::get('/notification/{id}', [DashboardController::class, 'markAsReadSingleNotification'])->name('mark-as-read-single-notification');
+        Route::get('/notifications/mark-as-read', [DashboardController::class, 'markAsReadNotifications'])->name('mark-as-read-notifications');
         Route::get('/food-item-list', [DashboardController::class, 'foodItemList'])->name('food-item-list');
         Route::get('/shopping-item-list', [DashboardController::class, 'shoppingItemList'])->name('shopping-item-list');
         Route::get('/plans-and-pricing', [DashboardController::class, 'planAndPricing'])->name('plans-and-pricing');

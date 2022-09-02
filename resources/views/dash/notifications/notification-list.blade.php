@@ -3,38 +3,6 @@
         <!-- Header -->
 
         @if ($data->count() > 0 )
-{{--        <div class="card-header card-header-content-md-between">--}}
-{{--            <div class="mb-2 mb-md-0 w-50">--}}
-{{--                <form>--}}
-{{--                    <!-- Search -->--}}
-{{--                    <div class="input-group input-group-merge input-group-flush">--}}
-{{--                        <div class="input-group-prepend input-group-text">--}}
-{{--                            <div wire:loading wire:target="search">--}}
-{{--                                <div class="spinner-border spinner-border-sm" role="status">--}}
-{{--                                    <span class="visually-hidden">Loading...</span>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <i class="bi-search" wire:loading.remove wire:target="search"></i>--}}
-{{--                        </div>--}}
-{{--                        <input--}}
-{{--                            id="datatableSearch"--}}
-{{--                            type="search"--}}
-{{--                            class="form-control"--}}
-{{--                            placeholder="Search by name"--}}
-{{--                            aria-label="Search"--}}
-{{--                            wire:model.debounce.500ms="search"--}}
-{{--                        />--}}
-{{--                    </div>--}}
-{{--                    <!-- End Search -->--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-        <!-- End Header -->
-
-        <!-- Table -->
-
-
-
             <div class="p-3">
                 <ul class="list-group list-group-flush">
                     @foreach($data as $dt)

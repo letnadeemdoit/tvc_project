@@ -9,7 +9,9 @@ use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Utils;
 
 class DashboardController extends Controller
@@ -74,10 +76,26 @@ class DashboardController extends Controller
 
     public function notifications(Request $request)
     {
+        $data = $request->user()->unreadNotifications()->paginate(10);
+
         return view('dash.notifications.index', [
-            'user' => $request->user()
+            'user' => $request->user(),
+            'data' => $data
         ]);
 
+    }
+    public function markAsReadSingleNotification(Request $request , $id)
+    {
+
+        $d = DB::table('notifications')->where('id', $id )->update(['read_at' => now()]);
+
+        return back();
+    }
+
+    public function markAsReadNotifications(Request $request)
+    {
+        $d = DB::table('notifications')->update(['read_at' => now()]);
+        return back();
     }
 
     public function foodItemList(Request $request)
