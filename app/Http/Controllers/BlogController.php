@@ -29,7 +29,7 @@ class BlogController extends Controller
 
         $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
 
-        $relatedBlog = Blog::where('HouseId' , $user->HouseId)->where('category_id', $post->category_id)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
+        $relatedBlog = Blog::where('HouseId' , $user->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
         $existingTags = $post->tags;
 //        dd($existingTags);

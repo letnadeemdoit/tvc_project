@@ -39,7 +39,7 @@
                             wire:model.defer="state.name"
                             name="name"
                             class="form-control @error('name') is-invalid @enderror"
-                            placeholder="name"
+                            placeholder="Category Name"
                         />
                         @error('name')
                         <span class="invalid-feedback">{{$message}}</span>
@@ -70,7 +70,7 @@
                             class="form-control @error('description') is-invalid @enderror"
                             wire:model.defer="state.description"
                             name="description"
-                            placeholder="add description"
+                            placeholder="Write description here"
                             rows="3"
                             id="description"
 
