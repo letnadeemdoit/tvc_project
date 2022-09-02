@@ -15,13 +15,7 @@
                     </a>
                 </li>
             @endforeach
-{{--            @if(isset($categories) && count($categories) >5 )--}}
-{{--                <li class="nav-item">--}}
-{{--                    <a class="btn btn-lg btn-soft-primary px-5" id="next-categories">See more</a>--}}
-{{--                </li>--}}
-{{--            @endif--}}
         </ul>
-{{--        <livewire:blog.blog-categories />--}}
     </div>
     <div class="row category-cards">
         @foreach($data as $dt)

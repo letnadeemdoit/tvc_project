@@ -91,12 +91,19 @@
                     <a
                         href="#"
                         class="btn btn-primary btn-xs"
+                        @click.prevent="errors = []; files = []; uploadingProgress = 0; cropper = null; previewAndEdit = false"
+                    >
+                        <i class="bi bi-x"></i>
+                    </a>
+                    <a
+                        href="#"
+                        class="btn btn-primary btn-xs"
                         @click.prevent="startUploading()"
                     >
                         <i class="bi bi-check2"></i>
                     </a>
                 </div>
-                <img :src="URL.createObjectURL(files[0])" x-ref="cropper" style="max-height: 400px"/>
+                <img :src="files.length > 0 ? URL.createObjectURL(files[0]) : null" x-ref="cropper" style="max-height: 400px"/>
             </div>
         </template>
     </div>
@@ -126,7 +133,7 @@
                     x-on:change.prevent="files = Array.from($el.files); validateAndPreviewImages();"
                     {{ $multiple ? 'multiple' : '' }}
                 />
-                <button class="btn bg-primary btn-sm text-white" onclick="event.preventDefault(); document.getElementById('file_upload').click()">Upload Image</button>
+                <button class="btn bg-primary btn-sm text-white" onclick="event.preventDefault(); document.getElementById('file_upload').value = null; document.getElementById('file_upload').click(); ">Upload Image</button>
             </div>
         </div>
 

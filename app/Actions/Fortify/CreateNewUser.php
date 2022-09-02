@@ -25,7 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'HouseName' => ['required', 'unique:House'],
             'City' => ['required'],
             'State' => ['required'],
-            'image' => 'image|mimes:png,jpg,gif,tiff|max:1024|nullable',
+            'image' => 'nullable|image|mimes:png,jpg,gif,tiff|max:1024',
             'Referral_paypal_account' => ['required'],
             'user_name' => ['required', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -46,10 +46,12 @@ class CreateNewUser implements CreatesNewUsers
             'ReferredBy' => $input['Referral_paypal_account'],
         ]);
 
+
+
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
 
         if ($house) {
-
+            $house->updateFile($input['image']);
             if (!isset($input['AdminOwner'])) {
                 $AdminOwner = 'N';
             } else {
