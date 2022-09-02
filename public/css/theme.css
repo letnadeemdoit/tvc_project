@@ -43498,10 +43498,6 @@ body {
 }
 
 /* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
 .text-max-width {
   max-width: 150px;
 }
@@ -44011,6 +44007,7 @@ header nav button:last-child:hover {
   border: 2px solid rgba(232, 96, 76, 0.21);
   border-radius: 5px !important;
   background: #F6E9E7;
+  font-size: 16px;
 }
 .accordion-section .accordion-item {
   border: 0px solid #fff !important;
@@ -44018,6 +44015,9 @@ header nav button:last-child:hover {
 .accordion-section .accordion-item .card-body {
   word-wrap: break-word !important;
   padding: 1rem !important;
+}
+.accordion-section .accordion-item .card-body h3, .accordion-section .accordion-item .card-body .h3 {
+  font-size: 15px;
 }
 .accordion-section .accordion-item .card-body p {
   line-height: 30px;
@@ -44888,4 +44888,15 @@ nav.navecation .active img {
 .toggle-text-link {
   display: block;
   margin: 3px 0;
+}
+
+.scroll {
+  max-width: 1400px;
+  overflow: hidden;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+}
+
+.scroll .nav-item a {
+  display: inline-block;
 }
