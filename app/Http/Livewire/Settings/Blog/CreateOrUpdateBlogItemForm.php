@@ -88,7 +88,7 @@ class CreateOrUpdateBlogItemForm extends Component
         Validator::make($inputs, [
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'Contents' => 'required',
+            'Contents' => 'required |max:100000',
             'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
@@ -140,20 +140,23 @@ class CreateOrUpdateBlogItemForm extends Component
 //
 //
 //        }
+        if (isset($this->state['tags']) && !empty($this->state['tags'])){
+            $tagsArray = $this->state['tags'];
+            foreach ($tagsArray as $tag){
+                $tagExist = Tag::where('name', '=', $tag)->first();
+                if ($tagExist === null) {
+                    $newTag = new Tag();
+                    $newTag->fill([
+                        'name' => $tag,
+                    ]);
 
-        $tagsArray = $this->state['tags'];
-        foreach ($tagsArray as $tag){
-            $tagExist = Tag::where('name', '=', $tag)->first();
-            if ($tagExist === null) {
-                $newTag = new Tag();
-                $newTag->fill([
-                    'name' => $tag,
-                ]);
+                    $this->blogItem->tags()->save($newTag);
 
-                $this->blogItem->tags()->save($newTag);
-
+                }
             }
+
         }
+
 
 
         $this->emitSelf('toggle', false);
