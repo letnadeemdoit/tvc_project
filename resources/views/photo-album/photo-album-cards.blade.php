@@ -38,7 +38,7 @@
                     <div class="d-flex align-items-center">
                             <img src="{{asset('/images/photo-album/camera.svg')}}"
                                  class="img-fluid me-1 me-lg-2">
-                            <span>{{count($album->photos)}}</span>
+{{--                            <span>{{count($album->photos)}}</span>--}}
                         </div>
                 </div>
             </div>

@@ -59,7 +59,7 @@
                             wire:model.defer="state.Subject"
                             name="Subject"
                             class="form-control @error('Subject') is-invalid @enderror"
-                            placeholder="Subject"
+                            placeholder="Add blog subject"
                         />
                         @error('Subject')
                         <span class="invalid-feedback">{{$message}}</span>
@@ -178,7 +178,7 @@
                             class="form-control @error('Contents') is-invalid @enderror"
                             wire:model.defer="state.Contents"
                             name="Content"
-                            placeholder="Content"
+                            placeholder="Write your Content here"
                             rows="3"
                             id="Content"
 

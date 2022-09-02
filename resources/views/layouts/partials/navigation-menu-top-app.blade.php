@@ -1461,7 +1461,8 @@
                                 </div>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings</a>
+                            <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings
+                            </a>
                             <div class="dropdown-divider"></div>
 
                             <form method="POST" action="{{ route('logout') }}">

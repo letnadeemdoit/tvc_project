@@ -148,11 +148,17 @@
 
     <div class="container my-5">
         <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>
 
-        <div class="fb-comments" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">
+        @if(!auth()->user()->is_guest)
 
-        </div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>
+
+            <div class="fb-comments" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">
+
+            </div>
+
+        @endif
+
 {{--            <livewire:blog.post-comment :user="$user" :blog="$post" />--}}
 {{--        <div class="row mt-5 mb-3">--}}
 {{--            <div class="col-12 col-lg-6">--}}

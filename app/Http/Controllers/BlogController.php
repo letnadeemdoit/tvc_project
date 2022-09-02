@@ -29,24 +29,26 @@ class BlogController extends Controller
 
         $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
 
-        $relatedBlog = Blog::where('HouseId' , $user->HouseId)->where('category_id', $post->category_id)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
+        $relatedBlog = Blog::where('HouseId' , $user->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
         $existingTags = $post->tags;
 //        dd($existingTags);
 
-        $views = BlogViews::where('user_id' ,$user->user_id)->where('viewable_id' ,$post->BlogId)->first();
+        if(!auth()->user()->is_guest){
+            $views = BlogViews::where('user_id' ,$user->user_id)->where('viewable_id' ,$post->BlogId)->first();
 
 //        $views = Blog::where('user_id' ,$user->user_id)->where('BlogId' ,$post->BlogId)->first();
 
-        if (is_null($views)){
-            $view = new BlogViews();
+            if (is_null($views)){
+                $view = new BlogViews();
 
-            $view->fill([
-                'user_id' => $user->user_id,
-                'ip_address' => $request->getClientIp()
-            ]);
+                $view->fill([
+                    'user_id' => $user->user_id,
+                    'ip_address' => $request->getClientIp()
+                ]);
 
-            $post->views()->save($view);
+                $post->views()->save($view);
+            }
         }
 
         return view('blog.post', [
