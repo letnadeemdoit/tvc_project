@@ -3,16 +3,27 @@
     <div class="container">
         <div class="row align-items-center primary-hover">
             <div class="col-lg-3">
-                <div class="d-flex justify-content-center justify-content-lg-start">
-                    <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
-                    <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
-                    <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
-                </div>
+                <div class="d-flex  justify-content-center justify-content-lg-start">
+                {{--                <div class="d-flex justify-content-center justify-content-lg-start">--}}
+                {{--                    <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>--}}
+                {{--                    <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>--}}
+                {{--                    <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>--}}
+                {{--                </div>--}}
+                <ul class="list-unstyled d-flex mb-0">
+                    <li>
+                        <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
+                    </li>
+                    <li><a href="#"> <i class="bi-instagram fs-3 text-white"></i></a></li>
+                </ul>
+            </div>
             </div>
             <div class="col-lg-9">
                 <div
                     class="d-block d-md-flex float-end align-items-center w-100 justify-content-center justify-content-lg-end">
-                   @auth
+                    @auth
                         <div
                             class="py-1 py-md-0 pe-3">
                             <a href="{{route('guest.privacy-policy')}}" class="mb-0 text-white fs-12">Policies</a>
@@ -25,27 +36,34 @@
                             class="py-1 py-md-0 pe-3">
                             <a href="{{route('guest.contact')}}" class="mb-0 text-white fs-12">Contact us</a>
                         </div>
-                   @endauth
+                    @endauth
 
-                    <div
-                        class="py-1 py-md-0 pe-3">
-                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">
-                            <i class="fas fa-phone me-2 text-white"></i> 000-000-000</a>
-                    </div>
-                    <div>
-                        {{--                        <img src="{{asset('/images/images-home/Email.svg')}}" class="img-fluid me-2">--}}
-
-                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
-                            <i class="bi-envelope text-white fs-5 px-2"></i>
-                            trips.calendar@gmail.com
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{{--   topnnav     --}}
+{{--                    <div--}}
+{{--                        class="py-1 py-md-0 pe-3">--}}
+{{--                        <a href="tel:0000-000-0" class="mb-0 text-white fs-12">--}}
+{{--                            <i class="fas fa-phone me-2 text-white"></i> 000-000-000</a>--}}
+{{--                    </div>--}}
+{{--                    <div>--}}
+{{--                        <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">--}}
+{{--                            <i class="bi-envelope text-white fs-5 px-2"></i>--}}
+{{--                            trips.calendar@gmail.com--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+                    <ul class="list-unstyled d-flex mb-0">
+                        <li> <a href="tel:0000-000-0" class="mb-0 text-white fs-12 px-3">
+                                <i class="fas fa-phone  text-white pe-2"></i> 000-000-000</a>
+                        </li>
+                        <li> <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
+                                <i class="fa-regular fa-envelope text-white pe-3"></i>trips.calendar@gmail.com
+                            </a>
+                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {{--   topnnav     --}}
 
 <header id="header" class="navbar navbar-expand-lg navbar-bordered bg-white  ">
     <div class="container">
@@ -103,7 +121,7 @@
 
                     @endauth
 
-                  @guest
+                    @guest
 
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
@@ -118,7 +136,7 @@
                                href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                         </li>
 
-                  @endguest
+                    @endguest
 
                     @auth
                         <li class="nav-item my-1 my-lg-0 d-lg-none">
@@ -152,7 +170,7 @@
 
                 <div class="d-md-flex nav-buttons ms-3 ms-lg-0 ">
                     @auth
-                         <!-- Account -->
+                        <!-- Account -->
                         <div class="dropdown  d-flex  align-items-center">
 
                             <div class="avatar avatar-sm avatar-circle">
@@ -175,18 +193,18 @@
                             <div
                                 class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account start-0"
                                 aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
-{{--                                <div class="dropdown-item-text">--}}
-{{--                                    <div class="d-flex align-items-center">--}}
-{{--                                        --}}{{--                                        <div class="avatar avatar-sm avatar-circle">--}}
-{{--                                        --}}{{--                                            <img class="avatar-img" src="{{asset('images/avatar.png')}}"--}}
-{{--                                        --}}{{--                                                 alt="Image Description">--}}
-{{--                                        --}}{{--                                        </div>--}}
-{{--                                        <div class="flex-grow-1 ms-3">--}}
-{{--                                            <h5 class="mb-0  d-block d-lg-none">{{Auth::user()->user_name ?? ''}}</h5>--}}
-{{--                                            --}}{{--                                            <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="dropdown-item-text">--}}
+                                {{--                                    <div class="d-flex align-items-center">--}}
+                                {{--                                        --}}{{--                                        <div class="avatar avatar-sm avatar-circle">--}}
+                                {{--                                        --}}{{--                                            <img class="avatar-img" src="{{asset('images/avatar.png')}}"--}}
+                                {{--                                        --}}{{--                                                 alt="Image Description">--}}
+                                {{--                                        --}}{{--                                        </div>--}}
+                                {{--                                        <div class="flex-grow-1 ms-3">--}}
+                                {{--                                            <h5 class="mb-0  d-block d-lg-none">{{Auth::user()->user_name ?? ''}}</h5>--}}
+                                {{--                                            --}}{{--                                            <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                                 <div class="dropdown-divider d-block d-lg-none"></div>
 
                                 <a href="{{route('dash.index')}}" class="dropdown-item"> <i
