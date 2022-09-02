@@ -229,7 +229,7 @@
                         class="form-control @error('content') is-invalid @enderror"
                         wire:model.defer="state.content"
                         name="content"
-                        placeholder=""
+                        placeholder="Content"
                         rows="5"
                         id="content"
 

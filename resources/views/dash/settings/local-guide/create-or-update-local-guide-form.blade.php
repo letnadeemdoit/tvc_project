@@ -255,7 +255,7 @@ toolbar_mode: 'sliding',
                         class="form-control"
                         wire:model.defer="state.description"
                         name="description"
-                        placeholder=""
+                        placeholder="Description"
                         rows="3"
                         id="description"
 

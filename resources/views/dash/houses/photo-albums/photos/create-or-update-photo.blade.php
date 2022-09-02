@@ -38,7 +38,7 @@
                     <textarea
                         wire:model.defer="state.description"
                         name="description"
-                        placeholder=""
+                        placeholder="Description"
                         rows="4"
                         id="description"
                         class="form-control @error('description') is-invalid @enderror"

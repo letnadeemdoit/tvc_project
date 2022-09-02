@@ -146,11 +146,11 @@
                             <fieldset class="input-group border rounded-1 ps-1">
                                 <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Username</legend>
                                 <input type="text"
+                                       tabindex="1"
                                        class="form-control form-control-lg border-0 shadow-none outline-0"
                                        name="email"
                                        value="{{ old('email') }}"
                                        id="email"
-                                       tabindex="1"
                                        placeholder="johnsmith1234"
                                        aria-label="email@address.com"
                                        required/>

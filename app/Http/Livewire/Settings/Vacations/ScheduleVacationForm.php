@@ -137,6 +137,8 @@ class ScheduleVacationForm extends Component
 
         $items =$this->vacation;
 
+        dd($items);
+
         if (!is_null($this->user->house->CalEmailList)){
 
             $CalEmailList = explode(',',$this->user->house->CalEmailList);

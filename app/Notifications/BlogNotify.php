@@ -47,8 +47,8 @@ class BlogNotify extends Notification
         $url = $this->blogUrl;
 
         return (new MailMessage)
-            ->greeting('Vacation Calendar Blog!')
-            ->line('Blog Name'.' '.$this->items->Subject)
+            ->greeting('Blog!')
+            ->line('Blog Name'.' '.$this->items->Subject . ' '. 'has been created')
             ->action('click to check blog', $url);
     }
 
