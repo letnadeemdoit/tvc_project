@@ -48,11 +48,14 @@
 @else
     <div class="brick">
         <div class="card border-0 text-white bg-transparent shadow-none">
-            <a href="">
+            <a href="" class="" data-fancybox="photo"
+               data-src="{{ $album->getFileUrl() }}"
+               data-caption="{{ $album->description }}"
+               data-sizes="(max-width: 600px) 480px, 800px"
+            >
                 <img
                     src="{{ $album->getFileUrl() }}"
                     class="card-img"/>
-
             </a>
             <div class="p-0">
                 <div class="card-block d-flex w-100 justify-content-between px-2 px-lg-4 px-xxl-5 img-card-text align-items-center align-items-center">
