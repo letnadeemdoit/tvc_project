@@ -39,7 +39,7 @@
                     <div class="col-12 text-center">
                         <img src="{{asset('/images/blog-images/no-task.svg')}}" class="img-fluid" />
                         <h3 class="pt-3">Stay Tuned</h3>
-                        <p classs="fw-normal text-dark-blue">We haven't got any {{ $title ?? 'Data' }} Yet!</p>
+                        <p classs="fw-normal text-dark-blue">We haven't got any Blog Yet!</p>
                     </div>
                 </div>
             </div>
