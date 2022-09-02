@@ -48,7 +48,7 @@
                             <li class="list-group-item border-bottom rounded-0 d-flex justify-content-start align-items-center">
                                 <h4 class="mb-0 me-3">Calendar: </h4>
 
-                                <p class="mb-0">This Vacation has been schedule from
+                                <p class="mb-0">This Vacation has been Scheduled from
                                     <b class="text-primary text-capitalize">{{$dt->data['start_date']}}</b>
                                     to
                                     <b class="text-primary text-capitalize">{{$dt->data['end_date']}}</b>
