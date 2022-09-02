@@ -10,6 +10,15 @@ class PhotoAlbumCard extends Component
 
     public Album $album;
 
+    public $albumPhotos;
+
+    public $nestedPhoto;
+
+    public function mount() {
+        $this->albumPhotos = $this->album->photos;
+        $this->nestedPhoto = count($this->albumPhotos);
+    }
+
 
     public function render()
     {
