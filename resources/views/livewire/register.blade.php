@@ -82,10 +82,10 @@
                 <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                 @enderror
             </div>
-
-            <x-upload-zone wire:model="file" />
-            <x-jet-input-error for="image" />
-
+            <div>
+                <x-upload-zone wire:model="file" />
+                <x-jet-input-error for="image" />
+            </div>
 {{--            <div--}}
 {{--                class="mb-2"--}}
 {{--                x-data="{isFileDropping: false, isUploadingFile: false, uploadingProgress: 0}"--}}
