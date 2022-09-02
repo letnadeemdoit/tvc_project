@@ -87,7 +87,7 @@
                     <div class="row">
                         <div class="mb-3 col-12 col-lg-12">
                             <label class="form-label" for="tags">Add Tags</label>
-                            <select id="tokenize-tags" class="tokenize-demo form-control" multiple wire:model.defer="state.tags">
+                            <select id="tokenize-tags" class="tokenize-demo form-control" multiple wire:model.defer="state.tags" >
                                 @isset($state['tags'])
                                     @if(is_array($state['tags']))
                                         @foreach($state['tags'] as $tag)
@@ -178,7 +178,7 @@
                             class="form-control @error('Contents') is-invalid @enderror"
                             wire:model.defer="state.Contents"
                             name="Content"
-                            placeholder=""
+                            placeholder="Content"
                             rows="3"
                             id="Content"
 

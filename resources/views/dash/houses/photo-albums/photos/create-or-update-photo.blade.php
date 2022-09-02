@@ -39,7 +39,7 @@
                         class="form-control"
                         wire:model.defer="state.description"
                         name="description"
-                        placeholder=""
+                        placeholder="Description"
                         rows="4"
                         id="description"
                     ></textarea>

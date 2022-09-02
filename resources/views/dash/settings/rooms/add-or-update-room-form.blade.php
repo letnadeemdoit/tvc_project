@@ -19,6 +19,7 @@
                     type="text"
                     class="form-control @error('name') is-invalid @enderror"
                     name="name"
+                    placeholder="Name"
                     id="name"
                     wire:model.defer="state.name"
                 />
@@ -34,6 +35,7 @@
                         type="text"
                         class="form-control @error('beds') is-invalid @enderror"
                         name="beds"
+                        placeholder="Beds"
                         id="beds"
                         wire:model.defer="state.beds"
                     />

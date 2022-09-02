@@ -189,7 +189,7 @@
                         class="form-control"
                         wire:model.defer="state.description"
                         name="description"
-                        placeholder=""
+                        placeholder="Description"
                         rows="5"
                         id="description"
 
