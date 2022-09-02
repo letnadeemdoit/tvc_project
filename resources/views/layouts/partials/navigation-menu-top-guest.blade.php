@@ -45,7 +45,7 @@
                     </div>
                     <div>
                         <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
-                            <i class="bi-envelope text-white fs-5 px-2"></i>
+                            <i class="fa-regular fa-envelope text-white fs-5 px-2"></i>
                             trips.calendar@gmail.com
                         </a>
                     </div>
