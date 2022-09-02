@@ -178,7 +178,7 @@
                             class="form-control @error('Contents') is-invalid @enderror"
                             wire:model.defer="state.Contents"
                             name="Content"
-                            placeholder="Write your Content here.."
+                            placeholder="Write your Content here"
                             rows="3"
                             id="Content"
 
