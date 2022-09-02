@@ -43643,6 +43643,10 @@ body {
   color: #E8604C !important;
 }
 
+.border-color-primary input:focus {
+  box-shadow: none !important;
+}
+
 .detail-img img {
   max-width: 100% !important;
 }
