@@ -1369,10 +1369,17 @@
                 {{--                    <!-- End Notification -->--}}
                 {{--                </li>--}}
                 @if(auth()->user()->is_admin)
+
+                    @php
+                        $data = auth()->user()->unreadNotifications()->get();
+                     @endphp
+
                     <li class="nav-item me-3">
                         <a href="{{ route('dash.notifications') }}" class="btn btn-ghost-secondary btn-icon rounded-circle bg-light-primary">
                             <i class="bi-bell text-primary"></i>
-                            <span class="btn-status btn-sm-status btn-status-danger"></span>
+                            @if(count($data) > 0)
+                                <span class="btn-status btn-sm-status btn-status-danger"></span>
+                            @endif
                         </a>
                     </li>
 

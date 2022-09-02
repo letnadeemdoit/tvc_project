@@ -11,9 +11,7 @@ class NotificationList extends Component
     public function render()
     {
 
-
-
-        $data = $this->user->notifications()->paginate(10);
+        $data = $this->user->unreadNotifications()->paginate(10);
 
         return view('dash.notifications.notification-list',compact('data'));
     }
