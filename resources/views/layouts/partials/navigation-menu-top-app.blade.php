@@ -1454,7 +1454,7 @@
                                     <div class="avatar avatar-sm avatar-circle">
                                         <img class="avatar-img" src="{{asset('images/avatar.png')}}" alt="Image Description">
                                     </div>
-                                    <div class="flex-grow-1 ms-3">
+                                    <div class="flex-grow-1 ms-3 text-break">
                                         <h5 class="mb-0">{{Auth::user()->user_name ?? ''}}</h5>
                                         <p class="card-text text-body">{{Auth::user()->email ?? ''}}</p>
                                     </div>
