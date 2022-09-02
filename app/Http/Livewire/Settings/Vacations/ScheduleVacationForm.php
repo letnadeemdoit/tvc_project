@@ -100,7 +100,6 @@ class ScheduleVacationForm extends Component
         if (!$startDate->exists) $startDate->save();
         if (!$startTime->exists) $startTime->save();
 
-
         $endDatetime = Carbon::parse($this->state['end_datetime']);
 
         $endDay = $endDatetime->day;
@@ -137,7 +136,8 @@ class ScheduleVacationForm extends Component
 
         $items =$this->vacation;
 
-        dd($items);
+        $createdHouseName = $this->user->house->HouseName;
+
 
         if (!is_null($this->user->house->CalEmailList)){
 
@@ -147,14 +147,14 @@ class ScheduleVacationForm extends Component
 
                 $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
 
-                Notification::send($users, new CalendarEmailNotification($items));
+                Notification::send($users, new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
 
                 $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
 
                 if (count($CalEmailList) > 0) {
 
                     Notification::route('mail', $CalEmailList)
-                        ->notify(new CalendarEmailNotification($items));
+                        ->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
 
                 }
             }
