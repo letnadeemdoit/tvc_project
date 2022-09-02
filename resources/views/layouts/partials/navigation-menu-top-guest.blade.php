@@ -41,7 +41,7 @@
                     <div
                         class="py-1 py-md-0 pe-3">
                         <a href="tel:0000-000-0" class="mb-0 text-white fs-12">
-                            <i class="bi-phone me-2 text-white fs-4"></i> 000-000-000</a>
+                            <i class="fa-solid fa-phone me-2 text-white fs-4"></i> 000-000-000</a>
                     </div>
                     <div>
                         <a class="mb-0 text-white fs-12" href="mailto:someone@example.com">
