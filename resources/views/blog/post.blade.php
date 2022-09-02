@@ -135,7 +135,7 @@
                         <div>
                             @foreach($existingTags as $tag)
                             <span>
-                                <a href="{{ route('guest.blog.index', ['tag' => $tag['name']]) }}" class="btn btn-sm me-3 btn-soft-primary mb-3">{{$tag['name']}}</a>
+                                <a href="{{ route('guest.blog.index', ['tag' => $tag['name']]) }}" class="btn btn-sm me-3 btn-soft-primary mb-3 rounded-0">{{$tag['name']}}</a>
                             </span>
                             @endforeach
                         </div>
