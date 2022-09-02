@@ -43482,7 +43482,7 @@ body {
 }
 
 .guest-modal ::-webkit-scrollbar-thumb {
-  background: url("/images/guest-book/scrolling.svg") !important;
+  background: url("/images/guest-book/scrolling.svg");
   background-repeat: no-repeat !important;
   background-size: 100% !important;
   background-position: center !important;
@@ -43494,7 +43494,7 @@ body {
 
 .guest-modal ::-webkit-scrollbar {
   width: 10px;
-  background: #000 !important;
+  background: #000;
 }
 
 /* Track */
@@ -44682,6 +44682,11 @@ header nav button:last-child:hover {
 .category-cards {
   margin-top: 30px;
 }
+.category-cards .nav-tabs .nav-item {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
 .category-cards .nav-tabs .nav-item .nav-link {
   color: grey;
   font-weight: 600 !important;
@@ -44891,7 +44896,6 @@ nav.navecation .active img {
 }
 
 .scroll {
-  max-width: 1400px;
   overflow: hidden;
   overflow-x: scroll;
   flex-wrap: nowrap;
@@ -44899,4 +44903,16 @@ nav.navecation .active img {
 
 .scroll .nav-item a {
   display: inline-block;
+}
+
+::-webkit-scrollbar {
+  height: 3px;
+  width: 25px;
+}
+
+/* Track */
+/* Handle */
+.scrollbar ::-webkit-scrollbar-thumb {
+  background: #E8604C !important;
+  border-radius: 8px;
 }
