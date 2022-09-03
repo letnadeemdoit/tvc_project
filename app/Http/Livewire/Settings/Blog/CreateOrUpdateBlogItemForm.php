@@ -78,7 +78,6 @@ class CreateOrUpdateBlogItemForm extends Component
         $this->resetErrorBag();
         $date = date('Y/m/d H:i:s');
         $inputs = $this->state;
-
         if ($this->file) {
             $inputs['image'] = $this->file;
         }else{
@@ -110,6 +109,25 @@ class CreateOrUpdateBlogItemForm extends Component
             'category_id' => $inputs['category_id'] ?? null,
             'slug' => $slug,
         ])->save();
+            if (isset($this->state['tags']) && !empty($this->state['tags'])) {
+                $tagsArray = $this->state['tags'];
+                foreach ($tagsArray as $tag) {
+                    $tagExist = Tag::where('name', '=', $tag)->first();
+                    if ($tagExist === null) {
+                        $newTag = new Tag();
+                        $newTag->fill([
+                            'name' => $tag,
+                        ]);
+                        $this->blogItem->tags()->save($newTag);
+                    }
+                }
+            }
+            if (isset($this->state['removeTag']) && !empty($this->state['removeTag'])){
+                $removeArray = $this->state['removeTag'];
+                foreach ($removeArray as $tag) {
+                    Tag::where('name', '=', $tag)->delete();
+                }
+            }
 
         $this->siteUrl = route('guest.blog.show',$slug);
 
@@ -121,41 +139,24 @@ class CreateOrUpdateBlogItemForm extends Component
 
         $this->blogItem->updateFile($this->file);
 
-        if (!is_null($this->user->house->BlogEmailList)){
-            $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
-
-            if (count($blogEmailsList) > 0) {
-
-                $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
-
-                Notification::send($users, new BlogNotify($items,$blogUrl,$createdHouseName));
-
-                $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
-
-                if (count($blogEmailsList) > 0) {
-
-                    Notification::route('mail', $blogEmailsList)
-                    ->notify(new BlogNotify($items,$blogUrl,$createdHouseName));
-                }
-            }
-        }
-
-        if (isset($this->state['tags']) && !empty($this->state['tags'])){
-            $tagsArray = $this->state['tags'];
-            foreach ($tagsArray as $tag){
-                $tagExist = Tag::where('name', '=', $tag)->first();
-                if ($tagExist === null) {
-                    $newTag = new Tag();
-                    $newTag->fill([
-                        'name' => $tag,
-                    ]);
-
-                    $this->blogItem->tags()->save($newTag);
-
-                }
-            }
-
-        }
+//        if (!is_null($this->user->house->BlogEmailList)){
+//            $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
+//
+//            if (count($blogEmailsList) > 0) {
+//
+//                $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                Notification::send($users, new BlogNotify($items,$blogUrl,$createdHouseName));
+//
+//                $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+//
+//                if (count($blogEmailsList) > 0) {
+//
+//                    Notification::route('mail', $blogEmailsList)
+//                    ->notify(new BlogNotify($items,$blogUrl,$createdHouseName));
+//                }
+//            }
+//        }
 
         $this->emitSelf('toggle', false);
 

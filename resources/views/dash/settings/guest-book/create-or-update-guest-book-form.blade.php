@@ -202,7 +202,7 @@
                                            value="1"
                                            class="form-check-input" checked  name="status" id="status"
                                     >
-                                    <span class="form-check-label">Active:</span>
+                                    <span class="form-check-label">Active</span>
                                   </span>
                                 </label>
                                 <!-- End Form Radio -->
@@ -215,7 +215,7 @@
                                     <input type="radio"
                                            value="0"
                                            wire:model.defer="state.status" class="form-check-input" name="status" id="status1">
-                                    <span class="form-check-label">InActive:</span>
+                                    <span class="form-check-label">InActive</span>
                                   </span>
                                 </label>
                                 <!-- End Form Radio -->

@@ -3,19 +3,36 @@
         x-data="{tokenizeInitialized: false}"
         class="modal-content"
         @modal-is-shown.window="
-            $('#tokenize-tags').tokenize2({
-                tokensAllowCustom: true,
-                dropdownSelectFirstItem: false
-            });
-            $('#tokenize-tags').on('tokenize:tokens:added', function(e, value){
-                let selected = [];
-                $('#tokenize-tags').find(':selected').each(function () {
-                    selected.push($(this).val());
-                })
-                @this.set('state.tags', selected, true);
-            });
-        "
-    >
+        $('#amsify').amsifySuggestags(
+        {
+        whiteList: true,
+	    defaultTagClass: 'badge'
+        });
+        let selected = [];
+        let removeSeleceted = [];
+        $('#amsify').amsifySuggestags({
+             afterAdd : function(value) {
+             selected.push(value);
+             @this.set('state.tags', selected, true);
+
+        },
+             afterRemove : function(value) {
+             removeSeleceted.push(value);
+             @this.set('state.removeTag', removeSeleceted, true);
+	    },
+        });
+{{--            $('#tokenize-tags').tokenize2({--}}
+{{--                tokensAllowCustom: true,--}}
+{{--                dropdownSelectFirstItem: false--}}
+{{--            });--}}
+{{--            $('#tokenize-tags').on('tokenize:tokens:added', function(e, value){--}}
+{{--                let selected = [];--}}
+{{--                $('#tokenize-tags').find(':selected').each(function () {--}}
+{{--                    selected.push($(this).val());--}}
+{{--                })--}}
+{{--                @this.set('state.tags', selected, true);--}}
+{{--            });--}}
+        ">
         <div class="modal-header">
             <h5 class="modal-title">
                 {{ $blogItem && $blogItem->BlogId ? "Update" : 'Add' }}
@@ -87,15 +104,16 @@
                     <div class="row">
                         <div class="mb-3 col-12 col-lg-12">
                             <label class="form-label" for="tags">Add Tags:</label>
-                            <select id="tokenize-tags" class="tokenize-demo form-control" multiple wire:model.defer="state.tags" >
-                                @isset($state['tags'])
-                                    @if(is_array($state['tags']))
-                                        @foreach($state['tags'] as $tag)
-                                            <option value="{{ $tag }}" selected>{{ $tag }}</option>
-                                        @endforeach
-                                    @endif
-                                @endisset
-                            </select>
+                            <input type="text" class="form-control" id="amsify" name="country" wire:model.defer="state.tags"/>
+{{--                            <select id="tokenize-tags" class="tokenize-demo form-control" multiple wire:model.defer="state.tags" >--}}
+{{--                                @isset($state['tags'])--}}
+{{--                                    @if(is_array($state['tags']))--}}
+{{--                                        @foreach($state['tags'] as $tag)--}}
+{{--                                            <option value="{{ $tag }}" selected>{{ $tag }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    @endif--}}
+{{--                                @endisset--}}
+{{--                            </select>--}}
                         </div>
                     </div>
                 <div class="row">
@@ -219,5 +237,6 @@
     </div>
     @push('scripts')
         <script src="{{asset('vendors/tokenize2/tokenize2.min.js')}}"></script>
+        <script src="{{asset('vendors/amsify/jquery.amsify.suggestags.js')}}"></script>
     @endpush
 </x-modals.bs-modal>
