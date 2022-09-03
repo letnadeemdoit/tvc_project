@@ -54,8 +54,13 @@
                     <tr>
                         <td>{{$dt->id}}</td>
                         <td>{{$dt->user->user_name}}</td>
-{{--                        <td>{{$dt->auditable->getTable()}}</td>--}}
-                        <td>{{$dt->user_type}}</td>
+                        @if(!is_null($dt->auditable))
+                            <td>{{str_replace('_',' ', str($dt->auditable->getTable())->title())}}</td>
+                        @else
+                            <td>---</td>
+                        @endif
+
+{{--                        <td>{{$dt->user_type}}</td>--}}
                         <td>{{$dt->ip_address}}</td>
                         <td>{{$dt->event}}</td>
                         <td>{{$dt->created_at}}</td>

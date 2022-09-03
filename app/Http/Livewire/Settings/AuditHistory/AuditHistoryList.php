@@ -51,6 +51,7 @@ class AuditHistoryList extends Component
                         ->where('event', 'LIKE', "%$this->search%");
                 });
             })
+            ->latest()
             ->paginate($this->per_page);
 
         return view('dash.settings.audit-history.audit-history-list',compact('data'));
