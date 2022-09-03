@@ -21,7 +21,7 @@ class PhotoAlbumList extends Component
         $data = Album::
             where('house_id', $this->user->HouseId)->
             when($this->parent_id !== 'id', function ($query) {
-                $query->where('parent_id', $this->parent_id);
+                $query->where('id', $this->parent_id);
             })
             ->orderBy('id', 'DESC')
             ->get();
