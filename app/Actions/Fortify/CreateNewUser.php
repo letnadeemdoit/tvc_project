@@ -51,7 +51,11 @@ class CreateNewUser implements CreatesNewUsers
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
 
         if ($house) {
-            $house->updateFile($input['image']);
+
+            if (isset($input['image'])){
+                $house->updateFile($input['image']);
+            }
+
             if (!isset($input['AdminOwner'])) {
                 $AdminOwner = 'N';
             } else {
