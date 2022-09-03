@@ -3,30 +3,36 @@
         <div class="category-cards mb-3 d-flex scrollbar">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
-                <li class="nav-item">
-                    <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">
+                    <li class="nav-item">
+                        <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">
                         ALL
                     </a>
-                </li>
-                </ul>
-            @endif
-            <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll" id="myTab" role="tablist">
-
-                @if(count($categories) >0)
-                    <li class="nav-item">
-{{--                        <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">--}}
-{{--                          ALL--}}
-{{--                        </a>--}}
                     </li>
-                @endif
-                @foreach($categories as $cat)
+                </ul>
+                <a
+                    type="button"
+                    class="btn btn-white scroll-icons"
+                    id="left-button"
+                >
+                    <i class="bi bi-chevron-left"></i>
+                </a>
+                    <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll" id="myTab" role="tablist">
+                        @foreach($categories as $cat)
                     <li class="nav-item">
                         <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
                             {{ $cat->name }}
                         </a>
                     </li>
                 @endforeach
-            </ul>
+                    </ul>
+                <a
+                    type="button"
+                    class="btn btn-white scroll-icons"
+                    id="right-button"
+                >
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            @endif
         </div>
 
         <div class="row category-cards">
@@ -47,3 +53,20 @@
     @endif
 
 </div>
+@push('scripts')
+    <script>
+        $('#right-button').click(function() {
+            event.preventDefault();
+            $('#myTab').animate({
+                scrollLeft: "+=100px"
+            }, "slow");
+        });
+
+        $('#left-button').click(function() {
+            event.preventDefault();
+            $('#myTab').animate({
+                scrollLeft: "-=100px"
+            }, "slow");
+        });
+    </script>
+@endpush
