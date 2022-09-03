@@ -24,7 +24,7 @@ class PhotoAlbumCard extends Component
     {
         $getAlbum  = Album::where('house_id', $this->album->house_id)->where('parent_id', $this->album->id)->get();
         $childAlbum = count($getAlbum);
-            return view('photo-album.photo-album-cards', compact('childAlbum'));
+        return view('photo-album.photo-album-cards', compact('childAlbum'));
     }
 
 }
