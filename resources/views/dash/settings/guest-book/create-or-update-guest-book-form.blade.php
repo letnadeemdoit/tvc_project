@@ -161,14 +161,14 @@
 {{--                </div>--}}
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
+                    <label class="form-label" for="title">Title:</label>
                     <input
                         type="text"
                         id="title"
                         wire:model.defer="state.title"
                         name="title"
                         class="form-control @error('title') is-invalid @enderror"
-                        placeholder="Title"
+                        placeholder="Enter title"
                     />
                     @error('title')
                     <span class="invalid-feedback">{{$message}}</span>
@@ -177,14 +177,14 @@
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-6">
-                        <label class="form-label" for="name">Name</label>
+                        <label class="form-label" for="name">Name:</label>
                         <input
                             type="text"
                             id="name"
                             wire:model.defer="state.name"
                             name="name"
                             class="form-control @error('name') is-invalid @enderror"
-                            placeholder="Name"
+                            placeholder="Enter name"
                         />
                         @error('name')
                         <span class="invalid-feedback">{{$message}}</span>
@@ -193,7 +193,7 @@
 
                     <div class="mb-3 col-12 col-lg-6">
                         <div class="row">
-                            <label for="" class="form-label">Status</label>
+                            <label for="" class="form-label">Status:</label>
                             <div class="col-12 col-lg-6  mb-3 mb-sm-0">
                                 <!-- Form Radio -->
                                 <label class="form-control" for="status">
@@ -202,7 +202,7 @@
                                            value="1"
                                            class="form-check-input" checked  name="status" id="status"
                                     >
-                                    <span class="form-check-label">Active</span>
+                                    <span class="form-check-label">Active:</span>
                                   </span>
                                 </label>
                                 <!-- End Form Radio -->
@@ -215,7 +215,7 @@
                                     <input type="radio"
                                            value="0"
                                            wire:model.defer="state.status" class="form-check-input" name="status" id="status1">
-                                    <span class="form-check-label">InActive</span>
+                                    <span class="form-check-label">InActive:</span>
                                   </span>
                                 </label>
                                 <!-- End Form Radio -->
@@ -224,12 +224,12 @@
                         <!-- End Row -->
                     </div>
                 </div>
-                    <label class="form-label" for="board_textarea">Content</label>
+                    <label class="form-label" for="board_textarea">Content:</label>
                     <textarea
                         class="form-control @error('content') is-invalid @enderror"
                         wire:model.defer="state.content"
                         name="content"
-                        placeholder="Content"
+                        placeholder="Enter content here"
                         rows="5"
                         id="content"
 

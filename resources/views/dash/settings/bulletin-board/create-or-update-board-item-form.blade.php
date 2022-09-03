@@ -32,7 +32,7 @@
 
 
                 <div class="mb-3">
-                    <label class="form-label" for="category_id">Select Category</label>
+                    <label class="form-label" for="category_id">Select Category:</label>
                     <select id="category_id" wire:model.defer="state.category_id" class="form-control">
                         <option value="" selected>Choose Category</option>
                         @forelse($categories as $category)
@@ -45,14 +45,14 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
+                    <label class="form-label" for="title">Title:</label>
                     <input
                         type="text"
                         id="title"
                         wire:model.defer="state.title"
                         name="title"
                         class="form-control @error('title') is-invalid @enderror"
-                        placeholder="Bulletin Board Title"
+                        placeholder="Bulletin board title"
                     />
                     @error('title')
                     <span class="invalid-feedback">{{$message}}</span>
@@ -138,12 +138,12 @@
                     "
 
                 >
-                    <label class="form-label" for="board_textarea">Bulletin Board Detail</label>
+                    <label class="form-label" for="board_textarea">Bulletin Board Detail:</label>
                     <textarea
                         class="form-control @error('Board') is-invalid @enderror"
                         wire:model.defer="state.Board"
                         name="Board"
-                        placeholder="Write your Detail here"
+                        placeholder="Write your detail here"
                         rows="4"
                         id="board_textarea"
 

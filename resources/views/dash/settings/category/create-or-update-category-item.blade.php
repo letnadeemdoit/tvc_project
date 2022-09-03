@@ -32,14 +32,14 @@
                 <div class="row">
 
                     <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="title">Name</label>
+                        <label class="form-label" for="title">Name:</label>
                         <input
                             type="text"
                             id="name"
                             wire:model.defer="state.name"
                             name="name"
                             class="form-control @error('name') is-invalid @enderror"
-                            placeholder="Category Name"
+                            placeholder="Category name"
                         />
                         @error('name')
                         <span class="invalid-feedback">{{$message}}</span>
@@ -51,7 +51,7 @@
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="exampleFormControlSelect1">Select Type</label>
+                        <label class="form-label" for="exampleFormControlSelect1">Select Type:</label>
                         <select id="exampleFormControlSelect1" wire:model.defer="state.type" class="form-control">
                             <option>-- Select --</option>
                             <option value="blog">Blog</option>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="description_textarea">Description</label>
+                        <label class="form-label" for="description_textarea">Description:</label>
                         <textarea
                             class="form-control @error('description') is-invalid @enderror"
                             wire:model.defer="state.description"

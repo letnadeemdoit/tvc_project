@@ -52,14 +52,14 @@
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="Subject">Subject</label>
+                        <label class="form-label" for="Subject">Subject:</label>
                         <input
                             type="text"
                             id="Subject"
                             wire:model.defer="state.Subject"
                             name="Subject"
                             class="form-control @error('Subject') is-invalid @enderror"
-                            placeholder="Add blog subject"
+                            placeholder="Enter blog subject"
                         />
                         @error('Subject')
                         <span class="invalid-feedback">{{$message}}</span>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
-                        <label class="form-label" for="category_id">Select Category</label>
+                        <label class="form-label" for="category_id">Select Category:</label>
                         <select id="category_id" wire:model.defer="state.category_id"
                                 class="form-control">
                             <option value="" selected>Choose Category</option>
@@ -86,7 +86,7 @@
                 </div>
                     <div class="row">
                         <div class="mb-3 col-12 col-lg-12">
-                            <label class="form-label" for="tags">Add Tags</label>
+                            <label class="form-label" for="tags">Add Tags:</label>
                             <select id="tokenize-tags" class="tokenize-demo form-control" multiple wire:model.defer="state.tags" >
                                 @isset($state['tags'])
                                     @if(is_array($state['tags']))
@@ -173,12 +173,12 @@
                     "
 
                     >
-                        <label class="form-label" for="board_textarea">Content</label>
+                        <label class="form-label" for="board_textarea">Content:</label>
                         <textarea
                             class="form-control @error('Contents') is-invalid @enderror"
                             wire:model.defer="state.Contents"
                             name="Content"
-                            placeholder="Write your Content here"
+                            placeholder="Write your content here"
                             rows="3"
                             id="Content"
 
