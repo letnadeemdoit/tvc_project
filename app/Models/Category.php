@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HasFile;
 
+use Illuminate\Support\Arr;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -105,4 +106,13 @@ class Category extends Model implements Auditable
 
         return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
     }
+
+    protected $auditExclude = [
+        'id',
+        'user_id',
+        'house_id',
+        'description',
+        'published',
+    ];
+
 }

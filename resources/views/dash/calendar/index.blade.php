@@ -1,7 +1,7 @@
 <x-dashboard-layout>
 
     <x-slot name="breadcrumbs">
-        <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+{{--        <li class="breadcrumb-item active" aria-current="page">Calendar</li>--}}
     </x-slot>
     <x-slot name="title">
         <h1 class="page-header-title">Calendar</h1>
@@ -20,10 +20,13 @@
             </div>
         @endif
     </x-slot>
-
-    <livewire:settings.vacations.schedule-vacation-form :user="$user" />
-    <livewire:settings.vacations.request-to-join-vacation-form :user="$user" />
-    <livewire:calendar.calendar-view :user="$user" />
-
-
+    <div>
+        <livewire:settings.vacations.schedule-vacation-form :user="$user"/>
+    </div>
+    <div>
+        <livewire:calendar.calendar-view :user="$user"/>
+    </div>
+    <div>
+        <livewire:settings.vacations.request-to-join-vacation-form :user="$user"/>
+    </div>
 </x-dashboard-layout>

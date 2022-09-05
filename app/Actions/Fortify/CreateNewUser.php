@@ -46,8 +46,6 @@ class CreateNewUser implements CreatesNewUsers
             'ReferredBy' => $input['Referral_paypal_account'],
         ]);
 
-
-
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
 
         if ($house) {

@@ -16,6 +16,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HasFile;
+use Illuminate\Support\Arr;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -64,12 +65,6 @@ class Blog extends Model implements Auditable
         'category_id'
     ];
 
-    protected $auditExclude = [
-        'Content',
-        'Contents'
-    ];
-
-
     /**
      * @param $column
      * @return string
@@ -115,4 +110,38 @@ class Blog extends Model implements Auditable
     {
         return $this->belongsToMany(Tag::class, 'tag_blogs', 'blog_id', 'tag_id');
     }
+
+    protected $auditExclude = [
+        'BlogId',
+        'HouseId',
+        'user_id',
+        'Content',
+        'Contents',
+        'Audit_user_name',
+        'Audit_Role',
+        'Audit_FirstName',
+        'Audit_LastName',
+        'Audit_Email',
+//        'category_id',
+
+    ];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function transformAudit(array $data): array
+    {
+
+
+        if (Arr::has($data, 'new_values.category_id')) {
+
+            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
+
+            $data['new_values']['category name'] = $this->category->name;
+
+        }
+
+        return $data;
+    }
+
 }

@@ -7,11 +7,14 @@ use App\Models\Traits\HasFile;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
 
-class Album extends Model
+class Album extends Model implements Auditable
 {
     use HasFactory;
     use HasFile;
+    use AuditableTrait;
 
     protected $fillable = [
         'house_id',
@@ -55,5 +58,16 @@ class Album extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'house_id',
+        'user_id',
+        'description',
+        'published',
+    ];
 
 }

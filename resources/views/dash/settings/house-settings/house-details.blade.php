@@ -112,6 +112,7 @@
                                     class="form-control"
                                     data-live-search="true"
                                 >
+                                    <option value="">--select state--</option>
                                     @foreach($states as $state)
                                         <option value="{{ $state->id }}">{{ $state->name }}</option>
                                     @endforeach
@@ -126,6 +127,7 @@
                                     wire:model.defer="state.city_id"
                                     class="form-control"
                                 >
+                                    <option value="">--select city--</option>
                                     @foreach($cities as $city)
                                         <option value="{{ $city->id }}">{{ $city->name }}</option>
                                     @endforeach

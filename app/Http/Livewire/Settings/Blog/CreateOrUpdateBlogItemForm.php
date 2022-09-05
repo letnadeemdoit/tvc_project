@@ -11,6 +11,7 @@ use App\Models\House;
 use App\Models\Tag;
 use App\Models\TagBlog;
 use App\Models\User;
+use App\Notifications\BlogNotification;
 use App\Notifications\BlogNotify;
 use App\Models\Tags;
 use Illuminate\Support\Facades\Auth;
@@ -146,14 +147,14 @@ class CreateOrUpdateBlogItemForm extends Component
 
                 $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
-                Notification::send($users, new BlogNotify($items,$blogUrl,$createdHouseName));
+                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
 
                 $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
 
                 if (count($blogEmailsList) > 0) {
 
                     Notification::route('mail', $blogEmailsList)
-                    ->notify(new BlogNotify($items,$blogUrl,$createdHouseName));
+                    ->notify(new BlogNotification($items,$blogUrl,$createdHouseName));
                 }
             }
         }

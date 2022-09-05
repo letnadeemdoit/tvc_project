@@ -11,6 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
 
 class User extends Authenticatable implements Auditable
 {
@@ -19,7 +20,7 @@ class User extends Authenticatable implements Auditable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use \OwenIt\Auditing\Auditable;
+    use AuditableTrait;
 
     const ROLE_ADMINISTRATOR = 'Administrator';
     const ROLE_OWNER = 'Owner';
@@ -263,4 +264,48 @@ class User extends Authenticatable implements Auditable
             ]);
         })->get();
     }
+
+
+
+
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'user_id',
+        'password',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
+        'remote_addr',
+        'confirm_hash',
+//        'is_confirmed',
+        'role',
+        'OwnerId',
+        'date_created',
+        'HouseId',
+//        'HouseId',
+        'Intro',
+        'ShowOldSave',
+        'AdminOwner',
+        'Audit_user_name',
+        'Audit_Role',
+        'Audit_FirstName',
+        'Audit_LastName',
+        'Audit_Email',
+        'email_verified_at',
+        'old_password',
+        'remember_token',
+        'current_team_id',
+        'is_confirmed',
+    ];
+
+
+
+
+
+
+
 }

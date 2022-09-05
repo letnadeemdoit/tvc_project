@@ -34,7 +34,7 @@
                         @forelse($albumCategory as $ac)
                             <option value="{{$ac->id}}">{{$ac->name}}</option>
                         @empty
-                            <option value="" disabled selected>Create another album to select parent album</option>
+                            <option value="" disabled selected>Create an album to select parent album</option>
                         @endforelse
                     </select>
 
