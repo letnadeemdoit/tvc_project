@@ -6,7 +6,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>The Vacation Calendar</title>
-        <link rel="icon" type="image/x-icon" href="/logo/logo.svg">
+
+        <link rel="icon" type="image/x-icon" href="{{asset('logo/favicon.svg')}}">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

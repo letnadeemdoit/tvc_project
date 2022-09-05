@@ -8,7 +8,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-    <link rel="icon" type="image/x-icon" href="/logo/logo.svg">
+    <link rel="icon" type="image/x-icon" href="{{asset('logo/favicon.svg')}}">
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 

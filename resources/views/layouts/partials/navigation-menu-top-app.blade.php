@@ -797,7 +797,8 @@
     <div class="navbar-nav-wrap">
         <!-- Logo -->
         <a class="navbar-brand" href="{{ route('dash.calendar') }}" aria-label="{{ config('app.name') }}">
-            <img class="navbar-brand-logo" src="{{ asset('logo/logo.png') }}" alt="{{ config('app.name') }}" />
+            <img class="navbar-brand-logo d-none d-md-block" src="{{ asset('logo/logo.png') }}" alt="{{ config('app.name') }}" />
+            <img class="navbar-brand-logo d-md-none" style="min-width: 48px !important;max-width: 48px" src="{{ asset('logo/favicon.svg') }}" alt="{{ config('app.name') }}" />
         </a>
         <!-- End Logo -->
 
@@ -1051,13 +1052,13 @@
                         <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account" aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
                             <div class="dropdown-item-text">
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-sm avatar-circle">
+                                    <div class="avatar avatar-sm avatar-circle" style="width:50px;">
                                         <img
                                             class="avatar-img"
                                             src="{{ auth()->user()->profile_photo_url }}"
                                             :src="avatarUrl"
                                             alt="Image"
-                                            style="object-fit: cover"
+                                            style="object-fit: cover;width:65px;"
                                         />
                                     </div>
                                     <div class="flex-grow-1 ms-3 text-break">
