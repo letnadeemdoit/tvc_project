@@ -45,6 +45,7 @@
         "lightbox2": "^2.11.3",
         "select2": "^4.1.0-rc.0",
         "smoothscroll-polyfill": "^0.4.4",
+        "suggestags": "^1.27.0",
         "tinymce": "^6.1.2",
         "toastr": "^2.1.4",
         "tokenize2": "^1.3.5",

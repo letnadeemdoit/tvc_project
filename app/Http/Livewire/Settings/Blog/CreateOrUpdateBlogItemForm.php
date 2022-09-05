@@ -78,7 +78,6 @@ class CreateOrUpdateBlogItemForm extends Component
         $this->resetErrorBag();
         $date = date('Y/m/d H:i:s');
         $inputs = $this->state;
-
         if ($this->file) {
             $inputs['image'] = $this->file;
         }else{
@@ -110,6 +109,25 @@ class CreateOrUpdateBlogItemForm extends Component
             'category_id' => $inputs['category_id'] ?? null,
             'slug' => $slug,
         ])->save();
+            if (isset($this->state['tags']) && !empty($this->state['tags'])) {
+                $tagsArray = $this->state['tags'];
+                foreach ($tagsArray as $tag) {
+                    $tagExist = Tag::where('name', '=', $tag)->first();
+                    if ($tagExist === null) {
+                        $newTag = new Tag();
+                        $newTag->fill([
+                            'name' => $tag,
+                        ]);
+                        $this->blogItem->tags()->save($newTag);
+                    }
+                }
+            }
+            if (isset($this->state['removeTag']) && !empty($this->state['removeTag'])){
+                $removeArray = $this->state['removeTag'];
+                foreach ($removeArray as $tag) {
+                    Tag::where('name', '=', $tag)->delete();
+                }
+            }
 
         $this->siteUrl = route('guest.blog.show',$slug);
 
@@ -138,23 +156,6 @@ class CreateOrUpdateBlogItemForm extends Component
                     ->notify(new BlogNotify($items,$blogUrl,$createdHouseName));
                 }
             }
-        }
-
-        if (isset($this->state['tags']) && !empty($this->state['tags'])){
-            $tagsArray = $this->state['tags'];
-            foreach ($tagsArray as $tag){
-                $tagExist = Tag::where('name', '=', $tag)->first();
-                if ($tagExist === null) {
-                    $newTag = new Tag();
-                    $newTag->fill([
-                        'name' => $tag,
-                    ]);
-
-                    $this->blogItem->tags()->save($newTag);
-
-                }
-            }
-
         }
 
         $this->emitSelf('toggle', false);
