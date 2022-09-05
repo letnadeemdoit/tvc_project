@@ -12,16 +12,4 @@ class PhotoAlbumController extends Controller
             'user' => $request->user()
         ]);
     }
-
-    public function show(Request $request, Album $album)
-    {
-//        dd($album->parentAlbum);
-        $nestedAlbums = $album->nestedAlbums;
-        return view('photo-album.album-detail.show', [
-            'user' => $request->user(),
-            'album' => $album,
-            'nestedAlbums' => $nestedAlbums
-        ]);
-    }
-
 }
