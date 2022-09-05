@@ -117,7 +117,7 @@ Route::middleware([
 ])
     ->name('dash.')
     ->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+//        Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
         Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
 
         Route::resource('users', UserController::class);

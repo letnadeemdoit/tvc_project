@@ -207,8 +207,8 @@
                                 {{--                                </div>--}}
                                 <div class="dropdown-divider d-block d-lg-none"></div>
 
-                                <a href="{{route('dash.index')}}" class="dropdown-item"> <i
-                                        class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+                                <a href="{{route('dash.calendar')}}" class="dropdown-item"> <i
+                                        class="bi bi-speedometer2 me-2"></i>Calendar</a>
                                 @if(!auth()->user()->is_guest)
                                     <a href="{{route('dash.settings.')}}" class="dropdown-item"><i
                                             class="bi bi-gear me-2"></i>Settings</a>
