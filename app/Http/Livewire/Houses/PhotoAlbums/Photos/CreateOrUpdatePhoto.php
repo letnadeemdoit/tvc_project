@@ -68,7 +68,10 @@ class CreateOrUpdatePhoto extends Component
         }
 
         Validator::make($inputs, [
-            'image' => 'required|mimes:png,jpg,gif,tiff',
+            'image' => [
+                $this->isCreating ? 'required' : 'nullable',
+                'mimes:png,jpg,gif,tiff'
+            ],
             'description' => 'nullable|string|max:255',
         ])->validateWithBag('savePhotoCU');
 
