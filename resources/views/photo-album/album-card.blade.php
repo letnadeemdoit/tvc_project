@@ -14,12 +14,12 @@
                     <div class="d-flex align-items-center">
                         <img src="{{asset('/images/photo-album/nested-album.svg')}}"
                              class="img-fluid " style="width: 25px">
-                        <span class="ms-2">{{ $album->nestedAlbums()->whereHas('nestedAlbums')->orWhereHas('photos')->count() }}</span>
+                        <span class="ms-2">{{ $album->nestedAlbums()->whereHas('nestedAlbums')->count() }}</span>
                     </div>
                     <div class="d-flex align-items-center ms-3">
                         <img src="{{asset('/images/photo-album/camera.svg')}}"
                              class="img-fluid" style="width: 25px">
-                        <span class="ms-2">{{ $album->photos()->count() }}</span>
+                        <span class="ms-2">{{ $album->photos->count() }}</span>
                     </div>
                 </div>
             </div>
