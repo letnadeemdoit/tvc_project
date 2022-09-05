@@ -179,7 +179,7 @@ class Vacation extends Model implements Auditable
     protected $auditExclude = [
         'BackGrndColor',
         'FontColor',
-//        'StartDateId',
+        'DateId',
 //        'EndDateId',
 //        'StartTimeId',
 //        'EndTimeId',
@@ -191,24 +191,45 @@ class Vacation extends Model implements Auditable
     ];
 
 
-//
-//    /**
-//     * {@inheritdoc}
-//     */
-//    public function transformAudit(array $data): array
-//    {
-//
-//
-//        if (Arr::has($data, 'new_values.category_id')) {
-//
-//            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
-//
-//            $data['new_values']['category name'] = $this->category->name;
-//
-//        }
-//
-//        return $data;
-//    }
+    /**
+     * {@inheritdoc}
+     */
+    public function transformAudit(array $data): array
+    {
+        if (Arr::has($data, 'new_values.StartDateId')) {
+            $data['old_values']['start date'] = optional(Calendar::where('DateId', $this->getOriginal('StartDateId'))->first())->RealDate;
+            $data['new_values']['start date'] = $this->startDate->RealDate;
+
+            unset($data['old_values']['StartDateId']);
+            unset($data['new_values']['StartDateId']);
+        }
+
+        if (Arr::has($data, 'new_values.EndDateId')) {
+            $data['old_values']['end date'] = optional(Calendar::where('DateId', $this->getOriginal('EndDateId'))->first())->RealDate;
+            $data['new_values']['end date'] = $this->endDate->RealDate;
+
+            unset($data['old_values']['EndDateId']);
+            unset($data['new_values']['EndDateId']);
+        }
+
+        if (Arr::has($data, 'new_values.StartTimeId')) {
+            $data['old_values']['start time'] = optional(Time::where('timeid', $this->getOriginal('StartTimeId'))->first())->time;
+            $data['new_values']['start time'] = $this->startTime->time;
+
+            unset($data['old_values']['StartDateId']);
+            unset($data['new_values']['StartDateId']);
+        }
+
+        if (Arr::has($data, 'new_values.EndTimeId')) {
+            $data['old_values']['end time'] = optional(Time::where('timeid', $this->getOriginal('EndTimeId'))->first())->time;
+            $data['new_values']['end time'] = $this->endTime->time;
+
+            unset($data['old_values']['EndDateId']);
+            unset($data['new_values']['EndDateId']);
+        }
+
+        return $data;
+    }
 
 
 }
