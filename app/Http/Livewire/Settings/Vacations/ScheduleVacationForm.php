@@ -135,36 +135,56 @@ class ScheduleVacationForm extends Component
             'OwnerId' => $this->user->user_id,
         ])->save();
 
-        $items =$this->vacation;
 
-        $createdHouseName = $this->user->house->HouseName;
+//        if (!is_null($this->user->house->CalEmailList)){
+//
+//            $CalEmailList = explode(',',$this->user->house->CalEmailList);
+//
+//            if (count($CalEmailList) > 0) {
+//
+//                $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                foreach ($users as $user) {
+//
+//                    $user->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+//
+//                }
+//
+////                Notification::send($users, new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+//
+//                $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+//
+//                if (count($CalEmailList) > 0) {
+//
+//                    Notification::route('mail', $CalEmailList)
+//                        ->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+//
+//                }
+//            }
+//
+//        }
 
 
-        if (!is_null($this->user->house->CalEmailList)){
+        try {
 
-            $CalEmailList = explode(',',$this->user->house->CalEmailList);
-
-            if (count($CalEmailList) > 0) {
-
-                $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
-
-                foreach ($users as $user) {
-
-                    $user->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
-
-                }
-
-//                Notification::send($users, new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
-
-                $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
-
-                if (count($CalEmailList) > 0) {
-
-                    Notification::route('mail', $CalEmailList)
-                        ->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
-
+            $items =$this->vacation;
+            $createdHouseName = $this->user->house->HouseName;
+            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)){
+                $CalEmailList = explode(',',$this->user->house->CalEmailList);
+                if (count($CalEmailList) > 0 && !empty($CalEmailList)){
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                    foreach ($users as $user) {
+                        $user->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+                    }
+                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+                    if (count($CalEmailList) > 0) {
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+                    }
                 }
             }
+
+        } catch (Exception $e) {
 
         }
 
