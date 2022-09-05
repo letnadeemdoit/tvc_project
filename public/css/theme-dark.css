@@ -34371,6 +34371,8 @@ body {
 
 .category-tabs {
   background-color: #FFF7F4 !important;
+  color: #E8604C;
+  font-weight: 400;
 }
 
 .text-light-secondary {
