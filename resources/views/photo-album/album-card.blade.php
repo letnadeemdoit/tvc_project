@@ -14,7 +14,7 @@
                     <div class="d-flex align-items-center">
                         <img src="{{asset('/images/photo-album/nested-album.svg')}}"
                              class="img-fluid " style="width: 25px">
-                        <span class="ms-2">{{ $album->nestedAlbums()->whereHas('nestedAlbums')->whereHas('photos')->count() }}</span>
+                        <span class="ms-2">{{ $album->nestedAlbums()->whereHas('nestedAlbums')->orWhereHas('photos')->count() }}</span>
                     </div>
                     <div class="d-flex align-items-center ms-3">
                         <img src="{{asset('/images/photo-album/camera.svg')}}"
