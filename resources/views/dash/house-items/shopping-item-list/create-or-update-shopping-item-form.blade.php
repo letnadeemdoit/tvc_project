@@ -31,7 +31,7 @@
                 <br/>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Name</label>
+                    <label class="form-label" for="title">Name:</label>
                     <input
                         type="text"
                         id="title"
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Where to buy</label>
+                    <label class="form-label" for="title">Where to buy:</label>
                     <input
                         type="text"
                         id="location"
