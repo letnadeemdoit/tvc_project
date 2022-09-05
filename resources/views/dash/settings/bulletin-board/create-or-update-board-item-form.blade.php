@@ -42,6 +42,9 @@
                         @endforelse
 
                     </select>
+                    @error('category_id')
+                    <span class="invalid-feedback d-block">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
