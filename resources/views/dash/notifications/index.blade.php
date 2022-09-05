@@ -29,9 +29,9 @@
                                        <div class="d-flex justify-content-start align-items-center">
                                            <h4 class="mb-0 me-3">- <i class="bi bi-image"></i>: </h4>
                                            <p class="mb-0">New Blog <b
-                                                   class="text-primary text-capitalize">{{$dt->data['Name']}}</b>
+                                                   class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
                                                has been created against <b
-                                                   class="text-primary text-capitalize">{{$dt->data['house_name']}}</b>
+                                                   class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b>
                                                House </p>
                                        </div>
                                         <div class="d-flex align-items-center">
@@ -46,11 +46,11 @@
                                         <div class="d-flex justify-content-start align-items-center">
                                             <h4 class="mb-0 me-3">- <i class="bi bi-calendar-event"></i>: </h4>
                                            <p class="mb-0">This Vacation has been Scheduled from
-                                               <b class="text-primary text-capitalize">{{$dt->data['start_date']}}</b>
+                                               <b class="text-primary text-capitalize">{{$dt->data['start_date'] ?? ''}}</b>
                                                to
-                                               <b class="text-primary text-capitalize">{{$dt->data['end_date']}}</b>
+                                               <b class="text-primary text-capitalize">{{$dt->data['end_date'] ?? ''}}</b>
                                                Date against <b
-                                                   class="text-primary text-capitalize">{{$dt->data['house_name']}}</b>
+                                                   class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b>
                                                House
                                            </p>
                                        </div>
