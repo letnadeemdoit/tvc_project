@@ -129,19 +129,21 @@ class Blog extends Model implements Auditable
     /**
      * {@inheritdoc}
      */
+
+
     public function transformAudit(array $data): array
     {
-
-
         if (Arr::has($data, 'new_values.category_id')) {
 
-            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
-
+            $data['old_values']['category name'] = Blog::find($this->getOriginal('category_id'));
             $data['new_values']['category name'] = $this->category->name;
 
-        }
+            unset($data['old_values']['category_id']);
+            unset($data['new_values']['category_id']);
 
+        }
         return $data;
     }
+
 
 }

@@ -197,7 +197,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <a class="btn btn-primary-light fs-13 my-3 my-md-0">{{$dt->category->name ?? ''}}</a>
+                                        <a class="mb-0 badge badge-primary fs-13 fw-normal p-2">{{$dt->category->name ?? ''}}</a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
                                         <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>
