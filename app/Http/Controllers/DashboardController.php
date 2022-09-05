@@ -8,6 +8,7 @@ use App\Models\GuestBook;
 use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -153,7 +154,7 @@ class DashboardController extends Controller
 
         auth()->loginUsingId($user->user_id);
 
-        return redirect()->intended('/dashboard');
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
 }
