@@ -121,13 +121,13 @@
                         <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account" aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
                             <div class="dropdown-item-text">
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-sm avatar-circle" style="width:50px;">
+                                    <div class="avatar avatar-sm avatar-circle" style="width:70px;">
                                         <img
                                             class="avatar-img"
                                             src="{{ auth()->user()->profile_photo_url }}"
                                             :src="avatarUrl"
                                             alt="Image"
-                                            style="object-fit: cover;width:65px;"
+                                            style="object-fit: cover;width:70px;"
                                         />
                                     </div>
                                     <div class="flex-grow-1 ms-3 text-break">

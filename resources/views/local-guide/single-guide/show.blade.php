@@ -138,7 +138,7 @@
             <div class="row">
                 <div class="col-12 col-lg-9 pe-0 pe-lg-5">
                     <div class="border-bottom">
-                        <p class="mb-0" style="font-size: 12px"><span
+                        <p class="mb-3" style="font-size: 12px"><span
                                 class="mx-1 text-muted">{{date('Y-m-d | h:m A',strtotime($localGuide->datetime))}}</span>
                         </p>
                     </div>
@@ -216,10 +216,10 @@
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
-                                        <div class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2 align-items-center">
+                                        <div class="d-block d-sm-flex list-unstyled recipe-card-footer mb-2 align-items-center">
 
                                             @if(isset($avgRating))
-                                                    <span class="text-primary fw-bolder fs-4">
+                                                    <span class="text-primary fw-bolder fs-4 pe-2">
                                                         {{ $avgRating ?? 0}}.0
                                                     </span>
                                                     @php
