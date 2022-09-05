@@ -108,7 +108,13 @@
                                      data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
 
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}"
-                                           href="{{ route('dash.settings.account-information') }}">Account Information</a>
+                                           href="{{ route('dash.settings.account-information') }}">
+                                            @if(auth()->user()->is_admin)
+                                                Account Information
+                                            @else
+                                                Manage Account
+                                            @endif
+                                        </a>
                                     @if(auth()->user()->is_admin)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}"
                                            href="{{ route('dash.settings.billing') }}">Billing</a>
