@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Notifications\BlogNotification;
 use App\Notifications\BlogNotify;
 use App\Models\Tags;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -133,7 +134,7 @@ class CreateOrUpdateBlogItemForm extends Component
 
 
 
-
+        try {
             $this->siteUrl = route('guest.blog.show',$slug);
 
             $items = $this->blogItem;
@@ -159,8 +160,9 @@ class CreateOrUpdateBlogItemForm extends Component
                     }
                 }
             }
+        } catch (Exception $e) {
 
-
+        }
 
         $this->emitSelf('toggle', false);
 

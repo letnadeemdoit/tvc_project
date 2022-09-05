@@ -90,9 +90,14 @@
                                         <i class="bi bi-gear-wide-connected me-1"></i>Settings</a>
                                     <div class="dropdown-divider"></div>
                                 @endif
-                                @foreach(auth()->user()->additional_houses as $additionalHouse)
-                                    <x-switchable-property :house="$additionalHouse" />
-                                @endforeach
+                               <div class="px-3">
+                                   @foreach(auth()->user()->additional_houses as $additionalHouse)
+                                       <x-switchable-property :house="$additionalHouse" />
+                                       @if(!$loop->last)
+                                           <hr class="p-0 m-0 my-2">
+                                       @endif
+                                   @endforeach
+                               </div>
                             </div>
                         </div>
                         <!-- End Account -->
