@@ -6,6 +6,7 @@ use App\Models\Traits\HasFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Arr;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -58,6 +59,34 @@ class Board extends Model  implements Auditable
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    protected $auditExclude = [
+        'id',
+        'HouseId',
+        'Board',
+        'Audit_user_name',
+        'Audit_Role',
+        'Audit_FirstName',
+        'Audit_LastName',
+        'Audit_Email',
+    ];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function transformAudit(array $data): array
+    {
+
+        if (Arr::has($data, 'new_values.category_id')) {
+
+            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
+
+            $data['new_values']['category name'] = $this->category->name;
+
+        }
+
+        return $data;
     }
 
 }

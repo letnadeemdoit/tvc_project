@@ -32,9 +32,6 @@ class LocalGuide extends Model implements Auditable
         'datetime',
     ];
 
-    protected $auditExclude = [
-        'description',
-    ];
 
     protected $attributeModifiers = [
 
@@ -98,6 +95,42 @@ class LocalGuide extends Model implements Auditable
     public function reviews()
     {
         return $this->morphMany(Review::class, 'commentable');
+    }
+
+
+
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'id',
+        'user_id',
+        'house_id',
+//        'category_id',
+        'published',
+        'description',
+    ];
+
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function transformAudit(array $data): array
+    {
+
+
+        if (Arr::has($data, 'new_values.category_id')) {
+
+            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
+
+            $data['new_values']['category name'] = $this->category->name;
+
+        }
+
+        return $data;
     }
 
 }

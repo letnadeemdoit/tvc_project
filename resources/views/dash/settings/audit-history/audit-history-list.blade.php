@@ -65,6 +65,7 @@
                         <td>{{$dt->event}}</td>
                         <td>{{$dt->created_at}}</td>
                         <td><a href="#!"
+                               class="btn btn-sm btn-primary"
                                data-bs-toggle="modal"
                                data-bs-target="#auditHistory{{$dt->id}}Model"
                             >View</a>

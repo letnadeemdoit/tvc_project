@@ -8,11 +8,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
 
-class Photo extends Model
+class Photo extends Model implements Auditable
 {
     use HasFactory;
     use HasFile;
+    use AuditableTrait;
 
     public $timestamps = false;
 
@@ -88,6 +91,17 @@ class Photo extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
+
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'HouseId',
+        'album_id',
+        'description',
+    ];
 
 //    $this->file->storeAs('photos', "photo_{$HouseId}_{$PhotoId}.jpg", 'public');
 

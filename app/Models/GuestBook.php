@@ -54,13 +54,27 @@ class GuestBook extends Model implements Auditable
     }
 
     /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'id',
+        'user_id',
+        'house_id',
+        'content',
+        'published',
+    ];
+
+
+    /**
      * {@inheritdoc}
      */
     public function transformAudit(array $data): array
     {
         if (Arr::has($data, 'new_values.status')) {
-            $data['old_values']['status'] = $this->getOriginal('status') === 0 ? 'Active' : 'Inactive';
-            $data['new_values']['status'] = $this->getAttribute('status') === 0 ? 'Active' : 'Inactive';
+            $data['old_values']['status'] = $this->getOriginal('status') === 1 ? 'Active' : 'Inactive';
+            $data['new_values']['status'] = $this->getAttribute('status') === 1 ? 'Active' : 'Inactive';
         }
 
         return $data;

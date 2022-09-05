@@ -6,6 +6,7 @@ use App\Models\Photo\Photo;
 use App\Models\Traits\HasFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class House extends Model
@@ -93,6 +94,45 @@ class House extends Model
     public function users()
     {
         return $this->hasMany(User::class, 'HouseId', 'HouseID');
+    }
+
+
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'HouseID',
+        'plan',
+        'Guest',
+        'CalEmailList',
+        'BlogEmailList',
+        'Audit_user_name',
+        'Audit_Role',
+        'Audit_FirstName',
+        'Audit_LastName',
+        'Audit_Email',
+    ];
+
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function transformAudit(array $data): array
+    {
+
+
+        if (Arr::has($data, 'new_values.category_id')) {
+
+            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
+
+            $data['new_values']['category name'] = $this->category->name;
+
+        }
+
+        return $data;
     }
 
 }

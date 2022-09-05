@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -168,4 +169,46 @@ class Vacation extends Model implements Auditable
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
         ];
     }
+
+
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'BackGrndColor',
+        'FontColor',
+//        'StartDateId',
+//        'EndDateId',
+//        'StartTimeId',
+//        'EndTimeId',
+        'OwnerId',
+        'HouseId',
+//        'AllowOwners',
+//        'AllowGuests',
+//        'Completed'
+    ];
+
+
+//
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function transformAudit(array $data): array
+//    {
+//
+//
+//        if (Arr::has($data, 'new_values.category_id')) {
+//
+//            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
+//
+//            $data['new_values']['category name'] = $this->category->name;
+//
+//        }
+//
+//        return $data;
+//    }
+
+
 }
