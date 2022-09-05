@@ -6,6 +6,7 @@ use App\Models\Calendar;
 use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
+use App\Notifications\BlogNotification;
 use App\Notifications\CalendarEmailNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
@@ -147,7 +148,13 @@ class ScheduleVacationForm extends Component
 
                 $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
 
-                Notification::send($users, new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+                foreach ($users as $user) {
+
+                    $user->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+
+                }
+
+//                Notification::send($users, new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
 
                 $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
 
