@@ -27,24 +27,22 @@
                 <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
                     <!-- Collapse -->
                     <div class="nav-item">
-                        <a class="nav-link active" href="{{route('dash.index')}}">
-                            <i class="bi-house-door nav-icon"></i>
-                            <span class="nav-link-title">Dashboard</span>
-                        </a>
-
-                    </div>
-                    <!-- End Collapse -->
-
-                    <span class="dropdown-header mt-4">Menu</span>
-                    <small class="bi-three-dots nav-subtitle-replacer"></small>
-                    <div id="navbarVerticalMenuPagesMenu">
-
+{{--                        <a class="nav-link active" href="{{route('dash.index')}}">--}}
+{{--                            <i class="bi-house-door nav-icon"></i>--}}
+{{--                            <span class="nav-link-title">Dashboard</span>--}}
+{{--                        </a>--}}
                         <div class="nav-item">
                             <a class="nav-link" href="{{route('dash.calendar')}}" data-placement="left">
                                 <i class="bi-calendar-month nav-icon"></i>
                                 <span class="nav-link-title">Calendar</span>
                             </a>
                         </div>
+                    </div>
+                    <!-- End Collapse -->
+
+                    <span class="dropdown-header mt-4">Menu</span>
+                    <small class="bi-three-dots nav-subtitle-replacer"></small>
+                    <div id="navbarVerticalMenuPagesMenu">
                         @if(!auth()->user()->is_guest)
                             <div class="nav-item">
                                 <a class="nav-link {{ link_is_active_with_class(['dash.photo-albums']) }}" href="{{route('dash.photo-albums')}}" data-placement="left">
