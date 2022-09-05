@@ -35,7 +35,7 @@
             <div class="card-footer px-1 pb-1 border-0 pt-1">
                 <ul class="d-block d-sm-flex list-unstyled recipe-card-footer align-items-center mb-2">
                     @if(isset($avgRating))
-                        <span class="text-primary fw-bolder fs-4">
+                        <span class="text-primary fw-bolder fs-4 pe-2">
                             {{ $avgRating ?? 0}}.0
                         </span>
                             @php
