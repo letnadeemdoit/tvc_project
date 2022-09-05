@@ -22,8 +22,8 @@
                 border-radius: 6px;
                 border: 2px solid #E8604C;
                 padding: 5px 10px;
-                min-width: 35px;
-                max-width: 35px;
+                min-width: 38px;
+                max-width: 38px;
                 text-align: center;
 
             }
