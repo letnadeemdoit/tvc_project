@@ -68,7 +68,7 @@ class CreateOrUpdatePhotoAlbum extends Component
         }
 
         Validator::make($inputs, [
-            'name' => 'required',
+            'name' => 'required|string|max:100',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
         ])->validateWithBag('saveAlbumCU');
 
