@@ -71,41 +71,44 @@
                             >View</a>
                         </td>
 
+                        @push('modals')
                         <!-- Modal -->
-                        <div class="modal fade" id="auditHistory{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header align-items-start">
-                                        <div class="">
-                                            <h3 class="modal-title mb-1 text-capitalize">
-                                                {{$dt->user->user_name}}
-                                            </h3>
-                                            <small class="mb-0 text-muted d-block text-break text-wrap">{{$dt->url}}</small>
-                                            <small class="mb-0 text-muted text-break text-wrap">{{$dt->user_agent}}</small>
+                            <div class="modal fade" id="auditHistory{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header align-items-start">
+                                            <div class="">
+                                                <h3 class="modal-title mb-1 text-capitalize">
+                                                    {{$dt->user->user_name}}
+                                                </h3>
+                                                <small class="mb-0 text-muted d-block text-break text-wrap">{{$dt->url}}</small>
+                                                <small class="mb-0 text-muted text-break text-wrap">{{$dt->user_agent}}</small>
+                                            </div>
+
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
+                                        <div class="modal-body">
 
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
+                                            <h3>
+                                                @if(!is_null($dt->auditable))
+                                                    {{str_replace('_',' ', str($dt->auditable->getTable())->title())}}
+                                                @endif
 
-                                        <h3>
-                                            @if(!is_null($dt->auditable))
-                                                {{str_replace('_',' ', str($dt->auditable->getTable())->title())}}
-                                            @endif
+                                                {{$dt->event}}:</h3>
 
-                                            {{$dt->event}}:</h3>
-
-{{--                                        <p>On {{ $dt->getMetadata()['audit_created_at'] }}, {{ $dt->user->user_name }} [{{ $dt->getMetadata()['audit_ip_address'] }}] updated this record via {{ $dt->getMetadata()['audit_url'] }}</p>--}}
-{{--                                       --}}
-                                        <ol>
-                                            @foreach ($dt->getModified() as $attribute => $modified)
-                                                <li>The {{ $attribute }} has been modified from <strong>{{ $modified['old'] ?? '' }}</strong> to <strong>{{ $modified['new'] ?? ''}}</strong></li>
-                                            @endforeach
-                                        </ol>
+                                            {{--                                        <p>On {{ $dt->getMetadata()['audit_created_at'] }}, {{ $dt->user->user_name }} [{{ $dt->getMetadata()['audit_ip_address'] }}] updated this record via {{ $dt->getMetadata()['audit_url'] }}</p>--}}
+                                            {{--                                       --}}
+                                            <ol>
+                                                @foreach ($dt->getModified() as $attribute => $modified)
+                                                    <li class="text-break text-wrap">The {{ $attribute }} has been modified from <strong>{{ $modified['old'] ?? '' }}</strong> to <strong>{{ $modified['new'] ?? ''}}</strong></li>
+                                                @endforeach
+                                            </ol>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endpush
+
 
                     </tr>
                 @endforeach
