@@ -49,4 +49,16 @@ class ShoppingItem extends Model implements Auditable
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'user_id',
+        'house_id',
+        'description',
+        'published',
+    ];
+
 }

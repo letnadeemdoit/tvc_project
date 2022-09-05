@@ -39,5 +39,4 @@ class Calendar extends Model implements Auditable
         'Day',
         'RealDate',
     ];
-
 }
