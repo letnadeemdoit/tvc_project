@@ -138,7 +138,7 @@
             <div class="row">
                 <div class="col-12 col-lg-9 pe-0 pe-lg-5">
                     <div class="border-bottom">
-                        <p class="mb-0" style="font-size: 12px"><span
+                        <p class="mb-3" style="font-size: 12px"><span
                                 class="mx-1 text-muted">{{date('Y-m-d | h:m A',strtotime($localGuide->datetime))}}</span>
                         </p>
                     </div>
