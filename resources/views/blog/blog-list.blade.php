@@ -11,12 +11,12 @@
                 </ul>
                 <a
                     type="button"
-                    class="btn btn-white scroll-icons"
+                    class="btn btn-white scroll-icons d-flex align-items-center"
                     id="left-button"
                 >
                     <i class="bi bi-chevron-left"></i>
                 </a>
-                    <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll mx-1 mx-sm-2 margin-0" id="myTab" role="tablist">
                         @foreach($categories as $cat)
                     <li class="nav-item">
                         <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
@@ -27,7 +27,7 @@
                     </ul>
                 <a
                     type="button"
-                    class="btn btn-white scroll-icons"
+                    class="btn btn-white scroll-icons d-flex align-items-center"
                     id="right-button"
                 >
                     <i class="bi bi-chevron-right"></i>
