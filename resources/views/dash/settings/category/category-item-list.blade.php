@@ -104,7 +104,7 @@
 
                                         <h4 class="fw-bold text-center my-3"
                                             style="color: #00000090">You can't delete this category?</h4>
-                                        <p class="fw-500 fs-15">First of all remove this category where it used!</p>
+                                        <p class="fw-500 fs-15">First of all you need to update your item to another category or remove item where this category used!</p>
                                         <div class="btn-group my-2">
 
 {{--                                            <button type="button"--}}
