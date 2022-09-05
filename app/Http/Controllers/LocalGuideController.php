@@ -20,7 +20,7 @@ class LocalGuideController extends Controller
 
         $categories = Category::where('type', 'local-guide')->where('house_id',$dt->house_id)->withCount('localGuides')->get();
 
-        $relatedGuides = LocalGuide::where('category_id', $dt->category_id)->inRandomOrder()->limit(3)->get()->except($dt->id);
+        $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->inRandomOrder()->limit(3)->get()->except($dt->id);
 
         $totalReviewLocalGuide = $dt->reviews()->get();
 

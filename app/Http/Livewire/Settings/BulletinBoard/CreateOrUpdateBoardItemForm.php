@@ -69,8 +69,9 @@ class CreateOrUpdateBoardItemForm extends Component
         Validator::make($inputs, [
             'title' => 'required|string|max:100',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'category_id' => 'nullable|exists:categories,id',
-            'Board' => 'required',
+//            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'required',
+            'Board' => 'required|max:20000',
         ])->validateWithBag('saveBulletinBoardCU');
 
         $this->boardItem->fill([

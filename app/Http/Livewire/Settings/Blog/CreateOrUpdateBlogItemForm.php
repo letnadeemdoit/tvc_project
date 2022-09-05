@@ -89,7 +89,7 @@ class CreateOrUpdateBlogItemForm extends Component
         Validator::make($inputs, [
             'Subject' => 'required|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'Contents' => 'required |max:100000',
+            'Contents' => 'required|max:100000',
             'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 

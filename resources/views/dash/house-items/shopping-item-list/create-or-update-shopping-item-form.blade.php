@@ -46,29 +46,29 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Location</label>
+                    <label class="form-label" for="title">Where to buy</label>
                     <input
                         type="text"
                         id="location"
                         wire:model.defer="state.location"
                         name="location"
                         class="form-control"
-                        placeholder="Location"
+                        placeholder="where to buy"
                     />
 
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="title">Expire Date</label>
-                    <input
-                        type="date"
-                        id="expiration_date"
-                        wire:model.defer="state.expiration_date"
-                        name="expiration_date"
-                        class="form-control"
-                    />
+{{--                <div class="mb-3">--}}
+{{--                    <label class="form-label" for="title">Expire Date</label>--}}
+{{--                    <input--}}
+{{--                        type="date"--}}
+{{--                        id="expiration_date"--}}
+{{--                        wire:model.defer="state.expiration_date"--}}
+{{--                        name="expiration_date"--}}
+{{--                        class="form-control"--}}
+{{--                    />--}}
 
-                </div>
+{{--                </div>--}}
 
 
                 {{--                <div--}}
