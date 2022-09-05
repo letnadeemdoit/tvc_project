@@ -24,7 +24,7 @@
                     <div class="p-3">
                         <ul class="list-group list-group-flush">
                             @foreach($data as $dt)
-                                @if($dt->type == 'App\Notifications\BlogNotify')
+                                @if($dt->type == 'App\Notifications\BlogNotification')
                                     <li class="list-group-item border-bottom rounded-0 d-flex justify-content-between align-items-center">
                                        <div class="d-flex justify-content-start align-items-center">
                                            <h4 class="mb-0 me-3">- <i class="bi bi-image"></i> : </h4>

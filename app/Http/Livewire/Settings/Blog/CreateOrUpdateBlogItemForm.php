@@ -147,7 +147,13 @@ class CreateOrUpdateBlogItemForm extends Component
 
                 $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
-                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+                foreach ($users as $user) {
+
+                    $user->notify(new BlogNotification($items,$blogUrl,$createdHouseName));
+
+                }
+
+//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
 
                 $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
 
