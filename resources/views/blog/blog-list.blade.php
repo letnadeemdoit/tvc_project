@@ -9,12 +9,13 @@
                     </a>
                     </li>
                 </ul>
-                <a
-                    class="btn btn-white scroll-icons d-flex align-items-center"
-                    id="left-button"
-                >
-                    <i class="bi bi-chevron-left"></i>
-                </a>
+{{--                <a--}}
+{{--                    type="button"--}}
+{{--                    class="btn btn-white scroll-icons d-flex align-items-center"--}}
+{{--                    id="left-button"--}}
+{{--                >--}}
+{{--                    <i class="bi bi-chevron-left"></i>--}}
+{{--                </a>--}}
                     <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll mx-1 mx-sm-2 margin-0" id="myTab" role="tablist">
                         @foreach($categories as $cat)
                     <li class="nav-item">
@@ -24,12 +25,13 @@
                     </li>
                 @endforeach
                     </ul>
-                <a
-                    class="btn btn-white scroll-icons d-flex align-items-center"
-                    id="right-button"
-                >
-                    <i class="bi bi-chevron-right"></i>
-                </a>
+{{--                <a--}}
+{{--                    type="button"--}}
+{{--                    class="btn btn-white scroll-icons d-flex align-items-center"--}}
+{{--                    id="right-button"--}}
+{{--                >--}}
+{{--                    <i class="bi bi-chevron-right"></i>--}}
+{{--                </a>--}}
             @endif
         </div>
 

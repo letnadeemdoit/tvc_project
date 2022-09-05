@@ -129,41 +129,38 @@ class CreateOrUpdateBlogItemForm extends Component
                     Tag::where('name', '=', $tag)->delete();
                 }
             }
+            $this->blogItem->updateFile($this->file);
 
-        $this->siteUrl = route('guest.blog.show',$slug);
 
-        $items = $this->blogItem;
 
-        $createdHouseName = $this->user->house->HouseName;
 
-        $blogUrl = $this->siteUrl;
+            $this->siteUrl = route('guest.blog.show',$slug);
 
-        $this->blogItem->updateFile($this->file);
+            $items = $this->blogItem;
 
-        if (!is_null($this->user->house->BlogEmailList)){
-            $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
+            $createdHouseName = $this->user->house->HouseName;
 
-            if (count($blogEmailsList) > 0) {
+            $blogUrl = $this->siteUrl;
 
-                $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+            if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList)){
 
-                foreach ($users as $user) {
+                $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
+                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)){
+                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
-                    $user->notify(new BlogNotification($items,$blogUrl,$createdHouseName));
-
-                }
-
+                    foreach ($users as $user) {
+                        $user->notify(new BlogNotification($items,$blogUrl,$createdHouseName));
+                    }
 //                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-
-                $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
-
-                if (count($blogEmailsList) > 0) {
-
-                    Notification::route('mail', $blogEmailsList)
-                    ->notify(new BlogNotification($items,$blogUrl,$createdHouseName));
+                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+                    if (count($blogEmailsList) > 0) {
+                        Notification::route('mail', $blogEmailsList)
+                            ->notify(new BlogNotification($items,$blogUrl,$createdHouseName));
+                    }
                 }
             }
-        }
+
+
 
         $this->emitSelf('toggle', false);
 
