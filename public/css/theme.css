@@ -43471,6 +43471,10 @@ body {
   color: #E8604C;
 }
 
+.category-tabs {
+  background-color: #FFF7F4 !important;
+}
+
 .text-light-secondary {
   color: #626262;
 }
@@ -43495,6 +43499,10 @@ body {
 .guest-modal ::-webkit-scrollbar {
   width: 10px;
   background: #000;
+}
+
+.dropdown-focus:focus {
+  background-color: transparent !important;
 }
 
 /* Track */
@@ -43755,6 +43763,10 @@ fieldset i {
 .border-right-solid {
   border-right: 1px solid rgba(0, 0, 0, 0.15);
   min-height: 60px;
+}
+
+.scroll-icons {
+  max-height: 56px;
 }
 
 .bg-social-feed {
@@ -44438,6 +44450,9 @@ header nav button:last-child:hover {
   .max-width {
     max-width: 100% !important;
   }
+  .scroll-icons {
+    max-height: 32px !important;
+  }
   .help-page-tabs .nav-tabs .nav-item .nav-link {
     padding: 0px !important;
     width: 85px !important;
@@ -44742,6 +44757,10 @@ header nav button:last-child:hover {
   filter: grayscale(78%) brightness(130%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
 }
 
+.margin-0 .nav-item:last-child .nav-link {
+  margin-right: 0px;
+}
+
 .bg-waves {
   background-image: url("/images/bulletin-images/Union.png");
   background-size: contain;
@@ -44893,16 +44912,6 @@ nav.navecation .active img {
 .toggle-text-link {
   display: block;
   margin: 3px 0;
-}
-
-.scroll {
-  overflow: hidden;
-  overflow-x: scroll;
-  flex-wrap: nowrap;
-}
-
-.scroll .nav-item a {
-  display: inline-block;
 }
 
 .scrollbar ::-webkit-scrollbar {

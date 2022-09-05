@@ -21,9 +21,9 @@
                     changeYear: true,
                     yearRange: '-10:+10',
                     beforeShow: function () {
-                        var $datePicker = $('.date-picker');
-                        var zIndexModal = $datePicker.closest('.modal').css('z-index');
-                        $datePicker.css('z-index', zIndexModal + 1);
+{{--                        var $datePicker = $('.date-picker');--}}
+{{--                        var zIndexModal = $datePicker.closest('.modal').css('z-index');--}}
+{{--                        $datePicker.css('z-index', zIndexModal + 1);--}}
                     },
                     onSelect: function (date, datepicker) {
                         let id = datepicker.id;
@@ -42,8 +42,7 @@
                     showMillisec: false,
                     showMicrosec: false,
                     showTimezone: false,
-                    addSliderAccess: true,
-                    sliderAccessArgs: { touchonly: false }
+                    container: '#' + $event.detail.modal.attr('id')
                 })
                 .attr('readonly', 'true')
                 .keypress(function (event) {

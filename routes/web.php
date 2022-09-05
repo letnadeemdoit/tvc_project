@@ -42,7 +42,6 @@ Route::controller(GuestController::class)
         Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
 //        Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
         Route::get('/local-guide', 'localGuide')->name('local-guide');
-        Route::get('/photo-album', 'photoAlbum')->name('photo-album');
         Route::get('/single-album', 'singleAlbum')->name('single-album');
         Route::get('/album-photo', 'photoGalleryView')->name('album-photo');
 
@@ -86,11 +85,10 @@ Route::controller(GuestController::class)
                 Route::get('/', 'index')->name('index');
             });
         Route::controller(PhotoAlbumController::class)
-            ->prefix('photo-album')
+            ->prefix('photo-albums')
             ->name('photo-album.')
             ->group(function () {
                 Route::get('/', 'index')->name('index');
-                Route::get('/{album:name}', 'show')->name('show');
             });
 
     });
@@ -128,8 +126,8 @@ Route::middleware([
 //        Route::get('/photo-albums-old/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album-old');
 
 
-        Route::get('/photo-albums', [DashboardController::class, 'photoAlbums'])->name('photo-albums');
-        Route::get('/photo-albums/{id}/photos', [DashboardController::class, 'photos'])->name('photo-albums.photos');
+        Route::get('/manage-albums', [DashboardController::class, 'photoAlbums'])->name('photo-albums');
+        Route::get('/manage-albums/{id}/photos', [DashboardController::class, 'photos'])->name('photo-albums.photos');
 
 
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');

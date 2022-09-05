@@ -15,4 +15,12 @@ class AlbumCard extends Component
         return view('photo-album.album-card');
     }
 
+    public function getAlbumsCountProperty() {
+        return Album::where('parent_id', $this->album->id)->whereHas('nestedAlbums')->orWhereHas('photos')->count();
+    }
+
+    public function getPhotosCountProperty() {
+        return $this->album->photos->count();
+    }
+
 }

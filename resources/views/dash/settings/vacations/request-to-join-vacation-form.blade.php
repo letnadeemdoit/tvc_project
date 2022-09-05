@@ -17,14 +17,14 @@
             wire:submit.prevent="sendRequestToJoinVacation"
             class="modal-body"
             @modal-is-shown.window="
-                jQuery('.datetime-picker').datetimepicker({
+                jQuery('.datetime-picker-rtjv').datetimepicker({
                     changeMonth: true,
                     changeYear: true,
                     yearRange: '-10:+10',
                     beforeShow: function () {
-                        var $datePicker = $('.date-picker');
+                        var $datePicker = $('.datetime-picker-rtjv');
                         var zIndexModal = $datePicker.closest('.modal').css('z-index');
-                        $datePicker.css('z-index', zIndexModal + 1);
+                        $datePicker.css('z-index', zIndexModal + 99999);
                     },
                     onSelect: function (date, datepicker) {
                         let id = datepicker.id;
@@ -43,8 +43,7 @@
                     showMillisec: false,
                     showMicrosec: false,
                     showTimezone: false,
-                    addSliderAccess: true,
-                    sliderAccessArgs: { touchonly: false }
+                    container: '#' + $event.detail.modal.attr('id')
                 })
                 .attr('readonly', 'true')
                 .keypress(function (event) {
@@ -87,7 +86,7 @@
                     <label class="form-label" for="start_datetime">Start Datetime:</label>
                     <input
                         type="text"
-                        class="form-control datetime-picker @error('start_datetime') is-invalid @enderror"
+                        class="form-control datetime-picker-rtjv @error('start_datetime') is-invalid @enderror"
                         name="start_datetime"
                         id="start_datetime"
                         wire:model.defer="state.start_datetime"
@@ -101,7 +100,7 @@
                     <label class="form-label" for="end_datetime">End Datetime:</label>
                     <input
                         type="text"
-                        class="form-control datetime-picker @error('end_datetime') is-invalid @enderror"
+                        class="form-control datetime-picker-rtjv @error('end_datetime') is-invalid @enderror"
                         name="end_datetime"
                         id="end_datetime"
                         wire:model.defer="state.end_datetime"
