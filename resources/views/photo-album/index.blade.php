@@ -108,5 +108,5 @@
     </div>
         <livewire:photo-album.photo-album-list :user="$user" />
     @push('scripts')
-    @endpush()
+    @endpush
 </x-guest-layout>
