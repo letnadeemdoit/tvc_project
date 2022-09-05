@@ -50,7 +50,7 @@ class BlogNotification extends Notification
 
         return (new MailMessage)
             ->greeting('Blog!')
-            ->line(new HtmlString('New Blog <strong>' . $this->items->Subject.'</strong>'. ' has been Created against ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
+            ->line(new HtmlString('New Blog <strong>' . $this->items->Subject.'</strong>'. '  has been added for the vacation house ' . '<strong>'. $this->createdHouseName .' </strong>'))
             ->action('click to check blog', $url);
     }
 
