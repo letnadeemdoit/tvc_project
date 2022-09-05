@@ -146,15 +146,15 @@
                                                         {{--                                                {{$dt->name}}--}}
                                                     </div>
                                                     <div
-                                                        class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex align-items-center ps-3 ps-lg-5">
-                                                        <span class="badge badge-green btn-min-115 fs-4 p-2 fw-normal">Location :</span>
+                                                        class="col-12 col-lg-8  mt-3 mt-lg-0  d-flex align-items-center ps-3 ps-lg-5">
+                                                        <span class="badge badge-green btn-min-115 fs-4 p-2 fw-normal">Where to buy :</span>
                                                         <p class="mb-0 ps-5 toggle-text text-break">{{$dt->location}}</p>
                                                     </div>
-                                                    <div
-                                                        class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">
-                                                        <span class="badge badge-primary btn-min-115 fs-4 p-2 fw-normal">Expiry Date:</span>
-                                                        <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>
-                                                    </div>
+{{--                                                    <div--}}
+{{--                                                        class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">--}}
+{{--                                                        <span class="badge badge-primary btn-min-115 fs-4 p-2 fw-normal">Expiry Date:</span>--}}
+{{--                                                        <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>--}}
+{{--                                                    </div>--}}
                                                 </div>
                                             </div>
                                         </div>

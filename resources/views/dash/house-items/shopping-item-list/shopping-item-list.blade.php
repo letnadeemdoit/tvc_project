@@ -38,7 +38,7 @@
                     <th style="width: 100px" class="text-center">Image</th>
                     <th>Name</th>
                     <th>Location</th>
-                    <th>Expiration Date</th>
+{{--                    <th>Expiration Date</th>--}}
                     <th>Created at</th>
                     <th>Action</th>
                 </tr>
@@ -59,7 +59,7 @@
                         </td>
                         <td class="">{{$dt->name ?? ''}}</td>
                         <td>{{$dt->location ?? ''}}</td>
-                        <td>{{$dt->expiration_date ?? ''}}</td>
+{{--                        <td>{{$dt->expiration_date ?? ''}}</td>--}}
                         <td>{{$dt->created_at ?? ''}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
