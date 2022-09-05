@@ -70,7 +70,7 @@ class CreateOrUpdateBoardItemForm extends Component
             'title' => 'required|string|max:100',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'category_id' => 'nullable|exists:categories,id',
-            'Board' => 'required',
+            'Board' => 'required|max:20000',
         ])->validateWithBag('saveBulletinBoardCU');
 
         $this->boardItem->fill([
