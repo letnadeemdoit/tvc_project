@@ -80,8 +80,8 @@
                                             <h3 class="modal-title mb-1 text-capitalize">
                                                 {{$dt->user->user_name}}
                                             </h3>
-                                            <small class="mb-0 text-muted d-block">{{$dt->url}}</small>
-                                            <small class="mb-0 text-muted">{{$dt->user_agent}}</small>
+                                            <small class="mb-0 text-muted d-block text-break text-wrap">{{$dt->url}}</small>
+                                            <small class="mb-0 text-muted text-break text-wrap">{{$dt->user_agent}}</small>
                                         </div>
 
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
