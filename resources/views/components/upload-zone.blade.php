@@ -59,6 +59,7 @@
     <div x-show="previewAndEdit">
         <template x-for="(f, i) in files" :key="i">
             <div class="position-relative">
+
                 <div class="position-absolute" style="bottom: 10px; right: 10px; z-index: 100">
                     <a
                         href="#"
@@ -103,6 +104,7 @@
                         <i class="bi bi-check2"></i>
                     </a>
                 </div>
+
                 <img :src="files.length > 0 ? URL.createObjectURL(files[0]) : null" x-ref="cropper" style="max-height: 400px"/>
             </div>
         </template>

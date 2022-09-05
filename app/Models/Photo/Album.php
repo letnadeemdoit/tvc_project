@@ -2,11 +2,13 @@
 
 namespace App\Models\Photo;
 
+use App\Models\Blog\Blog;
 use App\Models\House;
 use App\Models\Traits\HasFile;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -64,10 +66,13 @@ class Album extends Model implements Auditable
      * @var array
      */
     protected $auditExclude = [
+        'id',
         'house_id',
         'user_id',
         'description',
         'published',
     ];
+
+
 
 }
