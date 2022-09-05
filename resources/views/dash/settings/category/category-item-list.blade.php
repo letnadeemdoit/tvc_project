@@ -66,7 +66,7 @@
                                 >
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
-                                @if($dt->blogs->count() > 0 )
+                                @if($dt->blogs->count() > 0 || $dt->bulletinBoards->count() > 0 || $dt->localGuides->count() > 0)
                                     <button
                                         type="button"
                                         class="btn btn-secondary"
@@ -103,8 +103,8 @@
                                         </div>
 
                                         <h4 class="fw-bold text-center my-3"
-                                            style="color: #00000090">You can't be delete this category?</h4>
-                                        <p class="fw-500 fs-15">First of all you need to move your item to another category!</p>
+                                            style="color: #00000090">You can't delete this category?</h4>
+                                        <p class="fw-500 fs-15">First of all you need to update your item to another category or remove item where this category used!</p>
                                         <div class="btn-group my-2">
 
 {{--                                            <button type="button"--}}

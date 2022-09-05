@@ -99,7 +99,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'HouseId' => $this->user->HouseId,
             'user_id' => $this->user->user_id,
             'Subject' => $inputs['Subject'],
-            'Contents' => $inputs['Contents'],
+            'Contents' => $inputs['Contents'] ?? '',
             'Content' => null,
             'Author' => $this->user->first_name,
             'BlogDate' => $date,

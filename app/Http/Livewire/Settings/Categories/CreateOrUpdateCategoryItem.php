@@ -68,7 +68,7 @@ class CreateOrUpdateCategoryItem extends Component
             'name' => 'required|string|max:255',
             'type' => 'required',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'description' => 'required|max:255',
+            'description' => 'nullable|max:255',
         ])->validateWithBag('saveCategoryItemCU');
 
         $slug = Str::slug($inputs['name']);
@@ -77,9 +77,9 @@ class CreateOrUpdateCategoryItem extends Component
             'user_id' => $this->user->user_id,
             'house_id' => $this->user->HouseId,
             'name' => $inputs['name'],
-            'description' => $inputs['description'],
+            'description' => $inputs['description'] ?? '',
             'type' => $inputs['type'],
-            'slug' => $slug,
+            'slug' => $slug ?? '',
         ])->save();
 
         $this->categoryItem->updateFile($this->file);
