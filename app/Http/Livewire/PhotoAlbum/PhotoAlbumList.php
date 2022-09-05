@@ -36,7 +36,9 @@ class PhotoAlbumList extends Component
                 $query->whereNull('parent_id');
             })
             ->where(function ($query) {
-                $query->whereHas('nestedAlbums')->orWhereHas('photos');
+                $query->whereHas('nestedAlbums', function ($query) {
+                    $query->whereHas('nestedAlbums')->orWhereHas('photos');
+                })->orWhereHas('photos');
             })
             ->orderBy('id', 'DESC')
             ->get();
