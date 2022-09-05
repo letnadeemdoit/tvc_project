@@ -43767,6 +43767,7 @@ fieldset i {
 
 .scroll-icons {
   max-height: 56px;
+  background-color: #e7e4e4;
 }
 
 .bg-social-feed {
@@ -44912,6 +44913,16 @@ nav.navecation .active img {
 .toggle-text-link {
   display: block;
   margin: 3px 0;
+}
+
+.scroll {
+  overflow: hidden;
+  overflow-x: hidden;
+  flex-wrap: nowrap;
+}
+
+.scroll .nav-item a {
+  display: inline-block;
 }
 
 .scrollbar ::-webkit-scrollbar {
