@@ -75,18 +75,18 @@ class Board extends Model  implements Auditable
     /**
      * {@inheritdoc}
      */
-    public function transformAudit(array $data): array
-    {
-
-        if (Arr::has($data, 'new_values.category_id')) {
-
-            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
-
-            $data['new_values']['category name'] = $this->category->name;
-
-        }
-
-        return $data;
-    }
+//    public function transformAudit(array $data): array
+//    {
+//
+//        if (Arr::has($data, 'new_values.category_id')) {
+//
+//            $data['old_values']['category name'] = Category::find($this->getOriginal('category_id'));
+//
+//            $data['new_values']['category name'] = $this->category->name;
+//
+//        }
+//
+//        return $data;
+//    }
 
 }
