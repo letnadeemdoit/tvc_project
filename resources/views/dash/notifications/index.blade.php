@@ -9,7 +9,7 @@
         Notifications
     </x-slot>
 
-    <div class="content container-fluid">
+    <div class="content container-fluid p-1 p-lg-4">
         <div>
             @if ($data->count() > 0 )
                 <div class="mb-3 text-end">
@@ -21,30 +21,30 @@
 
                 @if ($data->count() > 0 )
 
-                    <div class="p-3">
+                    <div class="p-1 p-lg-0">
                         <ul class="list-group list-group-flush">
                             @foreach($data as $dt)
                                 @if($dt->type == 'App\Notifications\BlogNotification')
-                                    <li class="list-group-item border-bottom rounded-0 d-flex justify-content-between align-items-center">
-                                       <div class="d-flex justify-content-start align-items-center">
-                                           <h4 class="mb-0 me-3">- <i class="bi bi-image"></i> : </h4>
+                                    <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">
+                                       <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">
+                                           <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-image"></i> : </h4>
                                            <p class="mb-0">New Blog <b
                                                    class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
                                                has been created against <b
                                                    class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b>
                                                House </p>
                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <p class="mb-0 text-muted">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>
+                                        <div class="d-lg-flex align-items-center d-lg-block mb-2 mb-lg-0">
+                                            <p class="mb-0 text-muted mb-2 mb-lg-0">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>
                                             <form action="{{route('dash.mark-as-read-single-notification', $dt->id)}}">
-                                                <button type="submit" class="btn btn-primary btn-sm ms-3">Mark as Read</button>
+                                                <button type="submit" class="text-primary px-0 bg-transparent border-0 fw-bold text-decoration-underline ms-0 ms-lg-2">Mark as Read</button>
                                             </form>
                                         </div>
                                     </li>
                                 @else
-                                    <li class="list-group-item border-bottom rounded-0 d-flex justify-content-between align-items-center">
-                                        <div class="d-flex justify-content-start align-items-center">
-                                            <h4 class="mb-0 me-3">- <i class="bi bi-calendar-event"></i> : </h4>
+                                    <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">
+                                        <div class="d-lg-block justify-content-start align-items-center mb-2 mb-lg-0">
+                                            <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-calendar-event"></i> : </h4>
                                            <p class="mb-0">This Vacation has been Scheduled from
                                                <b class="text-primary text-capitalize">{{$dt->data['start_date'] ?? ''}}</b>
                                                to
@@ -55,10 +55,10 @@
                                            </p>
                                        </div>
 
-                                        <div class="d-flex align-items-center">
-                                            <p class="mb-0 text-muted">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>
+                                        <div class="d-lg-flex align-items-center mb-2 mb-lg-0">
+                                            <p class="mb-0 text-muted mb-2 mb-lg-0">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>
                                             <form action="{{route('dash.mark-as-read-single-notification', $dt->id)}}">
-                                                <button type="submit" class="btn btn-primary btn-sm ms-3">Mark as Read</button>
+                                                <button type="submit" class="text-primary px-0 bg-transparent border-0 fw-bold text-decoration-underline ms-0 ms-lg-2">Mark as Read</button>
                                             </form>
                                         </div>
                                     </li>
