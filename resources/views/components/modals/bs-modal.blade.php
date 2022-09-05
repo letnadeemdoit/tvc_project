@@ -24,11 +24,12 @@ $id = 'x' . ($id ?? md5(time())) . 'Modal';
             this.modalEl.modal('hide')
         },
         setUpModalEvents() {
+            let $modal = this.modalEl;
             this.modalEl.on('shown.bs.modal', function () {
-                $dispatch('modal-is-shown', {modal: this.modalEl});
+                $dispatch('modal-is-shown', {modal: $modal});
             });
             this.modalEl.on('hidden.bs.modal', function () {
-                $dispatch('modal-is-hidden', {modal: this.modalEl});
+                $dispatch('modal-is-hidden', {modal: $modal});
             });
         }
     }"
