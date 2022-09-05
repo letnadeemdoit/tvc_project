@@ -77,9 +77,9 @@ class CreateOrUpdateCategoryItem extends Component
             'user_id' => $this->user->user_id,
             'house_id' => $this->user->HouseId,
             'name' => $inputs['name'],
-            'description' => $inputs['description'],
+            'description' => $inputs['description'] ?? '',
             'type' => $inputs['type'],
-            'slug' => $slug,
+            'slug' => $slug ?? '',
         ])->save();
 
         $this->categoryItem->updateFile($this->file);
