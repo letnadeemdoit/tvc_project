@@ -9,14 +9,18 @@
     <span class="d-flex justify-content-start align-items-center">
        <i class="bi bi-house me-1"></i>
         <a href="#" class="nav-link" x-on:click.prevent="$root.submit();">
-         {{ $house->HouseName }}
 
+            @if(is_null($house->primary_house_name))
+                {{ $house->HouseName }}
+            @else
+                {{ $house->primary_house_name }}
+            @endif
 
             <span class="fs-10">
-                  @if(isset(auth()->user()->house->primary_house_name))
-                    ({{ auth()->user()->house->HouseName }})
-                @else
-                    ({{ auth()->user()->house->HouseName }})
+                @if(!is_null($house->primary_house_name))
+
+                   ({{ $house->HouseName }})
+
                 @endif
             </span>
 
