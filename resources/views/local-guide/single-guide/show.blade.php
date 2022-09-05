@@ -56,7 +56,7 @@
                         <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
                         <p class="mb-0 badge badge-primary fs-13 fw-semi-bold" style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
                     </div>
-                    <div class="d-flex align-items-center mt-4">
+                    <div class="d-flex mt-4">
                         <div class="flex-shrink-0">
                             <img
                                 class="rounded-circle border-rounded-red"
@@ -76,19 +76,20 @@
                                            class="color-blue fw-normal">View</a>
                                     </span></p>
                                 <div class="d-flex align-items-center ">
-                                    <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
+                                    <div class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2 align-items-center">
 
                                         @if(isset($avgRating))
-                                            <li>
-                                                <span class="text-primary fw-bolder fs-4">
-                                                    {{ $avgRating ?? 0}}.0
-                                                </span>
+{{--                                                <span class="text-primary fw-bolder fs-4">--}}
+{{--                                                    {{ $avgRating ?? 0}}.0--}}
+{{--                                                </span>--}}
                                                 @php
                                                     $i = 0;
                                                 @endphp
 
                                                 @while (++$i <= ($avgRating ?? 0))
+                                                    <div class="d-flex align-items-center">
                                                     <span class="fa fa-star checked"></span>
+                                                    </div>
                                                 @endwhile
                                                 @php
                                                     $r = 1;
@@ -104,12 +105,11 @@
                                                 <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
                                                     <span class="ps-2 text-dark">({{$localGuide->reviews->count()}} Reviews)</span>
                                                 </a>
-                                            </li>
                                         @else
-                                            <li>
-                                                <span class="text-primary fw-bolder fs-4">
-                                                   0
-                                                </span>
+{{--                                                <span class="text-primary fw-bolder fs-4">--}}
+{{--                                                   0--}}
+{{--                                                </span>--}}
+                                        <div class="d-flex align-items-center">
                                                 <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                                      alt="">
                                                 <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
@@ -123,9 +123,9 @@
                                                 <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
                                                     <span class="ps-2 text-dark">(0 Reviews)</span>
                                                 </a>
-                                            </li>
+                                        </div>
                                         @endif
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -216,10 +216,9 @@
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
-                                        <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
+                                        <div class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2 align-items-center">
 
                                             @if(isset($avgRating))
-                                                <li>
                                                     <span class="text-primary fw-bolder fs-4">
                                                         {{ $avgRating ?? 0}}.0
                                                     </span>
@@ -245,9 +244,7 @@
                                                         <span
                                                             class="ps-2 text-dark">({{$dt->reviews->count()}} Reviews)</span>
                                                     </a>
-                                                </li>
                                             @else
-                                                <li>
                                                     <span class="text-primary fw-bolder fs-4">
                                                        0
                                                     </span>
@@ -274,10 +271,9 @@
                                                     <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                                         <span class="ps-2 text-dark">(0 Reviews)</span>
                                                     </a>
-                                                </li>
                                             @endif
 
-                                        </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

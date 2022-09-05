@@ -4,20 +4,20 @@
         <div class="row align-items-center primary-hover">
             <div class="col-lg-3">
                 <div class="d-flex  justify-content-center justify-content-lg-start">
-                {{--                <div class="d-flex justify-content-center justify-content-lg-start">--}}
-                {{--                    <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>--}}
-                {{--                    <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>--}}
-                {{--                    <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>--}}
-                {{--                </div>--}}
-                <ul class="list-unstyled d-flex mb-0">
-                    <li>
-                        <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
-                    </li>
-                    <li><a href="#"> <i class="bi-instagram fs-3 text-white"></i></a></li>
-                </ul>
+                                <div class="d-flex justify-content-center justify-content-lg-start">
+                                    <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>
+                                    <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
+                                    <a href="#"> <i class="bi-instagram fs-3 text-white"></i></a>
+                                </div>
+{{--                <ul class="list-unstyled d-flex mb-0">--}}
+{{--                    <li>--}}
+{{--                        <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="#"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>--}}
+{{--                    </li>--}}
+{{--                    <li><a href="#"> <i class="bi-instagram fs-3 text-white"></i></a></li>--}}
+{{--                </ul>--}}
             </div>
             </div>
             <div class="col-lg-9">
@@ -184,7 +184,7 @@
                             </div>
                             {{--                            <p class="mb-0 px-0 px-lg-3 py-2 py-lg-0 d-none d-lg-block">Guest</p>--}}
                             <h5 class="mb-0 d-none d-lg-block px-0 px-lg-3">{{Auth::user()->first_name ?? ''}}</h5>
-                            <a class="navbar-dropdown-account-wrapper ms-3 ms-lg-0" href="javascript:;"
+                            <a class="navbar-dropdown-account-wrapper ms-3 ms-lg-0 dropdown-focus" href="javascript:;"
                                id="accountNavbarDropdown"
                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
                                data-bs-dropdown-animation>

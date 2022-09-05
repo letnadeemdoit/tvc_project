@@ -139,6 +139,9 @@ body{
     background: rgba(232, 96, 76, 0.1);
     color: #E8604C;
 }
+.category-tabs{
+    background-color: #FFF7F4 !important;
+}
 .text-light-secondary{
     color: #626262;
 }
@@ -159,6 +162,11 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .guest-modal ::-webkit-scrollbar {
     width: 10px;
     background:#000;
+}
+.dropdown-focus{
+    &:focus{
+        background-color: transparent !important;
+    }
 }
 /* Track */
 //::-webkit-scrollbar-track {
@@ -415,6 +423,9 @@ fieldset{
 .border-right-solid{
     border-right: 1px solid rgba(0, 0, 0, 0.15);
     min-height: 60px;
+}
+.scroll-icons{
+    max-height: 56px;
 }
 .bg-social-feed{
     background: url('/images/images-home/map.png');
@@ -1172,6 +1183,9 @@ header{
     .max-width{
         max-width: 100% !important;
     }
+    .scroll-icons{
+        max-height: 32px !important;
+    }
     .help-page-tabs {
         .nav-tabs{
             .nav-item {
@@ -1549,10 +1563,11 @@ header{
                 filter: grayscale(78%) brightness(130%) sepia(68%) hue-rotate(-50deg) saturate(672%) contrast(0.8);
             }
         }
-
     }
 }
-
+.margin-0 .nav-item:last-child .nav-link{
+    margin-right: 0px;
+}
 .bg-waves{
     background-image: url('/images/bulletin-images/Union.png');
     background-size: contain;
