@@ -274,13 +274,16 @@
 
         @if(isset($totalReviewLocalGuide))
             @foreach($totalReviewLocalGuide as $review)
+                @continue(is_null($review->user))
                 <div class="row mt-5 mb-3 more-reviews">
                     <div class="col-12 col-lg-6">
                         <div class="d-flex w-100">
                             <div class="flex-shrink-0">
+
                                 <img src="{{$review->user->profile_photo_url}}" class="rounded-circle"
                                      width="50"
                                      height="50" style="object-fit: cover" alt="...">
+
                             </div>
                             <div class="flex-grow-1 ms-3 mb-3">
                                 <h5 class="mb-0">{{$review->user->user_name}}</h5>
