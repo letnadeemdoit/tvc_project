@@ -216,10 +216,10 @@
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
-                                        <div class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2 align-items-center">
+                                        <div class="d-block d-sm-flex list-unstyled recipe-card-footer mb-2 align-items-center">
 
                                             @if(isset($avgRating))
-                                                    <span class="text-primary fw-bolder fs-4">
+                                                    <span class="text-primary fw-bolder fs-4 pe-2">
                                                         {{ $avgRating ?? 0}}.0
                                                     </span>
                                                     @php

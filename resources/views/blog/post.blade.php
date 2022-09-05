@@ -132,13 +132,9 @@
                 <div class="card border-0 mb-4 tags-card">
                     <div class="card-body text-break p-0">
                         <h4 class="mb-3 px-3">Tags</h4>
-                        <div>
                             @foreach($existingTags as $tag)
-                            <span>
                                 <a href="{{ route('guest.blog.index', ['tag' => $tag['name']]) }}" class="badge category-tabs mb-3 rounded-0 px-3 py-2 fs-5 mx-3">{{$tag['name']}}</a>
-                            </span>
                             @endforeach
-                        </div>
 
                     </div>
                 </div>
