@@ -210,7 +210,7 @@
                 <div class="row mt-4 mb-2">
                     <div class="col-12 col-md-6 col-lg-6 mx-auto">
                         <div class="form-group mb-3" wire:ignore>
-                            <label for="" class="form-label">Country</label>
+                            <label for="" class="form-label">Country:</label>
                             <select
                                 name="country_id"
                                 wire:model="state.country_id"
@@ -226,7 +226,7 @@
 
                     <div class="col-12 col-md-6 col-lg-6 mx-auto">
                         <div class="form-group mb-3 ">
-                            <label for="state_id" class="form-label">State</label>
+                            <label for="state_id" class="form-label">State:</label>
                             <select
                                 name="state_id"
                                 wire:model="state.state_id"
@@ -243,7 +243,7 @@
 
                     <div class="col-12 col-md-6 col-lg-6 mx-auto">
                         <div class="form-group mb-3 ">
-                            <label for="city_id" class="form-label">City</label>
+                            <label for="city_id" class="form-label">City:</label>
                             <select
                                 name="city_id"
                                 wire:model.defer="state.city_id"

@@ -34,7 +34,7 @@
 
 
                 <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
+                    <label class="form-label" for="description">Description:</label>
                     <textarea
                         wire:model.defer="state.description"
                         name="description"

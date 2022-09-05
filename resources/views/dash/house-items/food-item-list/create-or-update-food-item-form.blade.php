@@ -30,7 +30,7 @@
                 <br/>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Name</label>
+                    <label class="form-label" for="title">Name:</label>
                     <input
                         type="text"
                         id="title"
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Location</label>
+                    <label class="form-label" for="title">Location:</label>
                     <input
                         type="text"
                         id="location"
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Expire Date</label>
+                    <label class="form-label" for="title">Expire Date:</label>
                     <input
                         type="date"
                         id="expiration_date"

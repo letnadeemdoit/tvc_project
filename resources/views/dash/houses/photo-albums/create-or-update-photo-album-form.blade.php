@@ -27,7 +27,7 @@
                 </div>
                 <br/>
                 <div class="mb-3">
-                    <label class="form-label" for="">Select Parent Album</label>
+                    <label class="form-label" for="">Select Parent Album:</label>
                     <select name="parent_id" id="parent_id"
                             wire:model.defer="state.parent_id" class="form-control">
                         <option value="" selected>Select parent Album...</option>
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="title">Name</label>
+                    <label class="form-label" for="title">Name:</label>
                     <input
                         type="text"
                         id="name"
@@ -70,7 +70,7 @@
 {{--                        })--}}
 {{--                    "--}}
                 >
-                    <label class="form-label" for="description">Description</label>
+                    <label class="form-label" for="description">Description:</label>
                     <textarea
                         class="form-control"
                         wire:model.defer="state.description"
