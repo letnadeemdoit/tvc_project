@@ -60,6 +60,7 @@
                     class="form-control @error('vacation_name') is-invalid @enderror"
                     name="vacation_name"
                     id="vacation_name"
+                    placeholder="Vacation name"
                     wire:model.defer="state.vacation_name"
                 />
                 @error('vacation_name')
@@ -74,6 +75,7 @@
                         class="form-control datetime-picker @error('start_datetime') is-invalid @enderror"
                         name="start_datetime"
                         id="start_datetime"
+                        placeholder="Start date time"
                         wire:model.defer="state.start_datetime"
 
                     />
@@ -88,6 +90,7 @@
                         class="form-control datetime-picker @error('end_datetime') is-invalid @enderror"
                         name="end_datetime"
                         id="end_datetime"
+                        placeholder="End date time"
                         wire:model.defer="state.end_datetime"
 
                     />
