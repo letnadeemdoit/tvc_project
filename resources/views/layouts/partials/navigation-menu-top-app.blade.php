@@ -797,7 +797,8 @@
     <div class="navbar-nav-wrap">
         <!-- Logo -->
         <a class="navbar-brand" href="{{ route('dash.calendar') }}" aria-label="{{ config('app.name') }}">
-            <img class="navbar-brand-logo" src="{{ asset('logo/logo.png') }}" alt="{{ config('app.name') }}" />
+            <img class="navbar-brand-logo d-none d-md-block" src="{{ asset('logo/logo.png') }}" alt="{{ config('app.name') }}" />
+            <img class="navbar-brand-logo d-md-none" style="min-width: 48px !important;max-width: 48px" src="{{ asset('logo/favicon.svg') }}" alt="{{ config('app.name') }}" />
         </a>
         <!-- End Logo -->
 
