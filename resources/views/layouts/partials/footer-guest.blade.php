@@ -12,7 +12,7 @@
                         <i class="bi-twitter mx-3 fs-3"></i>
                     </a>
                     <a href="#" class="text-decoration-none text-white">
-                        <i class="bi-instagram fs-3"></i>
+                        <i class="fa-brands fa-instagram fs-3"></i>
                     </a>
                     <div class="border-end border-light ps-3 d-none d-lg-block h-20"></div>
                 </div>
