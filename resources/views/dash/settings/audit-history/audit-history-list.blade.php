@@ -77,7 +77,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header align-items-start">
                                         <div class="">
-                                            <h3 class="modal-title mb-1">
+                                            <h3 class="modal-title mb-1 text-capitalize">
                                                 {{$dt->user->user_name}}
                                             </h3>
                                             <small class="mb-0 text-muted d-block">{{$dt->url}}</small>
@@ -87,8 +87,10 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <h3>Metadata:</h3>
-                                        <p>On {{ $dt->getMetadata()['audit_created_at'] }}, {{ $dt->user->user_name }} [{{ $dt->getMetadata()['audit_ip_address'] }}] updated this record via {{ $dt->getMetadata()['audit_url'] }}</p>
+
+                                        <h3>{{str_replace('_',' ', str($dt->auditable->getTable())->title())}} {{$dt->event}}:</h3>
+{{--                                        <p>On {{ $dt->getMetadata()['audit_created_at'] }}, {{ $dt->user->user_name }} [{{ $dt->getMetadata()['audit_ip_address'] }}] updated this record via {{ $dt->getMetadata()['audit_url'] }}</p>--}}
+{{--                                       --}}
                                         <ol>
                                             @foreach ($dt->getModified() as $attribute => $modified)
                                                 <li>The {{ $attribute }} has been modified from <strong>{{ $modified['old'] ?? '' }}</strong> to <strong>{{ $modified['new'] ?? ''}}</strong></li>
