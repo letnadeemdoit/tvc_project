@@ -88,7 +88,13 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <h3>{{str_replace('_',' ', str($dt->auditable->getTable())->title())}} {{$dt->event}}:</h3>
+                                        <h3>
+                                            @if(!is_null($dt->auditable))
+                                                {{str_replace('_',' ', str($dt->auditable->getTable())->title())}}
+                                            @endif
+
+                                            {{$dt->event}}:</h3>
+
 {{--                                        <p>On {{ $dt->getMetadata()['audit_created_at'] }}, {{ $dt->user->user_name }} [{{ $dt->getMetadata()['audit_ip_address'] }}] updated this record via {{ $dt->getMetadata()['audit_url'] }}</p>--}}
 {{--                                       --}}
                                         <ol>
