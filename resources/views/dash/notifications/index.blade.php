@@ -27,7 +27,7 @@
                                 @if($dt->type == 'App\Notifications\BlogNotify')
                                     <li class="list-group-item border-bottom rounded-0 d-flex justify-content-between align-items-center">
                                        <div class="d-flex justify-content-start align-items-center">
-                                           <h4 class="mb-0 me-3">- <i class="bi bi-image"></i>: </h4>
+                                           <h4 class="mb-0 me-3">- <i class="bi bi-image"></i> : </h4>
                                            <p class="mb-0">New Blog <b
                                                    class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
                                                has been created against <b
@@ -44,7 +44,7 @@
                                 @else
                                     <li class="list-group-item border-bottom rounded-0 d-flex justify-content-between align-items-center">
                                         <div class="d-flex justify-content-start align-items-center">
-                                            <h4 class="mb-0 me-3">- <i class="bi bi-calendar-event"></i>: </h4>
+                                            <h4 class="mb-0 me-3">- <i class="bi bi-calendar-event"></i> : </h4>
                                            <p class="mb-0">This Vacation has been Scheduled from
                                                <b class="text-primary text-capitalize">{{$dt->data['start_date'] ?? ''}}</b>
                                                to

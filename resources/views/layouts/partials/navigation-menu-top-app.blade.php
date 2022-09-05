@@ -1368,7 +1368,7 @@
                 {{--                    </div>--}}
                 {{--                    <!-- End Notification -->--}}
                 {{--                </li>--}}
-                @if(auth()->user()->is_admin)
+                @if(!auth()->user()->is_guest)
 
                     @php
                         $data = auth()->user()->unreadNotifications()->get();
@@ -1382,7 +1382,9 @@
                             @endif
                         </a>
                     </li>
+                @endif
 
+                @if(auth()->user()->is_admin)
                     <li class="nav-item">
                         <!-- Account -->
                         <div class="dropdown">
