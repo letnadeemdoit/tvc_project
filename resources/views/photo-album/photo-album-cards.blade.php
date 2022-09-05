@@ -1,7 +1,7 @@
 <div>
 @if($childAlbum > 0 )
     <div class="brick">
-        <div class="card border-0 text-white bg-transparent" style="box-shadow: 0px 11px 24px rgba(132, 133, 133, 0.16)">
+        <div class="card border-0 text-white bg-white" style="box-shadow: 0px 11px 24px rgba(132, 133, 133, 0.16)">
             <a href="{{route('guest.photo-album.index', ['parent_id' => $album->id])}}">
                 <img
                     src="{{ $album->getFileUrl() }}"
