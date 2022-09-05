@@ -132,7 +132,7 @@
                 <div class="card border-0 mb-4 tags-card">
                     <div class="card-body text-break p-3">
                         <h4 class="mb-3">Tags</h4>
-                        <div class="d-flex align-items-start">
+                        <div>
                             @foreach($existingTags as $tag)
                                 <a
                                     href="{{ route('guest.blog.index', ['tag' => $tag['name']]) }}"
