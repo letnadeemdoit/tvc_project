@@ -43,51 +43,84 @@
         <!-- End Col -->
 
         <div class="col-lg-7">
-            <div class="input-group input-group-sm-vertical">
-                <!-- Radio Check -->
-                <label class="form-control" for="month">
+            <div class="d-flex">
+                <div class="input-group input-group-sm-vertical">
+                    <!-- Radio Check -->
+                    <label class="form-control" for="month">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="month" value="dayGridMonth" checked />
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="month"
+                             value="dayGridMonth" checked/>
                       <span class="form-check-label">Month</span>
                     </span>
-                </label>
-                <!-- End Radio Check -->
+                    </label>
+                    <!-- End Radio Check -->
 
-                <!-- Radio Check -->
-                <label class="form-control" for="week">
+                    <!-- Radio Check -->
+                    <label class="form-control" for="week">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="week" value="timeGridWeek" />
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="week"
+                             value="timeGridWeek"/>
                       <span class="form-check-label">Week</span>
                     </span>
-                </label>
-                <!-- End Radio Check -->
+                    </label>
+                    <!-- End Radio Check -->
 
-                <!-- Radio Check -->
-                <label class="form-control" for="day">
+                    <!-- Radio Check -->
+                    <label class="form-control" for="day">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="day" value="timeGridDay" />
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="day"
+                             value="timeGridDay"/>
                       <span class="form-check-label">Day</span>
                     </span>
-                </label>
-                <!-- End Radio Check -->
+                    </label>
+                    <!-- End Radio Check -->
 
-                <!-- Radio Check -->
-                <label class="form-control" for="list">
+                    <!-- Radio Check -->
+                    <label class="form-control" for="list">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="list" value="listWeek" />
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="list"
+                             value="listWeek"/>
                       <span class="form-check-label">List</span>
                     </span>
-                </label>
-                <!-- End Radio Check -->
+                    </label>
+                    <!-- End Radio Check -->
 
-                <!-- Radio Check -->
-                <label class="form-control" for="rooms">
+                    <!-- Radio Check -->
+                    <label class="form-control" for="rooms">
                     <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="rooms" value="resourceTimeline" />
+                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="rooms"
+                             value="resourceTimeline"/>
                       <span class="form-check-label">Rooms</span>
                     </span>
-                </label>
-                <!-- End Radio Check -->
+                    </label>
+                    <!-- End Radio Check -->
+                </div>
+                @if($user->is_admin)
+                    <div class="dropdown ms-1">
+                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuProperties"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-offset="10,20">
+                            Properties: {{ $properties ? 'Customized' : 'All'  }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuProperties">
+                            <a href="#" class="dropdown-item {{ $properties === null || count($selectedHouses) === $this->houses->count()? 'active' : '' }}" wire:click.prevent="setProperty()">All</a>
+                            @foreach($this->houses as $house)
+                                <div class="dropdown-item {{ in_array($house->HouseID, $selectedHouses) ? 'active' : '' }}">
+                                    <div class="form-check">
+                                        <input
+                                            type="checkbox"
+                                            id="house{{ $house->HouseID }}"
+                                            class="form-check-input"
+                                            wire:model.defer="selectedHouses"
+                                            wire:change.prevent="setProperty({{ $house->HouseID }})"
+                                            value="{{ $house->HouseID }}"
+                                        />
+                                        <label class="form-check-label" for="house{{ $house->HouseID }}">{{ $house->HouseName }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
         <!-- End Col -->
@@ -141,40 +174,40 @@
                     datesSet(dateSet) {
                         $dateTitle.textContent = dateSet.view.title
                     },
-                    dateClick: function(info) {
+                    dateClick: function (info) {
                         @if($user->is_owner)
-                            window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr);
+                        window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr);
                         @elseif($user->is_guest)
-                            window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
+                        window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
                         @endif
                     },
                     eventClick: function (calEvent, jsEvent, view) {
                         @if($user->is_guest)
-                            window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
+                        window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
                         @else
-                            window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                        window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
                         @endif
                     },
-                    eventContent: function(arg) {
+                    eventContent: function (arg) {
                         let arrayOfDomNodes = []
                         // title event
                         let titleEvent = document.createElement('div')
-                        if(arg.event._def.title) {
+                        if (arg.event._def.title) {
                             titleEvent.innerHTML = arg.event._def.title
                             titleEvent.classList = "fc-event-title fc-sticky mx-2"
                         }
 
                         // image event
                         let imgEventWrap = document.createElement('div')
-                        if(arg.event.extendedProps.imageUrl) {
+                        if (arg.event.extendedProps.imageUrl) {
                             let imgEvent = '<img src="' + arg.event.extendedProps.imageUrl + '" class="mx-2 mt-2" style="width: 30px; height: 30px; border-radius: 100%">'
                             imgEventWrap.classList = "fc-event-img"
                             imgEventWrap.innerHTML = imgEvent;
                         }
 
-                        arrayOfDomNodes = [ imgEventWrap, titleEvent ]
+                        arrayOfDomNodes = [imgEventWrap, titleEvent]
 
-                        return { domNodes: arrayOfDomNodes }
+                        return {domNodes: arrayOfDomNodes}
                     },
                     events: @js($events),
                 });
@@ -205,7 +238,7 @@
                 });
 
                 $('input[name=calendar_view]').on('change', function (event) {
-                    fullcalendarEditable.changeView($( 'input[name=calendar_view]:checked').val());
+                    fullcalendarEditable.changeView($('input[name=calendar_view]:checked').val());
                 });
 
                 $todayBtn.addEventListener('click', function () {
