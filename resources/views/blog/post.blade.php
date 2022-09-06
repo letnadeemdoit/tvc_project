@@ -236,15 +236,11 @@
 
                 let tagselect = document.querySelectorAll('#badge-tag');
                 tagselect.forEach(element => {
-                    console.log(element);
                     let width = $(element).text().length;
                     if (width > 100){
                         $(element).removeClass('me-3');
                     }
-
                 });
-                console.log(tagselect);
-
 
             </script>
 
