@@ -1,5 +1,5 @@
 <div class="container  pb-5 pt-5">
-    <div class="d-flex justify-content-center justify-content-md-start local-guide-tabs">
+{{--    <div class="d-flex justify-content-center justify-content-md-start local-guide-tabs">--}}
         <div class="category-cards mb-3 d-flex scrollbar" id="category-bar">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
@@ -53,7 +53,7 @@
 {{--            </ul>--}}
 {{--        </nav>--}}
 
-    </div>
+{{--    </div>--}}
     <div class="row mt-5">
         @if(isset($data))
             @foreach($data as $dt)
@@ -93,7 +93,7 @@
 
         let elementwidth = $('#category-bar').text().length;
         console.log(elementwidth);
-        if(elementwidth > 1980){
+        if(elementwidth > 1960){
             console.log("elementwidth");
             $('#left-button').show();
             $('#right-button').show();
