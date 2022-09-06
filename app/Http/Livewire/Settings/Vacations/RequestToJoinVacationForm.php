@@ -40,6 +40,7 @@ class RequestToJoinVacationForm extends Component
                 'vacation_name' => $this->vacation->VacationName,
                 'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
                 'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
+                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') .' - '.$this->vacation->end_datetime->format('m/d/Y h:i')
             ];
         } else {
             $this->state = [];
@@ -49,6 +50,7 @@ class RequestToJoinVacationForm extends Component
                     $initialDatetime = Carbon::parse($initialDate);
                     $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
                     $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' .$initialDatetime->format('m/d/Y h:i');
                 } catch (\Exception $e) {
 
                 }

@@ -1,7 +1,7 @@
 <div class="pt-55  category-cards">
 
-{{--    <div class="d-flex justify-content-center justify-content-md-start ms-0 ms-md-3">--}}
-        <div class="category-cards mb-3 d-flex scrollbar" id="category-bar">
+    <div class="d-flex justify-content-center justify-content-md-start ms-0 ms-md-3">
+        <div class="category-cards mb-3 d-flex scrollbar" id="category-bar" style="max-width: 100%">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                     <li class="nav-item">
@@ -11,8 +11,7 @@
                     </li>
                 </ul>
                 <a
-                    type="button"
-                    class="btn btn-white scroll-icons align-items-center"
+                    class="btn btn-white scroll-icons align-items-center d-flex"
                     id="left-button"
                 >
                     <i class="bi bi-chevron-left"></i>
@@ -27,8 +26,7 @@
                     @endforeach
                 </ul>
                 <a
-                    type="button"
-                    class="btn btn-white scroll-icons align-items-center"
+                    class="btn btn-white scroll-icons align-items-center d-flex"
                     id="right-button"
                 >
                     <i class="bi bi-chevron-right"></i>
@@ -63,7 +61,7 @@
 {{--            </ul>--}}
 {{--        </nav>--}}
 
-{{--    </div>--}}
+    </div>
 
 
     <!-- dots img -->
