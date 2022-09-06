@@ -36,6 +36,8 @@
                 <thead class="thead-light">
                 <tr>
                     <th style="width: 100px">Name</th>
+                    <th>House Name</th>
+                    <th>Created By</th>
                     <th>Schedule Dates</th>
                     <th>Action</th>
                 </tr>
@@ -46,6 +48,8 @@
                 @foreach($data as $dt)
                     <tr>
                         <td style="width: 100px">{{$dt->VacationName}}</td>
+                        <td>{{ $dt->house ? $dt->house->HouseName : '' }}</td>
+                        <td>{{ $dt->owner ? $dt->owner->name : '-' }}</td>
                         <td>{{ $dt->scheduled_dates }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -87,7 +88,13 @@ class CreateOrUpdateBlogItemForm extends Component
         }
 
         Validator::make($inputs, [
-            'Subject' => 'required|string|max:255',
+            'Subject' => [
+                'required',
+                $this->isCreating ? Rule::unique('Blog')->where(function ($query){
+                    return $query->where('HouseId', $this->user->HouseId);
+                }) : 'max:255',
+            ],
+//            'Subject' => 'required|unique:Blog|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Contents' => 'required|max:100000',
             'category_id' => 'required',
