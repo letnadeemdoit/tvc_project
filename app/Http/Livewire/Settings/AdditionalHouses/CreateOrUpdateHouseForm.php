@@ -87,6 +87,7 @@ class CreateOrUpdateHouseForm extends Component
             'city' => ['nullable', 'string', 'max:40'],
             'state' => ['nullable', 'string', 'max:20'],
             'zipcode' => ['nullable', 'string', 'max:10'],
+
         ])->validateWithBag('saveAdditionalHouseCU');
 
         $this->house->fill([

@@ -21,134 +21,134 @@
             <form wire:submit.prevent="saveAdditionalHouseCU" method="post">
 
 
-{{--                <div--}}
-{{--                    class="mb-3"--}}
-{{--                    x-data="{isFileDropping: false, isUploadingFile: false, uploadingProgress: 0}"--}}
-{{--                    x-on:drop="isFileDropping = false"--}}
-{{--                    x-on:drop.prevent="--}}
-{{--                        if ($event.dataTransfer.files.length > 0 ) {--}}
-{{--                            isUploadingFile = true;--}}
-{{--                            var allowedExtensions = /(\/jpg|\/jpeg|\/png|\/gif)$/i;--}}
-{{--                            var fileTypeCheck = $event.dataTransfer.files[0].type;--}}
-{{--                            if (!allowedExtensions.exec(fileTypeCheck)) {--}}
-{{--                                $('.showErrorMsg').addClass('d-block');--}}
-{{--                                return;--}}
-{{--                             }--}}
-{{--                            $('.showErrorMsg').addClass('d-none');--}}
-{{--                            @this.upload( 'file', $event.dataTransfer.files[0],--}}
-{{--                                (uploadedFilename) => {--}}
-{{--                                }, () => {--}}
+                {{--                <div--}}
+                {{--                    class="mb-3"--}}
+                {{--                    x-data="{isFileDropping: false, isUploadingFile: false, uploadingProgress: 0}"--}}
+                {{--                    x-on:drop="isFileDropping = false"--}}
+                {{--                    x-on:drop.prevent="--}}
+                {{--                        if ($event.dataTransfer.files.length > 0 ) {--}}
+                {{--                            isUploadingFile = true;--}}
+                {{--                            var allowedExtensions = /(\/jpg|\/jpeg|\/png|\/gif)$/i;--}}
+                {{--                            var fileTypeCheck = $event.dataTransfer.files[0].type;--}}
+                {{--                            if (!allowedExtensions.exec(fileTypeCheck)) {--}}
+                {{--                                $('.showErrorMsg').addClass('d-block');--}}
+                {{--                                return;--}}
+                {{--                             }--}}
+                {{--                            $('.showErrorMsg').addClass('d-none');--}}
+                {{--                            @this.upload( 'file', $event.dataTransfer.files[0],--}}
+                {{--                                (uploadedFilename) => {--}}
+                {{--                                }, () => {--}}
 
-{{--                                }, (event) => {--}}
-{{--                                    uploadingProgress = event.detail.progress;--}}
-{{--                                });--}}
-{{--                        }--}}
-{{--                    "--}}
-{{--                    x-on:dragover.prevent="isFileDropping = true"--}}
-{{--                    x-on:dragleave.prevent="isFileDropping = false"--}}
-{{--                    @modal-is-showing--}}
-{{--                >--}}
+                {{--                                }, (event) => {--}}
+                {{--                                    uploadingProgress = event.detail.progress;--}}
+                {{--                                });--}}
+                {{--                        }--}}
+                {{--                    "--}}
+                {{--                    x-on:dragover.prevent="isFileDropping = true"--}}
+                {{--                    x-on:dragleave.prevent="isFileDropping = false"--}}
+                {{--                    @modal-is-showing--}}
+                {{--                >--}}
 
-{{--                    <label class="form-label" for="">House Image</label>--}}
-{{--                    <div class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">--}}
-{{--                        @if($house && !is_null($house->image))--}}
-{{--                            --}}{{--           TODO:  need to fix the design               --}}
-{{--                            <div class="col h-100">--}}
-{{--                                <div class="dz-preview dz-file-preview">--}}
-{{--                                    <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"--}}
-{{--                                       wire:click.prevent="deleteFile">--}}
-{{--                                        <small class="bi-x" data-dz-remove></small>--}}
-{{--                                    </a>--}}
-{{--                                    <div class="dz-details d-flex">--}}
-{{--                                        <div class="dz-img flex-shrink-0">--}}
-{{--                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $house->getFileUrl() }}"/>--}}
-{{--                                        </div>--}}
+                {{--                    <label class="form-label" for="">House Image</label>--}}
+                {{--                    <div class="js-dropzone row dz-dropzone dz-dropzone-card border-primary bg-primary-light mx-auto">--}}
+                {{--                        @if($house && !is_null($house->image))--}}
+                {{--                            --}}{{--           TODO:  need to fix the design               --}}
+                {{--                            <div class="col h-100">--}}
+                {{--                                <div class="dz-preview dz-file-preview">--}}
+                {{--                                    <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"--}}
+                {{--                                       wire:click.prevent="deleteFile">--}}
+                {{--                                        <small class="bi-x" data-dz-remove></small>--}}
+                {{--                                    </a>--}}
+                {{--                                    <div class="dz-details d-flex">--}}
+                {{--                                        <div class="dz-img flex-shrink-0">--}}
+                {{--                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail src="{{ $house->getFileUrl() }}"/>--}}
+                {{--                                        </div>--}}
 
-{{--                                        <div class="dz-file-wrapper flex-grow-1">--}}
-{{--                                            <h6 class="dz-filename">--}}
-{{--                                                @if($file)--}}
-{{--                                                    <span class="dz-title" data-dz-name>--}}
-{{--                                                        {{ $file->getClientOriginalName() }}--}}
-{{--                                                    </span>--}}
-{{--                                                @endif--}}
-{{--                                            </h6>--}}
-{{--                                            <div class="dz-size" data-dz-size></div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="d-flex align-items-center">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                        <div class="dz-message">--}}
-{{--                            <h5>Drag and drop your file here</h5>--}}
-{{--                            <p class="mb-2">or</p>--}}
-{{--                            <div class="text-center"--}}
-{{--                                 x-on:livewire-upload-start="isUploadingFile = true"--}}
-{{--                                 x-on:livewire-upload-finish=""--}}
-{{--                                 x-on:livewire-upload-error=""--}}
-{{--                                 x-on:livewire-upload-progress="uploadingProgress = $event.detail.progress"--}}
-{{--                            >--}}
-{{--                                <input--}}
-{{--                                    id="file_upload"--}}
-{{--                                    type="file"--}}
-{{--                                    name="image"--}}
-{{--                                    hidden="hidden"--}}
-{{--                                    wire:model="file"--}}
-{{--                                    x-ref="file_upload"--}}
-{{--                                    accept=".jpg,.png,.jpeg,.gif,.tiff"--}}
-{{--                                />--}}
-{{--                                <button class="btn bg-primary btn-sm text-white"--}}
-{{--                                        @click.prevent="$refs.file_upload.click()">Upload Image--}}
-{{--                                </button>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col h-100 mt-4" style="display: none" x-show="isUploadingFile">--}}
-{{--                            <div class="dz-preview dz-file-preview">--}}
-{{--                                <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"--}}
-{{--                                   @click.prevent="$wire.set('file', null); isUploadingFile = false">--}}
-{{--                                    <small class="bi-x" data-dz-remove></small>--}}
-{{--                                </a>--}}
-{{--                                <div class="dz-details d-flex">--}}
-{{--                                    <div class="dz-img flex-shrink-0">--}}
-{{--                                        @if($file && in_array($file->getClientOriginalExtension(), config('livewire.temporary_file_upload.preview_mimes')))--}}
-{{--                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail--}}
-{{--                                                 src="{{ $file->temporaryUrl() }}"/>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
+                {{--                                        <div class="dz-file-wrapper flex-grow-1">--}}
+                {{--                                            <h6 class="dz-filename">--}}
+                {{--                                                @if($file)--}}
+                {{--                                                    <span class="dz-title" data-dz-name>--}}
+                {{--                                                        {{ $file->getClientOriginalName() }}--}}
+                {{--                                                    </span>--}}
+                {{--                                                @endif--}}
+                {{--                                            </h6>--}}
+                {{--                                            <div class="dz-size" data-dz-size></div>--}}
+                {{--                                        </div>--}}
+                {{--                                    </div>--}}
+                {{--                                    <div class="d-flex align-items-center">--}}
+                {{--                                    </div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        @endif--}}
+                {{--                        <div class="dz-message">--}}
+                {{--                            <h5>Drag and drop your file here</h5>--}}
+                {{--                            <p class="mb-2">or</p>--}}
+                {{--                            <div class="text-center"--}}
+                {{--                                 x-on:livewire-upload-start="isUploadingFile = true"--}}
+                {{--                                 x-on:livewire-upload-finish=""--}}
+                {{--                                 x-on:livewire-upload-error=""--}}
+                {{--                                 x-on:livewire-upload-progress="uploadingProgress = $event.detail.progress"--}}
+                {{--                            >--}}
+                {{--                                <input--}}
+                {{--                                    id="file_upload"--}}
+                {{--                                    type="file"--}}
+                {{--                                    name="image"--}}
+                {{--                                    hidden="hidden"--}}
+                {{--                                    wire:model="file"--}}
+                {{--                                    x-ref="file_upload"--}}
+                {{--                                    accept=".jpg,.png,.jpeg,.gif,.tiff"--}}
+                {{--                                />--}}
+                {{--                                <button class="btn bg-primary btn-sm text-white"--}}
+                {{--                                        @click.prevent="$refs.file_upload.click()">Upload Image--}}
+                {{--                                </button>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="col h-100 mt-4" style="display: none" x-show="isUploadingFile">--}}
+                {{--                            <div class="dz-preview dz-file-preview">--}}
+                {{--                                <a href="#" class="d-flex justify-content-end dz-close-icon text-decoration-none"--}}
+                {{--                                   @click.prevent="$wire.set('file', null); isUploadingFile = false">--}}
+                {{--                                    <small class="bi-x" data-dz-remove></small>--}}
+                {{--                                </a>--}}
+                {{--                                <div class="dz-details d-flex">--}}
+                {{--                                    <div class="dz-img flex-shrink-0">--}}
+                {{--                                        @if($file && in_array($file->getClientOriginalExtension(), config('livewire.temporary_file_upload.preview_mimes')))--}}
+                {{--                                            <img class="img-fluid dz-img-inner" data-dz-thumbnail--}}
+                {{--                                                 src="{{ $file->temporaryUrl() }}"/>--}}
+                {{--                                        @endif--}}
+                {{--                                    </div>--}}
 
-{{--                                    <div class="dz-file-wrapper flex-grow-1">--}}
-{{--                                        <h6 class="dz-filename">--}}
-{{--                                            @if($file)--}}
-{{--                                                <span class="dz-title" data-dz-name>--}}
-{{--                                                    {{ $file->getClientOriginalName() }}--}}
-{{--                                                </span>--}}
-{{--                                            @endif--}}
-{{--                                        </h6>--}}
-{{--                                        <div class="dz-size" data-dz-size></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                {{--                                    <div class="dz-file-wrapper flex-grow-1">--}}
+                {{--                                        <h6 class="dz-filename">--}}
+                {{--                                            @if($file)--}}
+                {{--                                                <span class="dz-title" data-dz-name>--}}
+                {{--                                                    {{ $file->getClientOriginalName() }}--}}
+                {{--                                                </span>--}}
+                {{--                                            @endif--}}
+                {{--                                        </h6>--}}
+                {{--                                        <div class="dz-size" data-dz-size></div>--}}
+                {{--                                    </div>--}}
+                {{--                                </div>--}}
 
-{{--                                <div class="dz-progress progress">--}}
-{{--                                    <div--}}
-{{--                                        class="dz-upload progress-bar bg-success"--}}
-{{--                                        role="progressbar"--}}
-{{--                                        x-bind:style="'width:' + `${uploadingProgress}%`"--}}
-{{--                                        aria-valuenow="0"--}}
-{{--                                        aria-valuemin="0"--}}
-{{--                                        aria-valuemax="100"--}}
-{{--                                        data-dz-uploadprogress></div>--}}
-{{--                                </div>--}}
-{{--                                <div class="d-flex align-items-center">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <span class="showErrorMsg fw-semi-bold mt-1" style="font-size: 13px !important;color: #ff0000 !important;display: none">Only jpg,png,giff,tiff are allowed</span>--}}
-{{--                    @error('file')--}}
-{{--                    <span class="invalid-feedback d-block">{{$message}}</span>--}}
-{{--                    @enderror--}}
-{{--                </div>--}}
+                {{--                                <div class="dz-progress progress">--}}
+                {{--                                    <div--}}
+                {{--                                        class="dz-upload progress-bar bg-success"--}}
+                {{--                                        role="progressbar"--}}
+                {{--                                        x-bind:style="'width:' + `${uploadingProgress}%`"--}}
+                {{--                                        aria-valuenow="0"--}}
+                {{--                                        aria-valuemin="0"--}}
+                {{--                                        aria-valuemax="100"--}}
+                {{--                                        data-dz-uploadprogress></div>--}}
+                {{--                                </div>--}}
+                {{--                                <div class="d-flex align-items-center">--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                    <span class="showErrorMsg fw-semi-bold mt-1" style="font-size: 13px !important;color: #ff0000 !important;display: none">Only jpg,png,giff,tiff are allowed</span>--}}
+                {{--                    @error('file')--}}
+                {{--                    <span class="invalid-feedback d-block">{{$message}}</span>--}}
+                {{--                    @enderror--}}
+                {{--                </div>--}}
                 <div>
                     @if($house && $house->image)
                         <div class="d-flex mb-3">
@@ -277,47 +277,141 @@
 
                 </div>
 
+                {{--                <div class="row mb-3">--}}
+                {{--                    <div class="col-md-4">--}}
+                {{--                        <label class="form-label" for="city">City:</label>--}}
+                {{--                        <input--}}
+                {{--                            type="text"--}}
+                {{--                            id="city"--}}
+                {{--                            wire:model.defer="state.city"--}}
+                {{--                            name="city"--}}
+                {{--                            class="form-control @error('city') is-invalid @enderror"--}}
+                {{--                            placeholder="City"--}}
+                {{--                        />--}}
+                {{--                        @error('city')--}}
+                {{--                        <span class="invalid-feedback">{{$message}}</span>--}}
+                {{--                        @enderror--}}
+                {{--                    </div>--}}
+                {{--                    <div class="col-md-4">--}}
+                {{--                        <label class="form-label" for="state">State:</label>--}}
+                {{--                        <input--}}
+                {{--                            type="text"--}}
+                {{--                            id="state"--}}
+                {{--                            wire:model.defer="state.state"--}}
+                {{--                            name="state"--}}
+                {{--                            class="form-control @error('state') is-invalid @enderror"--}}
+                {{--                            placeholder="State"--}}
+                {{--                        />--}}
+                {{--                        @error('state')--}}
+                {{--                        <span class="invalid-feedback">{{$message}}</span>--}}
+                {{--                        @enderror--}}
+                {{--                    </div>--}}
+                {{--                    <div class="col-md-4">--}}
+                {{--                        <label class="form-label" for="zipcode">Zipcode:</label>--}}
+                {{--                        <input--}}
+                {{--                            type="text"--}}
+                {{--                            id="zipcode"--}}
+                {{--                            wire:model.defer="state.zipcode"--}}
+                {{--                            name="zipcode"--}}
+                {{--                            class="form-control @error('zipcode') is-invalid @enderror"--}}
+                {{--                            placeholder="Zipcode"--}}
+                {{--                        />--}}
+                {{--                        @error('zipcode')--}}
+                {{--                        <span class="invalid-feedback">{{$message}}</span>--}}
+                {{--                        @enderror--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+
+{{--                <hr>--}}
+{{--                --}}
 {{--                <div class="row mb-3">--}}
-{{--                    <div class="col-md-4">--}}
-{{--                        <label class="form-label" for="city">City:</label>--}}
+{{--                    <div class="form-group col-md-6">--}}
+{{--                        <label class="form-label" for="user_name">Username:</label>--}}
 {{--                        <input--}}
 {{--                            type="text"--}}
-{{--                            id="city"--}}
-{{--                            wire:model.defer="state.city"--}}
-{{--                            name="city"--}}
-{{--                            class="form-control @error('city') is-invalid @enderror"--}}
-{{--                            placeholder="City"--}}
+{{--                            class="form-control @error('user_name') is-invalid @enderror"--}}
+{{--                            name="user_name"--}}
+{{--                            placeholder="User Name"--}}
+{{--                            id="user_name"--}}
+{{--                            wire:model.defer="state.user_name"--}}
 {{--                        />--}}
-{{--                        @error('city')--}}
-{{--                        <span class="invalid-feedback">{{$message}}</span>--}}
+{{--                        @error('user_name')--}}
+{{--                        <span class="invalid-feedback">{{ $message }}</span>--}}
 {{--                        @enderror--}}
 {{--                    </div>--}}
-{{--                    <div class="col-md-4">--}}
-{{--                        <label class="form-label" for="state">State:</label>--}}
+
+{{--                    <div class="form-group mb-3 col-md-6">--}}
+{{--                        <label class="form-label" for="email">Email:</label>--}}
 {{--                        <input--}}
 {{--                            type="text"--}}
-{{--                            id="state"--}}
-{{--                            wire:model.defer="state.state"--}}
-{{--                            name="state"--}}
-{{--                            class="form-control @error('state') is-invalid @enderror"--}}
-{{--                            placeholder="State"--}}
+{{--                            class="form-control @error('email') is-invalid @enderror"--}}
+{{--                            name="email"--}}
+{{--                            placeholder="Email"--}}
+{{--                            id="email"--}}
+{{--                            wire:model.defer="state.email"--}}
 {{--                        />--}}
-{{--                        @error('state')--}}
-{{--                        <span class="invalid-feedback">{{$message}}</span>--}}
+{{--                        @error('email')--}}
+{{--                        <span class="invalid-feedback">{{ $message }}</span>--}}
 {{--                        @enderror--}}
 {{--                    </div>--}}
-{{--                    <div class="col-md-4">--}}
-{{--                        <label class="form-label" for="zipcode">Zipcode:</label>--}}
+{{--                </div>--}}
+{{--                <div class="row mb-3">--}}
+{{--                    <div class="form-group col-md-6">--}}
+{{--                        <label class="form-label" for="first_name">First Name:</label>--}}
 {{--                        <input--}}
 {{--                            type="text"--}}
-{{--                            id="zipcode"--}}
-{{--                            wire:model.defer="state.zipcode"--}}
-{{--                            name="zipcode"--}}
-{{--                            class="form-control @error('zipcode') is-invalid @enderror"--}}
-{{--                            placeholder="Zipcode"--}}
+{{--                            class="form-control @error('first_name') is-invalid @enderror"--}}
+{{--                            name="first_name"--}}
+{{--                            placeholder="First Name"--}}
+{{--                            id="first_name"--}}
+{{--                            wire:model.defer="state.first_name"--}}
 {{--                        />--}}
-{{--                        @error('zipcode')--}}
-{{--                        <span class="invalid-feedback">{{$message}}</span>--}}
+{{--                        @error('first_name')--}}
+{{--                        <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group col-md-6">--}}
+{{--                        <label class="form-label" for="last_name">Last Name:</label>--}}
+{{--                        <input--}}
+{{--                            type="text"--}}
+{{--                            class="form-control @error('last_name') is-invalid @enderror"--}}
+{{--                            name="last_name"--}}
+{{--                            placeholder="Last Name"--}}
+{{--                            id="last_name"--}}
+{{--                            wire:model.defer="state.last_name"--}}
+{{--                        />--}}
+{{--                        @error('last_name')--}}
+{{--                        <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="row mb-3">--}}
+{{--                    <div class="form-group col-md-6">--}}
+{{--                        <label class="form-label" for="password">Password:</label>--}}
+{{--                        <input--}}
+{{--                            type="password"--}}
+{{--                            class="form-control @error('password') is-invalid @enderror"--}}
+{{--                            name="password"--}}
+{{--                            placeholder="Password"--}}
+{{--                            id="password"--}}
+{{--                            wire:model.defer="state.password"--}}
+{{--                        />--}}
+{{--                        @error('password')--}}
+{{--                        <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group col-md-6">--}}
+{{--                        <label class="form-label" for="confirm_password">Confirm Password:</label>--}}
+{{--                        <input--}}
+{{--                            type="password"--}}
+{{--                            class="form-control @error('password_confirmation') is-invalid @enderror"--}}
+{{--                            name="password_confirmation"--}}
+{{--                            placeholder="Confirm Password"--}}
+{{--                            id="confirm_password"--}}
+{{--                            wire:model.defer="state.password_confirmation"--}}
+{{--                        />--}}
+{{--                        @error('password_confirmation')--}}
+{{--                        <span class="invalid-feedback">{{ $message }}</span>--}}
 {{--                        @enderror--}}
 {{--                    </div>--}}
 {{--                </div>--}}
