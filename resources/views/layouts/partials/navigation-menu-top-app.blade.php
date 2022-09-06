@@ -84,6 +84,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 @if(!auth()->user()->is_guest)
                                     <a class="dropdown-item"
                                        href="{{ route('dash.settings.house-setting') }}">
@@ -136,9 +137,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings
-                            </a>
+                            @if(!auth()->user()->is_guest)
+                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings
+                                </a>
+                            @endif
                             <div class="dropdown-divider"></div>
 
                             <form method="POST" action="{{ route('logout') }}">

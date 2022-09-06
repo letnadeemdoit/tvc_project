@@ -42,7 +42,9 @@
                     </div>
                     <!-- End Collapse -->
 
+                    @if(!auth()->user()->is_guest)
                     <span class="dropdown-header mt-4">Menu</span>
+                    @endif
                     <small class="bi-three-dots nav-subtitle-replacer"></small>
                     <div id="navbarVerticalMenuPagesMenu">
                         @if(!auth()->user()->is_guest)
