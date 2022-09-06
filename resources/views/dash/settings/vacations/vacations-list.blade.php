@@ -1,6 +1,6 @@
 <div>
     @push('stylesheets')
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     @endpush
     <div class="card">
         <!-- Header -->
@@ -29,7 +29,49 @@
                     <!-- End Search -->
                 </form>
             </div>
+            <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
+                <!-- End Datatable Info -->
+                @if($user->is_owner && !$user->is_owner_only)
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-white btn-sm dropdown-toggle w-100"
+                                id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-people-fill me-2"></i>
+                            Owner: {{ $this->owner ? optional(\App\Models\User::where('user_id', $this->owner)->where('HouseId', $this->user->HouseId)->first())->name : 'You' }}
+                        </button>
+
+                        <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="usersExportDropdown" style="">
+                            <span class="dropdown-header">You</span>
+                            <a id="you{{ $user->user_id }}" class="dropdown-item {{ $this->owner ?: 'active' }}"
+                               href="#" wire:click.prevent="$set('owner', null)">
+                                <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $user->profile_photo_url }}"
+                                     alt="{{ $user->name }}">
+                                {{ $user->name }}
+                            </a>
+                            <span class="dropdown-header">Owners</span>
+                            @foreach($this->owners as $owner)
+                                <a id="owner{{ $owner->user_id }}"
+                                   class="dropdown-item {{ $this->owner === $owner->user_id ? 'active' : '' }}" href="#"
+                                   wire:click.prevent="$set('owner', {{ $owner->user_id }})">
+                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $owner->profile_photo_url }}"
+                                         alt="{{ $owner->name }}">
+                                    {{ $owner->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="datetimes"
+                        style="min-width: 200px"
+                        readonly
+                    />
+                </div>
+            </div>
         </div>
+
         <!-- End Header -->
 
         <!-- Table -->
@@ -47,29 +89,29 @@
                 </thead>
 
                 <tbody>
-                    @foreach($data as $dt)
-                        <tr>
-                            <td style="width: 100px">{{$dt->VacationName}}</td>
-                            <td>{{ $dt->house ? $dt->house->HouseName : '' }}</td>
-                            <td>{{ $dt->owner ? $dt->owner->name : '-' }}</td>
-                            <td>{{ $dt->scheduled_dates }}</td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Edit group">
-                                    <a class="btn btn-white" href="#"
-                                       wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"
-                                    >
-                                        <i class="bi-pencil me-1 text-success"></i> Edit
-                                    </a>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger btn-sm"
-                                        wire:click.prevent="destroy({{ $dt->VacationId }})"
-                                    >
-                                        <i class="bi-trash"></i>
-                                    </button>
+                @foreach($data as $dt)
+                    <tr>
+                        <td style="width: 100px">{{$dt->VacationName}}</td>
+                        <td>{{ $dt->house ? $dt->house->HouseName : '' }}</td>
+                        <td>{{ $dt->owner ? $dt->owner->name : '-' }}</td>
+                        <td>{{ $dt->scheduled_dates }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Edit group">
+                                <a class="btn btn-white" href="#"
+                                   wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"
+                                >
+                                    <i class="bi-pencil me-1 text-success"></i> Edit
+                                </a>
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm"
+                                    wire:click.prevent="destroy({{ $dt->VacationId }})"
+                                >
+                                    <i class="bi-trash"></i>
+                                </button>
 
-                                </div>
-                            </td>
+                            </div>
+                        </td>
 
                     </tr>
                 @endforeach
@@ -126,24 +168,27 @@
     </div>
     @push('scripts')
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-            <script>
-                $(function() {
-                    $('input[name="datetimes"]').daterangepicker({
-                        opens: 'left',
-                        // timePicker: true,
-                        startDate: '{{ $from }}',
-                        endDate: '{{ $to }}',
-                        locale: {
-                            format: 'DD/MM/YYYY'
-                        }
-                    });
-
-                    $('input[name="datetimes"]').on('apply.daterangepicker', function(ev, picker) {
-                        @this.set('from', picker.startDate.format('DD-MM-YYYY'));
-                        @this.set('to', picker.endDate.format('DD-MM-YYYY'));
-                    });
+        <script type="text/javascript"
+                src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script>
+            $(function () {
+                $('input[name="datetimes"]').daterangepicker({
+                    opens: 'left',
+                    // timePicker: true,
+                    startDate: '{{ $from }}',
+                    endDate: '{{ $to }}',
+                    locale: {
+                        format: 'DD/MM/YYYY'
+                    }
                 });
-            </script>
+
+                $('input[name="datetimes"]').on('apply.daterangepicker', function (ev, picker) {
+                    @this.
+                    set('from', picker.startDate.format('DD-MM-YYYY'));
+                    @this.
+                    set('to', picker.endDate.format('DD-MM-YYYY'));
+                });
+            });
+        </script>
     @endpush
 </div>
