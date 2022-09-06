@@ -1,4 +1,7 @@
 <div>
+    @push('stylesheets')
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    @endpush
     <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
@@ -44,50 +47,29 @@
                 </thead>
 
                 <tbody>
+                    @foreach($data as $dt)
+                        <tr>
+                            <td style="width: 100px">{{$dt->VacationName}}</td>
+                            <td>{{ $dt->house ? $dt->house->HouseName : '' }}</td>
+                            <td>{{ $dt->owner ? $dt->owner->name : '-' }}</td>
+                            <td>{{ $dt->scheduled_dates }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Edit group">
+                                    <a class="btn btn-white" href="#"
+                                       wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"
+                                    >
+                                        <i class="bi-pencil me-1 text-success"></i> Edit
+                                    </a>
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm"
+                                        wire:click.prevent="destroy({{ $dt->VacationId }})"
+                                    >
+                                        <i class="bi-trash"></i>
+                                    </button>
 
-                @foreach($data as $dt)
-                    <tr>
-                        <td style="width: 100px">{{$dt->VacationName}}</td>
-                        <td>{{ $dt->house ? $dt->house->HouseName : '' }}</td>
-                        <td>{{ $dt->owner ? $dt->owner->name : '-' }}</td>
-                        <td>{{ $dt->scheduled_dates }}</td>
-
-
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Edit group">
-                                <a class="btn btn-white" href="#"
-                                   wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"
-                                >
-                                    <i class="bi-pencil me-1 text-success"></i> Edit
-                                </a>
-                                <button
-                                    type="button"
-                                    class="btn btn-danger btn-sm"
-                                    wire:click.prevent="destroy({{ $dt->VacationId }})"
-                                >
-                                    <i class="bi-trash"></i>
-                                </button>
-
-                            </div>
-                        </td>
-
-
-
-{{--                        <td>--}}
-{{--                            <div class="btn-group" role="group" aria-label="Edit group">--}}
-{{--                                <a class="btn btn-white" href="#"--}}
-{{--                                   wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"--}}
-{{--                                >--}}
-{{--                                    <i class="bi-pencil me-1 text-success"></i> Edit--}}
-{{--                                </a>--}}
-{{--                                <a class="btn btn-white" href="#"--}}
-{{--                                   wire:click.prevent="destroy({{ $dt->VacationId }})"--}}
-{{--                                >--}}
-{{--                                    <i class="bi-trash text-danger"></i>--}}
-{{--                                </a>--}}
-
-{{--                            </div>--}}
-{{--                        </td>--}}
+                                </div>
+                            </td>
 
                     </tr>
                 @endforeach
@@ -142,4 +124,26 @@
         </div>
         <!-- End Footer -->
     </div>
+    @push('scripts')
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+            <script>
+                $(function() {
+                    $('input[name="datetimes"]').daterangepicker({
+                        opens: 'left',
+                        // timePicker: true,
+                        startDate: '{{ $from }}',
+                        endDate: '{{ $to }}',
+                        locale: {
+                            format: 'DD/MM/YYYY'
+                        }
+                    });
+
+                    $('input[name="datetimes"]').on('apply.daterangepicker', function(ev, picker) {
+                        @this.set('from', picker.startDate.format('DD-MM-YYYY'));
+                        @this.set('to', picker.endDate.format('DD-MM-YYYY'));
+                    });
+                });
+            </script>
+    @endpush
 </div>
