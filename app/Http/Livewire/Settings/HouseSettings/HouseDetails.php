@@ -76,6 +76,8 @@ class HouseDetails extends Component
 
         Validator::make($inputs, [
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
+            'primary_house_name' => ['nullable', 'string', 'max:100'],
+
             'name' => [
                 'required',
                 'string',

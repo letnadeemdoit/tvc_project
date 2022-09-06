@@ -155,6 +155,11 @@ class Vacation extends Model implements Auditable
         return $this->belongsTo(User::class, 'OwnerId', 'user_id');
     }
 
+    public function house()
+    {
+        return $this->belongsTo(House::class, 'HouseId', 'HouseID');
+    }
+
     public function toCalendar() {
         return [
             'id' => $this->VacationId,

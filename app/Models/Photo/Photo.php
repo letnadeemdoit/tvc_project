@@ -98,9 +98,9 @@ class Photo extends Model implements Auditable
      * @var array
      */
     protected $auditExclude = [
+        'PhotoId',
         'HouseId',
         'album_id',
-        'description',
     ];
 
 //    $this->file->storeAs('photos', "photo_{$HouseId}_{$PhotoId}.jpg", 'public');
