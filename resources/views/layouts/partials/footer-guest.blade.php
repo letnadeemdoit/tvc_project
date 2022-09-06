@@ -5,17 +5,18 @@
             <div class="col-12 col-lg-6 col-xl-6">
                 <div class="fs-6 footer-text mb-2 mb-md-0 text-white d-flex align-items-center justify-content-center justify-content-lg-start">
                     <p class="mb-0"> Powered by {{ config('app.name') }}.</p>
-                   <div class="d-inline">
                     <a href="#" class="text-decoration-none text-white ps-3">
-                        <i class="fa-brands fa-facebook-f fs-3"></i>
+{{--                        <i class="fa-brands fa-facebook-f fs-3"></i>--}}
+                        <img src="{{asset('/images/images-home/facebook.svg')}}" class="img-fluid">
                     </a>
                     <a href="#" class="text-decoration-none text-white">
-                        <i class="bi-twitter mx-3 fs-3"></i>
+{{--                        <i class="bi-twitter mx-3 fs-3"></i>--}}
+                        <img src="{{asset('/images/images-home/twitter.svg')}}" class="img-fluid mx-3">
                     </a>
                     <a href="#" class="text-decoration-none text-white">
-                        <i class="fa-brands fa-instagram fs-3"></i>
+{{--                        <i class="fa-brands fa-instagram fs-3"></i>--}}
+                        <img src="{{asset('/images/images-home/instagram.svg')}}" class="img-fluid">
                     </a>
-                   </div>
                     <div class="border-end border-light ps-3 d-none d-lg-block h-20"></div>
                 </div>
             </div>
