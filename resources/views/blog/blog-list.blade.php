@@ -1,6 +1,6 @@
 <div class="container pt-55">
   @if(isset($data))
-        <div class="category-cards mb-3 d-flex scrollbar" id="category-bar">
+        <div class="category-cards mb-3 d-flex scrollbar">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                     <li class="nav-item">
@@ -10,20 +10,21 @@
                     </li>
                 </ul>
                 <a
-                    class="btn btn-white scroll-icons align-items-center"
+                    class="btn btn-white scroll-icons align-items-center py-2"
                     id="left-button"
                 >
                     <i class="bi bi-chevron-left"></i>
                 </a>
-                    <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll mx-1 mx-sm-2 margin-0" id="myTab" role="tablist">
-                        @foreach($categories as $cat)
-                            <li class="nav-item">
-                                <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
-                            {{ $cat->name }}
-                        </a>
-                            </li>
-                        @endforeach
-                    </ul>
+                <ul class="nav nav-tabs border-bottom-0 blog-tabs mx-1 mx-sm-2 scroll margin-0" id="category-bar" role="tablist" style="overflow-x: scroll">
+
+                    @foreach($categories as $cat)
+                        <li class="nav-item">
+                            <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
+                                {{ $cat->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
                 <a
                     class="btn btn-white scroll-icons align-items-center"
                     id="right-button"
@@ -53,31 +54,57 @@
 </div>
 @push('scripts')
     <script>
-        $('#right-button').click(function() {
-            event.preventDefault();
-            $('#myTab').animate({
-                scrollLeft: "+=100px"
-            }, "slow");
+        let leftBtn = $('#left-button');
+        let rightBtn = $('#right-button');
+        let categories = $('#category-bar');
+        let w = 0;
+        let sw = 0;
+        let sp = 0;
+
+        leftBtn.hide();
+        rightBtn.hide();
+
+        leftBtn.on('click', function (e) {
+            e.preventDefault();
+            sp -= 100;
+
+            if(sp < 0) sp = 0;
+            categories.animate({
+                scrollLeft: `${sp}px`
+            });
         });
 
-        $('#left-button').click(function() {
-            event.preventDefault();
-            $('#myTab').animate({
-                scrollLeft: "-=100px"
-            }, "slow");
+        rightBtn.on('click', function (e) {
+            e.preventDefault();
+            let slih = categories.scrollLeft() + categories.innerHeight();
+            sw = categories.prop("scrollWidth");
+            sp += 100;
+
+            if(sp > slih) sp = slih;
+
+            categories.animate({
+                scrollLeft: `${sp}px`
+            });
         });
 
-    </script>
-    <script>
-        $('#left-button').hide();
-        $('#right-button').hide();
+        function recalculateCategoriesWidth() {
+            w = categories.width();
+            sw = categories.prop("scrollWidth");
 
-        let elementwidth = $('#category-bar').text().length;
-        console.log(elementwidth);
-        if(elementwidth > 1980){
-            console.log("elementwidth");
-            $('#left-button').show();
-            $('#right-button').show();
+            if(w < sw) {
+                leftBtn.show();
+                rightBtn.show();
+            } else {
+                leftBtn.hide();
+                rightBtn.hide();
+            }
         }
+
+        $(function (){
+            recalculateCategoriesWidth();
+            $(window).resize(function() {
+                recalculateCategoriesWidth();
+            });
+        });
     </script>
 @endpush
