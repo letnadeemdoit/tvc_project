@@ -106,14 +106,14 @@
             <div class="col-12 col-lg-3">
                 <div class="mb-4">
                     <div class="input-group border rounded-1" style="border-color: #E8604C35 !important;">
-                        <input type="text" class="form-control border-0 outline-0" placeholder="Search here..."
+                        <input type="text" class="form-control border-0 outline-0" placeholder="Search local guide..."
                                aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn"><i class="bi-search text-primary"></i></button>
                     </div>
                 </div>
                 <div class="card border-0 mb-4">
                     <div class="card-body">
-                        <h4 class="mb-3">Latest Post</h4>
+                        <h4 class="mb-3">Latest  Local Guide</h4>
                         <div class="d-flex align-items-center mb-4">
                             <div class="flex-shrink-0">
                                 <img

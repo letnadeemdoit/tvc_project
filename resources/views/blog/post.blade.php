@@ -136,7 +136,7 @@
                             @foreach($existingTags as $tag)
                                 <a
                                     href="{{ route('guest.blog.index', ['tag' => $tag['name']]) }}"
-                                    class="badge category-tabs mb-3 rounded-0 px-3 py-2 fs-5 me-2 text-break text-wrap"
+                                    class="badge category-tabs mb-3 rounded-0 px-3 py-2 fs-5 me-3 text-break text-wrap"
                                     style="min-width: 6rem;"
                                 >
                                     {{ $tag['name'] }}
