@@ -33,7 +33,9 @@
 {{--                        </a>--}}
                         <div class="nav-item">
                             <a class="nav-link" href="{{route('dash.calendar')}}" data-placement="left">
-                                <i class="bi-calendar-month nav-icon"></i>
+{{--                                <i class="bi-calendar-month nav-icon"></i>--}}
+                                <img src="{{asset('images/icons/calendar.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+
                                 <span class="nav-link-title">Calendar</span>
                             </a>
                         </div>
@@ -46,14 +48,17 @@
                         @if(!auth()->user()->is_guest)
                             <div class="nav-item">
                                 <a class="nav-link {{ link_is_active_with_class(['dash.photo-albums']) }}" href="{{route('dash.photo-albums')}}" data-placement="left">
-                                    <i class="bi-images nav-icon"></i>
+{{--                                    <i class="bi-images nav-icon"></i>--}}
+                                    <img src="{{asset('images/icons/photo-album.svg')}}" class="me-3" style="width: 18px;opacity: 0.7" alt="">
                                     <span class="nav-link-title">Photo Albums</span>
                                 </a>
                             </div>
 
                             <div class="nav-item">
                                 <a class="nav-link  {{ link_is_active_with_class(['dash.local-guide']) }}" href="{{route('dash.local-guide')}}" data-placement="left">
-                                    <i class="bi-calendar-month nav-icon"></i>
+{{--                                    <i class="bi-calendar-month nav-icon"></i>--}}
+                                    <img src="{{asset('images/icons/mdi_map-marker-radius-outline.svg')}}" class="me-3" style="width: 18px;opacity: 0.7" alt="">
+
                                     <span class="nav-link-title">Local Guide</span>
                                 </a>
                             </div>
@@ -61,7 +66,8 @@
                         @if(auth()->user()->is_admin)
                             <div class="nav-item">
                                 <a class="nav-link  {{ link_is_active_with_class(['dash.plans-and-pricing']) }}" href="{{route('dash.plans-and-pricing')}}" data-placement="left">
-                                    <i class="bi-router nav-icon"></i>
+{{--                                    <i class="bi-router nav-icon"></i>--}}
+                                    <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
                                     <span class="nav-link-title">Plans &amp; Pricing</span>
                                 </a>
                             </div>
@@ -73,7 +79,9 @@
                                    href="#navbarVerticalHouseItemList" role="button" data-bs-toggle="collapse"
                                    data-bs-target="#navbarVerticalHouseItemList" aria-expanded="false"
                                    aria-controls="navbarVerticalMenuPagesAdministratorMenu">
-                                    <i class="bi-house nav-icon"></i>
+{{--                                    <i class="bi-house nav-icon"></i>--}}
+                                    <img src="{{asset('images/icons/house-items-icon.svg')}}" class="me-3" style="width: 18px;opacity: 0.7" alt="">
+
                                     <span class="nav-link-title">House Items</span>
                                 </a>
 
@@ -93,7 +101,9 @@
                                    href="#navbarVerticalMenuPagesAccountMenu" role="button" data-bs-toggle="collapse"
                                    data-bs-target="#navbarVerticalMenuPagesAccountMenu" aria-expanded="false"
                                    aria-controls="navbarVerticalMenuPagesAdministratorMenu">
-                                    <i class="bi-person-check nav-icon"></i>
+{{--                                    <i class="bi-person-check nav-icon"></i>--}}
+                                    <img src="{{asset('images/icons/settings-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+
                                     <span class="nav-link-title">Settings</span>
                                 </a>
 

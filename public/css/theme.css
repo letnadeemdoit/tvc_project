@@ -43605,6 +43605,10 @@ body {
   max-height: 50px;
 }
 
+.footer-text img:hover {
+  filter: grayscale(87%) brightness(36%) sepia(87%) hue-rotate(-51deg) saturate(674%) contrast(0.8);
+}
+
 .lb-container {
   padding: 0px !important;
 }

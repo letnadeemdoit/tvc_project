@@ -55,9 +55,9 @@ class CalendarEmailNotification extends Notification
 
             ->greeting('Vacation Calendar')
 
-            ->line(new HtmlString('New Vacation <strong>' . $this->items->VacationName.'</strong>'. ' has been Scheduled against ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
+            ->line(new HtmlString('A New Vacation <strong>' . $this->items->VacationName.'</strong>'. ' has been Scheduled against ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
 
-            ->line(new HtmlString('This Vacation has been Scheduled from <strong>' . $this->startDate->RealDate.'</strong>'. ' to ' . '<strong>'. $this->endDate->RealDate .' '.'Date'.'</strong>'));
+            ->line(new HtmlString('The Duration of the vacatioin is from <strong>' . $this->startDate->RealDate.'</strong>'. ' to ' . '<strong>'. $this->endDate->RealDate .' '.'Date'.'</strong>'));
 
     }
 
