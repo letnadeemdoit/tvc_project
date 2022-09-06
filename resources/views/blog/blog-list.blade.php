@@ -1,6 +1,6 @@
 <div class="container pt-55">
   @if(isset($data))
-        <div class="category-cards mb-3 d-flex scrollbar">
+        <div class="category-cards mb-3 d-flex scrollbar" id="category-bar">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                     <li class="nav-item">
@@ -11,7 +11,7 @@
                 </ul>
                 <a
                     type="button"
-                    class="btn btn-white scroll-icons d-flex align-items-center"
+                    class="btn btn-white scroll-icons align-items-center d-flex"
                     id="left-button"
                 >
                     <i class="bi bi-chevron-left"></i>
@@ -27,7 +27,7 @@
                     </ul>
                 <a
                     type="button"
-                    class="btn btn-white scroll-icons d-flex align-items-center"
+                    class="btn btn-white scroll-icons align-items-center d-flex"
                     id="right-button"
                 >
                     <i class="bi bi-chevron-right"></i>
@@ -48,9 +48,9 @@
             </div>
         @endif
 
-    @else
+  @else
         @include('partials.no-data-available',['title' => 'Blog'])
-    @endif
+  @endif
 
 </div>
 @push('scripts')
@@ -68,5 +68,18 @@
                 scrollLeft: "-=100px"
             }, "slow");
         });
+
+    </script>
+    <script>
+        $('#left-button').hide();
+        $('#right-button').hide();
+
+        let elementwidth = $('#category-bar').text().length;
+        console.log(elementwidth);
+        if(elementwidth > 1980){
+            console.log("elementwidth");
+            $('#left-button').show();
+            $('#right-button').show();
+        }
     </script>
 @endpush

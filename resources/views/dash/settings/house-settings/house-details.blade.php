@@ -33,9 +33,12 @@
                             id="primary_house_name"
                             wire:model.defer="state.primary_house_name"
                             name="primary_house_name"
-                            class="form-control"
+                            class="form-control @error('primary_house_name') is-invalid @enderror"
                             placeholder="Primary House Name"
                         />
+                        @error('primary_house_name')
+                        <span class="invalid-feedback">{{$message}}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-3 col-12 col-lg-6">
@@ -45,7 +48,6 @@
                             id="name"
                             wire:model.defer="state.name"
                             name="name"
-                            disabled
                             class="form-control @error('name') is-invalid @enderror"
                             placeholder="House Name"
                         />

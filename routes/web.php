@@ -130,6 +130,8 @@ Route::middleware([
         Route::get('/manage-albums/{id}/photos', [DashboardController::class, 'photos'])->name('photo-albums.photos');
 
 
+        Route::get('/super-admin/manage-users', [DashboardController::class, 'manageUsers'])->name('super-admin.manage-users');
+
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
 //        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');

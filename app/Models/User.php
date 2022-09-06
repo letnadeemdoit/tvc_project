@@ -22,6 +22,7 @@ class User extends Authenticatable implements Auditable
     use TwoFactorAuthenticatable;
     use AuditableTrait;
 
+    const ROLE_SUPERADMIN = 'SuperAdmin';
     const ROLE_ADMINISTRATOR = 'Administrator';
     const ROLE_OWNER = 'Owner';
     const ROLE_GUEST = 'Guest';
@@ -126,6 +127,16 @@ class User extends Authenticatable implements Auditable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Check user is admin.
+     *
+     * @return mixed
+     */
+    protected function getIsSuperAdminAttribute(): bool
+    {
+        return $this->role === self::ROLE_SUPERADMIN;
+    }
 
     /**
      * Check user is admin.
@@ -301,11 +312,6 @@ class User extends Authenticatable implements Auditable
         'current_team_id',
         'is_confirmed',
     ];
-
-
-
-
-
 
 
 }

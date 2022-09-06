@@ -5,7 +5,7 @@
     <div class="card">
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
-            <div class="mb-2 mb-md-0 w-50">
+            <div class="mb-2 mb-md-0 w-lg-50">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
@@ -29,55 +29,23 @@
                     <!-- End Search -->
                 </form>
             </div>
-            <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
-                <!-- End Datatable Info -->
-                @if($user->is_owner && !$user->is_owner_only)
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-white btn-sm dropdown-toggle w-100" id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi-people-fill me-2"></i> Owner: {{ $this->owner ? optional(\App\Models\User::where('user_id', $this->owner)->where('HouseId', $this->user->HouseId)->first())->name : 'You' }}
-                        </button>
-
-                        <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="usersExportDropdown" style="">
-                            <span class="dropdown-header">You</span>
-                            <a id="you{{ $user->user_id }}" class="dropdown-item {{ $this->owner ?: 'active' }}" href="#" wire:click.prevent="$set('owner', null)">
-                                <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
-                                {{ $user->name }}
-                            </a>
-                            <span class="dropdown-header">Owners</span>
-                            @foreach($this->owners as $owner)
-                                <a id="owner{{ $owner->user_id }}" class="dropdown-item {{ $this->owner === $owner->user_id ? 'active' : '' }}" href="#" wire:click.prevent="$set('owner', {{ $owner->user_id }})">
-                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $owner->profile_photo_url }}" alt="{{ $owner->name }}">
-                                    {{ $owner->name }}
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-                <div class="form-group">
-                    <input
-                        type="text"
-                        class="form-control form-control-sm"
-                        name="datetimes"
-                        style="min-width: 200px"
-                        readonly
-                    />
-                </div>
-            </div>
         </div>
         <!-- End Header -->
 
         <!-- Table -->
         <div class="table-responsive datatable-custom">
-            <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+            <table
+                class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                 <thead class="thead-light">
-                    <tr>
-                        <th style="width: 100px">Name</th>
-                        <th>House Name</th>
-                        <th>Created By</th>
-                        <th>Schedule Dates</th>
-                        <th>Action</th>
-                    </tr>
+                <tr>
+                    <th style="width: 100px">Name</th>
+                    <th>House Name</th>
+                    <th>Created By</th>
+                    <th>Schedule Dates</th>
+                    <th>Action</th>
+                </tr>
                 </thead>
+
                 <tbody>
                     @foreach($data as $dt)
                         <tr>
@@ -88,12 +56,14 @@
                             <td>
                                 <div class="btn-group" role="group" aria-label="Edit group">
                                     <a class="btn btn-white" href="#"
-                                       wire:click.prevent="$emit('showVacationScheduleModal', true, {{ $dt->VacationId }})"
+                                       wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"
                                     >
                                         <i class="bi-pencil me-1 text-success"></i> Edit
                                     </a>
-                                    <button type="button" class="btn btn-danger btn-sm" href="#"
-                                       wire:click.prevent="destroy({{ $dt->VacationId }})"
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm"
+                                        wire:click.prevent="destroy({{ $dt->VacationId }})"
                                     >
                                         <i class="bi-trash"></i>
                                     </button>
@@ -101,8 +71,8 @@
                                 </div>
                             </td>
 
-                        </tr>
-                    @endforeach
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

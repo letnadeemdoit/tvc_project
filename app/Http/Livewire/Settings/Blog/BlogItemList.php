@@ -57,6 +57,7 @@ class BlogItemList extends Component
 
             ->orderBy('BlogId', 'DESC')
             ->paginate($this->per_page);
+
         return view('dash.settings.blog.blog-items-list', compact('data'));
     }
 }
