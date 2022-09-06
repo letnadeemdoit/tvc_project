@@ -10,7 +10,7 @@
                     </li>
                 </ul>
                 <a
-                    class="btn btn-white scroll-icons align-items-center d-flex"
+                    class="btn btn-white scroll-icons align-items-center"
                     id="left-button"
                 >
                     <i class="bi bi-chevron-left"></i>
@@ -25,7 +25,7 @@
                         @endforeach
                     </ul>
                 <a
-                    class="btn btn-white scroll-icons align-items-center d-flex"
+                    class="btn btn-white scroll-icons align-items-center"
                     id="right-button"
                 >
                     <i class="bi bi-chevron-right"></i>
