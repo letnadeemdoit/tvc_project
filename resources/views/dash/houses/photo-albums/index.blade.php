@@ -20,7 +20,7 @@
         </div>
     </x-slot>
 
-    <div class="content container-fluid">
+    <div class="">
 
         <livewire:houses.photo-albums.photo-album-list :user="$user"/>
 

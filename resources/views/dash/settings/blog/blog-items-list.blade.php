@@ -3,7 +3,7 @@
         <!-- Header -->
         <div class="card-header card-header-content-md-between">
             @include('flash-messages')
-            <div class="mb-2 mb-md-0 w-50">
+            <div class="mb-2 mb-md-0 w-lg-50">
                 <form>
                     <!-- Search -->
                     <div class="input-group input-group-merge input-group-flush">
@@ -155,7 +155,7 @@
                 <div class="col-sm-auto pt-2">
                     <div class="d-flex align-items-center justify-content-center justify-content-sm-end">
                         <!-- Pagination -->
-                        {{ $data->links() }}
+                        {{ $data->onEachSide(0)->links() }}
                     </div>
                 </div>
                 <!-- End Col -->
