@@ -11,7 +11,6 @@
                     </li>
                 </ul>
                 <a
-                    type="button"
                     class="btn btn-white scroll-icons align-items-center d-flex"
                     id="left-button"
                 >
@@ -27,7 +26,6 @@
                     @endforeach
                 </ul>
                 <a
-                    type="button"
                     class="btn btn-white scroll-icons align-items-center d-flex"
                     id="right-button"
                 >
