@@ -72,14 +72,17 @@
                 >
                     <label class="form-label" for="description">Description:</label>
                     <textarea
-                        class="form-control"
                         wire:model.defer="state.description"
                         name="description"
                         placeholder="Write description here"
                         rows="5"
                         id="description"
+                        class="form-control @error('description') is-invalid @enderror"
 
                     ></textarea>
+                    @error('description')
+                    <span class="invalid-feedback">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="mb-3 d-flex">
