@@ -18,12 +18,12 @@
                 </a>
                     <ul class="nav nav-tabs border-bottom-0 blog-tabs scroll mx-1 mx-sm-2 margin-0" id="myTab" role="tablist">
                         @foreach($categories as $cat)
-                    <li class="nav-item">
-                        <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
+                            <li class="nav-item">
+                                <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
                             {{ $cat->name }}
                         </a>
-                    </li>
-                @endforeach
+                            </li>
+                        @endforeach
                     </ul>
                 <a
                     type="button"
