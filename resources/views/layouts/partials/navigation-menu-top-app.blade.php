@@ -29,7 +29,7 @@
                     @php
                         $data = auth()->user()->unreadNotifications()->get();
                      @endphp
-                    <li class="nav-item me-3">
+                    <li class="nav-item me-1 me-md-3">
                         <a href="{{ route('dash.notifications') }}" class="btn btn-ghost-secondary btn-icon rounded-circle bg-light-primary">
                             <i class="bi-bell text-primary"></i>
                             @if(count($data) > 0)

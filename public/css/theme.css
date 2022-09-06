@@ -43606,7 +43606,7 @@ body {
 }
 
 .footer-text img:hover {
-  filter: grayscale(87%) brightness(41%) sepia(87%) hue-rotate(-51deg) saturate(982%) contrast(0.8);
+  filter: grayscale(87%) brightness(60%) sepia(87%) hue-rotate(-51deg) saturate(982%) contrast(0.8);
 }
 
 .lb-container {
