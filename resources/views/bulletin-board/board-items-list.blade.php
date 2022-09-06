@@ -96,6 +96,22 @@
 
 @push('scripts')
     <script>
+        $('#right-button').click(function() {
+            event.preventDefault();
+            $('#myTab').animate({
+                scrollLeft: "+=100px"
+            }, "slow");
+        });
+
+        $('#left-button').click(function() {
+            event.preventDefault();
+            $('#myTab').animate({
+                scrollLeft: "-=100px"
+            }, "slow");
+        });
+
+    </script>
+    <script>
         $('#left-button').hide();
         $('#right-button').hide();
 
