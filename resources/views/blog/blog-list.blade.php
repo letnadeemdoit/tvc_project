@@ -11,7 +11,7 @@
                 </ul>
                 <a
                     type="button"
-                    class="btn btn-white scroll-icons align-items-center"
+                    class="btn btn-white scroll-icons align-items-center d-flex"
                     id="left-button"
                 >
                     <i class="bi bi-chevron-left"></i>
@@ -27,7 +27,7 @@
                     </ul>
                 <a
                     type="button"
-                    class="btn btn-white scroll-icons align-items-center"
+                    class="btn btn-white scroll-icons align-items-center d-flex"
                     id="right-button"
                 >
                     <i class="bi bi-chevron-right"></i>
