@@ -51,6 +51,8 @@
                         <td>{{ $dt->house ? $dt->house->HouseName : '' }}</td>
                         <td>{{ $dt->owner ? $dt->owner->name : '-' }}</td>
                         <td>{{ $dt->scheduled_dates }}</td>
+
+
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
                                 <a class="btn btn-white" href="#"
@@ -58,14 +60,34 @@
                                 >
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
-                                <a class="btn btn-white" href="#"
-                                   wire:click.prevent="destroy({{ $dt->VacationId }})"
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm"
+                                    wire:click.prevent="destroy({{ $dt->VacationId }})"
                                 >
-                                    <i class="bi-trash text-danger"></i>
-                                </a>
+                                    <i class="bi-trash"></i>
+                                </button>
 
                             </div>
                         </td>
+
+
+
+{{--                        <td>--}}
+{{--                            <div class="btn-group" role="group" aria-label="Edit group">--}}
+{{--                                <a class="btn btn-white" href="#"--}}
+{{--                                   wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"--}}
+{{--                                >--}}
+{{--                                    <i class="bi-pencil me-1 text-success"></i> Edit--}}
+{{--                                </a>--}}
+{{--                                <a class="btn btn-white" href="#"--}}
+{{--                                   wire:click.prevent="destroy({{ $dt->VacationId }})"--}}
+{{--                                >--}}
+{{--                                    <i class="bi-trash text-danger"></i>--}}
+{{--                                </a>--}}
+
+{{--                            </div>--}}
+{{--                        </td>--}}
 
                     </tr>
                 @endforeach
