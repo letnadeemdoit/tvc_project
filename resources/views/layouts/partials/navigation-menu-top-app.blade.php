@@ -139,8 +139,7 @@
                             </div>
                             @if(!auth()->user()->is_guest)
                                  <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings
-                                </a>
+                                <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings</a>
                             @endif
                             <div class="dropdown-divider"></div>
 
