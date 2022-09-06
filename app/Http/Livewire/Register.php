@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\World\City;
+use App\Models\World\Country;
+use App\Models\World\State;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -20,7 +23,13 @@ class Register extends Component
 
     public function render()
     {
-        return view('livewire.register');
+        $countries = Country::all();
+
+        $states = State::where('country_id', $this->state['country_id'] ?? '')->get();
+
+        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->get();
+
+        return view('livewire.register',compact('countries','states','cities'));
     }
 
     public function register(CreatesNewUsers $creator, StatefulGuard $guard) {

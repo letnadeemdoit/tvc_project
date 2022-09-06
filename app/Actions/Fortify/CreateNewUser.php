@@ -23,8 +23,10 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'HouseName' => ['required', 'unique:House'],
-            'City' => ['required'],
-            'State' => ['required'],
+            'country_id' => ['required'],
+            'state_id' => ['required'],
+            'city_id' => ['required'],
+            'zipcode' => ['required'],
             'image' => 'nullable|image|mimes:png,jpg,gif,tiff|max:1024',
             'Referral_paypal_account' => ['required'],
             'user_name' => ['required', 'unique:users'],
@@ -41,8 +43,10 @@ class CreateNewUser implements CreatesNewUsers
         $house = House::create([
             'HouseName' => $input['HouseName'],
             'primary_house_name' => $input['HouseName'],
-            'City' => $input['City'],
-            'State' => $input['State'],
+            'country' => $input['country_id'],
+            'State' => $input['city_id'],
+            'City' => $input['city_id'],
+            'ZipCode' => $input['zipcode'],
             'ReferredBy' => $input['Referral_paypal_account'],
         ]);
 

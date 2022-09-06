@@ -111,6 +111,8 @@ class CreateOrUpdateHouseForm extends Component
                 ...$this->user->toArray(),
                 'user_id'  => null,
                 'HouseId' => $this->house->HouseID,
+                'password' => $this->user->password,
+
             ])->save();
         }
 
