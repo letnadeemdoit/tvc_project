@@ -89,10 +89,10 @@ class CreateOrUpdateBlogItemForm extends Component
 
         Validator::make($inputs, [
             'Subject' => [
-                'required',
+                'required','string', 'max:100',
                 $this->isCreating ? Rule::unique('Blog')->where(function ($query){
                     return $query->where('HouseId', $this->user->HouseId);
-                }) : 'max:255',
+                }) : 'required',
             ],
 //            'Subject' => 'required|unique:Blog|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
