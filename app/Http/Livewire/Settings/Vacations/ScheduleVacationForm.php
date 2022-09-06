@@ -10,6 +10,7 @@ use App\Notifications\BlogNotification;
 use App\Notifications\CalendarEmailNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +33,7 @@ class ScheduleVacationForm extends Component
         $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
         $this->reset('state');
 
-        if ($this->vacation->VacationName) {
+        if ($this->vacation->VacationName && !$this->user->is_admin) {
             if ($this->vacation->OwnerId !== $this->user->user_id) {
                 $this->emit('showRequestToJoinVacationModal', true, $vacationId);
                 return;
@@ -49,10 +50,11 @@ class ScheduleVacationForm extends Component
                 'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
                 'background_color' => $this->vacation->BackGrndColor,
                 'font_color' => $this->vacation->FontColor,
+                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') .' - '.$this->vacation->end_datetime->format('m/d/Y h:i')
             ];
         } else {
             $this->state = [
-                'background_color' => '#000000',
+                'background_color' => '#3a87ad',
                 'font_color' => '#ffffff',
             ];
 
@@ -61,6 +63,7 @@ class ScheduleVacationForm extends Component
                     $initialDatetime = Carbon::parse($initialDate);
                     $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
                     $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' .$initialDatetime->format('m/d/Y h:i');
                 } catch (\Exception $e) {
 
                 }
