@@ -247,28 +247,5 @@
         @endpush
 </x-guest-layout>
 
-@push('scripts')
-    <script>
-
-        const myTimeout = setTimeout(updateComment, 9000);
-
-        function updateComment() {
-            var fb = document.getElementsByClassName('clearfix');
-            console.log(fb);
-            var cms = document.getElementsByClassName('_50f7')[0].textContent;
-            console.log(cms);
-            document.getElementById("content").innerHTML = cms;
-
-        }
-    </script>
-    <script>
-
-       let tagselect = document.querySelectorAll('#badge-tag');
-       console.log(tagselect);
-
-
-    </script>
-
-@endpush
 
 
