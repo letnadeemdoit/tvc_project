@@ -234,13 +234,16 @@
 
 
                 <div class="gap-3 text-center my-3 d-block d-md-flex justify-content-center" x-data="">
-                    <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">SEND</button>
-
-                    <a href="#!"
+                    <button type="submit" class="btn btn-primary btn-lg rounded btn-min-160 px-5 border-0 shadow-lg">
+                        SEND
+                    </button>
+                    <a href="#"
                        wire:click.prevent="resetFeedbackForm"
-                       @click.prevent="$dispatch('upload-dropzone-reset')"
-                       class="btn  btn-lg bg-skin btn-min-160  rounded px-5 mt-3 mt-sm-0 border-0">RESET</a>
-
+                       @click.prevent="$dispatch('upload-dropzone-reset');"
+                       class="btn btn-lg bg-skin btn-min-160  rounded px-5 mt-3 mt-sm-0 border-0"
+                    >
+                        RESET
+                    </a>
                 </div>
 
 {{--                <div class="my-3 d-flex">--}}
