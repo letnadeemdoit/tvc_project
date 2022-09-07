@@ -151,9 +151,13 @@
                                      class="nav-collapse collapse {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list'], 'show') }}"
                                      data-bs-parent="#navbarVerticalHouseItemList">
                                     <a class="nav-link {{ link_is_active_with_class('dash.food-item-list') }}"
-                                       href="{{route('dash.food-item-list')}}">Food in the house</a>
+                                       href="{{route('dash.food-item-list')}}">
+                                        <img src="{{asset('images/icons/food-items-icon.svg')}}" class="me-2" style="width: 13px;opacity: 0.7" alt="">
+                                        Food in the house</a>
                                     <a class="nav-link {{ link_is_active_with_class('dash.shopping-item-list') }}"
-                                       href="{{route('dash.shopping-item-list')}}">Food Shopping List</a>
+                                       href="{{route('dash.shopping-item-list')}}">
+                                        <img src="{{asset('images/icons/food-items-icon.svg')}}" class="me-2" style="width: 13px;opacity: 0.7" alt="">
+                                        Food Shopping List</a>
                                 </div>
                             </div>
                         @endif
@@ -182,6 +186,7 @@
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}"
                                            href="{{ route('dash.settings.account-information') }}">
                                             @if(auth()->user()->is_admin)
+                                                <img src="{{asset('images/icons/account-information-icon.svg')}}" class="me-1" style="width: 14px;opacity: 0.7" alt="">
                                                 Account Information
                                             @else
                                                 Manage Account
@@ -189,35 +194,57 @@
                                         </a>
                                     @if(auth()->user()->is_admin)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}"
-                                           href="{{ route('dash.settings.billing') }}">Billing</a>
+                                           href="{{ route('dash.settings.billing') }}">
+                                            <img src="{{asset('images/icons/billings-icon.svg')}}" class="me-2" style="width: 13px;opacity: 0.7" alt="">
+                                            Billing</a>
 
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}"
-                                           href="{{ route('dash.settings.users') }}">Users</a>
+                                           href="{{ route('dash.settings.users') }}">
+                                            <img src="{{asset('images/help-images/users.svg')}}" class="me-2" style="width: 14px;opacity: 0.7" alt="">
+                                            Users</a>
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
-                                           href="{{ route('dash.settings.rooms') }}">Rooms</a>
+                                           href="{{ route('dash.settings.rooms') }}">
+                                            <img src="{{asset('images/icons/rooms-icon.svg')}}" class="me-2" style="width: 14px;opacity: 0.7" alt="">
+                                            Rooms</a>
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
-                                           href="{{ route('dash.settings.additional-houses') }}">Additional Houses</a>
+                                           href="{{ route('dash.settings.additional-houses') }}">
+                                            <img src="{{asset('images/icons/additional-houses-icon.svg')}}" class="me-2" style="width: 14px;opacity: 0.7" alt="">
+                                            Additional Houses</a>
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
-                                           href="{{ route('dash.settings.notifications') }}">Notifications</a>
+                                           href="{{ route('dash.settings.notifications') }}">
+                                            <img src="{{asset('images/icons/notifications-icon.svg')}}" class="me-2" style="width: 13px;opacity: 0.7" alt="">
+                                            Notifications</a>
                                     @endif
                                     @if(!auth()->user()->is_guest && auth()->user()->ShowOldSave)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.vacations') }}"
-                                           href="{{ route('dash.settings.vacations') }}">Vacations</a>
+                                           href="{{ route('dash.settings.vacations') }}">
+                                            <img src="{{asset('images/icons/calendar.svg')}}" class="me-2" style="width: 14px;opacity: 0.7" alt="">
+                                            Vacations</a>
                                     @endif
                                     @if(auth()->user()->is_admin)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-boards') }}"
-                                           href="{{ route('dash.settings.bulletin-boards') }}">Bulletin Board</a>
+                                           href="{{ route('dash.settings.bulletin-boards') }}">
+                                            <img src="{{asset('images/icons/bulletin-icon.svg')}}" class="me-2" style="width: 15px;opacity: 0.7" alt="">
+                                            Bulletin Board</a>
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.audit-history') }}"
-                                           href="{{ route('dash.settings.audit-history') }}">Audit History</a>
+                                           href="{{ route('dash.settings.audit-history') }}">
+                                            <img src="{{asset('images/icons/audit-hostory-icon.svg')}}" class="me-2" style="width: 13px;opacity: 0.7" alt="">
+                                            Audit History</a>
                                     @endif
                                     <a class="nav-link {{ link_is_active_with_class('dash.settings.blog') }}"
-                                       href="{{ route('dash.settings.blog') }}">Blog</a>
+                                       href="{{ route('dash.settings.blog') }}">
+                                        <img src="{{asset('images/icons/blog-icon.svg')}}" class="me-2" style="width: 13px;opacity: 0.7" alt="">
+                                        Blog</a>
                                     @if(auth()->user()->is_admin)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
-                                           href="{{ route('dash.settings.guest-books') }}">Guest Book</a>
+                                           href="{{ route('dash.settings.guest-books') }}">
+                                            <img src="{{asset('images/icons/guest-book-icon.svg')}}" class="me-2" style="width: 14px;opacity: 0.7" alt="">
+                                            Guest Book</a>
 
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
-                                           href="{{ route('dash.settings.category') }}">Categories</a>
+                                           href="{{ route('dash.settings.category') }}">
+                                            <img src="{{asset('images/icons/category-icon.svg')}}" class="me-2" style="width: 13px;opacity: 0.7" alt="">
+                                            Categories</a>
                                     @endif
                                 </div>
                             </div>
