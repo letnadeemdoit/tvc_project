@@ -21,7 +21,10 @@
             .categories-card .category-count {
                 border-radius: 6px;
                 border: 2px solid #E8604C;
-                padding: 6px 10px;
+                padding: 5px 10px;
+                min-width:43px;
+                max-width: 43px;
+                text-align: center;
 
             }
 
@@ -162,7 +165,7 @@
                                         </a>
                                     </div>
                                     <div>
-                                        <p class="mb-0 border-primary category-count text-primary">{{ $category->local_guides_count }}</p>
+                                        <p class="mb-0 border-primary category-count text-primary">{{ $category->local_guides_count < 10 ? '0'.$category->local_guides_count : $category->local_guides_count }}</p>
                                     </div>
                                 </div>
                             @endforeach

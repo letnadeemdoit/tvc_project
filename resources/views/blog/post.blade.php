@@ -24,8 +24,8 @@
                 border-radius: 6px;
                 border: 2px solid #E8604C;
                 padding: 5px 10px;
-                min-width:38px;
-                max-width: 38px;
+                min-width:43px;
+                max-width: 43px;
                 text-align: center;
 
             }
@@ -122,7 +122,7 @@
                                     </a>
                             </div>
                             <div>
-                                <p class="mb-0 border-primary category-count text-primary">{{ $category->blogs_count }}</p>
+                                <p class="mb-0 border-primary category-count text-primary">{{ $category->blogs_count < 10 ? '0'.$category->blogs_count : $category->blogs_count }}</p>
                             </div>
                         </div>
                         @endforeach
