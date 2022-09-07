@@ -2,9 +2,13 @@
     <div class="masonry">
         @foreach($data as $dt)
             @if($dt instanceof \App\Models\Photo\Album && ($dt->nestedAlbums->count() > 0 or $dt->photos->count() > 0))
-                <livewire:photo-album.album-card :album="$dt" wire:key="{{ $dt->id }}" />
+                <div class="brick">
+                    <livewire:photo-album.album-card :album="$dt" wire:key="{{ $dt->id }}" />
+                </div>
             @elseif($dt instanceof \App\Models\Photo\Photo)
-                <livewire:photo-album.photo-card :photo="$dt" wire:key="{{ $dt->id }}" />
+                <div class="brick">
+                    <livewire:photo-album.photo-card :photo="$dt" wire:key="{{ $dt->id }}" />
+                </div>
             @endif
         @endforeach
     </div>
