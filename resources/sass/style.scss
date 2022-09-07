@@ -161,6 +161,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .padding-bottom{
     padding-bottom: 5rem;
 }
+.text-light-grey{
+    color: #887E7E;
+}
 .guest-modal ::-webkit-scrollbar {
     width: 10px;
     background:#000;
@@ -350,6 +353,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .h-20{
     height: 20px;
 }
+.fw-500{
+    font-weight: 500;
+}
 .mt-70{
     margin-top: 70px;
 }
@@ -435,7 +441,7 @@ fieldset{
 }
 .scroll-icons{
     max-height: 56px;
-    background-color: #e7e4e4;
+    background-color:rgba(163, 163, 163, 0.12);
 }
 .bg-social-feed{
     background: url('/images/images-home/map.png');
@@ -1276,6 +1282,10 @@ header{
     .rounded-icon{
         width:12%;
         margin: -30px auto !important;
+    }
+    .scroll-icons{
+        padding-left: 0.6rem !important;
+        padding-right: 0.6rem !important;
     }
     .fancybox__caption{
         max-width: 470px;
