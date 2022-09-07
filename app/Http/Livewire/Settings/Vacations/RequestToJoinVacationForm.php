@@ -42,7 +42,7 @@ class RequestToJoinVacationForm extends Component
         $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
         $this->reset('state');
 
-        if ($this->vacation->VacationName) {
+        if ($this->vacation->VacationId) {
             $this->state = [
                 'vacation_name' => $this->vacation->VacationName,
                 'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
