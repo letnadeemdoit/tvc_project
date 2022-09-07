@@ -156,7 +156,7 @@
         </div>
         <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>
     </div>
-        <div class="container padding-bottom massonary-container mt-3">
+        <div class="container padding-bottom massonary-container">
             <div class="masonry">
                 <div class="brick">
                     <div class="card border-0 text-white bg-transparent shadow-none">
