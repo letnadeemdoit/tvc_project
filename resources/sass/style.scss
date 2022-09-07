@@ -166,7 +166,7 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 }
 .guest-modal ::-webkit-scrollbar {
     width: 10px;
-    background:#000;
+    //background:#000;
 }
 .dropdown-focus{
     &:focus{
@@ -1285,6 +1285,11 @@ header{
     .rounded-icon{
         width:12%;
         margin: -30px auto !important;
+    }
+    .guest-modal{
+        .modal-body{
+            padding: 0px !important;
+        }
     }
     .scroll-icons{
         padding-left: 0.6rem !important;
