@@ -281,9 +281,9 @@
         @endif
 
         <div class="container padding-bottom " style="padding-top: 80px">
-            @if(!auth()->user()->is_guest)
+{{--            @if(!auth()->user()->is_guest)--}}
                 <livewire:guest-book.leav-a-review-guest-book :user="$user"/>
-             @endif
+{{--             @endif--}}
         </div>
 
     </section>
