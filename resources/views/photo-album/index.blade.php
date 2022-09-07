@@ -74,7 +74,7 @@
             }
             @media (min-width: 1199px) {
                 .masonry {
-                    column-count: 4;
+                    column-count: 3;
                 }
             }
             .masonry .brick {
