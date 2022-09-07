@@ -435,7 +435,7 @@ fieldset{
 }
 .scroll-icons{
     max-height: 56px;
-    background-color: #e7e4e4;
+    background-color:  rgba(163, 163, 163, 0.12);
 }
 .bg-social-feed{
     background: url('/images/images-home/map.png');
@@ -1173,6 +1173,10 @@ header{
     .select2-container{
         width: 100% !important;
     }
+    .scroll-icons{
+        padding-left: 0.6rem !important;
+        padding-right: 0.6rem !important;
+    }
     .food-item-img{
     width: 100% !important;
         height: 200px !important;
@@ -1361,9 +1365,7 @@ header{
     }
 }
 @media only screen and (max-width:430px){
-    .scroll-icons{
-        max-height: 28px !important;
-    }
+
     .rounded-icon{
         width:15%;
         margin: -26px auto !important;
@@ -1442,6 +1444,9 @@ header{
         margin-right: 3px !important;
         padding: 2px !important;
         min-height : 92px !important;
+    }
+    .scroll-icons{
+        max-height: 28px !important;
     }
     .switch-button{
         a{
