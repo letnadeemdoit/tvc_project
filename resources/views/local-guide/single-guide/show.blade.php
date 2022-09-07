@@ -79,7 +79,7 @@
                                            class="color-blue fw-normal">View</a>
                                     </span></p>
                                 <div class="d-flex align-items-center ">
-                                    <div class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2 align-items-center">
+                                    <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2 align-items-center">
 
                                         @if(isset($avgRating))
 {{--                                                <span class="text-primary fw-bolder fs-4">--}}
@@ -90,9 +90,7 @@
                                                 @endphp
 
                                                 @while (++$i <= ($avgRating ?? 0))
-                                                    <div class="d-flex align-items-center">
-                                                    <span class="fa fa-star checked"></span>
-                                                    </div>
+                                                    <li class="fa fa-star checked"></li>
                                                 @endwhile
                                                 @php
                                                     $r = 1;
@@ -128,7 +126,7 @@
                                                 </a>
                                         </div>
                                         @endif
-                                    </div>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

@@ -27,8 +27,8 @@
             .card-01 .card-body {
                 position: relative;
                 padding-top: 40px;
-                border-bottom-left-radius: 12px;
-                border-bottom-right-radius: 12px;
+                border-bottom-left-radius: 9px;
+                border-bottom-right-radius: 9px;
             }
 
             .card-01 .badge-box img {
