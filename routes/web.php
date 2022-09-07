@@ -9,6 +9,7 @@ use App\Http\Controllers\PhotoAlbumController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HouseItemController;
 use App\Http\Controllers\LocalGuideController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\BulletinBoard\BulletinCards\Cards;
 use Illuminate\Support\Facades\Route;
@@ -27,70 +28,67 @@ use Illuminate\Support\Facades\Route;
 Route::controller(GuestController::class)
     ->name('guest.')
     ->group(function () {
+
         Route::get('/', 'welcome')->name('welcome');
         Route::get('/contact', 'contact')->name('contact');
         Route::post('/contact', 'contactMail')->name('contact.mail');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
-//        Route::get('/blog-cards','blog')->name('blog');
-//      Route::get('/blog-details/{BlogId}','blogDetails')->name('blog-details');
         Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy-policy');
-//        Route::get('/guest-login','guestLogin')->name('guest-login');
-//        Route::get('/book-cards','guestBook')->name('guest-book');
-//        Route::get('/login-account','loginAccount')->name('login-account');
-        Route::get('/search-house', 'searchHouse')->name('search-house');
-        Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
-//        Route::get('/guest-book-frontend','guestBookFrontend')->name('guest-book-frontend');
-        Route::get('/local-guide', 'localGuide')->name('local-guide');
-        Route::get('/single-album', 'singleAlbum')->name('single-album');
-        Route::get('/album-photo', 'photoGalleryView')->name('album-photo');
 
+        Route::middleware(['auth'])->group(function () {
 
-        Route::controller(BlogController::class)
-            ->prefix('blog')
-            ->name('blog.')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/{post:slug}', 'show')->name('show');
-            });
-        Route::get('/blog-details/{BlogId}', [BlogDetail::class])->name('blog-details');
+            Route::get('/search-house', 'searchHouse')->name('search-house');
+            Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
+            Route::get('/local-guide', 'localGuide')->name('local-guide');
+            Route::get('/single-album', 'singleAlbum')->name('single-album');
+            Route::get('/album-photo', 'photoGalleryView')->name('album-photo');
 
+            Route::controller(BlogController::class)
+                ->prefix('blog')
+                ->name('blog.')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/{post:slug}', 'show')->name('show');
+                });
+            Route::get('/blog-details/{BlogId}', [BlogDetail::class])->name('blog-details');
 
-        Route::controller(GuestBookController::class)
-            ->prefix('guest-book')
-            ->name('guest-book.')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-            });
+            Route::controller(GuestBookController::class)
+                ->prefix('guest-book')
+                ->name('guest-book.')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                });
 
-        Route::controller(LocalGuideController::class)
-            ->prefix('local-guide')
-            ->name('local-guide.')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/{dt:id}', 'show')->name('show');
-            });
+            Route::controller(LocalGuideController::class)
+                ->prefix('local-guide')
+                ->name('local-guide.')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/{dt:id}', 'show')->name('show');
+                });
 
-        Route::controller(BulletinBoardController::class)
-            ->prefix('bulletin-board')
-            ->name('bulletin-board.')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-            });
+            Route::controller(BulletinBoardController::class)
+                ->prefix('bulletin-board')
+                ->name('bulletin-board.')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                });
 
-        Route::controller(HouseItemController::class)
-            ->prefix('house-items')
-            ->name('house-items.')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-            });
-        Route::controller(PhotoAlbumController::class)
-            ->prefix('photo-albums')
-            ->name('photo-album.')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-            });
+            Route::controller(HouseItemController::class)
+                ->prefix('house-items')
+                ->name('house-items.')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                });
 
+            Route::controller(PhotoAlbumController::class)
+                ->prefix('photo-albums')
+                ->name('photo-album.')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                });
+        });
     });
 
 
@@ -102,11 +100,10 @@ Route::controller(\App\Http\Controllers\Select2Controller::class)
     });
 
 require_once __DIR__ . '/fortify.php';
-//
-//Route::get('/dashboard', function () {
-//    return view('dash.index');
-//})->name('dashboard');
 
+Route::get('/super-admin/login', [SuperAdminController::class, 'index'])->name('super-admin.login');
+Route::post('/super-admin/login', [SuperAdminController::class, 'login'])->name('super-admin.login-super-admin');
+Route::get('/super-admin/manage-users', [SuperAdminController::class, 'manageUsers'])->name('super-admin.manage-users')->middleware('auth');
 
 Route::middleware([
     'auth',
@@ -117,23 +114,12 @@ Route::middleware([
     ->group(function () {
 //        Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
         Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
-
         Route::resource('users', UserController::class);
         Route::get('/blogs', [DashboardController::class, 'blogs'])->name('blogs');
         Route::get('/houses', [DashboardController::class, 'houses'])->name('houses');
-
-//        Route::get('/photo-albums-old', [DashboardController::class, 'photoAlbum'])->name('photo-albums-old');
-//        Route::get('/photo-albums-old/show/{id}', [DashboardController::class, 'showSingleAlbum'])->name('show-single-album-old');
-
-
         Route::get('/manage-albums', [DashboardController::class, 'photoAlbums'])->name('photo-albums');
         Route::get('/manage-albums/{id}/photos', [DashboardController::class, 'photos'])->name('photo-albums.photos');
-
-
-        Route::get('/super-admin/manage-users', [DashboardController::class, 'manageUsers'])->name('super-admin.manage-users');
-
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
-//        Route::get('/bulletin-boards', [DashboardController::class, 'bulletinBoard'])->name('bulletin-board');
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
         Route::get('/notifications', [DashboardController::class, 'notifications'])->name('notifications');
         Route::get('/notification/{id}', [DashboardController::class, 'markAsReadSingleNotification'])->name('mark-as-read-single-notification');
