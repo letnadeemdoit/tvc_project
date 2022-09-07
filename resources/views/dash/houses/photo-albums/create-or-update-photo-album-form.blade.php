@@ -32,6 +32,9 @@
                             wire:model.defer="state.parent_id" class="form-control">
                         <option value="" selected>Select parent Album...</option>
                         @forelse($albumCategory as $ac)
+                            @if($album && $album->id)
+                                @continue($album->id == $ac->id)
+                            @endif
                             <option value="{{$ac->id}}">{{$ac->name}}</option>
                         @empty
                             <option value="" disabled selected>Create an album to select parent album</option>
