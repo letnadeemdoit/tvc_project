@@ -104,9 +104,9 @@ class VacationSchedule implements Rule
             case $this->startDatetime === 'invalid':
                 return "The start datetime is invalid.";
             case $this->isEndDateGreaterThanStartDate():
-                return "Start date must be before end date.";
+                return "The start date must be before end date.";
             case is_null($this->endDatetime):
-                return "The end datetime field is required.";
+                return "The start & end datetime field value is invalid.";
             case $this->endDatetime === 'invalid':
                 return "The end datetime is invalid.";
             default:

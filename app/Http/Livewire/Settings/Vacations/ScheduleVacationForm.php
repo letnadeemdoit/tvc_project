@@ -23,6 +23,13 @@ class ScheduleVacationForm extends Component
     public $state = [];
     public ?Vacation $vacation;
 
+    public $house = null;
+    public $owner = null;
+    protected $queryString = [
+        'house' => ['except' => null],
+        'owner' => ['except' => null],
+    ];
+
     protected $listeners = [
         'showVacationScheduleModal'
     ];
@@ -136,8 +143,8 @@ class ScheduleVacationForm extends Component
             'StartTimeId' => $startTime->timeid,
             'EndDateId' => $endDate->DateId,
             'EndTimeId' => $endTime->timeid,
-            'HouseId' => $this->user->HouseId,
-            'OwnerId' => $this->user->user_id,
+            'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
+            'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
         ])->save();
 
 //        if (!is_null($this->user->house->CalEmailList)){
