@@ -136,6 +136,7 @@
                             @foreach($existingTags as $tag)
                                 <a
                                     href="{{ route('guest.blog.index', ['tag' => $tag['name']]) }}"
+                                    id="badge-tag"
                                     class="badge category-tabs mb-3 rounded-0 px-3 py-2 fs-5 me-3 text-break text-wrap"
                                     style="min-width: 6rem;"
                                 >
@@ -217,23 +218,34 @@
     </div>
 
 </main>
+        @push('scripts')
+            <script>
+
+                const myTimeout = setTimeout(updateComment, 9000);
+
+                function updateComment() {
+                    var fb = document.getElementsByClassName('clearfix');
+                    console.log(fb);
+                    var cms = document.getElementsByClassName('_50f7')[0].textContent;
+                    console.log(cms);
+                    document.getElementById("content").innerHTML = cms;
+
+                }
+            </script>
+            <script>
+
+                let tagselect = document.querySelectorAll('#badge-tag');
+                tagselect.forEach(element => {
+                    let width = $(element).text().length;
+                    if (width > 100){
+                        $(element).removeClass('me-3');
+                    }
+                });
+
+            </script>
+
+        @endpush
 </x-guest-layout>
 
-@push('scripts')
-    <script>
-
-        const myTimeout = setTimeout(updateComment, 9000);
-
-        function updateComment() {
-            var fb = document.getElementsByClassName('clearfix');
-            console.log(fb);
-            var cms = document.getElementsByClassName('_50f7')[0].textContent;
-            console.log(cms);
-            document.getElementById("content").innerHTML = cms;
-
-        }
-    </script>
-
-@endpush
 
 

@@ -16,42 +16,42 @@
         <form
             wire:submit.prevent="sendRequestToJoinVacation"
             class="modal-body"
-            @modal-is-shown.window="
-                jQuery('.datetime-picker-rtjv').datetimepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    yearRange: '-10:+10',
-                    beforeShow: function () {
-                        var $datePicker = $('.datetime-picker-rtjv');
-                        var zIndexModal = $datePicker.closest('.modal').css('z-index');
-                        $datePicker.css('z-index', zIndexModal + 99999);
-                    },
-                    onSelect: function (date, datepicker) {
-                        let id = datepicker.id;
+{{--            @modal-is-shown.window="--}}
+{{--                jQuery('.datetime-picker-rtjv').datetimepicker({--}}
+{{--                    changeMonth: true,--}}
+{{--                    changeYear: true,--}}
+{{--                    yearRange: '-10:+10',--}}
+{{--                    beforeShow: function () {--}}
+{{--                        var $datePicker = $('.datetime-picker-rtjv');--}}
+{{--                        var zIndexModal = $datePicker.closest('.modal').css('z-index');--}}
+{{--                        $datePicker.css('z-index', zIndexModal + 99999);--}}
+{{--                    },--}}
+{{--                    onSelect: function (date, datepicker) {--}}
+{{--                        let id = datepicker.id;--}}
 
-                        if(id === undefined) {
-                            id = datepicker.$input[0].id;
-                        }
+{{--                        if(id === undefined) {--}}
+{{--                            id = datepicker.$input[0].id;--}}
+{{--                        }--}}
 
-                        @this.set('state.' + id, date, true);
-                    },
-                    hour: 12,
-                    minute: 0,
-                    showMinute: false,
-                    stepMinute: 60,
-                    showSecond: false,
-                    showMillisec: false,
-                    showMicrosec: false,
-                    showTimezone: false,
-                    container: '#' + $event.detail.modal.attr('id')
-                })
-                .attr('readonly', 'true')
-                .keypress(function (event) {
-                    if (event.keyCode === 8) {
-                        event.preventDefault();
-                    }
-                });
-            "
+{{--                        @this.set('state.' + id, date, true);--}}
+{{--                    },--}}
+{{--                    hour: 12,--}}
+{{--                    minute: 0,--}}
+{{--                    showMinute: false,--}}
+{{--                    stepMinute: 60,--}}
+{{--                    showSecond: false,--}}
+{{--                    showMillisec: false,--}}
+{{--                    showMicrosec: false,--}}
+{{--                    showTimezone: false,--}}
+{{--                    container: '#' + $event.detail.modal.attr('id')--}}
+{{--                })--}}
+{{--                .attr('readonly', 'true')--}}
+{{--                .keypress(function (event) {--}}
+{{--                    if (event.keyCode === 8) {--}}
+{{--                        event.preventDefault();--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            "--}}
         >
             <div class="row mb-3">
                 <div class="form-group col-md-6">
@@ -81,35 +81,50 @@
                     @enderror
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="start_datetime">Start Datetime:</label>
-                    <input
-                        type="text"
-                        class="form-control datetime-picker-rtjv @error('start_datetime') is-invalid @enderror"
-                        name="start_datetime"
-                        id="start_datetime"
-                        wire:model.defer="state.start_datetime"
-
-                    />
-                    @error('start_datetime')
-                        <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="end_datetime">End Datetime:</label>
-                    <input
-                        type="text"
-                        class="form-control datetime-picker-rtjv @error('end_datetime') is-invalid @enderror"
-                        name="end_datetime"
-                        id="end_datetime"
-                        wire:model.defer="state.end_datetime"
-                    />
-                    @error('end_datetime')
-                        <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="rtjv_start_end_datetime">Start & End Datetime:</label>
+                <input
+                    type="text"
+                    class="form-control @error('start_datetime') is-invalid @enderror"
+                    name="start_datetime"
+                    id="rtjv_start_end_datetime"
+                    placeholder="Start & end date time"
+                    wire:model.defer="state.start_end_datetime"
+                    readonly
+                />
+                @error('start_datetime')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
+{{--            <div class="row mb-3">--}}
+{{--                <div class="form-group col-md-6">--}}
+{{--                    <label class="form-label" for="start_datetime">Start Datetime:</label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        class="form-control datetime-picker-rtjv @error('start_datetime') is-invalid @enderror"--}}
+{{--                        name="start_datetime"--}}
+{{--                        id="start_datetime"--}}
+{{--                        wire:model.defer="state.start_datetime"--}}
+
+{{--                    />--}}
+{{--                    @error('start_datetime')--}}
+{{--                        <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--                <div class="form-group col-md-6">--}}
+{{--                    <label class="form-label" for="end_datetime">End Datetime:</label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        class="form-control datetime-picker-rtjv @error('end_datetime') is-invalid @enderror"--}}
+{{--                        name="end_datetime"--}}
+{{--                        id="end_datetime"--}}
+{{--                        wire:model.defer="state.end_datetime"--}}
+{{--                    />--}}
+{{--                    @error('end_datetime')--}}
+{{--                        <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="d-flex">
                 <button
                     type="submit"
@@ -120,4 +135,31 @@
             </div>
         </form>
     </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            $('#rtjv_start_end_datetime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 60,
+                startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
+                @else moment() @endisset,
+                endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
+                @else moment()
+                .add(2, 'days') @endisset,
+                locale: {
+                    format: 'MM/DD/YYYY HH:mm'
+                }
+            });
+        });
+    </script>
+    @push('scripts')
+        <script>
+            $(function() {
+                $('#rtjv_start_end_datetime').on('apply.daterangepicker', function(ev, picker) {
+                    @this.set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'), true);
+                    @this.set('state.end_datetime', picker.endDate.format('MM/DD/YYYY HH:mm'), true);
+                    @this.set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'), true);
+                });
+            });
+        </script>
+    @endpush
 </x-modals.bs-modal>

@@ -1,5 +1,7 @@
 <x-dashboard-layout>
-
+    @push('stylesheets')
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    @endpush
     <x-slot name="breadcrumbs">
 {{--        <li class="breadcrumb-item active" aria-current="page">Calendar</li>--}}
     </x-slot>
@@ -29,4 +31,8 @@
     <div>
         <livewire:settings.vacations.request-to-join-vacation-form :user="$user"/>
     </div>
+    @push('scripts')
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    @endpush
 </x-dashboard-layout>
