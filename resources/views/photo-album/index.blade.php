@@ -74,6 +74,11 @@
             }
             @media (min-width: 1199px) {
                 .masonry {
+                    column-count: 3;
+                }
+            }
+            @media (min-width: 1400px) {
+                .masonry {
                     column-count: 4;
                 }
             }
@@ -83,7 +88,7 @@
                 page-break-inside: avoid;
                 break-inside: avoid;
                 counter-increment: brick-counter;
-                margin-bottom: 18px;
+                padding-bottom: 18px;
                 margin-left: 10px;
             }
             .masonry img {
