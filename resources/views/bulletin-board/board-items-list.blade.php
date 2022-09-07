@@ -13,6 +13,7 @@
                 <a
                     class="btn btn-white scroll-icons align-items-center py-2"
                     id="left-button"
+                    style="display: none"
                 >
                     <i class="bi bi-chevron-left align-items-center d-flex h-100"></i>
                 </a>
@@ -29,6 +30,7 @@
                 <a
                     class="btn btn-white scroll-icons align-items-center"
                     id="right-button"
+                    style="display: none"
                 >
                     <i class="bi bi-chevron-right align-items-center d-flex h-100"></i>
                 </a>
@@ -44,8 +46,8 @@
     background-repeat: no-repeat;
     background-size: auto;
     background-position: top right 150px;">
-        <div class="container padding-bottom massonary-container">
-            <div class="masonry tab-pane fade show active pt-5 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
+        <div class="container padding-bottom massonary-container mt-3">
+            <div class="masonry tab-pane fade show active pt-3 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
                     <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                 @endforeach
@@ -76,9 +78,6 @@
         let sw = 0;
         let sp = 0;
         let scr = 0;
-
-        leftBtn.hide();
-        rightBtn.hide();
 
         leftBtn.on('click', function (e) {
             e.preventDefault();
@@ -112,8 +111,6 @@
                 rightBtn.show();
             } else {
                 $('#all-btn').css('margin-right','7px');
-                leftBtn.hide();
-                rightBtn.hide();
             }
         }
 

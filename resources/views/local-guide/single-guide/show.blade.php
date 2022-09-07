@@ -73,7 +73,7 @@
                             <div>
                                 <h4 class="mb-0 text-dark" style="color: #6D6D6D">{{ auth()->user()->first_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">
-                                    <small>{{$localGuide->address}}</small><span
+                                    <small class="fw-500 text-light-grey">{{$localGuide->address}}</small><span
                                         class="color-blue ps-2">
                                         <a href="https://google.com/maps?q={{$localGuide->address}}" target="_blank"
                                            class="color-blue fw-normal">View</a>

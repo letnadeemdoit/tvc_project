@@ -112,8 +112,8 @@
                         $(this).modal('show');
                     });
                 });
-                $(document).on('focusin', function(e) {
-                    if ($(e.target).closest(".mce-window").length) {
+                document.addEventListener('focusin', (e) => {
+                    if (e.target.closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
                         e.stopImmediatePropagation();
                     }
                 });
