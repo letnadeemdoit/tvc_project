@@ -5,7 +5,7 @@
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                     <li class="nav-item">
-                        <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}">
+                        <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
                             ALL
                         </a>
                     </li>
@@ -111,6 +111,7 @@
                 leftBtn.show();
                 rightBtn.show();
             } else {
+                $('#all-btn').css('margin-right','7px');
                 leftBtn.hide();
                 rightBtn.hide();
             }
