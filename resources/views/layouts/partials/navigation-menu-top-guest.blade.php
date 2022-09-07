@@ -91,9 +91,10 @@
 
                     @auth
                         <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.bulletin-board.index') ? 'active' : '' }}"
-                               href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
+                            <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"
+                               href="{{route('dash.calendar')}}">CALENDAR</a>
                         </li>
+
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link {{ request()->routeIs('guest.blog.index') || request()->routeIs('guest.blog.show') ? 'active' : '' }}"
                                href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>

@@ -46,6 +46,13 @@
                     <small class="bi-three-dots nav-subtitle-replacer"></small>
                     @if(auth()->user()->is_guest)
 
+                        <div class="nav-item">
+                            <a class="nav-link  {{ link_is_active_with_class(['guest.welcome']) }}" href="{{route('guest.welcome')}}" data-placement="left">
+                                {{--                                    <i class="bi-router nav-icon"></i>--}}
+                                <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+                                <span class="nav-link-title">Home</span>
+                            </a>
+                        </div>
 
                         <div class="nav-item">
                             <a class="nav-link  {{ link_is_active_with_class(['guest.bulletin-board.index']) }}" href="{{route('guest.bulletin-board.index')}}" data-placement="left">
@@ -92,7 +99,7 @@
                             <a class="nav-link  {{ link_is_active_with_class(['guest.guest-book.index']) }}" href="{{route('guest.guest-book.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
                                 <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
-                                <span class="nav-link-title">Guest Book</span>
+                                <span class="nav-link-title">Guest <Book></Book></span>
                             </a>
                         </div>
 
