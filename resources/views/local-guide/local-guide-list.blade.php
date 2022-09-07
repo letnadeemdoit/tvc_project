@@ -12,6 +12,7 @@
                 <a
                     class="btn btn-white scroll-icons align-items-center py-2"
                     id="left-button"
+                    style="display: none"
                 >
                     <i class="bi bi-chevron-left align-items-center d-flex h-100"></i>
                 </a>
@@ -28,6 +29,7 @@
                 <a
                     class="btn btn-white scroll-icons align-items-center"
                     id="right-button"
+                    style="display: none"
                 >
                     <i class="bi bi-chevron-right align-items-center d-flex h-100"></i>
                 </a>
@@ -62,9 +64,6 @@
         let sp = 0;
         let scr = 0;
 
-        leftBtn.hide();
-        rightBtn.hide();
-
         leftBtn.on('click', function (e) {
             e.preventDefault();
             sp -= 100;
@@ -97,8 +96,6 @@
                 rightBtn.show();
             } else {
                 $('#all-btn').css('margin-right','7px');
-                leftBtn.hide();
-                rightBtn.hide();
             }
         }
 
