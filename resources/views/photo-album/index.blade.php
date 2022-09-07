@@ -83,7 +83,7 @@
                 page-break-inside: avoid;
                 break-inside: avoid;
                 counter-increment: brick-counter;
-                margin-bottom: 18px;
+                padding-bottom: 18px;
                 margin-left: 10px;
             }
             .masonry img {
