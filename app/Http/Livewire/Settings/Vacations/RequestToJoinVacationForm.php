@@ -77,7 +77,7 @@ class RequestToJoinVacationForm extends Component
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
 
-        $owner = $this->vacation->owner ?? new User();
+        $owner = $this->vacation->VacationId && $this->vacation->owner ?  $this->vacation->owner : User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
         try {
             Mail::send([], [], function (Message $message) use ($owner) {
                 $message->to($this->state['email'])
@@ -94,7 +94,9 @@ class RequestToJoinVacationForm extends Component
 
         }
 
-        if ($this->vacation->owner) {
+
+
+        if ($owner) {
             try {
                 Mail::send([], [], function (Message $message) use ($owner) {
                     $message->to($owner->email)
