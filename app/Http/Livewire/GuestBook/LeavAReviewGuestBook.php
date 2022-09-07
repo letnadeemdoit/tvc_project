@@ -68,10 +68,14 @@ class LeavAReviewGuestBook extends Component
 
     public function resetFeedbackForm(){
 
-        $this->state = "";
+        $this->reset(['state','file']);
 
+//        $this->file = null;
+
+//        if ($this->file) {
+//            $inputs['image'] = ;
+//        }
     }
-
 
     public function updatedFile() {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
