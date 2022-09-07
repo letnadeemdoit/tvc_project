@@ -43,6 +43,7 @@
                     <!-- End Collapse -->
 
                     <span class="dropdown-header mt-4">Menu</span>
+                    <small class="bi-three-dots nav-subtitle-replacer"></small>
                     @if(auth()->user()->is_guest)
 
 
@@ -50,7 +51,7 @@
                             <a class="nav-link  {{ link_is_active_with_class(['guest.bulletin-board.index']) }}" href="{{route('guest.bulletin-board.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
                                 <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
-                                <span class="nav-link-title">BULLETIN BOARD</span>
+                                <span class="nav-link-title">Bulletin Board</span>
                             </a>
                         </div>
 
@@ -58,7 +59,7 @@
                             <a class="nav-link  {{ link_is_active_with_class(['guest.blog.index']) }}" href="{{route('guest.blog.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
                                 <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
-                                <span class="nav-link-title">BLOG</span>
+                                <span class="nav-link-title">Blog</span>
                             </a>
                         </div>
 
@@ -66,7 +67,7 @@
                             <a class="nav-link  {{ link_is_active_with_class(['guest.photo-album.index']) }}" href="{{route('guest.photo-album.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
                                 <img src="{{asset('images/icons/photo-album.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
-                                <span class="nav-link-title">PHOTO ALBUM</span>
+                                <span class="nav-link-title">Photo Album</span>
                             </a>
                         </div>
 
@@ -74,7 +75,7 @@
                             <a class="nav-link  {{ link_is_active_with_class(['guest.local-guide.index']) }}" href="{{route('guest.local-guide.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
                                 <img src="{{asset('images/icons/mdi_map-marker-radius-outline.svg')}}" class="me-3" style="width: 18px;opacity: 0.7" alt="">
-                                <span class="nav-link-title">LOCAL GUIDE</span>
+                                <span class="nav-link-title">Local Guide</span>
                             </a>
                         </div>
 
@@ -83,7 +84,7 @@
                             <a class="nav-link  {{ link_is_active_with_class(['guest.house-items.index']) }}" href="{{route('guest.house-items.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
                                 <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
-                                <span class="nav-link-title">FOOD LIST</span>
+                                <span class="nav-link-title">Food List</span>
                             </a>
                         </div>
 
@@ -91,13 +92,13 @@
                             <a class="nav-link  {{ link_is_active_with_class(['guest.guest-book.index']) }}" href="{{route('guest.guest-book.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
                                 <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
-                                <span class="nav-link-title">GUEST BOOK</span>
+                                <span class="nav-link-title">Guest Book</span>
                             </a>
                         </div>
 
 
                     @endif
-                    <small class="bi-three-dots nav-subtitle-replacer"></small>
+
                     <div id="navbarVerticalMenuPagesMenu">
                         @if(!auth()->user()->is_guest)
                             <div class="nav-item">
