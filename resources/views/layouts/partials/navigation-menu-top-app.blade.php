@@ -137,6 +137,13 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            @if(auth()->user()->is_super_admin)
+                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('super-admin.manage-users') }}">Manage Users</a>
+                            @endif
+
                             @if(!auth()->user()->is_guest)
                                  <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings</a>
