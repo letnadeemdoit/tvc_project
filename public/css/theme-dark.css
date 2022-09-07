@@ -34396,6 +34396,10 @@ body {
   padding-bottom: 5rem;
 }
 
+.text-light-grey {
+  color: #887E7E;
+}
+
 .guest-modal ::-webkit-scrollbar {
   width: 10px;
   background: #000;
@@ -34569,6 +34573,10 @@ body {
 
 .h-20 {
   height: 20px;
+}
+
+.fw-500 {
+  font-weight: 500;
 }
 
 .mt-70 {
@@ -35338,10 +35346,6 @@ header nav button:last-child:hover {
   .select2-container {
     width: 100% !important;
   }
-  .scroll-icons {
-    padding-left: 0.6rem !important;
-    padding-right: 0.6rem !important;
-  }
   .food-item-img {
     width: 100% !important;
     height: 200px !important;
@@ -35425,6 +35429,10 @@ header nav button:last-child:hover {
   .rounded-icon {
     width: 12%;
     margin: -30px auto !important;
+  }
+  .scroll-icons {
+    padding-left: 0.6rem !important;
+    padding-right: 0.6rem !important;
   }
   .fancybox__caption {
     max-width: 470px;
@@ -35551,9 +35559,6 @@ header nav button:last-child:hover {
     margin-right: 3px !important;
     padding: 2px !important;
     min-height: 92px !important;
-  }
-  .scroll-icons {
-    max-height: 28px !important;
   }
   .switch-button a {
     font-size: 12px;
