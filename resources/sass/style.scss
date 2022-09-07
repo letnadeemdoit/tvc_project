@@ -1168,9 +1168,7 @@ header{
         height: 208px !important;
         object-fit: cover !important;
     }
-    .masonry .brick{
-       margin-left: 0px !important;
-    }
+
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -1274,6 +1272,9 @@ header{
     .moretext {
         display: none;
     }
+    .masonry .brick{
+        margin-left: 0px !important;
+    }
 }
 @media only screen and (max-width:576px){
     .bg-process-img{
@@ -1283,6 +1284,7 @@ header{
         width:12%;
         margin: -30px auto !important;
     }
+
     .scroll-icons{
         padding-left: 0.6rem !important;
         padding-right: 0.6rem !important;
