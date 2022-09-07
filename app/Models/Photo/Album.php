@@ -18,6 +18,8 @@ class Album extends Model implements Auditable
     use HasFile;
     use AuditableTrait;
 
+    protected bool $generateThumbnail = true;
+
     protected $fillable = [
         'house_id',
         'user_id',
