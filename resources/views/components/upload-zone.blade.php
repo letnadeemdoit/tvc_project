@@ -1,4 +1,4 @@
-@props(['multiple' => false])
+@props(['multiple' => false, 'title' => 'Drag and drop your file here'])
 <div
     class="mb-2"
     x-data="{
@@ -123,7 +123,7 @@
         x-on:dragleave.prevent="isFileDropping = false"
     >
         <div class="dz-message">
-            <h5>Drag and drop your file here</h5>
+            <h5>{{ $title }}</h5>
             <p class="mb-2">or</p>
             <div class="text-center">
                 <input
