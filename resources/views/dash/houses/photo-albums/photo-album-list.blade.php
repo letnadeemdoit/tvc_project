@@ -37,9 +37,9 @@
                 <tr>
                     <th style="width: 100px" class="text-center">Image</th>
                     <th>House</th>
-                    <th>Name</th>
+                    <th style="max-width: 400px">Name &amp; DESCRIPTION</th>
                     <th>Parent Album</th>
-                    <th>Description</th>
+{{--                    <th>Description</th>--}}
                     <th>Photos</th>
                     <th>Action</th>
                 </tr>
@@ -60,19 +60,21 @@
 
                         </td>
                         <td class="fw-600">{{ auth()->user()->house->HouseName ?? ''}}</td>
-                        <td>{{$dt->name ?? ''}}</td>
-                        <td>{{$dt->parentAlbum->name ?? ''}}</td>
-                        <td>{!! substr($dt->description,0,40) ?? '' !!}
-
-                            @if(isset($dt->description) && strlen($dt->description) > 41)
-                                <a href="#!"
-                                   class="fw-600"
-                                   data-bs-toggle="modal"
-                                   data-bs-target="#localGuideDescription{{$dt->id}}Details"
-                                >View</a>
-                            @endif
-
+                        <td style="max-width: 400px" class="text-wrap text-break" ><h5 class="mb-0">{{$dt->name ?? ''}}</h5>
+                                <small class="mb-0">{!! substr($dt->description,0,255) ?? '' !!}</small>
                         </td>
+                        <td>{{$dt->parentAlbum->name ?? ''}}</td>
+{{--                        <td>{!! substr($dt->description,0,40) ?? '' !!}--}}
+
+{{--                            @if(isset($dt->description) && strlen($dt->description) >= 40)--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="fw-600"--}}
+{{--                                   data-bs-toggle="modal"--}}
+{{--                                   data-bs-target="#localGuideDescription{{$dt->id}}Details"--}}
+{{--                                >View</a>--}}
+{{--                            @endif--}}
+
+{{--                        </td>--}}
 
                         <!-- Modal -->
                         <div class="modal fade" id="localGuideDescription{{$dt->id}}Details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
