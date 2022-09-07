@@ -54,7 +54,7 @@
                 <div
                     class="card border-0 rounded shadow"
                 >
-                    <img src="{{ $dt->getFileUrl() }}" class="card-img rounded" />
+                    <img src="{{ $dt->getThumbnailUrl(\App\Models\Photo\Photo::$THUMBNAIL_SMALL) }}" class="card-img rounded" />
                     <div
                         class="p-4 rounded d-flex align-items-center justify-content-center "
                         style="background: rgba(0,0,0, 0.3); position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: none"

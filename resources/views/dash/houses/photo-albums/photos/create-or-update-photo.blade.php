@@ -21,7 +21,7 @@
                     @if($photo && $photo->path)
                         <div class="d-flex mb-3">
                             <div class="mx-auto">
-                                <img src="{{ $photo->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>
+                                <img src="{{ $photo->getThumbnailUrl(\App\Models\Photo\Photo::$THUMBNAIL_MEDIUM) }}" class="img-thumbnail rounded" style="max-height: 120px"/>
                             </div>
                         </div>
                     @endif

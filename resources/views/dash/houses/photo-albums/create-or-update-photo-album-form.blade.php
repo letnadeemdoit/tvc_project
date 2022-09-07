@@ -16,7 +16,7 @@
                     @if($album && $album->image)
                         <div class="d-flex mb-3">
                             <div class="mx-auto">
-                                <img src="{{ $album->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>
+                                <img src="{{ $album->getThumbnailUrl(\App\Models\Photo\Album::$THUMBNAIL_MEDIUM) }}" class="img-thumbnail rounded" style="max-height: 120px"/>
                             </div>
                         </div>
                     @endif
