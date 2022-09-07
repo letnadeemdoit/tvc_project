@@ -77,6 +77,11 @@
                     column-count: 3;
                 }
             }
+            @media (min-width: 1400px) {
+                .masonry {
+                    column-count: 4;
+                }
+            }
             .masonry .brick {
                 box-sizing: border-box;
                 -webkit-column-break-inside: avoid;
