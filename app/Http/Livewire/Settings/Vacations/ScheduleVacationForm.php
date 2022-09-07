@@ -80,6 +80,8 @@ class ScheduleVacationForm extends Component
             'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
+        ], [
+            'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
 
         $startDatetime = Carbon::parse($this->state['start_datetime']);

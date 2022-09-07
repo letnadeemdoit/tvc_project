@@ -141,10 +141,9 @@
                 timePicker: true,
                 timePickerIncrement: 60,
                 startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
-                @else moment() @endisset,
+                @else moment().set('minute', 0) @endisset,
                 endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
-                @else moment()
-                .add(2, 'days') @endisset,
+                @else moment().set('minute', 0).add(2, 'days') @endisset,
                 locale: {
                     format: 'MM/DD/YYYY HH:mm'
                 }
