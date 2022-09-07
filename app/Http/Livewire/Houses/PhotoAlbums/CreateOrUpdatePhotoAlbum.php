@@ -33,7 +33,7 @@ class CreateOrUpdatePhotoAlbum extends Component
     {
         $albumCategory = Album::where('house_id', $this->user->HouseId)->get();
 
-        return view('dash.houses.photo-albums.create-or-update-photo-album-form',compact('albumCategory'));
+        return view('dash.houses.photo-albums.create-or-update-photo-album-form', compact('albumCategory'));
     }
 
     public function hydrate()
@@ -63,7 +63,7 @@ class CreateOrUpdatePhotoAlbum extends Component
 
         if ($this->file) {
             $inputs['image'] = $this->file;
-        }else{
+        } else{
             unset($inputs['image']);
         }
 

@@ -21,6 +21,8 @@ class Photo extends Model implements Auditable
 
     protected $table = 'Photo';
 
+    protected $generateThumbnail = true;
+
     /**
      * The attributes that are mass assignable.
      *
