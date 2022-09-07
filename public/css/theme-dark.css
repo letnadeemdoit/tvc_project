@@ -34402,7 +34402,6 @@ body {
 
 .guest-modal ::-webkit-scrollbar {
   width: 10px;
-  background: #000;
 }
 
 .dropdown-focus:focus {
@@ -35423,6 +35422,9 @@ header nav button:last-child:hover {
   .rounded-icon {
     width: 12%;
     margin: -30px auto !important;
+  }
+  .guest-modal .modal-body {
+    padding: 0px !important;
   }
   .scroll-icons {
     padding-left: 0.6rem !important;
