@@ -166,7 +166,7 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 }
 .guest-modal ::-webkit-scrollbar {
     width: 10px;
-    background:#000;
+    //background:#000;
 }
 .dropdown-focus{
     &:focus{
@@ -1171,6 +1171,12 @@ header{
         height: 208px !important;
         object-fit: cover !important;
     }
+    .category-cards {
+        margin-top: 0px !important;
+    }
+    .pt-55{
+        padding-top: 30px !important;
+    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -1282,6 +1288,11 @@ header{
     .rounded-icon{
         width:12%;
         margin: -30px auto !important;
+    }
+    .guest-modal{
+        .modal-body{
+            padding: 0px !important;
+        }
     }
     .scroll-icons{
         padding-left: 0.6rem !important;
@@ -1527,7 +1538,7 @@ header{
     height:435px;
 }
 .category-cards{
-    margin-top: 30px;
+    //margin-top: 30px;
     .nav-tabs{
         .nav-item{
             min-width: fit-content;

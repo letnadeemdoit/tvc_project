@@ -16,11 +16,7 @@
         @endcan
     </x-slot>
 
-    @can('viewAny', \App\Models\User::class)
         <livewire:super-admin.users-list :user="$user" />
-    @endcan
-
-    @canany(['create', 'update'], \App\Models\User::class)
         <livewire:super-admin.create-or-update-user-form :user="$user" />
-    @endcanany
+
 </x-settings>

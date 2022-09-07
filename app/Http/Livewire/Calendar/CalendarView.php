@@ -14,12 +14,15 @@ class CalendarView extends Component
 
     public $selectedHouses = [];
     public $properties = null;
+
+    public $owner = null;
     protected $queryString = [
         'properties' => ['except' => null],
+        'owner' => ['except' => null],
     ];
 
     protected $listeners = [
-        'vacation-schedule-successfully' => '$refresh'
+        'vacation-schedule-successfully' => 'renderCalendar'
     ];
 
     public function mount() {
@@ -32,33 +35,17 @@ class CalendarView extends Component
 
     public function render()
     {
-        if ($this->user->is_admin) {
-            $vacations = Vacation::whereIn('HouseId', $this->properties ? $this->selectedHouses : $this->houses->pluck('HouseID')->toArray())->get();
-        } else {
-            $vacations = Vacation::where('HouseId', $this->user->HouseId)->get();
-        }
-
-        $rooms = Room::where('HouseId', $this->user->HouseId)->get();
-
-        $events = [];
-        foreach ($vacations as $vacation) {
-            $events[] = $vacation->toCalendar();
-        }
-
-        $resourceTimeline = [];
-        foreach ($rooms as $room) {
-            $resourceTimeline[] = $room->toCalendarResource();
-        }
-
-        return view('dash.calendar.calendar-view', compact('events', 'resourceTimeline'));
+        return view('dash.calendar.calendar-view');
     }
 
     public function setProperty($property = null) {
         if ($property) {
-            $this->redirect(route('dash.calendar', ['properties' => implode(',', $this->selectedHouses)]));
+            $this->properties = implode(',', $this->selectedHouses);
         } else {
-            $this->redirect(route('dash.calendar'));
+            $this->properties = null;
         }
+
+        $this->renderCalendar();
     }
 
     public function getHousesProperty()
@@ -69,5 +56,55 @@ class CalendarView extends Component
                 'role' => User::ROLE_ADMINISTRATOR,
             ]);
         })->get();
+    }
+
+    public function updatedOwner()
+    {
+        $this->renderCalendar();
+    }
+
+    public function getEventsProperty() {
+        if ($this->user->is_admin) {
+            $vacations = Vacation::whereIn('HouseId', $this->properties ? $this->selectedHouses : $this->houses->pluck('HouseID')->toArray())
+                    ->when($this->user->user_id !== $this->owner && $this->owner !== null, function ($query) {
+                        $query->where('OwnerId', $this->owner);
+                    })
+                    ->get();
+        } else {
+            $vacations = Vacation::where('HouseId', $this->user->HouseId)->get();
+        }
+
+        $events = [];
+        foreach ($vacations as $vacation) {
+            $events[] = $vacation->toCalendar();
+        }
+
+        return $events;
+    }
+
+    public function getResourceTimelineProperty() {
+
+        if ($this->user->is_admin) {
+            $rooms = Room::whereIn('HouseId', $this->properties ? $this->selectedHouses : User::where('email', $this->user->email)->pluck('HouseId')->toArray())->get();
+        } else {
+            $rooms = Room::where('HouseId', $this->user->HouseId)->get();
+        }
+
+
+
+        $resourceTimeline = [];
+        foreach ($rooms as $room) {
+            $resourceTimeline[] = $room->toCalendarResource();
+        }
+
+        return $resourceTimeline;
+    }
+
+    public function renderCalendar() {
+        $this->emit('rerender-calendar', $this->events, $this->resourceTimeline);
+    }
+    public function getOwnersProperty()
+    {
+        return User::where('HouseId', $this->user->HouseId)->where('role', '<>', User::ROLE_GUEST)->where('user_id', '<>', $this->user->user_id)->get();
     }
 }

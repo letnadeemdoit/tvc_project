@@ -159,16 +159,4 @@ class DashboardController extends Controller
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
-
-    //Super Admin Listing
-
-    public function manageUsers(Request $request)
-    {
-        abort_if($request->user()->is_guest, 403);
-        return view('dash.super-admin.index', [
-            'user' => $request->user()
-        ]);
-
-    }
-
 }

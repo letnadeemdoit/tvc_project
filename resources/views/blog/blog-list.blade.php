@@ -40,7 +40,7 @@
                 @endif
             </div>
 
-        <div class="row category-cards">
+        <div class="row category-cards pt-3">
             @foreach($data as $dt)
                 <livewire:blog.post-card :post="$dt" wire:key="{{ $dt->BlogId }}"/>
             @endforeach

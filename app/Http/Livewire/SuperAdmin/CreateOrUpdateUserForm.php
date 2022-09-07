@@ -40,9 +40,6 @@ class CreateOrUpdateUserForm extends Component
 
     public function showUserCUModal($toggle, ?User $userCU)
     {
-        if (! Gate::any(['create', 'update'], $userCU)) {
-            abort(403);
-        }
 
         $this->emitSelf('toggle', $toggle);
         $this->userCU = $userCU;

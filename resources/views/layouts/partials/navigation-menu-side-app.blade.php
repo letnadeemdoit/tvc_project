@@ -26,23 +26,28 @@
             <div class="navbar-vertical-content">
                 <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
                     <!-- Collapse -->
-                    <div class="nav-item">
-{{--                        <a class="nav-link active" href="{{route('dash.index')}}">--}}
-{{--                            <i class="bi-house-door nav-icon"></i>--}}
-{{--                            <span class="nav-link-title">Dashboard</span>--}}
-{{--                        </a>--}}
+
+                    @if(!auth()->user()->is_super_admin)
                         <div class="nav-item">
-                            <a class="nav-link" href="{{route('dash.calendar')}}" data-placement="left">
-{{--                                <i class="bi-calendar-month nav-icon"></i>--}}
-                                <img src="{{asset('images/icons/calendar.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+    {{--                        <a class="nav-link active" href="{{route('dash.index')}}">--}}
+    {{--                            <i class="bi-house-door nav-icon"></i>--}}
+    {{--                            <span class="nav-link-title">Dashboard</span>--}}
+    {{--                        </a>--}}
+                            <div class="nav-item">
+                                <a class="nav-link" href="{{route('dash.calendar')}}" data-placement="left">
+    {{--                                <i class="bi-calendar-month nav-icon"></i>--}}
+                                    <img src="{{asset('images/icons/calendar.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
 
-                                <span class="nav-link-title">Calendar</span>
-                            </a>
+                                    <span class="nav-link-title">Calendar</span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <!-- End Collapse -->
+                    @if(!auth()->user()->is_super_admin)
+                        <span class="dropdown-header mt-4">Menu</span>
+                    @endif
 
-                    <span class="dropdown-header mt-4">Menu</span>
                     <small class="bi-three-dots nav-subtitle-replacer"></small>
                     @if(auth()->user()->is_guest)
 
@@ -107,7 +112,7 @@
                     @endif
 
                     <div id="navbarVerticalMenuPagesMenu">
-                        @if(!auth()->user()->is_guest)
+                        @if(!auth()->user()->is_guest && !auth()->user()->is_super_admin)
                             <div class="nav-item">
                                 <a class="nav-link {{ link_is_active_with_class(['dash.photo-albums']) }}" href="{{route('dash.photo-albums')}}" data-placement="left">
 {{--                                    <i class="bi-images nav-icon"></i>--}}
@@ -125,6 +130,28 @@
                                 </a>
                             </div>
                         @endif
+
+
+                        @if(auth()->user()->is_super_admin)
+
+                                <div class="nav-item">
+                                    <a class="nav-link  {{ link_is_active_with_class(['super-admin.manage-users']) }}" href="{{route('super-admin.manage-users')}}" data-placement="left">
+                                        {{--                                    <i class="bi-router nav-icon"></i>--}}
+                                        <img src="{{asset('images/icons/users-icon.svg')}}" class="me-3" style="width: 18px;opacity: 0.7" alt="">
+                                        <span class="nav-link-title">Manage Users</span>
+                                    </a>
+                                </div>
+
+                            <div class="nav-item">
+                                <a class="nav-link  {{ link_is_active_with_class(['dash.settings.account-information']) }}" href="{{route('dash.settings.account-information')}}" data-placement="left">
+                                    {{--                                    <i class="bi-router nav-icon"></i>--}}
+                                    <img src="{{asset('images/icons/settings-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+                                    <span class="nav-link-title">Account Settings</span>
+                                </a>
+                            </div>
+                        @endif
+
+
                         @if(auth()->user()->is_admin)
                             <div class="nav-item">
                                 <a class="nav-link  {{ link_is_active_with_class(['dash.plans-and-pricing']) }}" href="{{route('dash.plans-and-pricing')}}" data-placement="left">
@@ -134,7 +161,7 @@
                                 </a>
                             </div>
                         @endif
-                        @if(!auth()->user()->is_guest)
+                        @if(!auth()->user()->is_guest && !auth()->user()->is_super_admin)
                             <div class="nav-item">
                                 <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list']) }}
                                     "
@@ -161,7 +188,7 @@
                                 </div>
                             </div>
                         @endif
-                        @if(!auth()->user()->is_guest)
+                        @if(!auth()->user()->is_guest && !auth()->user()->is_super_admin)
                             <div class="nav-item">
                                 <a class="nav-link dropdown-toggle {{ link_is_active_with_class(['dash.account.settings', 'dash.account.subscriptions', 'dash.account.invoices']) }}"
                                    href="#navbarVerticalMenuPagesAccountMenu" role="button" data-bs-toggle="collapse"
