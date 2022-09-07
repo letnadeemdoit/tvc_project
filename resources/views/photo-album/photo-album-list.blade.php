@@ -1,4 +1,4 @@
-<div class="container padding-bottom massonary-container mt-3">
+<div class="container padding-bottom massonary-container">
     <div class="masonry">
         @foreach($data as $dt)
             @if($dt instanceof \App\Models\Photo\Album && ($dt->nestedAlbums->count() > 0 or $dt->photos->count() > 0))
