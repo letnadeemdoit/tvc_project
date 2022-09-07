@@ -78,7 +78,7 @@
                 </div>
 
                 <div>
-                    <x-upload-zone wire:model="file" title="Upload a selfie from your visit" />
+                    <x-upload-zone wire:model="file" title="Drop your selfie here" />
                     <x-jet-input-error for="image" />
                 </div>
                 <br/>
