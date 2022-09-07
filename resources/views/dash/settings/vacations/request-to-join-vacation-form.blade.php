@@ -2,8 +2,12 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
-                Request to Join "{{ $vacation ? $vacation->VacationName : '' }}" Vacation
-                <small class="d-block">To request to join this vacation, provide your name, email, the dates you want to come and click "Request to Join"</small>
+                @if($user->is_guest && (is_null($vacation) || !is_null($vacation) && !$vacation->VacationId))
+                    Request to use the House
+                @else
+                    Request to Join {{ $vacation && $vacation->VacationId ? '"' . $vacation->VacationName . '"' : '' }} Vacation
+                    <small class="d-block">To request to join this vacation, provide your name, email, the dates you want to come and click "Request to Join"</small>
+                @endif
             </h5>
             <button
                 type="button"
@@ -130,7 +134,11 @@
                     type="submit"
                     class="btn btn-primary ms-auto"
                 >
-                    Request to Join
+                    @if($user->is_guest && (is_null($vacation) || !is_null($vacation) && !$vacation->VacationId))
+                        Request to use the House
+                    @else
+                        Request to Join
+                    @endif
                 </button>
             </div>
         </form>

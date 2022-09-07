@@ -35380,15 +35380,6 @@ header nav button:last-child:hover {
   .help-page-tabs .nav-tabs .nav-item .card .card-body img {
     width: 50px;
   }
-  .category-cards .nav.nav-tabs {
-    justify-content: center !important;
-  }
-  .category-cards .nav-link {
-    padding: 8px !important;
-  }
-  .category-cards .nav-link img {
-    width: 25px !important;
-  }
   .section-padding {
     padding-top: 40px !important;
     padding-bottom: 40px !important;
@@ -35499,15 +35490,6 @@ header nav button:last-child:hover {
   .rounded-icon {
     width: 15%;
     margin: -26px auto !important;
-  }
-  .category-cards .nav.nav-tabs {
-    justify-content: center !important;
-  }
-  .category-cards .nav-link {
-    padding: 6px !important;
-  }
-  .category-cards .nav-link img {
-    width: 19px !important;
   }
   .ul-card-footer li span {
     padding-left: 2px !important;
