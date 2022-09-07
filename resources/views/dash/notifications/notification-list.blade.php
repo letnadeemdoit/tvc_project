@@ -32,7 +32,7 @@
 
 
     <div class="mt-3">
-        {{ $data->links() }}
+        {{ $data->onEachSide(0)->links() }}
     </div>
 
         <!-- End Table -->
