@@ -1168,6 +1168,12 @@ header{
         height: 208px !important;
         object-fit: cover !important;
     }
+    .category-cards {
+        margin-top: 0px !important;
+    }
+    .pt-55{
+        padding-top: 35px !important;
+    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
