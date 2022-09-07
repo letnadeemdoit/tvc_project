@@ -44437,9 +44437,6 @@ header nav button:last-child:hover {
     -o-object-fit: cover !important;
        object-fit: cover !important;
   }
-  .masonry .brick {
-    padding-left: 0px !important;
-  }
 }
 @media only screen and (max-width: 767px) {
   .hero-image {
@@ -44595,6 +44592,9 @@ header nav button:last-child:hover {
   .masonry {
     -moz-column-count: 1 !important;
          column-count: 1 !important;
+  }
+  .masonry .brick {
+    margin-left: 0 !important;
   }
 }
 @media only screen and (max-width: 430px) {
