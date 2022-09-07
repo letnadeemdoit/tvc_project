@@ -68,10 +68,13 @@
                         window.tinymce.init({
                         ...window.TINYMCE_DEFAULT_CONFIG,
                         selector: 'textarea#board_textarea',
-                        plugins: 'fullscreen code lists',
-  toolbar: 'insertfile undo redo | bold italic underline | styleselect fontfamily fontsize blocks lineheight  alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor',
+                        plugins: 'fullscreen code lists emoticons insertdatetime',
+  toolbar: 'insertfile undo redo | bold italic underline | styleselect fontfamily fontsize blocks lineheight emoticons insertdatetime alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor',
+  insertdatetime_formats: ['%H:%M:%S', '%Y-%m-%d', '%I:%M:%S %p', '%D', '%y', '%Y', '%m', '%B', '%b', '%d', '%A', '%a','%H', '%I', '%M' , '%S', '%p', '%%' ],
   toolbar_mode: 'sliding',
+  insertdatetime_formats: ['%H:%M:%S', '%Y-%m-%d', '%I:%M:%S %p', '%D', '%y', '%Y', '%m', '%B', '%b', '%d', '%A', '%a','%H', '%I', '%M' , '%S', '%p', '%%' ],
   /* enable title field in the Image dialog*/
+
 
   block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
 

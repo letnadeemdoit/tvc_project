@@ -119,9 +119,10 @@
                         window.tinymce.init({
                             ...window.TINYMCE_DEFAULT_CONFIG,
                             selector: 'textarea#Content',
-                            plugins: 'fullscreen image code lists table',
-                            toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
+                            plugins: 'fullscreen image code lists table emoticons insertdatetime',
+                            toolbar: 'insertfile undo redo bold italic underline  alignleft aligncenter alignright alignjustify outdent indent numlist bullist link image code fullscreen lineheight | styleselect fontfamily fontsize blocks forecolor backcolor emoticons insertdatetime  table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
                             /* enable title field in the Image dialog*/
+                            insertdatetime_formats: ['%H:%M:%S', '%Y-%m-%d', '%I:%M:%S %p', '%D', '%y', '%Y', '%m', '%B', '%b', '%d', '%A', '%a','%H', '%I', '%M' , '%S', '%p', '%%' ],
                             image_advtab: true,
                             visual: false,
                             toolbar_mode: 'sliding',
