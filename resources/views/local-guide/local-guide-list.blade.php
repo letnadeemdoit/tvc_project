@@ -4,13 +4,15 @@
             <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%">
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                     <li class="nav-item">
-                        <a href="{{ route('guest.local-guide.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
+                        <a href="{{ route('guest.local-guide.index', ['category' => 'all']) }}"
+                           wire:click.prevent="$set('category', 'all')"
+                           class="nav-link mr-7px {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
                             ALL
                         </a>
                     </li>
                 </ul>
                 <a
-                    class="btn btn-white scroll-icons align-items-center py-2"
+                    class="btn btn-white scroll-icons align-items-center py-2 ms-0 ms-md-1 ms-lg-2"
                     id="left-button"
                     style="display: none"
                 >
@@ -20,14 +22,16 @@
 
                     @foreach($categories as $cat)
                         <li class="nav-item">
-                            <a href="{{ route('guest.local-guide.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
+                            <a href="{{ route('guest.local-guide.index', ['category' => $cat->slug]) }}"
+                               wire:click.prevent="$set('category', '{{ $cat->slug }}')"
+                               class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
                                 {{ $cat->name }}
                             </a>
                         </li>
                     @endforeach
                 </ul>
                 <a
-                    class="btn btn-white scroll-icons align-items-center"
+                    class="btn btn-white scroll-icons align-items-center me-2"
                     id="right-button"
                     style="display: none"
                 >
@@ -95,7 +99,7 @@
                 leftBtn.show();
                 rightBtn.show();
             } else {
-                $('#all-btn').css('margin-right','7px');
+                // $('#all-btn').css('margin-right','7px');
             }
         }
 
