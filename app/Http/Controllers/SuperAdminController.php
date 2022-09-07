@@ -22,6 +22,7 @@ class SuperAdminController extends Controller
     }
 
     public function login(Request $request){
+
         $input = $request->all();
 
         $this->validate($request, [
@@ -31,7 +32,7 @@ class SuperAdminController extends Controller
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            if (auth()->user()->role == 'SuperAdmin') {
+            if (auth()->user()->is_super_admin) {
 
                 return redirect()->route('super-admin.manage-users');
 

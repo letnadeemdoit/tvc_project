@@ -106,15 +106,12 @@
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
 
-                                @can('update', $dt)
                                     <a class="btn btn-white" href="#"
                                        wire:click.prevent="$emit('showUserCUModal', true, {{ $dt->user_id}})"
                                     >
                                         <i class="bi-pencil me-1 text-success"></i> Edit
                                     </a>
-                                @endcan
 
-                                @can('delete', $dt)
                                     <button
                                         type="button"
                                         class="btn btn-danger btn-sm"
@@ -122,7 +119,6 @@
                                     >
                                         <i class="bi-trash"></i>
                                     </button>
-                                @endcan
 
                             </div>
                         </td>
@@ -191,7 +187,7 @@
                 <!-- End Col -->
 
                 <div class="col-sm-auto pt-2">
-                    <div class="d-flex align-items-center justify-content-center justify-content-sm-end pagination-disable-button">
+                    <div class="d-flex align-items-center justify-content-center justify-content-sm-end">
                         <!-- Pagination -->
                         {{ $data->onEachSide(0)->links() }}
                     </div>
