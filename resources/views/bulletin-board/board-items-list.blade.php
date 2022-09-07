@@ -14,7 +14,7 @@
                     class="btn btn-white scroll-icons align-items-center py-2"
                     id="left-button"
                 >
-                    <i class="bi bi-chevron-left"></i>
+                    <i class="bi bi-chevron-left align-items-center d-flex h-100"></i>
                 </a>
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs mx-1 mx-sm-2 scroll margin-0" id="category-bar" role="tablist" style="overflow-x: scroll">
 
@@ -30,7 +30,7 @@
                     class="btn btn-white scroll-icons align-items-center"
                     id="right-button"
                 >
-                    <i class="bi bi-chevron-right"></i>
+                    <i class="bi bi-chevron-right align-items-center d-flex h-100"></i>
                 </a>
             @endif
         </div>

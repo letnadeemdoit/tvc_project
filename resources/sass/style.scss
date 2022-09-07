@@ -1361,6 +1361,9 @@ header{
     }
 }
 @media only screen and (max-width:430px){
+    .scroll-icons{
+        max-height: 28px !important;
+    }
     .rounded-icon{
         width:15%;
         margin: -26px auto !important;
