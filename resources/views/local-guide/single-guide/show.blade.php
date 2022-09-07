@@ -106,7 +106,7 @@
                                                 @endfor
 
                                                 <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
-                                                    <span class="ps-2 text-dark">({{$localGuide->reviews->count()}} Reviews)</span>
+                                                    <span class="ps-2 text-light-grey">({{$localGuide->reviews->count()}} Reviews)</span>
                                                 </a>
                                         @else
 {{--                                                <span class="text-primary fw-bolder fs-4">--}}
@@ -124,7 +124,7 @@
                                                 <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
                                                      alt="">
                                                 <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
-                                                    <span class="ps-2 text-dark">(0 Reviews)</span>
+                                                    <span class="ps-2 text-light-grey">(0 Reviews)</span>
                                                 </a>
                                         </div>
                                         @endif
@@ -195,7 +195,7 @@
                                             >
                                             <div class="ps-2">
                                                 <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
-                                                <p class="mb-0 date-fs">{{ substr($dt->address , 0 ,25) }} <a href="#"
+                                                <p class="mb-0 date-fs fw-500">{{ substr($dt->address , 0 ,25) }} <a href="#"
                                                                                                               class="color-blue fw-normal">View</a>
                                                 </p>
                                             </div>
@@ -245,7 +245,7 @@
 
                                                     <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                                         <span
-                                                            class="ps-2 text-dark">({{$dt->reviews->count()}} Reviews)</span>
+                                                            class="ps-2 text-light-grey">({{$dt->reviews->count()}} Reviews)</span>
                                                     </a>
                                             @else
                                                     <span class="text-primary fw-bolder fs-4">
@@ -272,7 +272,7 @@
                                                         style="width: 17px"
                                                         alt="">
                                                     <a href="{{route('guest.local-guide.show',$dt->id)}}">
-                                                        <span class="ps-2 text-dark">(0 Reviews)</span>
+                                                        <span class="ps-2 text-light-grey">(0 Reviews)</span>
                                                     </a>
                                             @endif
 
