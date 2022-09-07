@@ -34,6 +34,19 @@
             i:hover {
                 color: unset !important;
             }
+
+            .pagination-disable-button button.page-link {
+                background-color: transparent !important;
+            }
+
+            .pagination-disable-button button.page-link {
+                padding: 6px 2px !important;
+            }
+
+            .pagination-disable-button li.page-item.disabled {
+                display: none;
+            }
+
         </style>
 
     </head>

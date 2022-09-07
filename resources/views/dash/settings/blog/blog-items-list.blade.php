@@ -153,7 +153,7 @@
                 <!-- End Col -->
 
                 <div class="col-sm-auto pt-2">
-                    <div class="d-flex align-items-center justify-content-center justify-content-sm-end">
+                    <div class="d-flex align-items-center justify-content-center justify-content-sm-end pagination-disable-button">
                         <!-- Pagination -->
                         {{ $data->onEachSide(0)->links() }}
                     </div>
