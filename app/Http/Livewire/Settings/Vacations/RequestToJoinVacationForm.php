@@ -25,6 +25,13 @@ class RequestToJoinVacationForm extends Component
     public $state = [];
     public ?Vacation $vacation;
 
+    public $house = null;
+    public $owner = null;
+    protected $queryString = [
+        'house' => ['except' => null],
+        'owner' => ['except' => null],
+    ];
+
     protected $listeners = [
         'showRequestToJoinVacationModal'
     ];
