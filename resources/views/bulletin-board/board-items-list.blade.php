@@ -44,8 +44,8 @@
     background-repeat: no-repeat;
     background-size: auto;
     background-position: top right 150px;">
-        <div class="container padding-bottom massonary-container">
-            <div class="masonry tab-pane fade show active pt-5 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
+        <div class="container padding-bottom massonary-container mt-3">
+            <div class="masonry tab-pane fade show active pt-3 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
                     <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                 @endforeach
