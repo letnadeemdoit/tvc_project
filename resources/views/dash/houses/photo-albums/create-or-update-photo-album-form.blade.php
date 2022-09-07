@@ -16,7 +16,7 @@
                     @if($album && $album->image)
                         <div class="d-flex mb-3">
                             <div class="mx-auto">
-                                <img src="{{ $album->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>
+                                <img src="{{ $album->getThumbnailUrl(\App\Models\Photo\Album::$THUMBNAIL_MEDIUM) }}" class="img-thumbnail rounded" style="max-height: 120px"/>
                             </div>
                         </div>
                     @endif
@@ -32,6 +32,9 @@
                             wire:model.defer="state.parent_id" class="form-control">
                         <option value="" selected>Select parent Album...</option>
                         @forelse($albumCategory as $ac)
+                            @if($album && $album->id)
+                                @continue($album->id == $ac->id)
+                            @endif
                             <option value="{{$ac->id}}">{{$ac->name}}</option>
                         @empty
                             <option value="" disabled selected>Create an album to select parent album</option>
