@@ -32,6 +32,7 @@ class LocalGuideController extends Controller
                 $query->where('house_id', auth()->user()->HouseId)
                     ->orWhere('house_id', null);
             })
+            ->withCount('localGuides')
             ->get();
 
 
