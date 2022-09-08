@@ -26,22 +26,34 @@ class SuperAdminController extends Controller
         $input = $request->all();
 
         $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
+            'email'           => 'required|max:255|email',
+            'password'           => 'required',
         ]);
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->is_super_admin) {
-
                 return redirect()->route('super-admin.manage-users');
-
             }
 
         }else{
             return redirect()->route('super-admin.login')
-                ->with('error','Email-Address And Password Are Wrong.');
+                ->with('error','Your credentials does not match our record.');
         }
+
+    }
+
+
+    public function forgotPassword(){
+
+        return view('dash.super-admin.auth.super-admin-forgot-password');
+
+    }
+
+    public function resetSuperAdminPassword(){
+
+
+        return view('dash.super-admin.auth.super-admin-forgot-password');
 
     }
 

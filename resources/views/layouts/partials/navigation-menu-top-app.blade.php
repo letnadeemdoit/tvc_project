@@ -25,7 +25,7 @@
         <div class="navbar-nav-wrap-content-end">
             <!-- Navbar -->
             <ul class="navbar-nav">
-                @if(!auth()->user()->is_guest)
+                @if(!auth()->user()->is_guest && !auth()->user()->is_super_admin)
                     @php
                         $data = auth()->user()->unreadNotifications()->get();
                      @endphp
