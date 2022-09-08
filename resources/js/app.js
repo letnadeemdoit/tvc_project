@@ -13,6 +13,8 @@ window.TINYMCE_DEFAULT_CONFIG = TINYMCE_DEFAULT_CONFIG;
 window.toastr = require('toastr');
 window.jSuites = require('jsuites');
 
+window.queryString = require('query-string');
+
 import {Loader} from 'google-maps';
 window.googleMaps = new Loader(process.env.MIX_GOOGLE_MAPS_API_KEY, {libraries: ['places']});
 

@@ -105,6 +105,9 @@ Route::get('/super-admin/login', [SuperAdminController::class, 'index'])->name('
 Route::post('/super-admin/login', [SuperAdminController::class, 'login'])->name('super-admin.login-super-admin');
 Route::get('/super-admin/manage-users', [SuperAdminController::class, 'manageUsers'])->name('super-admin.manage-users')->middleware('auth');
 
+Route::get('/super-admin/forgot-password', [SuperAdminController::class, 'forgotPassword'])->name('super-admin.forgot-password');
+Route::post('/super-admin/reset-super-admin-password', [SuperAdminController::class, 'resetSuperAdminPassword'])->name('reset-super-admin-password');
+
 Route::middleware([
     'auth',
     config('jetstream.auth_session'),
