@@ -135,7 +135,6 @@ class GuestController extends Controller
 
     public function ical(ICal $ical)
     {
-
-        dd($ical->houseVacations);
+        dd($ical->userVacations);
     }
 }

@@ -32,11 +32,11 @@ class ICal extends Model
 
     public function userVacations()
     {
-        return $this->hasMany(Vacation::class, 'house_id', 'HouseId')->where('OwnerId', $this->user_id);
+        return $this->hasMany(Vacation::class, 'HouseId', 'house_id')->where('OwnerId', $this->user_id);
     }
 
     public function houseVacations()
     {
-        return $this->hasMany(Vacation::class, 'house_id', 'HouseId');
+        return $this->hasMany(Vacation::class, 'HouseId', 'house_id');
     }
 }
