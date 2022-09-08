@@ -181,17 +181,18 @@
                 <div class="row">
                     @foreach($relatedGuides as $dt)
                         <div class="col-md-6 col-xl-4 mb-4 item">
-{{--                            <a href="{{route('guest.local-guide.show',$dt->id)}}">--}}
                             <div class="card blog-card rounded-2">
                                 <div class="card-header border-0 pt-3 pb-1">
                                     <div class="d-block d-sm-flex justify-content-between align-items-center">
                                         <div class="user-img d-flex align-items-center">
-                                            <img
+                                            <a href="{{route('guest.local-guide.show',$dt->id)}}">
+                                                <img
 
-                                                src="{{ $dt->user->profile_photo_url }}"
-                                                class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
-                                                alt="{{ $dt->user->name ?? '' }}"
-                                            >
+                                                    src="{{ $dt->user->profile_photo_url }}"
+                                                    class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
+                                                    alt="{{ $dt->user->name ?? '' }}"
+                                                >
+                                            </a>
                                             <div class="ps-2">
                                                 <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
                                                 <p class="mb-0 date-fs fw-500">{{ substr($dt->address , 0 ,25) }} <a href="#"
@@ -278,7 +279,6 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            </a>--}}
                         </div>
                     @endforeach
                 </div>
