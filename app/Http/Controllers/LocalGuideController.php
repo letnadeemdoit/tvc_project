@@ -19,7 +19,6 @@ class LocalGuideController extends Controller
     public function show(Request $request, LocalGuide $dt){
 
 //        $categories = Category::where('type', 'local-guide')->where('house_id',$dt->house_id)->withCount('localGuides')->get();
-
 //        $localGuideCategories = Category::where('type', 'local-guide')
 //            ->where(function ($query){
 //                $query->where('house_id', $this->user->HouseId)
@@ -32,9 +31,10 @@ class LocalGuideController extends Controller
                 $query->where('house_id', auth()->user()->HouseId)
                     ->orWhere('house_id', null);
             })
-            ->withCount('localGuides')
+            ->withCount(['localGuides' => function($query) {
+                $query->where('house_id', auth()->user()->HouseId);
+            }])
             ->get();
-
 
         $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->inRandomOrder()->limit(3)->get()->except($dt->id);
 
