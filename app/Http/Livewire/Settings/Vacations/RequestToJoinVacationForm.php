@@ -72,7 +72,10 @@ class RequestToJoinVacationForm extends Component
         Validator::make($this->state, [
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'string', 'max:255'],
-            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+            'start_datetime' => [
+                'required',
+//                new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)
+            ],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
