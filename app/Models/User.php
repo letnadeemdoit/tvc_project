@@ -276,7 +276,23 @@ class User extends Authenticatable implements Auditable
         })->get();
     }
 
+    public function ical()
+    {
+        return $this->hasOne(ICal::class, 'user_id', 'user_id');
+    }
 
+    public function iCalUrl()
+    {
+        $ical = $this->ical;
+        if (!$ical) {
+            $this->ical()->save($ical = new ICal([
+                'house_id' => $this->HouseId,
+                'slug' => strtolower(uniqid() . $this->HouseId . time() . $this->user_id),
+            ]));
+        }
+
+        return route('guest.ical', $ical);
+    }
 
 
     /**

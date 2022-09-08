@@ -35,6 +35,7 @@ Route::controller(GuestController::class)
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy-policy');
+        Route::get('/ical/{ical:slug}', 'ical')->name('ical');
 
         Route::middleware(['auth'])->group(function () {
 
