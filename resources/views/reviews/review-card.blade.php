@@ -113,7 +113,7 @@
                                 <div class="col-1">
                                     <span>5.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingFive ?? 0}}%"
                                              role="progressbar" aria-valuenow="100"
@@ -129,7 +129,7 @@
                                 <div class="col-1">
                                     <span>4.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingFour ?? 0}}%"
                                              role="progressbar" aria-valuenow="75"
@@ -145,7 +145,7 @@
                                 <div class="col-1">
                                     <span>3.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingThree ?? 0}}%"
                                              role="progressbar" aria-valuenow="50"
@@ -161,7 +161,7 @@
                                 <div class="col-1">
                                     <span>2.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingTwo ?? 0}}% !important;"
                                              role="progressbar" aria-valuenow="25"
@@ -178,7 +178,7 @@
                                 <div class="col-1">
                                     <span>1.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingOne ?? 0}}%"
                                              role="progressbar" aria-valuenow="25"
