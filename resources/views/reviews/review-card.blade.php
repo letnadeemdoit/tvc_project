@@ -57,7 +57,21 @@
     @endpush
 
     <div class="container my-5 pb-4">
-
+        <div class="row mb-5 mt-5">
+            <div class="col-12 col-lg-6">
+                <div class="d-flex justify-content-between">
+                    <h4>{{$localGuide->reviews()->count()}} Reviews</h4>
+                    <div><label for="">Sort By</label>
+                        <select name="" id=""
+                                wire:model="orderBy"
+                                class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
+                            <option value="DESC">Latest</option>
+                            <option value="ASC">Oldest</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
         @if(isset($avgRating))
             <div class="row py-5 my-4">
                 <div class="col-12 col-lg-6">
@@ -184,22 +198,6 @@
                 </div>
             </div>
         @endif
-
-        <div class="row mb-5 mt-5">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex justify-content-between">
-                    <h4>{{$localGuide->reviews()->count()}} Reviews</h4>
-                    <div><label for="">Sort By</label>
-                        <select name="" id=""
-                                wire:model="orderBy"
-                                class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
-                            <option value="DESC">Latest</option>
-                            <option value="ASC">Oldest</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="row my-5">
             <div class="col-12 col-lg-6">
