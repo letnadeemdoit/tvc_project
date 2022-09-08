@@ -53,8 +53,8 @@
 
                         <div class="nav-item">
                             <a class="nav-link  {{ link_is_active_with_class(['guest.welcome']) }}" href="{{route('guest.welcome')}}" data-placement="left">
-                                {{--                                    <i class="bi-router nav-icon"></i>--}}
-                                <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+{{--                                                                    <i class="bi-router nav-icon"></i>--}}
+                                <img src="{{asset('images/icons/additional-houses-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
                                 <span class="nav-link-title">Home</span>
                             </a>
                         </div>
@@ -62,7 +62,7 @@
                         <div class="nav-item">
                             <a class="nav-link  {{ link_is_active_with_class(['guest.bulletin-board.index']) }}" href="{{route('guest.bulletin-board.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
-                                <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+                                <img src="{{asset('images/icons/bulletin-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
                                 <span class="nav-link-title">Bulletin Board</span>
                             </a>
                         </div>
@@ -70,7 +70,7 @@
                         <div class="nav-item">
                             <a class="nav-link  {{ link_is_active_with_class(['guest.blog.index']) }}" href="{{route('guest.blog.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
-                                <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+                                <img src="{{asset('images/icons/blog-icon.svg')}}" class="me-3" style="width: 14px;opacity: 0.7" alt="">
                                 <span class="nav-link-title">Blog</span>
                             </a>
                         </div>
@@ -95,7 +95,7 @@
                         <div class="nav-item">
                             <a class="nav-link  {{ link_is_active_with_class(['guest.house-items.index']) }}" href="{{route('guest.house-items.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
-                                <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+                                <img src="{{asset('images/icons/food-items-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
                                 <span class="nav-link-title">Food List</span>
                             </a>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="nav-item">
                             <a class="nav-link  {{ link_is_active_with_class(['guest.guest-book.index']) }}" href="{{route('guest.guest-book.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
-                                <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+                                <img src="{{asset('images/icons/guest-book-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
                                 <span class="nav-link-title">Guest Book </span>
                             </a>
                         </div>
