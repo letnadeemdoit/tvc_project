@@ -8,6 +8,7 @@ use App\Models\BlogViews;
 use App\Models\Likes;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Illuminate\Http\Request;
 use App\Http\Livewire\Traits\Toastr;
 
 class PostCard extends Component
@@ -23,9 +24,10 @@ class PostCard extends Component
     ];
 
     public function mount() {
-        $blog_views = BlogViews::where('user_id' ,auth()->user()->user_id)->where('viewable_id' ,$this->post->BlogId)->get();
-        if ($blog_views)
-        $this->existing_views = count($blog_views);
+        $blog_views = BlogViews::where('viewable_id' ,$this->post->BlogId)->distinct('ip_address')->count();
+        if ($blog_views){
+            $this->existing_views = $blog_views;
+        }
     }
 
     public function render()
