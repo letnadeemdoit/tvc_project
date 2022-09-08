@@ -20,7 +20,7 @@
     </div>
     <div class="card border-0 mb-4">
         <div class="card-body">
-            <h4 class="mb-3">Latest  Local Guide</h4>
+            <h4 class="mb-3">Latest Local Guide</h4>
             @foreach($data as $dt)
                 <div class="d-flex align-items-center mb-4">
                     <div class="flex-shrink-0">
@@ -35,7 +35,7 @@
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <a href="{{route('guest.local-guide.show', $dt->id)}}">
-                            <h4 class="mb-0" style="color: #6D6D6D">{{ $dt->title }}</h4>
+                            <h4 class="mb-0 text-break" style="color: #6D6D6D">{{ $dt->title }}</h4>
                         </a>
                         <p class="mb-0" style="color: #B6B4B4">{{\Carbon\Carbon::parse($dt->BlogDate)->format('d M Y')}}</p>
                     </div>

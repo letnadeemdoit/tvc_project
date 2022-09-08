@@ -62,7 +62,7 @@
             <div class="row py-5 my-4">
                 <div class="col-12 col-lg-6">
                     <div class="row align-items-center">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div>
                                 <h1 class="text-primary">
                                     @if($avgRating)
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <div class="row align-items-center">
                                 <div class="col-1">
                                     <span>5.0</span>
