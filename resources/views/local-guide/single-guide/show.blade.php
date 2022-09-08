@@ -181,7 +181,7 @@
                 <div class="row">
                     @foreach($relatedGuides as $dt)
                         <div class="col-md-6 col-xl-4 mb-4 item">
-                            <a href="{{route('guest.local-guide.show',$dt->id)}}">
+{{--                            <a href="{{route('guest.local-guide.show',$dt->id)}}">--}}
                             <div class="card blog-card rounded-2">
                                 <div class="card-header border-0 pt-3 pb-1">
                                     <div class="d-block d-sm-flex justify-content-between align-items-center">
@@ -278,7 +278,7 @@
                                     </div>
                                 </div>
                             </div>
-                            </a>
+{{--                            </a>--}}
                         </div>
                     @endforeach
                 </div>
