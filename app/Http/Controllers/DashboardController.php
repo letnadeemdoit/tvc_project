@@ -28,7 +28,8 @@ class DashboardController extends Controller
     public function calendar(Request $request)
     {
         return view('dash.calendar.index', [
-            'user' => $request->user()
+            'user' => $request->user(),
+            'iCalUrl' => $request->user()->iCalUrl(),
         ]);
     }
 
@@ -85,10 +86,11 @@ class DashboardController extends Controller
         ]);
 
     }
-    public function markAsReadSingleNotification(Request $request , $id)
+
+    public function markAsReadSingleNotification(Request $request, $id)
     {
 
-        $d = DB::table('notifications')->where('id', $id )->update(['read_at' => now()]);
+        $d = DB::table('notifications')->where('id', $id)->update(['read_at' => now()]);
 
         return back();
     }
@@ -109,7 +111,6 @@ class DashboardController extends Controller
     }
 
 
-
     public function shoppingItemList(Request $request)
     {
         abort_if($request->user()->is_guest, 403);
@@ -118,7 +119,9 @@ class DashboardController extends Controller
         ]);
 
     }
-    public function planAndPricing(Request $request){
+
+    public function planAndPricing(Request $request)
+    {
         abort_if(!$request->user()->is_admin, 403);
         return view('dash.plans-and-pricing.index', [
             'user' => $request->user()

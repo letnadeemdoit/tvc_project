@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog\Blog;
 use App\Models\GuestBook;
+use App\Models\ICal;
 use App\Models\Photo\Album;
 use App\Notifications\ContactUsNotification;
 use Illuminate\Http\Request;
@@ -33,22 +34,20 @@ class GuestController extends Controller
             'comment' => 'required',
         ]);
 
-        Mail::send([], [], function ($message) use($request) {
+        Mail::send([], [], function ($message) use ($request) {
 
             $message->to('ddnouman@gmail.com')
-
-            ->subject($request->first_name. ' '.'Contact Query' )
-
-            ->Html(
-                '<div style="padding: 10px; 20px">'.
-                '<h2> Name: '.$request->first_name . ' '. $request->last_name .'</h2>'.
-                '<p> Email: '.$request->email .'<p/>' .
-                '<h4> Subject: '.$request->subject .'<h4/>' .
-                '<p> Comment: '.$request->comment .'<p/>'  . '</br>' .
-                '</div>', 'text/plain');
+                ->subject($request->first_name . ' ' . 'Contact Query')
+                ->Html(
+                    '<div style="padding: 10px; 20px">' .
+                    '<h2> Name: ' . $request->first_name . ' ' . $request->last_name . '</h2>' .
+                    '<p> Email: ' . $request->email . '<p/>' .
+                    '<h4> Subject: ' . $request->subject . '<h4/>' .
+                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
+                    '</div>', 'text/plain');
         });
 
-        return back()->with('success','Your Query has been Sent Successfully!');
+        return back()->with('success', 'Your Query has been Sent Successfully!');
     }
 
     public function policies()
@@ -60,56 +59,83 @@ class GuestController extends Controller
     {
         return view('help');
     }
-    public function blog() {
+
+    public function blog()
+    {
 
         return view('blog');
     }
 
-    public function blogDetails($BlogId) {
+    public function blogDetails($BlogId)
+    {
         $blogDetail = Blog::where('BlogId', $BlogId)->first();
         return view('blog-details', compact('blogDetail'));
     }
-    public function privacyPolicy() {
+
+    public function privacyPolicy()
+    {
 
         return view('privacy-policy');
 
     }
-    public function singleAlbum(){
+
+    public function singleAlbum()
+    {
         return view('photo-album-detail');
     }
-    public function guestLogin() {
+
+    public function guestLogin()
+    {
         return view('guest-login');
     }
-    public function loginAccount() {
+
+    public function loginAccount()
+    {
         return view('login-account');
     }
-    public function searchHouse() {
+
+    public function searchHouse()
+    {
         return view('search-house');
     }
-    public function photoGalleryView(){
-        return view ('photo-album');
+
+    public function photoGalleryView()
+    {
+        return view('photo-album');
     }
-    public function bulletinBoard(){
+
+    public function bulletinBoard()
+    {
         return view('bulletinBoard');
     }
-    public function guestBookFrontend(){
+
+    public function guestBookFrontend()
+    {
         return view('guest-book-frontend');
     }
-    public function localGuide(){
+
+    public function localGuide()
+    {
         return view('local-guide');
     }
-    public function photoAlbum(){
 
-        $photoAlbum = Album::where('house_id',auth()->user()->HouseId)->get();
+    public function photoAlbum()
+    {
 
-        return view('photo-album',compact('photoAlbum'));
+        $photoAlbum = Album::where('house_id', auth()->user()->HouseId)->get();
+
+        return view('photo-album', compact('photoAlbum'));
     }
 
-    public function guestBook(){
+    public function guestBook()
+    {
         $guestbook = GuestBook::paginate(10);
         return view('guest-book', compact('guestbook'));
     }
-//    public function card(){
-//        return view('card');
-//    }
+
+    public function ical(ICal $ical)
+    {
+
+        dd($ical->houseVacations);
+    }
 }
