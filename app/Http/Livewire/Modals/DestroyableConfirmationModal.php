@@ -35,11 +35,13 @@ class DestroyableConfirmationModal extends Component
     }
 
     public function destroy() {
+        $data = [];
         if ($this->model) {
+            $data = $this->model->toArray();
             $this->model->delete();
         }
         $this->emitSelf('toggle', false);
-        $this->emit('destroyed-successfully');
+        $this->emit('destroyed-successfully', $data);
         $this->success('Deleted successfully.');
     }
 }
