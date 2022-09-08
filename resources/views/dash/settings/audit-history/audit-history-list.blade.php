@@ -67,13 +67,13 @@
                         <td><a href="#!"
                                class="btn btn-sm btn-primary"
                                data-bs-toggle="modal"
-                               data-bs-target="#auditHistory{{$dt->id}}Model"
+                               data-bs-target="#auditHistory{{$loop->iteration}}Model"
                             >View</a>
                         </td>
 
                         @push('modals')
                         <!-- Modal -->
-                            <div class="modal fade" id="auditHistory{{$dt->id}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="auditHistory{{$loop->iteration}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header align-items-start">
