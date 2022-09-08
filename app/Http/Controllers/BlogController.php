@@ -26,13 +26,9 @@ class BlogController extends Controller
             $existing_views = $blog_views;
         }
 
-        $categories = Category::where('type', 'blog')
-            ->where(function ($query){
-                $query->where('house_id', auth()->user()->HouseId)
-                    ->orWhere('house_id', null);
-            })
-            ->withCount('blogs')
-            ->get();
+
+        $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
+
         $relatedBlog = Blog::where('HouseId' , $user->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
         $existingTags = $post->tags;
