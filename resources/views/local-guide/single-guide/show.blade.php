@@ -49,7 +49,7 @@
     @endpush
 
     <div class="">
-        <img src="{{asset('images/blog-images/blog.png')}}" class="w-100 blog-detail-image" alt=""/>
+        <img src="{{ $localGuide->getFileUrl('image') }}" class="w-100 blog-detail-image" alt=""/>
     </div>
     <main style="background-color:#fff !important;">
         <div class="container">
