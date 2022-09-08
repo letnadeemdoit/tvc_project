@@ -5,6 +5,10 @@ namespace App\Http\Livewire\Settings\Blog;
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Blog\Blog;
 use App\Models\User;
+use App\Notifications\BlogNotification;
+use App\Notifications\DeleteNotification;
+use Exception;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -29,7 +33,7 @@ class BlogItemList extends Component
 
     protected $listeners = [
         'blog-cu-successfully' => '$refresh',
-        'destroyed-successfully' => '$refresh',
+        'destroyed-successfully' => 'destroyedSuccessfully',
     ];
 
     public function mount()
@@ -54,10 +58,57 @@ class BlogItemList extends Component
                         ->where('Subject', 'LIKE', "%$this->search%");
                 });
             })
-
             ->orderBy('BlogId', 'DESC')
             ->paginate($this->per_page);
 
         return view('dash.settings.blog.blog-items-list', compact('data'));
     }
+
+
+    public function destroyedSuccessfully($data)
+    {
+        $this->emitSelf('blog-cu-successfully');
+
+        try {
+
+            if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList)) {
+
+                $blogEmailsList = explode(',', $this->user->house->BlogEmailList);
+
+                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
+
+                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteNotification($data));
+                    }
+
+                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+
+                    if (count($blogEmailsList) > 0) {
+
+                        Notification::route('mail', $blogEmailsList)
+                            ->notify(new DeleteNotification($data));
+
+                    }
+                }
+            }
+        } catch (Exception $e) {
+
+        }
+    }
+
+    public function destroy($id)
+    {
+        if ($this->model) {
+            $deletableModel = app($this->model)->findOrFail($id);
+            $this->emit(
+                'destroyable-confirmation-modal',
+                $this->model,
+                $id,
+                $this->destroyableConfirmationContent
+            );
+        }
+    }
+
 }

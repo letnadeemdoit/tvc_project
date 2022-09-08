@@ -187,4 +187,6 @@ class CreateOrUpdateBlogItemForm extends Component
             $this->emit('blog-deleted-successfully');
         }
     }
+
+
 }
