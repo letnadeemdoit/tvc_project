@@ -199,14 +199,16 @@
             </div>
         @endif
 
-        <div class="row my-5">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                        <img src="{{$localGuide->user->profile_photo_url}}" class="rounded-circle"
-                             width="50"
-                             height="50" style="object-fit: cover" alt="...">
-                    </div>
+        @if(!isset($user))
+
+            <div class="row my-5">
+                <div class="col-12 col-lg-6">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <img src="{{$localGuide->user->profile_photo_url}}" class="rounded-circle"
+                                 width="50"
+                                 height="50" style="object-fit: cover" alt="...">
+                        </div>
 
                         <div class="flex-grow-1 ms-3">
                             <form wire:submit.prevent="saveRatingForm">
@@ -263,9 +265,11 @@
                             </form>
                         </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+
 
         @if(isset($totalReviewLocalGuide))
             @foreach($totalReviewLocalGuide as $review)
