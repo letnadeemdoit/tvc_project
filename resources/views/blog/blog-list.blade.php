@@ -19,7 +19,6 @@
                         <i class="bi bi-chevron-left align-items-center d-flex h-100"></i>
                     </a>
                     <ul class="nav nav-tabs border-bottom-0 blog-tabs mx-1 mx-sm-2 scroll margin-0" id="category-bar" role="tablist" >
-
                         @foreach($categories as $cat)
                             <li class="nav-item">
                                 <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}"
@@ -64,7 +63,6 @@
         let rightBtn = $('#right-button');
         let categories = $('#category-bar');
         let scroller = $('#scroller');
-
         let w = 0;
         let sw = 0;
         let sp = 0;
