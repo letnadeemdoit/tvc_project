@@ -56,7 +56,7 @@
             <div class="card border-0 rounded-20 py-3 shadow-none p-4" style="margin-top: -70px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start align-items-md-center">
-                        <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
+                        <h1 class="text-w-50 lh-30 fs-card-title">{{$localGuide->title ?? ''}}</h1>
                         <p class="mb-0 badge badge-primary fs-13 fw-semi-bold ms-2 ms-sm-0" style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
                     </div>
                     <div class="d-flex mt-4">
@@ -198,7 +198,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <a class="mb-0 badge badge-primary fs-13 fw-normal p-2">{{$dt->category->name ?? ''}}</a>
+                                        <a class="mb-0 badge badge-primary fs-13 fw-normal p-2 mt-3 mt-sm-0">{{$dt->category->name ?? ''}}</a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
                                         <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>
