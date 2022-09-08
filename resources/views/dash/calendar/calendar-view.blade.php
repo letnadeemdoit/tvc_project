@@ -154,9 +154,8 @@
         </div>
         <!-- End Col -->
     </div>
-    <div style="text-align:left">
-        <div id='calendar' wire:ignore></div>
-    </div>
+
+    <div id='calendar' class="fullcalendar-custom" wire:ignore></div>
     @push('scripts')
         <script>
             $(document).ready(function () {
@@ -183,7 +182,7 @@
                         timeGridPlugin,
                         listPlugin,
                         resourceTimelinePlugin,
-                        bootstrap5Plugin
+                        // bootstrap5Plugin
                     ],
                     themeSystem: 'bootstrap5',
                     headerToolbar: false,
@@ -207,26 +206,43 @@
                             window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
                         @endif
                     },
-                    eventContent: function (arg) {
-                        let arrayOfDomNodes = []
-                        // title event
-                        let titleEvent = document.createElement('div')
-                        if (arg.event._def.title) {
-                            titleEvent.innerHTML = arg.event._def.title
-                            titleEvent.classList = "fc-event-title fc-sticky mx-2"
+                    // eventContent: function (arg) {
+                    //     let arrayOfDomNodes = []
+                    //     // title event
+                    //     let titleEvent = document.createElement('div')
+                    //     if (arg.event._def.title) {
+                    //         titleEvent.innerHTML = arg.event._def.title
+                    //         titleEvent.classList = "fc-event-title fc-sticky mx-2"
+                    //     }
+                    //
+                    //     // image event
+                    //     let imgEventWrap = document.createElement('div')
+                    //     if (arg.event.extendedProps.imageUrl) {
+                    //         let imgEvent = '<img src="' + arg.event.extendedProps.imageUrl + '" class="mx-2 mt-2" style="width: 30px; height: 30px; border-radius: 100%">'
+                    //         imgEventWrap.classList = "fc-event-img"
+                    //         imgEventWrap.innerHTML = imgEvent;
+                    //     }
+                    //
+                    //     arrayOfDomNodes = [imgEventWrap, titleEvent]
+                    //
+                    //     return {domNodes: arrayOfDomNodes}
+                    // },
+                    eventContent({event}) {
+                        return {
+                            html:  `
+                                <div>
+                                    <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !data.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
+                                    <div class="d-flex">
+                                        ${
+                                            event.extendedProps.imageUrl
+                                                ? `<img class="avatar avatar-xs me-2" src="${event.extendedProps.imageUrl}" alt="Image Description">`
+                                                : ''
+                                        }
+                                        <span class="fc-event-title fc-sticky">${event.title}</span>
+                                    </div>
+                                </div>
+                            `
                         }
-
-                        // image event
-                        let imgEventWrap = document.createElement('div')
-                        if (arg.event.extendedProps.imageUrl) {
-                            let imgEvent = '<img src="' + arg.event.extendedProps.imageUrl + '" class="mx-2 mt-2" style="width: 30px; height: 30px; border-radius: 100%">'
-                            imgEventWrap.classList = "fc-event-img"
-                            imgEventWrap.innerHTML = imgEvent;
-                        }
-
-                        arrayOfDomNodes = [imgEventWrap, titleEvent]
-
-                        return {domNodes: arrayOfDomNodes}
                     },
                     events: @js($this->events),
                 });
