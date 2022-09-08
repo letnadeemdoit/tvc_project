@@ -32,7 +32,6 @@ class BlogController extends Controller
         $relatedBlog = Blog::where('HouseId' , $user->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
         $existingTags = $post->tags;
-//        dd($existingTags);
 
         if(!auth()->user()->is_guest){
 //            $views = BlogViews::where('user_id' ,$user->user_id)->where('viewable_id' ,$post->BlogId)->first();
