@@ -1,16 +1,18 @@
 <div class="container pt-55">
   @if(isset($data))
-            <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%" id="scroller">
+            <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%" id="scroller" >
                 @if(count($categories) >0)
                     <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                         <li class="nav-item">
-                            <a href="{{ route('guest.blog.index', ['category' => 'all']) }}" class="nav-link {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
+                            <a href="{{ route('guest.blog.index', ['category' => 'all']) }}"
+                               wire:click.prevent="$set('category', 'all')"
+                               class="nav-link mr-7px {{ $category == 'all' ? 'active' : '' }}" id="all-btn" >
                                 ALL
                             </a>
                         </li>
                     </ul>
                     <a
-                        class="btn btn-white scroll-icons align-items-center py-2"
+                        class="btn btn-white scroll-icons align-items-center py-2 ms-0 ms-md-1 ms-lg-2"
                         id="left-button"
                         style="display: none"
                     >
@@ -20,14 +22,16 @@
 
                         @foreach($categories as $cat)
                             <li class="nav-item">
-                                <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}" class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
+                                <a href="{{ route('guest.blog.index', ['category' => $cat->slug]) }}"
+                                   wire:click.prevent="$set('category', '{{ $cat->slug }}')"
+                                   class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
                                     {{ $cat->name }}
                                 </a>
                             </li>
                         @endforeach
                     </ul>
                     <a
-                        class="btn btn-white scroll-icons align-items-center"
+                        class="btn btn-white scroll-icons align-items-center me-2"
                         id="right-button"
                         style="display: none"
                     >
@@ -60,54 +64,56 @@
         let rightBtn = $('#right-button');
         let categories = $('#category-bar');
         let scroller = $('#scroller');
-        let allBtn = $('#all-btn');
 
         let w = 0;
         let sw = 0;
         let sp = 0;
         let scr = 0;
+            leftBtn.on('click', function (e) {
+                e.preventDefault();
+                sp -= 100;
 
-        leftBtn.on('click', function (e) {
-            e.preventDefault();
-            sp -= 100;
-
-            if(sp < 0) sp = 0;
-            categories.animate({
-                scrollLeft: `${sp}px`
+                if (sp < 0) sp = 0;
+                categories.animate({
+                    scrollLeft: `${sp}px`
+                });
             });
-        });
 
-        rightBtn.on('click', function (e) {
-            e.preventDefault();
-            let slih = categories.scrollLeft() + categories.innerHeight();
-            sw = categories.prop("scrollWidth");
-            sp += 100;
+            rightBtn.on('click', function (e) {
+                e.preventDefault();
+                let slih = categories.scrollLeft() + categories.innerHeight();
+                sw = categories.prop("scrollWidth");
+                sp += 100;
 
-            if(sp > slih) sp = slih;
+                if (sp > slih) sp = slih;
 
-            categories.animate({
-                scrollLeft: `${sp}px`
+                categories.animate({
+                    scrollLeft: `${sp}px`
+                });
             });
-        });
 
-        function recalculateCategoriesWidth() {
-            w = categories.width();
-            sw = categories.prop("scrollWidth");
-            scr = scroller.width()-70;
-            console.log(scr);
-            if(sw > scr) {
-                leftBtn.show();
-                rightBtn.show();
-            } else {
-                $('#all-btn').css('margin-right','7px');
+            function recalculateCategoriesWidth() {
+                w = categories.width();
+                sw = categories.prop("scrollWidth");
+                scr = scroller.width() - 70;
+                console.log(scr);
+                if (sw > scr) {
+                    leftBtn.show();
+                    rightBtn.show();
+                } else {
+                    // $('#all-btn').css('margin-right','7px');
+                }
             }
-        }
 
-        $(function (){
-            recalculateCategoriesWidth();
-            $(window).resize(function() {
+            $(function () {
+                recalculateCategoriesWidth();
+                $(window).resize(function () {
+                    recalculateCategoriesWidth();
+                });
+            });
+
+            document.addEventListener('recalculateCategoriesWidth', function () {
                 recalculateCategoriesWidth();
             });
-        });
     </script>
 @endpush

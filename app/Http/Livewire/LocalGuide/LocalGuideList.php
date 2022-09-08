@@ -57,6 +57,11 @@ class LocalGuideList extends Component
         $this->resetPage();
     }
 
+    public function updatedCategory($value)
+    {
+        $this->dispatchBrowserEvent('recalculateCategoriesWidth');
+    }
+
     public function render()
     {
         $data = LocalGuide::where('house_id', $this->user->HouseId)

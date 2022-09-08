@@ -36,7 +36,7 @@
                 </button>
 
                 <div class="ms-3">
-                    <h4 class="h3 mb-0" data-fc-title></h4>
+                    <h4 class="h3 mb-0" data-fc-title wire:ignore></h4>
                 </div>
             </div>
         </div>
@@ -95,6 +95,35 @@
                     </label>
                     <!-- End Radio Check -->
                 </div>
+                @if($user->is_owner && !$user->is_owner_only)
+                    <div class="dropdown ms-1">
+                        <button type="button" class="btn btn-white dropdown-toggle w-100"
+                                id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-people-fill me-2"></i>
+                            Owner: {{ $this->owner ? optional(\App\Models\User::where('user_id', $this->owner)->where('HouseId', $this->user->HouseId)->first())->name : 'You' }}
+                        </button>
+
+                        <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="usersExportDropdown" style="">
+                            <span class="dropdown-header">You</span>
+                            <a id="you{{ $user->user_id }}" class="dropdown-item {{ $this->owner ?: 'active' }}"
+                               href="#" wire:click.prevent="$set('owner', null)">
+                                <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $user->profile_photo_url }}"
+                                     alt="{{ $user->name }}">
+                                {{ $user->name }}
+                            </a>
+                            <span class="dropdown-header">Owners</span>
+                            @foreach($this->owners as $owner)
+                                <a id="owner{{ $owner->user_id }}"
+                                   class="dropdown-item {{ $this->owner === $owner->user_id ? 'active' : '' }}" href="#"
+                                   wire:click.prevent="$set('owner', {{ $owner->user_id }})">
+                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $owner->profile_photo_url }}"
+                                         alt="{{ $owner->name }}">
+                                    {{ $owner->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 @if($user->is_admin)
                     <div class="dropdown ms-1">
                         <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuProperties"
@@ -126,8 +155,7 @@
         <!-- End Col -->
     </div>
     <div style="text-align:left">
-        <div id='calendar'>
-        </div>
+        <div id='calendar' wire:ignore></div>
     </div>
     @push('scripts')
         <script>
@@ -139,26 +167,16 @@
                     $todayBtn = document.querySelector('[data-fc-today]'),
                     $dateTitle = document.querySelector('[data-fc-title]')
 
-                // Filter controls
-                const
-                    $filterByTitle = document.querySelector('#filter-by-title'),
-                    $filters = document.querySelectorAll('[data-filter]')
-
                 // INITIALIZATION OF SELECT
                 // =======================================================
                 window.HSTomSelect.init('.js-select', {
                     hideSearch: true
                 })
 
-                var date = new Date();
-                var d = date.getDate();
-                var m = date.getMonth() + 1;
-                var y = date.getFullYear();
-                var calendarEl = document.getElementById('calendar');
                 HSFullCalendar.init('#calendar', {
                     schedulerLicenseKey: '0575425642-fcs-1661876207',
                     resourceAreaHeaderContent: 'Rooms',
-                    resources: @js($resourceTimeline),
+                    resources: @js($this->resourceTimeline),
                     plugins: [
                         interactionPlugin,
                         dayGridPlugin,
@@ -209,7 +227,7 @@
 
                         return {domNodes: arrayOfDomNodes}
                     },
-                    events: @js($events),
+                    events: @js($this->events),
                 });
 
 
@@ -218,7 +236,7 @@
                     // repeatField = HSTomSelect.getItem("eventRepeatLabel"),
                     // eventColorField = HSTomSelect.getItem("eventColorLabel"),
                     fullcalendarEditable = HSFullCalendar.getItem('calendar');
-
+                window.calendar = fullcalendarEditable;
                 // document.addEventListener('scroll', function () {
                 //     if ($popover && $popover._element) {
                 //         $popover.dispose();
@@ -263,8 +281,20 @@
                 //     $titleField.style.height = `${$titleField.scrollHeight}px`;
                 // });
 
-                window.livewire.on('vacation-schedule-successfully', function () {
-                    window.location.reload();
+                window.livewire.on('rerender-calendar', function (events, resourceTimeline) {
+                    calendar.getEventSources().map(es => {
+                        es.remove();
+                    });
+                    window.calendar.addEventSource(events);
+
+                    calendar.getResources().map(r => {
+                        r.remove();
+                    });
+                    resourceTimeline.map(r => {
+                        window.calendar.addResource(r);
+                    })
+                    // window.calendar.setResources(resourceTimeline);
+                    window.calendar.render();
                 });
             });
         </script>

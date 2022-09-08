@@ -931,6 +931,9 @@ header{
 
 }
 @media only screen and (min-width:768px) and (max-width:991px) {
+    .mr-7px{
+        margin-right: 1px !important;
+    }
     .title-fs{
         font-size: 12px !important;
     }
@@ -1775,4 +1778,7 @@ nav.navecation  .active img{
 .scrollbar ::-webkit-scrollbar-thumb {
     background: $primary !important;
     border-radius: 8px;
+}
+.mr-7px{
+    margin-right: 7px !important;
 }
