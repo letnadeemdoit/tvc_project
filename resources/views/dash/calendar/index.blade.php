@@ -15,16 +15,16 @@
                 <button
                     x-data="{copied: false}"
                     class="btn btn-outline-secondary"
-                    href="#"
-                    @click.prevent="() => {
-                        $clipboard('{{ $iCalUrl }}');
-                        copied = true;
-                        setTimeout(() => {
-                            copied = false;
-                        }, 2000);
+                    x-clipboard.raw="{{ $iCalUrl }}"
+{{--                    @click.prevent="() => {--}}
+{{--                        $clipboard('{{ $iCalUrl }}');--}}
+{{--                        copied = true;--}}
+{{--                        setTimeout(() => {--}}
+{{--                            copied = false;--}}
+{{--                        }, 2000);--}}
 
-                    }"
-                    x-bind:disabled="copied"
+{{--                    }"--}}
+{{--                    x-bind:disabled="copied"--}}
                 >
                     <i class="bi-clipboard me-1" x-show="!copied"></i>
                     <i class="bi-clipboard-check-fill me-1" style="display: none" x-show="copied"></i>
