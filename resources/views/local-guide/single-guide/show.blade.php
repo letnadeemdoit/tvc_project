@@ -181,6 +181,7 @@
                 <div class="row">
                     @foreach($relatedGuides as $dt)
                         <div class="col-md-6 col-xl-4 mb-4 item">
+                            <a href="{{route('guest.local-guide.show',$dt->id)}}">
                             <div class="card blog-card rounded-2">
                                 <div class="card-header border-0 pt-3 pb-1">
                                     <div class="d-block d-sm-flex justify-content-between align-items-center">
@@ -208,12 +209,11 @@
                                 <div class="w-100">
                                     <a class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                                         HOUSE</a>
-                                    <a href="{{route('guest.local-guide.show',$dt->id)}}">
+
                                         <img src="{{$dt->getFileUrl('image')}}"
                                              class="card-img-top  position-relative p-2"
                                              style="height: 320px !important;object-fit: cover;border-radius:17px;"
                                              alt="{{ $dt->title ?? '' }}"/>
-                                    </a>
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
@@ -278,6 +278,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>
