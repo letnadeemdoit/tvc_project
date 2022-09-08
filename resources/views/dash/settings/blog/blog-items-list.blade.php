@@ -70,7 +70,7 @@
                             <td>
                                 {{$dt->category->name ?? ''}}
                             </td>
-                            <td>{{ str(strip_tags($dt->Contents))->limit(50) }}</td>
+                            <td>{{ str(strip_tags($dt->Contents))->limit(40) }}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Edit group">
                                     <a class="btn btn-white" href="#"

@@ -61,7 +61,7 @@
                         </td>
 {{--                        <td class="fw-600">{{$dt->localGuideCategory->name ?? ''}}</td>--}}
                         <td>{{$dt->title ?? ''}}</td>
-                        <td>{!! substr($dt->description,0,40) ?? '' !!}
+                        <td>{!! substr($dt->description,0,30) ?? '' !!}
 
                            @if(isset($dt->description) && strlen($dt->description) > 41)
                                 <a href="#!"
