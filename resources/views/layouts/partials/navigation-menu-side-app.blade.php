@@ -70,7 +70,7 @@
                         <div class="nav-item">
                             <a class="nav-link  {{ link_is_active_with_class(['guest.blog.index']) }}" href="{{route('guest.blog.index')}}" data-placement="left">
                                 {{--                                    <i class="bi-router nav-icon"></i>--}}
-                                <img src="{{asset('images/icons/blog-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
+                                <img src="{{asset('images/icons/blog-icon.svg')}}" class="me-3" style="width: 14px;opacity: 0.7" alt="">
                                 <span class="nav-link-title">Blog</span>
                             </a>
                         </div>
