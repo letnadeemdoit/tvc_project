@@ -42,11 +42,13 @@
                     class="form-control @error('email') is-invalid @enderror"
                     name="email"
                     placeholder="Email"
+                    disabled
+                    readonly
                     id="email"
                     x-bind:disabled="role === '{{ \App\Models\User::ROLE_GUEST }}'"
                     wire:model.defer="state.email"
-                    disabled
-                    readonly
+
+
                 />
                 @error('email')
                 <span class="invalid-feedback">{{ $message }}</span>
