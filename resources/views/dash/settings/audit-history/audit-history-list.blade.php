@@ -62,7 +62,7 @@
 
 {{--                        <td>{{$dt->user_type}}</td>--}}
                         <td>{{$dt->ip_address}}</td>
-                        <td>{{$dt->event}}</td>
+                        <td class="text-capitalize">{{$dt->event}}</td>
                         <td>{{$dt->created_at}}</td>
                         <td><a href="#!"
                                class="btn btn-sm btn-primary"
