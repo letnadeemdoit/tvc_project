@@ -128,10 +128,15 @@ class CreateOrUpdateBlogItemForm extends Component
                         ]);
                         $this->blogItem->tags()->save($newTag);
                     }
-                    elseif($tagExist){
-                        foreach ($this->blogItem->tags as $blogtag){
-                            if ($blogtag != $tagExist){
-                                $this->blogItem->tags()->save($tagExist);
+                    else{
+                        if (count($this->blogItem->tags) == 0){
+                            $this->blogItem->tags()->save($tagExist);
+                        }
+                        else{
+                            foreach ($this->blogItem->tags as $blogtag){
+                                if ($blogtag->name != $tag){
+                                    $this->blogItem->tags()->save($tagExist);
+                                }
                             }
                         }
                     }
