@@ -18,7 +18,9 @@
     @can('viewAny', \App\Models\User::class)
         <livewire:settings.users.users-list :user="$user" />
     @endcan
+
     @canany(['create', 'update'], \App\Models\User::class)
         <livewire:settings.users.create-or-update-user-form :user="$user" />
+        <livewire:settings.users.send-credentials-modal :user="$user" />
     @endcanany
 </x-settings>
