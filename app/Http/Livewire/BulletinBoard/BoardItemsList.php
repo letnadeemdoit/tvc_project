@@ -50,6 +50,11 @@ class BoardItemsList extends Component
         $this->resetPage();
     }
 
+    public function updatedCategory($value)
+    {
+        $this->dispatchBrowserEvent('recalculateCategoriesWidth');
+    }
+
     public function render()
     {
         $data = Board::where('HouseId', $this->user->HouseId)
