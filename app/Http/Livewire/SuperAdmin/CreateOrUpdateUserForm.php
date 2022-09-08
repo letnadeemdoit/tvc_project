@@ -108,7 +108,7 @@ class CreateOrUpdateUserForm extends Component
             'role' => $this->state['role'],
             'first_name' => $this->state['first_name'],
             'last_name' => $this->state['last_name'],
-            'HouseId' => $this->user->HouseId,
+//            'HouseId' => $this->user->HouseId,
         ])->save();
 
         $this->emitSelf('toggle', false);
