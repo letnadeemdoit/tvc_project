@@ -52,7 +52,7 @@
                         <td style="width: 100px" class="text-center">
                             <div class="avatar avatar-soft-primary avatar-circle">
                                 <img
-                                    src="{{$dt->getThumbnailUrl(\App\Models\Photo\Album::$THUMBNAIL_SMALL)}}"
+                                    src="{{$dt->getFileUrl()}}"
                                     class="avatar-initials"
                                     alt="{{ $dt->name ?? '' }}"
                                 />

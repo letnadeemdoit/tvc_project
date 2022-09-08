@@ -32,7 +32,14 @@ class CreateOrUpdatePhotoAlbum extends Component
 
     public function render()
     {
-        $albumCategory = Album::where('house_id', $this->user->HouseId)->get();
+        $albumCategory = Album::where('house_id', $this->user->HouseId)
+            ->where(function ($query){
+                $query->whereDoesntHave('parentAlbum')
+                    ->orWhereHas('parentAlbum', function ($query) {
+                        $query->whereDoesntHave('parentAlbum');
+                    });
+            })
+            ->get();
 
         return view('dash.houses.photo-albums.create-or-update-photo-album-form', compact('albumCategory'));
     }

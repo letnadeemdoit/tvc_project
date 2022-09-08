@@ -95,7 +95,7 @@ class CreateOrUpdateBlogItemForm extends Component
                 }) : 'required',
             ],
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
-            'Contents' => 'required|max:100000',
+            'Contents' => 'required|max:4000000000',
             'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
