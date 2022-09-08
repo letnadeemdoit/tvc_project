@@ -66,18 +66,17 @@
 {{--</div>--}}
 
 <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
-    <div class="card blog-card mb-4">
-        <div class="w-100">
+    <a href="{{route('guest.blog.show', $blog->slug)}}">
+        <div class="card blog-card mb-4">
+            <div class="w-100">
             {{--            <button class="btn  position-absolute text-index featured-btn mt-3 ms-3">--}}
             {{--                FEATURE BLOG--}}
             {{--            </button>--}}
-            <a href="{{route('guest.blog.show', $blog->slug)}}">
                 <img src="{{ $blog->getFileUrl() }}" class="card-img-top  position-relative" style="height: 310px !important;object-fit: cover" alt="..." />
-            </a>
 
 
         </div>
-        <div class="card-body p-2">
+            <div class="card-body p-2">
             <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 210px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
@@ -94,7 +93,7 @@
 
                         <div class="ps-3">
                             <strong class="mb-1 text-black fs-4">{{$blog->Author}}</strong>
-                            <p class="mb-0 fs-13 pt-1">{{\Carbon\Carbon::parse($blog->BlogDate)->format('d M Y')}}</p>
+                            <p class="mb-0 fs-13 pt-1 txt-clr">{{\Carbon\Carbon::parse($blog->BlogDate)->format('d M Y')}}</p>
                         </div>
                     </div>
                     {{--                    <div class="dropdown" x-data>--}}
@@ -140,5 +139,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+        </div>
+    </a>
+
 </div>

@@ -44531,6 +44531,9 @@ header nav button:last-child:hover {
   .guest-modal .modal-body {
     padding: 0px !important;
   }
+  .fs-card-title {
+    font-size: 18px !important;
+  }
   .scroll-icons {
     padding-left: 0.6rem !important;
     padding-right: 0.6rem !important;
@@ -44950,4 +44953,8 @@ nav.navecation .active img {
 
 .mr-7px {
   margin-right: 7px !important;
+}
+
+.txt-clr {
+  color: #B6B4B4;
 }
