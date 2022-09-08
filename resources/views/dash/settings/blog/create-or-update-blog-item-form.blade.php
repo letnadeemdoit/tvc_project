@@ -5,29 +5,19 @@
         @modal-is-shown.window="
         $('#amsify').amsifySuggestags();
         let selected = [];
-        let removeSeleceted = [];
         $('#amsify').amsifySuggestags({
              afterAdd : function(value) {
              selected.push(value);
              @this.set('state.tags', selected, true);
-
         },
              afterRemove : function(value) {
-             removeSeleceted.push(value);
-             @this.set('state.removeTag', removeSeleceted, true);
+            if(selected.indexOf(value) > -1){
+                 selected.splice(selected.indexOf(value), 1);
+            }
+             @this.set('state.tags', selected, true);
 	    },
         });
-{{--            $('#tokenize-tags').tokenize2({--}}
-{{--                tokensAllowCustom: true,--}}
-{{--                dropdownSelectFirstItem: false--}}
-{{--            });--}}
-{{--            $('#tokenize-tags').on('tokenize:tokens:added', function(e, value){--}}
-{{--                let selected = [];--}}
-{{--                $('#tokenize-tags').find(':selected').each(function () {--}}
-{{--                    selected.push($(this).val());--}}
-{{--                })--}}
-{{--                @this.set('state.tags', selected, true);--}}
-{{--            });--}}
+
         ">
         <div class="modal-header">
             <h5 class="modal-title">
