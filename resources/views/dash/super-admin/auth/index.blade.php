@@ -72,20 +72,26 @@
                     <form action="{{route('super-admin.login-super-admin')}}" method="post">
                         @csrf
                         <div class="text-start">
-                            <div class="mb-5">
-                                <h1 class="display-5">Login</h1>
+                            <div class="mb-4">
+                                <h1 class="display-5 poppins-bold">Super Admin <span
+                                        class="text-primary">Login</span></h1>
                                 {{--<p>Don't have an account yet? <a class="link" href="./authentication-signup-basic.html">Sign up here</a></p>--}}
 
                                 @if(Session::has('error'))
-                                    <p class="alert {{ Session::get('alert-danger', 'alert-danger') }}">{{ Session::get('error') }}</p>
+                                    <p class="mb-0 mt-2 py-2 alert {{ Session::get('alert-danger', 'alert-danger') }}">{{ Session::get('error') }}</p>
                                 @endif
                             </div>
 
                             <!-- Form -->
                             <div class="mb-4">
                                 <label class="form-label" for="signinSrEmail">Your email</label>
-                                <input type="email" class="form-control form-control-lg" name="email" id="signinSrEmail"
-                                       tabindex="1" placeholder="Email" aria-label="email@address.com"
+                                <input type="email"
+                                       class="form-control form-control-lg"
+                                       name="email"
+                                       id="signinSrEmail"
+                                       tabindex="1"
+                                       placeholder="Email"
+                                       aria-label="email@address.com"
                                        required>
 
                                 @error('email')
