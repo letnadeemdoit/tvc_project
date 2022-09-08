@@ -25,20 +25,18 @@ class ScheduleVacationForm extends Component
 
     public $house = null;
     public $owner = null;
-    protected $queryString = [
-        'house' => ['except' => null],
-        'owner' => ['except' => null],
-    ];
 
     protected $listeners = [
         'showVacationScheduleModal'
     ];
 
-    public function showVacationScheduleModal($toggle, $vacationId = null, $initialDate = null)
+    public function showVacationScheduleModal($toggle, $vacationId = null, $initialDate = null, $owner = null, $house = null)
     {
-
         $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
         $this->reset('state');
+
+        $this->house = $house;
+        $this->owner = $owner;
 
         if ($this->vacation->VacationName && !$this->user->is_admin) {
             if ($this->vacation->OwnerId !== $this->user->user_id) {

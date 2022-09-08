@@ -194,16 +194,17 @@
                     },
                     dateClick: function (info) {
                         @if($user->is_owner)
-                        window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr);
+                            let parsed = queryString.parse(window.location.search);
+                            window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr, parsed.owner);
                         @elseif($user->is_guest)
-                        window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
+                            window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
                         @endif
                     },
                     eventClick: function (calEvent, jsEvent, view) {
                         @if($user->is_guest)
-                        window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
+                            window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
                         @else
-                        window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                            window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
                         @endif
                     },
                     eventContent: function (arg) {
