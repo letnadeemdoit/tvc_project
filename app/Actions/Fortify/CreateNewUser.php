@@ -59,9 +59,13 @@ class CreateNewUser implements CreatesNewUsers
             }
 
             if (!isset($input['AdminOwner'])) {
-                $AdminOwner = 'N';
+
+                $AdminOwner = 0;
+
             } else {
+
                 $AdminOwner = $input['AdminOwner'];
+
             }
 
             $user = User::create([
@@ -76,6 +80,9 @@ class CreateNewUser implements CreatesNewUsers
                 'old_password' => Hash::make('password'),
                 'password' => Hash::make($input['password']),
             ]);
+
+//            dd($user);
+
         }
 
         return $user;

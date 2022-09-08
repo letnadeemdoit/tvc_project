@@ -359,7 +359,7 @@
                             class="form-check-input check-input"
                             name="AdminOwner"
                             wire:model.defer="state.AdminOwner"
-                            value="Y"
+                            value="1"
                             id="AdminOwner"
                         />
 
