@@ -94,7 +94,6 @@ class CreateOrUpdateBlogItemForm extends Component
                     return $query->where('HouseId', $this->user->HouseId);
                 }) : 'required',
             ],
-//            'Subject' => 'required|unique:Blog|string|max:255',
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Contents' => 'required|max:100000',
             'category_id' => 'required',
@@ -128,6 +127,13 @@ class CreateOrUpdateBlogItemForm extends Component
                             'name' => $tag,
                         ]);
                         $this->blogItem->tags()->save($newTag);
+                    }
+                    elseif($tagExist){
+                        foreach ($this->blogItem->tags as $blogtag){
+                            if ($blogtag != $tagExist){
+                                $this->blogItem->tags()->save($tagExist);
+                            }
+                        }
                     }
                 }
             }
