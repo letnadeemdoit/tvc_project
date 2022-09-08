@@ -210,7 +210,6 @@
                              height="50" style="object-fit: cover" alt="...">
                     </div>
 
-                    @if(!auth()->user()->is_guest)
                         <div class="flex-grow-1 ms-3">
                             <form wire:submit.prevent="saveRatingForm">
                                 <div class="rate my-2 px-0">
@@ -265,8 +264,6 @@
                                 </div>
                             </form>
                         </div>
-                    @endif
-
 
                 </div>
             </div>
