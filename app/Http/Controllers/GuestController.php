@@ -135,6 +135,9 @@ class GuestController extends Controller
 
     public function ical(ICal $ical)
     {
-        dd($ical->userVacations);
+        return response($ical->toICSUrl())->withHeaders([
+            'Content-type' => 'text/calendar; charset=utf-8',
+//            'Content-Disposition' => 'attachment; filename="calendar.ics"'
+        ]);
     }
 }
