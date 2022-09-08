@@ -59,12 +59,12 @@
     <div class="container my-5 pb-4">
         <div class="row mb-5 mt-5">
             <div class="col-12 col-lg-6">
-                <div class="d-flex justify-content-between">
-                    <h4>{{$localGuide->reviews()->count()}} Reviews</h4>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">{{$localGuide->reviews()->count()}} Reviews</h4>
                     <div><label for="">Sort By</label>
                         <select name="" id=""
                                 wire:model="orderBy"
-                                class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
+                                class="border px-3 py-1 rounded" style="background-color: #F5F6F7;">
                             <option value="DESC">Latest</option>
                             <option value="ASC">Oldest</option>
                         </select>
