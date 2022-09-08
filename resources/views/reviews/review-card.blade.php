@@ -57,7 +57,21 @@
     @endpush
 
     <div class="container my-5 pb-4">
-
+        <div class="row mb-5 mt-5">
+            <div class="col-12 col-lg-6">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">{{$localGuide->reviews()->count()}} Reviews</h4>
+                    <div><label for="">Sort By</label>
+                        <select name="" id=""
+                                wire:model="orderBy"
+                                class="border px-3 py-1 rounded" style="background-color: #F5F6F7;">
+                            <option value="DESC">Latest</option>
+                            <option value="ASC">Oldest</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
         @if(isset($avgRating))
             <div class="row py-5 my-4">
                 <div class="col-12 col-lg-6">
@@ -99,7 +113,7 @@
                                 <div class="col-1">
                                     <span>5.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingFive ?? 0}}%"
                                              role="progressbar" aria-valuenow="100"
@@ -115,7 +129,7 @@
                                 <div class="col-1">
                                     <span>4.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingFour ?? 0}}%"
                                              role="progressbar" aria-valuenow="75"
@@ -131,7 +145,7 @@
                                 <div class="col-1">
                                     <span>3.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingThree ?? 0}}%"
                                              role="progressbar" aria-valuenow="50"
@@ -147,7 +161,7 @@
                                 <div class="col-1">
                                     <span>2.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingTwo ?? 0}}% !important;"
                                              role="progressbar" aria-valuenow="25"
@@ -164,7 +178,7 @@
                                 <div class="col-1">
                                     <span>1.0</span>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-9 col-sm-10">
                                     <div class="progress">
                                         <div class="progress-bar" style="width: {{$allRatingOne ?? 0}}%"
                                              role="progressbar" aria-valuenow="25"
@@ -185,30 +199,16 @@
             </div>
         @endif
 
-        <div class="row mb-5 mt-5">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex justify-content-between">
-                    <h4>{{$localGuide->reviews()->count()}} Reviews</h4>
-                    <div><label for="">Sort By</label>
-                        <select name="" id=""
-                                wire:model="orderBy"
-                                class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
-                            <option value="DESC">Latest</option>
-                            <option value="ASC">Oldest</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @if(!isset($user))
 
-        <div class="row my-5">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                        <img src="{{$localGuide->user->profile_photo_url}}" class="rounded-circle"
-                             width="50"
-                             height="50" style="object-fit: cover" alt="...">
-                    </div>
+            <div class="row my-5">
+                <div class="col-12 col-lg-6">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <img src="{{$localGuide->user->profile_photo_url}}" class="rounded-circle"
+                                 width="50"
+                                 height="50" style="object-fit: cover" alt="...">
+                        </div>
 
                         <div class="flex-grow-1 ms-3">
                             <form wire:submit.prevent="saveRatingForm">
@@ -265,9 +265,11 @@
                             </form>
                         </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+
 
         @if(isset($totalReviewLocalGuide))
             @foreach($totalReviewLocalGuide as $review)

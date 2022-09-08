@@ -11,8 +11,27 @@
 
     <x-slot name="headerRightActions">
         @if($user->is_owner)
-            <div class="col-sm-auto" x-data>
+            <div class="col-sm-auto">
+                <button
+                    x-data="{copied: false}"
+                    class="btn btn-outline-secondary"
+                    href="#"
+                    @click.prevent="() => {
+                        $clipboard('{{ $iCalUrl }}');
+                        copied = true;
+                        setTimeout(() => {
+                            copied = false;
+                        }, 2000);
+
+                    }"
+                    x-bind:disabled="copied"
+                >
+                    <i class="bi-clipboard me-1" x-show="!copied"></i>
+                    <i class="bi-clipboard-check-fill me-1" style="display: none" x-show="copied"></i>
+                    Copy ICS Link
+                </button>
                 <a
+                    x-data
                     class="btn btn-primary"
                     href="javascript:;"
                     @click.prevent="() => {

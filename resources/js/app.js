@@ -1,6 +1,7 @@
 import './bootstrap';
 import {TINYMCE_DEFAULT_CONFIG} from "./constants";
 import Alpine from 'alpinejs';
+import Clipboard from "@ryangjchandler/alpine-clipboard"
 
 // Tinymce
 import tinymce from "tinymce";
@@ -98,6 +99,7 @@ window.livewire.hook('message.processed', (message, component) => {
     }
 });
 
+Alpine.plugin(Clipboard);
 window.Alpine = Alpine;
 
 Alpine.start();

@@ -163,7 +163,9 @@
                                         </a>
                                     </div>
                                     <div>
-                                        <p class="mb-0 border-primary category-count text-primary">{{ $category->local_guides_count < 10 ? '0'.$category->local_guides_count : $category->local_guides_count }}</p>
+                                        <p class="mb-0 border-primary category-count text-primary">
+                                            {{ $category->local_guides_count < 10 ? '0'.$category->local_guides_count : $category->local_guides_count }}
+                                        </p>
                                     </div>
                                 </div>
                             @endforeach
@@ -181,10 +183,10 @@
                 <div class="row">
                     @foreach($relatedGuides as $dt)
                         <div class="col-md-6 col-xl-4 mb-4 item">
-                            <a href="{{route('guest.local-guide.show',$dt->id)}}">
                             <div class="card blog-card rounded-2">
                                 <div class="card-header border-0 pt-3 pb-1">
                                     <div class="d-block d-sm-flex justify-content-between align-items-center">
+
                                         <div class="user-img d-flex align-items-center">
                                             <img
 
@@ -202,7 +204,10 @@
                                         <a class="mb-0 badge badge-primary fs-13 fw-normal p-2 mt-3 mt-sm-0">{{$dt->category->name ?? ''}}</a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
-                                        <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>
+                                        <a href="{{route('guest.local-guide.show',$dt->id)}}">
+                                             <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>
+                                        </a>
+
                                         <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
                                     </div>
                                 </div>
@@ -210,10 +215,12 @@
                                     <a class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE
                                         HOUSE</a>
 
+                                    <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                         <img src="{{$dt->getFileUrl('image')}}"
                                              class="card-img-top  position-relative p-2"
                                              style="height: 320px !important;object-fit: cover;border-radius:17px;"
                                              alt="{{ $dt->title ?? '' }}"/>
+                                    </a>
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
@@ -278,7 +285,6 @@
                                     </div>
                                 </div>
                             </div>
-                            </a>
                         </div>
                     @endforeach
                 </div>
