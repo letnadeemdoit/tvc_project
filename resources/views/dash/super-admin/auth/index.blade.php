@@ -46,20 +46,21 @@
 <body>
 <!-- ========== MAIN CONTENT ========== -->
 <main id="content" role="main" class="main">
-{{--    <div class="position-fixed top-0 end-0 start-0 bg-img-start"--}}
-{{--         style="height: 32rem; background-image: url('images/login-back-card-img.svg')">--}}
-{{--        <!-- Shape -->--}}
-{{--        <div class="shape shape-bottom zi-1">--}}
-{{--            <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1921 273">--}}
-{{--                <polygon fill="#fff" points="0,273 1921,273 1921,0 "/>--}}
-{{--            </svg>--}}
-{{--        </div>--}}
-{{--        <!-- End Shape -->--}}
-{{--    </div>--}}
+    <div class="position-fixed top-0 end-0 start-0 bg-img-start"
+     style="background-image: url('{{ asset('images/login-back-card-img.svg')}}');height: 38rem"
+    >
+        <!-- Shape -->
+        <div class="shape shape-bottom zi-1">
+            <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1921 273">
+                <polygon fill="#fff" points="0,273 1921,273 1921,0 "/>
+            </svg>
+        </div>
+        <!-- End Shape -->
+    </div>
 
     <!-- Content -->
     <div class="container py-5 py-sm-7" style="margin-top: 150px">
-        <a class="d-flex justify-content-center mb-5" href="./index.html">
+        <a class="d-flex justify-content-center mb-5" href="{{route('guest.welcome')}}">
             <img class="zi-2" src="{{asset('logo/logo.svg')}}" alt="Image Description" style="width: 16rem;">
         </a>
 
@@ -73,44 +74,73 @@
                         <div class="text-start">
                             <div class="mb-5">
                                 <h1 class="display-5">Login</h1>
-                                {{--                                <p>Don't have an account yet? <a class="link" href="./authentication-signup-basic.html">Sign up here</a></p>--}}
+                                {{--<p>Don't have an account yet? <a class="link" href="./authentication-signup-basic.html">Sign up here</a></p>--}}
+
+                                @if(Session::has('error'))
+                                    <p class="alert {{ Session::get('alert-danger', 'alert-danger') }}">{{ Session::get('error') }}</p>
+                                @endif
                             </div>
 
                             <!-- Form -->
                             <div class="mb-4">
                                 <label class="form-label" for="signinSrEmail">Your email</label>
                                 <input type="email" class="form-control form-control-lg" name="email" id="signinSrEmail"
-                                       tabindex="1" placeholder="email" aria-label="email@address.com"
+                                       tabindex="1" placeholder="Email" aria-label="email@address.com"
                                        required>
-                                <span class="invalid-feedback">Please enter a valid email address.</span>
+
+                                @error('email')
+                                <span class="text-danger fw-semi-bold"
+                                      style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
+
                             </div>
                             <!-- End Form -->
 
                             <!-- Form -->
                             <div class="mb-4">
-                                <label class="form-label w-100" for="signupSrPassword" tabindex="0">
+                                <label class="form-label w-100" for="signupSrPassword" tabindex="2">
                                       <span class="d-flex justify-content-between align-items-center">
                                         <span>Password</span>
                                       </span>
                                 </label>
 
-                                <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                                <div class="input-group input-group-merge" x-data="{showPassword: false}" >
                                     <input type="password" class="js-toggle-password form-control form-control-lg"
-                                           name="password" id="signupSrPassword" placeholder="password"
-                                           aria-label="8+ characters required" required minlength="8"
-                                           data-hs-toggle-password-options='{
-                                           "target": "#changePassTarget",
-                                           "defaultClass": "bi-eye-slash",
-                                           "showClass": "bi-eye",
-                                           "classChangeTarget": "#changePassIcon"
-                                         }'>
+                                           x-bind:type="showPassword ? 'text' : 'password'"
+                                           class="form-control form-control-lg border-0 shadow-none outline-0"
+                                           name="password"
+                                           wire:model.defer="state.password"
+                                           id="password"
+                                           tabindex="1"
+                                           placeholder="Password"
+                                           aria-label=""
+                                    >
+
                                     <a id="changePassTarget" class="input-group-append input-group-text"
-                                       href="javascript:;">
+                                       href="#!"
+                                       @click.prevent="showPassword  = !showPassword"
+                                    >
                                         <i id="changePassIcon" class="bi-eye"></i>
                                     </a>
+
+                                    @error('password')
+                                    <span class="text-danger fw-semi-bold"
+                                          style="font-size: 13px !important;">{{$message}}</span>
+                                    @enderror
                                 </div>
 
-                                <span class="invalid-feedback">Please enter a valid password.</span>
+                                <div class="my-3">
+                                    <span class="float-end" x-show="loginAsGuest === false">
+                                    @if (Route::has('password.request'))
+                                            {{ __('Forget Password?') }}
+                                            <a class="form-label-link mb-0 text-secondary fw-lighter"
+                                               style="outline-color: transparent !important;"
+                                               href="{{ route('super-admin.forgot-password') }}">
+                                            <span class="text-decoration-underline text-primary fw-bolder"> Reset</span>
+                                        </a>
+                                        @endif
+                                </span>
+                                </div>
                             </div>
                             <!-- End Form -->
 
