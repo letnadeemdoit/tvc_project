@@ -15,7 +15,6 @@
                 <button
                     x-data="{copied: false}"
                     class="btn btn-outline-secondary"
-                    href="#"
                     @click.prevent="() => {
                         $clipboard('{{ $iCalUrl }}');
                         copied = true;

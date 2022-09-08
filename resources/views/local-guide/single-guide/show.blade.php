@@ -90,7 +90,10 @@
                                                 @endphp
 
                                                 @while (++$i <= ($avgRating ?? 0))
-                                                    <li class="fa fa-star checked"></li>
+{{--                                                    <li class="fa fa-star checked"></li>--}}
+                                                <img
+                                                    src="{{asset('images/local-guide/review-star.svg')}}"
+                                                    style="width: 17px;margin-top: -1px" alt="">
                                                 @endwhile
                                                 @php
                                                     $r = 1;

@@ -29,6 +29,7 @@ class CreateOrUpdatePhotoAlbum extends Component
         'showAlbumCUModal',
     ];
 
+
     public function render()
     {
         $albumCategory = Album::where('house_id', $this->user->HouseId)->get();
