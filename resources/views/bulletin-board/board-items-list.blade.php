@@ -124,5 +124,9 @@
                 recalculateCategoriesWidth();
             });
         });
+
+        document.addEventListener('recalculateCategoriesWidth', function () {
+            recalculateCategoriesWidth();
+        });
     </script>
 @endpush

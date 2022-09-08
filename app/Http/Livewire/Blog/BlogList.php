@@ -49,6 +49,12 @@ class BlogList extends Component
         $this->resetPage();
     }
 
+    public function updatedCategory($value)
+    {
+        $this->dispatchBrowserEvent('recalculateCategoriesWidth');
+    }
+
+
 
     public function getCategoriesProperty() {
         return Category::blog()->get();
