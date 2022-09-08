@@ -42,6 +42,7 @@
                                         </div>
                                     </li>
                                 @elseif($dt->type == 'App\Notifications\CalendarEmailNotification')
+
                                     <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">
                                         <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">
                                             <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-calendar-event"></i> : </h4>
@@ -68,9 +69,17 @@
                                     <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">
                                         <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">
                                             <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-image"></i> : </h4>
-                                            <p class="mb-0">A Blog <b
-                                                    class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
-                                                has been Deleted</p>
+                                           @if($dt->data['deleteType'] == 'Blog')
+
+                                                <p class="mb-0">A Blog <b
+                                                        class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
+                                                    has been Deleted</p>
+                                            @else
+                                                <p class="mb-0">A Calendar <b
+                                                        class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
+                                                    has been Deleted</p>
+                                           @endif
+
                                         </div>
                                         <div class="d-lg-flex align-items-center d-lg-block mb-2 mb-lg-0">
                                             <p class="mb-0 text-muted mb-2 mb-lg-0">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>
