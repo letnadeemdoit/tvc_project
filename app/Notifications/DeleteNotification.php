@@ -11,16 +11,18 @@ use Illuminate\Support\HtmlString;
 class DeleteNotification extends Notification
 {
     use Queueable;
-    public $data;
+    public $name;
+    public $deleteType;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($name,$deleteType)
     {
-        $this->data = $data;
+        $this->name = $name;
+        $this->deleteType = $deleteType;
     }
 
     /**
@@ -44,9 +46,9 @@ class DeleteNotification extends Notification
     {
 
         return (new MailMessage)
-            ->subject('Delete Blog')
-            ->greeting('Blog!')
-            ->line(new HtmlString('Blog <strong>' . $this->data['Subject'].'</strong>'.
+            ->subject('Delete ' .$this->deleteType)
+            ->greeting($this->deleteType)
+            ->line(new HtmlString($this->deleteType. ' ' .'<strong>' . $this->name.'</strong>'.
                 '  has been Deleted!  </strong>'));
     }
 
@@ -59,7 +61,8 @@ class DeleteNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'Name' => $this->data['Subject'],
+            'Name' => $this->name,
+            'deleteType' => $this->deleteType,
         ];
     }
 }

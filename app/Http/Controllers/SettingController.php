@@ -66,8 +66,10 @@ class SettingController extends Controller
     public function vacations(Request $request)
     {
         abort_if($request->user()->is_guest, 403);
+
         return view('dash.settings.vacations.index', [
-            'user' => $request->user()
+            'user' => $request->user(),
+            'iCalUrl' => $request->user()->iCalUrl(),
         ]);
     }
 

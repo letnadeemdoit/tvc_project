@@ -84,10 +84,12 @@
             <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
                 <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center guest-menu">
 
-                    <li class="nav-item my-1 my-lg-0">
-                        <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
-                           href="{{route('guest.welcome')}}">HOME</a>
-                    </li>
+                    @if(!auth()->user()->is_guest && !auth()->user()->is_owner && !auth()->user()->is_super_admin)
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
+                               href="{{route('guest.welcome')}}">HOME</a>
+                        </li>
+                    @endif
 
                     @auth
                         <li class="nav-item my-1 my-lg-0">

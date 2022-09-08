@@ -169,9 +169,8 @@
                                    data-bs-target="#navbarVerticalHouseItemList" aria-expanded="false"
                                    aria-controls="navbarVerticalMenuPagesAdministratorMenu">
 {{--                                    <i class="bi-house nav-icon"></i>--}}
-                                    <img src="{{asset('images/icons/house-items-icon.svg')}}" class="me-3" style="width: 18px;opacity: 0.7" alt="">
-
-                                    <span class="nav-link-title">House Items</span>
+                                    <img src="{{asset('images/icons/food-items-icon.svg')}}" class="me-3" style="width: 18px;opacity: 0.7" alt="">
+                                    <span class="nav-link-title">Food Items</span>
                                 </a>
 
                                 <div id="navbarVerticalHouseItemList"
