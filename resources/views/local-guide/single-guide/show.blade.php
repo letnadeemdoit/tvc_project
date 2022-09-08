@@ -55,9 +55,9 @@
         <div class="container">
             <div class="card border-0 rounded-20 py-3 shadow-none p-4" style="margin-top: -70px;">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-start align-items-md-center">
                         <h1 class="text-w-50 lh-30">{{$localGuide->title ?? ''}}</h1>
-                        <p class="mb-0 badge badge-primary fs-13 fw-semi-bold" style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
+                        <p class="mb-0 badge badge-primary fs-13 fw-semi-bold ms-2 ms-sm-0" style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
                     </div>
                     <div class="d-flex mt-4">
                         <div class="flex-shrink-0">
