@@ -12,7 +12,7 @@
                 @click.click="hide()"
             ></button>
         </div>
-        <form wire:submit.prevent="saveUserCU" class="modal-body" x-data="{role: '{{ \App\Models\User::ROLE_OWNER }}'}">
+        <form wire:submit.prevent="saveUserCU" class="modal-body"  x-data="{role: '{{ $state['role'] ?? \App\Models\User::ROLE_OWNER }}'}">
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label class="form-label" for="user_name">Username:</label>
@@ -36,12 +36,16 @@
                         class="form-control @error('role') is-invalid @enderror"
                         name="role"
                         id="role"
-                        x-model="role"
                         wire:model="state.role"
                     >
-                        <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
-                        <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
-                        <option value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists ? 'disabled' : '' }}>Guest</option>
+                        @if($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST)
+                            <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
+                            <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
+                        @endif
+                        <option
+                            value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists && ($userCU && $userCU->role !== 'Guest')? 'disabled' : '' }}>
+                            Guest
+                        </option>
                     </select>
                     @error('role')
                         <span class="invalid-feedback">{{ $message }}</span>
@@ -126,8 +130,8 @@
                 </div>
             </div>
 
-
-            <div class="row mb-3">
+            @if((isset($state['role']) && $state['role'] !== \App\Models\User::ROLE_GUEST) || ($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST))
+                <div class="row mb-3">
                 <label for="" class="form-label">Send Email:</label>
                 <div class="col-12 col-lg-6  mb-3 mb-sm-0">
                     <!-- Form Radio -->
@@ -162,8 +166,7 @@
                     <!-- End Form Radio -->
                 </div>
             </div>
-
-
+            @endif
 
             <div class="d-flex">
                 <button

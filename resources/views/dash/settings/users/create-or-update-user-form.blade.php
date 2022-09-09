@@ -38,7 +38,7 @@
                         id="role"
                         wire:model="state.role"
                     >
-                        @if($userCU && $userCU->role !== 'Guest')
+                        @if($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST)
                             <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
                             <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
                         @endif
