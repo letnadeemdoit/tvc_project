@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="row justify-content-between align-items-center">
         <div class="col">
-            <p class="fs-6 mb-0">&copy; {{ date('Y') }} {{ config('app.name') }}. Powered by <span class="d-none d-sm-inline-block"><a href="https://devdimensions.com">DevDimensions</a></span>.</p>
+            <p class="fs-6 mb-0">&copy; {{ date('Y') }} {{ config('app.name') }}. Powered by <a href="https://devdimensions.com">DevDimensions</a>.</p>
         </div>
         <!-- End Col -->
 

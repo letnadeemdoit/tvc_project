@@ -84,6 +84,7 @@
                     <th>House Name</th>
                     <th>Created By</th>
                     <th>Schedule Dates</th>
+                    <th>Repeat</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -95,6 +96,7 @@
                         <td>{{ $dt->house ? $dt->house->HouseName : '' }}</td>
                         <td>{{ $dt->owner ? $dt->owner->name : '-' }}</td>
                         <td>{{ $dt->scheduled_dates }}</td>
+                        <td class="text-capitalize">{{ $dt->recurrence ?: 'none' }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
                                 <a class="btn btn-white" href="#"
