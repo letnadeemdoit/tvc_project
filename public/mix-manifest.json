@@ -1,7 +1,7 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/theme-dark.css": "/css/theme-dark.css",
-    "/css/theme.css": "/css/theme.css",
-    "/css/bootstrap.css": "/css/bootstrap.css",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js?id=855ea822644765d44d6d142f3a23baf2",
+    "/css/theme-dark.css": "/css/theme-dark.css?id=db16f16ed9e5b9aacc6801386ebccb6a",
+    "/css/theme.css": "/css/theme.css?id=b4dae41e7293234dac7cc9930097edba",
+    "/css/bootstrap.css": "/css/bootstrap.css?id=0d8162360a13ff432cca1fd5e98d5040",
+    "/css/app.css": "/css/app.css?id=2490d0df112305ba8940ee44d1e2c59e"
 }
