@@ -29,6 +29,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import rrulePlugin from '@fullcalendar/rrule'
 //
 window.FullCalendar = Calendar;
 window.dayGridPlugin = dayGridPlugin;
@@ -36,6 +37,7 @@ window.timeGridPlugin = timeGridPlugin;
 window.listPlugin = listPlugin;
 window.interactionPlugin = interactionPlugin;
 window.resourceTimelinePlugin = resourceTimelinePlugin;
+window.rrulePlugin = rrulePlugin;
 window.bootstrap5Plugin = bootstrap5Plugin;
 
 window.livewire.on('toastr', function (data) {

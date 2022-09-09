@@ -183,8 +183,8 @@
                                 <p class="card-text text-light-secondary">The House Bulletin Board is the perfect solution to that all
                                     important piece paper that is always getting misplaced. This is a great place for
                                     contact information, house instructions, rules, cleaning services.</p>
-                                <button class="btn btn-lg w-100 btn-primary text-white">Learn More<i
-                                        class="fa-solid fa-arrow-right ps-2"></i></button>
+                                <a href="{{ route('guest.help') }}" class="btn btn-lg w-100 btn-primary text-white">Learn More<i
+                                        class="fa-solid fa-arrow-right ps-2"></i></a>
                             </div>
                         </div>
                         <!-- End Card -->
@@ -201,8 +201,8 @@
                                     checks that there are no conflicts on the online calendar <span
                                         class="text-content"> and prevents you from ever having multiple parties showing
                                         up at your vacation home at the same time.</span></p>
-                                <button class="btn btn-lg w-100 btn-primary text-white" id="toggle">Learn More <i
-                                        class="fa-solid fa-arrow-right ps-2"></i></button>
+                                <a href="{{ route('guest.help') }}" class="btn btn-lg w-100 btn-primary text-white">Learn More <i
+                                        class="fa-solid fa-arrow-right ps-2"></i></a>
                             </div>
                         </div>
                         <!-- End Card -->
@@ -217,8 +217,8 @@
                                     the House Blog gives everyone a place to share thoughts, provide updates,<span
                                         class="text-content"> and generally make fun of
                                       each other.</span></p>
-                                <button class="btn btn-lg w-100 btn-primary text-white" id="toggle">Learn More <i
-                                        class="fa-solid fa-arrow-right ps-2"></i></button>
+                                <a href="{{ route('guest.help') }}" class="btn btn-lg w-100 btn-primary text-white">Learn More <i
+                                        class="fa-solid fa-arrow-right ps-2"></i></a>
                             </div>
                         </div>
                         <!-- End Card -->
@@ -845,9 +845,9 @@
 
                     <div class="col-12 col-md-6">
 
-                </div>
+                    </div>
 
-            </div>
+                </div>
 
 
 
