@@ -161,8 +161,10 @@
                 $('#schedule_start_end_datetime').daterangepicker({
                     timePicker: true,
                     timePickerIncrement: 60,
-                    minYear: moment().subtract(10, 'years').format('YYYY'),
-                    maxYear: moment().add(10, 'years').format('YYYY'),
+                    showDropdowns: true,
+                    minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
+                    maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+                    minDate: moment().format('MM/DD/YYYY'),
                     startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
                     @else moment().set('minute', 0) @endisset,
                     endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
