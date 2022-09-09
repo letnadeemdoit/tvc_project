@@ -38,7 +38,7 @@
                     <th style="width: 100px" class="text-center">Image</th>
 {{--                    <th>Category</th>--}}
                     <th>Title</th>
-                    <th>Description</th>
+{{--                    <th>Description</th>--}}
                     <th>Address</th>
                     <th>Date Time</th>
                     <th>Action</th>
@@ -61,17 +61,17 @@
                         </td>
 {{--                        <td class="fw-600">{{$dt->localGuideCategory->name ?? ''}}</td>--}}
                         <td>{{$dt->title ?? ''}}</td>
-                        <td>{!! substr($dt->description,0,30) ?? '' !!}
+{{--                        <td>{!! substr($dt->description,0,30) ?? '' !!}--}}
 
-                           @if(isset($dt->description) && strlen($dt->description) > 41)
-                                <a href="#!"
-                                   class="fw-600"
-                                   data-bs-toggle="modal"
-                                   data-bs-target="#localGuideDescription{{$dt->id}}Details"
-                                >View</a>
-                           @endif
+{{--                           @if(isset($dt->description) && strlen($dt->description) > 41)--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="fw-600"--}}
+{{--                                   data-bs-toggle="modal"--}}
+{{--                                   data-bs-target="#localGuideDescription{{$dt->id}}Details"--}}
+{{--                                >View</a>--}}
+{{--                           @endif--}}
 
-                        </td>
+{{--                        </td>--}}
 
                         <!-- Modal -->
                         <div class="modal fade" id="localGuideDescription{{$dt->id}}Details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

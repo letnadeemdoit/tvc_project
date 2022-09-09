@@ -106,6 +106,12 @@
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
 
+                                <a class="btn btn-white" href="#!"
+                                   wire:click.prevent="$emit('showSendCredentialsUserCUModal', true, {{ $dt->user_id}})"
+                                >
+                                    <i class="bi-envelope me-1 text-success"></i> Send Mail
+                                </a>
+
                                     <a class="btn btn-white" href="#"
                                        wire:click.prevent="$emit('showUserCUModal', true, {{ $dt->user_id}})"
                                     >

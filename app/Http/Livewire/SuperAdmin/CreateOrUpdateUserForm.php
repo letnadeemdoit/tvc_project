@@ -4,6 +4,7 @@ namespace App\Http\Livewire\SuperAdmin;
 
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\User;
+use App\Notifications\CreateUserEmailNotification;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
@@ -98,6 +99,7 @@ class CreateOrUpdateUserForm extends Component
         ])->validateWithBag('saveUserCU');
 
         if (isset($this->state['password'])) {
+            $sendPasswordToMail = $this->state['password'];
             $this->userCU->password = \Hash::make($this->state['password']);
             $this->userCU->old_password = \Hash::make($this->state['password']);
         }
@@ -110,6 +112,14 @@ class CreateOrUpdateUserForm extends Component
             'last_name' => $this->state['last_name'],
 //            'HouseId' => $this->user->HouseId,
         ])->save();
+
+        $createUser = $this->userCU;
+
+        if (isset($this->state['send_email']) && $this->state['send_email'] == 1){
+            if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)){
+                 $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail));
+            }
+        }
 
         $this->emitSelf('toggle', false);
         $this->emit('user-cu-successfully');
