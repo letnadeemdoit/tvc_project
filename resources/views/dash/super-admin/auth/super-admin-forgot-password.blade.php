@@ -95,6 +95,8 @@
 
                             </div>
 
+                            <input type="hidden" name="HouseId" value="0" />
+
                             <!-- Form -->
                             <div class="mb-4">
                                 <label class="form-label" for="signinSrEmail">Super Admin Email Address</label>
