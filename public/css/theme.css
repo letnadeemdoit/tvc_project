@@ -44573,6 +44573,9 @@ header nav button:last-child:hover {
   .masonry .brick {
     margin-left: 0 !important;
   }
+  .blog-card {
+    min-height: 175px !important;
+  }
 }
 @media only screen and (max-width: 430px) {
   .rounded-icon {
@@ -44625,6 +44628,9 @@ header nav button:last-child:hover {
   }
   .scroll-icons {
     max-height: 28px !important;
+  }
+  .features-img {
+    height: 40px !important;
   }
   .images-nav-tabs .nav-link {
     width: 71px !important;
