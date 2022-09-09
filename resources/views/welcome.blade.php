@@ -23,7 +23,7 @@
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.svg"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow" />
-                    <p class="display-4 poppins-bold text-primary"><i>Only $20 <span class="fs-6 color-secondary">per
+                    <p class="display-4 poppins-bold text-primary"><i>Only $40 <span class="fs-6 color-secondary">per
                                 year</span></i></p>
                 </div>
 
@@ -276,7 +276,7 @@
                                 </div>
                             </div>
                             <!-- tab content ends -->
-                            <ul class="col-12 order-1 order-lg-2 mb-4 mb-lg-0 nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start mt-2"
+                            <ul class="col-12 order-1 order-lg-2 mb-4 mb-lg-0 nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start mt-2 padding-0"
                                 id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
