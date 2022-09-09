@@ -78,7 +78,7 @@ class VacationSchedule implements Rule
                         AND T.timeid = V.StartTimeId
                         AND TE.timeid = V.EndTimeId
                         AND (
-                            (V.recurrence is null AND (
+                            ((V.recurrence <> 'monthly' OR V.recurrence <> 'yearly') AND (
                                 (
                                     CONCAT_WS(' ', C.RealDate, T.time) <= STR_TO_DATE('$value', '%m/%d/%Y %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) >= STR_TO_DATE('$value', '%m/%d/%Y %H:%i')
                                 ) OR (
@@ -100,6 +100,38 @@ class VacationSchedule implements Rule
                         AND V.HouseId = {$this->user->HouseId} {$whenVacationExists}
 EOS
             )) > 0);
+
+//        <<<EOS
+//SELECT C.RealDate, C.DateId
+// 		            FROM Calendar C, Calendar CE, Vacations V, Time T, Time TE
+// 		            WHERE
+// 		                C.DateId = V.StartDateId
+//                        AND CE.DateId = V.EndDateId
+//                        AND T.timeid = V.StartTimeId
+//                        AND TE.timeid = V.EndTimeId
+//                        AND (
+//                            (V.recurrence is null AND (
+//                                (
+//                                    CONCAT_WS(' ', C.RealDate, T.time) <= STR_TO_DATE('09/15/2022 02:00', '%m/%d/%Y %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) >= STR_TO_DATE('09/15/2022 02:00', '%m/%d/%Y %H:%i')
+//                                ) OR (
+//                                    CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('09/15/2022 02:00', '%m/%d/%Y %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) <= STR_TO_DATE('09/16/2022 02:00', '%m/%d/%Y %H:%i')
+//                                ) OR (
+//                                    CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('09/15/2022 02:00', '%m/%d/%Y %H:%i') AND CONCAT_WS(' ', C.RealDate,T.time) <= STR_TO_DATE('09/16/2022 02:00', '%m/%d/%Y %H:%i')
+//                                )
+//                            )) OR
+//                            ((V.recurrence='monthly' OR V.recurrence='yearly') AND (
+//                                (
+//                                    CONCAT_WS(' ', C.RealDate, T.time) <= STR_TO_DATE('09/15/2022 02:00', '%m/%d %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) >= STR_TO_DATE('09/15/2022 02:00', '%m/%d %H:%i')
+//                                ) OR (
+//                                    CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('09/15/2022 02:00', '%m/%d %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) <= STR_TO_DATE('09/16/2022 02:00', '%m/%d %H:%i')
+//                                ) OR (
+//                                    CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('09/15/2022 02:00', '%m/%d %H:%i') AND CONCAT_WS(' ', C.RealDate,T.time) <= STR_TO_DATE('09/16/2022 02:00', '%m/%d %H:%i')
+//                                )
+//                            ))
+//                        )
+//                        AND V.HouseId = 24;
+//EOS;
+
     }
 
 
@@ -135,11 +167,12 @@ EOS
      * @param string $message
      * @return $this
      */
-    public
-    function withMessage(string $message)
+    public function withMessage(string $message)
     {
         $this->message = $message;
 
         return $this;
     }
+
+
 }
