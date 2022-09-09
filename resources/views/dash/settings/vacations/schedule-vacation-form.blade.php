@@ -49,17 +49,17 @@
                 <label for="" class="form-label">Repeat:</label>
                 <div class="col-12 col-lg-4 mb-3 mb-sm-0">
                     <!-- Form Radio -->
-                    <label class="form-control" for="recurrence_none">
+                    <label class="form-control" for="recurrence_once">
                         <span class="form-check">
                             <input type="radio"
                                    wire:model.defer="state.recurrence"
-                                   value="none"
+                                   value="once"
                                    class="form-check-input"
                                    checked
                                    name="recurrence"
-                                   id="recurrence_none"
+                                   id="recurrence_once"
                             />
-                            <span class="form-check-label">None</span>
+                            <span class="form-check-label">Once</span>
                         </span>
                     </label>
                     <!-- End Form Radio -->
