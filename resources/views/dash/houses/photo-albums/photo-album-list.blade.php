@@ -39,7 +39,7 @@
                     <th>House</th>
                     <th style="max-width: 400px">Name &amp; DESCRIPTION</th>
                     <th>Parent Album</th>
-{{--                    <th>Description</th>--}}
+                    {{--                    <th>Description</th>--}}
                     <th>Photos</th>
                     <th>Action</th>
                 </tr>
@@ -60,29 +60,21 @@
 
                         </td>
                         <td class="fw-600">{{ auth()->user()->house->HouseName ?? ''}}</td>
-                        <td style="max-width: 400px" class="text-wrap text-break" ><h5 class="mb-0">{{$dt->name ?? ''}}</h5>
-                                <small class="mb-0">{!! substr($dt->description,0,255) ?? '' !!}</small>
+                        <td style="max-width: 400px" class="text-wrap text-break"><h5
+                                class="mb-0">{{$dt->name ?? ''}}</h5>
+                            <small class="mb-0">{!! substr($dt->description,0,255) ?? '' !!}</small>
                         </td>
                         <td>{{$dt->parentAlbum->name ?? ''}}</td>
-{{--                        <td>{!! substr($dt->description,0,40) ?? '' !!}--}}
-
-{{--                            @if(isset($dt->description) && strlen($dt->description) >= 40)--}}
-{{--                                <a href="#!"--}}
-{{--                                   class="fw-600"--}}
-{{--                                   data-bs-toggle="modal"--}}
-{{--                                   data-bs-target="#localGuideDescription{{$dt->id}}Details"--}}
-{{--                                >View</a>--}}
-{{--                            @endif--}}
-
-{{--                        </td>--}}
-
                         <!-- Modal -->
-                        <div class="modal fade" id="localGuideDescription{{$dt->id}}Details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="localGuideDescription{{$dt->id}}Details" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{$dt->name ?? ''}}'s Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h5 class="modal-title" id="exampleModalLabel">{{$dt->name ?? ''}}'s
+                                            Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div>
@@ -95,11 +87,13 @@
 
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
+
                                 <a class="btn btn-primary"
                                    href="{{route('dash.photo-albums.photos',$dt->id)}}"
                                 >
                                     Photos <i class="bi-arrow-right me-1 text-white"></i>
                                 </a>
+
                             </div>
                         </td>
 
@@ -111,16 +105,61 @@
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
 
-                                <button
-                                    type="button"
-                                    class="btn btn-danger btn-sm"
-                                    wire:click.prevent="destroy({{$dt->id}})"
-                                >
-                                    <i class="bi-trash"></i>
-                                </button>
+                                @if($dt->photos->count() > 0)
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary btn-sm"
+                                        class="btn btn-secondary"
+                                        data-bs-toggle="modal" data-bs-target="#photoAlbum{{$dt->id}}Model"
+                                    >
+                                        <i class="bi-trash"></i>
+                                    </button>
+                                @else
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger btn-sm"
+                                        class="btn btn-secondary"
+                                        data-bs-toggle="modal" data-bs-target="#category{{$dt->id}}Model"
+                                        wire:click.prevent="destroy({{$dt->id}})"
+                                    >
+                                        <i class="bi-trash"></i>
+                                    </button>
+
+                                @endif
+
 
                             </div>
                         </td>
+
+                        <div class="modal fade hideableModal" id="photoAlbum{{$dt->id}}Model" tabindex="-1"
+                             aria-labelledby="deleteConfirmation{{ $dt->id ?? 0 }}ModalLabel" aria-hidden="true"
+                             wire:ignore.self>
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <div>
+                                          <span class="rounded-circle text-primary border-primary"
+                                                style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                                            <i class="bi-exclamation"></i>
+                                        </span>
+                                        </div>
+
+                                        <h4 class="fw-bold text-center my-3"
+                                            style="color: #00000090">You can't delete this Album</h4>
+                                        <p class="fw-500 fs-15">First of all you need to switch your photo items to
+                                            another album or remove the photo items from this album.</p>
+                                        <div class="btn-group my-2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                     </tr>
@@ -165,7 +204,8 @@
                 <!-- End Col -->
 
                 <div class="col-sm-auto pt-2">
-                    <div class="d-flex align-items-center justify-content-center justify-content-sm-end pagination-disable-button">
+                    <div
+                        class="d-flex align-items-center justify-content-center justify-content-sm-end pagination-disable-button">
                         <!-- Pagination -->
                         {{ $data->onEachSide(0)->links() }}
                     </div>

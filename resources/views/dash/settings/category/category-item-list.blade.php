@@ -106,17 +106,6 @@
                                             style="color: #00000090">You can't delete this category</h4>
                                         <p class="fw-500 fs-15">First of all you need to switch your item to another category or remove the item from this category.</p>
                                         <div class="btn-group my-2">
-
-{{--                                            <button type="button"--}}
-{{--                                                    class="btn btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"--}}
-{{--                                                    wire:click.prevent="{{$action}}">--}}
-{{--                                                <div wire:loading.remove wire:target="{{$action}}">--}}
-{{--                                                    Yes,Delete!--}}
-{{--                                                </div>--}}
-{{--                                                <div wire:loading wire:target="{{$action}}">--}}
-{{--                                                    Deleting...--}}
-{{--                                                </div>--}}
-{{--                                            </button>--}}
                                         </div>
                                     </div>
                                 </div>
