@@ -1,6 +1,6 @@
 <div>
     <div class="row align-items-sm-center mb-4">
-        <div class="col-lg-5 mb-2 mb-lg-0">
+        <div class="col-lg-4 mb-2 mb-lg-0">
             <div class="d-flex align-items-center">
                 <button
                     type="button"
@@ -42,63 +42,64 @@
         </div>
         <!-- End Col -->
 
-        <div class="col-lg-7">
-            <div class="d-flex">
-                <div class="row">
-                    <div class="col-lg-6 mb-3">
-                        <div class="input-group input-group-sm-vertical">
-                            <!-- Radio Check -->
-                            <label class="form-control" for="month">
-                    <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="month"
-                             value="dayGridMonth" checked/>
-                      <span class="form-check-label">Month</span>
-                    </span>
-                            </label>
-                            <!-- End Radio Check -->
+        <div class="col-lg-8">
 
-                            <!-- Radio Check -->
-                            <label class="form-control" for="week">
-                    <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="week"
-                             value="timeGridWeek"/>
-                      <span class="form-check-label">Week</span>
-                    </span>
-                            </label>
-                            <!-- End Radio Check -->
+            <div class="row ">
+                <div class="col-12 col-lg-8 mb-3">
+                    <div class="input-group input-group-sm-vertical">
+                        <!-- Radio Check -->
+                        <label class="form-control" for="month">
+                <span class="form-check">
+                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="month"
+                         value="dayGridMonth" checked/>
+                  <span class="form-check-label">Month</span>
+                </span>
+                        </label>
+                        <!-- End Radio Check -->
 
-                            <!-- Radio Check -->
-                            <label class="form-control" for="day">
-                    <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="day"
-                             value="timeGridDay"/>
-                      <span class="form-check-label">Day</span>
-                    </span>
-                            </label>
-                            <!-- End Radio Check -->
+                        <!-- Radio Check -->
+                        <label class="form-control" for="week">
+                <span class="form-check">
+                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="week"
+                         value="timeGridWeek"/>
+                  <span class="form-check-label">Week</span>
+                </span>
+                        </label>
+                        <!-- End Radio Check -->
 
-                            <!-- Radio Check -->
-                            <label class="form-control" for="list">
-                    <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="list"
-                             value="listWeek"/>
-                      <span class="form-check-label">List</span>
-                    </span>
-                            </label>
-                            <!-- End Radio Check -->
+                        <!-- Radio Check -->
+                        <label class="form-control" for="day">
+                <span class="form-check">
+                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="day"
+                         value="timeGridDay"/>
+                  <span class="form-check-label">Day</span>
+                </span>
+                        </label>
+                        <!-- End Radio Check -->
 
-                            <!-- Radio Check -->
-                            <label class="form-control" for="rooms">
-                    <span class="form-check">
-                      <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="rooms"
-                             value="resourceTimeline"/>
-                      <span class="form-check-label">Rooms</span>
-                    </span>
-                            </label>
-                            <!-- End Radio Check -->
-                        </div>
+                        <!-- Radio Check -->
+                        <label class="form-control" for="list">
+                <span class="form-check">
+                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="list"
+                         value="listWeek"/>
+                  <span class="form-check-label">List</span>
+                </span>
+                        </label>
+                        <!-- End Radio Check -->
+
+                        <!-- Radio Check -->
+                        <label class="form-control" for="rooms">
+                <span class="form-check">
+                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="rooms"
+                         value="resourceTimeline"/>
+                  <span class="form-check-label">Rooms</span>
+                </span>
+                        </label>
+                        <!-- End Radio Check -->
                     </div>
-                    <div class="col-lg-6 mb-3 d-flex">
+                </div>
+                <div class="col-12 col-lg-4 mb-3">
+                    <div class="d-flex">
                         @if($user->is_owner && !$user->is_owner_only)
                             <div class="dropdown ms-1">
                                 <button type="button" class="btn btn-white dropdown-toggle w-100"
@@ -157,6 +158,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <!-- End Col -->
     </div>
