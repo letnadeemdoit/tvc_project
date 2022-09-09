@@ -77,6 +77,7 @@ class CreateNewUser implements CreatesNewUsers
                 'role' => $input['role'],
                 'HouseId' => $getCreatedHouseId->HouseID,
                 'is_confirmed' => 1,
+                'primary_account' => 1,
                 'old_password' => Hash::make('password'),
                 'password' => Hash::make($input['password']),
             ]);

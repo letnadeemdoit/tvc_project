@@ -90,8 +90,16 @@ class CreateOrUpdateHouseForm extends Component
 
         ])->validateWithBag('saveAdditionalHouseCU');
 
+
+        if ($this->user->primary_account == 1 ){
+            $this->house->parent_id = $this->user->HouseId;
+        }else{
+
+        }
+
         $this->house->fill([
             'HouseName' => $this->state['name'],
+//            'parent_id' => $this->user->primary_account == 1 ? $this->user->HouseId : null,
             'Address1' => $this->state['address_1'] ?? null,
             'Address2' => $this->state['address_2'] ?? null,
             'country' => $this->state['country_id'] ?? null,
