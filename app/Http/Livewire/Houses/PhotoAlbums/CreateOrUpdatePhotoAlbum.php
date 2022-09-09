@@ -34,7 +34,7 @@ class CreateOrUpdatePhotoAlbum extends Component
     {
         $albumCategory = Album::where('house_id', $this->user->HouseId)
             ->when($this->user->is_owner_only, function ($query){
-                $query->where('user_id', $this->user->id);
+                $query->where('user_id', $this->user->user_id);
             })
             ->where(function ($query){
                 $query->whereDoesntHave('parentAlbum')
