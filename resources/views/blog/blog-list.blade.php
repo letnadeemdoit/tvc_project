@@ -1,3 +1,4 @@
+<div class="bg-map">
 <div class="container pt-55">
   @if(isset($data))
             <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%" id="scroller" >
@@ -55,7 +56,7 @@
   @else
         @include('partials.no-data-available',['title' => 'Blog'])
   @endif
-
+</div>
 </div>
 @push('scripts')
     <script>

@@ -1,7 +1,7 @@
 <div class="pt-55  category-cards">
 
     <div class="d-flex justify-content-center justify-content-md-start ms-0 ms-md-3" id="scroller">
-        <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%">
+        <div class="category-cards mb-2 d-flex  scrollbar pb-1" style="max-width: 100%">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                     <li class="nav-item">

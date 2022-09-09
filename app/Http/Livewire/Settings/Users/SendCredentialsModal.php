@@ -66,7 +66,7 @@ class SendCredentialsModal extends Component
 
         Validator::make($this->state, [
 
-            'password' => ['required', 'string', 'max:50'],
+            'password' => ['required', 'string','min:8' ,'max:50'],
 
         ])->validateWithBag('sendMailUserCU');
 
