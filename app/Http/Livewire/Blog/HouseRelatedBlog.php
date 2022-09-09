@@ -13,8 +13,7 @@ class HouseRelatedBlog extends Component
     public $existing_views;
 
     public function mount(Request $request) {
-        //$blog_views = BlogViews::where('user_id' ,auth()->user()->user_id)->where('viewable_id' ,$this->blog->BlogId)->get();
-        $blog_views = BlogViews::where('viewable_id' ,$this->blog->BlogId)->distinct('ip_address')->count();
+        $blog_views = BlogViews::where('viewable_id' ,$this->blog->BlogId)->distinct(['ip_address','user_id'])->count();
         if ($blog_views){
             $this->existing_views = $blog_views;
         }

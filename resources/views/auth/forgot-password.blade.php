@@ -28,6 +28,9 @@
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
 
+
+                <input type="hidden" name="HouseId" value="{{ request()->get('h', -1) }}" />
+
                 <div class="mb-4">
                     <fieldset class="input-group border rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">{{ __('Admin Email Address') }}</legend>

@@ -1,4 +1,4 @@
-<div class="bg-map">
+<div class="bg-map" style="background-position: center -19% !important;">
 <div class="container pt-55">
   @if(isset($data))
             <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%" id="scroller" >
