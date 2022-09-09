@@ -1,4 +1,4 @@
-<div class="bg-map">
+<div class="bg-map" style="background-position: center -19% !important;">
     <div class="container  pb-5 pt-5">
         <div class="d-flex justify-content-center justify-content-md-start local-guide-tabs" id="scroller">
             @if(count($categories) >0)
