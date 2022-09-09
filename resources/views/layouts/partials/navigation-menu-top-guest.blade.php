@@ -104,36 +104,63 @@
                    @endauth
 
                     @auth
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"
-                               href="{{route('dash.calendar')}}">CALENDAR</a>
-                        </li>
 
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.bulletin-board.index') ? 'active' : '' }}"
-                               href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
-                        </li>
+                        @if(!auth()->user()->is_super_admin )
 
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.blog.index') || request()->routeIs('guest.blog.show') ? 'active' : '' }}"
-                               href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.photo-album.index') || request()->routeIs('guest.photo-album.show') ? 'active' : '' }}"
-                               href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.local-guide.index') || request()->routeIs('guest.local-guide.show') ? 'active' : '' }}"
-                               href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.house-items.index') ? 'active' : '' }}"
-                               href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD LIST</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
-                               href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
-                        </li>
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"
+                                       href="{{route('dash.calendar')}}">CALENDAR</a>
+                                </li>
+
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="nav-link {{ request()->routeIs('guest.bulletin-board.index') ? 'active' : '' }}"
+                                       href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
+                                </li>
+
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="nav-link {{ request()->routeIs('guest.blog.index') || request()->routeIs('guest.blog.show') ? 'active' : '' }}"
+                                       href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
+                                </li>
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="nav-link {{ request()->routeIs('guest.photo-album.index') || request()->routeIs('guest.photo-album.show') ? 'active' : '' }}"
+                                       href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
+                                </li>
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="nav-link {{ request()->routeIs('guest.local-guide.index') || request()->routeIs('guest.local-guide.show') ? 'active' : '' }}"
+                                       href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
+                                </li>
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="nav-link {{ request()->routeIs('guest.house-items.index') ? 'active' : '' }}"
+                                       href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD LIST</a>
+                                </li>
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="nav-link {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
+                                       href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
+                                </li>
+
+                           @endif
+
+                        @if(auth()->user()->is_super_admin )
+
+                               <li class="nav-item my-1 my-lg-0">
+                                   <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
+                                      href="{{route('guest.welcome')}}">HOME</a>
+                               </li>
+
+                               <li class="nav-item my-1 my-lg-0">
+                                   <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
+                                      href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                               </li>
+                               <li class="nav-item my-1 my-lg-0">
+                                   <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
+                                      href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                               </li>
+                               <li class="nav-item my-1 my-lg-0">
+                                   <a class="nav-link {{ request()->routeIs('guest.help') ? 'active' : '' }}"
+                                      href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                               </li>
+
+                           @endif
 
                     @endauth
 
@@ -223,9 +250,11 @@
                                 {{--                                </div>--}}
                                 <div class="dropdown-divider d-block d-lg-none"></div>
 
-                                <a href="{{route('dash.calendar')}}" class="dropdown-item"> <i
-                                        class="bi bi-speedometer2 me-2"></i>Calendar</a>
-                                @if(!auth()->user()->is_guest)
+                                @if(!auth()->user()->is_super_admin )
+                                     <a href="{{route('dash.calendar')}}" class="dropdown-item"> <i
+                                                class="bi bi-speedometer2 me-2"></i>Calendar</a>
+                                @endif
+                                @if(!auth()->user()->is_guest && !auth()->user()->is_super_admin )
                                     <a href="{{route('dash.settings.')}}" class="dropdown-item"><i
                                             class="bi bi-gear me-2"></i>Settings</a>
                                 @endif
