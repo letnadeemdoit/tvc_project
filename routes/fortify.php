@@ -10,7 +10,7 @@ use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
 use Laravel\Fortify\Http\Controllers\EmailVerificationPromptController;
 use Laravel\Fortify\Http\Controllers\NewPasswordController;
 use Laravel\Fortify\Http\Controllers\PasswordController;
-use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use Laravel\Fortify\Http\Controllers\ProfileInformationController;
 use Laravel\Fortify\Http\Controllers\RecoveryCodeController;
 use App\Http\Controllers\Auth\RegisteredUserController;
