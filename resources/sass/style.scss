@@ -999,6 +999,7 @@ header{
         min-width: 190px !important;
         max-width: 190px !important;
     }
+
     .toggle-text {
         max-width: 89px !important;
     }
@@ -1048,6 +1049,16 @@ header{
         span {
             font-size: 13px !important;
         }
+    }
+    .navbar-brand-logo{
+        min-width: 10rem !important;
+        max-width: 10rem !important;
+    }
+    .login-nav{
+        font-size: 12px !important;
+    }
+    .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
+        padding: 0.4rem 0.4rem 0 0.4rem !important;
     }
 }
 @media only screen and (max-width:991px) {
