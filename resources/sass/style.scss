@@ -280,6 +280,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
             margin-bottom: 10px;
             max-height:50px;
         }
+        &:first-child{
+            margin-right: 5px !important;
+        }
     }
 }
 .footer-text{
@@ -1159,6 +1162,7 @@ header{
                 padding: 7px 16px !important;
                 font-size: 13px !important;
                 margin-right: 4px !important;
+
             }
         }
     }

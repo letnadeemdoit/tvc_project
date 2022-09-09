@@ -7,7 +7,7 @@
                     <li class="nav-item">
                         <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}"
                            wire:click.prevent="$set('category', 'all')"
-                           class="nav-link {{ $category == 'all' ? 'active' : '' }}" id="all-btn" style="margin-right:2px !Important">
+                           class="nav-link {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
                             ALL
                         </a>
                     </li>
