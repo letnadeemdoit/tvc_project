@@ -86,7 +86,7 @@ class RequestToJoinVacationForm extends Component
 
         if (!$this->vacation->VacationId) {
             try {
-                $house = $this->user->hous;
+                $house = $this->user->house;
 
                 if ($house && !is_null($house->CalEmailList) && !empty($house->CalEmailList)) {
 

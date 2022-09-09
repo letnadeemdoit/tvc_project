@@ -56,8 +56,8 @@ class RequestToJoinCalendarNotification extends Notification
 
             ->greeting('Request To Join House')
 
-            ->line(new HtmlString($this->name .' '.'has requested to join your house from <strong>' . $this->startDate.'</strong>'.
-                ' to ' . '<strong>'. $this->endDate .'</strong>'.' against this  <strong> '.$this->createdHouseName .' House'.'</strong>'))
+            ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to join your house from <strong>' . $this->startDate.'</strong>'.
+                ' to ' . '<strong>'. $this->endDate .'</strong>'.' against  <strong> '.$this->createdHouseName .' '.'</strong>'. 'House'))
 
             ->line(new HtmlString('They can be reached at the following email address: <strong>' .
                 $this->email.'</strong>'));
