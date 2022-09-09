@@ -276,7 +276,7 @@
                                 </div>
                             </div>
                             <!-- tab content ends -->
-                            <ul class="col-12 order-1 order-lg-2 mb-4 mb-lg-0 nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start mt-2"
+                            <ul class="col-12 order-1 order-lg-2 mb-4 mb-lg-0 nav nav-tabs border-bottom-0 d-flex justify-content-center justify-content-lg-start mt-2 padding-0"
                                 id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
