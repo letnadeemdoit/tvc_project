@@ -34477,9 +34477,6 @@ body {
   margin-bottom: 10px;
   max-height: 50px;
 }
-.blog-tabs .nav-item:first-child {
-  margin-right: 5px !important;
-}
 
 .footer-text img:hover {
   filter: grayscale(87%) brightness(60%) sepia(87%) hue-rotate(-51deg) saturate(982%) contrast(0.8);

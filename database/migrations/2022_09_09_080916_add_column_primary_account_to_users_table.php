@@ -14,7 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-           $table->boolean('primary_account')->default(0)->after('user_id');
+            $table->dropColumn('updated_at');
+            $table->boolean('primary_account')->default(0)->after('user_id');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
