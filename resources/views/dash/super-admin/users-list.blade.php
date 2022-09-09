@@ -107,7 +107,7 @@
                             <div class="btn-group" role="group" aria-label="Edit group">
 
 
-                                @if(isset($dt->role) && $dt->role == 'Guest')
+                                @if($dt->role === \App\Models\User::ROLE_GUEST)
                                     <a class="btn btn-light" href="#!"
                                     >
                                         <i class="bi-envelope me-1 text-success"></i> Send Mail
