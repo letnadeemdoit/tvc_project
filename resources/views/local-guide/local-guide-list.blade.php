@@ -1,62 +1,64 @@
-<div class="container  pb-5 pt-5">
-    <div class="d-flex justify-content-center justify-content-md-start local-guide-tabs" id="scroller">
-        @if(count($categories) >0)
-            <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%">
-                <ul class="nav nav-tabs border-bottom-0 blog-tabs">
-                    <li class="nav-item">
-                        <a href="{{ route('guest.local-guide.index', ['category' => 'all']) }}"
-                           wire:click.prevent="$set('category', 'all')"
-                           class="nav-link mr-7px {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
-                            ALL
-                        </a>
-                    </li>
-                </ul>
-                <a
-                    class="btn btn-white scroll-icons align-items-center py-2 ms-0 ms-md-1 ms-lg-2"
-                    id="left-button"
-                    style="display: none"
-                >
-                    <i class="bi bi-chevron-left align-items-center d-flex h-100"></i>
-                </a>
-                <ul class="nav nav-tabs border-bottom-0 blog-tabs mx-1 mx-sm-2 scroll margin-0" id="category-bar" role="tablist">
-
-                    @foreach($categories as $cat)
+<div class="bg-map">
+    <div class="container  pb-5 pt-5">
+        <div class="d-flex justify-content-center justify-content-md-start local-guide-tabs" id="scroller">
+            @if(count($categories) >0)
+                <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%">
+                    <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                         <li class="nav-item">
-                            <a href="{{ route('guest.local-guide.index', ['category' => $cat->slug]) }}"
-                               wire:click.prevent="$set('category', '{{ $cat->slug }}')"
-                               class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
-                                {{ $cat->name }}
+                            <a href="{{ route('guest.local-guide.index', ['category' => 'all']) }}"
+                               wire:click.prevent="$set('category', 'all')"
+                               class="nav-link mr-7px {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
+                                ALL
                             </a>
                         </li>
-                    @endforeach
-                </ul>
-                <a
-                    class="btn btn-white scroll-icons align-items-center me-2"
-                    id="right-button"
-                    style="display: none"
-                >
-                    <i class="bi bi-chevron-right align-items-center d-flex h-100"></i>
-                </a>
+                    </ul>
+                    <a
+                        class="btn btn-white scroll-icons align-items-center py-2 ms-0 ms-md-1 ms-lg-2"
+                        id="left-button"
+                        style="display: none"
+                    >
+                        <i class="bi bi-chevron-left align-items-center d-flex h-100"></i>
+                    </a>
+                    <ul class="nav nav-tabs border-bottom-0 blog-tabs mx-1 mx-sm-2 scroll margin-0" id="category-bar"
+                        role="tablist">
+
+                        @foreach($categories as $cat)
+                            <li class="nav-item">
+                                <a href="{{ route('guest.local-guide.index', ['category' => $cat->slug]) }}"
+                                   wire:click.prevent="$set('category', '{{ $cat->slug }}')"
+                                   class="nav-link {{ $cat->slug == $category ? 'active' : '' }}">
+                                    {{ $cat->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <a
+                        class="btn btn-white scroll-icons align-items-center me-2"
+                        id="right-button"
+                        style="display: none"
+                    >
+                        <i class="bi bi-chevron-right align-items-center d-flex h-100"></i>
+                    </a>
+                </div>
+            @endif
+
         </div>
+        <div class="row mt-5">
+            @if(isset($data))
+                @foreach($data as $dt)
+                    <livewire:local-guide.post-card :dt="$dt" wire:key="{{ $dt->id }}"/>
+                @endforeach
+            @endif
+        </div>
+
+        @if(isset($data) && count($data) >6 )
+            <div class="text-center pt-5 padding-bottom">
+                <a class="btn btn-lg btn-soft-primary px-5" id="next">See more</a>
+            </div>
         @endif
 
     </div>
-    <div class="row mt-5">
-        @if(isset($data))
-            @foreach($data as $dt)
-                <livewire:local-guide.post-card :dt="$dt" wire:key="{{ $dt->id }}"/>
-            @endforeach
-        @endif
-    </div>
-
-    @if(isset($data) && count($data) >6 )
-        <div class="text-center pt-5 padding-bottom">
-            <a class="btn btn-lg btn-soft-primary px-5" id="next">See more</a>
-        </div>
-    @endif
-
 </div>
-
 @push('scripts')
     <script>
         let leftBtn = $('#left-button');
@@ -72,7 +74,7 @@
             e.preventDefault();
             sp -= 100;
 
-            if(sp < 0) sp = 0;
+            if (sp < 0) sp = 0;
             categories.animate({
                 scrollLeft: `${sp}px`
             });
@@ -84,7 +86,7 @@
             sw = categories.prop("scrollWidth");
             sp += 100;
 
-            if(sp > slih) sp = slih;
+            if (sp > slih) sp = slih;
 
             categories.animate({
                 scrollLeft: `${sp}px`
@@ -94,8 +96,8 @@
         function recalculateCategoriesWidth() {
             w = categories.width();
             sw = categories.prop("scrollWidth");
-            scr = scroller.width()-70;
-            if(sw > scr) {
+            scr = scroller.width() - 70;
+            if (sw > scr) {
                 leftBtn.show();
                 rightBtn.show();
             } else {
@@ -103,9 +105,9 @@
             }
         }
 
-        $(function (){
+        $(function () {
             recalculateCategoriesWidth();
-            $(window).resize(function() {
+            $(window).resize(function () {
                 recalculateCategoriesWidth();
             });
         });
