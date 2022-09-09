@@ -161,6 +161,7 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .padding-bottom{
     padding-bottom: 5rem;
 }
+
 .text-light-grey{
     color: #887E7E;
 }
@@ -999,6 +1000,7 @@ header{
         min-width: 190px !important;
         max-width: 190px !important;
     }
+
     .toggle-text {
         max-width: 89px !important;
     }
@@ -1048,6 +1050,16 @@ header{
         span {
             font-size: 13px !important;
         }
+    }
+    .navbar-brand-logo{
+        min-width: 10rem !important;
+        max-width: 10rem !important;
+    }
+    .login-nav{
+        font-size: 12px !important;
+    }
+    .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
+        padding: 0.4rem 0.4rem 0 0.4rem !important;
     }
 }
 @media only screen and (max-width:991px) {
@@ -1397,6 +1409,9 @@ header{
     .rounded-icon{
         width:15%;
         margin: -26px auto !important;
+    }
+    .padding-0{
+    padding: 0px !important;
     }
     //.category-cards {
     //    .nav.nav-tabs{
