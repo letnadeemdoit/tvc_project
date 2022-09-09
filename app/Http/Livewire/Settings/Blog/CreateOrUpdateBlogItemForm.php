@@ -28,6 +28,7 @@ class CreateOrUpdateBlogItemForm extends Component
 {
     use WithFileUploads;
     use Toastr;
+
     public $user;
 
     public $name;
@@ -47,7 +48,9 @@ class CreateOrUpdateBlogItemForm extends Component
     protected $listeners = [
         'showBlogCUModal',
     ];
-    public function mount() {
+
+    public function mount()
+    {
         $this->blogCategories = Category::where('type', 'blog')->where('house_id', $this->user->HouseId)->get();
     }
 
@@ -69,9 +72,9 @@ class CreateOrUpdateBlogItemForm extends Component
 
         if ($blogItem->BlogId) {
             $this->isCreating = false;
-            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'image', 'category_id',' name']);
+            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'image', 'category_id', ' name']);
             $this->state['tags'] = $blogItem->tags->pluck('name')->toArray();
-        }else{
+        } else {
             $this->isCreating = true;
         }
     }
@@ -83,14 +86,14 @@ class CreateOrUpdateBlogItemForm extends Component
         $inputs = $this->state;
         if ($this->file) {
             $inputs['image'] = $this->file;
-        }else{
+        } else {
             unset($inputs['image']);
         }
 
         Validator::make($inputs, [
             'Subject' => [
-                'required','string', 'max:100',
-                $this->isCreating ? Rule::unique('Blog')->where(function ($query){
+                'required', 'string', 'max:100',
+                $this->isCreating ? Rule::unique('Blog')->where(function ($query) {
                     return $query->where('HouseId', $this->user->HouseId);
                 }) : 'required',
             ],
@@ -98,6 +101,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Contents' => 'required|max:4000000000',
             'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
+
 
         $slug = Str::slug($inputs['Subject']);
 
@@ -117,43 +121,31 @@ class CreateOrUpdateBlogItemForm extends Component
             'category_id' => $inputs['category_id'] ?? null,
             'slug' => $slug,
         ])->save();
-            if (isset($this->state['tags']) && !empty($this->state['tags'])) {
-                $tagsArray = $this->state['tags'];
-                foreach ($tagsArray as $tag) {
-                    $tagExist = Tag::where('name', '=', $tag)->first();
-                    if ($tagExist === null) {
-                        $newTag = new Tag();
-                        $newTag->fill([
-                            'name' => $tag,
-                        ]);
-                        $this->blogItem->tags()->save($newTag);
-                    }
-                    else{
-                        if (count($this->blogItem->tags) == 0){
-                            $this->blogItem->tags()->save($tagExist);
-                        }
-                        else{
-                            foreach ($this->blogItem->tags as $blogtag){
-                                if ($blogtag->name != $tag){
-                                    $this->blogItem->tags()->save($tagExist);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (isset($this->state['removeTag']) && !empty($this->state['removeTag'])){
-                $removeArray = $this->state['removeTag'];
-                foreach ($removeArray as $tag) {
-                    Tag::where('name', '=', $tag)->delete();
-                }
-            }
-            $this->blogItem->updateFile($this->file);
 
+        $tagIds = [];
+
+        if (isset($this->state['tags']) && is_array($this->state['tags'])) {
+            foreach($this->state['tags'] as $tag) {
+                $t = Tag::firstOrNew([
+                    'name' => $tag
+                ]);
+
+                if (!$t->exists) {
+                    $t->save();
+                }
+
+                $tagIds[] = $t->id;
+            }
+        }
+
+        $this->blogItem->tags()->detach($this->blogItem->tags->pluck('id')->toArray());
+        $this->blogItem->tags()->attach($tagIds);
+
+        $this->blogItem->updateFile($this->file);
 
 
         try {
-            $this->siteUrl = route('guest.blog.show',$slug);
+            $this->siteUrl = route('guest.blog.show', $slug);
 
             $items = $this->blogItem;
 
@@ -161,20 +153,20 @@ class CreateOrUpdateBlogItemForm extends Component
 
             $blogUrl = $this->siteUrl;
 
-            if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList)){
+            if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList)) {
 
-                $blogEmailsList = explode(',',$this->user->house->BlogEmailList);
-                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)){
+                $blogEmailsList = explode(',', $this->user->house->BlogEmailList);
+                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
                     $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new BlogNotification($items,$blogUrl,$createdHouseName));
+                        $user->notify(new BlogNotification($items, $blogUrl, $createdHouseName));
                     }
 //                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
                     $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
                     if (count($blogEmailsList) > 0) {
                         Notification::route('mail', $blogEmailsList)
-                            ->notify(new BlogNotification($items,$blogUrl,$createdHouseName));
+                            ->notify(new BlogNotification($items, $blogUrl, $createdHouseName));
                     }
                 }
             }
@@ -184,15 +176,17 @@ class CreateOrUpdateBlogItemForm extends Component
 
         $this->emitSelf('toggle', false);
 
-        $this->success( 'Blog ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
+        $this->success('Blog ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
         $this->emit('blog-cu-successfully');
     }
 
-    public function updatedFile() {
+    public function updatedFile()
+    {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
     }
 
-    public function deleteFile() {
+    public function deleteFile()
+    {
         if ($this->blogItem->BlogId) {
             $this->blogItem->deleteFile('image');
             $this->emit('blog-deleted-successfully');

@@ -1294,6 +1294,7 @@ header{
             padding: 0px !important;
         }
     }
+
     .fs-card-title{
         font-size: 18px !important;
     }
@@ -1387,6 +1388,9 @@ header{
     .masonry .brick{
         margin-left: 0 !important;
     }
+    .blog-card{
+        min-height: 175px !important;
+    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -1463,6 +1467,9 @@ header{
     }
     .scroll-icons{
         max-height: 28px !important;
+    }
+    .features-img{
+        height: 40px !important;
     }
     .images-nav-tabs .nav-link{
         width:71px !important;
