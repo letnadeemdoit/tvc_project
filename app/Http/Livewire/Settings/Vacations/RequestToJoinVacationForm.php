@@ -8,6 +8,7 @@ use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\CalendarEmailNotification;
+use App\Notifications\RequestToJoinCalendarNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
 use Exception;
@@ -94,12 +95,12 @@ class RequestToJoinVacationForm extends Component
                     if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
                         $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
                         foreach ($users as $user) {
-                            $user->notify(new CalendarEmailNotification($items, $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+                            $user->notify(new RequestToJoinCalendarNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
                         }
                         $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                         if (count($CalEmailList) > 0) {
                             Notification::route('mail', $CalEmailList)
-                                ->notify(new CalendarEmailNotification($items, $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+                                ->notify(new RequestToJoinCalendarNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
                         }
 
                     }
