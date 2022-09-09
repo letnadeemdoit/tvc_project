@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('updated_at');
-            $table->boolean('primary_account')->default(0)->after('user_id');
         });
 
         Schema::table('users', function (Blueprint $table) {
+            $table->boolean('primary_account')->default(0)->after('user_id');
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
         });
     }
