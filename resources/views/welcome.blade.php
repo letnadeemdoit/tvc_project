@@ -23,7 +23,7 @@
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.svg"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow" />
-                    <p class="display-4 poppins-bold text-primary"><i>Only $20 <span class="fs-6 color-secondary">per
+                    <p class="display-4 poppins-bold text-primary"><i>Only $40 <span class="fs-6 color-secondary">per
                                 year</span></i></p>
                 </div>
 
