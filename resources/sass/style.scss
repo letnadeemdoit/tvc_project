@@ -161,6 +161,7 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
 .padding-bottom{
     padding-bottom: 5rem;
 }
+
 .text-light-grey{
     color: #887E7E;
 }
@@ -1408,6 +1409,9 @@ header{
     .rounded-icon{
         width:15%;
         margin: -26px auto !important;
+    }
+    .padding-0{
+    padding: 0px !important;
     }
     //.category-cards {
     //    .nav.nav-tabs{
