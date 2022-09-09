@@ -12,7 +12,7 @@
                 @click.click="hide()"
             ></button>
         </div>
-        <form wire:submit.prevent="saveUserCU" class="modal-body" x-data="{role: '{{ \App\Models\User::ROLE_OWNER }}'}">
+        <form wire:submit.prevent="saveUserCU" class="modal-body" x-data="{role: '{{ $state['role'] ?? \App\Models\User::ROLE_OWNER }}'}">
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label class="form-label" for="user_name">Username:</label>
@@ -42,7 +42,7 @@
                         <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
                         <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
                         <option
-                            value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists ? 'disabled' : '' }}>
+                            value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists && (isset($state['role']) && $state['role'] !== 'Guest')? 'disabled' : '' }}>
                             Guest
                         </option>
                     </select>
