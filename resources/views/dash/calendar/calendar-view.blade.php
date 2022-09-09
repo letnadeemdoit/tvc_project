@@ -181,15 +181,15 @@
                 })
 
                 HSFullCalendar.init('#calendar', {
-                    schedulerLicenseKey: '0575425642-fcs-1661876207',
-                    resourceAreaHeaderContent: 'Rooms',
-                    resources: @js($this->resourceTimeline),
+                    // schedulerLicenseKey: '0575425642-fcs-1661876207',
+                    // resourceAreaHeaderContent: 'Rooms',
+                    {{--resources: @js($this->resourceTimeline),--}}
                     plugins: [
                         interactionPlugin,
                         dayGridPlugin,
                         timeGridPlugin,
                         listPlugin,
-                        resourceTimelinePlugin,
+                        // resourceTimelinePlugin,
                         rrulePlugin
                         // bootstrap5Plugin
                     ],
