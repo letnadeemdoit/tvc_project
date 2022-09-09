@@ -24,7 +24,7 @@ class PostCard extends Component
     ];
 
     public function mount() {
-        $blog_views = BlogViews::where('viewable_id' ,$this->post->BlogId)->distinct('ip_address')->count();
+        $blog_views = BlogViews::where('viewable_id' ,$this->post->BlogId)->distinct(['ip_address','user_id'])->count();
         if ($blog_views){
             $this->existing_views = $blog_views;
         }

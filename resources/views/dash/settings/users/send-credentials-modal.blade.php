@@ -12,8 +12,8 @@
                 @click.click="hide()"
             ></button>
         </div>
-        <form wire:submit.prevent="sendMailUserCU" class="modal-body"
-            {{--              x-data="{role: '{{ \App\Models\User::ROLE_OWNER }}'}"--}}
+        <form wire:submit.prevent="sendMailUserCU"
+              class="modal-body"
         >
             <div class="row mb-3">
                 <div class="form-group col-md-12">
@@ -25,7 +25,6 @@
                         placeholder="User Name"
                         disabled
                         id="user_name"
-                        {{--                        x-bind:disabled="role === '{{ \App\Models\User::ROLE_GUEST }}'"--}}
                         wire:model.defer="state.user_name"
                     />
                     @error('user_name')
@@ -45,10 +44,7 @@
                     disabled
                     readonly
                     id="email"
-                    x-bind:disabled="role === '{{ \App\Models\User::ROLE_GUEST }}'"
                     wire:model.defer="state.email"
-
-
                 />
                 @error('email')
                 <span class="invalid-feedback">{{ $message }}</span>
@@ -58,18 +54,46 @@
             <div class="row mb-3">
                 <div class="form-group col-md-12">
                     <label class="form-label" for="password">Password:</label>
-                    <input
-                        type="password"
-                        class="form-control @error('password') is-invalid @enderror"
-                        name="password"
-                        placeholder="Enter Password"
-                        id="password"
-                        wire:model.defer="state.password"
-                    />
+                    <div class="input-group input-group-merge" x-data="{showPassword: false}">
+                        <input type="password" class="js-toggle-password form-control form-control-lg"
+                               x-bind:type="showPassword ? 'text' : 'password'"
+                               class="form-control @error('password') is-invalid @enderror "
+                               name="password"
+                               wire:model.defer="state.password"
+                               id="password"
+                               tabindex="1"
+                               placeholder="Password"
+                               aria-label=""
+                        >
+
+                        <a id="changePassTarget" class="input-group-append input-group-text"
+                           href="#!"
+                           @click.prevent="showPassword  = !showPassword"
+                        >
+                            <i id="changePassIcon" class="bi-eye"></i>
+                        </a>
+                    </div>
                     @error('password')
-                    <span class="invalid-feedback">{{ $message }}</span>
+                    <span class="text-danger"
+                          style="font-size: 13px !important;">{{$message}}</span>
                     @enderror
                 </div>
+
+
+                {{--                <div class="form-group col-md-12">--}}
+                {{--                    <label class="form-label" for="password">Password:</label>--}}
+                {{--                    <input--}}
+                {{--                        type="password"--}}
+                {{--                        class="form-control @error('password') is-invalid @enderror"--}}
+                {{--                        name="password"--}}
+                {{--                        placeholder="Enter Password"--}}
+                {{--                        id="password"--}}
+                {{--                        wire:model.defer="state.password"--}}
+                {{--                    />--}}
+                {{--                    @error('password')--}}
+                {{--                    <span class="invalid-feedback">{{ $message }}</span>--}}
+                {{--                    @enderror--}}
+                {{--                </div>--}}
 
             </div>
 
