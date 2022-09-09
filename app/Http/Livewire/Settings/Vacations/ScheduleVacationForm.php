@@ -76,6 +76,8 @@ class ScheduleVacationForm extends Component
                 }
             }
         }
+
+        $this->dispatchBrowserEvent('schedule-vacation-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'], 'endDatetime' => $this->state['end_datetime']]);
     }
 
     public function saveVacationSchedule()

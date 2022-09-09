@@ -63,6 +63,8 @@ class RequestToJoinVacationForm extends Component
                 }
             }
         }
+
+        $this->dispatchBrowserEvent('rtjv-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'], 'endDatetime' => $this->state['end_datetime']]);
     }
 
     public function sendRequestToJoinVacation()
