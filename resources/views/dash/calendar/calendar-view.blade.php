@@ -181,15 +181,15 @@
                 })
 
                 HSFullCalendar.init('#calendar', {
-                    // schedulerLicenseKey: '0575425642-fcs-1661876207',
-                    // resourceAreaHeaderContent: 'Rooms',
-                    {{--resources: @js($this->resourceTimeline),--}}
+                    schedulerLicenseKey: '0575425642-fcs-1661876207',
+                    resourceAreaHeaderContent: 'Rooms',
+                    resources: @js($this->resourceTimeline),
                     plugins: [
                         interactionPlugin,
                         dayGridPlugin,
                         timeGridPlugin,
                         listPlugin,
-                        // resourceTimelinePlugin,
+                        resourceTimelinePlugin,
                         rrulePlugin
                         // bootstrap5Plugin
                     ],
@@ -240,7 +240,7 @@
                         return {
                             html:  `
                                 <div>
-                                    <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !data.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
+                                    <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !event.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
                                     <div class="d-flex">
                                         ${
                                             event.extendedProps.imageUrl
