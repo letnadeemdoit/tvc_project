@@ -318,10 +318,10 @@
 
                 <div class="col-lg-6 col-xl-5 offset-lg-1 offset-xl-2 text-center">
                     <div id="big-image">
-                        <img src="{{asset('/images/images-home/house-blog.svg')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/photo-album.svg')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/manage-account.svg')}}" class="img-fluid" alt="tab-image" />
-                        <img src="{{asset('/images/images-home/owner-administration.svg')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/house-blog.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/photo-album.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/manage-account.png')}}" class="img-fluid" alt="tab-image" />
+                        <img src="{{asset('/images/images-home/owner-administration.png')}}" class="img-fluid" alt="tab-image" />
                     </div>
 
 

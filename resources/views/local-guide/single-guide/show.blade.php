@@ -138,7 +138,7 @@
                 </div>
             </div>
         </div>
-        <div class="container my-5 pt-5">
+        <div class="container my-2 my-md-5 pt-5">
             <div class="row">
                 <div class="col-12 col-lg-9 pe-0 pe-lg-5">
                     <div class="border-bottom">
