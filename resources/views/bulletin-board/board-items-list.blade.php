@@ -1,4 +1,4 @@
-<div class="pt-55  category-cards">
+<div class="pt-55 category-cards">
 
     <div class="d-flex justify-content-center justify-content-md-start ms-0 ms-md-3" id="scroller">
         <div class="category-cards mb-3 d-flex  scrollbar" style="max-width: 100%">
