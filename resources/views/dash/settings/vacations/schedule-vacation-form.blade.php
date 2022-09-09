@@ -155,24 +155,21 @@
             </div>
         </form>
     </div>
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            $('#schedule_start_end_datetime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 60,
-                startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
-                @else moment().set('minute', 0) @endisset,
-                endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
-                @else moment().set('minute', 0).add(2, 'days') @endisset,
-                locale: {
-                    format: 'MM/DD/YYYY HH:mm'
-                }
-            });
-        });
-    </script>
     @push('scripts')
         <script>
             $(function () {
+                $('#schedule_start_end_datetime').daterangepicker({
+                    timePicker: true,
+                    timePickerIncrement: 60,
+                    startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
+                    @else moment().set('minute', 0) @endisset,
+                    endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
+                    @else moment().set('minute', 0).add(2, 'days') @endisset,
+                    locale: {
+                        format: 'MM/DD/YYYY HH:mm'
+                    }
+                });
+
                 $('#schedule_start_end_datetime').on('apply.daterangepicker', function (ev, picker) {
                     @this.
                     set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'), true);
@@ -181,6 +178,12 @@
                     @this.
                     set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'), true);
                 });
+
+                window.addEventListener('schedule-vacation-daterangepicker-update', function (e) {
+                    $('#schedule_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
+                    $('#schedule_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
+                });
+
             });
         </script>
     @endpush
