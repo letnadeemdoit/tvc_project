@@ -112,6 +112,12 @@ class CreateOrUpdateUserForm extends Component
             $this->userCU->old_password = \Hash::make($this->state['password']);
         }
 
+        if ($this->user->primary_account == 1){
+            $this->userCU->parent_id = $this->user->user_id;
+        }else{
+            $this->userCU->parent_id = $this->user->parent_id;
+        }
+
         $this->userCU->fill([
             'user_name' => $this->state['user_name'],
             'email' => $this->state['email'] ?? null,

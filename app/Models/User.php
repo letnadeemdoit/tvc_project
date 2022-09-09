@@ -78,6 +78,8 @@ class User extends Authenticatable implements Auditable
         'remote_addr',
         'confirm_hash',
         'is_confirmed',
+        'primary_account',
+        'parent_id',
         'role',
         'OwnerId',
         'date_created',
@@ -258,6 +260,11 @@ class User extends Authenticatable implements Auditable
     public function house()
     {
         return $this->belongsTo(House::class, 'HouseId', 'HouseID');
+    }
+
+    public function primaryUser()
+    {
+        return $this->belongsTo(self::class, 'user_id', 'parent_id');
     }
 
     public function review()
