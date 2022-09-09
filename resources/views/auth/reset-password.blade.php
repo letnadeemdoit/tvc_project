@@ -15,7 +15,8 @@
 
             <form method="POST" action="{{ route('password.update') }}">
                 @csrf
-                <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                <input type="hidden" name="token" value="{{ $request->route('token') }}" />
+                <input type="hidden" name="HouseId" value="{{ $request->get('h', -1) }}" />
                 <div class="mb-4">
                     {{-- Administrator --}}
                     <fieldset class="input-group border rounded-1 ps-1">
@@ -48,6 +49,7 @@
                                class="js-toggle-password form-control form-control-lg border-0 shadow-none outline-0"
                                name="password"
                                id="password"
+                               tabindex="2"
                                placeholder="8+ characters required"
                                autocomplete="new-password"
                                aria-label="8+ characters required"
@@ -94,6 +96,7 @@
                                autocomplete="new-password"
                                aria-label="8+ characters required"
                                minlength="8"
+                               tabindex="3"
                                required
                         />
                         <a
