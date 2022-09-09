@@ -64,26 +64,41 @@ class VacationSchedule implements Rule
             return false;
         }
 
-        return !(count(\DB::select(
-                "SELECT C.RealDate, C.DateId
+//        Vacation::where('VacationId', $this->vacation->VacationId)
+//            ->join('Calendar', 'Calendar.DateId')
+        $endDatetime = $this->endDatetime->format('m/d/Y H:i');
+        $whenVacationExists = !is_null($this->vacation->VacationId) ? " AND V.VacationId <> " . $this->vacation->VacationId : '';
+
+        return !(count(\DB::select(<<<EOS
+                SELECT C.RealDate, C.DateId
  		            FROM Calendar C, Calendar CE, Vacations V, Time T, Time TE
  		            WHERE
  		                C.DateId = V.StartDateId
                         AND CE.DateId = V.EndDateId
                         AND T.timeid = V.StartTimeId
                         AND TE.timeid = V.EndTimeId
-                        AND ((CONCAT_WS(' ', C.RealDate, T.time) <= STR_TO_DATE('" . $value . "', '%m/%d/%Y %H:%i')
-                              AND CONCAT_WS(' ', CE.RealDate,TE.time) >= STR_TO_DATE('" . $value . "', '%m/%d/%Y %H:%i'))
-                          OR
-                          (CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('" . $value . "', '%m/%d/%Y %H:%i')
-                              AND CONCAT_WS(' ', CE.RealDate,TE.time) <= STR_TO_DATE('" . $this->endDatetime->format('m/d/Y H:i') . "', '%m/%d/%Y %H:%i'))
-                          OR
-                          (CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('" . $value . "', '%m/%d/%Y %H:%i')
-                              AND CONCAT_WS(' ', C.RealDate,T.time) <= STR_TO_DATE('" . $this->endDatetime->format('m/d/Y H:i') . "', '%m/%d/%Y %H:%i'))
+                        AND (
+                            (V.recurrence is null AND (
+                                (
+                                    CONCAT_WS(' ', C.RealDate, T.time) <= STR_TO_DATE('$value', '%m/%d/%Y %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) >= STR_TO_DATE('$value', '%m/%d/%Y %H:%i')
+                                ) OR (
+                                    CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('$value', '%m/%d/%Y %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) <= STR_TO_DATE('$endDatetime', '%m/%d/%Y %H:%i')
+                                ) OR (
+                                    CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('$value', '%m/%d/%Y %H:%i') AND CONCAT_WS(' ', C.RealDate,T.time) <= STR_TO_DATE('$endDatetime', '%m/%d/%Y %H:%i')
+                                )
+                            )) OR
+                            ((V.recurrence='monthly' OR V.recurrence='yearly') AND (
+                                (
+                                    CONCAT_WS(' ', C.RealDate, T.time) <= STR_TO_DATE('$value', '%m/%d %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) >= STR_TO_DATE('$value', '%m/%d %H:%i')
+                                ) OR (
+                                    CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('$value', '%m/%d %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) <= STR_TO_DATE('$endDatetime', '%m/%d %H:%i')
+                                ) OR (
+                                    CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('$value', '%m/%d %H:%i') AND CONCAT_WS(' ', C.RealDate,T.time) <= STR_TO_DATE('$endDatetime', '%m/%d %H:%i')
+                                )
+                            ))
                         )
-                        AND V.HouseId = " . $this->user->HouseId . (
-                           !is_null($this->vacation->VacationId) ? " AND V.VacationId <> " . $this->vacation->VacationId : ''
-                        )
+                        AND V.HouseId = {$this->user->HouseId} {$whenVacationExists}
+EOS
             )) > 0);
     }
 
