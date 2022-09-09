@@ -87,7 +87,7 @@ class VacationSchedule implements Rule
                                     CONCAT_WS(' ', C.RealDate,T.time) >= STR_TO_DATE('$value', '%m/%d/%Y %H:%i') AND CONCAT_WS(' ', C.RealDate,T.time) <= STR_TO_DATE('$endDatetime', '%m/%d/%Y %H:%i')
                                 )
                             )) OR
-                            ((V.recurrence='monthly' OR V.recurrence='yearly') AND (
+                            ((V.recurrence = 'monthly' OR V.recurrence = 'yearly') AND (
                                 (
                                     CONCAT_WS(' ', C.RealDate, T.time) <= STR_TO_DATE('$value', '%m/%d %H:%i') AND CONCAT_WS(' ', CE.RealDate,TE.time) >= STR_TO_DATE('$value', '%m/%d %H:%i')
                                 ) OR (
