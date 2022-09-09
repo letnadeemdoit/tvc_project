@@ -14,7 +14,7 @@
             <div class="col-sm-auto">
                 <button
                     x-data="{copied: false}"
-                    class="btn btn-outline-secondary"
+                    class="btn btn-outline-secondary mb-2 mb-lg-0"
                     @click.prevent="() => {
                         $clipboard('{{ $iCalUrl }}');
                         copied = true;
@@ -31,7 +31,7 @@
                 </button>
                 <a
                     x-data
-                    class="btn btn-primary"
+                    class="btn btn-primary mb-2 mb-lg-0"
                     href="javascript:;"
                     @click.prevent="() => {
                         let parsed = queryString.parse(window.location.search);
