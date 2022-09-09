@@ -1,4 +1,4 @@
-<div class="brick me-1 pe-1">
+<div>
     <div class="card border-0  shadow-none">
         {{--    @if(!empty($album->image))--}}
             {{--    <img--}}
@@ -12,7 +12,7 @@
 
         <div class="card-body">
             <h3 class="card-title">{{$dt->title}}</h3>
-            <div class="card-text text-light-secondary">
+            <div class="text-light-secondary">
                 {!! $dt->Board !!}
             </div>
         </div>

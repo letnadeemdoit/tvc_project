@@ -53,7 +53,9 @@
         <div class="container padding-bottom massonary-container">
             <div class="masonry tab-pane fade show active pt-3 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
-                    <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
+                    <div class="brick me-1 pe-1">
+                        <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
+                    </div>
                 @endforeach
             </div>
         </div>
