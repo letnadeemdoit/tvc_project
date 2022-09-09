@@ -5,15 +5,15 @@
             <div class="col-12 col-lg-6 col-xl-6">
                 <div class="fs-6 footer-text mb-2 mb-md-0 text-white d-flex align-items-center justify-content-center justify-content-lg-start">
                     <p class="mb-0"> Powered by {{ config('app.name') }}.</p>
-                    <a href="#" class="text-decoration-none text-white ps-3">
+                    <a href="https://www.facebook.com/thevacationcalendar" class="text-decoration-none text-white ps-3">
 {{--                        <i class="fa-brands fa-facebook-f fs-3"></i>--}}
                         <img src="{{asset('/images/images-home/facebook.svg')}}" class="img-fluid">
                     </a>
-                    <a href="#" class="text-decoration-none text-white">
+                    <a href="https://twitter.com/TheVacationCal" class="text-decoration-none text-white">
 {{--                        <i class="bi-twitter mx-3 fs-3"></i>--}}
                         <img src="{{asset('/images/images-home/twitter.svg')}}" class="img-fluid mx-3">
                     </a>
-                    <a href="#" class="text-decoration-none text-white">
+                    <a href="https://www.instagram.com/thevacationcalendar/" class="text-decoration-none text-white">
 {{--                        <i class="fa-brands fa-instagram fs-3"></i>--}}
                         <img src="{{asset('/images/images-home/instagram.svg')}}" class="img-fluid">
                     </a>
