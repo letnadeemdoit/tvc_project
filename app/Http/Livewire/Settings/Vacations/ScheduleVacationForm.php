@@ -55,12 +55,14 @@ class ScheduleVacationForm extends Component
                 'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
                 'background_color' => $this->vacation->BackGrndColor,
                 'font_color' => $this->vacation->FontColor,
-                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') .' - '.$this->vacation->end_datetime->format('m/d/Y h:i')
+                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') .' - '.$this->vacation->end_datetime->format('m/d/Y h:i'),
+                'recurrence' => $this->vacation->recurrence ?? 'none'
             ];
         } else {
             $this->state = [
                 'background_color' => '#3a87ad',
                 'font_color' => '#ffffff',
+                'recurrence' => 'none'
             ];
 
             if ($initialDate) {
@@ -85,6 +87,7 @@ class ScheduleVacationForm extends Component
             'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
+            'recurrence' => ['required', 'in:none,monthly,yearly'],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
@@ -137,6 +140,7 @@ class ScheduleVacationForm extends Component
             'VacationName' => $this->state['vacation_name'],
             'BackGrndColor' => ltrim($this->state['background_color'], '#'),
             'FontColor' => ltrim($this->state['font_color'], '#'),
+            'recurrence' => $this->state['recurrence'] === 'none' ? null : $this->state['recurrence'],
             'StartDateId' => $startDate->DateId,
             'StartTimeId' => $startTime->timeid,
             'EndDateId' => $endDate->DateId,
