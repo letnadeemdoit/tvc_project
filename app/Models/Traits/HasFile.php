@@ -25,7 +25,7 @@ trait HasFile
 
                 $filePath = $file->storePublicly(get_class_name($this), ['disk' => $this->fileDisk()]);
 
-                if (in_array($file->getClientOriginalExtension(), ['jpeg', 'gif', 'png', 'jpeg', 'tiff'])) {
+                if (in_array($file->getClientOriginalExtension(), ['jpg', 'gif', 'png', 'jpeg', 'tiff'])) {
                     $storedFilePath = Storage::disk($this->fileDisk())->path($filePath);
 
                     Image::make($storedFilePath)->save($storedFilePath, 40, "jpg");
@@ -51,7 +51,7 @@ trait HasFile
                 if ($previous) {
                     Storage::disk($this->fileDisk())->delete($previous);
 
-                    if (in_array(\File::extension($previous), ['jpeg', 'gif', 'png', 'jpeg', 'tiff'])) {
+                    if (in_array(\File::extension($previous), ['jpg', 'gif', 'png', 'jpeg', 'tiff'])) {
                         Storage::disk($this->fileDisk())->delete('thumbnails/large/' . $previous);
                         Storage::disk($this->fileDisk())->delete('thumbnails/medium/' . $previous);
                         Storage::disk($this->fileDisk())->delete('thumbnails/small/' . $previous);
@@ -74,7 +74,7 @@ trait HasFile
 
         Storage::disk($this->fileDisk())->delete($this->{$column});
 
-        if (in_array(\File::extension($this->{$column}), ['jpeg', 'gif', 'png', 'jpeg', 'tiff'])) {
+        if (in_array(\File::extension($this->{$column}), ['jpg', 'gif', 'png', 'jpeg', 'tiff'])) {
             Storage::disk($this->fileDisk())->delete('thumbnails/large/' . $this->{$column});
             Storage::disk($this->fileDisk())->delete('thumbnails/medium/' . $this->{$column});
             Storage::disk($this->fileDisk())->delete('thumbnails/small/' . $this->{$column});
