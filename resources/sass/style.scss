@@ -89,7 +89,7 @@ body{
     color: $primary;
 }
 .btn-min-115{
-    min-width: 115px;
+    min-width: 130px;
 }
 .max-width{
     max-width: 400px;
@@ -963,6 +963,9 @@ header{
     .row-max-width{
         margin: 0 auto;
     }
+    .middle-li-card-footer{
+        margin: 0 35px !important;
+    }
     .ul-card-footer {
         li {
             span {
@@ -1519,7 +1522,7 @@ header{
         max-height: 28px !important;
     }
     .middle-li-card-footer{
-        margin: 0 32px !important;
+        margin: 0 29px !important;
     }
     .features-img{
         height: 40px !important;
