@@ -256,7 +256,6 @@
                     events: @js($this->events),
                 });
 
-
                 let
                     // guestsField = HSTomSelect.getItem("eventGuestsLabel"),
                     // repeatField = HSTomSelect.getItem("eventRepeatLabel"),
