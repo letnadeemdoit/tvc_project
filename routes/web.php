@@ -156,10 +156,10 @@ Route::middleware([
             ->prefix('paypal')
             ->name('paypal.')
             ->group(function () {
-                Route::get('/{plan}/processing', 'process')->name('process');
-                Route::get('/{plan}/{house}/succeeded', 'succeeded')->name('succeeded');
-                Route::get('/{plan}/{house}/canceled', 'canceled')->name('canceled');
-                Route::get('/ipn', 'ipn')->name('ipn');
+                Route::get('/{plan}/{billed}/processing', 'process')->name('process');
+                Route::get('/{plan}/{billed}/{house}/succeeded', 'succeeded')->name('succeeded');
+                Route::get('/{plan}/{billed}/{house}/canceled', 'canceled')->name('canceled');
+                Route::post('/ipn', 'ipn')->name('ipn');
             });
     });
 
