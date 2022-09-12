@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Settings\Vacations;
 
+use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Calendar;
 use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\BlogNotification;
 use App\Notifications\CalendarEmailNotification;
+use App\Notifications\DeleteNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
 use Exception;
@@ -18,6 +20,8 @@ use Livewire\Component;
 
 class ScheduleVacationForm extends Component
 {
+    use Destroyable;
+
     public $user;
 
     public $state = [];
@@ -27,8 +31,15 @@ class ScheduleVacationForm extends Component
     public $owner = null;
 
     protected $listeners = [
-        'showVacationScheduleModal'
+        'showVacationScheduleModal',
+        'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
     ];
+
+    public function mount(){
+
+        $this->model = Vacation::class;
+
+    }
 
     public function showVacationScheduleModal($toggle, $vacationId = null, $initialDate = null, $owner = null, $house = null)
     {
@@ -199,6 +210,61 @@ class ScheduleVacationForm extends Component
         $this->emit('vacation-schedule-successfully');
     }
 
+
+    public function destroyedSuccessfully($data)
+    {
+
+        $this->emitSelf('vacation-schedule-successfully');
+
+        $this->emitSelf('toggle', false);
+
+        $name = $data['VacationName'];
+
+        $deleteType = 'Vacation';
+
+        try {
+
+            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
+
+                $CalEmailList = explode(',', $this->user->house->CalEmailList);
+
+                if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteNotification($name,$deleteType));
+                    }
+
+                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+
+                    if (count($CalEmailList) > 0) {
+
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new DeleteNotification($name,$deleteType));
+
+                    }
+                }
+            }
+        } catch (Exception $e) {
+
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        if ($this->model) {
+            $deletableModel = app($this->model)->findOrFail($id);
+            $this->emit(
+                'destroyable-confirmation-modal',
+                $this->model,
+                $id,
+                $this->destroyableConfirmationContent,
+                'destroyed-scheduled-successfully'
+            );
+        }
+    }
 
     public function render()
     {
