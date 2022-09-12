@@ -35184,6 +35184,9 @@ header nav button:last-child:hover {
   .feature-cards .card {
     min-height: 555px !important;
   }
+  .middle-li-card-footer {
+    margin: 0 29px !important;
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .help-page-tabs .card {
@@ -35566,7 +35569,7 @@ header nav button:last-child:hover {
     max-height: 28px !important;
   }
   .middle-li-card-footer {
-    margin: 0 32px !important;
+    margin: 0 29px !important;
   }
   .features-img {
     height: 40px !important;
