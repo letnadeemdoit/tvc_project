@@ -171,6 +171,8 @@
                 window.addEventListener('rtjv-daterangepicker-update', function (e) {
                     $('#rtjv_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
                     $('#rtjv_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
+
+                    $('#rtjv_start_end_datetime').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
                 });
             });
         </script>

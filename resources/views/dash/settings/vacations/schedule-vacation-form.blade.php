@@ -186,6 +186,8 @@
                 window.addEventListener('schedule-vacation-daterangepicker-update', function (e) {
                     $('#schedule_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
                     $('#schedule_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
+
+                    $('#schedule_start_end_datetime').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
                 });
 
             });
