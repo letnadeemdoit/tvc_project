@@ -175,7 +175,7 @@ class Vacation extends Model implements Auditable
             'resourceIds' => $this->schedules->pluck('RoomId')->toArray(),
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
 
-        ], $this->recurrence ? [
+        ], $this->recurrence && $this->recurrence !== 'once' ? [
             'rrule' =>  [
                 'freq' => $this->recurrence,
                 'dtstart' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
