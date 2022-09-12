@@ -106,15 +106,15 @@
                                                         <p class="mb-0 ps-5 toggle-text text-break text-start">{{$dt->name}}</p>
                                                     </div>
                                                     <div
-                                                        class="col-12 col-lg-8 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">
+                                                        class="col-12 col-lg-4 mt-3 border-right-solid mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">
                                                         <span class="badge badge-green btn-min-115 fs-4 p-2 fw-normal">where to buy :</span>
                                                         <p class="mb-0 ps-5 toggle-text text-break text-start">{{$dt->location}}</p>
                                                     </div>
-{{--                                                    <div--}}
-{{--                                                        class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">--}}
-{{--                                                        <span class="badge badge-primary btn-min-115 fs-4 p-2 fw-normal">Expiry Date:</span>--}}
-{{--                                                        <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>--}}
-{{--                                                    </div>--}}
+                                                    <div
+                                                        class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">
+                                                        <span class="badge badge-primary btn-min-115 fs-4 p-2 fw-normal">Expiry Date:</span>
+                                                        <p class="mb-0 ps-5">{{$dt->expiration_date}}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
