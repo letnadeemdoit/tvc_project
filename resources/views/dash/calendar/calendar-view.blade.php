@@ -1,6 +1,7 @@
 <div>
+
     <div class="row align-items-sm-center mb-4">
-        <div class="col-lg-4 mb-2 mb-lg-0">
+        <div class="col-lg-6 mb-2 mb-lg-0">
             <div class="d-flex align-items-center">
                 <button
                     type="button"
@@ -36,131 +37,130 @@
                 </button>
 
                 <div class="ms-3">
-                    <h4 class="h3 mb-0" data-fc-title wire:ignore></h4>
+                    <h5 class="h4 mb-0" data-fc-title wire:ignore></h5>
                 </div>
             </div>
         </div>
         <!-- End Col -->
 
-        <div class="col-lg-8">
+        <div class="col-lg-6">
+            <div class="d-flex justify-content-lg-end">
+                @if($user->is_owner && !$user->is_owner_only)
+                    <div class="dropdown ms-1">
+                        <button type="button" class="btn btn-white dropdown-toggle w-100"
+                                id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-people-fill me-2"></i>
+                            Owner: {{ $this->owner ? optional(\App\Models\User::where('user_id', $this->owner)->where('HouseId', $this->user->HouseId)->first())->name : 'You' }}
+                        </button>
 
-            <div class="row ">
-                <div class="col-12 col-lg-8 mb-3">
-                    <div class="input-group input-group-sm-vertical">
-                        <!-- Radio Check -->
-                        <label class="form-control" for="month">
+                        <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="usersExportDropdown" style="">
+                            <span class="dropdown-header">You</span>
+                            <a id="you{{ $user->user_id }}" class="dropdown-item {{ $this->owner ?: 'active' }}"
+                               href="#" wire:click.prevent="$set('owner', null)">
+                                <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $user->profile_photo_url }}"
+                                     alt="{{ $user->name }}">
+                                {{ $user->name }}
+                            </a>
+                            <span class="dropdown-header">Owners</span>
+                            @foreach($this->owners as $owner)
+                                <a id="owner{{ $owner->user_id }}"
+                                   class="dropdown-item {{ $this->owner === $owner->user_id ? 'active' : '' }}" href="#"
+                                   wire:click.prevent="$set('owner', {{ $owner->user_id }})">
+                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $owner->profile_photo_url }}"
+                                         alt="{{ $owner->name }}">
+                                    {{ $owner->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+                @if($user->is_admin)
+                    <div class="dropdown ms-1">
+                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuProperties"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-offset="10,20">
+                            Properties: {{ $properties ? 'Customized' : 'All'  }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuProperties">
+                            <a href="#" class="dropdown-item {{ $properties === null || count($selectedHouses) === $this->houses->count()? 'active' : '' }}" wire:click.prevent="setProperty()">All</a>
+                            @foreach($this->houses as $house)
+                                <div class="dropdown-item {{ in_array($house->HouseID, $selectedHouses) ? 'active' : '' }}">
+                                    <div class="form-check">
+                                        <input
+                                            type="checkbox"
+                                            id="house{{ $house->HouseID }}"
+                                            class="form-check-input"
+                                            wire:model.defer="selectedHouses"
+                                            wire:change.prevent="setProperty({{ $house->HouseID }})"
+                                            value="{{ $house->HouseID }}"
+                                        />
+                                        <label class="form-check-label" for="house{{ $house->HouseID }}">{{ $house->HouseName }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <!-- End Col -->
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-12 mb-3">
+            <div class="input-group input-group-sm-vertical">
+                <!-- Radio Check -->
+                <label class="form-control" for="month">
                 <span class="form-check">
                   <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="month"
                          value="dayGridMonth" checked/>
                   <span class="form-check-label">Month</span>
                 </span>
-                        </label>
-                        <!-- End Radio Check -->
+                </label>
+                <!-- End Radio Check -->
 
-                        <!-- Radio Check -->
-                        <label class="form-control" for="week">
+                <!-- Radio Check -->
+                <label class="form-control" for="week">
                 <span class="form-check">
                   <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="week"
                          value="timeGridWeek"/>
                   <span class="form-check-label">Week</span>
                 </span>
-                        </label>
-                        <!-- End Radio Check -->
+                </label>
+                <!-- End Radio Check -->
 
-                        <!-- Radio Check -->
-                        <label class="form-control" for="day">
+                <!-- Radio Check -->
+                <label class="form-control" for="day">
                 <span class="form-check">
                   <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="day"
                          value="timeGridDay"/>
                   <span class="form-check-label">Day</span>
                 </span>
-                        </label>
-                        <!-- End Radio Check -->
+                </label>
+                <!-- End Radio Check -->
 
-                        <!-- Radio Check -->
-                        <label class="form-control" for="list">
+                <!-- Radio Check -->
+                <label class="form-control" for="list">
                 <span class="form-check">
                   <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="list"
                          value="listWeek"/>
                   <span class="form-check-label">List</span>
                 </span>
-                        </label>
-                        <!-- End Radio Check -->
+                </label>
+                <!-- End Radio Check -->
 
-                        <!-- Radio Check -->
-                        <label class="form-control" for="rooms">
+                <!-- Radio Check -->
+                <label class="form-control" for="rooms">
                 <span class="form-check">
                   <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="rooms"
                          value="resourceTimeline"/>
                   <span class="form-check-label">Rooms</span>
                 </span>
-                        </label>
-                        <!-- End Radio Check -->
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4 mb-3">
-                    <div class="d-flex">
-                        @if($user->is_owner && !$user->is_owner_only)
-                            <div class="dropdown ms-1">
-                                <button type="button" class="btn btn-white dropdown-toggle w-100"
-                                        id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi-people-fill me-2"></i>
-                                    Owner: {{ $this->owner ? optional(\App\Models\User::where('user_id', $this->owner)->where('HouseId', $this->user->HouseId)->first())->name : 'You' }}
-                                </button>
-
-                                <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="usersExportDropdown" style="">
-                                    <span class="dropdown-header">You</span>
-                                    <a id="you{{ $user->user_id }}" class="dropdown-item {{ $this->owner ?: 'active' }}"
-                                       href="#" wire:click.prevent="$set('owner', null)">
-                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $user->profile_photo_url }}"
-                                             alt="{{ $user->name }}">
-                                        {{ $user->name }}
-                                    </a>
-                                    <span class="dropdown-header">Owners</span>
-                                    @foreach($this->owners as $owner)
-                                        <a id="owner{{ $owner->user_id }}"
-                                           class="dropdown-item {{ $this->owner === $owner->user_id ? 'active' : '' }}" href="#"
-                                           wire:click.prevent="$set('owner', {{ $owner->user_id }})">
-                                            <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ $owner->profile_photo_url }}"
-                                                 alt="{{ $owner->name }}">
-                                            {{ $owner->name }}
-                                        </a>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
-                        @if($user->is_admin)
-                            <div class="dropdown ms-1">
-                                <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuProperties"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-offset="10,20">
-                                    Properties: {{ $properties ? 'Customized' : 'All'  }}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuProperties">
-                                    <a href="#" class="dropdown-item {{ $properties === null || count($selectedHouses) === $this->houses->count()? 'active' : '' }}" wire:click.prevent="setProperty()">All</a>
-                                    @foreach($this->houses as $house)
-                                        <div class="dropdown-item {{ in_array($house->HouseID, $selectedHouses) ? 'active' : '' }}">
-                                            <div class="form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    id="house{{ $house->HouseID }}"
-                                                    class="form-check-input"
-                                                    wire:model.defer="selectedHouses"
-                                                    wire:change.prevent="setProperty({{ $house->HouseID }})"
-                                                    value="{{ $house->HouseID }}"
-                                                />
-                                                <label class="form-check-label" for="house{{ $house->HouseID }}">{{ $house->HouseName }}</label>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                </div>
+                </label>
+                <!-- End Radio Check -->
             </div>
-
         </div>
-        <!-- End Col -->
+
     </div>
 
     <div id='calendar' class="fullcalendar-custom" wire:ignore></div>

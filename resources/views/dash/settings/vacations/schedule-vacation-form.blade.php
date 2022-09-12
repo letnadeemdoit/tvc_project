@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="form-group col-md-6" x-data="{bc: '{{ $state['background_color'] ?? '#3a87ad' }}'}">
+                <div class="form-group col-md-6 mb-3" x-data="{bc: '{{ $state['background_color'] ?? '#3a87ad' }}'}">
                     <label class="form-label" for="background_color">Background Color:</label>
                     <select
                         name="background_color"
