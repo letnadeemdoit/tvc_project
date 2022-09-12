@@ -43392,7 +43392,7 @@ body {
 }
 
 .max-width {
-  max-width: 360px;
+  max-width: 400px;
 }
 
 .mt-n100 {
@@ -44283,7 +44283,7 @@ header nav button:last-child:hover {
     min-height: 555px !important;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
   .help-page-tabs .card {
     min-width: 190px !important;
     max-width: 190px !important;
@@ -44332,8 +44332,8 @@ header nav button:last-child:hover {
     min-width: 10rem !important;
     max-width: 10rem !important;
   }
-  .login-nav {
-    font-size: 12px !important;
+  .login-nav .nav-item .nav-link {
+    font-size: 11px !important;
   }
   .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
     padding: 0.4rem 0.4rem 0 0.4rem !important;
