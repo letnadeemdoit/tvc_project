@@ -70,7 +70,8 @@
                            href="#!"
                            @click.prevent="showPassword  = !showPassword"
                         >
-                            <i id="changePassIcon" class="bi-eye"></i>
+                            <i id="changePassIcon" class="bi-eye text-primary"
+                               :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
                         </a>
                     </div>
                     @error('password')
