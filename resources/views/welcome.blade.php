@@ -23,7 +23,7 @@
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.svg"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow" />
-                    <i class="display-4 font-poppins text-primary">Just Over $3 <span class="fs-6 color-secondary">per
+                    <i class="display-4 font-poppins">Just Over<span class="text-primary"> $3 </span><span class="fs-6 color-secondary">per
                                 month</span></i>
                 </div>
 
