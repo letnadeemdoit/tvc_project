@@ -34482,6 +34482,10 @@ body {
   filter: grayscale(87%) brightness(60%) sepia(87%) hue-rotate(-51deg) saturate(982%) contrast(0.8);
 }
 
+.middle-li-card-footer {
+  margin: 0 40px;
+}
+
 .lb-container {
   padding: 0px !important;
 }
@@ -35201,6 +35205,9 @@ header nav button:last-child:hover {
   .feature-cards .card {
     min-height: revert !important;
   }
+  .middle-li-card-footer {
+    margin: 0 37px !important;
+  }
   .btn-text {
     font-size: 9px !important;
   }
@@ -35328,6 +35335,9 @@ header nav button:last-child:hover {
   .pt-55 {
     padding-top: 30px !important;
   }
+  .middle-li-card-footer {
+    margin: 0 37px !important;
+  }
 }
 @media only screen and (max-width: 767px) {
   .hero-image {
@@ -35401,6 +35411,9 @@ header nav button:last-child:hover {
   }
   .moretext {
     display: none;
+  }
+  .middle-li-card-footer {
+    margin: 0 120px !important;
   }
 }
 @media only screen and (max-width: 576px) {
@@ -35490,6 +35503,9 @@ header nav button:last-child:hover {
   .blog-card {
     min-height: 175px !important;
   }
+  .middle-li-card-footer {
+    margin: 0 65px !important;
+  }
 }
 @media only screen and (max-width: 430px) {
   .rounded-icon {
@@ -35537,6 +35553,9 @@ header nav button:last-child:hover {
   .food-item-img {
     height: 170px !important;
   }
+  .middle-li-card-footer {
+    margin: 0 54px !important;
+  }
 }
 @media only screen and (max-width: 375px) {
   .rounded-icon {
@@ -35545,6 +35564,9 @@ header nav button:last-child:hover {
   }
   .scroll-icons {
     max-height: 28px !important;
+  }
+  .middle-li-card-footer {
+    margin: 0 32px !important;
   }
   .features-img {
     height: 40px !important;
