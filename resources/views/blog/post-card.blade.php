@@ -60,13 +60,13 @@
                 $numberofcomments = count($blogcomments);
             @endphp
             <div class="card-footer px-0 pb-0 border-top-thick w-94">
-                <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
+                <ul class="d-flex list-unstyled ul-card-footer justify-content-center">
 
-                    <li>
+                    <li class="">
                         <livewire:blog.like-able-blog :post="$post" />
                     </li>
-                    <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
-                    <li><img src="/images/blog-images/eye.svg" class="img-fluid me-1"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
+                    <li class="middle-li-card-footer" style="margin: 0 40px !important;"><img src="/images/blog-images/comment.svg" class="" style="width: 15px"><span>Comments</span></li>
+                    <li class=""><img src="/images/blog-images/eye.svg" class="" style="width: 15px"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
                 </ul>
             </div>
         </div>

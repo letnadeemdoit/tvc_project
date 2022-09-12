@@ -1,4 +1,4 @@
-<p class="ps-0">
+<div>
 
 {{--    @if(!auth()->user()->is_guest)--}}
         <a href="#!">
@@ -10,4 +10,4 @@
         </a>
 {{--    @endif--}}
 <span>{{ isset($existing_likes) ? $existing_likes : 0}} Likes</span>
-</p>
+</div>
