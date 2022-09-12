@@ -44261,6 +44261,9 @@ header nav button:last-child:hover {
     padding-left: 0px !important;
     font-size: 13px !important;
   }
+  .guest-menu .nav-item .nav-link {
+    font-size: 13px !important;
+  }
   .recipe-card-footer span {
     font-size: 12px !important;
   }
@@ -44509,6 +44512,9 @@ header nav button:last-child:hover {
   .rounded-icon {
     width: 12%;
     margin: -30px auto !important;
+  }
+  .hero-text {
+    font-size: 2.1rem !important;
   }
   .guest-modal .modal-body {
     padding: 0px !important;
