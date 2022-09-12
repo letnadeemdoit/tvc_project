@@ -22,10 +22,9 @@ window.googleMaps = new Loader(process.env.MIX_GOOGLE_MAPS_API_KEY, {libraries: 
 window.Cropper = require('cropperjs');
 window.Lightbox2 = require('lightbox2');
 
-import rrulePlugin from '@fullcalendar/rrule'
-window.rrulePlugin = rrulePlugin;
-
 import * as Calendar from '@fullcalendar/core';
+
+import rrulePlugin from '@fullcalendar/rrule'
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
@@ -34,6 +33,7 @@ import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 //
+window.rrulePlugin = rrulePlugin;
 window.FullCalendar = Calendar;
 window.dayGridPlugin = dayGridPlugin;
 window.timeGridPlugin = timeGridPlugin;
