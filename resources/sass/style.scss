@@ -1004,6 +1004,9 @@ header{
             min-height: 555px !important;
         }
     }
+    .middle-li-card-footer{
+        margin: 0 29px !important;
+    }
 }
 @media only screen and (min-width:992px) and (max-width:1199px) {
     .help-page-tabs .card {
@@ -1027,6 +1030,9 @@ header{
         .card{
             min-height: revert !important;
         }
+    }
+    .middle-li-card-footer{
+        margin: 0 37px !important;
     }
     .btn-text{
         font-size: 9px !important;
@@ -1428,7 +1434,7 @@ header{
         min-height: 175px !important;
     }
     .middle-li-card-footer{
-        margin: 0 57px !important;
+        margin: 0 65px !important;
     }
 }
 @media only screen and (max-width:430px){
@@ -1501,7 +1507,7 @@ header{
         height: 170px !important;
     }
     .middle-li-card-footer{
-        margin: 0 74px !important;
+        margin: 0 54px !important;
     }
 }
 @media only screen and (max-width:375px){
@@ -1513,7 +1519,7 @@ header{
         max-height: 28px !important;
     }
     .middle-li-card-footer{
-        margin: 0 38px !important;
+        margin: 0 32px !important;
     }
     .features-img{
         height: 40px !important;

@@ -44286,6 +44286,9 @@ header nav button:last-child:hover {
   .feature-cards .card {
     min-height: 555px !important;
   }
+  .middle-li-card-footer {
+    margin: 0 29px !important;
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .help-page-tabs .card {
@@ -44306,6 +44309,9 @@ header nav button:last-child:hover {
   }
   .feature-cards .card {
     min-height: revert !important;
+  }
+  .middle-li-card-footer {
+    margin: 0 37px !important;
   }
   .btn-text {
     font-size: 9px !important;
@@ -44603,7 +44609,7 @@ header nav button:last-child:hover {
     min-height: 175px !important;
   }
   .middle-li-card-footer {
-    margin: 0 91px !important;
+    margin: 0 65px !important;
   }
 }
 @media only screen and (max-width: 430px) {
@@ -44653,7 +44659,7 @@ header nav button:last-child:hover {
     height: 170px !important;
   }
   .middle-li-card-footer {
-    margin: 0 74px !important;
+    margin: 0 54px !important;
   }
 }
 @media only screen and (max-width: 375px) {
@@ -44665,7 +44671,7 @@ header nav button:last-child:hover {
     max-height: 28px !important;
   }
   .middle-li-card-footer {
-    margin: 0 38px !important;
+    margin: 0 32px !important;
   }
   .features-img {
     height: 40px !important;
