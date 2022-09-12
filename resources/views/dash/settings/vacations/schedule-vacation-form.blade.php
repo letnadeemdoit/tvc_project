@@ -146,6 +146,20 @@
                 </div>
             </div>
             <div class="d-flex">
+
+
+                @if($user->is_owner && $vacation && $vacation->VacationId)
+
+                    <a
+                       href="#!"
+                        class="btn btn-danger px-5"
+                        wire:click.prevent="destroy({{ $vacation->VacationId }})"
+                    >
+                        <i class="bi-trash me-2"></i>Delete
+                    </a>
+
+                @endif
+
                 <button
                     type="submit"
                     class="btn btn-primary ms-auto"

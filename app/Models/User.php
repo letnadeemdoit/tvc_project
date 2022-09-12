@@ -33,15 +33,18 @@ class User extends Authenticatable implements Auditable
     const PLANS = [
         'basic' => [
             'title' => 'Basic',
-            'yearly' => 20.00
+            'monthly' => 05.00,
+            'yearly' => 40.00,
         ],
         'standard' => [
             'title' => 'Standard',
-            'yearly' => 30.00
+            'monthly' => 07.00,
+            'yearly' => 60.00,
         ],
         'premium' => [
             'title' => 'Premium',
-            'yearly' => 40.00
+            'monthly' => 09.00,
+            'yearly' => 80.00,
         ],
     ];
     /**
