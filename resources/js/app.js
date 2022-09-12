@@ -33,8 +33,8 @@ import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 //
-window.rrulePlugin = rrulePlugin;
 window.FullCalendar = Calendar;
+window.rrulePlugin = rrulePlugin;
 window.dayGridPlugin = dayGridPlugin;
 window.timeGridPlugin = timeGridPlugin;
 window.listPlugin = listPlugin;
