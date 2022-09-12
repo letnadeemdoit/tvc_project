@@ -1062,8 +1062,12 @@ header{
         min-width: 10rem !important;
         max-width: 10rem !important;
     }
-    .login-nav{
-        font-size: 12px !important;
+    .login-nav {
+        .nav-item {
+        .nav-link{
+            font-size: 11px !important;
+        }
+        }
     }
     .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
         padding: 0.4rem 0.4rem 0 0.4rem !important;
