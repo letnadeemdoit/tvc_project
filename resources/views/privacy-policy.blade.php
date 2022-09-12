@@ -10,7 +10,7 @@
                         <!-- Jumbotron -->
                         <div
                             class="text-center shadow-1-strong rounded text-white privacy-policy d-flex align-items-center justify-content-center justify-content-lg-start">
-                            <h2 class="text-primary font-vintage pt-2">Privacy Policy</h2>
+                            <h2 class="text-primary font-vintage pt-2 mb-0">Privacy Policy</h2>
                         </div>
                         <div class="pt-3">
                             <h3 class="poppins-bold">Privacy Policy</h3>

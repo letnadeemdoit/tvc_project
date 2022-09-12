@@ -19,12 +19,12 @@
             <div class="container text-center text-md-start">
                 <p class="mb-1 display-4 text-primary font-vintage">Keep track of when</p>
                 <h1 class="hero-text py-4 poppins-bold">Your Vacation <br> Home is in Use</h1>
-                <a href="{{route('register')}}" class="btn btn-lg btn-signup btn-primary shadow-lg my-2">SIGN UP</a>
+                <a href="{{route('register')}}" class="btn btn-lg btn-signup btn-primary shadow-lg my-2">GET STARTED</a>
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.svg"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow" />
-                    <p class="display-4 poppins-bold text-primary"><i>Only $4 0 <span class="fs-6 color-secondary">per
-                                year</span></i></p>
+                    <i class="display-4 font-poppins text-primary">Just Over $3 <span class="fs-6 color-secondary">per
+                                month</span></i>
                 </div>
 
             </div>
@@ -176,7 +176,7 @@
                     <div class="col-lg-4">
                         <!-- Card -->
                         <div class="card p-2 text-center text-lg-start">
-                            <img class="card-img-top" src="/images/images-home/bulletin-image.svg"
+                            <img class="card-img-top" src="/images/images-home/bulletin-image-card.svg"
                                  alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">House Bulletin Board</h3>
@@ -192,7 +192,7 @@
                     <div class="col-lg-4 my-4 my-lg-0">
                         <!-- Card -->
                         <div class="card p-2 text-center text-lg-start">
-                            <img class="card-img-top" src="/images/images-home/vacations-image.svg"
+                            <img class="card-img-top" src="/images/images-home/managing-vacations-card.svg"
                                  alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">Managing Vacations</h3>
@@ -210,7 +210,7 @@
                     <div class="col-lg-4">
                         <!-- Card -->
                         <div class="card p-2 text-center text-lg-start">
-                            <img class="card-img-top" src="/images/images-home/blog-image.svg" alt="Card image cap" />
+                            <img class="card-img-top" src="/images/images-home/house-blog-card.svg" alt="Card image cap" />
                             <div class="card-body">
                                 <h3 class="card-title">House Blog</h3>
                                 <p class="card-text text-light-secondary">How have you ever lived without a vacation home blog?!?! Since the House Bulletin Board is only updated by the administrator of the house,
