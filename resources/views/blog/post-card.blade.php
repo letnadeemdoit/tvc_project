@@ -65,7 +65,7 @@
                     <li class="">
                         <livewire:blog.like-able-blog :post="$post" />
                     </li>
-                    <li class="middle-li-card-footer" style="margin: 0 40px !important;"><img src="/images/blog-images/comment.svg" class="" style="width: 15px"><span>Comments</span></li>
+                    <li class="middle-li-card-footer"><img src="/images/blog-images/comment.svg" class="" style="width: 15px"><span>Comments</span></li>
                     <li class=""><img src="/images/blog-images/eye.svg" class="" style="width: 15px"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
                 </ul>
             </div>
