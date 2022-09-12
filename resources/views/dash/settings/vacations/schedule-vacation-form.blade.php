@@ -42,8 +42,62 @@
                     readonly
                 />
                 @error('start_datetime')
-                    <span class="invalid-feedback">{{ $message }}</span>
+                <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
+            </div>
+            <div class="row mb-3">
+                <label for="" class="form-label">Repeat:</label>
+                <div class="col-12 col-lg-4 mb-3 mb-sm-0">
+                    <!-- Form Radio -->
+                    <label class="form-control" for="recurrence_once">
+                        <span class="form-check">
+                            <input type="radio"
+                                   wire:model.defer="state.recurrence"
+                                   value="once"
+                                   class="form-check-input"
+                                   checked
+                                   name="recurrence"
+                                   id="recurrence_once"
+                            />
+                            <span class="form-check-label">Once</span>
+                        </span>
+                    </label>
+                    <!-- End Form Radio -->
+                </div>
+                <div class="col-12 col-lg-4  mb-3 mb-sm-0">
+                    <!-- Form Radio -->
+                    <label class="form-control" for="recurrence_monthly">
+                        <span class="form-check">
+                            <input type="radio"
+                                   wire:model.defer="state.recurrence"
+                                   value="monthly"
+                                   class="form-check-input"
+                                   checked
+                                   name="recurrence"
+                                   id="recurrence_monthly"
+                            />
+                            <span class="form-check-label">Monthly</span>
+                        </span>
+                    </label>
+                    <!-- End Form Radio -->
+                </div>
+
+                <div class="col-12 col-lg-4  mb-3 mb-sm-0">
+                    <!-- Form Radio -->
+                    <label class="form-control" for="recurrence_yearly">
+                        <span class="form-check">
+                            <input type="radio"
+                                   value="yearly"
+                                   wire:model.defer="state.recurrence"
+                                   class="form-check-input"
+                                   name="recurrence"
+                                   id="recurrence_yearly"
+                            />
+                            <span class="form-check-label">Yearly</span>
+                        </span>
+                    </label>
+                    <!-- End Form Radio -->
+                </div>
             </div>
             <div class="row mb-3">
                 <div class="form-group col-md-6" x-data="{bc: '{{ $state['background_color'] ?? '#3a87ad' }}'}">
@@ -68,7 +122,7 @@
                         <option value="#FFFBF0" style="background-color: #FFFBF0;">White</option>
                     </select>
                     @error('background_color')
-                        <span class="invalid-feedback">{{ $message }}</span>
+                    <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group col-md-6" x-data="{fc: '{{ $state['font_color'] ?? '#ffffff' }}'}">
@@ -87,7 +141,7 @@
                         <option value="#94918B" style="background-color: #94918B;">Gray</option>
                     </select>
                     @error('font_color')
-                        <span class="invalid-feedback">{{ $message }}</span>
+                    <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
@@ -101,29 +155,39 @@
             </div>
         </form>
     </div>
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            $('#schedule_start_end_datetime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 60,
-                startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
-                @else moment().set('minute', 0) @endisset,
-                endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
-                @else moment().set('minute', 0).add(2, 'days') @endisset,
-                locale: {
-                    format: 'MM/DD/YYYY HH:mm'
-                }
-            });
-        });
-    </script>
     @push('scripts')
         <script>
-            $(function() {
-                $('#schedule_start_end_datetime').on('apply.daterangepicker', function(ev, picker) {
-                    @this.set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'), true);
-                    @this.set('state.end_datetime', picker.endDate.format('MM/DD/YYYY HH:mm'), true);
-                    @this.set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'), true);
+            $(function () {
+                $('#schedule_start_end_datetime').daterangepicker({
+                    timePicker: true,
+                    timePickerIncrement: 60,
+                    showDropdowns: true,
+                    minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
+                    maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+                    minDate: moment().format('MM/DD/YYYY'),
+                    startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
+                    @else moment().set('minute', 0) @endisset,
+                    endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
+                    @else moment().set('minute', 0).add(2, 'days') @endisset,
+                    locale: {
+                        format: 'MM/DD/YYYY HH:mm'
+                    }
                 });
+
+                $('#schedule_start_end_datetime').on('apply.daterangepicker', function (ev, picker) {
+                    @this.
+                    set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'), true);
+                    @this.
+                    set('state.end_datetime', picker.endDate.format('MM/DD/YYYY HH:mm'), true);
+                    @this.
+                    set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'), true);
+                });
+
+                window.addEventListener('schedule-vacation-daterangepicker-update', function (e) {
+                    $('#schedule_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
+                    $('#schedule_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
+                });
+
             });
         </script>
     @endpush

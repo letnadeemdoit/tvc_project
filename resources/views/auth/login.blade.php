@@ -11,7 +11,9 @@
                 loginAsGuest: null,
                 role: '{{ old('role', 'Guest') }}',
                 houseIsSelected: false,
-                house_id: null
+                house_id: null,
+                resetPasswordLink: '{{ route('password.request') }}',
+                house_id: '{{ old('house_id', '') }}'
             }"
             x-init="
                 @if(old('role') !== null)
@@ -23,6 +25,10 @@
                     }
                 @endif
 
+                @if(old('house_id') !== null)
+                    houseIsSelected = true;
+                @endif
+
                 $('.select2').select2({
                     ajax: {
                     url: '{{ route('select2.houses') }}',
@@ -30,11 +36,14 @@
                     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
                     }
                 }).on('select2:select', function (e)  {
+                    house_id = e.params.data.id;
                     houseIsSelected = true;
                 })
             "
         >
-{{--            <x-jet-validation-errors class="mb-4"/>--}}
+            @if(old('role') === 'Guest')
+                <x-jet-validation-errors class="mb-4"/>
+            @endif
 
             @if (session('status'))
                 <div
@@ -43,7 +52,8 @@
                     x-show.transition.out.opacity.duration.1500ms="shown"
                     x-transition:leave.opacity.duration.1500ms
                     style="display: none;"
-                    class="alert alert-soft-success text-center mb-4" role="alert">
+                    class="alert alert-soft-success text-center mb-4" role="alert"
+                >
                     {{ session('status') }}
                 </div>
             @endif
@@ -109,10 +119,11 @@
                         </div>
                         <div class="text-center mt-3">
 
-                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
-{{--                               href="{{ route('login') }}">--}}
-                                    href="#!"
-                                     @click.prevent="gotoHouse = false; loginAsGuest = null">
+                            <a
+                                class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
+                                href="#!"
+                                @click.prevent="gotoHouse = false; loginAsGuest = null"
+                            >
 
                                 <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2">Go Back to
                                 <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
@@ -160,10 +171,10 @@
                                     <i class="bi bi-person text-primary"></i>
                                 </a>
                             </fieldset>
-{{--                            @error('email')--}}
-{{--                            <span class="text-danger fw-semi-bold"--}}
-{{--                                  style="font-size: 13px !important;">{{$message}}</span>--}}
-{{--                            @enderror--}}
+                            @error('email')
+                            <span class="text-danger fw-semi-bold"
+                                  style="font-size: 13px !important;">{{$message}}</span>
+                            @enderror
 
                             <span class="invalid-feedback">Please enter a valid email address.</span>
                         </div>
@@ -202,10 +213,7 @@
                                        :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
                                 </a>
                             </fieldset>
-                            @error('email')
-                            <span class="text-danger fw-semi-bold"
-                                  style="font-size: 13px !important;">{{$message}}</span>
-                            @enderror
+
                             <!-- </div> -->
                             <label class="form-label w-100 mt-3" for="password" tabindex="0"
                                    style="outline-color: transparent !important;"
@@ -215,7 +223,7 @@
                                         {{ __('Forget Password?') }}
                                         <a class="form-label-link mb-0 text-secondary fw-lighter"
                                            style="outline-color: transparent !important;"
-                                           href="{{ route('password.request') }}">
+                                           :href="resetPasswordLink + `?h=${house_id}`">
                                             <span class="text-decoration-underline text-primary fw-bolder"> Reset</span>
                                         </a>
                                     @endif
@@ -247,7 +255,7 @@
 
                             <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
                                href="#!"
-                               @click.prevent="gotoHouse = false; loginAsGuest = null">
+                               @click.prevent="gotoHouse = true; loginAsGuest = null">
 
                                 <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Go Back to
                                 <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>

@@ -34,7 +34,7 @@
     {{--                            <span class="nav-link-title">Dashboard</span>--}}
     {{--                        </a>--}}
                             <div class="nav-item">
-                                <a class="nav-link" href="{{route('dash.calendar')}}" data-placement="left">
+                                <a class="nav-link {{ link_is_active_with_class(['dash.calendar']) }}"  href="{{route('dash.calendar')}}" data-placement="left">
     {{--                                <i class="bi-calendar-month nav-icon"></i>--}}
                                     <img src="{{asset('images/icons/calendar.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
 
@@ -146,7 +146,7 @@
                                 <a class="nav-link  {{ link_is_active_with_class(['dash.settings.account-information']) }}" href="{{route('dash.settings.account-information')}}" data-placement="left">
                                     {{--                                    <i class="bi-router nav-icon"></i>--}}
                                     <img src="{{asset('images/icons/settings-icon.svg')}}" class="me-3" style="width: 16px;opacity: 0.7" alt="">
-                                    <span class="nav-link-title">Account Settings</span>
+                                    <span class="nav-link-title">Manage Account</span>
                                 </a>
                             </div>
                         @endif

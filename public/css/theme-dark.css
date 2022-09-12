@@ -35223,6 +35223,16 @@ header nav button:last-child:hover {
   .recipe-card-footer span {
     font-size: 13px !important;
   }
+  .navbar-brand-logo {
+    min-width: 10rem !important;
+    max-width: 10rem !important;
+  }
+  .login-nav {
+    font-size: 12px !important;
+  }
+  .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
+    padding: 0.4rem 0.4rem 0 0.4rem !important;
+  }
 }
 @media only screen and (max-width: 991px) {
   .help-page-tabs .card .card-body {
@@ -35471,11 +35481,17 @@ header nav button:last-child:hover {
   .masonry .brick {
     margin-left: 0 !important;
   }
+  .blog-card {
+    min-height: 175px !important;
+  }
 }
 @media only screen and (max-width: 430px) {
   .rounded-icon {
     width: 15%;
     margin: -26px auto !important;
+  }
+  .padding-0 {
+    padding: 0px !important;
   }
   .ul-card-footer li span {
     padding-left: 2px !important;
@@ -35523,6 +35539,9 @@ header nav button:last-child:hover {
   }
   .scroll-icons {
     max-height: 28px !important;
+  }
+  .features-img {
+    height: 40px !important;
   }
   .images-nav-tabs .nav-link {
     width: 71px !important;

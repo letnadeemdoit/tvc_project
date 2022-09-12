@@ -47,7 +47,8 @@ class Vacation extends Model implements Auditable
         'HouseId',
         'AllowOwners',
         'AllowGuests',
-        'Completed'
+        'Completed',
+        'recurrence'
     ];
 
     /**
@@ -161,7 +162,7 @@ class Vacation extends Model implements Auditable
     }
 
     public function toCalendar() {
-        return [
+        return array_merge([
             'id' => $this->VacationId,
             'title' => $this->VacationName,
             'start' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
@@ -173,7 +174,13 @@ class Vacation extends Model implements Auditable
             'textColor' => $this->FontColor,
             'resourceIds' => $this->schedules->pluck('RoomId')->toArray(),
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
-        ];
+
+        ], $this->recurrence ? [
+            'rrule' =>  [
+                'freq' => $this->recurrence,
+                'dtstart' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
+            ]
+        ] : []);
     }
 
 

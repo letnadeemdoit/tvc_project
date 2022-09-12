@@ -1,7 +1,9 @@
 <div class="footer">
     <div class="row justify-content-between align-items-center">
         <div class="col">
-            <p class="fs-6 mb-0">&copy; {{ date('Y') }} {{ config('app.name') }}. Powered by <span class="d-none d-sm-inline-block"><a href="https://devdimensions.com">DevDimensions</a></span>.</p>
+            <p class="fs-6 mb-0 d-none d-md-block">&copy; {{ date('Y') }} {{ config('app.name') }}. Powered by <span class="d-none d-sm-inline-block"><a href="https://devdimensions.com">DevDimensions</a></span>.</p>
+            <p class="fs-6 mb-0 d-md-none text-center">&copy; {{ date('Y') }} {{ config('app.name') }}.
+                <br/>Powered by <span class=""><a href="https://devdimensions.com">DevDimensions</a></span>.</p>
         </div>
         <!-- End Col -->
 

@@ -111,7 +111,7 @@ class CreateOrUpdateBlogItemForm extends Component
             'Subject' => $inputs['Subject'],
             'Contents' => $inputs['Contents'] ?? '',
             'Content' => null,
-            'Author' => $this->user->first_name,
+            'Author' => $this->user->first_name." ".$this->user->last_name,
             'BlogDate' => $date,
             'Audit_user_name' => $this->user->Audit_user_name,
             'Audit_Role' => $this->user->Audit_Role,
