@@ -115,10 +115,16 @@ class CreateOrUpdateUserForm extends Component
 
         $createUser = $this->userCU;
 
-        if (isset($this->state['send_email']) && $this->state['send_email'] == 1){
-            if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)){
-                 $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail));
+        try {
+
+            if (isset($this->state['send_email']) && $this->state['send_email'] == 1){
+                if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)){
+                    $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail));
+                }
             }
+
+        }catch (\Exception $e){
+
         }
 
         $this->emitSelf('toggle', false);
