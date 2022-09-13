@@ -91,7 +91,7 @@ Route::controller(GuestController::class)
                 });
         });
 
-        Route::post('/paypal/webhook', 'paypalWebhook')->name('paypal-webhook');
+        Route::post('/paypal/ipn', 'paypalIPN')->name('paypal-ipn');
     });
 
 
@@ -161,7 +161,7 @@ Route::middleware([
                 Route::get('/{plan}/{billed}/processing', 'process')->name('process');
                 Route::get('/{plan}/{billed}/{house}/succeeded', 'succeeded')->name('succeeded');
                 Route::get('/{plan}/{billed}/{house}/canceled', 'canceled')->name('canceled');
-                Route::post('/ipn', 'ipn')->name('ipn');
+//                Route::post('/ipn', 'ipn')->name('ipn');
             });
     });
 

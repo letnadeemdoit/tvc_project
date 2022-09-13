@@ -71,12 +71,13 @@
                         <img
                             src="{{ $post->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ $post->user->name ?? '' }}" style="width:60px;height:60px !important;"
+                            alt="{{ $post->user->name ?? '' }}"
+                            style="width:60px !important;height:60px !important;"
                         >
 
                     </div>
                     <div class="flex-grow-1 ms-3">
-                        <h4 class="mb-0" style="color: #6D6D6D">{{ $post->Author }}</h4>
+                        <h4 class="mb-0" style="color: #6D6D6D">{{ Str::upper('By '.$post->Author) }}</h4>
                         <p class="mb-0" style="color: #B6B4B4"><small>{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</small></p>
                     </div>
                 </div>
@@ -206,15 +207,15 @@
     </div>
 
     <div class="container mt-5 py-5">
-        <h3>Keep Reading</h3>
-
-
-        <div class="row">
+        @if(isset($relatedBlog) && count($relatedBlog) > 0)
+            <h3>Keep Reading</h3>
+            <div class="row">
             @foreach($relatedBlog as $blog)
                 <livewire:blog.house-related-blog :blog="$blog" />
             @endforeach
 
         </div>
+        @endif
     </div>
 
 </main>

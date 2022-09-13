@@ -142,7 +142,20 @@ class GuestController extends Controller
         ]);
     }
 
-    public function paypalWebhook(Request $request) {
-        Log::error('Paypal Web Hook: ', $request->all());
+    public function paypalIPN(Request $request) {
+        Log::info('Paypal Web Hook: ', $request->all());
+
+        // generate the post string from the _POST vars aswell as load the
+        // _POST vars into an arry so we can play with them from the calling
+        // script.
+        $post_string = '';
+        foreach ($request->all() as $field => $value) {
+            $this->ipnData["$field"] = $value;
+            $post_string .= $field . '=' . urlencode($value) . '&';
+        }
+
+        $post_string .= "cmd=_notify-validate"; // append ipn command
+
+        return response('');
     }
 }
