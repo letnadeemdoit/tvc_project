@@ -12,18 +12,17 @@
 
         </div>
         <div class="card-body p-2">
-            <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 180px">
+            <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-3 py-3 rounded-1" style="min-height: 150px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
-
                         <img
-                            src="{{ auth()->user()->profile_photo_url }}"
+                            src="{{ $post->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ auth()->user()->user_name ?? '' }}"
+                            alt="{{ $post->user->name ?? '' }}"
                         >
 
                         <div class="ps-3">
-                            <strong class="mb-1 fs-4" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</strong>
+                            <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</h5>
                             <p class="mb-0 fs-13 txt-clr">{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</p>
                         </div>
                     </div>
@@ -52,7 +51,7 @@
 {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <strong class="mb-1 fs-4" style="color: #2A3342">{{ Str::limit($post->Subject, 60) }}</strong>
+                    <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::limit($post->Subject, 55) }}</h5>
 {{--                    <p>{!!  (Str::limit(strip_tags($post->Contents), 80))  !!}</p>--}}
                 </div>
             </div>

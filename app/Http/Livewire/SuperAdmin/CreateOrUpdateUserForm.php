@@ -69,7 +69,7 @@ class CreateOrUpdateUserForm extends Component
 
         if (isset($this->state['role']) && $this->state['role'] === User::ROLE_GUEST) {
             $this->state['user_name'] = 'Guest';
-            $this->state['first_name'] = 'Guest';
+            $this->state['first_name'] = 'House';
             $this->state['last_name'] = 'Guest';
         }
 
@@ -115,10 +115,16 @@ class CreateOrUpdateUserForm extends Component
 
         $createUser = $this->userCU;
 
-        if (isset($this->state['send_email']) && $this->state['send_email'] == 1){
-            if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)){
-                 $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail));
+        try {
+
+            if (isset($this->state['send_email']) && $this->state['send_email'] == 1){
+                if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)){
+                    $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail));
+                }
             }
+
+        }catch (\Exception $e){
+
         }
 
         $this->emitSelf('toggle', false);

@@ -69,9 +69,9 @@
 {{--                            width="60" height="60" style="object-fit: cover"--}}
 {{--                        />--}}
                         <img
-                            src="{{ auth()->user()->profile_photo_url }}"
+                            src="{{ $post->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ auth()->user()->user_name ?? '' }}" style="width:60px;height:60px !important;"
+                            alt="{{ $post->user->name ?? '' }}" style="width:60px;height:60px !important;"
                         >
 
                     </div>
@@ -153,7 +153,7 @@
     <div class="container my-5">
         <div id="fb-root"></div>
 
-        @if(!auth()->user()->is_guest)
+{{--        @if(!auth()->user()->is_guest)--}}
 
             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>
 
@@ -161,7 +161,7 @@
 
             </div>
 
-        @endif
+{{--        @endif--}}
 
 {{--            <livewire:blog.post-comment :user="$user" :blog="$post" />--}}
 {{--        <div class="row mt-5 mb-3">--}}

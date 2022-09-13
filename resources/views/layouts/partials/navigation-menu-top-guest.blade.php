@@ -252,7 +252,7 @@
 
                                 @if(!auth()->user()->is_super_admin )
                                      <a href="{{route('dash.calendar')}}" class="dropdown-item"> <i
-                                                class="bi bi-speedometer2 me-2"></i>Calendar</a>
+                                                class="bi bi-calendar-week me-2"></i>Calendar</a>
                                 @endif
                                 @if(!auth()->user()->is_guest && !auth()->user()->is_super_admin )
                                     <a href="{{route('dash.settings.')}}" class="dropdown-item"><i
