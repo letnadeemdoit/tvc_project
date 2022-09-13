@@ -38,9 +38,11 @@
             </div>
             <div class="flex-grow-1 ms-3">
                 <a href="{{route('guest.blog.show', $dt->slug)}}">
-                <h4 class="mb-0" style="color: #6D6D6D">{{ $dt->Subject }}</h4>
+                <h4 class="mb-0" style="color: #6D6D6D">
+                    {{ Str::limit($dt->Subject, 60) }}
+                </h4>
                 </a>
-                <p class="mb-0" style="color: #B6B4B4">{{\Carbon\Carbon::parse($dt->BlogDate)->format('d M Y')}}</p>
+{{--                <p class="mb-0" style="color: #B6B4B4">{{\Carbon\Carbon::parse($dt->BlogDate)->format('d M Y')}}</p>--}}
             </div>
         </div>
         @endforeach
