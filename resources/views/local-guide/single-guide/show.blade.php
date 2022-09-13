@@ -56,14 +56,14 @@
             <div class="card border-0 rounded-20 py-3 shadow-none p-4" style="margin-top: -70px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start">
-                        <h1 class="text-w-50 lh-30 fs-card-title text-break">{{$localGuide->title ?? ''}}</h1>
+                        <h1 class="text-w-50 lh-30 fs-card-title text-break text-capitalize">{{$localGuide->title ?? ''}}</h1>
                         <p class="mb-0 badge badge-primary fs-13 fw-semi-bold ms-2 ms-sm-0" style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
                     </div>
                     <div class="d-flex mt-4">
                         <div class="flex-shrink-0">
                             <img
                                 class="rounded-circle border-rounded-red"
-                                src="{{ auth()->user()->profile_photo_url }}"
+                                src="{{ $localGuide->user->profile_photo_url }}"
                                 :src="avatarUrl"
                                 alt="Image"
                                 width="60" height="60" style="object-fit: cover"
@@ -71,7 +71,7 @@
                         </div>
                         <div class="flex-grow-1 ms-3 d-block d-sm-flex justify-content-between align-items-center">
                             <div>
-                                <h4 class="mb-0 text-dark" style="color: #6D6D6D">{{ $localGuide->user->first_name }} {{ $localGuide->user->last_name }}</h4>
+                                <h4 class="mb-0 text-dark text-capitalize" style="color: #6D6D6D">{{ $localGuide->user->first_name }} {{ $localGuide->user->last_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">
                                     <small class="fw-500 text-light-grey">{{$localGuide->address}}</small><span
                                         class="color-blue ps-2">
@@ -229,15 +229,15 @@
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
                                         <div class="d-block d-sm-flex list-unstyled recipe-card-footer mb-2 align-items-center">
 
-                                            @if(isset($avgRating))
+                                            @if(isset($dt->reviews_count))
                                                     <span class="text-primary fw-bolder fs-4 pe-2">
-                                                        {{ $avgRating ?? 0}}.0
+                                                        {{ $dt->reviews_count ?? 0}}.0
                                                     </span>
                                                     @php
                                                         $i = 0;
                                                     @endphp
 
-                                                    @while (++$i <= ($avgRating ?? 0))
+                                                    @while (++$i <= ($dt->reviews_count ?? 0))
                                                         <span class="fa fa-star checked"></span>
                                                     @endwhile
                                                     @php
@@ -245,7 +245,7 @@
                                                         $t_rating = 5;
                                                     @endphp
 
-                                                    @for ($r; $r <= $t_rating - $avgRating; $r++)
+                                                    @for ($r; $r <= $t_rating - $dt->reviews_count; $r++)
                                                         <img
                                                             src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
                                                             style="width: 17px;margin-top: -1px" alt="">

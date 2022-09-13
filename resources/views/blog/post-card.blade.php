@@ -12,7 +12,7 @@
 
         </div>
         <div class="card-body p-2">
-            <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 210px">
+            <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 180px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
 
@@ -23,7 +23,7 @@
                         >
 
                         <div class="ps-3">
-                            <strong class="mb-1 text-black fs-4">{{ $post->Author }}</strong>
+                            <strong class="mb-1 fs-4" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</strong>
                             <p class="mb-0 fs-13 txt-clr">{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</p>
                         </div>
                     </div>
@@ -52,7 +52,8 @@
 {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <p>{!!  (Str::limit(strip_tags($post->Contents), 80))  !!}</p>
+                    <strong class="mb-1 fs-4" style="color: #2A3342">{{ Str::limit($post->Subject, 60) }}</strong>
+{{--                    <p>{!!  (Str::limit(strip_tags($post->Contents), 80))  !!}</p>--}}
                 </div>
             </div>
             @php

@@ -31,16 +31,18 @@
         <div class="d-flex align-items-center mb-4">
             <div class="flex-shrink-0">
                 <img
-                    src="{{ auth()->user()->profile_photo_url }}"
+                    src="{{ $dt->getFileUrl() }}"
                     class="avatar-initials img-fluid position-relative rounded-circle"
-                    alt="{{ auth()->user()->user_name ?? '' }}"
+                    alt="..."
                 >
             </div>
             <div class="flex-grow-1 ms-3">
                 <a href="{{route('guest.blog.show', $dt->slug)}}">
-                <h4 class="mb-0" style="color: #6D6D6D">{{ $dt->Subject }}</h4>
+                <h4 class="mb-0" style="color: #6D6D6D">
+                    {{ Str::limit($dt->Subject, 60) }}
+                </h4>
                 </a>
-                <p class="mb-0" style="color: #B6B4B4">{{\Carbon\Carbon::parse($dt->BlogDate)->format('d M Y')}}</p>
+{{--                <p class="mb-0" style="color: #B6B4B4">{{\Carbon\Carbon::parse($dt->BlogDate)->format('d M Y')}}</p>--}}
             </div>
         </div>
         @endforeach

@@ -18,6 +18,7 @@ class PostCard extends Component
     public function render()
     {
 
+
         $totalReviewLocalGuide = $this->dt->reviews()->get();
 
         $sumTotalReviews = count($totalReviewLocalGuide);

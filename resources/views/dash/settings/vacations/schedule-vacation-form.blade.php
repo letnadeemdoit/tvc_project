@@ -137,7 +137,7 @@
                     >
                         <option value="#ffffff" style="background-color: #ffffff;">Default</option>
                         <option value="#FEFCF6" style="background-color: #FEFCF6;">White</option>
-                        <option value="#32302B" style="background-color: #32302B;">Black</option>
+                        <option value="#32302B" style="background-color: #32302B;color: #ffffff">Black</option>
                         <option value="#94918B" style="background-color: #94918B;">Gray</option>
                     </select>
                     @error('font_color')
