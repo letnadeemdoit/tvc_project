@@ -206,15 +206,15 @@
     </div>
 
     <div class="container mt-5 py-5">
-        <h3>Keep Reading</h3>
-
-
-        <div class="row">
+        @if(isset($relatedBlog) && count($relatedBlog) > 0)
+            <h3>Keep Reading</h3>
+            <div class="row">
             @foreach($relatedBlog as $blog)
                 <livewire:blog.house-related-blog :blog="$blog" />
             @endforeach
 
         </div>
+        @endif
     </div>
 
 </main>
