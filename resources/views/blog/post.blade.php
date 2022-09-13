@@ -76,7 +76,7 @@
 
                     </div>
                     <div class="flex-grow-1 ms-3">
-                        <h4 class="mb-0" style="color: #6D6D6D">{{ $post->Author }}</h4>
+                        <h4 class="mb-0" style="color: #6D6D6D">{{ Str::upper('By '.$post->Author) }}</h4>
                         <p class="mb-0" style="color: #B6B4B4"><small>{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</small></p>
                     </div>
                 </div>
