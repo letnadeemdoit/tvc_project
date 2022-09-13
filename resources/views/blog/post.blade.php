@@ -71,7 +71,8 @@
                         <img
                             src="{{ $post->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ $post->user->name ?? '' }}" style="width:60px;height:60px !important;"
+                            alt="{{ $post->user->name ?? '' }}"
+                            style="width:60px !important;height:60px !important;"
                         >
 
                     </div>
