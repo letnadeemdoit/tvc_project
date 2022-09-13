@@ -144,5 +144,7 @@ class GuestController extends Controller
 
     public function paypalWebhook(Request $request) {
         Log::error('Paypal Web Hook: ', $request->all());
+
+        return '';
     }
 }

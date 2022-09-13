@@ -91,7 +91,7 @@ Route::controller(GuestController::class)
                 });
         });
 
-        Route::post('/paypal/webhook', 'paypalWebhook')->name('paypal-webhook');
+        Route::post('/paypal/ipn', 'paypalWebhook')->name('paypal-ipn');
     });
 
 
