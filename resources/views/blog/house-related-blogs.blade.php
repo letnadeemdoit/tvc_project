@@ -11,9 +11,9 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
                         <img
-                            src="{{ auth()->user()->profile_photo_url }}"
+                            src="{{ $blog->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ auth()->user()->user_name ?? '' }}"
+                            alt="{{ $blog->user->name ?? '' }}"
                         >
 
                         <div class="ps-3">
@@ -46,7 +46,7 @@
                     {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::limit($blog->Subject, 45) }}</h5>
+                    <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::limit($blog->Subject, 55) }}</h5>
 {{--                    <p class="text-dark-blue">{!!  (Str::limit(strip_tags($blog->Contents), 80))  !!}</p>--}}
                 </div>
             </div>

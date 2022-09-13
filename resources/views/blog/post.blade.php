@@ -69,9 +69,9 @@
 {{--                            width="60" height="60" style="object-fit: cover"--}}
 {{--                        />--}}
                         <img
-                            src="{{ auth()->user()->profile_photo_url }}"
+                            src="{{ $post->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ auth()->user()->user_name ?? '' }}" style="width:60px;height:60px !important;"
+                            alt="{{ $post->user->name ?? '' }}" style="width:60px;height:60px !important;"
                         >
 
                     </div>
