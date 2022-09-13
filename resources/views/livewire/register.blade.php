@@ -154,9 +154,9 @@
 
             <div class="mb-3">
                 <fieldset class="input-group rounded-1 ps-1">
-                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Referral Paypal Account</legend>
+                    <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Referral Paypal Account Email</legend>
                     <input
-                        type="number"
+                        type="text"
                         class="form-control form-control-lg border-0 shadow-none outline-0"
                         id="ReferredBy"
                         name="Referral_paypal_account"
