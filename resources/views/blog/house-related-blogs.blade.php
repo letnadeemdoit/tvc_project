@@ -7,7 +7,7 @@
 
         </div>
             <div class="card-body p-2">
-            <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-5 py-3 rounded-1" style="min-height: 210px">
+            <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-3 py-3 rounded-1" style="min-height: 150px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
                         <img
@@ -46,7 +46,7 @@
                     {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <strong class="mb-1 fs-4" style="color: #2A3342">{{ Str::limit($blog->Subject, 60) }}</strong>
+                    <strong class="mb-1 fs-4" style="color: #2A3342">{{ Str::limit($blog->Subject, 45) }}</strong>
 {{--                    <p class="text-dark-blue">{!!  (Str::limit(strip_tags($blog->Contents), 80))  !!}</p>--}}
                 </div>
             </div>
