@@ -153,7 +153,7 @@
     <div class="container my-5">
         <div id="fb-root"></div>
 
-        @if(!auth()->user()->is_guest)
+{{--        @if(!auth()->user()->is_guest)--}}
 
             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>
 
@@ -161,7 +161,7 @@
 
             </div>
 
-        @endif
+{{--        @endif--}}
 
 {{--            <livewire:blog.post-comment :user="$user" :blog="$post" />--}}
 {{--        <div class="row mt-5 mb-3">--}}
