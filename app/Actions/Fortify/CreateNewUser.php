@@ -28,7 +28,6 @@ class CreateNewUser implements CreatesNewUsers
             'city_id' => ['required'],
             'zipcode' => ['required'],
             'image' => 'nullable|image|mimes:png,jpg,gif,tiff|max:1024',
-            'Referral_paypal_account' => ['required'],
             'user_name' => ['required', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required'],
