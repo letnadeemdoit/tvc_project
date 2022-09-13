@@ -89,10 +89,10 @@ body{
     color: $primary;
 }
 .btn-min-115{
-    min-width: 115px;
+    min-width: 130px;
 }
 .max-width{
-    max-width: 360px;
+    max-width: 400px;
 }
 .mt-n100{
     margin-top: -121px;
@@ -290,6 +290,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
        filter:grayscale(87%) brightness(60%) sepia(87%) hue-rotate(-51deg) saturate(982%) contrast(0.8);
         }
     }
+}
+.middle-li-card-footer{
+    margin: 0 40px;
 }
     .lb-container{
         padding: 0px !important;
@@ -960,10 +963,20 @@ header{
     .row-max-width{
         margin: 0 auto;
     }
+    .middle-li-card-footer{
+        margin: 0 35px !important;
+    }
     .ul-card-footer {
         li {
             span {
                 padding-left: 0px !important;
+                font-size: 13px !important;
+            }
+        }
+    }
+    .guest-menu{
+        .nav-item{
+            .nav-link{
                 font-size: 13px !important;
             }
         }
@@ -994,8 +1007,11 @@ header{
             min-height: 555px !important;
         }
     }
+    .middle-li-card-footer{
+        margin: 0 29px !important;
+    }
 }
-@media only screen and (min-width:992px) and (max-width:1200px) {
+@media only screen and (min-width:992px) and (max-width:1199px) {
     .help-page-tabs .card {
         min-width: 190px !important;
         max-width: 190px !important;
@@ -1017,6 +1033,9 @@ header{
         .card{
             min-height: revert !important;
         }
+    }
+    .middle-li-card-footer{
+        margin: 0 37px !important;
     }
     .btn-text{
         font-size: 9px !important;
@@ -1055,8 +1074,12 @@ header{
         min-width: 10rem !important;
         max-width: 10rem !important;
     }
-    .login-nav{
-        font-size: 12px !important;
+    .login-nav {
+        .nav-item {
+        .nav-link{
+            font-size: 11px !important;
+        }
+        }
     }
     .navbar:not(.splitted-content-navbar) .navbar-nav .nav-link {
         padding: 0.4rem 0.4rem 0 0.4rem !important;
@@ -1190,6 +1213,9 @@ header{
     .pt-55{
         padding-top: 30px !important;
     }
+    .middle-li-card-footer{
+        margin: 0 37px !important;
+    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -1293,6 +1319,9 @@ header{
     .moretext {
         display: none;
     }
+    .middle-li-card-footer{
+        margin: 0 120px !important;
+    }
 }
 @media only screen and (max-width:576px){
     .bg-process-img{
@@ -1301,6 +1330,9 @@ header{
     .rounded-icon{
         width:12%;
         margin: -30px auto !important;
+    }
+    .hero-text{
+        font-size: 2.1rem !important;
     }
     .guest-modal{
         .modal-body{
@@ -1404,6 +1436,9 @@ header{
     .blog-card{
         min-height: 175px !important;
     }
+    .middle-li-card-footer{
+        margin: 0 65px !important;
+    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -1474,7 +1509,9 @@ header{
     .food-item-img{
         height: 170px !important;
     }
-
+    .middle-li-card-footer{
+        margin: 0 54px !important;
+    }
 }
 @media only screen and (max-width:375px){
     .rounded-icon{
@@ -1483,6 +1520,9 @@ header{
     }
     .scroll-icons{
         max-height: 28px !important;
+    }
+    .middle-li-card-footer{
+        margin: 0 29px !important;
     }
     .features-img{
         height: 40px !important;

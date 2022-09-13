@@ -22,7 +22,7 @@
                         name="user_name"
                         placeholder="User Name"
                         id="user_name"
-                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
                         wire:model.defer="state.user_name"
                     />
                     @error('user_name')
@@ -43,7 +43,7 @@
                             <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
                         @endif
                         <option
-                            value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists && ($userCU && $userCU->role !== 'Guest')? 'disabled' : '' }}>
+                            value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists && ($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST)? 'disabled' : '' }}>
                             Guest
                         </option>
                     </select>
@@ -61,7 +61,7 @@
                         name="first_name"
                         placeholder="First Name"
                         id="first_name"
-                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
                         wire:model.defer="state.first_name"
                     />
                     @error('first_name')
@@ -76,7 +76,7 @@
                         name="last_name"
                         placeholder="Last Name"
                         id="last_name"
-                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
                         wire:model.defer="state.last_name"
                     />
                     @error('last_name')
@@ -92,7 +92,7 @@
                     name="email"
                     placeholder="Email"
                     id="email"
-                    {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                    {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
                     wire:model.defer="state.email"
                 />
                 @error('email')
@@ -102,35 +102,57 @@
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label class="form-label" for="password">Password:</label>
-                    <input
-                        type="password"
-                        class="form-control @error('password') is-invalid @enderror"
-                        name="password"
-                        placeholder="Password"
-                        id="password"
-                        wire:model.defer="state.password"
-                    />
+                    <div class="input-group input-group-merge" x-data="{showPassword: false}">
+                        <input
+                            x-bind:type="showPassword ? 'text' : 'password'"
+                            class="form-control @error('password') is-invalid @enderror"
+                            name="password"
+                            placeholder="Password"
+                            id="password"
+                            wire:model.defer="state.password"
+                        />
+
+                        <a id="changePassTarget" class="input-group-append input-group-text"
+                           href="#!"
+                           @click.prevent="showPassword  = !showPassword"
+                        >
+                            <i id="changePassIcon" class="bi-eye text-primary"
+                               :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
+                        </a>
+                    </div>
                     @error('password')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <div class="form-group col-md-6">
                     <label class="form-label" for="confirm_password">Confirm Password:</label>
-                    <input
-                        type="password"
-                        class="form-control @error('password_confirmation') is-invalid @enderror"
-                        name="password_confirmation"
-                        placeholder="Confirm Password"
-                        id="confirm_password"
-                        wire:model.defer="state.password_confirmation"
-                    />
+                    <div class="input-group input-group-merge" x-data="{showPassword: false}">
+                        <input
+                            x-bind:type="showPassword ? 'text' : 'password'"
+                            class="form-control @error('password_confirmation') is-invalid @enderror"
+                            name="password_confirmation"
+                            placeholder="Confirm Password"
+                            id="confirm_password"
+                            wire:model.defer="state.password_confirmation"
+                        />
+
+                        <a id="changePassTarget" class="input-group-append input-group-text"
+                           href="#!"
+                           @click.prevent="showPassword  = !showPassword"
+                        >
+                            <i id="changePassIcon" class="bi-eye text-primary"
+                               :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
+                        </a>
+                    </div>
+
                     @error('password_confirmation')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
 
-            @if((isset($state['role']) && $state['role'] !== \App\Models\User::ROLE_GUEST) || ($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST))
+            @if((isset($state['role']) && $state['role'] !== \App\Models\User::ROLE_GUEST) && ($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST))
             <div class="row mb-3">
                 <label for="" class="form-label">Send Email:</label>
                 <div class="col-12 col-lg-6  mb-3 mb-sm-0">

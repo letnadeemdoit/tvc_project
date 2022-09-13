@@ -103,12 +103,12 @@
                                                     <div
                                                         class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex align-items-center ps-3 ps-lg-5">
                                                         <span class="badge badge-blue btn-min-115 fs-4 p-2 fw-normal">Food Item :</span>
-                                                        <p class="mb-0 ps-5 toggle-text text-break">{{$dt->name}}</p>
+                                                        <p class="mb-0 ps-5 toggle-text text-break text-start">{{$dt->name}}</p>
                                                     </div>
                                                     <div
-                                                        class="col-12 col-lg-4  mt-3 mt-lg-0 border-right-solid d-flex align-items-center ps-3 ps-lg-5">
-                                                        <span class="badge badge-green btn-min-115 fs-4 p-2 fw-normal">Location :</span>
-                                                        <p class="mb-0 ps-5 toggle-text text-break">{{$dt->location}}</p>
+                                                        class="col-12 col-lg-4 mt-3 border-right-solid mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">
+                                                        <span class="badge badge-green btn-min-115 fs-4 p-2 fw-normal">where to buy :</span>
+                                                        <p class="mb-0 ps-5 toggle-text text-break text-start">{{$dt->location}}</p>
                                                     </div>
                                                     <div
                                                         class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">

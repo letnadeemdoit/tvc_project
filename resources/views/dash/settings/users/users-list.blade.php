@@ -150,7 +150,7 @@
                     <th>Full name</th>
                     <th>Role</th>
                     <th style="width: 120px">Enabled</th>
-                    <th>Action</th>
+                    <th class="text-end">Action</th>
                 </tr>
                 </thead>
 
@@ -199,15 +199,12 @@
                         </td>
 
 
-                        <td>
+                        <td class="text-end">
                             <div class="btn-group" role="group" aria-label="Edit group">
 
 {{--                                @if(isset($dt->role) && $dt->role == 'Guest')--}}
                                 @if($dt->role === \App\Models\User::ROLE_GUEST)
-                                <a class="btn btn-light" href="#!"
-                                >
-                                    <i class="bi-envelope me-1 text-success"></i> Send Mail
-                                </a>
+
 
                                 @else
                                     <a class="btn btn-white" href="#!"

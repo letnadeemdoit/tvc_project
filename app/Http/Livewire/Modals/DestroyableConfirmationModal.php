@@ -15,15 +15,16 @@ class DestroyableConfirmationModal extends Component
         'description' => 'You would not be able to recover this!'
     ];
 
+    public $targetListener;
     protected $listeners = [
         'destroyable-confirmation-modal' => 'confirming'
     ];
 
-    public function confirming($model, $id, $confirmationContent = [])
+    public function confirming($model, $id, $confirmationContent = [], $targetListener = 'destroyed-successfully')
     {
         $this->emitSelf('toggle', true);
         $this->model = app($model)->find($id);
-
+        $this->targetListener = $targetListener;
         if (!empty(array_filter($confirmationContent))) {
             $this->confirmationContent = $confirmationContent;
         }
@@ -41,7 +42,7 @@ class DestroyableConfirmationModal extends Component
             $this->model->delete();
         }
         $this->emitSelf('toggle', false);
-        $this->emit('destroyed-successfully', $data);
+        $this->emit($this->targetListener, $data);
         $this->success('Deleted successfully.');
     }
 }

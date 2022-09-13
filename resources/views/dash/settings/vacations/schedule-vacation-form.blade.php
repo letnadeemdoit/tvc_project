@@ -49,17 +49,17 @@
                 <label for="" class="form-label">Repeat:</label>
                 <div class="col-12 col-lg-4 mb-3 mb-sm-0">
                     <!-- Form Radio -->
-                    <label class="form-control" for="recurrence_none">
+                    <label class="form-control" for="recurrence_once">
                         <span class="form-check">
                             <input type="radio"
                                    wire:model.defer="state.recurrence"
-                                   value="none"
+                                   value="once"
                                    class="form-check-input"
                                    checked
                                    name="recurrence"
-                                   id="recurrence_none"
+                                   id="recurrence_once"
                             />
-                            <span class="form-check-label">None</span>
+                            <span class="form-check-label">Once</span>
                         </span>
                     </label>
                     <!-- End Form Radio -->
@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="form-group col-md-6" x-data="{bc: '{{ $state['background_color'] ?? '#3a87ad' }}'}">
+                <div class="form-group col-md-6 mb-3" x-data="{bc: '{{ $state['background_color'] ?? '#3a87ad' }}'}">
                     <label class="form-label" for="background_color">Background Color:</label>
                     <select
                         name="background_color"
@@ -146,6 +146,18 @@
                 </div>
             </div>
             <div class="d-flex">
+
+
+                @if($user->is_owner && $vacation && $vacation->VacationId)
+                    <a
+                       href="#!"
+                        class="btn btn-danger px-5"
+                        wire:click.prevent="destroy({{ $vacation->VacationId }})"
+                    >
+                        <i class="bi-trash me-2"></i> Delete
+                    </a>
+                @endif
+
                 <button
                     type="submit"
                     class="btn btn-primary ms-auto"
@@ -161,6 +173,10 @@
                 $('#schedule_start_end_datetime').daterangepicker({
                     timePicker: true,
                     timePickerIncrement: 60,
+                    showDropdowns: true,
+                    minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
+                    maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+                    minDate: moment().format('MM/DD/YYYY'),
                     startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
                     @else moment().set('minute', 0) @endisset,
                     endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
@@ -182,6 +198,8 @@
                 window.addEventListener('schedule-vacation-daterangepicker-update', function (e) {
                     $('#schedule_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
                     $('#schedule_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
+
+                    $('#schedule_start_end_datetime').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
                 });
 
             });

@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Settings\Vacations;
 
+use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Calendar;
 use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\BlogNotification;
 use App\Notifications\CalendarEmailNotification;
+use App\Notifications\DeleteNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
 use Exception;
@@ -18,6 +20,8 @@ use Livewire\Component;
 
 class ScheduleVacationForm extends Component
 {
+    use Destroyable;
+
     public $user;
 
     public $state = [];
@@ -27,8 +31,15 @@ class ScheduleVacationForm extends Component
     public $owner = null;
 
     protected $listeners = [
-        'showVacationScheduleModal'
+        'showVacationScheduleModal',
+        'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
     ];
+
+    public function mount(){
+
+        $this->model = Vacation::class;
+
+    }
 
     public function showVacationScheduleModal($toggle, $vacationId = null, $initialDate = null, $owner = null, $house = null)
     {
@@ -56,13 +67,13 @@ class ScheduleVacationForm extends Component
                 'background_color' => $this->vacation->BackGrndColor,
                 'font_color' => $this->vacation->FontColor,
                 'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') .' - '.$this->vacation->end_datetime->format('m/d/Y h:i'),
-                'recurrence' => $this->vacation->recurrence ?? 'none'
+                'recurrence' => $this->vacation->recurrence ?? 'once'
             ];
         } else {
             $this->state = [
                 'background_color' => '#3a87ad',
                 'font_color' => '#ffffff',
-                'recurrence' => 'none'
+                'recurrence' => 'once'
             ];
 
             if ($initialDate) {
@@ -77,7 +88,7 @@ class ScheduleVacationForm extends Component
             }
         }
 
-        $this->dispatchBrowserEvent('schedule-vacation-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'], 'endDatetime' => $this->state['end_datetime']]);
+        $this->dispatchBrowserEvent('schedule-vacation-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
     }
 
     public function saveVacationSchedule()
@@ -89,7 +100,7 @@ class ScheduleVacationForm extends Component
             'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
-            'recurrence' => ['required', 'in:none,monthly,yearly'],
+            'recurrence' => ['required', 'in:once,monthly,yearly'],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
@@ -199,6 +210,61 @@ class ScheduleVacationForm extends Component
         $this->emit('vacation-schedule-successfully');
     }
 
+
+    public function destroyedSuccessfully($data)
+    {
+
+        $this->emitSelf('vacation-schedule-successfully');
+
+        $this->emitSelf('toggle', false);
+
+        $name = $data['VacationName'];
+
+        $deleteType = 'Vacation';
+
+        try {
+
+            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
+
+                $CalEmailList = explode(',', $this->user->house->CalEmailList);
+
+                if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteNotification($name,$deleteType));
+                    }
+
+                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+
+                    if (count($CalEmailList) > 0) {
+
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new DeleteNotification($name,$deleteType));
+
+                    }
+                }
+            }
+        } catch (Exception $e) {
+
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        if ($this->model) {
+            $deletableModel = app($this->model)->findOrFail($id);
+            $this->emit(
+                'destroyable-confirmation-modal',
+                $this->model,
+                $id,
+                $this->destroyableConfirmationContent,
+                'destroyed-scheduled-successfully'
+            );
+        }
+    }
 
     public function render()
     {
