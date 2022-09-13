@@ -69,7 +69,7 @@ class CreateOrUpdateUserForm extends Component
 
         if (isset($this->state['role']) && $this->state['role'] === User::ROLE_GUEST) {
             $this->state['user_name'] = 'Guest';
-            $this->state['first_name'] = 'Guest';
+            $this->state['first_name'] = 'House';
             $this->state['last_name'] = 'Guest';
         }
 
