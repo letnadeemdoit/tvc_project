@@ -91,7 +91,7 @@ class CreateOrUpdateLocalGuideForm extends Component
 
         $this->emitSelf('toggle', false);
 
-        $this->success('saved Successfully');
+        $this->success('saved successfully');
 
         $this->emit('local-guide-cu-successfully');
     }

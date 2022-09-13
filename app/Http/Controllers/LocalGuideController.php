@@ -18,13 +18,6 @@ class LocalGuideController extends Controller
 
     public function show(Request $request, LocalGuide $dt){
 
-//        $categories = Category::where('type', 'local-guide')->where('house_id',$dt->house_id)->withCount('localGuides')->get();
-//        $localGuideCategories = Category::where('type', 'local-guide')
-//            ->where(function ($query){
-//                $query->where('house_id', $this->user->HouseId)
-//                    ->orWhere('house_id', null);
-//            })
-//            ->get();
 
         $categories = Category::where('type', 'local-guide')
             ->where(function ($query){
@@ -36,8 +29,9 @@ class LocalGuideController extends Controller
             }])
             ->get();
 
-        $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->inRandomOrder()->limit(3)->get()->except($dt->id);
+        $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->withCount('reviews')->inRandomOrder()->limit(3)->get()->except($dt->id);
 
+//            dd($relatedGuides);
 
         $totalReviewLocalGuide = $dt->reviews()->get();
 
@@ -57,5 +51,9 @@ class LocalGuideController extends Controller
             'avgRating' => $avgRating ?? 0,
 
         ]);
+
+
+
+
     }
 }

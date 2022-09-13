@@ -229,15 +229,15 @@
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
                                         <div class="d-block d-sm-flex list-unstyled recipe-card-footer mb-2 align-items-center">
 
-                                            @if(isset($avgRating))
+                                            @if(isset($dt->reviews_count))
                                                     <span class="text-primary fw-bolder fs-4 pe-2">
-                                                        {{ $avgRating ?? 0}}.0
+                                                        {{ $dt->reviews_count ?? 0}}.0
                                                     </span>
                                                     @php
                                                         $i = 0;
                                                     @endphp
 
-                                                    @while (++$i <= ($avgRating ?? 0))
+                                                    @while (++$i <= ($dt->reviews_count ?? 0))
                                                         <span class="fa fa-star checked"></span>
                                                     @endwhile
                                                     @php
@@ -245,7 +245,7 @@
                                                         $t_rating = 5;
                                                     @endphp
 
-                                                    @for ($r; $r <= $t_rating - $avgRating; $r++)
+                                                    @for ($r; $r <= $t_rating - $dt->reviews_count; $r++)
                                                         <img
                                                             src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
                                                             style="width: 17px;margin-top: -1px" alt="">

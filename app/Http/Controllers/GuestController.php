@@ -8,6 +8,7 @@ use App\Models\ICal;
 use App\Models\Photo\Album;
 use App\Notifications\ContactUsNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
@@ -139,5 +140,9 @@ class GuestController extends Controller
             'Content-type' => 'text/calendar; charset=utf-8',
 //            'Content-Disposition' => 'attachment; filename="calendar.ics"'
         ]);
+    }
+
+    public function paypalWebhook(Request $request) {
+        Log::error('Paypal Web Hook: ', $request->all());
     }
 }

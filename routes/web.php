@@ -90,6 +90,8 @@ Route::controller(GuestController::class)
                     Route::get('/', 'index')->name('index');
                 });
         });
+
+        Route::post('/paypal/webhook', 'paypalWebhook')->name('paypal-webhook');
     });
 
 

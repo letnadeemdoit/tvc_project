@@ -285,7 +285,7 @@
 
                             </div>
                             <div class="flex-grow-1 ms-3 mb-3">
-                                <h5 class="mb-0">{{$review->user->first_name}} {{$review->user->last_name}}</h5>
+                                    <h5 class="mb-0">{{$review->user->first_name}} {{$review->user->last_name}}</h5>
                                 <div>
                                     <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2">
                                         <li>
