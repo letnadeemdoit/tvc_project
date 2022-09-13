@@ -56,14 +56,14 @@
             <div class="card border-0 rounded-20 py-3 shadow-none p-4" style="margin-top: -70px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start">
-                        <h1 class="text-w-50 lh-30 fs-card-title text-break">{{$localGuide->title ?? ''}}</h1>
+                        <h1 class="text-w-50 lh-30 fs-card-title text-break text-capitalize">{{$localGuide->title ?? ''}}</h1>
                         <p class="mb-0 badge badge-primary fs-13 fw-semi-bold ms-2 ms-sm-0" style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
                     </div>
                     <div class="d-flex mt-4">
                         <div class="flex-shrink-0">
                             <img
                                 class="rounded-circle border-rounded-red"
-                                src="{{ auth()->user()->profile_photo_url }}"
+                                src="{{ $localGuide->user->profile_photo_url }}"
                                 :src="avatarUrl"
                                 alt="Image"
                                 width="60" height="60" style="object-fit: cover"
@@ -71,7 +71,7 @@
                         </div>
                         <div class="flex-grow-1 ms-3 d-block d-sm-flex justify-content-between align-items-center">
                             <div>
-                                <h4 class="mb-0 text-dark" style="color: #6D6D6D">{{ $localGuide->user->first_name }} {{ $localGuide->user->last_name }}</h4>
+                                <h4 class="mb-0 text-dark text-capitalize" style="color: #6D6D6D">{{ $localGuide->user->first_name }} {{ $localGuide->user->last_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">
                                     <small class="fw-500 text-light-grey">{{$localGuide->address}}</small><span
                                         class="color-blue ps-2">
