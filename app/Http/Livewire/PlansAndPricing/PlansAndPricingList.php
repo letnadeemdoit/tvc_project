@@ -25,7 +25,7 @@ class PlansAndPricingList extends Component
     {
         $this->subscription->cancel();
 
-        session()->flash('status', 'You have been unsubscribed successfully.');
+        session()->flash('status', 'You have been unsubscribed successfully. You may see the status is not changed as soon as verified from paypal it will update automatically.');
         $this->redirect(route('dash.plans-and-pricing'));
     }
 }
