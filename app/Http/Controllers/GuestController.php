@@ -160,10 +160,14 @@ class GuestController extends Controller
                 $response = Http::post('https://ipnpb.paypal.com/cgi-bin/webscr', $ipnData);
             }
 
-            if ($response->body() === 'VERIFIED') {
-                Log::info('Status', ['VERIFIED']);
-            } elseif ($response->body() === 'INVALID') {
-                Log::info('Status', ['INVALID']);
+            if ($response->ok()) {
+                $body = $response->body();
+                Log::info($body);
+                if ($response->body() === 'VERIFIED') {
+                    Log::info('Status', ['VERIFIED']);
+                } elseif ($response->body() === 'INVALID') {
+                    Log::info('Status', ['INVALID']);
+                }
             }
         }
         return response('');
