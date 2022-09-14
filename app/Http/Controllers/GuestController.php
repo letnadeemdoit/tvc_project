@@ -13,16 +13,29 @@ use Illuminate\Support\Facades\Mail;
 
 class GuestController extends Controller
 {
+    /**
+     * Welcome
+     * @return mixed
+     */
     public function welcome()
     {
         return view('welcome');
     }
 
+    /**
+     * Contact
+     * @return mixed
+     */
     public function contact()
     {
         return view('contact');
     }
 
+    /**
+     * Contact Email
+     * @param Request $request
+     * @return mixed
+     */
     public function contactMail(Request $request)
     {
         $validated = $request->validate([
@@ -49,28 +62,49 @@ class GuestController extends Controller
         return back()->with('success', 'Your Query has been Sent Successfully!');
     }
 
+    /**
+     * Policies
+     * @return mixed
+     */
     public function policies()
     {
         return view('policies');
     }
 
+    /**
+     * Help
+     * @return mixed
+     */
     public function help()
     {
         return view('help');
     }
 
+    /**
+     * Blog
+     * @return mixed
+     */
     public function blog()
     {
 
         return view('blog');
     }
 
+    /**
+     * Blog Detals
+     * @param $BlogId
+     * @return mixed
+     */
     public function blogDetails($BlogId)
     {
         $blogDetail = Blog::where('BlogId', $BlogId)->first();
         return view('blog-details', compact('blogDetail'));
     }
 
+    /**
+     * Privacy Policy
+     * @return mixed
+     */
     public function privacyPolicy()
     {
 
@@ -78,46 +112,82 @@ class GuestController extends Controller
 
     }
 
+    /**
+     * Single Album
+     * @return mixed
+     */
     public function singleAlbum()
     {
         return view('photo-album-detail');
     }
 
+    /**
+     * Guest Login
+     * @return mixed
+     */
     public function guestLogin()
     {
         return view('guest-login');
     }
 
+    /**
+     * Login Account
+     * @return mixed
+     */
     public function loginAccount()
     {
         return view('login-account');
     }
 
+    /**
+     * Search House
+     * @return mixed
+     */
     public function searchHouse()
     {
         return view('search-house');
     }
 
+    /**
+     * Photo Gallery View
+     * @return mixed
+     */
     public function photoGalleryView()
     {
         return view('photo-album');
     }
 
+    /**
+     * Bulletin Board
+     * @return mixed
+     */
     public function bulletinBoard()
     {
         return view('bulletinBoard');
     }
 
+    /**
+     * Guest Book Frontend
+     * @return mixed
+     */
     public function guestBookFrontend()
     {
         return view('guest-book-frontend');
     }
 
+    /**
+     * Local Guide
+     * @return mixed
+     */
     public function localGuide()
     {
         return view('local-guide');
     }
 
+    /**
+     * Photo Album
+     * @return mixed
+     */
     public function photoAlbum()
     {
 
@@ -126,12 +196,21 @@ class GuestController extends Controller
         return view('photo-album', compact('photoAlbum'));
     }
 
+    /**
+     * Guest Book
+     * @return mixed
+     */
     public function guestBook()
     {
         $guestbook = GuestBook::paginate(10);
         return view('guest-book', compact('guestbook'));
     }
 
+    /**
+     * ICal
+     * @param ICal $ical
+     * @return mixed
+     */
     public function ical(ICal $ical)
     {
         return response($ical->toICSUrl())->withHeaders([
@@ -140,13 +219,17 @@ class GuestController extends Controller
         ]);
     }
 
+    /**
+     * Paypal IPN
+     * @param Request $request
+     * @return mixed
+     */
     public function paypalIPN(Request $request)
     {
-        Log::info('Paypal Web IPN: ', $request->all());
-
         $ipnData = $request->post();
+        Log::channel('paypal')->info('IPN', $ipnData);
+
         $ipnData['cmd'] = '_notify-validate';
-        $ipnData['item_name'] = uniqid();
 
         if (is_array($ipnData)) {
             $response = null;
@@ -156,7 +239,7 @@ class GuestController extends Controller
                     'form_params' => $ipnData
                 ]);
             } else {
-                $response = Http::send('POST','https://ipnpb.paypal.com/cgi-bin/webscr', [
+                $response = Http::send('POST', 'https://ipnpb.paypal.com/cgi-bin/webscr', [
                     'form_params' => $ipnData
                 ]);
             }
@@ -164,12 +247,13 @@ class GuestController extends Controller
             if ($response->ok()) {
                 $body = $response->body();
                 if ($body === 'VERIFIED') {
-                    Log::info('Status', ['VERIFIED']);
+                    Log::channel('paypal')->info('IPN', ['VERIFIED']);
                 } elseif ($body === 'INVALID') {
-                    Log::info('Status', ['INVALID']);
+                    Log::channel('paypal')->info('IPN', ['INVALID']);
                 }
             }
         }
+
         return response('');
     }
 }
