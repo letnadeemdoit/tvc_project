@@ -8,6 +8,7 @@ use App\Models\ICal;
 use App\Models\Photo\Album;
 use App\Notifications\ContactUsNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -156,6 +157,18 @@ class GuestController extends Controller
 
         $post_string .= "cmd=_notify-validate"; // append ipn command
 
+        $ipnData = $request->post();
+        $response = null;
+
+        if (is_array($ipnData)) {
+            if (config('paypal.mode') === 'sandbox') {
+                $response = Http::post('https://ipnpb.sandbox.paypal.com/cgi-bin/webscr', $ipnData);
+            } else {
+                $response = Http::post('https://ipnpb.paypal.com/cgi-bin/webscr', $ipnData);
+            }
+
+            Log::info('IPN Response: ', [$response->body()]);
+        }
         return response('');
     }
 }
