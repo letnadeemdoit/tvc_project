@@ -6,13 +6,10 @@ use App\Models\Blog\Blog;
 use App\Models\GuestBook;
 use App\Models\ICal;
 use App\Models\Photo\Album;
-use App\Notifications\ContactUsNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Validator;
 
 class GuestController extends Controller
 {
@@ -166,7 +163,6 @@ class GuestController extends Controller
 
             if ($response->ok()) {
                 $body = $response->body();
-                Log::info($body);
                 if ($body === 'VERIFIED') {
                     Log::info('Status', ['VERIFIED']);
                 } elseif ($body === 'INVALID') {
