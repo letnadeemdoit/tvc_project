@@ -37,12 +37,19 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(!is_basic_subscribed())
+                        @if(!$subscription)
                             <a href="{{ route('dash.paypal.process', ['basic', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(is_basic_subscribed())
-                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
-                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @elseif($subscription && $subscription->plan === 'basic' && $subscription->period === 'monthly')
+                            <a
+                                href="#!"
+                                wire:click.prevent="cancelSubscription()"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >
+                                Unsubscribe
+                            </a>
+                        @else
+                            <p>Please unsubscribe other plan first!</p>
                         @endif
                     </div>
 
@@ -75,12 +82,19 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(!is_standard_subscribed())
+                        @if(!$subscription)
                             <a href="{{ route('dash.paypal.process', ['standard', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(is_standard_subscribed())
-                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
-                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @elseif($subscription && $subscription->plan === 'standard' && $subscription->period === 'monthly')
+                            <a
+                                href="#!"
+                                wire:click.prevent="cancelSubscription()"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >
+                                Unsubscribe
+                            </a>
+                        @else
+                            <p>Please unsubscribe other plan first!</p>
                         @endif
                     </div>
 
@@ -114,12 +128,17 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(!is_premium_subscribed())
+                        @if(!$subscription)
                             <a href="{{ route('dash.paypal.process', ['premium', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(is_premium_subscribed())
-                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
-                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @elseif($subscription && $subscription->plan === 'premium' && $subscription->period === 'monthly')
+                            <a
+                                href="#!"
+                                wire:click.prevent="cancelSubscription()"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >Unsubscribe</a>
+                        @else
+                            <p>Please unsubscribe other plan first!</p>
                         @endif
                     </div>
 
@@ -154,12 +173,17 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(!is_basic_subscribed())
+                        @if(!$subscription)
                             <a href="{{ route('dash.paypal.process', ['basic', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(is_basic_subscribed())
-                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
-                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @elseif($subscription && $subscription->plan === 'basic' && $subscription->period === 'yearly')
+                            <a
+                                href="#!"
+                                wire:click.prevent="cancelSubscription()"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >Unsubscribe</a>
+                        @else
+                            <p>Please unsubscribe other plan first!</p>
                         @endif
                     </div>
 
@@ -192,12 +216,17 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(!is_standard_subscribed())
+                        @if(!$subscription)
                             <a href="{{ route('dash.paypal.process', ['standard', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(is_standard_subscribed())
-                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
-                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @elseif($subscription && $subscription->plan === 'standard' && $subscription->period === 'yearly')
+                            <a
+                                href="#!"
+                                wire:click.prevent="cancelSubscription()"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >Unsubscribe</a>
+                        @else
+                            <p>Please unsubscribe other plan first!</p>
                         @endif
                     </div>
 
@@ -231,12 +260,17 @@
 
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
-                        @if(!is_premium_subscribed())
+                        @if(!$subscription)
                             <a href="{{ route('dash.paypal.process', ['premium', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif(is_premium_subscribed())
-                            <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
-                               class="form-check-select-stretched-btn btn btn-primary">Unsubscribe</a>
+                        @elseif($subscription && $subscription->plan === 'premium' && $subscription->period === 'yearly')
+                            <a
+                                href="#!"
+                                wire:click.prevent="cancelSubscription()"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >Unsubscribe</a>
+                        @else
+                            <p>Please unsubscribe other plan first!</p>
                         @endif
                     </div>
 
