@@ -32,7 +32,7 @@
                         @endif
 
                         <div class="ps-3">
-                            <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</h5>
+                            <h5 class="mb-1 fw-500" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</h5>
                             <p class="mb-0 fs-13 txt-clr">{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</p>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
 {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::limit($post->Subject, 55) }}</h5>
+                    <h5 class="mb-1 fw-500" style="color: #2A3342">{{ Str::limit($post->Subject, 55) }}</h5>
 {{--                    <p>{!!  (Str::limit(strip_tags($post->Contents), 80))  !!}</p>--}}
                 </div>
             </div>
@@ -75,8 +75,8 @@
                     <li class="">
                         <livewire:blog.like-able-blog :post="$post" />
                     </li>
-                    <li class="middle-li-card-footer"><img src="/images/blog-images/comment.svg" class="" style="width: 15px"><span>Comments</span></li>
-                    <li class=""><img src="/images/blog-images/eye.svg" class="" style="width: 15px"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
+                    <li class="middle-li-card-footer"><img src="/images/blog-images/comment.svg" class="me-1" style="width: 15px"><span>Comments</span></li>
+                    <li class=""><img src="/images/blog-images/eye.svg" class="me-1" style="width: 15px"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
                 </ul>
             </div>
         </div>

@@ -6,10 +6,12 @@ use App\Models\Blog\Blog;
 use App\Models\GuestBook;
 use App\Models\ICal;
 use App\Models\Photo\Album;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Srmklive\PayPal\Facades\PayPal;
 
 class GuestController extends Controller
 {
@@ -248,6 +250,39 @@ class GuestController extends Controller
                 $body = $response->body();
                 if ($body === 'VERIFIED') {
                     Log::channel('paypal')->info('IPN Response from Paypal Server: ', ['VERIFIED']);
+                    $paypal = PayPal::setProvider();
+                    $paypal->getAccessToken();
+
+                    $paypalSubscription = $paypal->showSubscriptionDetails($ipnData['recurring_payment_id']);
+
+                    if (isset($paypalSubscription['error'])) {
+//                        [
+//                            "error" => [
+//                                "name" => "RESOURCE_NOT_FOUND",
+//                                "message" => "The specified resource does not exist.",
+//                                "debug_id" => "715c50ff50877",
+//                                "details" => [
+//                                    [
+//                                        "issue" => "INVALID_RESOURCE_ID",
+//                                        "description" => "Requested resource ID was not found.",
+//                                    ],
+//                                ],
+//                                "links" => [
+//                                    [
+//                                        "href" => "https://developer.paypal.com/docs/api/v1/billing/subscriptions#RESOURCE_NOT_FOUND",
+//                                        "rel" => "information_link",
+//                                        "method" => "GET",
+//                                    ],
+//                                ],
+//                            ],
+//                        ]
+                    } else {
+                        Subscription::where('subscription_id', $paypalSubscription['id'])->update([
+                            'status' => $paypalSubscription['status']
+                        ]);
+                    }
+
+
                 } elseif ($body === 'INVALID') {
                     Log::channel('paypal')->info('IPN Response from Paypal Server: ', ['INVALID']);
                 }
