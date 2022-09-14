@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <div class="container my-5 pt-5">
+    <div class="container my-5 pt-2 pt-md-5">
         <div class="row">
             <div class="col-12 col-lg-9 pe-0 pe-lg-5 detail-img">
                 <div class="border-bottom">

@@ -56,7 +56,7 @@
                     {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::limit($blog->Subject, 55) }}</h5>
+                    <h5 class="mb-1 fw-500" style="color: #2A3342">{{ Str::limit($blog->Subject, 55) }}</h5>
 {{--                    <p class="text-dark-blue">{!!  (Str::limit(strip_tags($blog->Contents), 80))  !!}</p>--}}
                 </div>
             </div>
