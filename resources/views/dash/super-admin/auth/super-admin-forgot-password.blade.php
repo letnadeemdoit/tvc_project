@@ -90,7 +90,7 @@
                                     </div>
                                 @endif
 
-                                <x-jet-validation-errors class="mb-4"/>
+{{--                                <x-jet-validation-errors class="mb-4"/>--}}
 
 
                             </div>
