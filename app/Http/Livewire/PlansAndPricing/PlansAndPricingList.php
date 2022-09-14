@@ -9,14 +9,18 @@ class PlansAndPricingList extends Component
 {
     public $user;
 
+    public $subscription;
+
+    public function mount() {
+        $this->subscription = $this->user->subscription;
+    }
+
     public function render()
     {
-        $subscription = $this->user->subscription;
-
-        return view('dash.plans-and-pricing.plans-and-pricing-list', compact('subscription'));
+        return view('dash.plans-and-pricing.plans-and-pricing-list');
     }
 
     public function cancelSubscription() {
-        $this->user->subscription->cancel();
+        $this->subscription->cancel();
     }
 }
