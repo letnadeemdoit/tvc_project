@@ -144,7 +144,7 @@ class GuestController extends Controller
     }
 
     public function paypalIPN(Request $request) {
-        Log::info('Paypal Web Hook: ', $request->all());
+        Log::info('Paypal Web IPN: ', $request->all());
 
         // generate the post string from the _POST vars aswell as load the
         // _POST vars into an arry so we can play with them from the calling
@@ -162,7 +162,9 @@ class GuestController extends Controller
 
         if (is_array($ipnData)) {
             if (config('paypal.mode') === 'sandbox') {
-                $response = Http::post('https://ipnpb.sandbox.paypal.com/cgi-bin/webscr', $ipnData);
+                $response = Http::send('POST', 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr', [
+                    'form_params' => $ipnData
+                ]);
             } else {
                 $response = Http::post('https://ipnpb.paypal.com/cgi-bin/webscr', $ipnData);
             }
