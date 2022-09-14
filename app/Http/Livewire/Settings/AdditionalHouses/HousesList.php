@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Settings\AdditionalHouses;
 
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\House;
+use App\Models\User;
+use App\Notifications\DeleteNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -27,11 +30,13 @@ class HousesList extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
-        'destroyed-successfully' => '$refresh',
+        'destroyed-successfully' => 'destroyedSuccessfully',
         'additional-house-cu-successfully' => '$refresh',
+
     ];
 
-    public function mount() {
+    public function mount()
+    {
         $this->model = House::class;
     }
 
@@ -51,4 +56,21 @@ class HousesList extends Component
 
         return view('dash.settings.additional-houses.houses-list', compact('data'));
     }
+
+
+    public function destroyedSuccessfully($data)
+    {
+        $this->emitSelf('additional-house-cu-successfully');
+
+        try {
+
+            User::where('HouseId', $data['HouseID'])->delete();
+
+        } catch (\Exception $e) {
+
+        }
+
+    }
+
+
 }
