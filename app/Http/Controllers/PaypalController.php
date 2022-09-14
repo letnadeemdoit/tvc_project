@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\House;
 use App\Models\Paypal\PaymentInfo;
 use App\Models\Paypal\SubscriptionInfo;
+use App\Models\Subscription;
 use App\Models\User;
-use App\Services\Paypal;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Srmklive\PayPal\Facades\PayPal;
 
 /**
  * Paypal Docs:
@@ -21,13 +23,8 @@ class PaypalController extends Controller
 
     public function __construct()
     {
-        $this->paypal = new Paypal();
-
-        if (config('services.paypal.mode') === 'sandbox') {
-            $this->paypal->paypalUrl = 'https://www.sandbox.paypal.com/cgi-bin/webscr';   // testing paypal url
-        } else {
-            $this->paypal->paypalUrl = 'https://www.paypal.com/cgi-bin/webscr';     // paypal url
-        }
+        $this->paypal = PayPal::setProvider();
+        $this->paypal->getAccessToken();
     }
 
     /**
@@ -56,131 +53,53 @@ class PaypalController extends Controller
             404
         );
 
+        $mode = config('paypal.mode');
 
-        $this->paypal->addField('cmd', '_xclick-subscriptions');
+        try {
+            $paypalSubscription = $this->paypal->createSubscription([
+                'plan_id' => config("paypal.$mode.plans.$plan.$billed")
+            ]);
 
-        // Setup business on the base of live or sandbox
-        if (config('services.paypal.mode') === 'sandbox') {
-            $this->paypal->addField('business', 'admin_1223600237_biz@thevacationcalendar.com');
-        } else {
-            $this->paypal->addField('business', 'payment@thevacationcalendar.com');
+            if (isset($paypalSubscription['error'])) {
+                Log::channel('paypal')->error('Create Subscription: ', [$paypalSubscription['error']]);
+            } else {
+                Subscription::create([
+                    'user_id' => auth()->user()->user_id,
+                    'house_id' => auth()->user()->HouseId,
+                    'subscription_id' => $paypalSubscription['id'],
+                    'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
+                    'status' => $paypalSubscription['status'],
+                ]);
+
+                $redirectTo = null;
+                foreach ($paypalSubscription['links'] as $link) {
+                    if ($link['rel'] === 'approve') {
+                        $redirectTo = $link['href'];
+                    }
+                }
+
+                if($redirectTo) {
+                    return redirect($redirectTo);
+                }
+            }
+        } catch (\Exception $e) {
+            Log::channel('paypal')->error('Create Subscription: ', [$e->getMessage()]);
+
         }
 
-        // Setting the return URL on individual transactions
-        // With Auto Return turned on in your account profile, you can set the value of the return URL on
-        // each individual transaction to override the value that you have stored on PayPal. For example,
-        // you might want to return the payer's browser to a URL on your site that is specific to that payer,
-        // perhaps with a session ID or other transaction-related data included in the URL.
-        //
-        // To set the return URL for a transaction, include the return variable in the HTML FORM:
-        $this->paypal->addField('return', route('dash.paypal.succeeded', [$plan, $billed, auth()->user()->HouseId]));
-
-        // A URL to which PayPal redirects the buyers' browsers if they cancel checkout
-        // before completing their payments. For example, specify a URL on your website that
-        // displays the Payment Canceled page.
-        //
-        // By default, PayPal redirects the browser to a PayPal webpage. Character Length: 1,024
-        $this->paypal->addField('cancel_return', route('dash.paypal.canceled', [$plan, $billed, auth()->user()->HouseId]));
-
-        // The URL to which PayPal posts information about the payment,
-        // in the form of Instant Payment Notification messages. Character Length: 255
-        $this->paypal->addField('notify_url', route('dash.paypal.ipn'));
-
-        // Description of item. If you omit this variable, buyers enter their own name during checkout.
-        // Optional for Buy Now, Donate, Subscribe, Automatic Billing, and Add to Cart buttons Character length: 127
-        $this->paypal->addField('item_name', 'The Vacation Calendar Annual Subscription');
-
-        // The locale of the checkout login or sign-up page. PayPal provides localized checkout pages
-        // for some countries and languages.
-        //
-        // For more information about locale codes and a list of supported locales, see the PayPal
-        // locale codes reference https://developer.paypal.com/api/rest/reference/locale-codes/ page.
-        $this->paypal->addField('lc', 'US');
-
-        // Trial period 1 price. For a free trial period, specify 0.
-//        $this->paypal->addField('a1', '0');
-
-        // Trial period 1 duration. Required if you specify a1. Specify an integer value in the valid range for
-        // the units of duration that you specify with t1.
-//        $this->paypal->addField('p1', '1');
-
-        // Trial period 1 units of duration.
-        // Valid value is:
-        //      D. Days. Valid range for p1 is 1 to 90.
-        //      W. Weeks. Valid range for p1 is 1 to 52.
-        //      M. Months. Valid range for p1 is 1 to 24.
-        //      Y. Years. Valid range for p1 is 1 to 5.
-        // Character Length: 1
-//        $this->paypal->addField('t1', $billed === 'monthly' ? 'M' : 'Y');
-
-        // Regular subscription price.
-        $this->paypal->addField('a3', User::PLANS[$plan][$billed]);
-
-        // Desired currency on individual transactions
-        // Use the currency_code variable on individual transactions to specify the currency of the payment:
-        //
-        // For allowable values in currency_code,
-        // see Currencies Supported https://developer.paypal.com/api/nvp-soap/currency-codes/ by PayPal.
-        // PayPal uses 3-character ISO-4217 codes for specifying currencies in fields and variables.
-        //
-        // Note: If the currency_code variable is not included, the currency defaults to USD.
-        $this->paypal->addField('currency_code', 'USD');
-
-        // Recurring payments. Subscription payments recur unless subscribers cancel their subscriptions
-        // before the end of the current billing cycle, or you limit the number of times that payments
-        // recur with the value that you specify for srt.
-        // Valid value is:
-        //      0. Subscription payments do not recur.
-        //      1. Subscription payments recur.
-        // Default is 0. Character Length: 1
-        $this->paypal->addField('src', '1');
-
-        // Subscription duration. Specify an integer value in the Valid range for the units of
-        // duration that you specify with t3. Character Length: 2
-        $this->paypal->addField('p3', '1');
-
-        // Regular subscription units of duration.
-        // Valid value is:
-        //      D. Days. Valid range for p3 is 1 to 90.
-        //      W. Weeks. Valid range for p3 is 1 to 52.
-        //      M. Months. Valid range for p3 is 1 to 24.
-        //      Y. Years. Valid range for p3 is 1 to 5.
-        // Character Length: 1
-        $this->paypal->addField('t3', $billed === 'monthly' ? 'M' : 'Y');
-
-        // Reattempt on failure. If a recurring payment fails, PayPal attempts to collect the payment two more
-        // times before canceling the subscription.
-        // Valid value is:
-        //      0. Do not reattempt failed recurring payments.
-        //      1. Reattempt failed recurring payments before canceling.
-        // Default is 1. Character Length: 1
-        // For more information, see Reattempting Failed Recurring Payments with Subscribe Buttons.
-        // https://developer.paypal.com/api/nvp-soap/paypal-payments-standard/integration-guide/html-example-subscribe#reattempted-payments
-        $this->paypal->addField('sra', '1');
-
-        // User-defined field which PayPal passes through the system and returns to you in your merchant payment
-        // notification email. Subscribers do not see this field.
-        // Character Length: 255
-        $this->paypal->addField('custom', auth()->user()->HouseId);
-
-
-        return $this->paypal->submitPaypal(); // submit the fields to paypal
+        return redirect()->route('dash.plans-and-pricing')->with('status', 'Sorry we are unable to process your subscription right now please try again later or contact with you vendor.');
     }
 
     /**
      * @return string
      */
-    public function succeeded($plan, $billed, House $house)
+    public function succeeded()
     {
-        $house->update(['Status' => 'A', 'plan' => $plan, 'billed' => $billed]);
-
-        return redirect()->route('dash.plans-and-pricing')->with('status', "Thank you for your order! You have been successfully subscribed $plan plan");
+        return redirect()->route('dash.plans-and-pricing')->with('status', "Thank you for your order! You have been successfully subscribed");
     }
 
-    public function canceled($plan, $billed, House $house)
+    public function canceled()
     {
-        $house->update(['Status' => 'C', 'plan' => null]);
-
         return redirect()->route('dash.plans-and-pricing')->with('status', 'You have been cancelled order.');
     }
 
@@ -196,7 +115,7 @@ class PaypalController extends Controller
      *
      * @return string
      */
-    public function ipn()
+    public function ipn(Request $request)
     {
         if ($this->paypal->validateIpn()) {
 
@@ -409,6 +328,5 @@ class PaypalController extends Controller
                 House::where('HouseID', $custom)->update(['Status' => 'C']);
             }
         }
-
     }
 }
