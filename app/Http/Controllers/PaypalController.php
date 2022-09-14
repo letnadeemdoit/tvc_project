@@ -48,12 +48,13 @@ class PaypalController extends Controller
      */
     public function process($plan, $billed)
     {
+        $mode = config('paypal.mode');
+
         abort_if(
-            !array_key_exists($plan, User::PLANS) || !in_array($billed, ['monthly', 'yearly']),
+            !array_key_exists($plan, config("paypal.$mode.plans")) || !in_array($billed, ['monthly', 'yearly']),
             404
         );
 
-        $mode = config('paypal.mode');
 
         try {
             $paypalSubscription = $this->paypal->createSubscription([

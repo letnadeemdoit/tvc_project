@@ -28,25 +28,7 @@ class User extends Authenticatable implements Auditable
     const ROLE_GUEST = 'Guest';
 
     const PAYPAL_PRODUCT_ID = 'PROD-5NU26276VJ273353M';
-    const PAYPAL_BASIC_PLAN_ID = 'P-7K271521FJ429705GMMEF62A';
 
-    const PLANS = [
-        'basic' => [
-            'title' => 'Basic',
-            'monthly' => 05.00,
-            'yearly' => 40.00,
-        ],
-        'standard' => [
-            'title' => 'Standard',
-            'monthly' => 07.00,
-            'yearly' => 60.00,
-        ],
-        'premium' => [
-            'title' => 'Premium',
-            'monthly' => 09.00,
-            'yearly' => 80.00,
-        ],
-    ];
     /**
      * Attribute modifiers.
      *
@@ -339,5 +321,9 @@ class User extends Authenticatable implements Auditable
         'is_confirmed',
     ];
 
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class, 'user_id', 'user_id')->where('house_id', $this->HouseId)->where('status', 'ACTIVE');
+    }
 
 }
