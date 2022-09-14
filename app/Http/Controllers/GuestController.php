@@ -158,6 +158,8 @@ class GuestController extends Controller
         $post_string .= "cmd=_notify-validate"; // append ipn command
 
         $ipnData = $request->post();
+        $ipnData['cmd'] = '_notify-validate';
+
         $response = null;
 
         if (is_array($ipnData)) {
