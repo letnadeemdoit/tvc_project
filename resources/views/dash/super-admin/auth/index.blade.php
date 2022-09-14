@@ -76,10 +76,6 @@
                                 <h1 class="display-5 poppins-bold">Super Admin <span
                                         class="text-primary">Login</span></h1>
                                 {{--<p>Don't have an account yet? <a class="link" href="./authentication-signup-basic.html">Sign up here</a></p>--}}
-
-                                @if(Session::has('error'))
-                                    <p class="mb-0 mt-2 py-2 alert {{ Session::get('alert-danger', 'alert-danger') }}">{{ Session::get('error') }}</p>
-                                @endif
                             </div>
 
                             <!-- Form -->
@@ -98,6 +94,12 @@
                                 <span class="text-danger fw-semi-bold"
                                       style="font-size: 13px !important;">{{$message}}</span>
                                 @enderror
+
+                                @if(Session::has('error'))
+                                    <span class="fw-semi-bold"
+                                          style="font-size: 13px !important;">{{ Session::get('error') }}</span>
+                                @endif
+
 
                             </div>
                             <!-- End Form -->
