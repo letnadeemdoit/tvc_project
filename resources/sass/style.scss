@@ -283,6 +283,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         }
     }
 }
+.text-secondary-light{
+    color: #606368;
+}
 .footer-text{
     img{
         &:hover{
@@ -1214,7 +1217,7 @@ header{
         padding-top: 30px !important;
     }
     .middle-li-card-footer{
-        margin: 0 37px !important;
+        margin: 0 34px !important;
     }
 }
 @media only screen and (max-width:767px) {
@@ -1437,7 +1440,7 @@ header{
         min-height: 175px !important;
     }
     .middle-li-card-footer{
-        margin: 0 65px !important;
+        margin: 0 60px !important;
     }
 }
 @media only screen and (max-width:430px){
