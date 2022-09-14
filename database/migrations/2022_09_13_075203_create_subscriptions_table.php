@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->foreignId('house_id');
             $table->string('subscription_id')->comment('Paypal subscription id');
             $table->string('plan_id')->comment('Paypal plan id');
+            $table->string('plan', 30);
             $table->string('period', 30);
             $table->string('status', 100);
             $table->timestamps();
