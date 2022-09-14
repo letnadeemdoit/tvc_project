@@ -149,23 +149,27 @@ class GuestController extends Controller
 
         $ipnData = $request->post();
         $ipnData['cmd'] = '_notify-validate';
+        $ipnData['item_name'] = uniqid();
 
         if (is_array($ipnData)) {
             $response = null;
+
             if (config('paypal.mode') === 'sandbox') {
                 $response = Http::send('POST', 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr', [
                     'form_params' => $ipnData
                 ]);
             } else {
-                $response = Http::post('https://ipnpb.paypal.com/cgi-bin/webscr', $ipnData);
+                $response = Http::send('POST','https://ipnpb.paypal.com/cgi-bin/webscr', [
+                    'form_params' => $ipnData
+                ]);
             }
 
             if ($response->ok()) {
                 $body = $response->body();
                 Log::info($body);
-                if ($response->body() === 'VERIFIED') {
+                if ($body === 'VERIFIED') {
                     Log::info('Status', ['VERIFIED']);
-                } elseif ($response->body() === 'INVALID') {
+                } elseif ($body === 'INVALID') {
                     Log::info('Status', ['INVALID']);
                 }
             }
