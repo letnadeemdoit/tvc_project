@@ -46,14 +46,18 @@ class HouseDetails extends Component
 
         $this->house = $this->user->house;
 
+        $country_id = Country::where('name',$this->house['country'])->first();
+        $state_id = State::where('name',$this->house['State'])->first();
+        $city_id = City::where('name',$this->house['City'])->first();
+
         $this->state = [
             'name' => $this->house->HouseName,
             'primary_house_name' => $this->house->primary_house_name,
             'address_1' => $this->house->Address1,
             'address_2' => $this->house->Address2,
-            'country_id' => $this->house->country,
-            'state_id' => $this->house->State,
-            'city_id' => $this->house->City,
+            'country_id' => $country_id['id'] ?? null,
+            'state_id' => $state_id['id'] ?? null,
+            'city_id' => $city_id['id'] ?? null,
             'zipcode' => $this->house->ZipCode,
             'home_phone' => $this->house->HousePhone,
             'fax' => $this->house->Fax,
@@ -92,14 +96,18 @@ class HouseDetails extends Component
             'zipcode' => ['nullable', 'string', 'max:10'],
         ])->validateWithBag('saveHouseDetails');
 
+        $country_name = Country::where('id',$inputs['country_id'])->first();
+        $state_name = State::where('id',$inputs['state_id'])->first();
+        $city_name = City::where('id',$inputs['city_id'])->first();
+
         $this->house->fill([
             'HouseName' => $this->state['name'],
             'primary_house_name' => $this->state['primary_house_name'],
             'Address1' => $this->state['address_1'] ?? null,
             'Address2' => $this->state['address_2'] ?? null,
-            'country' => $this->state['country_id'] ?? null,
-            'State' => $this->state['state_id'] ?? null,
-            'City' => $this->state['city_id'] ?? null,
+            'country' => $country_name['name'] ?? null,
+            'State' => $state_name['name'] ?? null,
+            'City' => $city_name['name'] ?? null,
             'ZipCode' => $this->state['zipcode'] ?? null,
         ])->save();
 

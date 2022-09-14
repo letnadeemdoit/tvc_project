@@ -38,7 +38,7 @@
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
                         @if(!is_basic_subscribed())
-                            <a href="{{ route('dash.paypal.process', 'basic') }}"
+                            <a href="{{ route('dash.paypal.process', ['basic', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif(is_basic_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
@@ -76,7 +76,7 @@
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
                         @if(!is_standard_subscribed())
-                            <a href="{{ route('dash.paypal.process', 'standard') }}"
+                            <a href="{{ route('dash.paypal.process', ['standard', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif(is_standard_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
@@ -115,7 +115,7 @@
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
                         @if(!is_premium_subscribed())
-                            <a href="{{ route('dash.paypal.process', 'premium') }}"
+                            <a href="{{ route('dash.paypal.process', ['premium', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif(is_premium_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
@@ -155,7 +155,7 @@
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
                         @if(!is_basic_subscribed())
-                            <a href="{{ route('dash.paypal.process', 'basic') }}"
+                            <a href="{{ route('dash.paypal.process', ['basic', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif(is_basic_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
@@ -193,7 +193,7 @@
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
                         @if(!is_standard_subscribed())
-                            <a href="{{ route('dash.paypal.process', 'standard') }}"
+                            <a href="{{ route('dash.paypal.process', ['standard', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif(is_standard_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"
@@ -232,7 +232,7 @@
                 <div class="card-footer border-0 text-center">
                     <div class="d-grid mb-2">
                         @if(!is_premium_subscribed())
-                            <a href="{{ route('dash.paypal.process', 'premium') }}"
+                            <a href="{{ route('dash.paypal.process', ['premium', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif(is_premium_subscribed())
                             <a href="https://www.{{ config('services.paypal.mode') === 'sandbox' ? 'sandbox.' : '' }}paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=payment%thevacationcalendar%2ecom"

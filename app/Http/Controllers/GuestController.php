@@ -6,25 +6,38 @@ use App\Models\Blog\Blog;
 use App\Models\GuestBook;
 use App\Models\ICal;
 use App\Models\Photo\Album;
-use App\Notifications\ContactUsNotification;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Validator;
+use Srmklive\PayPal\Facades\PayPal;
 
 class GuestController extends Controller
 {
+    /**
+     * Welcome
+     * @return mixed
+     */
     public function welcome()
     {
         return view('welcome');
     }
 
+    /**
+     * Contact
+     * @return mixed
+     */
     public function contact()
     {
         return view('contact');
     }
 
+    /**
+     * Contact Email
+     * @param Request $request
+     * @return mixed
+     */
     public function contactMail(Request $request)
     {
         $validated = $request->validate([
@@ -51,28 +64,49 @@ class GuestController extends Controller
         return back()->with('success', 'Your Query has been Sent Successfully!');
     }
 
+    /**
+     * Policies
+     * @return mixed
+     */
     public function policies()
     {
         return view('policies');
     }
 
+    /**
+     * Help
+     * @return mixed
+     */
     public function help()
     {
         return view('help');
     }
 
+    /**
+     * Blog
+     * @return mixed
+     */
     public function blog()
     {
 
         return view('blog');
     }
 
+    /**
+     * Blog Detals
+     * @param $BlogId
+     * @return mixed
+     */
     public function blogDetails($BlogId)
     {
         $blogDetail = Blog::where('BlogId', $BlogId)->first();
         return view('blog-details', compact('blogDetail'));
     }
 
+    /**
+     * Privacy Policy
+     * @return mixed
+     */
     public function privacyPolicy()
     {
 
@@ -80,46 +114,82 @@ class GuestController extends Controller
 
     }
 
+    /**
+     * Single Album
+     * @return mixed
+     */
     public function singleAlbum()
     {
         return view('photo-album-detail');
     }
 
+    /**
+     * Guest Login
+     * @return mixed
+     */
     public function guestLogin()
     {
         return view('guest-login');
     }
 
+    /**
+     * Login Account
+     * @return mixed
+     */
     public function loginAccount()
     {
         return view('login-account');
     }
 
+    /**
+     * Search House
+     * @return mixed
+     */
     public function searchHouse()
     {
         return view('search-house');
     }
 
+    /**
+     * Photo Gallery View
+     * @return mixed
+     */
     public function photoGalleryView()
     {
         return view('photo-album');
     }
 
+    /**
+     * Bulletin Board
+     * @return mixed
+     */
     public function bulletinBoard()
     {
         return view('bulletinBoard');
     }
 
+    /**
+     * Guest Book Frontend
+     * @return mixed
+     */
     public function guestBookFrontend()
     {
         return view('guest-book-frontend');
     }
 
+    /**
+     * Local Guide
+     * @return mixed
+     */
     public function localGuide()
     {
         return view('local-guide');
     }
 
+    /**
+     * Photo Album
+     * @return mixed
+     */
     public function photoAlbum()
     {
 
@@ -128,12 +198,21 @@ class GuestController extends Controller
         return view('photo-album', compact('photoAlbum'));
     }
 
+    /**
+     * Guest Book
+     * @return mixed
+     */
     public function guestBook()
     {
         $guestbook = GuestBook::paginate(10);
         return view('guest-book', compact('guestbook'));
     }
 
+    /**
+     * ICal
+     * @param ICal $ical
+     * @return mixed
+     */
     public function ical(ICal $ical)
     {
         return response($ical->toICSUrl())->withHeaders([
@@ -142,19 +221,77 @@ class GuestController extends Controller
         ]);
     }
 
-    public function paypalIPN(Request $request) {
-        Log::info('Paypal Web Hook: ', $request->all());
+    /**
+     * Paypal IPN
+     * @param Request $request
+     * @return mixed
+     */
+    public function paypalIPN(Request $request)
+    {
+        $ipnData = $request->post();
+        Log::channel('paypal')->info('IPN Data: ', $ipnData);
 
-        // generate the post string from the _POST vars aswell as load the
-        // _POST vars into an arry so we can play with them from the calling
-        // script.
-        $post_string = '';
-        foreach ($request->all() as $field => $value) {
-            $this->ipnData["$field"] = $value;
-            $post_string .= $field . '=' . urlencode($value) . '&';
+        $ipnData['cmd'] = '_notify-validate';
+
+        if (is_array($ipnData)) {
+            $response = null;
+
+            if (config('paypal.mode') === 'sandbox') {
+                $response = Http::send('POST', 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr', [
+                    'form_params' => $ipnData
+                ]);
+            } else {
+                $response = Http::send('POST', 'https://ipnpb.paypal.com/cgi-bin/webscr', [
+                    'form_params' => $ipnData
+                ]);
+            }
+
+            if ($response->ok()) {
+                $body = $response->body();
+                if ($body === 'VERIFIED') {
+                    Log::channel('paypal')->info('IPN Response from Paypal Server: ', ['VERIFIED']);
+                    $paypal = PayPal::setProvider();
+                    $paypal->getAccessToken();
+
+                    $paypalSubscription = $paypal->showSubscriptionDetails($ipnData['recurring_payment_id']);
+
+                    if (isset($paypalSubscription['error'])) {
+                        Log::channel('paypal')->error('IPN Update Subscription: ', [$paypalSubscription['error']]);
+//                        [
+//                            "error" => [
+//                                "name" => "RESOURCE_NOT_FOUND",
+//                                "message" => "The specified resource does not exist.",
+//                                "debug_id" => "715c50ff50877",
+//                                "details" => [
+//                                    [
+//                                        "issue" => "INVALID_RESOURCE_ID",
+//                                        "description" => "Requested resource ID was not found.",
+//                                    ],
+//                                ],
+//                                "links" => [
+//                                    [
+//                                        "href" => "https://developer.paypal.com/docs/api/v1/billing/subscriptions#RESOURCE_NOT_FOUND",
+//                                        "rel" => "information_link",
+//                                        "method" => "GET",
+//                                    ],
+//                                ],
+//                            ],
+//                        ]
+                    } else {
+                        Log::channel('paypal')->info('IPN Subscription Details: ', $paypalSubscription);
+                        $subscription = Subscription::where('subscription_id', $paypalSubscription['id'])->update([
+                            'status' => $paypalSubscription['status']
+                        ]);
+
+                        Log::channel('paypal')->info('IPN Update Subscription Successfully: ', $subscription);
+                    }
+
+
+                } elseif ($body === 'INVALID') {
+                    Log::channel('paypal')->info('IPN Response from Paypal Server: ', ['INVALID']);
+                }
+            }
         }
-
-        $post_string .= "cmd=_notify-validate"; // append ipn command
 
         return response('');
     }

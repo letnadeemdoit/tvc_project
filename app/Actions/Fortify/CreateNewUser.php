@@ -4,6 +4,9 @@ namespace App\Actions\Fortify;
 
 use App\Models\House;
 use App\Models\User;
+use App\Models\World\City;
+use App\Models\World\Country;
+use App\Models\World\State;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -39,12 +42,17 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
+        $country_name = Country::where('id',$input['country_id'])->first();
+        $state_name = State::where('id',$input['state_id'])->first();
+        $city_name = City::where('id',$input['city_id'])->first();
+
+
         $house = House::create([
             'HouseName' => $input['HouseName'],
             'primary_house_name' => $input['HouseName'],
-            'country' => $input['country_id'],
-            'State' => $input['city_id'],
-            'City' => $input['city_id'],
+            'country' => $country_name['name'] ?? null,
+            'State' => $state_name['name'] ?? null,
+            'City' => $city_name['name'] ?? null,
             'ZipCode' => $input['zipcode'],
             'ReferredBy' => $input['Referral_paypal_account'],
         ]);

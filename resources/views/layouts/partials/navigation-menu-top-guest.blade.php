@@ -86,7 +86,7 @@
 
                    @auth
 
-                        @if(!auth()->user()->is_guest && !auth()->user()->is_owner && !auth()->user()->is_super_admin)
+                        @if(!auth()->user()->is_guest && !auth()->user()->is_owner && !auth()->user()->is_super_admin && !auth()->user()->is_admin)
                             <li class="nav-item my-1 my-lg-0">
                                 <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
                                    href="{{route('guest.welcome')}}">HOME</a>
