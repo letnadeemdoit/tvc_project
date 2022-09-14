@@ -42,6 +42,12 @@ class HouseDetails extends Component
         return view('dash.settings.house-settings.house-details',compact('countries','states','cities'));
     }
 
+//    public function updatedState()
+//    {
+//        $this->state['state_id'] = '';
+//        $this->state['city_id'] = '';
+//    }
+
     public function mount(){
 
         $this->house = $this->user->house;
