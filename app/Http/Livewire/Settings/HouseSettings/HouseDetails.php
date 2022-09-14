@@ -78,8 +78,6 @@ class HouseDetails extends Component
             unset($inputs['image']);
         }
 
-
-
         Validator::make($inputs, [
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'primary_house_name' => ['nullable', 'string', 'max:100'],
@@ -101,8 +99,6 @@ class HouseDetails extends Component
         $country_name = Country::where('id',$inputs['country_id'])->first();
         $state_name = State::where('id',$inputs['state_id'])->first();
         $city_name = City::where('id',$inputs['city_id'])->first();
-
-//        dd($country_name['name'] . ' ' . $state_name['name']. ' '. $city_name['name']);
 
         $this->house->fill([
             'HouseName' => $this->state['name'],

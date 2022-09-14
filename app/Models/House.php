@@ -85,7 +85,7 @@ class House extends Model
     public function getAddressAttribute()
     {
 
-        return implode(', ',  array_filter([$this->Address1, $this->Address2,$this->country, $this->City, $this->State, $this->ZipCode]));
+        return implode(', ',  array_filter([$this->Address1, $this->Address2,$this->country,$this->State, $this->City, $this->ZipCode]));
     }
 
     public function photos()

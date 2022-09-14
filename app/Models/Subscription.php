@@ -19,6 +19,7 @@ class Subscription extends Model
         'house_id',
         'subscription_id',
         'plan_id',
+        'plan',
         'period',
         'status'
     ];
