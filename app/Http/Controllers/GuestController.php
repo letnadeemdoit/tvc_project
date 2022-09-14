@@ -256,6 +256,7 @@ class GuestController extends Controller
                     $paypalSubscription = $paypal->showSubscriptionDetails($ipnData['recurring_payment_id']);
 
                     if (isset($paypalSubscription['error'])) {
+                        Log::channel('paypal')->error('IPN Update Subscription: ', [$paypalSubscription['error']]);
 //                        [
 //                            "error" => [
 //                                "name" => "RESOURCE_NOT_FOUND",
@@ -277,9 +278,12 @@ class GuestController extends Controller
 //                            ],
 //                        ]
                     } else {
-                        Subscription::where('subscription_id', $paypalSubscription['id'])->update([
+                        Log::channel('paypal')->info('IPN Subscription Details: ', $paypalSubscription);
+                        $subscription = Subscription::where('subscription_id', $paypalSubscription['id'])->update([
                             'status' => $paypalSubscription['status']
                         ]);
+
+                        Log::channel('paypal')->info('IPN Update Subscription Successfully: ', $subscription);
                     }
 
 
