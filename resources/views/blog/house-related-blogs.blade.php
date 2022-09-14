@@ -10,12 +10,21 @@
             <div class="w-90 mx-auto margin-negative bg-white position-relative z-index-2 px-3 py-3 rounded-1" style="min-height: 150px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="user-img d-flex align-items-center">
-                        <img
-                            src="{{ $blog->user->profile_photo_url }}"
-                            class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ $blog->user->name ?? '' }}"
-                            style="width:50px !important;height:50px !important;"
-                        >
+                        @if(!empty($blog->user->profile_photo_url) && !is_null($blog->user->profile_photo_url))
+                            <img
+                                src="{{ $blog->user->profile_photo_url }}"
+                                class="avatar-initials img-fluid position-relative rounded-circle"
+                                alt="{{ $blog->user->name ?? '' }}"
+                                style="width:50px !important;height:50px !important;"
+                            >
+                        @else
+                            <img
+                                src="/images/blog-images/beach.png"
+                                class="avatar-initials img-fluid position-relative rounded-circle"
+                                alt="..."
+                                style="width:50px !important;height:50px !important;"
+                            >
+                        @endif
 
                         <div class="ps-3">
                             <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::upper('By '.$blog->Author) }}</h5>
