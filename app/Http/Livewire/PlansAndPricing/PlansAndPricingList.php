@@ -11,7 +11,8 @@ class PlansAndPricingList extends Component
 
     public $subscription;
 
-    public function mount() {
+    public function mount()
+    {
         $this->subscription = $this->user->subscription;
     }
 
@@ -20,7 +21,11 @@ class PlansAndPricingList extends Component
         return view('dash.plans-and-pricing.plans-and-pricing-list');
     }
 
-    public function cancelSubscription() {
+    public function cancelSubscription()
+    {
         $this->subscription->cancel();
+
+        session()->flash('status', 'You have been unsubscribed successfully.');
+        $this->redirect(route('dash.plans-and-pricing'));
     }
 }
