@@ -143,26 +143,15 @@ class GuestController extends Controller
         ]);
     }
 
-    public function paypalIPN(Request $request) {
+    public function paypalIPN(Request $request)
+    {
         Log::info('Paypal Web IPN: ', $request->all());
-
-        // generate the post string from the _POST vars aswell as load the
-        // _POST vars into an arry so we can play with them from the calling
-        // script.
-        $post_string = '';
-        foreach ($request->all() as $field => $value) {
-            $this->ipnData["$field"] = $value;
-            $post_string .= $field . '=' . urlencode($value) . '&';
-        }
-
-        $post_string .= "cmd=_notify-validate"; // append ipn command
 
         $ipnData = $request->post();
         $ipnData['cmd'] = '_notify-validate';
 
-        $response = null;
-
         if (is_array($ipnData)) {
+            $response = null;
             if (config('paypal.mode') === 'sandbox') {
                 $response = Http::send('POST', 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr', [
                     'form_params' => $ipnData
@@ -171,7 +160,11 @@ class GuestController extends Controller
                 $response = Http::post('https://ipnpb.paypal.com/cgi-bin/webscr', $ipnData);
             }
 
-            Log::info('IPN Response: ', [$response->body()]);
+            if ($response->body() === 'VERIFIED') {
+                Log::info('Status', ['VERIFIED']);
+            } elseif ($response->body() === 'INVALID') {
+                Log::info('Status', ['INVALID']);
+            }
         }
         return response('');
     }
