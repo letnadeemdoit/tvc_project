@@ -70,7 +70,7 @@
                         selector: 'textarea#board_textarea',
                         plugins: 'fullscreen code lists emoticons insertdatetime',
   toolbar: 'insertfile undo redo | bold italic underline | styleselect fontfamily fontsize blocks lineheight emoticons insertdatetime alignleft aligncenter alignright alignjustify | numlist bullist outdent indent fullscreen forecolor backcolor',
-  insertdatetime_formats: ['%H:%M:%S', '%Y-%m-%d', '%I:%M:%S %p', '%D', '%y', '%Y', '%m', '%B', '%b', '%d', '%A', '%a','%H', '%I', '%M' , '%S', '%p', '%%' ],
+  insertdatetime_formats: [ '%H:%M:%S', '%I:%M:%S %p', '%Y-%m-%d', '%D' ],
   toolbar_mode: 'sliding',
   insertdatetime_formats: ['%H:%M:%S', '%Y-%m-%d', '%I:%M:%S %p', '%D', '%y', '%Y', '%m', '%B', '%b', '%d', '%A', '%a','%H', '%I', '%M' , '%S', '%p', '%%' ],
   /* enable title field in the Image dialog*/
