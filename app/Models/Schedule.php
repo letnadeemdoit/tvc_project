@@ -12,6 +12,16 @@ class Schedule extends Model
     protected $table = 'Schedule';
 
     /**
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'ScheduleId';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var string[]
