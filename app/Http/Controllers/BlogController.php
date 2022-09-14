@@ -18,8 +18,9 @@ class BlogController extends Controller
     public function show(Request $request, $post) {
 
         $user = $request->user();
-        $post = Blog::where('slug', $post)->where('HouseId', $user->HouseId)->findOrFail();
+        $post = Blog::where('slug', $post)->where('HouseId', $user->HouseId)->first();
 
+        abort_if(!$post, 404);
 
         $existing_views = 0;
 
