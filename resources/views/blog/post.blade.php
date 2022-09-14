@@ -68,12 +68,27 @@
 {{--                            alt="Image"--}}
 {{--                            width="60" height="60" style="object-fit: cover"--}}
 {{--                        />--}}
-                        <img
-                            src="{{ $post->user->profile_photo_url }}"
-                            class="avatar-initials img-fluid position-relative rounded-circle"
-                            alt="{{ $post->user->name ?? '' }}"
-                            style="width:60px !important;height:60px !important;"
-                        >
+{{--                        <img--}}
+{{--                            src="{{ $post->user->profile_photo_url }}"--}}
+{{--                            class="avatar-initials img-fluid position-relative rounded-circle"--}}
+{{--                            alt="{{ $post->user->name ?? '' }}"--}}
+{{--                            style="width:60px !important;height:60px !important;"--}}
+{{--                        >--}}
+                        @if(!empty($post->user->profile_photo_url) && !is_null($post->user->profile_photo_url))
+                            <img
+                                src="{{ $post->user->profile_photo_url }}"
+                                class="avatar-initials img-fluid position-relative rounded-circle"
+                                alt="{{ $post->user->name ?? '' }}"
+                                style="width:60px !important;height:60px !important;"
+                            >
+                        @else
+                            <img
+                                src="/images/blog-images/beach.png"
+                                class="avatar-initials img-fluid position-relative rounded-circle"
+                                alt="..."
+                                style="width:60px !important;height:60px !important;"
+                            >
+                        @endif
 
                     </div>
                     <div class="flex-grow-1 ms-3">
