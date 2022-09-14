@@ -32,7 +32,7 @@
                         @endif
 
                         <div class="ps-3">
-                            <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</h5>
+                            <h5 class="mb-1 fw-500" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</h5>
                             <p class="mb-0 fs-13 txt-clr">{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</p>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
 {{--                    </div>--}}
                 </div>
                 <div class="paragraph-text pt-3 text-black">
-                    <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::limit($post->Subject, 55) }}</h5>
+                    <h5 class="mb-1 fw-500" style="color: #2A3342">{{ Str::limit($post->Subject, 55) }}</h5>
 {{--                    <p>{!!  (Str::limit(strip_tags($post->Contents), 80))  !!}</p>--}}
                 </div>
             </div>
