@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Srmklive\PayPal\Facades\PayPal;
 
 class Subscription extends Model
 {
@@ -23,4 +24,11 @@ class Subscription extends Model
         'period',
         'status'
     ];
+
+    public function cancel()
+    {
+        $paypal = PayPal::setProvider();
+        $paypal->getAccessToken();
+        $paypal->cancelSubscription($this->subscription_id, '-');
+    }
 }

@@ -140,8 +140,7 @@ EOS
      *
      * @return string
      */
-    public
-    function message()
+    public function message()
     {
         if ($this->message) {
             return $this->message;
