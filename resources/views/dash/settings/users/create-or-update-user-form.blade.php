@@ -13,6 +13,7 @@
             ></button>
         </div>
         <form wire:submit.prevent="saveUserCU" class="modal-body" x-data="{role: '{{ $state['role'] ?? \App\Models\User::ROLE_OWNER }}'}">
+{{--            <x-jet-validation-errors/>--}}
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label class="form-label" for="user_name">Username:</label>
@@ -121,7 +122,7 @@
                         </a>
                     </div>
                     @error('password')
-                    <span class="invalid-feedback">{{ $message }}</span>
+                    <span class="invalid-feedback d-block">{{ $message }}</span>
                     @enderror
                 </div>
 
@@ -147,7 +148,7 @@
                     </div>
 
                     @error('password_confirmation')
-                    <span class="invalid-feedback">{{ $message }}</span>
+                    <span class="invalid-feedback d-block">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
