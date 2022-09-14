@@ -95,10 +95,10 @@
 
                     @else
 
-{{--                    <li class="nav-item my-1 my-lg-0">--}}
-{{--                        <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"--}}
-{{--                           href="{{route('guest.welcome')}}">HOME</a>--}}
-{{--                    </li>--}}
+                    <li class="nav-item my-1 my-lg-0">
+                        <a class="nav-link {{ request()->routeIs('guest.welcome') ? 'active' : '' }}"
+                           href="{{route('guest.welcome')}}">HOME</a>
+                    </li>
 
 
                    @endauth
