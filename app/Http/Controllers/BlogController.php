@@ -15,13 +15,16 @@ class BlogController extends Controller
             'user' => $request->user()
         ]);
     }
-    public function show(Request $request, Blog $post) {
+    public function show(Request $request, $post) {
 
         $user = $request->user();
+        $post = Blog::where('slug', $post)->where('HouseId', $user->HouseId)->first();
+
+        abort_if(!$post, 404);
 
         $existing_views = 0;
 
-        $blog_views = BlogViews::where('viewable_id' ,$post->BlogId)->distinct(['ip_address','user_id'])->count();
+        $blog_views = BlogViews::where('viewable_id' , $post->BlogId)->distinct(['ip_address','user_id'])->count();
         if ($blog_views){
             $existing_views = $blog_views;
         }
