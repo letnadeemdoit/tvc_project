@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Photo\Photo;
 use App\Models\Traits\HasFile;
+use App\Models\World\Country;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -83,7 +84,8 @@ class House extends Model
 
     public function getAddressAttribute()
     {
-        return implode(', ',  array_filter([$this->Address1, $this->Address2, $this->City, $this->State, $this->ZipCode]));
+
+        return implode(', ',  array_filter([$this->Address1, $this->Address2,$this->country, $this->City, $this->State, $this->ZipCode]));
     }
 
     public function photos()

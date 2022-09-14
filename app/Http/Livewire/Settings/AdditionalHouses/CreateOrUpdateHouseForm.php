@@ -45,14 +45,20 @@ class CreateOrUpdateHouseForm extends Component
         $this->house = $house;
         $this->reset(['state', 'file']);
 
+//        dd($this->house);
+
+        $country_id = Country::where('name',$this->house['country'])->first();
+        $state_id = State::where('name',$this->house['State'])->first();
+        $city_id = City::where('name',$this->house['City'])->first();
+
         if ($house->HouseID) {
             $this->state = [
                 'name' => $house->HouseName,
                 'address_1' => $house->Address1,
                 'address_2' => $house->Address2,
-                'country_id' => $house->country,
-                'state_id' => $house->State,
-                'city_id' => $house->City,
+                'country_id' => $country_id['id'] ?? null,
+                'state_id' => $state_id['id'] ?? null,
+                'city_id' => $city_id['id'] ?? null,
                 'zipcode' => $house->ZipCode,
                 'home_phone' => $house->HousePhone,
                 'fax' => $house->Fax,
@@ -97,14 +103,18 @@ class CreateOrUpdateHouseForm extends Component
 
         }
 
+        $country_name = Country::where('id',$inputs['country_id'])->first();
+        $state_name = State::where('id',$inputs['state_id'])->first();
+        $city_name = City::where('id',$inputs['city_id'])->first();
+
         $this->house->fill([
             'HouseName' => $this->state['name'],
 //            'parent_id' => $this->user->primary_account == 1 ? $this->user->HouseId : null,
             'Address1' => $this->state['address_1'] ?? null,
             'Address2' => $this->state['address_2'] ?? null,
-            'country' => $this->state['country_id'] ?? null,
-            'State' => $this->state['state_id'] ?? null,
-            'City' => $this->state['city_id'] ?? null,
+            'country' => $country_name['name'] ?? null,
+            'State' => $state_name['name'] ?? null,
+            'City' => $city_name['name'] ?? null,
             'ZipCode' => $this->state['zipcode'] ?? null,
         ])->save();
 
