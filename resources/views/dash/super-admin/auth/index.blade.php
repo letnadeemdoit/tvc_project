@@ -97,7 +97,7 @@
 
                                 @if(Session::has('error'))
                                     <span class="fw-semi-bold"
-                                          style="font-size: 13px !important;">{{ Session::get('error') }}</span>
+                                          style="font-size: 13px !important;color: #ff0000">{{ Session::get('error') }}</span>
                                 @endif
 
 
