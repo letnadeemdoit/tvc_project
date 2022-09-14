@@ -227,7 +227,7 @@ class GuestController extends Controller
     public function paypalIPN(Request $request)
     {
         $ipnData = $request->post();
-        Log::channel('paypal')->info('IPN', $ipnData);
+        Log::channel('paypal')->info('IPN Data: ', $ipnData);
 
         $ipnData['cmd'] = '_notify-validate';
 
@@ -247,9 +247,9 @@ class GuestController extends Controller
             if ($response->ok()) {
                 $body = $response->body();
                 if ($body === 'VERIFIED') {
-                    Log::channel('paypal')->info('IPN', ['VERIFIED']);
+                    Log::channel('paypal')->info('IPN Response from Paypal Server: ', ['VERIFIED']);
                 } elseif ($body === 'INVALID') {
-                    Log::channel('paypal')->info('IPN', ['INVALID']);
+                    Log::channel('paypal')->info('IPN Response from Paypal Server: ', ['INVALID']);
                 }
             }
         }
