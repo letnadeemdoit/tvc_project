@@ -18,12 +18,12 @@
         <div class="position-relative d-flex align-items-center hero-image">
             <div class="container text-center text-md-start">
                 <p class="mb-1 display-4 text-primary font-vintage">Keep track of when</p>
-                <h1 class="hero-text py-4 poppins-bold">Your Vacation <br> Home is in Use</h1>
+                <h1 class="hero-text py-4 poppins-bold text-dark-blue">Your Vacation <br> Home is in Use</h1>
                 <a href="{{route('register')}}" class="btn btn-lg btn-signup btn-primary shadow-lg my-2">GET STARTED</a>
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.svg"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow" />
-                    <p class="display-4 font-poppins text-dark fst-italic pt-3">Just Over<span class="text-primary fw-bolder"> $3 </span><span class="fs-6 color-secondary">per
+                    <p class="display-4 font-poppins text-dark-blue fst-italic pt-3">Just Over<span class="text-primary fw-bolder"> $3 </span><span class="fs-6 color-secondary">per
                                 month</span></p>
                 </div>
 

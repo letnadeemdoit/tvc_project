@@ -99,7 +99,7 @@
                                                      class="rounded-3 food-item-img">
                                             </div>
                                             <div class="col-md-6 col-lg-10">
-                                                <div class="row">
+                                                <div class="row text-secondary-light">
                                                     <div
                                                         class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex align-items-center ps-3 ps-lg-5">
                                                         <span class="badge badge-blue btn-min-115 fs-4 p-2 fw-normal">Food Item :</span>
@@ -131,7 +131,7 @@
                             @foreach($shoppingItems as $dt)
                                 <div class="card mb-4 card-hover-house-items">
                                     <div class="card-body">
-                                        <div class="row justify-content-center justify-content-md-start align-items-center text-start text-lg-center">
+                                        <div class="row justify-content-center justify-content-md-start align-items-center text-start text-lg-center text-secondary-light">
                                             <div class="col-md-6 col-lg-2  border-right-solid text-center">
                                                 <img src="{{$dt->getFileUrl('image')}}" alt="{{ $dt->title ?? '' }}"
                                                      style="width: 120px;height: 75px;object-fit: cover" class="rounded-3 food-item-img">
