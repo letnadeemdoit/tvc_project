@@ -23,7 +23,7 @@
                         >
 
                         <div class="ps-3">
-                            <h5 class="mb-1 fw-500" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</h5>
+                            <h5 class="mb-1 fw-bold" style="color: #2A3342">{{ Str::upper('By '.$post->Author) }}</h5>
                             <p class="mb-0 fs-13 txt-clr">{{\Carbon\Carbon::parse($post->BlogDate)->format('d M Y')}}</p>
                         </div>
                     </div>
