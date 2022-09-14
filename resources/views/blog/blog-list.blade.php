@@ -1,7 +1,6 @@
 <div class="bg-map" style="background-position: center -19% !important;">
 <div class="container pt-55">
-  @if(isset($data))
-            <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%" id="scroller" >
+    <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%" id="scroller" >
                 @if(count($categories) >0)
                     <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                         <li class="nav-item">
@@ -40,6 +39,7 @@
                 @endif
             </div>
 
+    @if(isset($data) && count($data) > 0)
         <div class="row category-cards pt-3">
             @foreach($data as $dt)
                 <livewire:blog.post-card :post="$dt" wire:key="{{ $dt->BlogId }}"/>
@@ -47,15 +47,15 @@
 
         </div>
 
-        @if(isset($data) && count($data) >12 )
+        @if(count($data) >12 )
             <div class="text-center pt-5 padding-bottom">
                 <a class="btn btn-lg btn-soft-primary px-5" id="next">See more</a>
             </div>
         @endif
 
-  @else
+    @else
         @include('partials.no-data-available',['title' => 'Blog'])
-  @endif
+    @endif
 </div>
 </div>
 @push('scripts')

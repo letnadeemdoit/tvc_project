@@ -1,9 +1,9 @@
-<section class="">
+<section class="pt-55">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
                 <img src="{{asset('/images/blog-images/no-task.svg')}}" class="img-fluid" />
-                <h3 class="pt-3">Stay Tuned</h3>
+                <h3 class="pt-3 pe-4">Stay Tuned</h3>
                 <p classs="fw-normal text-dark-blue">We haven't got any {{ $title ?? 'Data' }} Yet!</p>
             </div>
         </div>

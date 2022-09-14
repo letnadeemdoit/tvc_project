@@ -45,8 +45,8 @@
 
 
     <!-- dots img -->
-
-    <div class="container bg-waves" style="background-image: url('/images/bulletin-images/combined-shape.png'); background-repeat: no-repeat; background-size: auto; background-position: top right 150px;">
+    @if(isset($data) && count($data) > 0)
+        <div class="container bg-waves" style="background-image: url('/images/bulletin-images/combined-shape.png'); background-repeat: no-repeat; background-size: auto; background-position: top right 150px;">
         <div class="padding-bottom massonary-container">
             <div class="masonry pt-3 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
@@ -57,6 +57,9 @@
             </div>
         </div>
     </div>
+    @else
+        @include('partials.no-data-available',['title' => 'Bulletin'])
+    @endif
 </div>
 
 @push('scripts')

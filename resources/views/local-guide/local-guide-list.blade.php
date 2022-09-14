@@ -43,18 +43,19 @@
             @endif
 
         </div>
-        <div class="row mt-5">
-            @if(isset($data))
+        @if(isset($data) && count($data) > 0)
+            <div class="row mt-5">
                 @foreach($data as $dt)
                     <livewire:local-guide.post-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                 @endforeach
-            @endif
-        </div>
-
-        @if(isset($data) && count($data) >6 )
-            <div class="text-center pt-5 padding-bottom">
+            </div>
+            @if(count($data) >6 )
+                <div class="text-center pt-5 padding-bottom">
                 <a class="btn btn-lg btn-soft-primary px-5" id="next">See more</a>
             </div>
+            @endif
+        @else
+            @include('partials.no-data-available',['title' => 'Local Guide'])
         @endif
 
     </div>
