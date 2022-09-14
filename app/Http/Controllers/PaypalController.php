@@ -68,6 +68,7 @@ class PaypalController extends Controller
                     'house_id' => auth()->user()->HouseId,
                     'subscription_id' => $paypalSubscription['id'],
                     'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
+                    'period' => $billed,
                     'status' => $paypalSubscription['status'],
                 ]);
 
@@ -78,7 +79,7 @@ class PaypalController extends Controller
                     }
                 }
 
-                if($redirectTo) {
+                if ($redirectTo) {
                     return redirect($redirectTo);
                 }
             }
