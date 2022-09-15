@@ -78,6 +78,7 @@ class CreateOrUpdateLocalGuideForm extends Component
         Validator::make($inputs, [
             'title' => 'required|string|max:100',
             'category_id' => 'required',
+            'address' => 'nullable|max:255',
             'description' => 'nullable|max:4000000000',
         ])->validateWithBag('saveLocalGuideCU');
 

@@ -13,7 +13,7 @@
                     </a>
                     <div class="ps-2">
                         <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
-                        <p class="mb-0 date-fs fw-500">{{ substr($dt->address , 0 ,25) }}
+                        <p class="mb-0 date-fs fw-500">{{ substr($dt->address , 0 ,20) }}
                             <a href="https://google.com/maps?q={{$dt->address}}" class="color-blue fw-normal"
                                target="_blank">View</a>
                         </p>
@@ -22,7 +22,7 @@
                 <p class="mb-0 badge badge-primary fs-13 fw-semi-bold mt-3 mt-sm-0" style="padding: 10px">{{$dt->category->name ?? ''}}</p>
             </div>
             <div class="d-flex align-items-center justify-content-between pt-3">
-                <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>
+                <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 20) }}</p>
                 <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
             </div>
         </div>
