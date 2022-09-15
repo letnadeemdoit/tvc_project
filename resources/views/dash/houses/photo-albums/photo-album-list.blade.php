@@ -37,6 +37,7 @@
                 <tr>
                     <th style="width: 100px" class="text-center">Image</th>
                     <th>House</th>
+                    <th>Created by</th>
                     <th style="max-width: 400px">Name &amp; DESCRIPTION</th>
                     <th>Parent Album</th>
                     {{--                    <th>Description</th>--}}
@@ -60,6 +61,10 @@
 
                         </td>
                         <td class="fw-600">{{ auth()->user()->house->HouseName ?? ''}}</td>
+                        <td>
+                            {{$dt->user->first_name ?? ''}}  {{$dt->user->last_name ?? ''}}
+                            <small class="fs-10">({{$dt->user->role ?? ''}})</small>
+                        </td>
                         <td style="max-width: 400px" class="text-wrap text-break"><h5
                                 class="mb-0">{{$dt->name ?? ''}}</h5>
                             <small class="mb-0">{!! substr($dt->description,0,255) ?? '' !!}</small>
