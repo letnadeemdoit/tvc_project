@@ -77,8 +77,6 @@ class CreateOrUpdateUserForm extends Component
             $this->state['last_name'] = 'Guest';
         }
 
-
-
         Validator::make($this->state, [
             'user_name' => [
                 'required',
@@ -130,14 +128,12 @@ class CreateOrUpdateUserForm extends Component
         $createUser = $this->userCU;
 
         try {
-
             if (isset($this->state['send_email']) && $this->state['send_email'] == 1){
                 if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)){
                     $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail));
                 }
             }
-
-        }catch (\Exception $e){
+        } catch (\Exception $e){
 
         }
 

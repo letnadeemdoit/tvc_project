@@ -154,8 +154,8 @@ class ScheduleVacationForm extends Component
         if (!$endTime->exists) $endTime->save();
 
         if ($this->isCreating) {
-            $this->HouseId = $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId;
-            $this->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
+            $this->vacation->HouseId = $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId;
+            $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
         }
 
         $this->vacation->fill([

@@ -195,7 +195,7 @@
 
                                                 src="{{ $dt->user->profile_photo_url }}"
                                                 class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
-                                                alt="{{ $dt->user->name ?? '' }}"
+                                                alt="{{ $dt->user->name ?? '' }}" style="object-fit: cover;"
                                             >
                                             <div class="ps-2">
                                                 <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
