@@ -22,8 +22,4 @@
         @endif
     </x-slot>
     <livewire:settings.vacations.vacations-list :user="$user" />
-
-{{--    @if($user->is_owner)--}}
-        <livewire:settings.vacations.schedule-vacation-form :user="$user" />
-{{--    @endif--}}
 </x-settings>
