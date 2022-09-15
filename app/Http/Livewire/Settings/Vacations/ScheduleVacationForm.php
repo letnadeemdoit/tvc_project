@@ -30,12 +30,15 @@ class ScheduleVacationForm extends Component
     public $house = null;
     public $owner = null;
 
+    public $isCreating = false;
+
     protected $listeners = [
         'showVacationScheduleModal',
         'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
     ];
 
-    public function mount(){
+    public function mount()
+    {
 
         $this->model = Vacation::class;
 
@@ -59,17 +62,18 @@ class ScheduleVacationForm extends Component
         $this->emitSelf('toggle', $toggle);
 
         if ($this->vacation->VacationName) {
-
+            $this->isCreating = false;
             $this->state = [
                 'vacation_name' => $this->vacation->VacationName,
                 'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
                 'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
                 'background_color' => $this->vacation->BackGrndColor,
                 'font_color' => $this->vacation->FontColor,
-                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') .' - '.$this->vacation->end_datetime->format('m/d/Y h:i'),
+                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y h:i'),
                 'recurrence' => $this->vacation->recurrence ?? 'once'
             ];
         } else {
+            $this->isCreating = true;
             $this->state = [
                 'background_color' => '#3a87ad',
                 'font_color' => '#ffffff',
@@ -81,7 +85,7 @@ class ScheduleVacationForm extends Component
                     $initialDatetime = Carbon::parse($initialDate);
                     $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
                     $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
-                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' .$initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' . $initialDatetime->format('m/d/Y h:i');
                 } catch (\Exception $e) {
 
                 }
@@ -149,6 +153,11 @@ class ScheduleVacationForm extends Component
         if (!$endDate->exists) $endDate->save();
         if (!$endTime->exists) $endTime->save();
 
+        if ($this->isCreating) {
+            $this->vacation->HouseId = $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId;
+            $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
+        }
+
         $this->vacation->fill([
             'VacationName' => $this->state['vacation_name'],
             'BackGrndColor' => ltrim($this->state['background_color'], '#'),
@@ -158,8 +167,6 @@ class ScheduleVacationForm extends Component
             'StartTimeId' => $startTime->timeid,
             'EndDateId' => $endDate->DateId,
             'EndTimeId' => $endTime->timeid,
-            'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
-            'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
         ])->save();
 
 //        if (!is_null($this->user->house->CalEmailList)){
@@ -180,23 +187,23 @@ class ScheduleVacationForm extends Component
 
         try {
 
-            $items =$this->vacation;
+            $items = $this->vacation;
             $createdHouseName = $this->user->house->HouseName;
 
-            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)){
+            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
 
-                $CalEmailList = explode(',',$this->user->house->CalEmailList);
+                $CalEmailList = explode(',', $this->user->house->CalEmailList);
 
-                if (count($CalEmailList) > 0 && !empty($CalEmailList)){
+                if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
 
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
                     foreach ($users as $user) {
-                        $user->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+                        $user->notify(new CalendarEmailNotification($items, $createdHouseName, $startDate, $endDate));
                     }
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new CalendarEmailNotification($items,$createdHouseName,$startDate,$endDate));
+                            ->notify(new CalendarEmailNotification($items, $createdHouseName, $startDate, $endDate));
                     }
 
                 }
@@ -233,7 +240,7 @@ class ScheduleVacationForm extends Component
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name,$deleteType));
+                        $user->notify(new DeleteNotification($name, $deleteType));
                     }
 
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
@@ -241,7 +248,7 @@ class ScheduleVacationForm extends Component
                     if (count($CalEmailList) > 0) {
 
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new DeleteNotification($name,$deleteType));
+                            ->notify(new DeleteNotification($name, $deleteType));
 
                     }
                 }

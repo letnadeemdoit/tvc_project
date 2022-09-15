@@ -68,9 +68,12 @@ class CreateOrUpdateFoodItemForm extends Component
             'name' => 'required|string|max:100',
         ])->validateWithBag('saveFoodItemCU');
 
+        if ($this->isCreating){
+            $this->foodItemList->user_id = auth()->user()->user_id;
+            $this->foodItemList->house_id = auth()->user()->HouseId;
+        }
+
         $this->foodItemList->fill([
-            'user_id' => auth()->user()->user_id,
-            'house_id' => auth()->user()->HouseId,
             'name' => $inputs['name'],
             'location' => $inputs['location'] ?? null,
             'expiration_date' => $inputs['expiration_date'] ?? null,

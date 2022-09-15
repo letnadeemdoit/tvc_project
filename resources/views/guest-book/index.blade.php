@@ -154,7 +154,7 @@
                             <span class="badge-box py-4">
                                 <img src="{{$dt->getFileUrl('image')}}"
                                      alt="{{ $dt->name ?? '' }}"
-                                     class="rounded-circle" width="60"/>
+                                     class="rounded-circle" width="60" style="object-fit: cover;" />
                                             </span>
                                             <h4 class="card-title text-center mt-3 mb-1 text-white fw-normal">{{$dt->name}}</h4>
                                             <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
@@ -227,7 +227,7 @@
                                             <span class="badge-box py-4">
                                                 <img src="{{$dt->getFileUrl('image')}}"
                                                      alt="{{ $dt->name ?? '' }}"
-                                                     class="rounded-circle" width="60"/>
+                                                     class="rounded-circle" width="60" style="object-fit: cover;"/>
                                             </span>
                                             <h4 class="card-title text-center mb-1 mt-3 text-white fw-normal">{{$dt->name}}</h4>
                                             <p class="card-text text-center text-white-light fw-light fs-10">{{date('Y-m-d',strtotime($dt->created_at))}}</p>
