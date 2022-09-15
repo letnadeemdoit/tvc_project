@@ -48,7 +48,7 @@
                                 <i class="bi bi-house-fill me-1 fs-13"></i>
                                 <span class="d-none d-md-inline-block">
                                     Properties
-                                    @if(isset(auth()->user()->house->primary_house_name))
+                                    @if(auth()->user()->house->primary_house_name !== null and auth()->user()->house->primary_house_name !== '')
                                         ({{ auth()->user()->house->primary_house_name }})
                                     @else
                                         <span class="ps-1">
@@ -71,10 +71,9 @@
                                             />
                                         </div>
                                         <div class="flex-grow-1 ms-3">
-                                            <h5 class="mb-0">{{ auth()->user()->house->primary_house_name ?? ''}}
-
-                                                @if(isset(auth()->user()->house->primary_house_name))
-                                                    ({{ auth()->user()->house->HouseName }})
+                                            <h5 class="mb-0">
+                                                @if(auth()->user()->house->primary_house_name !== null and auth()->user()->house->primary_house_name !== '')
+                                                    {{ auth()->user()->house->primary_house_name }} ({{ auth()->user()->house->HouseName }})
                                                 @else
                                                     {{ auth()->user()->house->HouseName }}
                                                 @endif
