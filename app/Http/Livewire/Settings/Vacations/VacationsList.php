@@ -39,9 +39,9 @@ class VacationsList extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
-
         'vacation-schedule-successfully' => '$refresh',
         'destroyed-successfully' => 'destroyedSuccessfully',
+        'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
     ];
 
     public function mount()
@@ -109,7 +109,7 @@ class VacationsList extends Component
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name,$deleteType));
+                        $user->notify(new DeleteNotification($name, $deleteType));
                     }
 
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
@@ -117,7 +117,7 @@ class VacationsList extends Component
                     if (count($CalEmailList) > 0) {
 
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new DeleteNotification($name,$deleteType));
+                            ->notify(new DeleteNotification($name, $deleteType));
 
                     }
                 }
@@ -139,6 +139,4 @@ class VacationsList extends Component
             );
         }
     }
-
-
 }

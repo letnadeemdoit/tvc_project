@@ -34,7 +34,6 @@ class ScheduleVacationForm extends Component
 
     protected $listeners = [
         'showVacationScheduleModal',
-        'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
     ];
 
     public function mount()
@@ -218,47 +217,6 @@ class ScheduleVacationForm extends Component
     }
 
 
-    public function destroyedSuccessfully($data)
-    {
-
-        $this->emitSelf('vacation-schedule-successfully');
-
-        $this->emitSelf('toggle', false);
-
-        $name = $data['VacationName'];
-
-        $deleteType = 'Vacation';
-
-        try {
-
-            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
-
-                $CalEmailList = explode(',', $this->user->house->CalEmailList);
-
-                if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
-
-                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $deleteType));
-                    }
-
-                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
-
-                    if (count($CalEmailList) > 0) {
-
-                        Notification::route('mail', $CalEmailList)
-                            ->notify(new DeleteNotification($name, $deleteType));
-
-                    }
-                }
-            }
-        } catch (Exception $e) {
-
-        }
-    }
-
-
     public function destroy($id)
     {
         if ($this->model) {
@@ -270,6 +228,8 @@ class ScheduleVacationForm extends Component
                 $this->destroyableConfirmationContent,
                 'destroyed-scheduled-successfully'
             );
+
+            $this->emitSelf('toggle', false);
         }
     }
 
