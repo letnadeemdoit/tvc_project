@@ -38,6 +38,7 @@
                     <th style="width: 100px" class="text-center">Image</th>
 {{--                    <th>Category</th>--}}
                     <th>Title</th>
+                    <th>Created by</th>
 {{--                    <th>Description</th>--}}
                     <th>Address</th>
                     <th>Date Time</th>
@@ -61,6 +62,10 @@
                         </td>
 {{--                        <td class="fw-600">{{$dt->localGuideCategory->name ?? ''}}</td>--}}
                         <td>{{$dt->title ?? ''}}</td>
+                        <td>
+                            {{$dt->user->first_name ?? ''}}  {{$dt->user->last_name ?? ''}}
+                            <small class="fs-10">({{$dt->user->role ?? ''}})</small>
+                        </td>
 {{--                        <td>{!! substr($dt->description,0,30) ?? '' !!}--}}
 
 {{--                           @if(isset($dt->description) && strlen($dt->description) > 41)--}}
