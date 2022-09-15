@@ -15,6 +15,7 @@
                         autofocus
                         id="HouseName"
                         wire:model.defer="state.HouseName"
+                        tabindex="0"
                         value="{{old('HouseName')}}"
                     />
                 </fieldset>
@@ -32,6 +33,7 @@
                     <fieldset class="input-group  rounded-1 ps-1" wire:ignore>
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Country:</legend>
                         <select
+                            tabindex="1"
                             name="country_id"
                             wire:model="state.country_id"
                             class="form-control form-control-lg border-0 shadow-none outline-0"
@@ -53,10 +55,12 @@
                     <fieldset class="input-group  rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">State:</legend>
                         <select
+                            tabindex="2"
                             name="state_id"
                             wire:model="state.state_id"
                             class="form-control form-control-lg border-0 shadow-none outline-0"
                             data-live-search="true"
+
                         >
                             <option value=""></option>
                             @foreach($states as $state)
@@ -75,9 +79,11 @@
                     <fieldset class="input-group  rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">City:</legend>
                         <select
+                            tabindex="3"
                             name="city_id"
                             wire:model.defer="state.city_id"
                             class="form-control form-control-lg border-0 shadow-none outline-0"
+
                         >
                             <option value=""></option>
                             @foreach($cities as $city)
@@ -101,6 +107,7 @@
                             wire:model.defer="state.zipcode"
                             name="zipcode"
                             class="form-control form-control-lg border-0 shadow-none outline-0"
+                            tabindex="4"
                             value="{{old('zipcode')}}"
                         />
                     </fieldset>
