@@ -84,6 +84,8 @@ window.livewire.hook('message.sent', (message, component) => {
     let event = message.updateQueue[0].payload.event;
     if (event && (
         event === 'destroyed-successfully' ||
+        event === 'vacation-schedule-successfully' ||
+        event === 'destroyed-scheduled-successfully' ||
         event.includes('cu-successfully') ||
         event.includes('Modal') ||
         event.includes('destroyable-confirmation-modal')
