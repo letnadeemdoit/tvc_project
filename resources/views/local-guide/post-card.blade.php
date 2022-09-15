@@ -8,7 +8,7 @@
                         <img
                             src="{{ $dt->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle border-rounded-red"
-                            alt="{{ $dt->user->name ?? '' }}"
+                            alt="{{ $dt->user->name ?? '' }}" style="object-fit: cover;"
                         >
                     </a>
                     <div class="ps-2">
