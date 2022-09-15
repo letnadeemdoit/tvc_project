@@ -121,7 +121,7 @@ class VacationSchedule implements Rule
                                                 $query->whereDate('RealDate', '<=', $this->startDatetime);
                                             })
                                             ->whereHas('endDate', function ($query) {
-                                                $query->whereDate('RealDate', '>=', $this->startDatetime);
+                                                $query->whereDate('RealDate', '>=', $this->endDatetime);
                                             });
 //                                            ->whereHas('startTime', function ($query) {
 //                                                $query
@@ -135,10 +135,10 @@ class VacationSchedule implements Rule
                                     ->orWhere(function ($query) {
                                         $query
                                             ->whereHas('startDate', function ($query) {
-                                                $query->whereDate('RealDate', '<=', $this->startDatetime);
+                                                $query->whereDate('RealDate', '>=', $this->startDatetime);
                                             })
                                             ->whereHas('endDate', function ($query) {
-                                                $query->whereDate('RealDate', '>=', $this->endDatetime);
+                                                $query->whereDate('RealDate', '<=', $this->endDatetime);
                                             });
 //                                            ->whereHas('startTime', function ($query) {
 //                                                $query
@@ -153,11 +153,27 @@ class VacationSchedule implements Rule
                                         $query
                                             ->whereHas('startDate', function ($query) {
                                                 $query
-                                                    ->whereDate('RealDate', '>=', $this->startDatetime);
+                                                    ->whereDate('RealDate', '<=', $this->startDatetime);
                                             })
-                                            ->whereHas('endDate', function ($query) {
+                                            ->orWhereHas('endDate', function ($query) {
+                                                $query
+                                                    ->whereDate('RealDate', '>=', $this->startDatetime);
+                                            });
+//                                            ->whereHas('startTime', function ($query) {
+//                                                $query
+//                                                    ->whereRaw("Time(time) >= Time('" . $this->startDatetime->format('H:i') . "')")
+//                                                    ->whereRaw("Time(time) <= Time('" . $this->endDatetime->format('H:i') . "')");
+//                                            });
+                                    })
+                                    ->orWhere(function ($query) {
+                                        $query
+                                            ->whereHas('startDate', function ($query) {
                                                 $query
                                                     ->whereDate('RealDate', '<=', $this->endDatetime);
+                                            })
+                                            ->orWhereHas('endDate', function ($query) {
+                                                $query
+                                                    ->whereDate('RealDate', '>=', $this->endDatetime);
                                             });
 //                                            ->whereHas('startTime', function ($query) {
 //                                                $query
@@ -183,17 +199,6 @@ class VacationSchedule implements Rule
                                                     ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
                                             });
                                     })
-//                                    ->orWhere(function ($query) {
-//                                        $query
-//                                            ->whereHas('startDate', function ($query) {
-//                                                $query
-//                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-//                                            })
-//                                            ->whereHas('endDate', function ($query) {
-//                                                $query
-//                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-//                                            });
-//                                    })
                                     ->orWhere(function ($query) {
                                         $query
                                             ->whereHas('startDate', function ($query) {
@@ -211,7 +216,7 @@ class VacationSchedule implements Rule
                                                 $query
                                                     ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
                                             })
-                                            ->whereHas('endDate', function ($query) {
+                                            ->orWhereHas('endDate', function ($query) {
                                                 $query
                                                     ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
                                             });
@@ -222,7 +227,7 @@ class VacationSchedule implements Rule
                                                 $query
                                                     ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
                                             })
-                                            ->whereHas('endDate', function ($query) {
+                                            ->orWhereHas('endDate', function ($query) {
 
                                                 $query
                                                     ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
