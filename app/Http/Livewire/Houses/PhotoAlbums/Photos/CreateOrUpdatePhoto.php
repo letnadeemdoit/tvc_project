@@ -75,8 +75,9 @@ class CreateOrUpdatePhoto extends Component
             'description' => 'nullable|string|max:255',
         ])->validateWithBag('savePhotoCU');
 
+
         $this->photo->fill([
-            'HouseId' => auth()->user()->user_id,
+            'HouseId' => auth()->user()->HouseId,
             'album_id' => $this->album->id,
             'description' => $inputs['description'] ?? null,
         ])->save();

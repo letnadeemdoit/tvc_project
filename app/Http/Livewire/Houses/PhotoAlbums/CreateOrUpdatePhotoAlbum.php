@@ -84,9 +84,12 @@ class CreateOrUpdatePhotoAlbum extends Component
             'description' => 'nullable|string|max:255',
         ])->validateWithBag('saveAlbumCU');
 
+        if ($this->isCreating){
+            $this->album->user_id = $this->user->user_id;
+            $this->album->house_id = $this->user->HouseId;
+        }
+
         $this->album->fill([
-            'user_id' => $this->user->user_id,
-            'house_id' => $this->user->HouseId,
             'parent_id' => $inputs['parent_id'] ?? null,
             'name' => $inputs['name'],
             'description' => $inputs['description'] ?? null,
