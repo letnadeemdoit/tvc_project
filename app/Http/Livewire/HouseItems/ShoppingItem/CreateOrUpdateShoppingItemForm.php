@@ -68,9 +68,12 @@ class CreateOrUpdateShoppingItemForm extends Component
             'name' => 'required|string|max:100',
         ])->validateWithBag('saveShoppingItemCU');
 
+        if ($this->isCreating){
+            $this->shoppingItemList->user_id = auth()->user()->user_id;
+            $this->shoppingItemList->house_id = auth()->user()->HouseId;
+        }
+
         $this->shoppingItemList->fill([
-            'user_id' => auth()->user()->user_id,
-            'house_id' => auth()->user()->HouseId,
             'name' => $inputs['name'],
             'location' => $inputs['location'] ?? null,
             'expiration_date' => $inputs['expiration_date'] ?? null,
