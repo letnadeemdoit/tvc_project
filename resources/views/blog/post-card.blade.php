@@ -20,7 +20,7 @@
                             src="{{ $post->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
                             alt="{{ $post->user->name ?? '' }}"
-                            style="width:50px !important;height:50px !important;"
+                            style="width:50px !important;height:50px !important;object-fit: cover !important;"
                         >
                         @else
                             <img
