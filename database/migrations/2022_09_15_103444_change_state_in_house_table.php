@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('House', function (Blueprint $table) {
-            $table->string('State')->nullable()->after('country')->change();
-            $table->string('City')->nullable()->after('State')->change();
+            $table->string('State')->nullable()->change();
+            $table->string('City')->nullable()->change();
 
         });
     }
