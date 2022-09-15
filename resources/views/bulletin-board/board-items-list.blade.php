@@ -1,13 +1,13 @@
 <div class="pt-55 category-cards">
 
     <div class="d-flex justify-content-center justify-content-md-start ms-0 ms-md-3" id="scroller">
-        <div class="category-cards mb-3 d-flex  scrollbar" style="max-width: 100%">
+        <div class="category-cards mb-3 d-flex pt-5 scrollbar" style="max-width: 100%">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                     <li class="nav-item">
                         <a href="{{ route('guest.bulletin-board.index', ['category' => 'all']) }}"
                            wire:click.prevent="$set('category', 'all')"
-                           class="nav-link {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
+                           class="nav-link mr-7px {{ $category == 'all' ? 'active' : '' }}" id="all-btn">
                             ALL
                         </a>
                     </li>
