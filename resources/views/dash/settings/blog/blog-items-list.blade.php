@@ -45,6 +45,7 @@
                 <tr>
                     <th style="width: 100px" class="text-center">Image</th>
                     <th>Subject</th>
+                    <th>Created by</th>
                     <th>Category</th>
                     <th>Description</th>
                     <th class="align-center">Action</th>
@@ -66,6 +67,10 @@
                             </td>
                             <td>
                                 {{$dt->Subject ?? ''}}
+                            </td>
+                            <td>
+                                {{$dt->user->first_name ?? ''}}  {{$dt->user->last_name ?? ''}}
+                                <small class="fs-10">({{$dt->user->role ?? ''}})</small>
                             </td>
                             <td>
                                 {{$dt->category->name ?? ''}}

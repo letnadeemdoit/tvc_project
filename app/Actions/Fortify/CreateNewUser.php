@@ -37,8 +37,7 @@ class CreateNewUser implements CreatesNewUsers
             'AdminOwner' => ['nullable'],
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'password' => $this->passwordRules(),
-            'password_confirmation' => 'required',
+            'password' => ['required', (new \Laravel\Fortify\Rules\Password)->requireNumeric()->requireUppercase()->requireSpecialCharacter(),'confirmed'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
