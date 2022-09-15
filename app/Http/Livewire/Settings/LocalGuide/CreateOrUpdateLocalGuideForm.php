@@ -23,6 +23,8 @@ class CreateOrUpdateLocalGuideForm extends Component
 
     public $file;
 
+    public $isCreating = false;
+
     public ?LocalGuide $localGuide;
 
     protected $listeners = [
@@ -53,8 +55,11 @@ class CreateOrUpdateLocalGuideForm extends Component
         $this->localGuide = $localGuide;
         $this->reset(['state', 'file']);
 
-        if ($localGuide) {
+        if ($localGuide->id) {
+            $this->isCreating = false;
             $this->state = \Arr::only($localGuide->toArray(), ['category_id','title','description','image','address','datetime']);
+        }else{
+            $this->isCreating = true;
         }
     }
 
@@ -76,10 +81,12 @@ class CreateOrUpdateLocalGuideForm extends Component
             'description' => 'nullable|max:4000000000',
         ])->validateWithBag('saveLocalGuideCU');
 
+        if ($this->isCreating){
+            $this->localGuide->user_id = auth()->user()->user_id;
+            $this->localGuide->house_id = auth()->user()->HouseId;
+        }
 
         $this->localGuide->fill([
-            'user_id' => auth()->user()->user_id,
-            'house_id' => auth()->user()->HouseId,
             'category_id' => $inputs['category_id'] ?? null,
             'title' => $inputs['title'],
             'description' => $inputs['description'] ?? null,

@@ -102,25 +102,24 @@ class CreateOrUpdateBlogItemForm extends Component
             'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
-
+        if ($this->isCreating){
+            $this->blogItem->user_id = $this->user->user_id;
+            $this->blogItem->HouseId = $this->user->HouseId;
+            $this->blogItem->Author = $this->user->first_name." ".$this->user->last_name;
+            $this->blogItem->BlogDate = $date;
+            $this->blogItem->Audit_user_name = $this->user->Audit_user_name;
+            $this->blogItem->Audit_Role = $this->user->Audit_Role;
+            $this->blogItem->Audit_FirstName = $this->user->Audit_FirstName;
+            $this->blogItem->Audit_LastName = $this->user->Audit_LastName;
+            $this->blogItem->Audit_Email = $this->user->Audit_Email;
+        }
         $slug = Str::slug($inputs['Subject']);
-
         $this->blogItem->fill([
-            'HouseId' => $this->user->HouseId,
-            'user_id' => $this->user->user_id,
-            'Subject' => $inputs['Subject'],
-            'Contents' => $inputs['Contents'] ?? '',
-            'Content' => null,
-            'Author' => $this->user->first_name." ".$this->user->last_name,
-            'BlogDate' => $date,
-            'Audit_user_name' => $this->user->Audit_user_name,
-            'Audit_Role' => $this->user->Audit_Role,
-            'Audit_FirstName' => $this->user->Audit_FirstName,
-            'Audit_LastName' => $this->user->Audit_LastName,
-            'Audit_Email' => $this->user->Audit_Email,
-            'category_id' => $inputs['category_id'] ?? null,
-            'slug' => $slug,
-        ])->save();
+                'Subject' => $inputs['Subject'],
+                'Contents' => $inputs['Contents'] ?? '',
+                'category_id' => $inputs['category_id'] ?? null,
+                'slug' => $slug,
+            ])->save();
 
         $tagIds = [];
 
