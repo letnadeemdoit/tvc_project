@@ -122,15 +122,15 @@ class VacationSchedule implements Rule
                                             })
                                             ->whereHas('endDate', function ($query) {
                                                 $query->whereDate('RealDate', '>=', $this->startDatetime);
-                                            })
-                                            ->whereHas('startTime', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(time, '%H:%i') <= DATE_FORMAT('" . $this->startDatetime->format('H:i') . "', '%H:%i')");
-                                            })
-                                            ->whereHas('endTime', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(time, '%H:%i') >= DATE_FORMAT('" . $this->startDatetime->format('H:i') . "', '%H:%i')");
                                             });
+//                                            ->whereHas('startTime', function ($query) {
+//                                                $query
+//                                                    ->whereRaw("Time(time) <= Time('" . $this->startDatetime->format('H:i') . "')");
+//                                            })
+//                                            ->whereHas('endTime', function ($query) {
+//                                                $query
+//                                                    ->whereRaw("Time(time) >= Time('" . $this->startDatetime->format('H:i') . "')");
+//                                            });
                                     })
                                     ->orWhere(function ($query) {
                                         $query
@@ -139,28 +139,31 @@ class VacationSchedule implements Rule
                                             })
                                             ->whereHas('endDate', function ($query) {
                                                 $query->whereDate('RealDate', '>=', $this->endDatetime);
-                                            })
-                                            ->whereHas('startTime', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(time, '%H:%i') <= DATE_FORMAT('" . $this->startDatetime->format('H:i') . "', '%H:%i')");
-                                            })
-                                            ->whereHas('endTime', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(time, '%H:%i') >= DATE_FORMAT('" . $this->endDatetime->format('H:i') . "', '%H:%i')");
                                             });
+//                                            ->whereHas('startTime', function ($query) {
+//                                                $query
+//                                                    ->whereRaw("Time(time) <= Time('" . $this->startDatetime->format('H:i') . "')");
+//                                            })
+//                                            ->whereHas('endTime', function ($query) {
+//                                                $query
+//                                                    ->whereRaw("Time(time) >= Time('" . $this->endDatetime->format('H:i') . "')");
+//                                            });
                                     })
                                     ->orWhere(function ($query) {
                                         $query
                                             ->whereHas('startDate', function ($query) {
                                                 $query
-                                                    ->whereDate('RealDate', '>=', $this->startDatetime)
-                                                    ->whereDate('RealDate', '<=', $this->endDatetime);
+                                                    ->whereDate('RealDate', '>=', $this->startDatetime);
                                             })
-                                            ->whereHas('startTime', function ($query) {
+                                            ->whereHas('endDate', function ($query) {
                                                 $query
-                                                    ->whereRaw("DATE_FORMAT(time, '%H:%i') >= DATE_FORMAT('" . $this->startDatetime->format('H:i') . "', '%H:%i')")
-                                                    ->whereRaw("DATE_FORMAT(time, '%H:%i') <= DATE_FORMAT('" . $this->endDatetime->format('H:i') . "', '%H:%i')");
+                                                    ->whereDate('RealDate', '<=', $this->endDatetime);
                                             });
+//                                            ->whereHas('startTime', function ($query) {
+//                                                $query
+//                                                    ->whereRaw("Time(time) >= Time('" . $this->startDatetime->format('H:i') . "')")
+//                                                    ->whereRaw("Time(time) <= Time('" . $this->endDatetime->format('H:i') . "')");
+//                                            });
                                     });
                             });
 
