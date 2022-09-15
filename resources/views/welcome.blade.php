@@ -13,8 +13,6 @@
             }
         </style>
         <style>
-            <
-            style >
             .massonary-container {
                 width: 100%;
                 display: block;
@@ -423,10 +421,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/1-1.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-1.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('/images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -441,10 +439,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/1-2.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-2.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('/images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -459,67 +457,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/1-3.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-3.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
-                                </h3>
-                                <p class="card-text">Learn the simplest way to select the object and change
-                                    dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-
-                    </div>
-                    <div class="w-100 m-2">
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/2-1.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
-                                </h3>
-                                <p class="card-text">Learn the simplest way to select the object and change
-                                    dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/2-2.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
-                                </h3>
-                                <p class="card-text">Learn the simplest way to select the object and change
-                                    dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/2-3.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('/images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -537,10 +478,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/3-1.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/2-1.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('/images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -555,10 +496,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/3-2.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/2-2.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('/images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -573,67 +514,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/4-1.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/2-3.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
-                                </h3>
-                                <p class="card-text">Learn the simplest way to select the object and change
-                                    dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-
-                    </div>
-                    <div class="w-100 m-2">
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/4-1.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
-                                </h3>
-                                <p class="card-text">Learn the simplest way to select the object and change
-                                    dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/4-2.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
-                                </h3>
-                                <p class="card-text">Learn the simplest way to select the object and change
-                                    dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/4-4.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('/images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -651,10 +535,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/5-1.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/3-1.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -669,10 +553,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/5-2.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/3-2.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -687,10 +571,124 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="http://127.0.0.1:8000/images/news-feed/5-3.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/4-1.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="http://127.0.0.1:8000/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
+                                </h3>
+                                <p class="card-text">Learn the simplest way to select the object and change
+                                    dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+
+                    </div>
+                    <div class="w-100 m-2">
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/4-1.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
+                                </h3>
+                                <p class="card-text">Learn the simplest way to select the object and change
+                                    dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/4-2.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
+                                </h3>
+                                <p class="card-text">Learn the simplest way to select the object and change
+                                    dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/4-4.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
+                                </h3>
+                                <p class="card-text">Learn the simplest way to select the object and change
+                                    dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+
+                    </div>
+                    <div class="w-100 m-2">
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/5-1.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
+                                </h3>
+                                <p class="card-text">Learn the simplest way to select the object and change
+                                    dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/5-2.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a>
+                                </h3>
+                                <p class="card-text">Learn the simplest way to select the object and change
+                                    dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/5-3.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
                             <div class="card-body">
@@ -717,10 +715,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/1-1.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-1.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -733,10 +731,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/1-2.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-2.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -749,62 +747,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/1-3.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-3.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/1-1.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/1-2.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a></h3>
-                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
-                            </div>
-                        </div>
-                        <!-- End Card -->
-                        <!-- Card -->
-                        <div class="card border-0 mb-3">
-                            <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/1-3.png" alt="Image Description">
-
-                                <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -821,10 +767,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/3-1.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/4-1.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -837,10 +783,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/3-2.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-2.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -853,10 +799,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/4-1.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-3.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -873,10 +819,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/4-1.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/3-1.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -889,10 +835,10 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/4-2.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/3-2.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
@@ -905,10 +851,62 @@
                         <!-- Card -->
                         <div class="card border-0 mb-3">
                             <div class="card-pinned">
-                                <img class="card-img-top" src="https://dev.devdimensions.com/images/news-feed/4-4.png" alt="Image Description">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-3.png')}}" alt="Image Description">
 
                                 <div class="card-pinned-bottom-start">
-                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="https://dev.devdimensions.com/images/images-home/smiling-girl.jpg" alt="Image Description" width="60" height="50">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/4-1.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/1-3.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="card-title mt-2"><a class="text-dark" href="#">Objects and dimensions</a></h3>
+                                <p class="card-text">Learn the simplest way to select the object and change dimensions.</p>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+                        <div class="card border-0 mb-3">
+                            <div class="card-pinned">
+                                <img class="card-img-top" src="{{asset('/images/news-feed/4-4.png')}}" alt="Image Description">
+
+                                <div class="card-pinned-bottom-start">
+                                    <img class="img-fluid rounded-2 border border-3 border-white w-60-h-60" src="{{asset('images/images-home/smiling-girl.jpg')}}" alt="Image Description" width="60" height="50">
                                 </div>
                             </div>
 
