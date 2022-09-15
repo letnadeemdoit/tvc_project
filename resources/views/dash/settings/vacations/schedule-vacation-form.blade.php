@@ -152,7 +152,7 @@
                     <a
                        href="#!"
                         class="btn btn-danger px-5"
-                        wire:click.prevent="destroy({{ $vacation->VacationId }})"
+                        wire:click.prevent="deleteVacation"
                     >
                         <i class="bi-trash me-2"></i> Delete
                     </a>

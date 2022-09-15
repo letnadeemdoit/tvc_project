@@ -39,6 +39,7 @@ class VacationsList extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
+        'destroy-vacation' => 'destroy',
         'vacation-schedule-successfully' => '$refresh',
         'destroyed-successfully' => 'destroyedSuccessfully',
         'destroyed-scheduled-successfully' => 'destroyedSuccessfully',

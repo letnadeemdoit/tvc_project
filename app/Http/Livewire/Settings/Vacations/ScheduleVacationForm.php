@@ -20,8 +20,6 @@ use Livewire\Component;
 
 class ScheduleVacationForm extends Component
 {
-    use Destroyable;
-
     public $user;
 
     public $state = [];
@@ -100,7 +98,7 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
@@ -217,24 +215,13 @@ class ScheduleVacationForm extends Component
     }
 
 
-    public function destroy($id)
-    {
-        if ($this->model) {
-            $deletableModel = app($this->model)->findOrFail($id);
-            $this->emit(
-                'destroyable-confirmation-modal',
-                $this->model,
-                $id,
-                $this->destroyableConfirmationContent,
-                'destroyed-scheduled-successfully'
-            );
-
-            $this->emitSelf('toggle', false);
-        }
-    }
-
     public function render()
     {
         return view('dash.settings.vacations.schedule-vacation-form');
+    }
+
+    public function deleteVacation() {
+        $this->emitSelf('toggle', false);
+        $this->emit('destroy-vacation',  $this->vacation->VacationId);
     }
 }
