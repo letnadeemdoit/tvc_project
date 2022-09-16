@@ -71,7 +71,7 @@ class PostComment extends Component
         $mydatetime =date("Y-m-d H:i:s");
         $inputs = $this->state;
         Validator::make($inputs, [
-            'Content' => 'required|max:1000',
+            'Content' => 'required|max:255',
         ])->validateWithBag('addBlogComment');
 
         $comment = new Comment();

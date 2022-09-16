@@ -28,8 +28,8 @@
                     <textarea id="Content" name="Content"
                       wire:model.defer="state.Content"
                       class="form-control @error('Content') is-invalid @enderror"
-                      placeholder="Description"
-                      rows="6">
+                      placeholder="Add comment here.."
+                      rows="4">
                     </textarea>
                     @error('Content')
                     <span class="invalid-feedback">{{$message}}</span>
@@ -43,17 +43,17 @@
          </div>
 
           <div class="row">
-        <div class="col-12 col-lg-6">
-            @foreach($BlogComments as $comment)
-            <div class="d-flex w-100 mt-2">
-                <div class="flex-shrink-0">
-                    <img src="{{$comment->user->profile_photo_url}}"
+             <div class="col-12">
+                 @foreach($BlogComments as $comment)
+                   <div class="d-flex w-100 mt-3">
+                       <div class="flex-shrink-0">
+                           <img src="{{$comment->user->profile_photo_url}}"
                          class="avatar-initials img-fluid position-relative rounded-circle"
                          alt="..."
                          style="width:50px !important;height:50px !important;object-fit: cover !important;"
                     >
-                </div>
-                <div class="flex-grow-1 ms-3 mb-3">
+                       </div>
+                       <div class="flex-grow-1 ms-3 mt-2">
                     <h5 class="mb-0">{{$comment->user->first_name}} {{$comment->user->last_name}}</h5>
                     <p class="mb-0" style="font-size: 12px">{!! $comment->message !!}</p>
 {{--                    <p class="mb-0" style="font-size: 12px">--}}
@@ -101,7 +101,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                 </div>
-            </div>
+                   </div>
 {{--                @php--}}
 {{--                    $nestedComments = \App\Models\Blog\BlogNestedComment::where('comment_id', $comment->CommentId)->get();--}}
 {{--                @endphp--}}
@@ -144,7 +144,7 @@
             @endforeach
 
         </div>
-    </div>
+          </div>
       </div>
    </div>
     @if($isMoreComments)
