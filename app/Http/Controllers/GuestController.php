@@ -23,7 +23,12 @@ class GuestController extends Controller
     {
         return view('welcome');
     }
-
+    /**
+     * terms of service
+     */
+    public function termsService(){
+        return view('terms-of-service');
+    }
     /**
      * Contact
      * @return mixed
