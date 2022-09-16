@@ -214,6 +214,7 @@
                             <select
                                 name="country_id"
                                 wire:model="state.country_id"
+                                wire:change="onChangeCountry"
                                 class="form-control"
                             >
                                 <option value="">--select country--</option>

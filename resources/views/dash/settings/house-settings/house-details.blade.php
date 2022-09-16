@@ -91,9 +91,6 @@
                     @enderror
                 </div>
 
-
-
-
                     <div class="row mt-4 mb-2">
                         <div class="col-12 col-md-6 col-lg-3 mx-auto">
                             <div class="form-group mb-3" wire:ignore>
@@ -101,6 +98,7 @@
                                 <select
                                     name="country_id"
                                     wire:model="state.country_id"
+                                    wire:change="onChangeCountry"
                                     class="form-control"
                                 >
                                     <option value="">--select country--</option>
