@@ -116,6 +116,7 @@ class VacationSchedule implements Rule
                             ->where(function ($query) {
                                 $query
                                     ->where(function ($query) {
+                                        //
                                         $query
                                             ->whereHas('startDate', function ($query) {
                                                 $query->whereDate('RealDate', '<=', $this->startDatetime);
@@ -155,7 +156,7 @@ class VacationSchedule implements Rule
                                                 $query
                                                     ->whereDate('RealDate', '<=', $this->startDatetime);
                                             })
-                                            ->orWhereHas('endDate', function ($query) {
+                                            ->whereHas('endDate', function ($query) {
                                                 $query
                                                     ->whereDate('RealDate', '>=', $this->startDatetime);
                                             });
@@ -171,7 +172,7 @@ class VacationSchedule implements Rule
                                                 $query
                                                     ->whereDate('RealDate', '<=', $this->endDatetime);
                                             })
-                                            ->orWhereHas('endDate', function ($query) {
+                                            ->whereHas('endDate', function ($query) {
                                                 $query
                                                     ->whereDate('RealDate', '>=', $this->endDatetime);
                                             });
@@ -188,53 +189,48 @@ class VacationSchedule implements Rule
                         $query
                             ->where(function ($query) {
                                 $query
-                                    ->where(function ($query) {
+                                    ->whereHas('startDate', function ($query) {
                                         $query
-                                            ->whereHas('startDate', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-                                            })
-                                            ->whereHas('endDate', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-                                            });
+                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
                                     })
-                                    ->orWhere(function ($query) {
+                                    ->whereHas('endDate', function ($query) {
                                         $query
-                                            ->whereHas('startDate', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-                                            })
-                                            ->whereHas('endDate', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-                                            });
+                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
+                                    });
+                            })
+                            ->orWhere(function ($query) {
+                                $query
+                                    ->whereHas('startDate', function ($query) {
+                                        $query
+                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
                                     })
-                                    ->orWhere(function ($query) {
+                                    ->whereHas('endDate', function ($query) {
                                         $query
-                                            ->whereHas('startDate', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-                                            })
-                                            ->orWhereHas('endDate', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-                                            });
+                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
+                                    });
+                            })
+                            ->orWhere(function ($query) {
+                                $query
+                                    ->whereHas('startDate', function ($query) {
+                                        $query
+                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
                                     })
-                                    ->orWhere(function ($query) {
+                                    ->whereHas('endDate', function ($query) {
                                         $query
-                                            ->whereHas('startDate', function ($query) {
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-                                            })
-                                            ->orWhereHas('endDate', function ($query) {
-
-                                                $query
-                                                    ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-                                            });
+                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
+                                    });
+                            })
+                            ->orWhere(function ($query) {
+                                $query
+                                    ->whereHas('startDate', function ($query) {
+                                        $query
+                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
+                                    })
+                                    ->whereHas('endDate', function ($query) {
+                                        $query
+                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
                                     });
                             });
-
                     });
             })
             ->count();
