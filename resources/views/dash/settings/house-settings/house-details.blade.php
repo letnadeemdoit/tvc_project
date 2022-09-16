@@ -27,7 +27,10 @@
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-6">
-                        <label class="form-label" for="primary_house_name">Primary House Name</label>
+                        <label class="form-label"
+                               for="primary_house_name">
+                            Primary House Name
+                        </label>
                         <input
                             type="text"
                             id="primary_house_name"
@@ -39,6 +42,9 @@
                         @error('primary_house_name')
                         <span class="invalid-feedback">{{$message}}</span>
                         @enderror
+                        <p class="fs-10 mb-0 mt-1" style="line-height: 14px">The primary house name defined here will not change the account house name,
+                            but will only be used to differentiate the house within the account</p>
+
                     </div>
 
                     <div class="mb-3 col-12 col-lg-6">
