@@ -13,9 +13,11 @@
                 <h3 class="text-white mb-0 d-inline-block text-truncate" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" style="max-width:175px;">{{ $album->name ?? '' }}</h3>
                 <div class="d-flex align-items-center"  style="min-width:40px;">
                     <div class="d-flex align-items-center me-2">
+                        @if($this->albumsCount > 0)
                         <img src="{{asset('/images/photo-album/nested-album.svg')}}"
                              class="img-fluid " style="width: 25px">
                         <span class="ms-2">{{ $this->albumsCount }}</span>
+                        @endif
                     </div>
                     <div class="d-flex align-items-center ms-3">
                         <img src="{{asset('/images/photo-album/camera.svg')}}"

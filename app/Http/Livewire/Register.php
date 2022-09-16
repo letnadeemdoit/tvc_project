@@ -32,6 +32,13 @@ class Register extends Component
         return view('livewire.register',compact('countries','states','cities'));
     }
 
+
+    public function onChangeCountry()
+    {
+        $this->state['state_id'] = null;
+        $this->state['city_id'] = null;
+    }
+
     public function register(CreatesNewUsers $creator, StatefulGuard $guard) {
 
         $inputs = $this->state;

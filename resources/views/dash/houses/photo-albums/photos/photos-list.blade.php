@@ -61,7 +61,7 @@
 
                     >
                        <div x-show="mouseIn">
-                           <p class="card-text text-white">{{ $dt->description }}</p>
+                           <p class="card-text text-white">{{ str($dt->description)->limit(20) }}</p>
                            <div class="d-flex justify-content-center">
                                <button
                                    class="btn btn-primary btn-xs me-2"
