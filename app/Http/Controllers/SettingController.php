@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit\House;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -41,8 +42,15 @@ class SettingController extends Controller
     public function additionalHouses(Request $request)
     {
         abort_if(!$request->user()->is_admin, 403);
+
+        $maxAdditionalHouse = \App\Models\House::whereHas('users', function ($query) use ($request) {
+            $query->where('email', $request->user()->email)
+                ->where('HouseId', '<>', $request->user()->HouseId);
+        })->count();
+
         return view('dash.settings.additional-houses.index', [
-            'user' => $request->user()
+            'user' => $request->user(),
+            'maxAdditionalHouse' => $maxAdditionalHouse
         ]);
     }
 
