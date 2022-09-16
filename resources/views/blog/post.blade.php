@@ -79,14 +79,14 @@
                                 src="{{ $post->user->profile_photo_url }}"
                                 class="avatar-initials img-fluid position-relative rounded-circle"
                                 alt="{{ $post->user->name ?? '' }}"
-                                style="width:60px !important;height:60px !important;"
+                                style="width:60px !important;height:60px !important;object-fit: cover;"
                             >
                         @else
                             <img
                                 src="/images/blog-images/beach.png"
                                 class="avatar-initials img-fluid position-relative rounded-circle"
                                 alt="..."
-                                style="width:60px !important;height:60px !important;"
+                                style="width:60px !important;height:60px !important;object-fit: cover;"
                             >
                         @endif
 

@@ -16,14 +16,14 @@
                                 src="{{ $blog->user->profile_photo_url }}"
                                 class="avatar-initials img-fluid position-relative rounded-circle"
                                 alt="{{ $blog->user->name ?? '' }}"
-                                style="width:50px !important;height:50px !important;"
+                                style="width:50px !important;height:50px !important;object-fit: cover;"
                             >
                         @else
                             <img
                                 src="/images/blog-images/beach.png"
                                 class="avatar-initials img-fluid position-relative rounded-circle"
                                 alt="..."
-                                style="width:50px !important;height:50px !important;object-fit: cover !important;"
+                                style="width:50px !important;height:50px !important;object-fit: cover;"
                             >
                         @endif
 
