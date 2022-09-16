@@ -87,7 +87,7 @@
             <div class="tab-content  mt-5" id="myTabContent">
                 @if($title == 'food')
                     <div class="" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        @if(isset($foodItems))
+                        @if(isset($foodItems) && count($foodItems) > 0)
                             @foreach($foodItems as $dt)
                                 <div class="card mb-4 card-hover-house-items">
                                     <div class="card-body">
@@ -121,13 +121,15 @@
                                     </div>
                                 </div>
                             @endforeach
+                        @else
+                            @include('partials.no-data-available',['title' => 'Food item'])
                         @endif
                     </div>
                 @endif
 
                 @if($title == 'shopping')
                     <div class="" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        @if(isset($shoppingItems))
+                        @if(isset($shoppingItems) && count($shoppingItems) > 0)
                             @foreach($shoppingItems as $dt)
                                 <div class="card mb-4 card-hover-house-items">
                                     <div class="card-body">
@@ -155,6 +157,8 @@
                                     </div>
                                 </div>
                             @endforeach
+                        @else
+                            @include('partials.no-data-available',['title' => 'Shopping item'])
                         @endif
                     </div>
                 @endif
