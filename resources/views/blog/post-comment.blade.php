@@ -16,9 +16,9 @@
       <div class="col-12 col-lg-6">
           <div class="d-flex">
               <div class="flex-shrink-0">
-            <img src="{{$blog->user->profile_photo_url}}"
+            <img src="{{auth()->user()->profile_photo_url}}"
                  class="avatar-initials img-fluid position-relative rounded-circle"
-                 alt="{{ $blog->user->name ?? '' }}"
+                 alt="..."
                  style="width:50px !important;height:50px !important;object-fit: cover !important;"
             >
         </div>
@@ -47,14 +47,14 @@
             @foreach($BlogComments as $comment)
             <div class="d-flex w-100 mt-2">
                 <div class="flex-shrink-0">
-                    <img src="{{$blog->user->profile_photo_url}}"
+                    <img src="{{$comment->user->profile_photo_url}}"
                          class="avatar-initials img-fluid position-relative rounded-circle"
-                         alt="{{ $blog->user->name ?? '' }}"
+                         alt="..."
                          style="width:50px !important;height:50px !important;object-fit: cover !important;"
                     >
                 </div>
                 <div class="flex-grow-1 ms-3 mb-3">
-                    <h5 class="mb-0">{{$blog->Author}}</h5>
+                    <h5 class="mb-0">{{$comment->user->first_name}} {{$comment->user->last_name}}</h5>
                     <p class="mb-0" style="font-size: 12px">{!! $comment->message !!}</p>
 {{--                    <p class="mb-0" style="font-size: 12px">--}}
 {{--                            <span class="me-1">--}}
