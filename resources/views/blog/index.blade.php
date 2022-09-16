@@ -2,7 +2,7 @@
     @include('partials.sub-page-hero-section', ['title' => 'House Blog'])
 
     {{--  center text row  --}}
-    <section class="bg-light  section-padding">
+    <section class="section-padding">
         <div class="blog-text shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
             <h1 class="text-primary font-vintage mb-0">House Blog</h1>
         </div>

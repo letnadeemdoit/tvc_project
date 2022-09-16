@@ -173,7 +173,7 @@
 
             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>
 
-            <div class="fb-comments" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">
+            <div class="fb-comments comment-max-width" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">
 
             </div>
 
@@ -259,7 +259,11 @@
                 });
 
             </script>
-
+        <script>
+            $('iframe').load(function() {
+                $("iframe").contents().find(".edit").css('border' , '#000 1px solid');
+            });
+        </script>
         @endpush
 </x-guest-layout>
 
