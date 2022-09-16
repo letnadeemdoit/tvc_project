@@ -62,6 +62,7 @@
                                         src="{{$dt->getFileUrl('image')}}"
                                         class="avatar-initials"
                                         alt="{{ $dt->Subject ?? '' }}"
+                                        style="object-fit: cover;"
                                     />
                                 </div>
                             </td>

@@ -17,14 +17,14 @@
                             src="{{ $post->user->profile_photo_url }}"
                             class="avatar-initials img-fluid position-relative rounded-circle"
                             alt="{{ $post->user->name ?? '' }}"
-                            style="width:50px !important;height:50px !important;object-fit: cover !important;"
+                            style="width:50px !important;height:50px !important;object-fit: cover;"
                         >
                         @else
                             <img
                                 src="/images/blog-images/beach.png"
                                 class="avatar-initials img-fluid position-relative rounded-circle"
                                 alt="..."
-                                style="width:50px !important;height:50px !important;"
+                                style="width:50px !important;height:50px !important;object-fit: cover;"
                             >
                         @endif
 
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer px-0 pb-0 border-top-thick w-94">
+            <div class="card-footer px-0 pb-0 border-top-thick w-94">
                 <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
                     <li class="">
                         <livewire:blog.like-able-blog :post="$post" />
