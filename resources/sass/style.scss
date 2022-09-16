@@ -175,6 +175,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         background-color: transparent !important;
     }
 }
+.text-footer-color {
+    color: #677788 !important;
+}
 /* Track */
 //::-webkit-scrollbar-track {
 //    background: #f1f1f1;
@@ -300,9 +303,6 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
        filter:grayscale(87%) brightness(60%) sepia(87%) hue-rotate(-51deg) saturate(982%) contrast(0.8);
         }
     }
-}
-.middle-li-card-footer{
-    margin: 0 32px;
 }
     .lb-container{
         padding: 0px !important;
@@ -973,9 +973,6 @@ header{
     .row-max-width{
         margin: 0 auto;
     }
-    .middle-li-card-footer{
-        margin: 0 35px !important;
-    }
     .ul-card-footer {
         li {
             span {
@@ -1023,9 +1020,6 @@ header{
             min-height: 555px !important;
         }
     }
-    .middle-li-card-footer{
-        margin: 0 22px !important;
-    }
 }
 @media only screen and (min-width:992px) and (max-width:1199px) {
     .help-page-tabs .card {
@@ -1054,9 +1048,6 @@ header{
         .card{
             min-height: revert !important;
         }
-    }
-    .middle-li-card-footer{
-        margin: 0 29px !important;
     }
     .btn-text{
         font-size: 9px !important;
@@ -1237,9 +1228,6 @@ header{
     .pt-55{
         padding-top: 30px !important;
     }
-    .middle-li-card-footer{
-        margin: 0 27px !important;
-    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -1343,9 +1331,7 @@ header{
     .moretext {
         display: none;
     }
-    .middle-li-card-footer{
-        margin: 0 109px !important;
-    }
+
 }
 @media only screen and (max-width:576px){
     .bg-process-img{
@@ -1463,9 +1449,6 @@ header{
     .blog-card{
         min-height: 175px !important;
     }
-    .middle-li-card-footer{
-        margin: 0 49px !important;
-    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -1536,10 +1519,6 @@ header{
     .food-item-img{
         height: 170px !important;
     }
-    .middle-li-card-footer{
-        margin: 0 47px !important;
-    }
-
 }
 @media only screen and (max-width:375px){
     .rounded-icon{
@@ -1548,9 +1527,6 @@ header{
     }
     .scroll-icons{
         max-height: 28px !important;
-    }
-    .middle-li-card-footer{
-        margin: 0 22px !important;
     }
     .features-img{
         height: 40px !important;
