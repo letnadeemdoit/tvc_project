@@ -157,7 +157,8 @@
                 <!-- End Col -->
 
                 <div class="col-sm-auto pt-2">
-                    <div class="d-flex align-items-center justify-content-center justify-content-sm-end pagination-disable-button">
+                    <div
+                        class="d-flex align-items-center justify-content-center justify-content-sm-end pagination-disable-button">
                         <!-- Pagination -->
                         {{ $data->onEachSide(0)->links() }}
                     </div>
@@ -168,6 +169,9 @@
         </div>
         <!-- End Footer -->
     </div>
+    {{--    @if($user->is_owner)--}}
+    <livewire:settings.vacations.schedule-vacation-form :user="$user" wire:key="svf{{ time() }}"/>
+    {{--    @endif--}}
     @push('scripts')
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Calendar;
 
+use App\Http\Livewire\Traits\Destroyable;
 use App\Models\House;
 use App\Models\Room\Room;
 use App\Models\User;
@@ -13,6 +14,8 @@ use Livewire\Component;
 
 class CalendarView extends Component
 {
+    use Destroyable;
+
     public $user;
 
     public $selectedHouses = [];
@@ -27,9 +30,12 @@ class CalendarView extends Component
     protected $listeners = [
         'vacation-schedule-successfully' => 'renderCalendar',
         'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
+        'destroy-vacation' => 'destroy'
     ];
 
-    public function mount() {
+    public function mount()
+    {
+        $this->model = Vacation::class;
         if ($this->user->is_admin) {
             if ($this->properties) {
                 $this->selectedHouses = explode(',', $this->properties);
@@ -42,7 +48,8 @@ class CalendarView extends Component
         return view('dash.calendar.calendar-view');
     }
 
-    public function setProperty($property = null) {
+    public function setProperty($property = null)
+    {
         if ($property) {
             $this->properties = implode(',', $this->selectedHouses);
         } else {
@@ -67,13 +74,14 @@ class CalendarView extends Component
         $this->renderCalendar();
     }
 
-    public function getEventsProperty() {
+    public function getEventsProperty()
+    {
         if ($this->user->is_admin) {
             $vacations = Vacation::whereIn('HouseId', $this->properties ? $this->selectedHouses : $this->houses->pluck('HouseID')->toArray())
-                    ->when($this->user->user_id !== $this->owner && $this->owner !== null, function ($query) {
-                        $query->where('OwnerId', $this->owner);
-                    })
-                    ->get();
+                ->when($this->user->user_id !== $this->owner && $this->owner !== null, function ($query) {
+                    $query->where('OwnerId', $this->owner);
+                })
+                ->get();
         } else {
             $vacations = Vacation::where('HouseId', $this->user->HouseId)->get();
         }
@@ -86,14 +94,14 @@ class CalendarView extends Component
         return $events;
     }
 
-    public function getResourceTimelineProperty() {
+    public function getResourceTimelineProperty()
+    {
 
         if ($this->user->is_admin) {
             $rooms = Room::whereIn('HouseId', $this->properties ? $this->selectedHouses : User::where('email', $this->user->email)->pluck('HouseId')->toArray())->get();
         } else {
             $rooms = Room::where('HouseId', $this->user->HouseId)->get();
         }
-
 
 
         $resourceTimeline = [];
@@ -104,12 +112,30 @@ class CalendarView extends Component
         return $resourceTimeline;
     }
 
-    public function renderCalendar() {
+    public function renderCalendar()
+    {
         $this->emit('rerender-calendar', $this->events, $this->resourceTimeline);
     }
+
     public function getOwnersProperty()
     {
         return User::where('HouseId', $this->user->HouseId)->where('role', '<>', User::ROLE_GUEST)->where('user_id', '<>', $this->user->user_id)->get();
+    }
+
+    public function destroy($id)
+    {
+        if ($this->model) {
+            $deletableModel = app($this->model)->findOrFail($id);
+            $this->emit(
+                'destroyable-confirmation-modal',
+                $this->model,
+                $id,
+                $this->destroyableConfirmationContent,
+                'destroyed-scheduled-successfully'
+            );
+
+            $this->emitSelf('toggle', false);
+        }
     }
 
     public function destroyedSuccessfully($data)
