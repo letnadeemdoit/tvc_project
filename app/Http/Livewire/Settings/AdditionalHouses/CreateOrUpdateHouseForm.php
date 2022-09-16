@@ -144,7 +144,18 @@ class CreateOrUpdateHouseForm extends Component
         }
 
         $this->emitSelf('toggle', false);
+
+        $maxAdditionalHouse = \App\Models\House::whereHas('users', function ($query) {
+            $query->where('email', $this->user->email)
+                ->where('HouseId', '<>', $this->user->HouseId);
+        })->count();
+
         $this->emit('additional-house-cu-successfully');
+
+        if ($maxAdditionalHouse == 9){
+            return redirect()->route('dash.settings.additional-houses');
+        }
+
     }
 
     public function updatedFile()
