@@ -556,6 +556,10 @@ header{
         &:hover{
             color: $dark-blue !important;
         }
+    &.active{
+        border: 1px solid $dark-blue;
+        color: $dark-blue;
+    }
 }
 .bg-crystals{
     background-image: url('/images/privacy-policy/mirror.png');
