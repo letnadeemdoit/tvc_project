@@ -166,6 +166,7 @@
                         type="text"
                         class="form-control form-control-lg border-0 shadow-none outline-0"
                         id="ReferredBy"
+                        tabindex="5"
                         name="Referral_paypal_account"
                         wire:model.defer="state.Referral_paypal_account"
                         placeholder=""
@@ -177,7 +178,7 @@
                 @enderror
             </div>
             <div>
-                <x-upload-zone wire:model="file"/>
+                <x-upload-zone wire:model="file" tabindex="-1"/>
                 <x-jet-input-error for="image"/>
             </div>
             {{--            <div--}}
@@ -308,7 +309,7 @@
                                    class="form-control form-control-lg border-0 shadow-none outline-0"
                                    name="user_name"
                                    wire:model.defer="state.user_name"
-                                   id="user_name" tabindex="1"
+                                   id="user_name" tabindex="6"
                                    placeholder=""
                                    value="{{ old('user_name') }}"
                                    aria-label=""
@@ -338,7 +339,7 @@
                                    class="form-control form-control-lg border-0 shadow-none outline-0"
                                    name="email"
                                    wire:model.defer="state.email"
-                                   id="email" tabindex="1"
+                                   id="email" tabindex="7"
                                    value="{{ old('email') }}"
                                    placeholder=""
                                    aria-label=""
@@ -363,6 +364,7 @@
                         </label>
                         <input
                             type="checkbox"
+                            tabindex="8"
                             class="form-check-input check-input"
                             name="AdminOwner"
                             wire:model.defer="state.AdminOwner"
@@ -382,7 +384,7 @@
                                    class="form-control form-control-lg border-0 shadow-none outline-0"
                                    name="first_name"
                                    wire:model.defer="state.first_name"
-                                   id="first_name" tabindex="1"
+                                   id="first_name" tabindex="9"
                                    placeholder=""
                                    value="{{ old('first_name') }}"
                                    aria-label=""
@@ -402,7 +404,7 @@
                                    class="form-control form-control-lg border-0 shadow-none outline-0"
                                    name="last_name"
                                    wire:model.defer="state.last_name"
-                                   id="last_name" tabindex="1"
+                                   id="last_name" tabindex="10"
                                    placeholder=""
                                    value="{{ old('last_name') }}"
                                    aria-label=""
@@ -427,7 +429,7 @@
                                 name="password"
                                 wire:model.defer="state.password"
                                 id="password"
-                                tabindex="1"
+                                tabindex="11"
                                 placeholder=""
                                 aria-label=""
                             >
@@ -463,7 +465,7 @@
                                 wire:model.defer="state.password_confirmation"
                                 name="password_confirmation"
                                 id="password_confirmation"
-                                tabindex="1"
+                                tabindex="12"
                                 placeholder=""
                                 aria-label=""
                             >
@@ -488,7 +490,7 @@
                                             class="text-decoration-underline">Terms and Conditions</a>
                             </label>
                             <input type="checkbox" class="form-check-input check-input" name="terms"
-                                   wire:model.defer="state.terms" value="yes"
+                                   wire:model.defer="state.terms" tabindex="13" value="yes"
                                    id="terms_and_conditions">
                         </div>
                         @error('terms')
@@ -506,6 +508,7 @@
                 <button
                     class="btn btn-dark-secondary text-white w-100"
                     type="submit"
+                    tabindex="14"
                     wire:loading.attr="disabled"
                     wire:target="register"
                 >
