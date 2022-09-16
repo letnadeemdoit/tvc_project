@@ -96,6 +96,11 @@ class Blog extends Model implements Auditable
         return $this->belongsTo(House::class, 'HouseId', 'HouseID');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function likes()
     {
         return $this->morphMany(Likes::class, 'likeable');
