@@ -89,7 +89,7 @@ body{
     color: $primary;
 }
 .btn-min-115{
-    min-width: 130px;
+    min-width: 120px;
 }
 .max-width{
     max-width: 400px;
@@ -126,6 +126,7 @@ body{
         }
     }
 }
+
 .guest-card-cont p{
     max-height: 250px;
     overflow-y: auto;
@@ -1019,7 +1020,6 @@ header{
         min-width: 190px !important;
         max-width: 190px !important;
     }
-
     .toggle-text {
         max-width: 89px !important;
     }
@@ -1330,6 +1330,9 @@ header{
     .bg-process-img{
         background-size: contain !important;
     }
+    .btn-min-115{
+        min-width: 130px !important;
+    }
     .rounded-icon{
         width:12%;
         margin: -30px auto !important;
@@ -1515,6 +1518,7 @@ header{
     .middle-li-card-footer{
         margin: 0 54px !important;
     }
+
 }
 @media only screen and (max-width:375px){
     .rounded-icon{
