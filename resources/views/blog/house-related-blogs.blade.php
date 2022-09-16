@@ -60,17 +60,13 @@
 {{--                    <p class="text-dark-blue">{!!  (Str::limit(strip_tags($blog->Contents), 80))  !!}</p>--}}
                 </div>
             </div>
-            @php
-                $blogcomments = App\Models\Blog\BlogComment::where('BlogId',$blog->BlogId )->get();
-                $numberofcomments = count($blogcomments);
-            @endphp
             <div class="card-footer px-0 pb-0 border-top-thick w-94">
                 <ul class="d-flex list-unstyled ul-card-footer justify-content-between">
 
                     <li>
                         <livewire:blog.like-able-blog :post="$blog" />
                     </li>
-                    <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>Comments</span></li>
+                    <li><img src="/images/blog-images/comment.svg" class="img-fluid me-1"><span>{{ $blogcomments }} Comments</span></li>
                     <li><img src="/images/blog-images/eye.svg" class="img-fluid me-1"><span>{{ isset($existing_views) ? $existing_views : 0 }} Views</span></li>
                 </ul>
             </div>

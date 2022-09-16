@@ -14,10 +14,12 @@ use App\Http\Livewire\Traits\Toastr;
 class PostCard extends Component
 {
     public Blog $post;
+
     use Toastr;
     public $BlogComments = [];
     public $existing_likes;
     public $existing_views;
+    public $blogcomments;
 
     protected $listeners = [
         'readBlogComments',
@@ -28,6 +30,7 @@ class PostCard extends Component
         if ($blog_views){
             $this->existing_views = $blog_views;
         }
+        $this->blogcomments = $this->post->comments()->count();
     }
 
     public function render()

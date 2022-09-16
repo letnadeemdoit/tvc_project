@@ -34,6 +34,8 @@ class BlogController extends Controller
 
         $relatedBlog = Blog::where('HouseId' , $user->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
+        $blogComments = $post->comments()->count();
+
         $existingTags = $post->tags;
 
 //        if(!auth()->user()->is_guest){
@@ -55,7 +57,8 @@ class BlogController extends Controller
             'existing_views' => $existing_views,
             'categories' => $categories,
             'relatedBlog' => $relatedBlog,
-            'existingTags' => $existingTags
+            'existingTags' => $existingTags,
+            'blogComments' => $blogComments
 
         ]);
     }
