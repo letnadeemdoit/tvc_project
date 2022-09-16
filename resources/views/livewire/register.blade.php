@@ -36,6 +36,7 @@
                             tabindex="1"
                             name="country_id"
                             wire:model="state.country_id"
+                            wire:change="onChangeCountry"
                             class="form-control form-control-lg border-0 shadow-none outline-0"
                         >
                             <option value=""></option>

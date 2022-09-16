@@ -39,6 +39,14 @@ class CreateOrUpdateHouseForm extends Component
         return view('dash.settings.additional-houses.create-or-update-house-form',compact('countries','states','cities'));
     }
 
+
+    public function onChangeCountry()
+    {
+        $this->state['state_id'] = null;
+        $this->state['city_id'] = null;
+    }
+
+
     public function showAdditionalHouseCUModal($toggle, ?House $house)
     {
         $this->emitSelf('toggle', $toggle);
