@@ -171,17 +171,52 @@
 
 {{--        @if(!auth()->user()->is_guest)--}}
 
-{{--            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>--}}
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v14.0" nonce="tCpUTx77" target="_top"></script>
 
-{{--            <div class="fb-comments" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">--}}
+            <div class="fb-comments" data-href="{{ route('guest.blog.show', $post->BlogId) }}" data-width="" data-numposts="3">
 
-{{--            </div>--}}
+            </div>
 
 {{--        @endif--}}
 
-            <livewire:blog.post-comment :user="$user" :blog="$post" />
+{{--            <livewire:blog.post-comment :user="$user" :blog="$post" />--}}
+{{--        <div class="row mt-5 mb-3">--}}
+{{--            <div class="col-12 col-lg-6">--}}
+{{--                <div class="d-flex w-100">--}}
+{{--                    <div class="flex-shrink-0">--}}
+{{--                        <img src="{{asset('images/images-home/smiling-girl.jpg')}}" class="rounded-1" width="50"--}}
+{{--                             height="50" style="object-fit: cover" alt="...">--}}
+{{--                    </div>--}}
+{{--                    <div class="flex-grow-1 ms-3 mb-3">--}}
+{{--                        <h5 class="mb-0">Courteny Hendry</h5>--}}
+{{--                        <p class="mb-0" style="font-size: 12px">Ultricies ultricies interdum dolor sodales. Vitae--}}
+{{--                            feugiat vitae vitae quis id consectetur. Aenean urna, lectus enim suscipit eget. Tristique--}}
+{{--                            bibendum nib.</p>--}}
+{{--                        <p class="mb-0" style="font-size: 12px">--}}
+{{--                            <span class="me-1">--}}
+{{--                                <a href="" class="text-muted">Like</a>--}}
+{{--                            </span>.--}}
+{{--                            <span class="mx-1">--}}
+{{--                                <a href="" class="text-muted">Reply</a>--}}
+{{--                            </span>.--}}
+{{--                            <span class="mx-1 text-muted">--}}
+{{--                                24h--}}
+{{--                            </span>--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
 
+
+{{--            </div>--}}
+{{--        </div>--}}
+
+
+{{--        <div class="row mt-5 mb-3">--}}
+{{--            <div class="col-12 col-lg-6">--}}
+{{--                <button class="w-100 btn btn-primary">Load 13 More comments</button>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
 
     </div>

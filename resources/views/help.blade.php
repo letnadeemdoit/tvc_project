@@ -14,6 +14,7 @@
                 <h2 class="pt-2 poppins-bold">Get Instructions Here</h2>
             </section>
             <div class="help-page-tabs mt-80">
+                <div class="bg-border">
                 <ul class="nav nav-tabs  border-bottom-0 d-flex justify-content-center" id="myTab" role="tablist">
                     <!-- <div class="row">  -->
                     <!-- <div class="col-3">  -->
@@ -26,9 +27,9 @@
                                     <p>Quick Start Guide</p>
                                 </div>
                             </div>
-                            <div class="text-end bg-arrow d-none d-lg-block">
-                                <img src="{{asset('/images/help-images/vector-1.png')}}" class="img-fluid">
-                            </div>
+{{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
+{{--                                <img src="{{asset('/images/help-images/vector-1.png')}}" class="img-fluid">--}}
+{{--                            </div>--}}
                         </button>
                     </li>
                     <!-- </div>  -->
@@ -42,9 +43,9 @@
                                     <p>Instructions</p>
                                 </div>
                             </div>
-                            <div class="text-end bg-arrow d-none d-lg-block">
-                                <img src="{{asset('/images/help-images/vector-2.png')}}" class="img-fluid">
-                            </div>
+{{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
+{{--                                <img src="{{asset('/images/help-images/vector-2.png')}}" class="img-fluid">--}}
+{{--                            </div>--}}
                         </button>
                     </li>
                     <!-- </div>  -->
@@ -59,9 +60,9 @@
                                     <p><span class="d-none d-lg-block">Different Ways to Use The</span> Vacation Calendar</p>
                                 </div>
                             </div>
-                            <div class="text-end bg-arrow d-none d-lg-block">
-                                <img src="{{asset('/images/help-images/vector-3.png')}}" class="img-fluid">
-                            </div>
+{{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
+{{--                                <img src="{{asset('/images/help-images/vector-3.png')}}" class="img-fluid">--}}
+{{--                            </div>--}}
                         </button>
                     </li>
                     <!-- </div>  -->
@@ -80,6 +81,7 @@
                     <!-- </div>  -->
                     <!-- </div> -->
                 </ul>
+                </div>
             </div>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
