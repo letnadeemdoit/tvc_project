@@ -23,7 +23,7 @@
             <!-- End Col -->
 
             <div class="col-12 col-lg-6 footer-text col-xl-6 text-center text-lg-end text-white mt-2 mt-lg-0">
-                <p class="mb-0 fs-6 "> © 2022 {{ config('app.name') }}. <a href="{{route('guest.privacy-policy')}}" class="text-decoration-underline text-white">Privacy Policy</a> and <a href="#" class="text-decoration-underline text-white">Terms of Service</a></p>
+                <p class="mb-0 fs-6 "> © 2022 {{ config('app.name') }}. <a href="{{route('guest.privacy-policy')}}" class="text-decoration-underline text-white">Privacy Policy</a> and <a href="{{route('guest.terms-of-service')}}" class="text-decoration-underline text-white">Terms of Service</a></p>
             </div>
             <!-- End Row -->
         </div>
