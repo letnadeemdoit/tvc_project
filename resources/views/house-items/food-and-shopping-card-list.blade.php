@@ -139,13 +139,13 @@
                                             <div class="col-md-6 col-lg-10">
                                                 <div class="row">
                                                     <div
-                                                        class="col-12  col-lg-4  mt-3 mt-md-0 border-right-solid d-flex align-items-center ps-3 ps-lg-5">
+                                                        class="col-12  col-lg-5 col-xl-4  mt-3 mt-md-0 border-right-solid d-flex align-items-center ps-3 ps-lg-5">
                                                         <span class="badge badge-blue btn-min-115 fs-4 p-2 fw-normal">Shopping Item :</span>
                                                         <p class="mb-0 ps-5 toggle-text text-break">{{$dt->name}}</p>
 
                                                     </div>
                                                     <div
-                                                        class="col-12 col-lg-8 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">
+                                                        class="col-12 col-lg-7 col-xl-8 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">
                                                         <span class="badge badge-green fs-4 p-2 fw-normal" style="min-width: 130px;">Where to buy :</span>
                                                         <p class="mb-0 ps-5 text-start text-break">{{$dt->location}}</p>
                                                     </div>
