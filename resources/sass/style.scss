@@ -199,6 +199,12 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         color: #fff;
     }
 }
+.bg-border{
+    background-image: url('/images/help-images/border-curve.svg');
+    background-repeat: no-repeat;
+    background-position: center 47px;
+    background-size: auto;
+}
 .list-btn{
     width: 2.6rem !important;
     height: 2.6rem !important;
@@ -1000,6 +1006,9 @@ header{
             }
         }
     }
+    .bg-border{
+        background-size: 90% !important;
+    }
     .btn-min-115{
         min-width: 126px !important;
     }
@@ -1025,6 +1034,9 @@ header{
     }
     .toggle-text {
         max-width: 89px !important;
+    }
+    .bg-border{
+        background-size: 90% !important;
     }
     .btn-min-115{
         min-width: 140px !important;
@@ -1101,6 +1113,9 @@ header{
                 min-height: revert !important;
             }
         }
+    }
+    .bg-border{
+      background-image: none !important;
     }
     .padding-bottom{
         padding-bottom: 3rem !important;
