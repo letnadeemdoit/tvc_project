@@ -112,7 +112,7 @@
                                                     </div>
                                                     <div
                                                         class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex align-items-center ps-3 ps-lg-5">
-                                                        <span class="badge badge-primary btn-min-115 fs-4 p-2 fw-normal">Expiry Date:</span>
+                                                        <span class="badge badge-primary btn-min-115 fs-4 p-2 fw-normal">Expiry Date :</span>
                                                         <p class="mb-0 ps-5 text-start">{{$dt->expiration_date}}</p>
                                                     </div>
                                                 </div>
