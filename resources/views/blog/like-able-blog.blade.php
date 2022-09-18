@@ -1,13 +1,10 @@
 <div>
-
-{{--    @if(!auth()->user()->is_guest)--}}
-        <a href="#!">
+    <a href="#!" wire:click.prevent="likeBlog()">
             @if($isExistingUser)
-                <img src="/images/blog-images/filled-heart.svg" class="img-fluid me-1" wire:click="likeBlog()">
+                <img src="/images/blog-images/filled-heart.svg" class="img-fluid me-1">
             @else
-                <img src="/images/blog-images/love.svg" class="img-fluid me-1" wire:click="likeBlog()">
+                <img src="/images/blog-images/love.svg" class="img-fluid me-1" >
             @endif
-        </a>
-{{--    @endif--}}
-<span>{{ isset($existing_likes) ? $existing_likes : 0}} Likes</span>
+                <span  class="text-footer-color">{{ isset($existing_likes) ? $existing_likes : 0}} Likes</span>
+    </a>
 </div>

@@ -25,6 +25,17 @@ class Subscription extends Model
         'status'
     ];
 
+
+    public function house()
+    {
+        return $this->belongsTo(House::class, 'house_id', 'HouseID');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
     public function cancel()
     {
         $paypal = PayPal::setProvider();

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Blog;
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogComment;
 use App\Models\Blog\BlogNestedComment;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -12,7 +13,7 @@ class PostComment extends Component
 {
     public $user;
 
-    public Blog $blog;
+    public ?Blog $blog;
 
 
     public $type;
@@ -27,42 +28,39 @@ class PostComment extends Component
 
     public $newestComment = true;
 
-    public $oldestComment = false;
 
     public $state = [];
 
     public function render()
     {
-        $countComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->get();
+        $blogComments = $this->blog->comments()->count();
 
-        if (count($countComments) > 3){
-            $this->remainingComments = count($countComments) - 3;
+        if ($blogComments > 3){
+            $this->remainingComments = $blogComments - 3;
             $this->isMoreComments = true;
         }
 
-        if ($this->oldestComment){
+        if ($this->newestComment){
             if ($this->showAllComments){
-                $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'ASC')->get();
+                $BlogComments = $this->blog->comments()->orderBy('id', 'DESC')->get();
                 $this->isMoreComments = false;
             }
             else{
-                $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'ASC')->limit(3)->get();
+                $BlogComments = $this->blog->comments()->orderBy('id', 'DESC')->limit(3)->get();
             }
         }
         else
         {
             if ($this->showAllComments){
-                $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->get();
+                $BlogComments = $this->blog->comments()->orderBy('id', 'ASC')->get();
                 $this->isMoreComments = false;
             }
             else{
-                $BlogComments = BlogComment::where('BlogId', $this->blog->BlogId)->orderBy('CommentId', 'DESC')->limit(3)->get();
+                $BlogComments = $this->blog->comments()->orderBy('id', 'ASC')->limit(3)->get();
             }
         }
 
-        $Comments = BlogComment::where('BlogId', $this->blog->BlogId)->get();
-        $NestedComments = BlogNestedComment::where('blog_id', $this->blog->BlogId)->get();
-        $this->totalComments = (count($Comments) + count($NestedComments));
+        $this->totalComments = $blogComments;
 
         return view('blog.post-comment', compact('BlogComments'));
     }
@@ -73,31 +71,28 @@ class PostComment extends Component
         $mydatetime =date("Y-m-d H:i:s");
         $inputs = $this->state;
         Validator::make($inputs, [
-            'Content' => 'required|max:1000',
+            'Content' => 'required|max:255',
         ])->validateWithBag('addBlogComment');
 
-        BlogComment::create([
-            'BlogId'        => $this->blog->BlogId,
-            'HouseId'        => $this->blog->HouseId,
-            'Author'        => $this->blog->Author,
-            'BlogDate'       => $mydatetime,
-            'Audit_user_name'        => $this->blog->Audit_user_name,
-            'Audit_Role'        => $this->blog->Audit_Role,
-            'Audit_FirstName'       => $this->blog->Audit_FirstName,
-            'Audit_LastName'      => $this->blog->Audit_LastName,
-            'Audit_Email' => $this->blog->Audit_Email,
-            'Content' => $inputs['Content'],
+        $comment = new Comment();
+
+        $comment->fill([
+            'user_id' => auth()->user()->user_id,
+            'house_id' => auth()->user()->HouseId,
+            'message' => $inputs['Content'] ?? null,
         ]);
+
+        session()->flash('success', 'Your Comment has been submitted successfully...');
+
+        $this->blog->comments()->save($comment);
         $this->reset('state');
     }
     public function changeType() {
         if ($this->type == 'Newest'){
             $this->newestComment = true;
-            $this->oldestComment = false;
         }
         else{
             $this->newestComment = false;
-            $this->oldestComment = true;
         }
     }
 

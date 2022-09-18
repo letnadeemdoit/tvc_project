@@ -47,7 +47,7 @@
                     <th>Subject</th>
                     <th>Created by</th>
                     <th>Category</th>
-                    <th>Description</th>
+{{--                    <th>Description</th>--}}
                     <th class="align-center">Action</th>
                 </tr>
                 </thead>
@@ -62,6 +62,7 @@
                                         src="{{$dt->getFileUrl('image')}}"
                                         class="avatar-initials"
                                         alt="{{ $dt->Subject ?? '' }}"
+                                        style="object-fit: cover;"
                                     />
                                 </div>
                             </td>
@@ -75,7 +76,7 @@
                             <td>
                                 {{$dt->category->name ?? ''}}
                             </td>
-                            <td>{{ str(strip_tags($dt->Contents))->limit(40) }}</td>
+{{--                            <td>{{ str(strip_tags($dt->Contents))->limit(40) }}</td>--}}
                             <td>
                                 <div class="btn-group" role="group" aria-label="Edit group">
                                     <a class="btn btn-white" href="#"

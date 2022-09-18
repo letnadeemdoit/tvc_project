@@ -34,7 +34,7 @@
                     src="{{ $dt->getFileUrl() }}"
                     class="avatar-initials img-fluid position-relative rounded-circle"
                     alt="..."
-                    style="width:60px !important;height:60px !important;"
+                    style="width:60px !important;height:60px !important;object-fit: cover;"
                 >
             </div>
             <div class="flex-grow-1 ms-3">

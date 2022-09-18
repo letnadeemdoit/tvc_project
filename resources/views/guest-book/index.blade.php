@@ -119,13 +119,13 @@
     @include('partials.sub-page-hero-section', ['title' => 'Guest Book'])
 
     <section class=" bg-light">
-        @if(isset($data) && count($data) > 0)
-            <div class="section-padding">
+        <div class="section-padding">
                 <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
                 </div>
                 <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>
             </div>
+        @if(isset($data) && count($data) > 0)
             <div class="container mt-2 mb-5">
                 <div class="row">
 
@@ -278,6 +278,8 @@
 
                 </div>
             </div>
+        @else
+            @include('partials.no-data-available',['title' => 'Guest Review'])
         @endif
 
         <div class="container padding-bottom " style="padding-top: 80px">

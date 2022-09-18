@@ -89,7 +89,7 @@ body{
     color: $primary;
 }
 .btn-min-115{
-    min-width: 130px;
+    min-width: 120px;
 }
 .max-width{
     max-width: 400px;
@@ -126,6 +126,7 @@ body{
         }
     }
 }
+
 .guest-card-cont p{
     max-height: 250px;
     overflow-y: auto;
@@ -174,6 +175,9 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         background-color: transparent !important;
     }
 }
+.text-footer-color {
+    color: #677788 !important;
+}
 /* Track */
 //::-webkit-scrollbar-track {
 //    background: #f1f1f1;
@@ -197,6 +201,12 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
         font-size: 18px;
         color: #fff;
     }
+}
+.bg-border{
+    background-image: url('/images/help-images/border-curve.svg');
+    background-repeat: no-repeat;
+    background-position: center 53px;
+    background-size: auto;
 }
 .list-btn{
     width: 2.6rem !important;
@@ -293,9 +303,6 @@ background: transparent url("/images/guest-book/rounded-close.svg") center/1.3em
        filter:grayscale(87%) brightness(60%) sepia(87%) hue-rotate(-51deg) saturate(982%) contrast(0.8);
         }
     }
-}
-.middle-li-card-footer{
-    margin: 0 37px;
 }
     .lb-container{
         padding: 0px !important;
@@ -549,6 +556,10 @@ header{
         &:hover{
             color: $dark-blue !important;
         }
+    &.active{
+        border: 1px solid $dark-blue;
+        color: $dark-blue;
+    }
 }
 .bg-crystals{
     background-image: url('/images/privacy-policy/mirror.png');
@@ -966,9 +977,6 @@ header{
     .row-max-width{
         margin: 0 auto;
     }
-    .middle-li-card-footer{
-        margin: 0 35px !important;
-    }
     .ul-card-footer {
         li {
             span {
@@ -999,6 +1007,12 @@ header{
             }
         }
     }
+    .bg-border{
+        background-size: 90% !important;
+    }
+    .btn-min-115{
+        min-width: 126px !important;
+    }
     .toggle-text {
         max-width: 140px !important;
     }
@@ -1010,18 +1024,20 @@ header{
             min-height: 555px !important;
         }
     }
-    .middle-li-card-footer{
-        margin: 0 27px !important;
-    }
 }
 @media only screen and (min-width:992px) and (max-width:1199px) {
     .help-page-tabs .card {
         min-width: 190px !important;
         max-width: 190px !important;
     }
-
     .toggle-text {
         max-width: 89px !important;
+    }
+    .bg-border{
+        background-size: 90% !important;
+    }
+    .btn-min-115{
+        min-width: 140px !important;
     }
     .fs-13{
         font-size: 11px;
@@ -1036,9 +1052,6 @@ header{
         .card{
             min-height: revert !important;
         }
-    }
-    .middle-li-card-footer{
-        margin: 0 34px !important;
     }
     .btn-text{
         font-size: 9px !important;
@@ -1095,6 +1108,9 @@ header{
                 min-height: revert !important;
             }
         }
+    }
+    .bg-border{
+      background-image: none !important;
     }
     .padding-bottom{
         padding-bottom: 3rem !important;
@@ -1216,9 +1232,6 @@ header{
     .pt-55{
         padding-top: 30px !important;
     }
-    .middle-li-card-footer{
-        margin: 0 34px !important;
-    }
 }
 @media only screen and (max-width:767px) {
     .hero-image{
@@ -1322,13 +1335,14 @@ header{
     .moretext {
         display: none;
     }
-    .middle-li-card-footer{
-        margin: 0 117px !important;
-    }
+
 }
 @media only screen and (max-width:576px){
     .bg-process-img{
         background-size: contain !important;
+    }
+    .btn-min-115{
+        min-width: 130px !important;
     }
     .rounded-icon{
         width:12%;
@@ -1439,9 +1453,6 @@ header{
     .blog-card{
         min-height: 175px !important;
     }
-    .middle-li-card-footer{
-        margin: 0 60px !important;
-    }
 }
 @media only screen and (max-width:430px){
     .rounded-icon{
@@ -1512,9 +1523,6 @@ header{
     .food-item-img{
         height: 170px !important;
     }
-    .middle-li-card-footer{
-        margin: 0 54px !important;
-    }
 }
 @media only screen and (max-width:375px){
     .rounded-icon{
@@ -1523,9 +1531,6 @@ header{
     }
     .scroll-icons{
         max-height: 28px !important;
-    }
-    .middle-li-card-footer{
-        margin: 0 27px !important;
     }
     .features-img{
         height: 40px !important;
