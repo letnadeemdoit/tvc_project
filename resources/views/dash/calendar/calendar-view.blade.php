@@ -164,12 +164,6 @@
     </div>
 
     <div id='calendar' class="fullcalendar-custom" wire:ignore></div>
-    <div>
-        <livewire:settings.vacations.schedule-vacation-form :user="$user" wire:key="vsvf{{time()}}"/>
-    </div>
-    <div>
-        <livewire:settings.vacations.request-to-join-vacation-form :user="$user" wire:key="rtjvf{{time()}}"/>
-    </div>
     @push('scripts')
         <script>
             $(document).ready(function () {

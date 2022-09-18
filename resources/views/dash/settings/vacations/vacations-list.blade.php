@@ -169,9 +169,6 @@
         </div>
         <!-- End Footer -->
     </div>
-    {{--    @if($user->is_owner)--}}
-    <livewire:settings.vacations.schedule-vacation-form :user="$user" wire:key="svf{{ time() }}"/>
-    {{--    @endif--}}
     @push('scripts')
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript"

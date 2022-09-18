@@ -52,7 +52,7 @@
                     <label class="form-control" for="recurrence_once">
                         <span class="form-check">
                             <input type="radio"
-                                   wire:model.defer="state.recurrence"
+                                   wire:model="state.recurrence"
                                    value="once"
                                    class="form-check-input"
                                    checked
@@ -69,7 +69,7 @@
                     <label class="form-control" for="recurrence_monthly">
                         <span class="form-check">
                             <input type="radio"
-                                   wire:model.defer="state.recurrence"
+                                   wire:model="state.recurrence"
                                    value="monthly"
                                    class="form-check-input"
                                    checked
@@ -88,7 +88,7 @@
                         <span class="form-check">
                             <input type="radio"
                                    value="yearly"
-                                   wire:model.defer="state.recurrence"
+                                   wire:model="state.recurrence"
                                    class="form-check-input"
                                    name="recurrence"
                                    id="recurrence_yearly"
@@ -99,6 +99,25 @@
                     <!-- End Form Radio -->
                 </div>
             </div>
+            @if(isset($state['recurrence']) && $state['recurrence'] !== 'once')
+                <div class="form-group mb-3">
+                    <label
+                        class="form-label"
+                        for="repeat_interval"
+                    >Repeat Interval:</label>
+                    <input
+                        type="number"
+                        class="form-control @error('repeat_interval') is-invalid @enderror"
+                        name="repeat_interval"
+                        id="repeat_interval"
+                        placeholder="Vacation Repeat Interval"
+                        wire:model.defer="state.repeat_interval"
+                    />
+                    @error('repeat_interval')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+            @endif
             <div class="row mb-3">
                 <div class="form-group col-md-6 mb-3" x-data="{bc: '{{ $state['background_color'] ?? '#3a87ad' }}'}">
                     <label class="form-label" for="background_color">Background Color:</label>
