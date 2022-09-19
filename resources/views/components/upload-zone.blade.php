@@ -61,53 +61,57 @@
         <template x-for="(f, i) in files" :key="i">
             <div class="position-relative">
 
-                <div class="position-absolute" style="bottom: 10px; right: 10px; z-index: 100">
-                    <a
-                        href="#"
-                        class="btn btn-primary btn-xs"
-                        @click.prevent="isCropEnabled ? cropper.clear() : cropper.crop(); isCropEnabled = !isCropEnabled"
-                    >
-                        <i class="bi bi-crop"></i>
-                    </a>
-                    <a
-                        href="#"
-                        class="btn btn-primary btn-xs"
-                        @click.prevent="cropper.rotate(-45)"
-                    >
-                        <i class="bi bi-arrow-counterclockwise"></i>
-                    </a>
-                    <a
-                        href="#"
-                        class="btn btn-primary btn-xs"
-                        @click.prevent="cropper.rotate(45)"
-                    >
-                        <i class="bi bi-arrow-clockwise"></i>
-                    </a>
-                    <a
-                        href="#"
-                        class="btn btn-primary btn-xs"
-                        @click.prevent="cropper.reset()"
-                    >
-                        <i class="bi bi-arrow-repeat"></i>
-                    </a>
-                    <a
-                        href="#"
-                        class="btn btn-primary btn-xs"
-                        @click.prevent="errors = []; files = []; uploadingProgress = 0; cropper = null; previewAndEdit = false"
-                    >
-                        <i class="bi bi-x"></i>
-                    </a>
-                    <a
-                        href="#"
-                        class="btn btn-primary btn-xs"
-                        @click.prevent="startUploading()"
-                    >
-                        <i class="bi bi-check2"></i>
-                    </a>
-                </div>
-
                 <img :src="files.length > 0 ? URL.createObjectURL(files[0]) : null" x-ref="cropper" style="max-height: 400px"/>
+             <div class="text-center">
+                 <div class="mt-2 mb-1" style="bottom: 10px; right: 10px; z-index: 100">
+                     <a
+                         href="#"
+                         class="btn btn-primary btn-xs"
+                         @click.prevent="isCropEnabled ? cropper.clear() : cropper.crop(); isCropEnabled = !isCropEnabled"
+                     >
+                         <i class="bi bi-crop"></i>
+                     </a>
+                     <a
+                         href="#"
+                         class="btn btn-primary btn-xs"
+                         @click.prevent="cropper.rotate(-45)"
+                     >
+                         <i class="bi bi-arrow-counterclockwise"></i>
+                     </a>
+                     <a
+                         href="#"
+                         class="btn btn-primary btn-xs"
+                         @click.prevent="cropper.rotate(45)"
+                     >
+                         <i class="bi bi-arrow-clockwise"></i>
+                     </a>
+                     <a
+                         href="#"
+                         class="btn btn-primary btn-xs"
+                         @click.prevent="cropper.reset()"
+                     >
+                         <i class="bi bi-arrow-repeat"></i>
+                     </a>
+                     <a
+                         href="#"
+                         class="btn btn-primary btn-xs"
+                         @click.prevent="errors = []; files = []; uploadingProgress = 0; cropper = null; previewAndEdit = false"
+                     >
+                         <i class="bi bi-x"></i>
+                     </a>
+                     <a
+                         href="#"
+                         class="btn btn-primary btn-xs"
+                         @click.prevent="startUploading()"
+                     >
+                         <i class="bi bi-check2"></i>
+                     </a>
+                 </div>
+                 <p class="text-danger fs-12" x-show="files.length > 0">Click check button to upload your image otherwise it will not be upload.</p>
+             </div>
+
             </div>
+
         </template>
     </div>
     <div
