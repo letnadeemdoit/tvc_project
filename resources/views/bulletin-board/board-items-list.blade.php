@@ -46,11 +46,11 @@
 
     <!-- dots img -->
     @if(isset($data) && count($data) > 0)
-        <div class="container bg-waves" style="background-image: url('/images/bulletin-images/combined-shape.png'); background-repeat: no-repeat; background-size: auto; background-position: top right 150px;">
+        <div class="bg-waves" style="background-image: url('/images/bulletin-images/combined-shape.png'); background-repeat: no-repeat; background-size: auto; background-position: top right 150px;">
         <div class="padding-bottom massonary-container">
             <div class="masonry pt-5 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
-                    <div class="brick me-1 pe-1">
+                    <div class="brick  pe-md-1 ">
                         <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                     </div>
                 @endforeach
