@@ -147,7 +147,7 @@
                                             <span class="text-decoration-underline text-primary fw-bolder"> Reset</span>
                                         </a>
                                         @endif
-                                </span>
+                                    </span>
                                 </div>
                             </div>
                             <!-- End Form -->
