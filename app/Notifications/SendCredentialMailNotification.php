@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class SendCredentialMailNotification extends Notification
+class SendCredentialMailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

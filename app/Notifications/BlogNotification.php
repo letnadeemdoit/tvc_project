@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class BlogNotification extends Notification
+class BlogNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $items;
@@ -47,7 +47,6 @@ class BlogNotification extends Notification
     public function toMail($notifiable)
     {
         $url = $this->blogUrl;
-
         return (new MailMessage)
             ->greeting('Blog!')
             ->line(new HtmlString('New Blog <strong>' . $this->items->Subject.'</strong>'. '  has been added for the vacation house ' . '<strong>'. $this->createdHouseName .' </strong>'))

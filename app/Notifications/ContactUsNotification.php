@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ContactUsNotification extends Notification
+class ContactUsNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
