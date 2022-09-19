@@ -754,6 +754,7 @@ header{
     }
 }
 .login-nav{
+
     .dropdown-item {
         margin-top: 10px;
         &:hover {
@@ -782,6 +783,7 @@ header{
 .help-page-tabs{
     p {
         color: #6D6D6D !important;
+        font-weight: 500 !important;
     }
     .card{
         min-width: 230px;
@@ -822,6 +824,8 @@ header{
     .nav-item{
         position: relative;
         .nav-link {
+            color: #606368;
+            font-weight: 500;
             &.active{
                 font-weight: 600;
                 color: $dark-blue;
@@ -949,6 +953,13 @@ header{
 
 }
 @media only screen and (min-width:768px) and (max-width:991px) {
+    .login-nav {
+        ul.navbar-nav {
+            li:nth-last-child(2) {
+            margin-top: 8px !important;
+            }
+        }
+    }
     .mr-7px{
         margin-right: 1px !important;
     }
