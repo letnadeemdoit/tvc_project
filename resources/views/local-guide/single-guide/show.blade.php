@@ -140,7 +140,7 @@
         </div>
         <div class="container my-2 my-md-5 pt-5">
             <div class="row">
-                <div class="col-12 col-lg-9 pe-0 pe-lg-5">
+                <div class="col-12 col-lg-9 pe-0 pe-lg-5" style="overflow-y: scroll;">
                     <div class="border-bottom">
                         <p class="mb-3" style="font-size: 12px"><span
                                 class="mx-1 text-muted">{{date('Y-m-d | h:m A',strtotime($localGuide->datetime))}}</span>

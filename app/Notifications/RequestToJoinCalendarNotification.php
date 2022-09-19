@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class RequestToJoinCalendarNotification extends Notification
+class RequestToJoinCalendarNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $name;
