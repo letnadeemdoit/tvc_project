@@ -71,7 +71,8 @@ class ScheduleVacationForm extends Component
                 'background_color' => $this->vacation->BackGrndColor,
                 'font_color' => $this->vacation->FontColor,
                 'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y h:i'),
-                'recurrence' => $this->vacation->recurrence ?? 'once'
+                'recurrence' => $this->vacation->recurrence ?? 'once',
+                'repeat_interval' => $this->vacation->repeat_interval ?? 0
             ];
         } else {
             $this->isCreating = true;
@@ -130,6 +131,7 @@ class ScheduleVacationForm extends Component
             'StartTimeId' => $startTime->timeid,
             'EndDateId' => $endDate->DateId,
             'EndTimeId' => $endTime->timeid,
+            'repeat_interval' => $this->state['repeat_interval'] ?? 0,
         ])->save();
 
         if ($this->state['recurrence'] !== 'once') {
@@ -172,7 +174,7 @@ class ScheduleVacationForm extends Component
                         }
                         $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
-                        $recurring[] = new Vacation([
+                        $recurring->update([
                             'VacationName' => $this->state['vacation_name'],
                             'BackGrndColor' => ltrim($this->state['background_color'], '#'),
                             'FontColor' => ltrim($this->state['font_color'], '#'),
