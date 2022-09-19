@@ -130,12 +130,12 @@
                                     >
                                         <i id="changePassIcon" class="bi-eye"></i>
                                     </a>
-
-                                    @error('password')
-                                    <span class="text-danger fw-semi-bold"
-                                          style="font-size: 13px !important;">{{$message}}</span>
-                                    @enderror
                                 </div>
+
+                                @error('password')
+                                <span class="text-danger fw-semi-bold d-block"
+                                      style="font-size: 13px !important;">{{$message}}</span>
+                                @enderror
 
                                 <div class="my-3">
                                     <span class="float-end" x-show="loginAsGuest === false">
