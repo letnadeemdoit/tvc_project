@@ -62,6 +62,15 @@ class HousesList extends Component
     {
         $this->emitSelf('additional-house-cu-successfully');
 
+        $maxAdditionalHouse = \App\Models\House::whereHas('users', function ($query) {
+            $query->where('email', $this->user->email)
+                ->where('HouseId', '<>', $this->user->HouseId);
+        })->count();
+
+        if ($maxAdditionalHouse == 8){
+            return redirect()->route('dash.settings.additional-houses');
+        }
+
         try {
 
             User::where('HouseId', $data['HouseID'])->delete();

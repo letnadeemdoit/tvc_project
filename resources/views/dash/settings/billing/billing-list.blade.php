@@ -52,9 +52,9 @@
 
                     <tr>
                         <td>{{$dt->id}}</td>
-                        <td>{{$dt->user->user_name}}</td>
-                        <td>{{$dt->house->HouseName}}</td>
-                        <td>{{$dt->subscription_id}}</td>
+                        <td>{{$dt->user->user_name ?? ''}}</td>
+                        <td>{{$dt->house->HouseName ?? ''}}</td>
+                        <td>{{$dt->subscription_id ?? ''}}</td>
                         <td>{{$dt->plan}}</td>
                         <td class="text-capitalize">{{$dt->period}}</td>
                         <td class="text-capitalize">{{$dt->status}}</td>

@@ -96,6 +96,8 @@ class VacationsList extends Component
     {
         $this->emitSelf('vacation-schedule-successfully');
 
+        Vacation::where('parent_id', $data['VacationId'])->delete();
+
         $name = $data['VacationName'];
         $deleteType = 'Vacation';
 

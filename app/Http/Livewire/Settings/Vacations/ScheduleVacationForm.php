@@ -53,7 +53,11 @@ class ScheduleVacationForm extends Component
             if ($this->vacation->OwnerId !== $this->user->user_id) {
                 $this->emit('showRequestToJoinVacationModal', true, $vacationId);
                 return;
+            } elseif ($this->vacation->parent_id !== null) {
+                $this->vacation = Vacation::firstOrNew(['VacationID' => $this->vacation->parent_id]);
             }
+        } elseif ($this->vacation->parent_id !== null) {
+            $this->vacation = Vacation::firstOrNew(['VacationID' => $this->vacation->parent_id]);
         }
 
         $this->emitSelf('toggle', $toggle);
@@ -67,7 +71,8 @@ class ScheduleVacationForm extends Component
                 'background_color' => $this->vacation->BackGrndColor,
                 'font_color' => $this->vacation->FontColor,
                 'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y h:i'),
-                'recurrence' => $this->vacation->recurrence ?? 'once'
+                'recurrence' => $this->vacation->recurrence ?? 'once',
+                'repeat_interval' => $this->vacation->repeat_interval ?? 0
             ];
         } else {
             $this->isCreating = true;
@@ -98,57 +103,19 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
+            'repeat_interval' => ['required_unless:recurrence,once', 'numeric', 'min:1', 'max:30'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
 
         $startDatetime = Carbon::parse($this->state['start_datetime']);
-
-        $startDay = $startDatetime->day;
-        $startMonth = $startDatetime->month;
-        $startYear = $startDatetime->year;
-        $stDate = $startDatetime->format('Y-m-d');
-        $stTime = $startDatetime->format('H:i');
-
-        $startDate = Calendar::firstOrNew([
-            'Day' => $startDay,
-            'Month' => $startMonth,
-            'Year' => $startYear,
-            'RealDate' => $stDate,
-        ]);
-
-        $startTime = Time::firstOrNew([
-            'time' => $stTime,
-        ]);
-
-        if (!$startDate->exists) $startDate->save();
-        if (!$startTime->exists) $startTime->save();
-
         $endDatetime = Carbon::parse($this->state['end_datetime']);
 
-        $endDay = $endDatetime->day;
-        $endMonth = $endDatetime->month;
-        $endYear = $endDatetime->year;
-        $enDate = $endDatetime->format('Y-m-d');
-        $enTime = $endDatetime->format('H:i');
-
-        $endDate = Calendar::firstOrNew([
-            'Day' => $endDay,
-            'Month' => $endMonth,
-            'Year' => $endYear,
-            'RealDate' => $enDate,
-        ]);
-
-        $endTime = Time::firstOrNew([
-            'time' => $enTime,
-        ]);
-
-        if (!$endDate->exists) $endDate->save();
-        if (!$endTime->exists) $endTime->save();
+        $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
         if ($this->isCreating) {
             $this->vacation->HouseId = $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId;
@@ -164,7 +131,135 @@ class ScheduleVacationForm extends Component
             'StartTimeId' => $startTime->timeid,
             'EndDateId' => $endDate->DateId,
             'EndTimeId' => $endTime->timeid,
+            'repeat_interval' => $this->state['repeat_interval'] ?? 0,
         ])->save();
+
+        if ($this->state['recurrence'] !== 'once') {
+            if ($this->isCreating) {
+                $recurring = [];
+                foreach (range(1, intval($this->state['repeat_interval'] ?? 0)) as $interval) {
+                    if ($this->state['recurrence'] === 'monthly') {
+                        $startDatetime->addMonth();
+                        $endDatetime->addMonth();
+                    } else {
+                        $startDatetime->addYear();
+                        $endDatetime->addYear();
+                    }
+                    $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
+
+                    $recurring[] = new Vacation([
+                        'VacationName' => $this->state['vacation_name'],
+                        'BackGrndColor' => ltrim($this->state['background_color'], '#'),
+                        'FontColor' => ltrim($this->state['font_color'], '#'),
+                        'recurrence' => $this->state['recurrence'] === 'none' ? null : $this->state['recurrence'],
+                        'StartDateId' => $startDate->DateId,
+                        'StartTimeId' => $startTime->timeid,
+                        'EndDateId' => $endDate->DateId,
+                        'EndTimeId' => $endTime->timeid,
+                        'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
+                        'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
+                    ]);
+                }
+
+                $this->vacation->recurrings()->saveMany($recurring);
+            } else {
+                $repeatInterval = intval($this->state['repeat_interval'] ?? 0);
+
+
+                $recurringVacations = $this->vacation->recurrings;
+
+                if (count($recurringVacations) >= $repeatInterval) {
+                    $i = 0;
+                    foreach ($recurringVacations as $recurringVacation) {
+                        if ($i < $repeatInterval) {
+                            if ($this->state['recurrence'] === 'monthly') {
+                                $startDatetime->addMonth();
+                                $endDatetime->addMonth();
+                            } else {
+                                $startDatetime->addYear();
+                                $endDatetime->addYear();
+                            }
+                            $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
+
+                            $recurringVacation->update([
+                                'VacationName' => $this->state['vacation_name'],
+                                'BackGrndColor' => ltrim($this->state['background_color'], '#'),
+                                'FontColor' => ltrim($this->state['font_color'], '#'),
+                                'recurrence' => $this->state['recurrence'] === 'none' ? null : $this->state['recurrence'],
+                                'StartDateId' => $startDate->DateId,
+                                'StartTimeId' => $startTime->timeid,
+                                'EndDateId' => $endDate->DateId,
+                                'EndTimeId' => $endTime->timeid,
+                            ]);
+                        } else {
+                            $recurringVacation->delete();
+                        }
+
+                        $i++;
+                    }
+                } elseif(count($recurringVacations) < $repeatInterval) {
+                    $i = 0;
+                    foreach ($recurringVacations as $recurringVacation) {
+                        if ($i < $repeatInterval) {
+                            if ($this->state['recurrence'] === 'monthly') {
+                                $startDatetime->addMonth();
+                                $endDatetime->addMonth();
+                            } else {
+                                $startDatetime->addYear();
+                                $endDatetime->addYear();
+                            }
+                            $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
+
+                            $recurringVacation->update([
+                                'VacationName' => $this->state['vacation_name'],
+                                'BackGrndColor' => ltrim($this->state['background_color'], '#'),
+                                'FontColor' => ltrim($this->state['font_color'], '#'),
+                                'recurrence' => $this->state['recurrence'] === 'none' ? null : $this->state['recurrence'],
+                                'StartDateId' => $startDate->DateId,
+                                'StartTimeId' => $startTime->timeid,
+                                'EndDateId' => $endDate->DateId,
+                                'EndTimeId' => $endTime->timeid,
+                            ]);
+                        }
+                        $i++;
+                    }
+                    $repeatInterval = $repeatInterval - $i;
+                    if ($repeatInterval > 0) {
+                        $recurring = [];
+                        foreach (range(0, $repeatInterval) as $interval) {
+                            if ($this->state['recurrence'] === 'monthly') {
+                                $startDatetime->addMonth();
+                                $endDatetime->addMonth();
+                            } else {
+                                $startDatetime->addYear();
+                                $endDatetime->addYear();
+                            }
+                            $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
+
+                            $recurring[] = new Vacation([
+                                'VacationName' => $this->state['vacation_name'],
+                                'BackGrndColor' => ltrim($this->state['background_color'], '#'),
+                                'FontColor' => ltrim($this->state['font_color'], '#'),
+                                'recurrence' => $this->state['recurrence'] === 'none' ? null : $this->state['recurrence'],
+                                'StartDateId' => $startDate->DateId,
+                                'StartTimeId' => $startTime->timeid,
+                                'EndDateId' => $endDate->DateId,
+                                'EndTimeId' => $endTime->timeid,
+                                'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
+                                'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
+                            ]);
+                        }
+
+                        $this->vacation->recurrings()->saveMany($recurring);
+                    }
+
+                }
+            }
+        } else {
+            if (!$this->isCreating) {
+                $this->vacation->recurrings()->delete();
+            }
+        }
 
 //        if (!is_null($this->user->house->CalEmailList)){
 //            $CalEmailList = explode(',',$this->user->house->CalEmailList);
@@ -220,8 +315,55 @@ class ScheduleVacationForm extends Component
         return view('dash.settings.vacations.schedule-vacation-form');
     }
 
-    public function deleteVacation() {
+    public function syncCalendar($startDatetime, $endDatetime, &$startDate, &$startTime, &$endDate, &$endTime)
+    {
+        // Start Datetime
+        $startDay = $startDatetime->day;
+        $startMonth = $startDatetime->month;
+        $startYear = $startDatetime->year;
+        $stDate = $startDatetime->format('Y-m-d');
+        $stTime = $startDatetime->format('H:i');
+
+        $startDate = Calendar::firstOrNew([
+            'Day' => $startDay,
+            'Month' => $startMonth,
+            'Year' => $startYear,
+            'RealDate' => $stDate,
+        ]);
+
+        $startTime = Time::firstOrNew([
+            'time' => $stTime,
+        ]);
+
+        if (!$startDate->exists) $startDate->save();
+        if (!$startTime->exists) $startTime->save();
+
+        // End Datetime
+
+        $endDay = $endDatetime->day;
+        $endMonth = $endDatetime->month;
+        $endYear = $endDatetime->year;
+        $enDate = $endDatetime->format('Y-m-d');
+        $enTime = $endDatetime->format('H:i');
+
+        $endDate = Calendar::firstOrNew([
+            'Day' => $endDay,
+            'Month' => $endMonth,
+            'Year' => $endYear,
+            'RealDate' => $enDate,
+        ]);
+
+        $endTime = Time::firstOrNew([
+            'time' => $enTime,
+        ]);
+
+        if (!$endDate->exists) $endDate->save();
+        if (!$endTime->exists) $endTime->save();
+    }
+
+    public function deleteVacation()
+    {
         $this->emitSelf('toggle', false);
-        $this->emit('destroy-vacation',  $this->vacation->VacationId);
+        $this->emit('destroy-vacation', $this->vacation->parent_id ?: $this->vacation->VacationId);
     }
 }
