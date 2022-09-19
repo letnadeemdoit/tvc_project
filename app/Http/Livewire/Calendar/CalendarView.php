@@ -145,6 +145,8 @@ class CalendarView extends Component
 
         $this->emitSelf('toggle', false);
 
+        Vacation::where('parent_id', $data['VacationId'])->delete();
+
         $name = $data['VacationName'];
 
         $deleteType = 'Vacation';

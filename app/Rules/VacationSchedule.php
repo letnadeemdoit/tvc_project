@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Vacation;
 use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class VacationSchedule implements Rule
 {
@@ -104,138 +105,12 @@ class VacationSchedule implements Rule
             return false;
         }
 
-        $vacationCounts = Vacation::where('HouseId', $this->user->HouseId)
-            ->when(!is_null($this->vacation->VacationId), function ($query) {
-                $query->where('VacationId', '<>', $this->vacation->VacationId);
-            })
-            ->where(function ($query) {
-                $query
-                    ->where(function ($query) {
-                        $query
-                            ->where('recurrence', 'once')
-                            ->where(function ($query) {
-                                $query
-                                    ->where(function ($query) {
-                                        //
-                                        $query
-                                            ->whereHas('startDate', function ($query) {
-                                                $query->whereDate('RealDate', '<=', $this->startDatetime);
-                                            })
-                                            ->whereHas('endDate', function ($query) {
-                                                $query->whereDate('RealDate', '>=', $this->endDatetime);
-                                            });
-//                                            ->whereHas('startTime', function ($query) {
-//                                                $query
-//                                                    ->whereRaw("Time(time) <= Time('" . $this->startDatetime->format('H:i') . "')");
-//                                            })
-//                                            ->whereHas('endTime', function ($query) {
-//                                                $query
-//                                                    ->whereRaw("Time(time) >= Time('" . $this->startDatetime->format('H:i') . "')");
-//                                            });
-                                    })
-                                    ->orWhere(function ($query) {
-                                        $query
-                                            ->whereHas('startDate', function ($query) {
-                                                $query->whereDate('RealDate', '>=', $this->startDatetime);
-                                            })
-                                            ->whereHas('endDate', function ($query) {
-                                                $query->whereDate('RealDate', '<=', $this->endDatetime);
-                                            });
-//                                            ->whereHas('startTime', function ($query) {
-//                                                $query
-//                                                    ->whereRaw("Time(time) <= Time('" . $this->startDatetime->format('H:i') . "')");
-//                                            })
-//                                            ->whereHas('endTime', function ($query) {
-//                                                $query
-//                                                    ->whereRaw("Time(time) >= Time('" . $this->endDatetime->format('H:i') . "')");
-//                                            });
-                                    })
-                                    ->orWhere(function ($query) {
-                                        $query
-                                            ->whereHas('startDate', function ($query) {
-                                                $query
-                                                    ->whereDate('RealDate', '<=', $this->startDatetime);
-                                            })
-                                            ->whereHas('endDate', function ($query) {
-                                                $query
-                                                    ->whereDate('RealDate', '>=', $this->startDatetime);
-                                            });
-//                                            ->whereHas('startTime', function ($query) {
-//                                                $query
-//                                                    ->whereRaw("Time(time) >= Time('" . $this->startDatetime->format('H:i') . "')")
-//                                                    ->whereRaw("Time(time) <= Time('" . $this->endDatetime->format('H:i') . "')");
-//                                            });
-                                    })
-                                    ->orWhere(function ($query) {
-                                        $query
-                                            ->whereHas('startDate', function ($query) {
-                                                $query
-                                                    ->whereDate('RealDate', '<=', $this->endDatetime);
-                                            })
-                                            ->whereHas('endDate', function ($query) {
-                                                $query
-                                                    ->whereDate('RealDate', '>=', $this->endDatetime);
-                                            });
-//                                            ->whereHas('startTime', function ($query) {
-//                                                $query
-//                                                    ->whereRaw("Time(time) >= Time('" . $this->startDatetime->format('H:i') . "')")
-//                                                    ->whereRaw("Time(time) <= Time('" . $this->endDatetime->format('H:i') . "')");
-//                                            });
-                                    });
-                            });
+        $startDatetime = $this->startDatetime->format('m/d/Y H:i');
+        $endDatetime = $this->endDatetime->format('m/d/Y H:i');
+        $ignoredVacationId = $this->vacation->VacationId ?? -1;
+        $results = DB::select("select is_vacation_already_scheduled({$this->user->HouseId}, '$startDatetime', '$endDatetime', $ignoredVacationId) as vacation_counts");
 
-                    })
-                    ->orWhere(function ($query) {
-                        $query
-                            ->where(function ($query) {
-                                $query
-                                    ->whereHas('startDate', function ($query) {
-                                        $query
-                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-                                    })
-                                    ->whereHas('endDate', function ($query) {
-                                        $query
-                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-                                    });
-                            })
-                            ->orWhere(function ($query) {
-                                $query
-                                    ->whereHas('startDate', function ($query) {
-                                        $query
-                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-                                    })
-                                    ->whereHas('endDate', function ($query) {
-                                        $query
-                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-                                    });
-                            })
-                            ->orWhere(function ($query) {
-                                $query
-                                    ->whereHas('startDate', function ($query) {
-                                        $query
-                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-                                    })
-                                    ->whereHas('endDate', function ($query) {
-                                        $query
-                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->startDatetime->format('Y-m-d') . "', '%m-%d')");
-                                    });
-                            })
-                            ->orWhere(function ($query) {
-                                $query
-                                    ->whereHas('startDate', function ($query) {
-                                        $query
-                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') >= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-                                    })
-                                    ->whereHas('endDate', function ($query) {
-                                        $query
-                                            ->whereRaw("DATE_FORMAT(RealDate, '%m-%d') <= DATE_FORMAT('" . $this->endDatetime->format('Y-m-d') . "', '%m-%d')");
-                                    });
-                            });
-                    });
-            })
-            ->count();
-
-        return !($vacationCounts > 0);
+        return !(is_array($results) && count($results) > 0 && $results[0]->vacation_counts > 0);
 
     }
 
