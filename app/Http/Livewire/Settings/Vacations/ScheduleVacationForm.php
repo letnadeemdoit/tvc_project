@@ -294,6 +294,6 @@ class ScheduleVacationForm extends Component
     public function deleteVacation()
     {
         $this->emitSelf('toggle', false);
-        $this->emit('destroy-vacation', $this->vacation->VacationId);
+        $this->emit('destroy-vacation', $this->vacation->parent_id ?: $this->vacation->VacationId);
     }
 }
