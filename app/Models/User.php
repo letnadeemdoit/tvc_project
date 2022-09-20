@@ -249,7 +249,7 @@ class User extends Authenticatable implements Auditable
 
     public function primaryUser()
     {
-        return $this->belongsTo(self::class, 'user_id', 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id', 'user_id');
     }
 
     public function review()

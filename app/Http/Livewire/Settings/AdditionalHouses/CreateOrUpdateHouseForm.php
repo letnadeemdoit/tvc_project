@@ -140,6 +140,7 @@ class CreateOrUpdateHouseForm extends Component
                 'HouseId' => $this->house->HouseID,
                 'password' => $this->user->password,
                 'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
+                'primary_account' => 0,
             ])->save();
         }
 
