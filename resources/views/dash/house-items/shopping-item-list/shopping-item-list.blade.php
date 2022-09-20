@@ -38,7 +38,7 @@
                     <th style="width: 100px" class="text-center">Image</th>
                     <th>Name</th>
                     <th>Created by</th>
-                    <th>Location</th>
+                    <th>Where to buy</th>
 {{--                    <th>Expiration Date</th>--}}
                     <th>Created at</th>
                     <th>Action</th>
@@ -63,7 +63,7 @@
                             {{$dt->user->first_name ?? ''}}  {{$dt->user->last_name ?? ''}}
                             <small class="fs-10">({{$dt->user->role ?? ''}})</small>
                         </td>
-                        <td>{{$dt->location ?? ''}}</td>
+                        <td>{{substr($dt->location ,0,80 ) ?? ''}}</td>
 {{--                        <td>{{$dt->expiration_date ?? ''}}</td>--}}
                         <td>{{$dt->created_at ?? ''}}</td>
                         <td>
