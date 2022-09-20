@@ -175,7 +175,7 @@
                         @endif
 
 
-                        @if(auth()->user()->is_admin)
+                        @if(auth()->user()->is_admin && auth()->user()->primary_account)
                             <div class="nav-item">
                                 <a class="nav-link  {{ link_is_active_with_class(['dash.plans-and-pricing']) }}"
                                    href="{{route('dash.plans-and-pricing')}}" data-placement="left">
@@ -253,12 +253,13 @@
                                         @endif
                                     </a>
                                     @if(auth()->user()->is_admin)
-                                        <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}"
-                                           href="{{ route('dash.settings.billing') }}">
-                                            <img src="{{asset('images/icons/billings-icon.svg')}}" class="me-2"
-                                                 style="width: 13px;opacity: 0.7" alt="">
-                                            Billing</a>
-
+                                        @if($request->user()->primary_account)
+                                            <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}"
+                                               href="{{ route('dash.settings.billing') }}">
+                                                <img src="{{asset('images/icons/billings-icon.svg')}}" class="me-2"
+                                                     style="width: 13px;opacity: 0.7" alt="">
+                                                Billing</a>
+                                        @endif
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.users') }}"
                                            href="{{ route('dash.settings.users') }}">
                                             <img src="{{asset('images/help-images/users.svg')}}" class="me-2"
@@ -271,7 +272,7 @@
                                                      style="width: 14px;opacity: 0.7" alt="">
                                                 Rooms</a>
                                         @endif
-                                        @if(is_subscribed('premium'))
+                                        @if(is_subscribed('premium') && auth()->user()->primary_account)
                                             <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
                                                href="{{ route('dash.settings.additional-houses') }}">
                                                 <img src="{{asset('images/icons/additional-houses-icon.svg')}}"
