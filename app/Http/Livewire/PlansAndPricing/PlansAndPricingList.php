@@ -21,6 +21,10 @@ class PlansAndPricingList extends Component
         return view('dash.plans-and-pricing.plans-and-pricing-list');
     }
 
+//    public function getApprovalPendingSubscriptionProperty(){
+//
+//    }
+
     public function cancelSubscription()
     {
         $this->subscription->cancel();

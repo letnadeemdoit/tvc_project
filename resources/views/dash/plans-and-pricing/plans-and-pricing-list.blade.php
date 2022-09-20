@@ -1,4 +1,8 @@
 <div x-data="{isYearly: 0}">
+{{--    --}}
+{{--    <div class="alert alert-success mb-4" role="alert">--}}
+{{--        You have been subscribed successfully! Please wait until we confirm your plan.--}}
+{{--    </div>--}}
 
     <div class="d-flex justify-content-center mb-4">
         <div class="form-check form-switch form-switch-between">
