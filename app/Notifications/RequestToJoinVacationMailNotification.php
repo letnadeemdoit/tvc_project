@@ -8,23 +8,23 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class BlogNotification extends Notification implements ShouldQueue
+class RequestToJoinVacationMailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-    public $items;
-    public $blogUrl;
-    public $createdHouseName;
+    public $owner;
+    public $startDate;
+    public $endDate;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($items,$blogUrl,$createdHouseName)
+    public function __construct($owner, $startDate, $endDate)
     {
-        $this->items = $items;
-        $this->blogUrl = $blogUrl;
-        $this->createdHouseName = $createdHouseName;
+        $this->owner = $owner;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
     }
 
     /**
@@ -35,7 +35,7 @@ class BlogNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        return ['mail'];
     }
 
     /**
@@ -46,14 +46,20 @@ class BlogNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = $this->blogUrl;
         return (new MailMessage)
-            ->greeting('Blog!')
+            ->greeting('Request to Join vacation!')
             ->line(new HtmlString(
-                'New Blog <strong>' . $this->items->Subject.'</strong>'.
-                '  has been added for the vacation house ' . '<strong>'. $this->createdHouseName .' </strong>'
+                'Reply at : <strong>'.  'NoReply@theVacationCalendar.com' . '</strong>'
             ))
-            ->action('click to check blog', $url);
+            ->line(new HtmlString(
+                'Name : <strong>' . $this->owner->first_name . ' ' . $this->owner->last_name . '</strong>'
+            ))
+            ->line(new HtmlString(
+                'Start Date : <strong>'. $this->startDate . ' </strong>'
+            ))
+            ->line(new HtmlString(
+                'End Date: <strong>'. $this->endDate . ' </strong>'
+            ));
     }
 
     /**
@@ -65,9 +71,7 @@ class BlogNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'Name' => $this->items->Subject,
-            'house_name' => $this->createdHouseName,
-            'slug' => $this->blogUrl,
+            //
         ];
     }
 }

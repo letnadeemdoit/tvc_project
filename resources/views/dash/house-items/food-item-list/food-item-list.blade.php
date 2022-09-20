@@ -64,7 +64,7 @@
                             {{$dt->user->first_name ?? ''}}  {{$dt->user->last_name ?? ''}}
                             <small class="fs-10">({{$dt->user->role ?? ''}})</small>
                         </td>
-                        <td>{{$dt->location ?? ''}}</td>
+                        <td>{{substr($dt->location ,0,80 ) ?? ''}}</td>
                         <td>{{$dt->expiration_date ?? ''}}</td>
                         <td>{{$dt->created_at ?? ''}}</td>
                         <td>
