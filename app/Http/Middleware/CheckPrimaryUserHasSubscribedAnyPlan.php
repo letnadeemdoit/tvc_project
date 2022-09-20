@@ -16,7 +16,12 @@ class CheckPrimaryUserHasSubscribedAnyPlan
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && !is_any_subscribed() && !$request->routeIs(    'dash.plans-and-pricing')) {
+        if (auth()->check() && !is_any_subscribed() && !(
+                $request->routeIs(    'dash.plans-and-pricing') ||
+                $request->routeIs(    'dash.paypal.process') ||
+                $request->routeIs(    'dash.paypal.succeeded') ||
+                $request->routeIs(    'dash.paypal.canceled')
+            )) {
             return redirect()->route('dash.plans-and-pricing');
         }
         return $next($request);
