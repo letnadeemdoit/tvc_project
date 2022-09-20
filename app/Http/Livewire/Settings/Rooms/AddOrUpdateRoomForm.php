@@ -64,6 +64,7 @@ class AddOrUpdateRoomForm extends Component
             'amenities' => ['required'],
         ])->validateWithBag('saveRoomCU');
 
+
         $this->room->fill([
             'RoomName' => $this->state['name'],
             'RoomTypeID' => $this->state['type'],
@@ -76,6 +77,23 @@ class AddOrUpdateRoomForm extends Component
         $this->emit('room-cu-successfully');
 
         $this->success('Room ' . ($this->isCreating ? 'added' : 'updated') . ' successfully.');
+
+        $addedRooms = Room::where('HouseID', $this->user->HouseId)->count();
+
+        $maxRooms = 0;
+
+        if (is_premium_subscribed()){
+            $maxRooms = 1000;
+        }elseif(is_standard_subscribed()){
+            $maxRooms = 6;
+        }else{
+            $maxRooms = 0;
+        }
+
+        if ($addedRooms >= $maxRooms){
+            return redirect()->route('dash.settings.rooms');
+        }
+
     }
 
     public function getAmenitiesProperty()
