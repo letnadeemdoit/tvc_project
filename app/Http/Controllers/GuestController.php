@@ -7,7 +7,9 @@ use App\Models\GuestBook;
 use App\Models\ICal;
 use App\Models\Photo\Album;
 use App\Models\Subscription;
+use App\Notifications\ContactUsMailNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -15,6 +17,7 @@ use Srmklive\PayPal\Facades\PayPal;
 
 class GuestController extends Controller
 {
+
     /**
      * Welcome
      * @return mixed
@@ -53,18 +56,28 @@ class GuestController extends Controller
             'comment' => 'required',
         ]);
 
-        Mail::send([], [], function ($message) use ($request) {
+        $user = auth()->user();
+        $firstName = $request->first_name;
+        $lastName = $request->last_name;
+        $subject = $request->subject;
+        $email = $request->email;
+        $comment = $request->comment;
 
-            $message->to('ddnouman@gmail.com')
-                ->subject($request->first_name . ' ' . 'Contact Query')
-                ->Html(
-                    '<div style="padding: 10px; 20px">' .
-                    '<h2> Name: ' . $request->first_name . ' ' . $request->last_name . '</h2>' .
-                    '<p> Email: ' . $request->email . '<p/>' .
-                    '<h4> Subject: ' . $request->subject . '<h4/>' .
-                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
-                    '</div>', 'text/plain');
-        });
+        Notification::route('mail', $user->email)
+            ->notify( new ContactUsMailNotification($firstName,$lastName,$subject,$email,$comment));
+
+//        Mail::send([], [], function ($message) use ($request) {
+//
+//            $message->to('ddnouman@gmail.com')
+//                ->subject($request->first_name . ' ' . 'Contact Query')
+//                ->Html(
+//                    '<div style="padding: 10px; 20px">' .
+//                    '<h2> Name: ' . $request->first_name . ' ' . $request->last_name . '</h2>' .
+//                    '<p> Email: ' . $request->email . '<p/>' .
+//                    '<h4> Subject: ' . $request->subject . '<h4/>' .
+//                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
+//                    '</div>', 'text/plain');
+//        });
 
         return back()->with('success', 'Your Query has been Sent Successfully!');
     }
