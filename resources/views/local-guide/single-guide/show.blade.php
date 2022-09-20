@@ -201,7 +201,7 @@
                                             >
                                             <div class="ps-2">
                                                 <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
-                                                <p class="mb-0 date-fs fw-500">{{ substr($dt->address , 0 ,25) }} <a href="#"
+                                                <p class="mb-0 date-fs fw-500">{{ substr($dt->address , 0 ,15) }} <a href="#"
                                                                                                               class="color-blue fw-normal">View</a>
                                                 </p>
                                             </div>
@@ -210,7 +210,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
                                         <a href="{{route('guest.local-guide.show',$dt->id)}}">
-                                             <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 30) }}</p>
+                                             <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 15) }}</p>
                                         </a>
 
                                         <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
