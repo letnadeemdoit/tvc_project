@@ -95,7 +95,7 @@ class VacationSchedule implements Rule
             return false;
         }
 
-        if (!$this->isStartDatetimeGreaterOrEqualNow()) {
+        if (!$this->isStartDatetimeGreaterOrEqualNow() && $this->vacation && is_null($this->vacation->VacationId)) {
             $this->status = 'start-datetime-must-be-greater-or-equal-from-now';
             return false;
         }

@@ -106,8 +106,8 @@ class ScheduleVacationForm extends Component
             'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
-            'repeat_interval' => ['required_unless:recurrence,once', 'numeric', 'min:1', 'max:30'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
+            'repeat_interval' => ($this->state['recurrence'] ?? 'once') !== 'once' ? ['required', 'numeric', 'min:1', 'max:30'] : ['nullable'],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
@@ -122,10 +122,11 @@ class ScheduleVacationForm extends Component
             $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
         }
 
+        $this->vacation->BackGrndColor = $this->state['background_color'];
+        $this->vacation->FontColor = $this->state['font_color'];
+
         $this->vacation->fill([
             'VacationName' => $this->state['vacation_name'],
-            'BackGrndColor' => ltrim($this->state['background_color'], '#'),
-            'FontColor' => ltrim($this->state['font_color'], '#'),
             'recurrence' => $this->state['recurrence'] === 'none' ? null : $this->state['recurrence'],
             'StartDateId' => $startDate->DateId,
             'StartTimeId' => $startTime->timeid,
@@ -197,7 +198,7 @@ class ScheduleVacationForm extends Component
 
                         $i++;
                     }
-                } elseif(count($recurringVacations) < $repeatInterval) {
+                } elseif (count($recurringVacations) < $repeatInterval) {
                     $i = 0;
                     foreach ($recurringVacations as $recurringVacation) {
                         if ($i < $repeatInterval) {

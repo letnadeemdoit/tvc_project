@@ -36,8 +36,8 @@
                 <thead class="thead-light">
                 <tr>
                     <th>id</th>
-                    <th>User</th>
-                    <th>House</th>
+{{--                    <th>User</th>--}}
+{{--                    <th>House</th>--}}
                     <th>Subscription</th>
                     <th>Plan</th>
                     <th>Period</th>
@@ -52,13 +52,34 @@
 
                     <tr>
                         <td>{{$dt->id}}</td>
-                        <td>{{$dt->user->user_name ?? ''}}</td>
-                        <td>{{$dt->house->HouseName ?? ''}}</td>
+{{--                        <td>{{$dt->user->user_name ?? ''}}</td>--}}
+{{--                        <td class="text-capitalize">{{$dt->house->HouseName ?? ''}}</td>--}}
                         <td>{{$dt->subscription_id ?? ''}}</td>
-                        <td>{{$dt->plan}}</td>
+                        <td class="text-capitalize">{{$dt->plan}}</td>
                         <td class="text-capitalize">{{$dt->period}}</td>
-                        <td class="text-capitalize">{{$dt->status}}</td>
-                        <td>{{$dt->created_at}}</td>
+                        <td class="text-capitalize">
+                            <span class="badge
+                             @if($dt->status == 'APPROVAL_PENDING' )
+                                bg-warning
+                            @elseif($dt->status == 'APPROVED')
+                                bg-success
+                                @elseif($dt->status == 'ACTIVE')
+                                bg-success
+                                @elseif($dt->status == 'SUSPENDED')
+                                bg-danger
+                                @elseif($dt->status == 'CANCELLED')
+                                bg-danger
+                                @elseif($dt->status == 'EXPIRED')
+                                bg-danger
+                                @else
+                                bg-primary
+                            @endif
+                                ">
+                                {{str_replace('_', ' ' ,$dt->status)}}
+                            </span>
+
+                        </td>
+                        <td>{{$dt->created_at->format('Y-m-d')}}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -101,7 +122,8 @@
                 <!-- End Col -->
 
                 <div class="col-sm-auto pt-2">
-                    <div class="d-flex align-items-center justify-content-center justify-content-sm-end pagination-disable-button">
+                    <div
+                        class="d-flex align-items-center justify-content-center justify-content-sm-end pagination-disable-button">
                         <!-- Pagination -->
                         {{ $data->onEachSide(0)->links() }}
                     </div>
