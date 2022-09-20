@@ -16,6 +16,7 @@
             wire:submit.prevent="saveVacationSchedule"
             class="modal-body"
         >
+            <x-jet-validation-errors />
             <div class="form-group mb-3">
                 <label class="form-label" for="vacation_name">Vacation Name:</label>
                 <input
