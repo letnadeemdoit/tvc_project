@@ -56,9 +56,21 @@ if (!function_exists('current_house')) {
 }
 
 if (!function_exists('is_subscribed')) {
-    function is_subscribed($plan)
+    function is_subscribed($plans)
     {
-        return current_house()->plan === $plan;
+        if (is_array($plans)) {
+            return \App\Models\Subscription::where([
+                'user_id' => auth()->user()->user_id,
+                'house_id' => auth()->user()->HouseId,
+                'status' => 'ACTIVE',
+            ])->whereIn('plan', $plans)->exists();
+        }
+        return \App\Models\Subscription::where([
+            'user_id' => auth()->user()->user_id,
+            'house_id' => auth()->user()->HouseId,
+            'plan' => $plans,
+            'status' => 'ACTIVE',
+        ])->exists();
     }
 }
 
@@ -86,6 +98,10 @@ if (!function_exists('is_premium_subscribed')) {
 if (!function_exists('is_any_subscribed')) {
     function is_any_subscribed()
     {
-        return current_house()->plan !== null;
+        return \App\Models\Subscription::where([
+            'user_id' => auth()->user()->user_id,
+            'house_id' => auth()->user()->HouseId,
+            'status' => 'ACTIVE',
+        ])->whereIn('plan', ['basic', 'standard', 'premium'])->exists();
     }
 }
