@@ -53,7 +53,7 @@ class CreateNewUser implements CreatesNewUsers
             'State' => $state_name['name'] ?? null,
             'City' => $city_name['name'] ?? null,
             'ZipCode' => $input['zipcode'],
-            'ReferredBy' => $input['Referral_paypal_account'],
+            'ReferredBy' => $input['Referral_paypal_account'] ?? null,
         ]);
 
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
