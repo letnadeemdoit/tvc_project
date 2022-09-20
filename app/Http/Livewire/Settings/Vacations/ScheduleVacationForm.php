@@ -107,7 +107,7 @@ class ScheduleVacationForm extends Component
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
-            'repeat_interval' => ['required_if::recurrence,monthly,yearly', 'numeric', 'min:1', 'max:30'],
+            'repeat_interval' => ($this->state['recurrence'] ?? 'once') !== 'once' ? ['required', 'numeric', 'min:1', 'max:30'] : ['nullable'],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
@@ -197,7 +197,7 @@ class ScheduleVacationForm extends Component
 
                         $i++;
                     }
-                } elseif(count($recurringVacations) < $repeatInterval) {
+                } elseif (count($recurringVacations) < $repeatInterval) {
                     $i = 0;
                     foreach ($recurringVacations as $recurringVacation) {
                         if ($i < $repeatInterval) {
