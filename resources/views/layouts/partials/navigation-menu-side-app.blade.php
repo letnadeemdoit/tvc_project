@@ -253,7 +253,7 @@
                                         @endif
                                     </a>
                                     @if(auth()->user()->is_admin)
-                                        @if($request->user()->primary_account)
+                                        @if(auth()->user()->primary_account)
                                             <a class="nav-link {{ link_is_active_with_class('dash.settings.billing') }}"
                                                href="{{ route('dash.settings.billing') }}">
                                                 <img src="{{asset('images/icons/billings-icon.svg')}}" class="me-2"
