@@ -27,8 +27,8 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'HouseName' => ['required', 'unique:House'],
             'country_id' => ['required'],
-            'state_id' => ['required'],
-            'city_id' => ['required'],
+            'state_id' => ['nullable'],
+            'city_id' => ['nullable'],
             'zipcode' => ['required'],
             'image' => 'nullable|image|mimes:png,jpg,gif,tiff|max:1024',
             'user_name' => ['required', 'unique:users'],
