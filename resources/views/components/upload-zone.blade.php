@@ -107,7 +107,7 @@
                          <i class="bi bi-check2"></i>
                      </a>
                  </div>
-                 <p class="text-danger fs-12" x-show="files.length > 0">Click check button to upload your image otherwise it will not be upload.</p>
+                 <p class="text-danger fs-12" x-show="files.length > 0">Click check <i class="bi bi-check bg-primary text-white px-1 rounded-1"></i> button to upload your image otherwise it will not be uploaded.</p>
              </div>
 
             </div>

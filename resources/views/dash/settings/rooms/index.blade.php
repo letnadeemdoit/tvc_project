@@ -47,7 +47,7 @@
                     <h4 class="fw-bold text-center my-3"
                         style="color: #00000090">You can't Add New Room to the House.</h4>
                     <p class="fw-500 fs-15">First of all you need to delete your extra Room to add
-                        new room Because the limit of your <b class="text-primary">Standard</b> plan is maximum  <b>{{ $maxRooms ?? '' }}</b>.</p>
+                        new room Because the limit of your <b class="text-primary">Standard plan</b>  is maximum  <b>{{ $maxRooms ?? '' }}</b>.</p>
                     <div class="btn-group my-2">
                     </div>
                 </div>
