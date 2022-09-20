@@ -507,7 +507,7 @@
             </div>
             <div class="text-center mt-5">
                 <button
-                    class="btn btn-dark-secondary text-white w-100"
+                    class="btn btn-dark-secondary  w-100"
                     type="submit"
                     tabindex="14"
                     wire:loading.attr="disabled"

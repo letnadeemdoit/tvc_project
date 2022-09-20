@@ -113,7 +113,7 @@
                     column-count: 4;
                 }
             }
-            @media (max-width: 768px) {
+            @media (max-width: 576px) {
                 .masonry .brick {
                     margin-right: 0px !important;
                 }

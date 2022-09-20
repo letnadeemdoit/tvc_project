@@ -103,7 +103,8 @@
 
     <div class="container my-5 pt-0 pt-md-5">
         <div class="row">
-            <div class="col-12 col-lg-9 pe-0 pe-lg-5 detail-img" style="overflow-y: scroll;">
+            <div class="col-12 col-lg-9 pe-0 pe-lg-5 detail-img scrollbar-custom" >
+               <div id="style-3" style="overflow-x: scroll;">
                 <div class="border-bottom">
                     <ul class="d-flex list-unstyled ul-card-footer mb-0">
                         <li class="me-2 me-md-3">
@@ -123,6 +124,7 @@
                 <div class="py-4">
                     {!! $post->Contents !!}
                 </div>
+               </div>
             </div>
             <div class="col-12 col-lg-3">
                 <livewire:blog.latest-post :user="$user" :post="$post" />
