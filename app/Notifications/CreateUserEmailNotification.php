@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class CreateUserEmailNotification extends Notification
+class CreateUserEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $createUser;

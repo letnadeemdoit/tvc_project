@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class BlogNotify extends Notification
+class BlogNotify extends Notification implements ShouldQueue
 {
     use Queueable;
     public $items;
