@@ -63,9 +63,19 @@ class CalendarView extends Component
     {
         return House::whereHas('users', function ($query) {
             $query->where([
-                'email' => $this->user->email,
                 'role' => User::ROLE_ADMINISTRATOR,
-            ]);
+            ])->where(function ($query) {
+                $query->where('email', $this->user->email)
+                    ->when($this->user->primary_account, function ($query) {
+                        $query->orWhere('parent_id', $this->user->user_id);
+                    })
+                    ->when(!$this->user->primary_account, function ($query) {
+                        $query->orWhere(function ($query) {
+                            $query->where('parent_id', $this->user->user_id)
+                                ->orWhere('user_id', $this->user->user_id);
+                        });
+                    });
+            });
         })->get();
     }
 

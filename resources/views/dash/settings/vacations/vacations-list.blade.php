@@ -60,6 +60,32 @@
                         </div>
                     </div>
                 @endif
+                @if($user->is_admin)
+                    <div class="dropdown ms-1">
+                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" id="dropdownMenuProperties"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-offset="10,20">
+                            Properties: {{ $properties ? 'Customized' : 'All'  }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuProperties">
+                            <a href="#" class="dropdown-item {{ $properties === null || count($selectedHouses) === $this->houses->count()? 'active' : '' }}" wire:click.prevent="setProperty()">All</a>
+                            @foreach($this->houses as $house)
+                                <div class="dropdown-item {{ in_array($house->HouseID, $selectedHouses) ? 'active' : '' }}">
+                                    <div class="form-check">
+                                        <input
+                                            type="checkbox"
+                                            id="house{{ $house->HouseID }}"
+                                            class="form-check-input"
+                                            wire:model.defer="selectedHouses"
+                                            wire:change.prevent="setProperty({{ $house->HouseID }})"
+                                            value="{{ $house->HouseID }}"
+                                        />
+                                        <label class="form-check-label" for="house{{ $house->HouseID }}">{{ $house->HouseName }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 <div class="form-group">
                     <input
                         type="text"
