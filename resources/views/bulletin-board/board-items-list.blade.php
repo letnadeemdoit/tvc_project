@@ -1,7 +1,7 @@
 <div class="pt-55 category-cards">
 
     <div class="d-flex justify-content-center justify-content-md-start" id="scroller">
-        <div class="category-cards mb-3 d-flex pt-5 scrollbar" style="max-width: 100%">
+        <div class="category-cards  d-flex pt-5 scrollbar" style="max-width: 100%">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
                     <li class="nav-item">
@@ -48,7 +48,7 @@
     @if(isset($data) && count($data) > 0)
         <div class="bg-waves" style="background-image: url('/images/bulletin-images/combined-shape.png'); background-repeat: no-repeat; background-size: auto; background-position: top right 150px;">
         <div class="padding-bottom massonary-container">
-            <div class="masonry pt-1 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
+            <div class="masonry pt-3 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
                     <div class="brick  pe-md-1 ">
                         <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
