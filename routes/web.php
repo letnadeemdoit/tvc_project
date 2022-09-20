@@ -115,7 +115,8 @@ Route::post('/super-admin/reset-super-admin-password', [SuperAdminController::cl
 Route::middleware([
     'auth',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'check.primary-user.subscribed-any-plan'
 ])
     ->name('dash.')
     ->group(function () {

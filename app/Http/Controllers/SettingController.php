@@ -56,7 +56,7 @@ class SettingController extends Controller
 
     public function additionalHouses(Request $request)
     {
-        abort_if(!$request->user()->is_admin || !is_premium_subscribed(), 403);
+        abort_if(!$request->user()->is_admin || ($request->user()->is_admin && !$request->user()->primary_account) || !is_premium_subscribed(), 403);
 
         $maxAdditionalHouse = \App\Models\House::whereHas('users', function ($query) use ($request) {
             $query->where('email', $request->user()->email)
