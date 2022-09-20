@@ -17,7 +17,6 @@ use Srmklive\PayPal\Facades\PayPal;
 
 class GuestController extends Controller
 {
-
     /**
      * Welcome
      * @return mixed
@@ -233,6 +232,7 @@ class GuestController extends Controller
      */
     public function ical(ICal $ical)
     {
+        abort_if(!is_any_subscribed(), 403);
         return response($ical->toICSUrl())->withHeaders([
             'Content-type' => 'text/calendar; charset=utf-8',
 //            'Content-Disposition' => 'attachment; filename="calendar.ics"'

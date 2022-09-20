@@ -42,7 +42,7 @@ class CreateOrUpdateUserForm extends Component
 
     public function showUserCUModal($toggle, ?User $userCU)
     {
-        if (! Gate::any(['create', 'update'], $userCU)) {
+        if (!Gate::any(['create', 'update'], $userCU)) {
             abort(403);
         }
 
@@ -103,20 +103,20 @@ class CreateOrUpdateUserForm extends Component
         ])->validateWithBag('saveUserCU');
 
 
-
         if (isset($this->state['password'])) {
             $sendPasswordToMail = $this->state['password'];
             $this->userCU->password = \Hash::make($this->state['password']);
             $this->userCU->old_password = \Hash::make($this->state['password']);
         }
 
-        if ($this->user->primary_account == 1){
+        if ($this->user->primary_account == 1) {
             $this->userCU->parent_id = $this->user->user_id;
-        }else{
+        } else {
             $this->userCU->parent_id = $this->user->parent_id;
         }
 
         $this->userCU->fill([
+            'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
             'user_name' => $this->state['user_name'],
             'email' => $this->state['email'] ?? null,
             'role' => $this->state['role'],
@@ -128,18 +128,18 @@ class CreateOrUpdateUserForm extends Component
         $createUser = $this->userCU;
 
         try {
-            if (isset($this->state['send_email']) && $this->state['send_email'] == 1){
-                if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)){
-                    $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail));
+            if (isset($this->state['send_email']) && $this->state['send_email'] == 1) {
+                if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
+                    $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail));
                 }
             }
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
 
         }
 
         $this->emitSelf('toggle', false);
         $this->emit('user-cu-successfully');
 
-        $this->success( 'User ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
+        $this->success('User ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
     }
 }

@@ -115,7 +115,8 @@ Route::post('/super-admin/reset-super-admin-password', [SuperAdminController::cl
 Route::middleware([
     'auth',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'check.primary-user.subscribed-any-plan'
 ])
     ->name('dash.')
     ->group(function () {
@@ -160,8 +161,8 @@ Route::middleware([
             ->name('paypal.')
             ->group(function () {
                 Route::get('/{plan}/{billed}/processing', 'process')->name('process');
-                Route::get('/{plan}/{billed}/{house}/succeeded', 'succeeded')->name('succeeded');
-                Route::get('/{plan}/{billed}/{house}/canceled', 'canceled')->name('canceled');
+                Route::get('/{plan}/{billed}/succeeded', 'succeeded')->name('succeeded');
+                Route::get('/{plan}/{billed}/canceled', 'canceled')->name('canceled');
 //                Route::post('/ipn', 'ipn')->name('ipn');
             });
     });

@@ -1,6 +1,6 @@
 <div class="pt-55 category-cards">
 
-    <div class="d-flex justify-content-center justify-content-md-start ms-0 ms-md-3" id="scroller">
+    <div class="d-flex justify-content-center justify-content-md-start" id="scroller">
         <div class="category-cards mb-3 d-flex pt-5 scrollbar" style="max-width: 100%">
             @if(count($categories) >0)
                 <ul class="nav nav-tabs border-bottom-0 blog-tabs">
@@ -46,11 +46,11 @@
 
     <!-- dots img -->
     @if(isset($data) && count($data) > 0)
-        <div class="container bg-waves" style="background-image: url('/images/bulletin-images/combined-shape.png'); background-repeat: no-repeat; background-size: auto; background-position: top right 150px;">
+        <div class="bg-waves" style="background-image: url('/images/bulletin-images/combined-shape.png'); background-repeat: no-repeat; background-size: auto; background-position: top right 150px;">
         <div class="padding-bottom massonary-container">
-            <div class="masonry pt-5 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
+            <div class="masonry pt-1 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
-                    <div class="brick me-1 pe-1">
+                    <div class="brick  pe-md-1 ">
                         <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                     </div>
                 @endforeach

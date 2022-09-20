@@ -92,6 +92,7 @@
                 column-count: 2;
                 column-gap: 5px;
             }
+
             @media (min-width: 768px) {
                 .masonry {
                     column-count: 3;
@@ -112,6 +113,11 @@
                     column-count: 4;
                 }
             }
+            @media (max-width: 768px) {
+                .masonry .brick {
+                    margin-right: 0px !important;
+                }
+            }
             .masonry .brick {
                 box-sizing: border-box;
                 -webkit-column-break-inside: avoid;
@@ -119,7 +125,7 @@
                 break-inside: avoid;
                 counter-increment: brick-counter;
                 padding-bottom: 18px;
-                margin-left: 6px;
+                margin-right: 8px;
             }
             .masonry img {
                 width: 100%;

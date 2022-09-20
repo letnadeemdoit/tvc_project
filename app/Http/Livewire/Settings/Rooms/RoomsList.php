@@ -28,7 +28,7 @@ class RoomsList extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
-        'destroyed-successfully' => '$refresh',
+        'destroyed-successfully' => 'destroyedSuccessfully',
         'room-cu-successfully' => '$refresh',
     ];
 
@@ -55,5 +55,28 @@ class RoomsList extends Component
             ->paginate($this->per_page);
 
         return view('dash.settings.rooms.rooms-list', compact('data'));
+    }
+
+    public function destroyedSuccessfully($data)
+    {
+        $this->emitSelf('rooms-cu-successfully');
+
+
+        $addedRooms = Room::where('HouseID', $this->user->HouseId)->count();
+
+        $maxRooms = 1;
+
+        if (is_premium_subscribed()){
+            $maxRooms = 1000;
+        }elseif(is_standard_subscribed()){
+            $maxRooms = 6;
+        }else{
+            $maxRooms = 0;
+        }
+
+        if ($addedRooms == $maxRooms-1){
+            return redirect()->route('dash.settings.rooms');
+        }
+
     }
 }
