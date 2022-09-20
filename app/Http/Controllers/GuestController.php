@@ -301,7 +301,7 @@ class GuestController extends Controller
                             'status' => $paypalSubscription['status']
                         ]);
 
-                        Log::channel('paypal')->info('IPN Update Subscription Successfully: ', $subscription);
+                        Log::channel('paypal')->info('IPN Update Subscription Successfully: ', [$subscription]);
                     }
 
 
