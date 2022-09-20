@@ -160,8 +160,8 @@ Route::middleware([
             ->name('paypal.')
             ->group(function () {
                 Route::get('/{plan}/{billed}/processing', 'process')->name('process');
-                Route::get('/{plan}/{billed}/{house}/succeeded', 'succeeded')->name('succeeded');
-                Route::get('/{plan}/{billed}/{house}/canceled', 'canceled')->name('canceled');
+                Route::get('/{plan}/{billed}/succeeded', 'succeeded')->name('succeeded');
+                Route::get('/{plan}/{billed}/canceled', 'canceled')->name('canceled');
 //                Route::post('/ipn', 'ipn')->name('ipn');
             });
     });
