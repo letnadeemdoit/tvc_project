@@ -1,9 +1,9 @@
 <div x-data="{isYearly: 0}">
-{{--    --}}
-{{--    <div class="alert alert-success mb-4" role="alert">--}}
-{{--        You have been subscribed successfully! Please wait until we confirm your plan.--}}
-{{--    </div>--}}
-
+    @if($this->subscription && $this->subscription->status === 'APPROVAL_PENDING')
+        <div class="alert alert-success mb-4" role="alert">
+            You have been subscribed successfully! Please wait until we confirm your plan.
+        </div>
+    @endif
     <div class="d-flex justify-content-center mb-4">
         <div class="form-check form-switch form-switch-between">
             <label class="form-check-label">Monthly</label>
@@ -45,13 +45,17 @@
                             <a href="{{ route('dash.paypal.process', ['basic', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')
-                            <a
-                                href="#!"
-                                wire:click.prevent="cancelSubscription"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >
-                                Unsubscribe
-                            </a>
+                            @if($this->subscription->status === 'APPROVAL_PENDING')
+                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
+                            @else
+                                <a
+                                    href="#!"
+                                    wire:click.prevent="cancelSubscription"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >
+                                    Unsubscribe
+                                </a>
+                            @endif
                         @else
                             <p>Please unsubscribe other plan first!</p>
                         @endif
@@ -90,13 +94,17 @@
                             <a href="{{ route('dash.paypal.process', ['standard', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif($this->subscription && $this->subscription->plan === 'standard' && $this->subscription->period === 'monthly')
-                            <a
-                                href="#!"
-                                wire:click.prevent="cancelSubscription"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >
-                                Unsubscribe
-                            </a>
+                            @if($this->subscription->status === 'APPROVAL_PENDING')
+                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
+                            @else
+                                <a
+                                    href="#!"
+                                    wire:click.prevent="cancelSubscription"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >
+                                    Unsubscribe
+                                </a>
+                            @endif
                         @else
                             <p>Please unsubscribe other plan first!</p>
                         @endif
@@ -136,11 +144,15 @@
                             <a href="{{ route('dash.paypal.process', ['premium', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'monthly')
-                            <a
-                                href="#!"
-                                wire:click.prevent="cancelSubscription"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >Unsubscribe</a>
+                            @if($this->subscription->status === 'APPROVAL_PENDING')
+                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
+                            @else
+                                <a
+                                    href="#!"
+                                    wire:click.prevent="cancelSubscription"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >Unsubscribe</a>
+                            @endif
                         @else
                             <p>Please unsubscribe other plan first!</p>
                         @endif
@@ -181,11 +193,15 @@
                             <a href="{{ route('dash.paypal.process', ['basic', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'yearly')
-                            <a
-                                href="#!"
-                                wire:click.prevent="cancelSubscription"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >Unsubscribe</a>
+                            @if($this->subscription->status === 'APPROVAL_PENDING')
+                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
+                            @else
+                                <a
+                                    href="#!"
+                                    wire:click.prevent="cancelSubscription"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >Unsubscribe</a>
+                            @endif
                         @else
                             <p>Please unsubscribe other plan first!</p>
                         @endif
@@ -224,11 +240,15 @@
                             <a href="{{ route('dash.paypal.process', ['standard', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif($this->subscription && $this->subscription->plan === 'standard' && $this->subscription->period === 'yearly')
-                            <a
-                                href="#!"
-                                wire:click.prevent="cancelSubscription"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >Unsubscribe</a>
+                            @if($this->subscription->status === 'APPROVAL_PENDING')
+                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
+                            @else
+                                <a
+                                    href="#!"
+                                    wire:click.prevent="cancelSubscription"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >Unsubscribe</a>
+                            @endif
                         @else
                             <p>Please unsubscribe other plan first!</p>
                         @endif
@@ -268,11 +288,15 @@
                             <a href="{{ route('dash.paypal.process', ['premium', 'yearly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'yearly')
-                            <a
-                                href="#!"
-                                wire:click.prevent="cancelSubscription"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >Unsubscribe</a>
+                            @if($this->subscription->status === 'APPROVAL_PENDING')
+                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
+                            @else
+                                <a
+                                    href="#!"
+                                    wire:click.prevent="cancelSubscription"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >Unsubscribe</a>
+                            @endif
                         @else
                             <p>Please unsubscribe other plan first!</p>
                         @endif

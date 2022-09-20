@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\PlansAndPricing;
 
+use App\Models\Audit\User;
 use App\Models\Subscription;
 use Livewire\Component;
 
@@ -13,7 +14,10 @@ class PlansAndPricingList extends Component
 
     public function mount()
     {
-        $this->subscription = $this->user->subscription;
+        $this->subscription = Subscription::where([
+            'user_id' => $this->user->user_id,
+            'house_id' => $this->user->HouseId,
+        ])->latest()->first();
     }
 
     public function render()
@@ -21,9 +25,9 @@ class PlansAndPricingList extends Component
         return view('dash.plans-and-pricing.plans-and-pricing-list');
     }
 
-//    public function getApprovalPendingSubscriptionProperty(){
-//
-//    }
+    public function getApprovalPendingSubscriptionProperty() {
+
+    }
 
     public function cancelSubscription()
     {
