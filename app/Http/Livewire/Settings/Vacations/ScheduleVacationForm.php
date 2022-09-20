@@ -122,10 +122,11 @@ class ScheduleVacationForm extends Component
             $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
         }
 
+        $this->vacation->BackGrndColor = $this->state['background_color'];
+        $this->vacation->FontColor = $this->state['font_color'];
+
         $this->vacation->fill([
             'VacationName' => $this->state['vacation_name'],
-            'BackGrndColor' => ltrim($this->state['background_color'], '#'),
-            'FontColor' => ltrim($this->state['font_color'], '#'),
             'recurrence' => $this->state['recurrence'] === 'none' ? null : $this->state['recurrence'],
             'StartDateId' => $startDate->DateId,
             'StartTimeId' => $startTime->timeid,
