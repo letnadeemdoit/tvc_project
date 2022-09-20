@@ -106,8 +106,8 @@ class ScheduleVacationForm extends Component
             'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
-            'repeat_interval' => ['required_unless:recurrence,once', 'numeric', 'min:1', 'max:30'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
+            'repeat_interval' => ['required_if::recurrence,monthly,yearly', 'numeric', 'min:1', 'max:30'],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
