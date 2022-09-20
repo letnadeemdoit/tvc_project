@@ -57,8 +57,10 @@
                         <td>{{$dt->subscription_id ?? ''}}</td>
                         <td>{{$dt->plan}}</td>
                         <td class="text-capitalize">{{$dt->period}}</td>
-                        <td class="text-capitalize">{{$dt->status}}</td>
-                        <td>{{$dt->created_at}}</td>
+                        <td class="text-capitalize">
+                            {{$dt->status}}
+                        </td>
+                        <td>{{$dt->created_at->format('Y-m-d H:i:s')}}</td>
                     </tr>
                 @endforeach
                 </tbody>
