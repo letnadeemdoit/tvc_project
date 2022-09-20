@@ -44,7 +44,7 @@
 
         </div>
         @if(isset($data) && count($data) > 0)
-            <div class="row mt-5">
+            <div class="row mt-3">
                 @foreach($data as $dt)
                     <livewire:local-guide.post-card :dt="$dt" wire:key="{{ $dt->id }}"/>
                 @endforeach
