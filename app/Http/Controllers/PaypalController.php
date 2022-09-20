@@ -72,6 +72,17 @@ class PaypalController extends Controller
                     'plan' => $plan,
                     'period' => $billed,
                     'status' => $paypalSubscription['status'],
+                    'application_context' => [
+                        'brand_name' => config('app.name'),
+                        'locale' => 'en-US',
+                        'user_action' => 'SUBSCRIBE_NOW',
+                        'payment_method' => [
+                            'payer_selected' => 'PAYPAL',
+                            'payee_preferred' => 'IMMEDIATE_PAYMENT_REQUIRED',
+                        ],
+                        'return_url' => route('dash.paypal.succeeded', [$plan, $billed]),
+                        'cancel_url' => route('dash.paypal.canceled', [$plan, $billed])
+                    ]
                 ]);
 
                 $redirectTo = null;
@@ -96,12 +107,12 @@ class PaypalController extends Controller
     /**
      * @return string
      */
-    public function succeeded()
+    public function succeeded($plan, $billed)
     {
         return redirect()->route('dash.plans-and-pricing')->with('status', "Thank you for your order! You have been successfully subscribed");
     }
 
-    public function canceled()
+    public function canceled($plan, $billed)
     {
         return redirect()->route('dash.plans-and-pricing')->with('status', 'You have been cancelled order.');
     }
