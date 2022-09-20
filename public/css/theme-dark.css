@@ -34557,6 +34557,11 @@ body {
   height: 700px;
 }
 
+.scrollbar-custom #style-3::-webkit-scrollbar {
+  width: 0px;
+  background-color: #fff;
+}
+
 .h-20 {
   height: 20px;
 }
