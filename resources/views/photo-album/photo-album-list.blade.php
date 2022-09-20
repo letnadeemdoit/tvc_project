@@ -1,6 +1,6 @@
 <div class="container padding-bottom massonary-container">
-    <div class="masonry">
-        @if(isset($data) && count($data) > 0)
+    @if(isset($data) && count($data) > 0)
+        <div class="masonry">
             @foreach($data as $dt)
             @if($dt instanceof \App\Models\Photo\Album && ($dt->nestedAlbums->count() > 0 or $dt->photos->count() > 0))
                 <div class="brick">
@@ -12,10 +12,10 @@
                 </div>
             @endif
         @endforeach
-        @else
-            @include('partials.no-data-available',['title' => 'Album'])
-        @endif
-    </div>
+        </div>
+    @else
+        @include('partials.no-data-available',['title' => 'Album'])
+    @endif
 
     @push('scripts')
         @if(!is_null($album))
