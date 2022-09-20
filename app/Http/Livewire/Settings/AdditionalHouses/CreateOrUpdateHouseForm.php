@@ -36,7 +36,7 @@ class CreateOrUpdateHouseForm extends Component
 
         $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->get();
 
-        return view('dash.settings.additional-houses.create-or-update-house-form',compact('countries','states','cities'));
+        return view('dash.settings.additional-houses.create-or-update-house-form', compact('countries', 'states', 'cities'));
     }
 
 
@@ -55,9 +55,9 @@ class CreateOrUpdateHouseForm extends Component
 
 //        dd($this->house);
 
-        $country_id = Country::where('name',$this->house['country'])->first();
-        $state_id = State::where('name',$this->house['State'])->first();
-        $city_id = City::where('name',$this->house['City'])->first();
+        $country_id = Country::where('name', $this->house['country'])->first();
+        $state_id = State::where('name', $this->house['State'])->first();
+        $city_id = City::where('name', $this->house['City'])->first();
 
         if ($house->HouseID) {
             $this->state = [
@@ -105,15 +105,15 @@ class CreateOrUpdateHouseForm extends Component
         ])->validateWithBag('saveAdditionalHouseCU');
 
 
-        if ($this->user->primary_account == 1 ){
+        if ($this->user->primary_account == 1) {
             $this->house->parent_id = $this->user->HouseId;
-        }else{
+        } else {
 
         }
 
-        $country_name = Country::where('id',$inputs['country_id'])->first();
-        $state_name = State::where('id',$inputs['state_id'])->first();
-        $city_name = City::where('id',$inputs['city_id'])->first();
+        $country_name = Country::where('id', $inputs['country_id'])->first();
+        $state_name = State::where('id', $inputs['state_id'])->first();
+        $city_name = City::where('id', $inputs['city_id'])->first();
 
         $this->house->fill([
             'HouseName' => $this->state['name'],
@@ -136,10 +136,10 @@ class CreateOrUpdateHouseForm extends Component
         if (!$user->exists) {
             $user->fill([
                 ...$this->user->toArray(),
-                'user_id'  => null,
+                'user_id' => null,
                 'HouseId' => $this->house->HouseID,
                 'password' => $this->user->password,
-
+                'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
             ])->save();
         }
 
@@ -152,7 +152,7 @@ class CreateOrUpdateHouseForm extends Component
 
         $this->emit('additional-house-cu-successfully');
 
-        if ($maxAdditionalHouse == 9){
+        if ($maxAdditionalHouse == 9) {
             return redirect()->route('dash.settings.additional-houses');
         }
 
