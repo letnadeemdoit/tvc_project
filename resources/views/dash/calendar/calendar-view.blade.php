@@ -251,7 +251,7 @@
                                                 ? `<img class="avatar avatar-xs me-2" src="${event.extendedProps.imageUrl}" alt="Image Description">`
                                                 : ''
                                         }
-                                        <span class="fc-event-title fc-sticky">${event.title}</span>
+                                        <span class="fc-event-title fc-sticky" style="color: ${event.textColor}">${event.title}</span>
                                     </div>
                                 </div>
                             `
