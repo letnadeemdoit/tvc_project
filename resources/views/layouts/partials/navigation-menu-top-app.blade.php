@@ -123,7 +123,7 @@
                         <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account" aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
                             <div class="dropdown-item-text px-1">
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-sm avatar-circle">
+                                    <div class="avatar avatar-sm avatar-circle w-25">
                                         <img
                                             class="avatar-img"
                                             src="{{ auth()->user()->profile_photo_url }}"

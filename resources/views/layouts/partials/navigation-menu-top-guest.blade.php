@@ -250,7 +250,7 @@
                                 {{--                                        </div>--}}
                                 {{--                                    </div>--}}
                                 {{--                                </div>--}}
-                                <div class="dropdown-divider d-block d-lg-none"></div>
+                                <div class="dropdown-divider d-none"></div>
 
                                 @if(!auth()->user()->is_super_admin )
                                     <a href="{{route('dash.calendar')}}" class="dropdown-item"> <i
