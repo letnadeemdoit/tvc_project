@@ -27,6 +27,7 @@ class DashboardController extends Controller
 
     public function calendar(Request $request)
     {
+        abort_if(!is_any_subscribed(), 403);
         return view('dash.calendar.index', [
             'user' => $request->user(),
             'iCalUrl' => $request->user()->iCalUrl(),
@@ -69,7 +70,7 @@ class DashboardController extends Controller
 
     public function localGuide(Request $request)
     {
-        abort_if($request->user()->is_guest, 403);
+        abort_if($request->user()->is_guest  || !is_any_subscribed(), 403);
         return view('dash.settings.local-guide.index', [
             'user' => $request->user()
         ]);
@@ -103,7 +104,7 @@ class DashboardController extends Controller
 
     public function foodItemList(Request $request)
     {
-        abort_if($request->user()->is_guest, 403);
+        abort_if($request->user()->is_guest  || !is_any_subscribed(), 403);
         return view('dash.house-items.food-item-list.index', [
             'user' => $request->user()
         ]);
@@ -113,7 +114,7 @@ class DashboardController extends Controller
 
     public function shoppingItemList(Request $request)
     {
-        abort_if($request->user()->is_guest, 403);
+        abort_if($request->user()->is_guest  || !is_any_subscribed(), 403);
         return view('dash.house-items.shopping-item-list.index', [
             'user' => $request->user()
         ]);
@@ -131,7 +132,7 @@ class DashboardController extends Controller
 
     public function photoAlbums(Request $request)
     {
-        abort_if($request->user()->is_guest, 403);
+        abort_if($request->user()->is_guest || !is_any_subscribed(), 403);
         return view('dash.houses.photo-albums.index', [
             'user' => $request->user()
         ]);
