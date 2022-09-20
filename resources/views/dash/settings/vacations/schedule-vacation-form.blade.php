@@ -120,7 +120,7 @@
                 </div>
             @endif
             <div class="row mb-3">
-                <div class="form-group col-md-6 mb-3" x-data="{bc: '{{ $state['background_color'] ?? '#3a87ad' }}'}">
+                <div class="form-group col-md-6 mb-3" x-data="{bc: '{{ $state['background_color'] ?? '#E8604C' }}'}">
                     <label class="form-label" for="background_color">Background Color:</label>
                     <select
                         name="background_color"
@@ -130,15 +130,15 @@
                         :style="`background-color: ${bc}`"
                         x-model="bc"
                     >
-                        <option value="#3a87ad" style="background-color: #3a87ad;">Default</option>
-                        <option value="#F48058" style="background-color: #F48058;">Red</option>
-                        <option value="#F4AC58" style="background-color: #F4AC58;">Orange</option>
-                        <option value="#F3F298" style="background-color: #F3F298;">Yellow</option>
-                        <option value="#B0EFA8" style="background-color: #B0EFA8;">Green</option>
-                        <option value="#B9EAE3" style="background-color: #B9EAE3;">Light Blue</option>
-                        <option value="#9ECCF8" style="background-color: #9ECCF8;">Dark Blue</option>
-                        <option value="#9EB1F8" style="background-color: #9EB1F8;">Purple</option>
-                        <option value="#DEB2F1" style="background-color: #DEB2F1;">Pink</option>
+                        <option value="#E8604C" style="background-color: #E8604C;">Default</option>
+                        <option value="#ff0000" style="background-color: #ff0000;">Red</option>
+                        <option value="#FF5733" style="background-color: #FF5733;">Orange</option>
+                        <option value="#FFFF00" style="background-color: #FFFF00;">Yellow</option>
+                        <option value="#22bb22" style="background-color: #22bb22;">Green</option>
+                        <option value="#add8e6" style="background-color: #add8e6;">Light Blue</option>
+                        <option value="#00008b" style="background-color: #00008b;color: #efeaea">Dark Blue</option>
+                        <option value="#6a0dad" style="background-color: #6a0dad;">Purple</option>
+                        <option value="#ffc0cb" style="background-color: #ffc0cb;">Pink</option>
                         <option value="#FFFBF0" style="background-color: #FFFBF0;">White</option>
                     </select>
                     @error('background_color')
