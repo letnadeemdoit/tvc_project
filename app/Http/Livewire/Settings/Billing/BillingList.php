@@ -36,6 +36,7 @@ class BillingList extends Component
                     $query
                         ->where('plan', 'LIKE', "%$this->search%")
                         ->orWhere('period', 'LIKE', "%$this->search%")
+                        ->orWhere('subscription_id', 'LIKE', "%$this->search%")
                         ->orWhere('status', 'LIKE', "%$this->search%");
                 });
             })
