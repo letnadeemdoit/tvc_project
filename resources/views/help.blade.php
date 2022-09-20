@@ -11,7 +11,7 @@
                 <div class="help-text shadow-1-strong rounded  d-flex justify-content-center">
                     <h1 class="text-primary font-vintage mb-0">Help</h1>
                 </div>
-                <h2 class="pt-2 poppins-bold">Get Instructions Here</h2>
+                <h2 class="pt-2 poppins-bold mb-0">Get Instructions Here</h2>
             </section>
             <div class="help-page-tabs mt-80">
                 <div class="bg-border">

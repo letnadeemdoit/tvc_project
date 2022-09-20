@@ -40,7 +40,7 @@
             </div>
 
     @if(isset($data) && count($data) > 0)
-        <div class="row category-cards pt-3">
+        <div class="row category-cards pt-1">
             @foreach($data as $dt)
                 <livewire:blog.post-card :post="$dt" wire:key="{{ $dt->BlogId }}"/>
             @endforeach
