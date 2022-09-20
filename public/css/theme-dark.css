@@ -34557,7 +34557,7 @@ body {
   height: 700px;
 }
 
-#style-3::-webkit-scrollbar {
+.scrollbar-custom #style-3::-webkit-scrollbar {
   width: 0px;
   background-color: #fff;
 }
