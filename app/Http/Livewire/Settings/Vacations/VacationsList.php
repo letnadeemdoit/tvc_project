@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Settings\Vacations;
 
 use App\Http\Livewire\Traits\Destroyable;
+use App\Models\House;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\DeleteNotification;
@@ -24,6 +25,9 @@ class VacationsList extends Component
     public $per_page = 15;
     public $owner = null;
 
+    public $selectedHouses = [];
+    public $properties = null;
+
     public $from;
     public $to;
 
@@ -32,6 +36,7 @@ class VacationsList extends Component
         'page' => ['except' => 1],
         'per_page' => ['except' => 15],
         'owner' => ['except' => null],
+        'properties' => ['except' => null],
         'from',
         'to'
     ];
@@ -49,15 +54,22 @@ class VacationsList extends Component
     {
         $this->model = Vacation::class;
 
+        if ($this->user->is_admin) {
+            if ($this->properties) {
+                $this->selectedHouses = explode(',', $this->properties);
+            }
+        }
+
         $this->from = $this->from ?? now()->format('d-m-Y');
         $this->to = $this->to ?? now()->addDays(30)->format('d-m-Y');
     }
 
     public function render()
     {
-        $data = Vacation::where('HouseId', $this->user->HouseId)
-            ->when($this->user->is_owner_only, function ($query) {
-                $query->where('OwnerId', $this->user->user_id);
+        $data = Vacation::when($this->user->is_owner_only, function ($query) {
+                $query->where('HouseId', $this->user->HouseId)->where('OwnerId', $this->user->user_id);
+            })->when($this->user->is_admin, function ($query) {
+                $query->where('HouseId', $this->properties ? $this->selectedHouses : $this->user->HouseId);
             })
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
@@ -85,6 +97,35 @@ class VacationsList extends Component
             ->orderBy('VacationId', 'DESC')
             ->paginate($this->per_page);
         return view('dash.settings.vacations.vacations-list', compact('data'));
+    }
+
+    public function setProperty($property = null)
+    {
+        if ($property) {
+            $this->properties = implode(',', $this->selectedHouses);
+        } else {
+            $this->properties = null;
+        }
+    }
+
+    public function getHousesProperty()
+    {
+        return House::whereHas('users', function ($query) {
+            $query->where([
+                'role' => User::ROLE_ADMINISTRATOR,
+            ])->where(function ($query) {
+                $query->where('email', $this->user->email)
+                    ->when($this->user->primary_account, function ($query) {
+                        $query->orWhere('parent_id', $this->user->user_id);
+                    })
+                    ->when(!$this->user->primary_account, function ($query) {
+                        $query->orWhere(function ($query) {
+                            $query->where('parent_id', $this->user->user_id)
+                                ->orWhere('user_id', $this->user->user_id);
+                        });
+                    });
+            });
+        })->get();
     }
 
     public function getOwnersProperty()
