@@ -38,7 +38,7 @@
                     <th>id</th>
 {{--                    <th>User</th>--}}
 {{--                    <th>House</th>--}}
-                    <th>Subscription</th>
+                    <th>Subscription ID</th>
                     <th>Plan</th>
                     <th>Period</th>
                     <th>Status</th>
@@ -51,11 +51,25 @@
                 @foreach($data as $dt)
 
                     <tr>
-                        <td>{{$dt->id}}</td>
+                        <td>{{$loop->iteration}}</td>
 {{--                        <td>{{$dt->user->user_name ?? ''}}</td>--}}
 {{--                        <td class="text-capitalize">{{$dt->house->HouseName ?? ''}}</td>--}}
                         <td>{{$dt->subscription_id ?? ''}}</td>
-                        <td class="text-capitalize">{{$dt->plan}}</td>
+                        <td class="text-capitalize">
+                            <span class="badge
+
+                            @if($dt->plan == 'basic' )
+                                bg-secondary
+                            @elseif($dt->plan == 'standard')
+                                bg-info
+                            @elseif($dt->plan == 'premium')
+                                bg-primary
+                            @else
+                                bg-primary
+                            @endif
+
+                            ">{{$dt->plan}}</span>
+                        </td>
                         <td class="text-capitalize">{{$dt->period}}</td>
                         <td class="text-capitalize">
                             <span class="badge
