@@ -25,12 +25,15 @@ class GuestController extends Controller
     {
         return view('welcome');
     }
+
     /**
      * terms of service
      */
-    public function termsService(){
+    public function termsService()
+    {
         return view('terms-of-service');
     }
+
     /**
      * Contact
      * @return mixed
@@ -63,7 +66,7 @@ class GuestController extends Controller
         $comment = $request->comment;
 
         Notification::route('mail', $user->email)
-            ->notify( new ContactUsMailNotification($firstName,$lastName,$subject,$email,$comment));
+            ->notify(new ContactUsMailNotification($firstName, $lastName, $subject, $email, $comment));
 
 //        Mail::send([], [], function ($message) use ($request) {
 //
@@ -270,7 +273,7 @@ class GuestController extends Controller
             }
 
             if ($response->ok()) {
-                $body = $response->body();
+                $body = trim($response->body());
                 Log::channel('paypal')->info('IPN Verification Response: ', [$body]);
                 if ($body === 'VERIFIED') {
                     Log::channel('paypal')->info('IPN Response from Paypal Server: ', ['VERIFIED']);
