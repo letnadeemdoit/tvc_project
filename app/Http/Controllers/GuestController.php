@@ -252,20 +252,26 @@ class GuestController extends Controller
         $ipnData['cmd'] = '_notify-validate';
 
         if (is_array($ipnData)) {
+            Log::channel('paypal')->info('Sending IPN Verification Request ');
             $response = null;
 
             if (config('paypal.mode') === 'sandbox') {
+                Log::channel('paypal')->info('Sandbox');
                 $response = Http::send('POST', 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr', [
                     'form_params' => $ipnData
                 ]);
+                Log::channel('paypal')->info('Sandbox Response: ', [$response]);
             } else {
+                Log::channel('paypal')->info('Production');
                 $response = Http::send('POST', 'https://ipnpb.paypal.com/cgi-bin/webscr', [
                     'form_params' => $ipnData
                 ]);
+                Log::channel('paypal')->info('Production Response: ', [$response]);
             }
 
             if ($response->ok()) {
                 $body = $response->body();
+                Log::channel('paypal')->info('IPN Verification Response: ', [$body]);
                 if ($body === 'VERIFIED') {
                     Log::channel('paypal')->info('IPN Response from Paypal Server: ', ['VERIFIED']);
                     $paypal = PayPal::setProvider();
