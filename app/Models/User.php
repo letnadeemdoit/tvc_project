@@ -72,6 +72,7 @@ class User extends Authenticatable implements Auditable
         'Intro',
         'ShowOldSave',
         'AdminOwner',
+        'enable_rooms',
         'Audit_user_name',
         'Audit_Role',
         'Audit_FirstName',

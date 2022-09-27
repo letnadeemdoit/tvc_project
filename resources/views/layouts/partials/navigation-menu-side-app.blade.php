@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     @endif
-                    <!-- End Collapse -->
+                <!-- End Collapse -->
                     @if(!auth()->user()->is_super_admin)
                         <span class="dropdown-header mt-4">Menu</span>
                     @endif
@@ -265,13 +265,18 @@
                                             <img src="{{asset('images/help-images/users.svg')}}" class="me-2"
                                                  style="width: 14px;opacity: 0.7" alt="">
                                             Users</a>
+
                                         @if(is_subscribed(['standard', 'premium']))
-                                            <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
-                                               href="{{ route('dash.settings.rooms') }}">
-                                                <img src="{{asset('images/icons/rooms-icon.svg')}}" class="me-2"
-                                                     style="width: 14px;opacity: 0.7" alt="">
-                                                Rooms</a>
+
+                                            @if(auth()->user()->enable_rooms == 1)
+                                                <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
+                                                   href="{{ route('dash.settings.rooms') }}">
+                                                    <img src="{{asset('images/icons/rooms-icon.svg')}}" class="me-2"
+                                                         style="width: 14px;opacity: 0.7" alt="">
+                                                    Rooms</a>
+                                            @endif
                                         @endif
+
                                         @if(is_subscribed('premium') && auth()->user()->primary_account)
                                             <a class="nav-link {{ link_is_active_with_class('dash.settings.additional-houses') }}"
                                                href="{{ route('dash.settings.additional-houses') }}">
