@@ -47,9 +47,9 @@
             class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100
             position-relative bg-image-properties px-0
              @if(request()->routeIs('login'))
-             bg-search-house
+                bg-search-house
              @elseif(request()->routeIs('password.request') || request()->routeIs('password.reset'))
-             bg-email-password
+                bg-email-password
              @elseif(request()->routeIs('register'))
                 bg-register
              @else
