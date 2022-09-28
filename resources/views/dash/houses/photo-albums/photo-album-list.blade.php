@@ -110,13 +110,13 @@
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
 
-                                @if($dt->photos->count() > 0)
+                                @if($dt->photos->count() > 0 || $dt->nestedAlbums->count() > 0)
 
                                     <button
                                         type="button"
                                         class="btn btn-secondary btn-sm"
-                                        class="btn btn-secondary"
-                                        data-bs-toggle="modal" data-bs-target="#photoAlbum{{$dt->id}}Model"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#photoAlbum{{$dt->id}}Model"
                                     >
                                         <i class="bi-trash"></i>
                                     </button>
@@ -125,7 +125,6 @@
                                     <button
                                         type="button"
                                         class="btn btn-danger btn-sm"
-                                        class="btn btn-secondary"
                                         data-bs-toggle="modal" data-bs-target="#category{{$dt->id}}Model"
                                         wire:click.prevent="destroy({{$dt->id}})"
                                     >
@@ -157,8 +156,8 @@
 
                                         <h4 class="fw-bold text-center my-3"
                                             style="color: #00000090">You can't delete this Album</h4>
-                                        <p class="fw-500 fs-15">First of all you need to switch your photo items to
-                                            another album or remove the photo items from this album.</p>
+                                        <p class="fw-500 fs-15">First of all you need to switch your photo items or nested albums to
+                                            another album or remove.</p>
                                         <div class="btn-group my-2">
                                         </div>
                                     </div>
