@@ -268,13 +268,11 @@
 
                                         @if(is_subscribed(['standard', 'premium']))
 
-                                            @if(auth()->user()->enable_rooms == 1)
-                                                <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
-                                                   href="{{ route('dash.settings.rooms') }}">
-                                                    <img src="{{asset('images/icons/rooms-icon.svg')}}" class="me-2"
-                                                         style="width: 14px;opacity: 0.7" alt="">
-                                                    Rooms</a>
-                                            @endif
+                                            <a class="nav-link {{ link_is_active_with_class('dash.settings.rooms') }}"
+                                               href="{{ route('dash.settings.rooms') }}">
+                                                <img src="{{asset('images/icons/rooms-icon.svg')}}" class="me-2"
+                                                     style="width: 14px;opacity: 0.7" alt="">
+                                                Rooms</a>
                                         @endif
 
                                         @if(is_subscribed('premium') && auth()->user()->primary_account)

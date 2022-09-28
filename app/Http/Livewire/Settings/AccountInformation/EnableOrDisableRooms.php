@@ -34,7 +34,7 @@ class EnableOrDisableRooms extends Component
 
         $this->emit('saved');
 
-        return redirect()->route('dash.settings.account-information');
+//        return redirect()->route('dash.settings.account-information');
     }
 
 }
