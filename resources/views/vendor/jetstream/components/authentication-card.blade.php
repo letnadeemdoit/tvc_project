@@ -52,9 +52,9 @@
              bg-email-password
              @elseif(request()->routeIs('register'))
                 bg-register
-                @else
+             @else
                 bg-search-house
-@endif
+             @endif
 "
         x-ref="image_container"
         >
