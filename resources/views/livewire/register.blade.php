@@ -1,4 +1,15 @@
 <div>
+
+    @push('stylesheets')
+        <style>
+            .select-icon{
+                background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xIDFMNiA2TDExIDEiIHN0cm9rZT0iIzkzOTM5MyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==);
+                background-repeat: no-repeat;
+                background-position: 95%;
+            }
+        </style>
+    @endpush
+
     <form wire:submit.prevent="register" method="post">
         @csrf
         {{--    <x-jet-validation-errors />--}}
@@ -37,7 +48,7 @@
                             name="country_id"
                             wire:model="state.country_id"
                             wire:change="onChangeCountry"
-                            class="form-control form-control-lg border-0 shadow-none outline-0"
+                            class="form-control form-control-lg border-0 shadow-none outline-0 select-icon"
                         >
                             <option value=""></option>
                             @foreach($countries as $country)
@@ -59,7 +70,7 @@
                             tabindex="2"
                             name="state_id"
                             wire:model="state.state_id"
-                            class="form-control form-control-lg border-0 shadow-none outline-0"
+                            class="form-control form-control-lg border-0 shadow-none outline-0 select-icon"
                             data-live-search="true"
 
                         >
@@ -83,7 +94,7 @@
                             tabindex="3"
                             name="city_id"
                             wire:model.defer="state.city_id"
-                            class="form-control form-control-lg border-0 shadow-none outline-0"
+                            class="form-control form-control-lg border-0 shadow-none outline-0 select-icon"
 
                         >
                             <option value=""></option>
