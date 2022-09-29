@@ -1,8 +1,63 @@
 <!-- Content -->
+@push('stylesheets')
+    <style>
+
+        bg-image-properties{
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .bg-search-house{
+            background: url(/images/login-images/search-house.png);
+        }
+        .bg-login{
+            background: url(/images/login-images/login.png);
+        }
+
+        .bg-register{
+            background: url(/images/login-images/register.png);
+        }
+
+        .bg-owner-login{
+            background: url(/images/login-images/owner-login.png);
+        }
+
+        .bg-guest-login{
+            background: url(/images/login-images/guest-login.png);
+        }
+
+        .bg-email-password{
+            background: url(/images/login-images/reset-password.png);
+        }
+
+
+    </style>
+@endpush
 <div class="container-fluid px-2 overflow-hidden" style="height: 100vh">
-    <div class="row">
+
+
+    <div class="row"
+         @if(request()->routeIs('login'))
+             x-data="{ imgClasses: ['bg-search-house','bg-login','bg-owner-login','bg-guest-login']  }"
+             @update-image.window="imgClasses.map(c=>{$refs.image_container.classList.remove(c)});$refs.image_container.classList.add($event.detail)"
+         @endif
+    >
         <div
-            class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100 position-relative bg-image px-0">
+            class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center min-vh-lg-100
+            position-relative bg-image-properties px-0
+             @if(request()->routeIs('login'))
+                bg-search-house
+             @elseif(request()->routeIs('password.request') || request()->routeIs('password.reset'))
+                bg-email-password
+             @elseif(request()->routeIs('register'))
+                bg-register
+             @else
+                bg-search-house
+             @endif
+"
+        x-ref="image_container"
+        >
             <!-- Logo & Language -->
             <div class="position-absolute top-0 start-0 end-0 mt-3 mx-3">
                 <div class="d-none d-lg-flex justify-content-between">

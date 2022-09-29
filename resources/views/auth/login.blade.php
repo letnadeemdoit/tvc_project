@@ -83,7 +83,7 @@
                         <div class="col-md-4 d-grid">
                             <button
                                 class="btn btn-primary"
-                                @click.prevent="gotoHouse = true"
+                                @click.prevent="gotoHouse = true;$dispatch('update-image','bg-login')"
                                 x-bind:disabled="!houseIsSelected"
                             >
                                 Go to House
@@ -95,8 +95,9 @@
                     <div class="text-center mt-4">
                         <p>Don't have an account?
                             <a href="{{ route('register') }}"
-                               class="text-decoration-underline text-primary fw-600">Create
-                                account</a></p>
+                               class="text-decoration-underline text-primary fw-600">Create account
+                            </a>
+                        </p>
                     </div>
 
                 </div>
@@ -111,18 +112,18 @@
                         </div>
                         <div class="d-grid gap-2">
                             <a class="btn btn-dark-secondary btn-lg shadow-lg"
-                                    @click.prevent="loginAsGuest = false; role = 'AdministratorOrGuest';">
+                                    @click.prevent="loginAsGuest = false; role = 'AdministratorOrGuest';$dispatch('update-image','bg-owner-login')">
                                 {{ __('Administrator & Owner') }}
                             </a>
                             <a class="btn bg-light-primary border-solid btn-lg mt-3 text-dark"
-                                    @click.prevent="loginAsGuest = true; role = 'Guest';">{{ __('Guest') }}</a>
+                                    @click.prevent="loginAsGuest = true; role = 'Guest';$dispatch('update-image','bg-guest-login')">{{ __('Guest') }}</a>
                         </div>
                         <div class="text-center mt-3">
 
                             <a
                                 class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
                                 href="#!"
-                                @click.prevent="gotoHouse = false; loginAsGuest = null"
+                                @click.prevent="gotoHouse = false; loginAsGuest = null; $dispatch('update-image','bg-login')"
                             >
 
                                 <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2">Go Back to
@@ -255,7 +256,7 @@
 
                             <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
                                href="#!"
-                               @click.prevent="gotoHouse = true; loginAsGuest = null">
+                               @click.prevent="gotoHouse = true; loginAsGuest = null;$dispatch('update-image','bg-login')">
 
                                 <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Go Back to
                                 <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
