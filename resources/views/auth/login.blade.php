@@ -123,7 +123,7 @@
                             <a
                                 class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
                                 href="#!"
-                                @click.prevent="gotoHouse = false; loginAsGuest = null; $dispatch('update-image','bg-login')"
+                                @click.prevent="gotoHouse = false; loginAsGuest = null; $dispatch('update-image','bg-search-house')"
                             >
 
                                 <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2">Go Back to
