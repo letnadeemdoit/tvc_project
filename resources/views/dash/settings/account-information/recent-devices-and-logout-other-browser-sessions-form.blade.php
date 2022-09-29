@@ -80,6 +80,7 @@
                     class="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
+                    wire:ignore
                     @click.prevent="hide()"
                 ></button>
             </div>
@@ -110,6 +111,7 @@
                     type="button"
                     class="btn btn-white"
                     data-bs-dismiss="modal"
+                    wire:ignore
                     @click.prevent="hide()"
                 >
                     {{ __('Cancel') }}

@@ -27,6 +27,7 @@
                 type="button"
                 class="btn-close"
                 aria-label="Close"
+                wire:ignore
                 @click.prevent="hide()"
             ></button>
         </div>
