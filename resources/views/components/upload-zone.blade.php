@@ -13,12 +13,16 @@
         startUploading() {
             this.isUploadingFile = true;
             this.previewAndEdit = false;
+            $('.btn-close').attr('disabled', true);
             this.cropper.getCroppedCanvas().toBlob((blob) => {
                 this.files[0] = blob;
                 @this.upload('{{ $attributes->get('wire:model') }}', blob, (uploadedFilename) => {
                     this.isUploadingFile = false;
+                    $('.btn-close').attr('disabled', null);
+
                 }, () => {
                     this.isUploadingFile = false;
+                     $('.btn-close').attr('disabled', null);
                 }, (event) => {
                     this.uploadingProgress = event.detail.progress;
                 });
