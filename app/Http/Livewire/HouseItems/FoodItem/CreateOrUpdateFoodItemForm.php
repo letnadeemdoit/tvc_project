@@ -42,13 +42,14 @@ class CreateOrUpdateFoodItemForm extends Component
     {
         $this->emitSelf('toggle', $toggle);
         $this->foodItemList = $foodItemList;
-        $this->reset(['state', 'file']);
+        $this->file = null;
 
         if ($foodItemList->id) {
             $this->isCreating = false;
-            $this->state = \Arr::only($foodItemList->toArray(), ['user_id','house_id','name','location','expiration_date','']);
+            $this->state = \Arr::only($foodItemList->toArray(), ['user_id','house_id','name','location','expiration_date']);
         }else{
             $this->isCreating = true;
+            $this->state = [];
         }
     }
 
