@@ -60,6 +60,15 @@
                         </div>
                     </div>
                 @endif
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        name="datetimes"
+                        style="min-width: 200px"
+                        readonly
+                    />
+                </div>
                 @if($user->is_admin)
                     <div class="dropdown ms-1">
                         <button type="button" class="btn btn-primary btn-sm dropdown-toggle" id="dropdownMenuProperties"
@@ -86,15 +95,6 @@
                         </div>
                     </div>
                 @endif
-                <div class="form-group">
-                    <input
-                        type="text"
-                        class="form-control form-control-sm"
-                        name="datetimes"
-                        style="min-width: 200px"
-                        readonly
-                    />
-                </div>
             </div>
         </div>
 

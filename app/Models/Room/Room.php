@@ -34,15 +34,18 @@ class Room extends Model implements Auditable
     ];
 
 
-    public function roomType() {
+    public function roomType()
+    {
         return $this->belongsTo(RoomType::class, 'RoomTypeID', 'RoomTypeID');
     }
 
-    public function amenities() {
+    public function amenities()
+    {
         return $this->belongsToMany(AmenityType::class, RoomAmenity::class, 'RoomID', 'AmenityID');
     }
 
-    public function toCalendarResource() {
+    public function toCalendarResource()
+    {
 
         return [
             'id' => $this->RoomID,
