@@ -42,6 +42,7 @@ $id = 'x' . ($id ?? md5(time())) . 'Modal';
                 show();
             } else {
                 hide();
+                $dispatch('upload-dropzone-reset');
             }
         });
 
