@@ -150,7 +150,7 @@ class Vacation extends Model implements Auditable
 
     public function schedules(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Schedule::class, 'VacationId', 'VacationID');
+        return $this->hasMany(Schedule::class, 'VacationID', 'VacationId');
     }
 
     public function owner()

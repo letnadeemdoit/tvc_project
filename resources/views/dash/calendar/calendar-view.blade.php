@@ -151,8 +151,14 @@
                 <!-- Radio Check -->
                 <label class="form-control" for="rooms">
                 <span class="form-check">
-                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="rooms"
-                         value="resourceTimeline"/>
+                  <input
+                      type="radio"
+                      class="form-check-input"
+                      data-fc-grid-view
+                      name="calendar_view"
+                      id="rooms"
+                      value="resourceTimelineMonth"
+                  />
                   <span class="form-check-label">Rooms</span>
                 </span>
                 </label>
@@ -244,10 +250,10 @@
                             html:  `
                                 <div>
                                     <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !event.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
-                                    <div class="d-flex">
+                                    <div class="d-flex px-2 py-1">
                                         ${
                                             event.extendedProps.imageUrl
-                                                ? `<img class="avatar avatar-xs me-2" src="${event.extendedProps.imageUrl}" alt="Image Description">`
+                                                ? `<img class="avatar avatar-xs me-2" style="object-fit: cover" src="${event.extendedProps.imageUrl}" alt="Image Description">`
                                                 : ''
                                         }
                                         <span class="fc-event-title fc-sticky" style="color: ${event.textColor}">${event.title}</span>
