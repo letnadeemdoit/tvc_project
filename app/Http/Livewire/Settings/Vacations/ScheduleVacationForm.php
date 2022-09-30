@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Settings\Vacations;
 
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Calendar;
+use App\Models\Schedule;
 use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
+use App\Models\VacationRoom;
 use App\Notifications\BlogNotification;
 use App\Notifications\CalendarEmailNotification;
 use App\Notifications\DeleteNotification;
@@ -16,6 +18,7 @@ use Exception;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class ScheduleVacationForm extends Component
@@ -72,14 +75,17 @@ class ScheduleVacationForm extends Component
                 'font_color' => $this->vacation->FontColor,
                 'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y h:i'),
                 'recurrence' => $this->vacation->recurrence ?? 'once',
-                'repeat_interval' => $this->vacation->repeat_interval ?? 0
+                'repeat_interval' => $this->vacation->repeat_interval ?? 0,
+                'book_rooms' => $this->vacation->book_rooms,
+                'rooms' => $this->vacation->schedules->pluck('RoomId')->toArray()
             ];
         } else {
             $this->isCreating = true;
             $this->state = [
                 'background_color' => '#3a87ad',
                 'font_color' => '#ffffff',
-                'recurrence' => 'once'
+                'recurrence' => 'once',
+                'book_rooms' => 0
             ];
 
             if ($initialDate) {
@@ -135,6 +141,27 @@ class ScheduleVacationForm extends Component
             'repeat_interval' => $this->state['repeat_interval'] ?? 0,
         ])->save();
 
+        if (
+            isset($this->state['book_rooms']) &&
+            $this->state['book_rooms'] == 1 &&
+            isset($this->state['rooms']) &&
+            is_array($this->state['rooms']) &&
+            count($this->state['rooms']) > 0
+        ) {
+            foreach ($this->state['rooms'] as $room) {
+
+                $this->vacation->rooms()->save(new VacationRoom([
+                    'room_id' => $room['room_id'],
+                    'starts_at' => $room['starts_at'],
+                    'ends_at' => $room['ends_at'],
+//                                'OwnerId' => $model->OwnerId,
+//                                'DateId' => $model->StartDateId
+                ]));
+            }
+
+
+        }
+
         if ($this->state['recurrence'] !== 'once') {
             if ($this->isCreating) {
                 $recurring = [];
@@ -162,10 +189,29 @@ class ScheduleVacationForm extends Component
                     ]);
                 }
 
-                $this->vacation->recurrings()->saveMany($recurring);
+                $models = $this->vacation->recurrings()->saveMany($recurring);
+                if (
+                    isset($this->state['book_rooms']) &&
+                    $this->state['book_rooms'] == 1 &&
+                    isset($this->state['rooms']) &&
+                    is_array($this->state['rooms']) &&
+                    count($this->state['rooms']) > 0
+                ) {
+                    foreach ($this->state['rooms'] as $room) {
+                        foreach ($models as $model) {
+                            $model->rooms()->save(new VacationRoom([
+                                'room_id' => $room['room_id'],
+                                'starts_at' => $room['starts_at'],
+                                'ends_at' => $room['ends_at'],
+//                                'OwnerId' => $model->OwnerId,
+//                                'DateId' => $model->StartDateId
+                            ]));
+                        }
+                    }
+
+                }
             } else {
                 $repeatInterval = intval($this->state['repeat_interval'] ?? 0);
-
 
                 $recurringVacations = $this->vacation->recurrings;
 
@@ -193,6 +239,7 @@ class ScheduleVacationForm extends Component
                                 'EndTimeId' => $endTime->timeid,
                             ]);
                         } else {
+                            $recurringVacation->rooms()->delete();
                             $recurringVacation->delete();
                         }
 
@@ -221,6 +268,23 @@ class ScheduleVacationForm extends Component
                                 'EndDateId' => $endDate->DateId,
                                 'EndTimeId' => $endTime->timeid,
                             ]);
+
+                            if (
+                                isset($this->state['book_rooms']) &&
+                                $this->state['book_rooms'] == 1 &&
+                                isset($this->state['rooms']) &&
+                                is_array($this->state['rooms']) &&
+                                count($this->state['rooms']) > 0
+                            ) {
+                                $recurringVacation->rooms()->delete();
+                                foreach ($this->state['rooms'] as $room) {
+                                    $recurringVacation->rooms()->save(new VacationRoom([
+                                        'room_id' => $room['room_id'],
+                                        'starts_at' => $room['starts_at'],
+                                        'ends_at' => $room['ends_at'],
+                                    ]));
+                                }
+                            }
                         }
                         $i++;
                     }
@@ -251,7 +315,25 @@ class ScheduleVacationForm extends Component
                             ]);
                         }
 
-                        $this->vacation->recurrings()->saveMany($recurring);
+                        $models = $this->vacation->recurrings()->saveMany($recurring);
+                        if (
+                            isset($this->state['book_rooms']) &&
+                            $this->state['book_rooms'] == 1 &&
+                            isset($this->state['rooms']) &&
+                            is_array($this->state['rooms']) &&
+                            count($this->state['rooms']) > 0
+                        ) {
+                            foreach ($this->state['rooms'] as $room) {
+                                foreach ($models as $model) {
+                                    $model->rooms()->save(new VacationRoom([
+                                        'room_id' => $room['room_id'],
+                                        'starts_at' => $room['starts_at'],
+                                        'ends_at' => $room['ends_at'],
+                                    ]));
+                                }
+                            }
+
+                        }
                     }
 
                 }

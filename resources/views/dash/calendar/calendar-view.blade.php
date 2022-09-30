@@ -200,7 +200,7 @@
                     ],
                     themeSystem: 'bootstrap5',
                     headerToolbar: false,
-                    editable: false,
+                    editable: true,
                     defaultAllDay: false,
                     datesSet(dateSet) {
                         $dateTitle.textContent = dateSet.view.title

@@ -27,8 +27,12 @@ class Schedule extends Model
      * @var string[]
      */
     protected $fillable = [
-
+        'OwnerId',
+        'DateId',
+        'HouseId',
+        'RoomId',
+        'GuestId',
+        'VacationId'
     ];
-
 
 }

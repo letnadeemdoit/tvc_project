@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Room\Room;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,6 +52,16 @@ class Vacation extends Model implements Auditable
         'recurrence',
         'repeat_interval',
         'parent_id',
+        'book_rooms'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'book_rooms' => 'boolean',
     ];
 
     /**
@@ -175,10 +186,10 @@ class Vacation extends Model implements Auditable
             'className' => 'fullcalendar-custom-event-hs-team',
             'backgroundColor' => $this->BackGrndColor,
             'textColor' => $this->FontColor,
-            'resourceIds' => $this->schedules->pluck('RoomId')->toArray(),
+            'resourceIds' => $this->rooms->pluck('room_id')->toArray(),
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
             'parent_id' => $this->parent_id,
-        ],  []);
+        ], []);
     }
 
 
@@ -242,6 +253,9 @@ class Vacation extends Model implements Auditable
         return $data;
     }
 
+    public function rooms() {
+        return $this->hasMany(VacationRoom::class, 'vacation_id', 'VacationId');
+    }
 
     public function recurrings()
     {

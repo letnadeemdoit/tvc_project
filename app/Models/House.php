@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Photo\Photo;
+use App\Models\Room\Room;
 use App\Models\Traits\HasFile;
 use App\Models\World\Country;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -118,6 +119,9 @@ class House extends Model
     ];
 
 
+    public function rooms() {
+        return $this->hasMany(Room::class, 'HouseID', 'HouseID');
+    }
 
     /**
      * {@inheritdoc}

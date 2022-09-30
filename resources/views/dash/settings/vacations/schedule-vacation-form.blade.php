@@ -16,7 +16,7 @@
             wire:submit.prevent="saveVacationSchedule"
             class="modal-body"
         >
-{{--            <x-jet-validation-errors />--}}
+            {{--            <x-jet-validation-errors />--}}
             <div class="form-group mb-3">
                 <label class="form-label" for="vacation_name">Vacation Name:</label>
                 <input
@@ -120,7 +120,8 @@
                 </div>
             @endif
             <div class="row mb-3">
-                <div class="form-group col-md-6 mb-3" x-data="{bc: '{{ $state['background_color'] ?? '#E8604C' }}'}">
+                <div class="form-group col-md-6 mb-md-0 mb-3"
+                     x-data="{bc: '{{ $state['background_color'] ?? '#E8604C' }}'}">
                     <label class="form-label" for="background_color">Background Color:</label>
                     <select
                         name="background_color"
@@ -165,12 +166,67 @@
                     @enderror
                 </div>
             </div>
+            @if(primary_user()->enable_rooms == 1)
+                <hr class="my-3"/>
+                <div
+                    class="form-check form-switch form-switch-between d-flex justify-content-between align-items-center {{ isset($state['book_rooms']) && $state['book_rooms'] == 0 ? 'mb-3' : 'mb-2' }}">
+                    <label class="form-check-label fw-bold text-primary fs-4 mb-1" for="book_rooms">Book Rooms</label>
+                    <input type="checkbox" id="book_rooms" class="form-check-input me-0" value="1"
+                           wire:model="state.book_rooms">
+                </div>
+                @if(isset($state['book_rooms']) && $state['book_rooms'] == 1)
+                    <div class="list-group list-group-flush list-group-sm mb-3">
+                        @foreach(current_house()->rooms as $room)
+                            <div class="list-group-item ">
+                                <label class="d-flex p-2">
+                                    <input
+                                        class="form-check-input me-1"
+                                        type="checkbox"
+                                        value="{{ $room->RoomID }}"
+                                        wire:model="state.rooms.{{$loop->index}}.room_id"
+                                    />
+                                    <span class="ms-2">
+                                        <span class="fw-semi-bold">{{ $room->RoomName }}</span> <br/>
+                                        <small style="font-size: 11px;" class="text-muted"><strong>Type:</strong> {{ $room->roomType->RoomTypeVal }}</small>,
+                                        <small style="font-size: 11px;" class="text-muted"><strong>Amenities:</strong> {{ implode(', ', $room->amenities->pluck('AmenityName')->toArray()) }}</small>,
+                                        <small style="font-size: 11px;" class="text-muted"><strong>Beds:</strong> {{ $room->Beds }}</small>
+                                    </span>
+                                </label>
+                                <div class="d-flex align-items-center">
+                                    <label class="me-2" for="room_{{ $room->RoomID }}date_starts_at">From:*</label>
+                                    <input
+                                        id="room_{{ $room->RoomID }}date_starts_at"
+                                        type="date"
+                                        class="form-control form-control-sm room-dates px-2 py-1"
+                                        @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"
+                                        @endisset
+                                        @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"
+                                        @endisset
+                                        {{ isset($state['rooms']) && isset($state['rooms'][$loop->index]) && isset($state['rooms'][$loop->index]['room_id']) && $state['rooms'][$loop->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
+                                        wire:model="state.rooms.{{$loop->index}}.starts_at"
+                                    />
+                                    <label class="ms-3 me-2" for="room_{{ $room->RoomID }}date_ends_at">To:*</label>
+                                    <input
+                                        id="room_{{ $room->RoomID }}date_ends_at"
+                                        type="date"
+                                        class="form-control form-control-sm room-dates px-2 py-1"
+                                        @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"
+                                        @endisset
+                                        @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"
+                                        @endisset
+                                        {{ isset($state['rooms']) && isset($state['rooms'][$loop->index]) && isset($state['rooms'][$loop->index]['room_id']) && $state['rooms'][$loop->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
+                                        wire:model="state.rooms.{{$loop->index}}.ends_at"
+                                    />
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            @endif
             <div class="d-flex">
-
-
                 @if($user->is_owner && $vacation && $vacation->VacationId)
                     <a
-                       href="#!"
+                        href="#!"
                         class="btn btn-danger px-5"
                         wire:click.prevent="deleteVacation"
                     >
@@ -208,18 +264,25 @@
 
                 $('#schedule_start_end_datetime').on('apply.daterangepicker', function (ev, picker) {
                     @this.
-                    set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'), true);
+                    set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'));
                     @this.
-                    set('state.end_datetime', picker.endDate.format('MM/DD/YYYY HH:mm'), true);
+                    set('state.end_datetime', picker.endDate.format('MM/DD/YYYY HH:mm'));
                     @this.
-                    set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'), true);
+                    set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'));
+
+                    $('.room-dates').attr('min', picker.startDate.format('YYYY-MM-DD'));
+                    $('.room-dates').attr('max', picker.endDate.format('YYYY-MM-DD'));
                 });
 
                 window.addEventListener('schedule-vacation-daterangepicker-update', function (e) {
+                    console.log(e.detail);
                     $('#schedule_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
                     $('#schedule_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
 
                     $('#schedule_start_end_datetime').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
+
+                    $('.room-dates').attr('min', moment(e.detail.startDatetime, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+                    $('.room-dates').attr('max', moment(e.detail.startDatetime, 'DD/MM/YYYY').format('YYYY-MM-DD'));
                 });
 
             });
