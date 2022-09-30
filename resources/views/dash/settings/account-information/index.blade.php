@@ -33,9 +33,11 @@
         <livewire:settings.account-information.update-preferences-form :user="$user"/>
         <!-- End Card -->
 
+    @if($user->is_admin)
         <!-- Card -->
         <livewire:settings.account-information.enable-or-disable-rooms :user="$user"/>
         <!-- End Card -->
+    @endif
 
         <!-- Card -->
         <livewire:settings.account-information.recent-devices-and-logout-other-browser-sessions-form :user="$user"/>
