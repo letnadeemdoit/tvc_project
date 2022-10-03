@@ -23,7 +23,7 @@
             </div>
             <div class="d-flex align-items-center justify-content-between pt-3">
                 <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 15) }}</p>
-                <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
+                <p class="mb-0">{{ $dt->datetime }}</p>
             </div>
         </div>
         <div class="w-100">

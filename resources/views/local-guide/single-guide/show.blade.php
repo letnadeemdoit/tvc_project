@@ -145,7 +145,7 @@
                     ">
                     <div class="border-bottom">
                         <p class="mb-3" style="font-size: 12px"><span
-                                class="mx-1 text-muted">{{date('Y-m-d | h:m A',strtotime($localGuide->datetime))}}</span>
+                                class="mx-1 text-muted">{{ $localGuide->datetime }}</span>
                         </p>
                     </div>
                     <div class="py-4">
@@ -213,7 +213,7 @@
                                              <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 15) }}</p>
                                         </a>
 
-                                        <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
+                                        <p class="mb-0">{{ $dt->datetime }}</p>
                                     </div>
                                 </div>
                                 <div class="w-100">

@@ -160,10 +160,11 @@
 
 {{--                </div>--}}
                 <div class="mb-3">
-                    <label class="form-label fw-normal" for="title">Date & Time:</label>
+                    <label class="form-label fw-normal" for="datetime">Hours:</label>
                     <input
-                        type="datetime-local"
+                        type="text"
                         id="datetime"
+                        placeholder="8am to 8pm"
                         wire:model.defer="state.datetime"
                         name="datetime"
                         class="form-control"
