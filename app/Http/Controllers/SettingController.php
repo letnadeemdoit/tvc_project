@@ -105,14 +105,14 @@ class SettingController extends Controller
             'user' => $request->user()
         ]);
     }
-
-    public function blog(Request $request)
-    {
-        abort_if($request->user()->is_guest, 403);
-        return view('dash.settings.blog.index', [
-            'user' => $request->user()
-        ]);
-    }
+//
+//    public function blog(Request $request)
+//    {
+//        abort_if($request->user()->is_guest, 403);
+//        return view('dash.settings.blog.index', [
+//            'user' => $request->user()
+//        ]);
+//    }
 
     public function category(Request $request)
     {

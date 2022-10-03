@@ -132,6 +132,7 @@ Route::middleware([
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
 
         Route::get('manage-bulletin-boards', [DashboardController::class, 'manageBulletinBoard'])->name('manage-bulletin-boards');
+        Route::get('manage-blogs', [DashboardController::class,'manageBlog'])->name('manage-blogs');
         Route::get('manage-guest-books', [DashboardController::class,'guestBook'])->name('manage-guest-books');
 
         Route::get('/notifications', [DashboardController::class, 'notifications'])->name('notifications');
@@ -155,7 +156,6 @@ Route::middleware([
                 Route::get('notifications', 'notifications')->name('notifications');
                 Route::get('vacations', 'vacations')->name('vacations');
                 Route::get('audit-history', 'auditHistory')->name('audit-history');
-                Route::get('blog', 'blog')->name('blog');
                 Route::get('category', 'category')->name('category');
             });
 

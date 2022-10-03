@@ -179,4 +179,13 @@ class DashboardController extends Controller
         ]);
     }
 
+
+    public function manageBlog(Request $request)
+    {
+        abort_if($request->user()->is_guest, 403);
+        return view('dash.settings.blog.index', [
+            'user' => $request->user()
+        ]);
+    }
+
 }
