@@ -177,10 +177,8 @@
                     @endphp
 
 
-                    <div class="row">
-                        <div class="col-12 pe-0 pe-lg-5 scrollbar-custom">
-
-
+                    <div class="row my-5 pt-5">
+                        <div class="col-12">
                             <iframe src="https://maps.google.com/maps?q={{$latitude}},{{$longitude}}&hl=es;z=14&output=embed"
                                     class="w-100" height="350" style="border:0;"
                                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
