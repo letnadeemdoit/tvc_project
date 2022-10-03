@@ -261,7 +261,7 @@
                                        href="{{ route('dash.settings.account-information') }}">
                                         @if(auth()->user()->is_admin)
                                             <img src="{{asset('images/icons/account-information-icon.svg')}}"
-                                                 class="me-1" style="width: 14px;opacity: 0.7" alt="">
+                                                 class="me-2" style="width: 14px;opacity: 0.7" alt="">
                                             Account Information
                                         @else
                                             Manage Account
