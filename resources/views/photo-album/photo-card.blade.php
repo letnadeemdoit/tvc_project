@@ -8,6 +8,15 @@
             <img
                 src="{{ $photo->getFileUrl('path') }}"
                 class="card-img"/>
+            <div
+                class="p-4 rounded d-flex align-items-center justify-content-center "
+                style="background: rgba(0,0,0, 0.3); position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: none"
+
+            >
+                <div>
+                    <p class="card-text text-white">{{ str($photo->description)->limit(20) }}</p>
+                </div>
+            </div>
         </a>
     </div>
 </div>

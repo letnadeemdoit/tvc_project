@@ -88,14 +88,14 @@
                         @enderror
                     </div>
                 </div>
-                    <div class="row">
-                        <div class="mb-3 col-12 col-lg-12">
-                            <label class="form-label" for="tags">Add Tags:</label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="amsify" name="amsify-tag"
-                                   wire:model.defer="state.tags"
-                            />
+{{--                    <div class="row">--}}
+{{--                        <div class="mb-3 col-12 col-lg-12">--}}
+{{--                            <label class="form-label" for="tags">Add Tags:</label>--}}
+{{--                            <input type="text"--}}
+{{--                                   class="form-control"--}}
+{{--                                   id="amsify" name="amsify-tag"--}}
+{{--                                   wire:model.defer="state.tags"--}}
+{{--                            />--}}
 {{--                            <select id="tokenize-tags" class="tokenize-demo form-control" multiple wire:model.defer="state.tags" >--}}
 {{--                                @isset($state['tags'])--}}
 {{--                                    @if(is_array($state['tags']))--}}
@@ -105,8 +105,8 @@
 {{--                                    @endif--}}
 {{--                                @endisset--}}
 {{--                            </select>--}}
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
                 <div class="row">
                     <div
                         class="mb-3"
