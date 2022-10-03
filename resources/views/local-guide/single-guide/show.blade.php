@@ -22,7 +22,7 @@
                 border-radius: 6px;
                 border: 2px solid #E8604C;
                 padding: 5px 10px;
-                min-width:43px;
+                min-width: 43px;
                 max-width: 43px;
                 text-align: center;
 
@@ -57,7 +57,8 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start">
                         <h1 class="text-w-50 lh-30 fs-card-title text-break text-capitalize">{{$localGuide->title ?? ''}}</h1>
-                        <p class="mb-0 badge badge-primary fs-13 fw-semi-bold ms-2 ms-sm-0" style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
+                        <p class="mb-0 badge badge-primary fs-13 fw-semi-bold ms-2 ms-sm-0"
+                           style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
                     </div>
                     <div class="d-flex mt-4">
                         <div class="flex-shrink-0">
@@ -71,7 +72,8 @@
                         </div>
                         <div class="flex-grow-1 ms-3 d-block d-sm-flex justify-content-between align-items-center">
                             <div>
-                                <h4 class="mb-0 text-dark text-capitalize" style="color: #6D6D6D">{{ $localGuide->user->first_name }} {{ $localGuide->user->last_name }}</h4>
+                                <h4 class="mb-0 text-dark text-capitalize"
+                                    style="color: #6D6D6D">{{ $localGuide->user->first_name }} {{ $localGuide->user->last_name }}</h4>
                                 <p class="mb-0" style="color: #B6B4B4">
                                     <small class="fw-500 text-light-grey">{{$localGuide->address}}</small><span
                                         class="color-blue ps-2">
@@ -82,52 +84,57 @@
                                     <ul class="d-block d-sm-flex list-unstyled recipe-card-footer justify-content-between mb-2 align-items-center">
 
                                         @if(isset($avgRating))
-{{--                                                <span class="text-primary fw-bolder fs-4">--}}
-{{--                                                    {{ $avgRating ?? 0}}.0--}}
-{{--                                                </span>--}}
-                                                @php
-                                                    $i = 0;
-                                                @endphp
+                                            {{--                                                <span class="text-primary fw-bolder fs-4">--}}
+                                            {{--                                                    {{ $avgRating ?? 0}}.0--}}
+                                            {{--                                                </span>--}}
+                                            @php
+                                                $i = 0;
+                                            @endphp
 
-                                                @while (++$i <= ($avgRating ?? 0))
-{{--                                                    <li class="fa fa-star checked"></li>--}}
+                                            @while (++$i <= ($avgRating ?? 0))
+                                                {{--                                                    <li class="fa fa-star checked"></li>--}}
                                                 <img
                                                     src="{{asset('images/local-guide/review-star.svg')}}"
                                                     style="width: 17px;margin-top: -1px" alt="">
-                                                @endwhile
-                                                @php
-                                                    $r = 1;
-                                                    $t_rating = 5;
-                                                @endphp
+                                            @endwhile
+                                            @php
+                                                $r = 1;
+                                                $t_rating = 5;
+                                            @endphp
 
-                                                @for ($r; $r <= $t_rating - $avgRating; $r++)
-                                                    <img
-                                                        src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                        style="width: 17px;margin-top: -1px" alt="">
-                                                @endfor
+                                            @for ($r; $r <= $t_rating - $avgRating; $r++)
+                                                <img
+                                                    src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                    style="width: 17px;margin-top: -1px" alt="">
+                                            @endfor
 
-                                                <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
-                                                    <span class="ps-2 text-light-grey">({{$localGuide->reviews->count()}} Reviews)</span>
-                                                </a>
+                                            <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
+                                                <span class="ps-2 text-light-grey">({{$localGuide->reviews->count()}} Reviews)</span>
+                                            </a>
                                         @else
-{{--                                                <span class="text-primary fw-bolder fs-4">--}}
-{{--                                                   0--}}
-{{--                                                </span>--}}
-                                        <div class="d-flex align-items-center">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
+                                            {{--                                                <span class="text-primary fw-bolder fs-4">--}}
+                                            {{--                                                   0--}}
+                                            {{--                                                </span>--}}
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                     style="width: 17px;margin-top: -3px"
                                                      alt="">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                     style="width: 17px;margin-top: -3px"
                                                      alt="">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                     style="width: 17px;margin-top: -3px"
                                                      alt="">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                     style="width: 17px;margin-top: -3px"
                                                      alt="">
-                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}" style="width: 17px;margin-top: -3px"
+                                                <img src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                     style="width: 17px;margin-top: -3px"
                                                      alt="">
                                                 <a href="{{route('guest.local-guide.show',$localGuide->id)}}">
                                                     <span class="ps-2 text-light-grey">(0 Reviews)</span>
                                                 </a>
-                                        </div>
+                                            </div>
                                         @endif
                                     </ul>
                                 </div>
@@ -139,20 +146,40 @@
             </div>
         </div>
         <div class="container my-2 my-md-5 pt-5">
+
             <div class="row">
                 <div class="col-12 col-lg-9 pe-0 pe-lg-5 scrollbar-custom">
-                    <div  id="style-3" style="overflow-x: scroll
+
+                    <div id="style-3" style="overflow-x: scroll
                     ">
-                    <div class="border-bottom">
-                        <p class="mb-3" style="font-size: 12px"><span
-                                class="mx-1 text-muted">{{ $localGuide->datetime }}</span>
-                        </p>
+                        <div class="border-bottom">
+                            <p class="mb-3" style="font-size: 12px"><span
+                                    class="mx-1 text-muted">{{ $localGuide->datetime }}</span>
+                            </p>
+                        </div>
+                        <div class="py-4">
+                            {!! $localGuide->description !!}
+                        </div>
                     </div>
-                    <div class="py-4">
-                        {!! $localGuide->description !!}
+
+                    <div class="row">
+                        <div class="col-12 pe-0 pe-lg-5 scrollbar-custom">
+
+
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.5966417088557!2d-118.26802728443259!3d34.05421652507269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c7a50d26fc69%3A0x43c0596d865d2d2!2s1245%20Wilshire%20Blvd%2C%20Los%20Angeles%2C%20CA%2090017%2C%20USA!5e0!3m2!1sen!2s!4v1664797864344!5m2!1sen!2s"
+                                    class="w-100" height="350" style="border:0;"
+                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                        </div>
                     </div>
+
+
+                    <livewire:review.review-form :local-guide="$localGuide"/>
+
+
                 </div>
-                </div>
+
+
                 <div class="col-12 col-lg-3">
 
                     <livewire:local-guide.single-guide.latest-guides :user="$user" :post="$localGuide"/>
@@ -180,7 +207,7 @@
             </div>
         </div>
 
-        <livewire:review.review-form :local-guide="$localGuide"/>
+
 
         @if(isset($relatedGuides) && count($relatedGuides) > 0)
             <div class="container my-5 py-5">
@@ -201,8 +228,9 @@
                                             >
                                             <div class="ps-2">
                                                 <b class="mb-1 text-black fs-4 title-fs text-capitalize">{{$dt->user->first_name}} {{$dt->user->last_name}}</b>
-                                                <p class="mb-0 date-fs fw-500">{{ substr($dt->address , 0 ,15) }} <a href="#"
-                                                                                                              class="color-blue fw-normal">View</a>
+                                                <p class="mb-0 date-fs fw-500">{{ substr($dt->address , 0 ,15) }} <a
+                                                        href="#"
+                                                        class="color-blue fw-normal">View</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -210,7 +238,8 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between pt-3">
                                         <a href="{{route('guest.local-guide.show',$dt->id)}}">
-                                             <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 15) }}</p>
+                                            <p class="text-dark mb-0"
+                                               style="font-weight: 500">{{ substr($dt->title, 0, 15) }}</p>
                                         </a>
 
                                         <p class="mb-0">{{ $dt->datetime }}</p>
@@ -221,69 +250,79 @@
                                         HOUSE</a>
 
                                     <a href="{{route('guest.local-guide.show',$dt->id)}}">
-                                        <img src="{{$dt->getFileUrl('image')}}"
-                                             class="card-img-top  position-relative p-2"
-                                             style="height: 320px !important;object-fit: cover;border-radius:17px;"
-                                             alt="{{ $dt->title ?? '' }}"/>
+                                        <img
+
+                                            {{--                                            src="{{$dt->getFileUrl('image')}}"--}}
+                                            @if(isset($dt->image))
+                                            src="{{$dt->getFileUrl('image')}}"
+                                            @elseif(!is_null($dt->user->house->image))
+                                            src="{{ $dt->user->house->getFileUrl() }}"
+                                            @else
+                                            src="{{$dt->getFileUrl('image')}}"
+                                            @endif
+                                            class="card-img-top  position-relative p-2"
+                                            style="height: 320px !important;object-fit: cover;border-radius:17px;"
+                                            alt="{{ $dt->title ?? '' }}"/>
                                     </a>
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="card-footer px-1 pb-0 border-0 pt-1">
-                                        <div class="d-block d-sm-flex list-unstyled recipe-card-footer mb-2 align-items-center">
+                                        <div
+                                            class="d-block d-sm-flex list-unstyled recipe-card-footer mb-2 align-items-center">
 
                                             @if(isset($dt->reviews_count))
-                                                    <span class="text-primary fw-bolder fs-4 pe-2">
+                                                <span class="text-primary fw-bolder fs-4 pe-2">
                                                         {{ $dt->reviews_count ?? 0}}.0
                                                     </span>
-                                                    @php
-                                                        $i = 0;
-                                                    @endphp
+                                                @php
+                                                    $i = 0;
+                                                @endphp
 
-                                                    @while (++$i <= ($dt->reviews_count ?? 0))
-                                                        <span class="fa fa-star checked"></span>
-                                                    @endwhile
-                                                    @php
-                                                        $r = 1;
-                                                        $t_rating = 5;
-                                                    @endphp
+                                                @while (++$i <= ($dt->reviews_count ?? 0))
+                                                    <span class="fa fa-star checked"></span>
+                                                @endwhile
+                                                @php
+                                                    $r = 1;
+                                                    $t_rating = 5;
+                                                @endphp
 
-                                                    @for ($r; $r <= $t_rating - $dt->reviews_count; $r++)
-                                                        <img
-                                                            src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                            style="width: 17px;margin-top: -1px" alt="">
-                                                    @endfor
+                                                @for ($r; $r <= $t_rating - $dt->reviews_count; $r++)
+                                                    <img
+                                                        src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                        style="width: 17px;margin-top: -1px" alt="">
+                                                @endfor
 
-                                                    <a href="{{route('guest.local-guide.show',$dt->id)}}">
+                                                <a href="{{route('guest.local-guide.show',$dt->id)}}">
                                                         <span
                                                             class="ps-2 text-light-grey">({{$dt->reviews->count()}} Reviews)</span>
-                                                    </a>
+                                                </a>
                                             @else
-                                                    <span class="text-primary fw-bolder fs-4">
+                                                <span class="text-primary fw-bolder fs-4">
                                                        0
                                                     </span>
-                                                    <img
-                                                        src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                        style="width: 17px"
-                                                        alt="">
-                                                    <img
-                                                        src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                        style="width: 17px"
-                                                        alt="">
-                                                    <img
-                                                        src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                        style="width: 17px"
-                                                        alt="">
-                                                    <img
-                                                        src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                        style="width: 17px"
-                                                        alt="">
-                                                    <img
-                                                        src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
-                                                        style="width: 17px"
-                                                        alt="">
-                                                    <a href="{{route('guest.local-guide.show',$dt->id)}}">
-                                                        <span class="ps-2 text-light-grey">(0 Reviews)</span>
-                                                    </a>
+                                                <img
+                                                    src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                    style="width: 17px"
+                                                    alt="">
+                                                <img
+                                                    src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                    style="width: 17px"
+                                                    alt="">
+                                                <img
+                                                    src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                    style="width: 17px"
+                                                    alt="">
+                                                <img
+                                                    src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                    style="width: 17px"
+                                                    alt="">
+                                                <img
+                                                    src="{{asset('images/local-guide/star-rating-light-icon.svg')}}"
+                                                    style="width: 17px"
+                                                    alt="">
+                                                <a href="{{route('guest.local-guide.show',$dt->id)}}">
+                                                    <span class="ps-2 text-light-grey">(0 Reviews)</span>
+                                                </a>
                                             @endif
 
                                         </div>
