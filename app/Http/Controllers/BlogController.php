@@ -36,7 +36,7 @@ class BlogController extends Controller
 
         $blogComments = $post->comments()->count();
 
-        $existingTags = $post->tags;
+//        $existingTags = $post->tags;
 
 //        if(!auth()->user()->is_guest){
 //            if (is_null($views)){
@@ -57,7 +57,7 @@ class BlogController extends Controller
             'existing_views' => $existing_views,
             'categories' => $categories,
             'relatedBlog' => $relatedBlog,
-            'existingTags' => $existingTags,
+//            'existingTags' => $existingTags,
             'blogComments' => $blogComments
 
         ]);

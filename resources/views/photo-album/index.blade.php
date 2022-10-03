@@ -110,6 +110,7 @@
             <h1 class="text-primary font-vintage mb-0">Photo Album</h1>
         </div>
         <h1 class="pt-2 text-center poppins-bold" id="page-title">Share discoveries with community</h1>
+
     </div>
         <livewire:photo-album.photo-album-list :user="$user" />
     @push('scripts')

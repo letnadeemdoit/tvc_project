@@ -121,24 +121,24 @@ class CreateOrUpdateBlogItemForm extends Component
                 'slug' => $slug,
             ])->save();
 
-        $tagIds = [];
-
-        if (isset($this->state['tags']) && is_array($this->state['tags'])) {
-            foreach($this->state['tags'] as $tag) {
-                $t = Tag::firstOrNew([
-                    'name' => $tag
-                ]);
-
-                if (!$t->exists) {
-                    $t->save();
-                }
-
-                $tagIds[] = $t->id;
-            }
-        }
-
-        $this->blogItem->tags()->detach($this->blogItem->tags->pluck('id')->toArray());
-        $this->blogItem->tags()->attach($tagIds);
+//        $tagIds = [];
+//
+//        if (isset($this->state['tags']) && is_array($this->state['tags'])) {
+//            foreach($this->state['tags'] as $tag) {
+//                $t = Tag::firstOrNew([
+//                    'name' => $tag
+//                ]);
+//
+//                if (!$t->exists) {
+//                    $t->save();
+//                }
+//
+//                $tagIds[] = $t->id;
+//            }
+//        }
+//
+//        $this->blogItem->tags()->detach($this->blogItem->tags->pluck('id')->toArray());
+//        $this->blogItem->tags()->attach($tagIds);
 
         $this->blogItem->updateFile($this->file);
 
