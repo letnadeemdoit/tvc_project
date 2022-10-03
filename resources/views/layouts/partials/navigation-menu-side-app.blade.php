@@ -272,8 +272,8 @@
                                         <a class="nav-link  {{ link_is_active_with_class(['dash.plans-and-pricing']) }}"
                                            href="{{route('dash.plans-and-pricing')}}" data-placement="left">
                                             {{--                                    <i class="bi-router nav-icon"></i>--}}
-                                            <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-3"
-                                                 style="width: 16px;opacity: 0.7" alt="">
+                                            <img src="{{asset('images/icons/pricing-icon.svg')}}" class="me-2"
+                                                 style="width: 15px;opacity: 0.7" alt="">
                                            Plans &amp; Pricing
                                         </a>
                                     @endif
