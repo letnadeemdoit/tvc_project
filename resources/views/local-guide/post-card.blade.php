@@ -23,13 +23,24 @@
             </div>
             <div class="d-flex align-items-center justify-content-between pt-3">
                 <p class="text-dark mb-0" style="font-weight: 500">{{ substr($dt->title, 0, 15) }}</p>
-                <p class="mb-0">{{date('Y-m-d | h:m A',strtotime($dt->datetime))}}</p>
+                <p class="mb-0">{{ $dt->datetime }}</p>
             </div>
         </div>
         <div class="w-100">
             <a class="btn  position-absolute text-index featured-btn mt-3 ms-3">FEATURE HOUSE</a>
             <a href="{{route('guest.local-guide.show',$dt->id)}}">
-                <img src="{{$dt->getFileUrl('image')}}" class="card-img-top  position-relative p-3"
+                <img
+
+{{--                    src="{{$dt->getFileUrl('image')}}"--}}
+                        @if(isset($dt->image))
+                        src="{{$dt->getFileUrl('image')}}"
+                        @elseif(!is_null($dt->user->house->image))
+                        src="{{ $dt->user->house->getFileUrl() }}"
+                        @else
+                        src="{{$dt->getFileUrl('image')}}"
+                        @endif
+
+                    class="card-img-top  position-relative p-3"
                      style="height: 355px !important;object-fit: cover;border-radius:23px;"
                      alt="{{ $dt->title ?? '' }}"/>
             </a>

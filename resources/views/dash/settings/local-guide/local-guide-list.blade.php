@@ -53,7 +53,11 @@
                         <td style="width: 100px" class="text-center">
                             <div class="avatar avatar-soft-primary avatar-circle">
                                 <img
+                                  @if(isset($dt->image))
                                     src="{{$dt->getFileUrl('image')}}"
+                                  @else
+                                    src="{{ $dt->user->house->getFileUrl() }}"
+                                  @endif
                                     class="avatar-initials"
                                     alt="{{ $dt->title ?? '' }}"
                                 />

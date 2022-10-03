@@ -163,4 +163,29 @@ class DashboardController extends Controller
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
+    public function manageBulletinBoard(Request $request)
+    {
+        abort_if(!$request->user()->is_admin, 403);
+        return view('dash.settings.bulletin-board.index', [
+            'user' => $request->user()
+        ]);
+    }
+
+    public function guestBook(Request $request)
+    {
+        abort_if(!$request->user()->is_admin, 403);
+        return view('dash.settings.guest-book.index', [
+            'user' => $request->user()
+        ]);
+    }
+
+
+    public function manageBlog(Request $request)
+    {
+        abort_if($request->user()->is_guest, 403);
+        return view('dash.settings.blog.index', [
+            'user' => $request->user()
+        ]);
+    }
+
 }
