@@ -198,7 +198,6 @@
                                          style="width: 18px;opacity: 0.7" alt="">
                                     <span class="nav-link-title">Food Items</span>
                                 </a>
-
                                 <div id="navbarVerticalHouseItemList"
                                      class="nav-collapse collapse {{ link_is_active_with_class(['dash.food-item-list', 'dash.shopping-item-list'], 'show') }}"
                                      data-bs-parent="#navbarVerticalHouseItemList">
@@ -213,6 +212,20 @@
                                              style="width: 13px;opacity: 0.7" alt="">
                                         Food Shopping List</a>
                                 </div>
+                            </div>
+                            <div class="nav-item">
+                                <a class="nav-link {{ link_is_active_with_class('dash.manage-bulletin-boards') }}"
+                                   href="{{ route('dash.manage-bulletin-boards') }}">
+                                    <img src="{{asset('images/icons/bulletin-icon.svg')}}" class="me-2"
+                                         style="width: 15px;opacity: 0.7" alt="">
+                                    Bulletin Board</a>
+                            </div>
+                            <div class="nav-item">
+                                <a class="nav-link {{ link_is_active_with_class('dash.manage-guest-books') }}"
+                                   href="{{ route('dash.manage-guest-books') }}">
+                                    <img src="{{asset('images/icons/guest-book-icon.svg')}}" class="me-2"
+                                         style="width: 14px;opacity: 0.7" alt="">
+                                    Guest Book</a>
                             </div>
                         @endif
                         @if(!auth()->user()->is_guest && !auth()->user()->is_super_admin && is_any_subscribed())
@@ -239,7 +252,7 @@
                                 {{--                            </div>--}}
 
                                 <div id="navbarVerticalMenuPagesAccountMenu"
-                                     class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-houses', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.bulletin-boards', 'dash.settings.audit-history', 'dash.settings.blog', 'dash.settings.guest-books','dash.settings.category'], 'show') }}"
+                                     class="nav-collapse collapse {{ link_is_active_with_class(['dash.settings.account-information', 'dash.settings.billing', 'dash.settings.users', 'dash.settings.rooms', 'dash.settings.additional-houses', 'dash.settings.notifications', 'dash.settings.vacations', 'dash.settings.audit-history', 'dash.settings.blog','dash.settings.category'], 'show') }}"
                                      data-bs-parent="#navbarVerticalMenuPagesAccountMenu">
 
                                     <a class="nav-link {{ link_is_active_with_class('dash.settings.account-information') }}"
@@ -296,11 +309,6 @@
                                             Vacations</a>
                                     @endif
                                     @if(auth()->user()->is_admin)
-                                        <a class="nav-link {{ link_is_active_with_class('dash.settings.bulletin-boards') }}"
-                                           href="{{ route('dash.settings.bulletin-boards') }}">
-                                            <img src="{{asset('images/icons/bulletin-icon.svg')}}" class="me-2"
-                                                 style="width: 15px;opacity: 0.7" alt="">
-                                            Bulletin Board</a>
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.audit-history') }}"
                                            href="{{ route('dash.settings.audit-history') }}">
                                             <img src="{{asset('images/icons/audit-hostory-icon.svg')}}" class="me-2"
@@ -313,12 +321,6 @@
                                              style="width: 13px;opacity: 0.7" alt="">
                                         Blog</a>
                                     @if(auth()->user()->is_admin)
-                                        <a class="nav-link {{ link_is_active_with_class('dash.settings.guest-books') }}"
-                                           href="{{ route('dash.settings.guest-books') }}">
-                                            <img src="{{asset('images/icons/guest-book-icon.svg')}}" class="me-2"
-                                                 style="width: 14px;opacity: 0.7" alt="">
-                                            Guest Book</a>
-
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.category') }}"
                                            href="{{ route('dash.settings.category') }}">
                                             <img src="{{asset('images/icons/category-icon.svg')}}" class="me-2"

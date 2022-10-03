@@ -96,13 +96,7 @@ class SettingController extends Controller
         ]);
     }
 
-    public function bulletinBoard(Request $request)
-    {
-        abort_if(!$request->user()->is_admin, 403);
-        return view('dash.settings.bulletin-board.index', [
-            'user' => $request->user()
-        ]);
-    }
+
 
     public function auditHistory(Request $request)
     {
@@ -128,11 +122,5 @@ class SettingController extends Controller
         ]);
     }
 
-    public function guestBook(Request $request)
-    {
-        abort_if(!$request->user()->is_admin, 403);
-        return view('dash.settings.guest-book.index', [
-            'user' => $request->user()
-        ]);
-    }
+
 }

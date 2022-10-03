@@ -128,7 +128,12 @@ Route::middleware([
         Route::get('/manage-albums', [DashboardController::class, 'photoAlbums'])->name('photo-albums');
         Route::get('/manage-albums/{id}/photos', [DashboardController::class, 'photos'])->name('photo-albums.photos');
         Route::get('/bulletins', [DashboardController::class, 'bulletins'])->name('bulletins');
+
         Route::get('/local-guides', [DashboardController::class, 'localGuide'])->name('local-guide');
+
+        Route::get('manage-bulletin-boards', [DashboardController::class, 'manageBulletinBoard'])->name('manage-bulletin-boards');
+        Route::get('manage-guest-books', [DashboardController::class,'guestBook'])->name('manage-guest-books');
+
         Route::get('/notifications', [DashboardController::class, 'notifications'])->name('notifications');
         Route::get('/notification/{id}', [DashboardController::class, 'markAsReadSingleNotification'])->name('mark-as-read-single-notification');
         Route::get('/notifications/mark-as-read', [DashboardController::class, 'markAsReadNotifications'])->name('mark-as-read-notifications');
@@ -149,11 +154,9 @@ Route::middleware([
                 Route::get('house-setting', 'houseSetting')->name('house-setting');
                 Route::get('notifications', 'notifications')->name('notifications');
                 Route::get('vacations', 'vacations')->name('vacations');
-                Route::get('bulletin-boards', 'bulletinBoard')->name('bulletin-boards');
                 Route::get('audit-history', 'auditHistory')->name('audit-history');
                 Route::get('blog', 'blog')->name('blog');
                 Route::get('category', 'category')->name('category');
-                Route::get('guest-books', 'guestBook')->name('guest-books');
             });
 
         Route::controller(\App\Http\Controllers\PaypalController::class)
