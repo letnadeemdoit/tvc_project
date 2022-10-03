@@ -162,11 +162,26 @@
                         </div>
                     </div>
 
+                    @php
+
+                        $address = $localGuide->address;
+                        $apiKey = env('GOOGLE_MAPS_API_KEY');
+                        $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
+                        $geo = json_decode($geo, true);
+
+                        if (isset($geo['status']) && ($geo['status'] == 'OK')) {
+                          $latitude = $geo['results'][0]['geometry']['location']['lat']; // Latitude
+                          $longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude
+                        }
+
+                    @endphp
+
+
                     <div class="row">
                         <div class="col-12 pe-0 pe-lg-5 scrollbar-custom">
 
 
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.5966417088557!2d-118.26802728443259!3d34.05421652507269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c7a50d26fc69%3A0x43c0596d865d2d2!2s1245%20Wilshire%20Blvd%2C%20Los%20Angeles%2C%20CA%2090017%2C%20USA!5e0!3m2!1sen!2s!4v1664797864344!5m2!1sen!2s"
+                            <iframe src="https://maps.google.com/maps?q={{$latitude}},{{$longitude}}&hl=es;z=14&output=embed"
                                     class="w-100" height="350" style="border:0;"
                                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
