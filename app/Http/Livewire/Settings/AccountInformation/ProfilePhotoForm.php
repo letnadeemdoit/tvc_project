@@ -23,7 +23,7 @@ class ProfilePhotoForm extends Component
         $this->resetErrorBag();
 
         Validator::make(['photo' => $this->photo], [
-            'photo' => ['required', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'photo' => ['required', 'mimes:jpg,jpeg,png', 'max:20480'],
         ])->validate();
 
         $this->user->updateProfilePhoto($this->photo);
