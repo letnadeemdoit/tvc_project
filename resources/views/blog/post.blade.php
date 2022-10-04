@@ -71,6 +71,13 @@
             <div class="card-body">
                 <h1 class="text-w-50 lh-30">{{ $post->Subject ? $post->Subject : '' }}</h1>
 
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('guest.blog.index') }}">Blogs</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{$post->Subject ?? ''}}</li>
+                    </ol>
+                </nav>
+
                 <div class="d-flex align-items-center mt-4">
                     <div class="flex-shrink-0">
 {{--                        <img--}}

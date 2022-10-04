@@ -72,6 +72,14 @@
                         <p class="mb-0 badge badge-primary fs-13 fw-semi-bold ms-2 ms-sm-0"
                            style="padding: 10px 20px !important;">{{$localGuide->category->name ?? ''}}</p>
                     </div>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('guest.local-guide.index') }}">Local Guide</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{$localGuide->title ?? ''}}</li>
+                        </ol>
+                    </nav>
+
                     <div class="d-flex mt-4">
                         <div class="flex-shrink-0">
                             <img
