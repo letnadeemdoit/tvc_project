@@ -93,7 +93,7 @@
                     multiple
                 >
                     @foreach($this->amenities as $amenity)
-                        <option value="{{ $amenity->AmenityID }}">{{ $amenity->AmenityName }}</option>
+                        <option value="{{ $amenity->AmenityID }}">{{ $amenity->Abreviation }}</option>
                     @endforeach
                 </select>
                 @error('amenities')
