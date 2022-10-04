@@ -4,8 +4,23 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-no-gutter">
                 <li class="breadcrumb-item"><a href="{{route('guest.photo-album.index')}}">Photo Album</a></li>
-                @if(isset($album->name))
-                <li class="breadcrumb-item active" aria-current="page">{{$album->name ?? ''}}</li>
+                @if(isset($album->parentAlbum))
+                @php
+                    $loopThroughAlbum = $album->parentAlbum;
+                @endphp
+                @while(true)
+                    @if($loopThroughAlbum && $loopThroughAlbum->parentAlbum)
+                        <li class="breadcrumb-item"><a href="{{route('guest.photo-album.index', ['parent_id' => $loopThroughAlbum->parentAlbum->id])}}">{{$loopThroughAlbum->parentAlbum->name}}</a></li>
+                        @php
+                            $loopThroughAlbum = $loopThroughAlbum->parentAlbum;
+                        @endphp
+                    @else
+                        @break
+                    @endif
+                @endwhile
+                @endif
+                @if(isset($album))
+                    <li class="breadcrumb-item active" aria-current="page">{{$album->name}}</a></li>
                 @endif
             </ol>
         </nav>
