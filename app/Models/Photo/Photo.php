@@ -17,7 +17,6 @@ class Photo extends Model implements Auditable
     use HasFile;
     use AuditableTrait;
 
-    public $timestamps = false;
 
     protected $table = 'Photo';
 
