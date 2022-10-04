@@ -13,33 +13,18 @@
             ></button>
         </div>
         <form wire:submit.prevent="saveRoomCU" class="modal-body">
-            <div class="form-group mb-3">
-                <label class="form-label" for="name">Name:*</label>
-                <input
-                    type="text"
-                    class="form-control @error('name') is-invalid @enderror"
-                    name="name"
-                    placeholder="Name"
-                    id="name"
-                    wire:model.defer="state.name"
-                />
-                @error('name')
-                <span class="invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-
             <div class="row mb-3">
                 <div class="form-group col-md-6">
-                    <label class="form-label" for="beds">Beds:*</label>
+                    <label class="form-label" for="name">Name:*</label>
                     <input
                         type="text"
-                        class="form-control @error('beds') is-invalid @enderror"
-                        name="beds"
-                        placeholder="Beds"
-                        id="beds"
-                        wire:model.defer="state.beds"
+                        class="form-control @error('name') is-invalid @enderror"
+                        name="name"
+                        placeholder="Name"
+                        id="name"
+                        wire:model.defer="state.name"
                     />
-                    @error('beds')
+                    @error('name')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -61,6 +46,41 @@
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-md-6">
+                    <label class="form-label" for="beds">Beds:*</label>
+                    <input
+                        type="text"
+                        class="form-control @error('beds') is-invalid @enderror"
+                        name="beds"
+                        placeholder="Beds"
+                        id="beds"
+                        wire:model.defer="state.beds"
+                    />
+                    @error('beds')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="form-label" for="bed_type_id">Bed Type:</label>
+                    <select
+                        type="text"
+                        class="form-control @error('bed_type_id') is-invalid @enderror"
+                        name="bed_type_id"
+                        id="bed_type_id"
+                        wire:model.defer="state.bed_type_id"
+                    >
+                        <option>Choose bed type</option>
+                        @foreach($this->bedTypes as $bedType)
+                            <option value="{{ $bedType->id }}">{{ $bedType->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('bed_type_id')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
             <div class="form-group mb-3">
                 <label class="form-label" for="amenities">Amenities:* <span class="ms-2 fw-semi-bold fs-12">(CTRL or CMD + Click to Select Multiple Amenities)</span></label>
@@ -77,7 +97,7 @@
                     @endforeach
                 </select>
                 @error('amenities')
-                    <span class="invalid-feedback">{{ $message }}</span>
+                <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 

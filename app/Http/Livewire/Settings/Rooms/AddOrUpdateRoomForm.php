@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Settings\Rooms;
 
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\AmenityType;
+use App\Models\Room\BedType;
 use App\Models\Room\Room;
 use App\Models\Room\RoomType;
 use App\Models\User;
@@ -61,6 +62,7 @@ class AddOrUpdateRoomForm extends Component
             'name' => ['required', 'string', 'max:100'],
             'type' => ['required', 'exists:RoomType,RoomTypeID'],
             'beds' => ['required', 'numeric', 'min:1', 'max:20'],
+            'bed_type_id' => ['required', 'exists:bed_types,id'],
             'amenities' => ['required'],
         ])->validateWithBag('saveRoomCU');
 
@@ -69,6 +71,7 @@ class AddOrUpdateRoomForm extends Component
             'RoomName' => $this->state['name'],
             'RoomTypeID' => $this->state['type'],
             'Beds' => $this->state['beds'],
+            'bed_type_id' => $this->state['bed_type_id'],
             'HouseID' => $this->user->HouseId,
         ])->save();
 
@@ -94,6 +97,11 @@ class AddOrUpdateRoomForm extends Component
             return redirect()->route('dash.settings.rooms');
         }
 
+    }
+
+    public function getBedTypesProperty()
+    {
+        return BedType::all();
     }
 
     public function getAmenitiesProperty()
