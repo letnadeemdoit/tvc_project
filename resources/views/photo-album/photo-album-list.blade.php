@@ -24,7 +24,7 @@
         </div>
 
     @else
-        @include('partials.no-data-available',['title' => 'Album'])
+        @include('partials.no-data-available',['title' => 'Photo Albums'])
     @endif
 
     @push('scripts')
