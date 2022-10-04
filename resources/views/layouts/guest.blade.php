@@ -42,6 +42,31 @@
 
 
         </style>
+
+        @if(isset($currentHouse->image) && !is_null($currentHouse->image))
+            <style>
+                .bulletin-image {
+                    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url({{'/storage/'.$currentHouse->image}});
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    height: 435px;
+                    background-color: #000000;
+                }
+
+            </style>
+        @else
+            <style>
+                .bulletin-image {
+                    background-image: url(/images/bulletin-images/bulletin.png);
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    height: 435px;
+                }
+            </style>
+        @endif
+
     </head>
     <body>
         <main class="bg-lightGrey" style="min-height: 100vh">

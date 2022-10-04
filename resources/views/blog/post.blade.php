@@ -51,7 +51,19 @@
     @endpush
 <main style="background-color:#fff !important;">
     <div class="">
-            <img src="{{ $post->getFileUrl() }}" class="w-100 blog-detail-image" alt="" />
+            <img
+{{--                src="{{ $post->getFileUrl() }}"--}}
+
+                @if(isset($post->image) && !is_null($post->image))
+                src="{{$post->getFileUrl()}}"
+                @elseif(!is_null(current_house()->image))
+                src="{{ '/storage/'.current_house()->image }}"
+                @else
+                src="{{$post->getFileUrl('image')}}"
+                @endif
+
+
+                class="w-100 blog-detail-image" alt="" />
     </div>
 
     <div class="container">
