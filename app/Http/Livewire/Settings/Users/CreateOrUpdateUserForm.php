@@ -40,8 +40,15 @@ class CreateOrUpdateUserForm extends Component
         return view('dash.settings.users.create-or-update-user-form', compact('isGuestAlreadyExists'));
     }
 
-    public function showUserCUModal($toggle, ?User $userCU)
+    public function showUserCUModal($toggle, $user = null)
     {
+        $userCU = User::find($user);
+        if ($user === null) {
+            $userCU = new User();
+        } else if (is_int($user) && $userCU === null) {
+            $this->warning('Sorry! unable to find user. If you deleted the and see this message again and again please refresh the page.');
+            return;
+        }
         if (!Gate::any(['create', 'update'], $userCU)) {
             abort(403);
         }
