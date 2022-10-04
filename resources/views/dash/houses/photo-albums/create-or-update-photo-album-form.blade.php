@@ -38,7 +38,7 @@
                             @endif
                             <option value="{{$ac->id}}">{{$ac->name}}</option>
                         @empty
-                            <option value="" disabled selected>No Photo Albums have been created yet!</option>
+                            <option value="" disabled selected>Create an album to select parent album</option>
                         @endforelse
                     </select>
 

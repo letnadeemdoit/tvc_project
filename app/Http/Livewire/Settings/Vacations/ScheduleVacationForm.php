@@ -448,5 +448,7 @@ class ScheduleVacationForm extends Component
     {
         $this->emitSelf('toggle', false);
         $this->emit('destroy-vacation', $this->vacation->parent_id ?: $this->vacation->VacationId);
+
+        $this->vacation = null;
     }
 }
