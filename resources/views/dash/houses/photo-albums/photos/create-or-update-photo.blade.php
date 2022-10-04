@@ -51,7 +51,7 @@
 
                 <div class="mb-3 d-flex">
                     <button type="submit" class="btn btn-primary px-5 ms-auto">
-                        {{ $photo && $photo->PhotoId ? "Update" : 'Add' }} Photo
+                        {{ $photo && $photo->PhotoId ? "Update" : 'Save' }} Photo
                     </button>
                 </div>
 

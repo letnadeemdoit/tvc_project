@@ -23,11 +23,11 @@ class Register extends Component
 
     public function render()
     {
-        $countries = Country::all();
+        $countries = Country::orderBy('name', 'ASC')->get();
 
-        $states = State::where('country_id', $this->state['country_id'] ?? '')->get();
+        $states = State::where('country_id', $this->state['country_id'] ?? '')->orderBy('name', 'ASC')->get();
 
-        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->get();
+        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->orderBy('name', 'ASC')->get();
 
         return view('livewire.register',compact('countries','states','cities'));
     }

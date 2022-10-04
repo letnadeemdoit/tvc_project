@@ -112,24 +112,28 @@
 
                                 @if($dt->photos->count() > 0 || $dt->nestedAlbums->count() > 0)
 
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary btn-sm"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#photoAlbum{{$dt->id}}Model"
-                                    >
-                                        <i class="bi-trash"></i>
-                                    </button>
+                                    @if(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR)
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#photoAlbum{{$dt->id}}Model"
+                                        >
+                                            <i class="bi-trash"></i>
+                                        </button>
+                                    @endif
                                 @else
 
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#category{{$dt->id}}Model"
-                                        wire:click.prevent="destroy({{$dt->id}})"
-                                    >
-                                        <i class="bi-trash"></i>
-                                    </button>
+                                    @if(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR)
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#category{{$dt->id}}Model"
+                                            wire:click.prevent="destroy({{$dt->id}})"
+                                        >
+                                            <i class="bi-trash"></i>
+                                        </button>
+                                    @endif
 
                                 @endif
 
