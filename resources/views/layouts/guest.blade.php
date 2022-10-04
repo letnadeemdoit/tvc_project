@@ -47,7 +47,7 @@
             @if(isset(current_house()->image) && !is_null(current_house()->image))
                 <style>
                     .bulletin-image {
-                        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url({{'/storage/'.$currentHouse->image}});
+                        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url({{'/storage/'.current_house()->image}});
                         background-position: 50%;
                         background-repeat: no-repeat;
                         background-size: cover;
@@ -67,6 +67,16 @@
                     }
                 </style>
             @endif
+        @else
+            <style>
+                .bulletin-image {
+                    background-image: url(/images/bulletin-images/bulletin.png);
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    height: 435px;
+                }
+            </style>
         @endauth
 
     </head>
