@@ -103,7 +103,7 @@ class AddOrUpdateRoomForm extends Component
 
     public function getRoomTypesProperty()
     {
-        return RoomType::all();
+        return RoomType::whereIn('RoomTypeID', ['S', 'M', 'B'])->get();
     }
 
     public function render()
