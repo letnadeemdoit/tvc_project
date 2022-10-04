@@ -108,10 +108,11 @@
                          class="btn btn-primary btn-xs"
                          @click.prevent="startUploading()"
                      >
-                         <i class="bi bi-check2"></i>
+{{--                         <i class="bi bi-check2"></i>--}}
+                         Save
                      </a>
                  </div>
-                 <p class="text-danger fs-12" x-show="files.length > 0">Click check <i class="bi bi-check bg-primary text-white px-1 rounded-1"></i> button to upload your image otherwise it will not be uploaded.</p>
+                 <p class="text-danger fs-12" x-show="files.length > 0">Click <b>save</b> button to upload your image otherwise it will not be uploaded.</p>
              </div>
 
             </div>
