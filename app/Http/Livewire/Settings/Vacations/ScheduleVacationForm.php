@@ -42,8 +42,8 @@ class ScheduleVacationForm extends Component
     {
         $this->model = Vacation::class;
 
-        Cookie::queue('vfc', '#3a87ad', 10000);
-        Cookie::queue('vbc', '#ffffff', 10000);
+        Cookie::queue('vbc', '#E8604C', 10000);
+        Cookie::queue('vfc', '#ffffff', 10000);
     }
 
     public function showVacationScheduleModal($toggle, $vacationId = null, $initialDate = null, $owner = null, $house = null)
@@ -84,7 +84,7 @@ class ScheduleVacationForm extends Component
         } else {
             $this->isCreating = true;
             $this->state = [
-                'background_color' => Cookie::get('vbc', '#3a87ad'),
+                'background_color' => Cookie::get('vbc', '#E8604C'),
                 'font_color' => Cookie::get('vfc', '#ffffff'),
                 'recurrence' => 'once',
                 'book_rooms' => 0
@@ -389,8 +389,8 @@ class ScheduleVacationForm extends Component
         } catch (Exception $e) {
 
         }
-        Cookie::queue('vfc', $this->state['background_color'], 10000);
-        Cookie::queue('vbc', $this->state['font_color'], 10000);
+        Cookie::queue('vbc', $this->state['background_color'], 10000);
+        Cookie::queue('vfc', $this->state['font_color'], 10000);
         $this->emitSelf('toggle', false);
         $this->emit('vacation-schedule-successfully');
     }
