@@ -54,7 +54,7 @@
         @endif
 
     @else
-        @include('partials.no-data-available',['title' => 'Blog'])
+        @include('partials.no-data-available',['title' => 'No Blogs have been created yet!'])
     @endif
 </div>
 </div>

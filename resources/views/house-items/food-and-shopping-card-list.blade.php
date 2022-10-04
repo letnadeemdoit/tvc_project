@@ -122,7 +122,7 @@
                                 </div>
                             @endforeach
                         @else
-                            @include('partials.no-data-available',['title' => 'Food item'])
+                            @include('partials.no-data-available',['title' => 'No Food items have been added yet!'])
                         @endif
                     </div>
                 @endif
@@ -158,7 +158,7 @@
                                 </div>
                             @endforeach
                         @else
-                            @include('partials.no-data-available',['title' => 'Shopping item'])
+                            @include('partials.no-data-available',['title' => 'No Shopping items have been added yet!'])
                         @endif
                     </div>
                 @endif
