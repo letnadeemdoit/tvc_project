@@ -1,25 +1,28 @@
 <div class="container padding-bottom massonary-container">
     @if(isset($data) && count($data) > 0)
 
-        <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="mb-5">
             <ol class="breadcrumb breadcrumb-no-gutter">
                 <li class="breadcrumb-item"><a href="{{route('guest.photo-album.index')}}">Photo Album</a></li>
-                @if(isset($album->parentAlbum))
-                @php
-                    $loopThroughAlbum = $album->parentAlbum;
-                @endphp
-                @while(true)
-                    @if($loopThroughAlbum && $loopThroughAlbum->parentAlbum)
-                        <li class="breadcrumb-item"><a href="{{route('guest.photo-album.index', ['parent_id' => $loopThroughAlbum->parentAlbum->id])}}">{{$loopThroughAlbum->parentAlbum->name}}</a></li>
-                        @php
-                            $loopThroughAlbum = $loopThroughAlbum->parentAlbum;
-                        @endphp
-                    @else
-                        @break
-                    @endif
-                @endwhile
-                @endif
                 @if(isset($album))
+                    @php
+                        $loopThroughAlbum = $album->parentAlbum;
+                        $loopThroughAlbums = [];
+                    @endphp
+                    @while(true)
+                        @if($loopThroughAlbum)
+                            @php
+                                $loopThroughAlbums[] = $loopThroughAlbum;
+                                $loopThroughAlbum = $loopThroughAlbum->parentAlbum;
+                            @endphp
+                        @else
+                            @break
+                        @endif
+                    @endwhile
+                    @foreach(array_reverse($loopThroughAlbums) as $lta)
+                        <li class="breadcrumb-item"><a href="{{route('guest.photo-album.index', ['parent_id' => $lta->id])}}">{{$lta->name}}</a></li>
+                    @endforeach
+
                     <li class="breadcrumb-item active" aria-current="page">{{$album->name}}</a></li>
                 @endif
             </ol>
