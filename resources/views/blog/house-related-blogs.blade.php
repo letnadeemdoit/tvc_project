@@ -3,7 +3,17 @@
         <div class="card blog-card mb-4">
             <div class="w-100">
                 <a href="{{route('guest.blog.show', $blog->slug)}}">
-                <img src="{{ $blog->getFileUrl() }}" class="card-img-top  position-relative" style="height: 310px !important;object-fit: cover" alt="..." />
+                <img
+{{--                    src="{{ $blog->getFileUrl() }}"--}}
+
+                    @if(isset($blog->image) && !is_null($blog->image))
+                    src="{{$blog->getFileUrl()}}"
+                    @elseif(!is_null(current_house()->image))
+                    src="{{ '/storage/'.current_house()->image }}"
+                    @else
+                    src="{{$blog->getFileUrl('image')}}"
+                    @endif
+                    class="card-img-top  position-relative" style="height: 310px !important;object-fit: cover" alt="..." />
                 </a>
 
             </div>

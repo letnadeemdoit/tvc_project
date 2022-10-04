@@ -2,8 +2,19 @@
         <div class="card blog-card mb-4">
         <div class="w-100">
             <a href="{{route('guest.blog.show', $post->slug)}}">
+            <img
 
-            <img src="{{ $post->getFileUrl() }}" class="card-img-top  position-relative" style="height: 310px !important;object-fit: cover" alt="..." />
+{{--                src="{{ $post->getFileUrl() }}"--}}
+
+                @if(isset($post->image) && !is_null($post->image))
+                src="{{$post->getFileUrl()}}"
+                @elseif(!is_null(current_house()->image))
+                src="{{ '/storage/'.current_house()->image }}"
+                @else
+                src="{{$post->getFileUrl('image')}}"
+                @endif
+
+                class="card-img-top  position-relative" style="height: 310px !important;object-fit: cover" alt="..." />
             </a>
 
         </div>
