@@ -49,7 +49,19 @@
     @endpush
 
     <div class="">
-        <img src="{{ $localGuide->getFileUrl('image') }}" class="w-100 blog-detail-image" alt=""/>
+        <img
+{{--            src="{{ $localGuide->getFileUrl('image') }}"--}}
+
+            @if(isset($localGuide->image))
+            src="{{$localGuide->getFileUrl('image')}}"
+            @elseif(!is_null($localGuide->user->house->image))
+            src="{{ $localGuide->user->house->getFileUrl() }}"
+            @else
+            src="{{$localGuide->getFileUrl('image')}}"
+            @endif
+
+
+            class="w-100 blog-detail-image" alt=""/>
     </div>
     <main style="background-color:#fff !important;">
         <div class="container">
@@ -179,9 +191,11 @@
 
                     <div class="row my-5 pt-5">
                         <div class="col-12">
-                            <iframe src="https://maps.google.com/maps?q={{$latitude}},{{$longitude}}&hl=es;z=14&output=embed"
-                                    class="w-100" height="350" style="border:0;"
-                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            @if(isset($geo['status']) && ($geo['status'] == 'OK'))
+                                <iframe src="https://maps.google.com/maps?q={{$latitude ?? 0}},{{$longitude ?? 0 }}&hl=es;z=14&output=embed"
+                                        class="w-100" height="350" style="border:0;"
+                                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            @endif
 
                         </div>
                     </div>
