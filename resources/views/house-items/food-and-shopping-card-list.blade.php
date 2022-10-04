@@ -56,12 +56,12 @@
 
 
                     @if($title == 'food')
-                        <h3 class="mb-0 text-capitalize text-center text-md-start">Food in the House</h3>
+                        <h3 class="mb-0 text-capitalize text-center text-md-start">Food</h3>
 
                     @endif
 
                     @if($title == 'shopping')
-                            <h3 class="mb-0 text-capitalize text-center text-md-start">Food Shopping List</h3>
+                            <h3 class="mb-0 text-capitalize text-center text-md-start">Shopping</h3>
                     @endif
 
 
@@ -70,16 +70,16 @@
                     <div
                         class="btn-group switch-button nav nav-tabs d-flex justify-content-end bg-dark-blue p-2 rounded-pill mt-3 mt-sm-0"
                         id="myTab" role="tablist">
-                        <a href="#!" class="{{$title == 'food' ? 'active' : ''}} btn rounded-pill text-white" id="home-tab"
+                        <a href="#!" class="{{$title == 'food' ? 'active' : ''}} btn rounded-pill text-white px-5" id="home-tab"
                            data-bs-target="#home" role="tab" aria-controls="home" aria-selected="true"
                            wire:click.prevent="changeFoodTitle"
-                        >Food in House
+                        >Food
                         </a>
                         <a href="#!" class="{{$title == 'shopping' ? 'active' : ''}} btn rounded-pill text-white"
                            id="profile-tab"
                            data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="false"
                            wire:click.prevent="changeShoppingTitle"
-                        >Shopping List
+                        >Shopping
                         </a>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                                 </div>
                             @endforeach
                         @else
-                            @include('partials.no-data-available',['title' => 'Food item'])
+                            @include('partials.no-data-available',['title' => 'No Food Items have been created yet!'])
                         @endif
                     </div>
                 @endif
@@ -158,7 +158,7 @@
                                 </div>
                             @endforeach
                         @else
-                            @include('partials.no-data-available',['title' => 'Shopping item'])
+                            @include('partials.no-data-available',['title' => 'No Shopping items have been created yet!'])
                         @endif
                     </div>
                 @endif

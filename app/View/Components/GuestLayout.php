@@ -13,6 +13,8 @@ class GuestLayout extends Component
      */
     public function render()
     {
-        return view('layouts.guest');
+        $currentHouse = current_house();
+
+        return view('layouts.guest',compact('currentHouse'));
     }
 }

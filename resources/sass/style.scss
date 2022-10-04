@@ -1623,11 +1623,11 @@ header{
 }
 
 // bulletin page css
-.bulletin-image{
-    background-image: url('/images/bulletin-images/bulletin.png');
-    @include  background-properties;
-    height:435px;
-}
+//.bulletin-image{
+//    background-image: url('/images/bulletin-images/bulletin.png');
+//    @include  background-properties;
+//    height:435px;
+//}
 .category-cards{
     //margin-top: 30px;
     .nav-tabs{

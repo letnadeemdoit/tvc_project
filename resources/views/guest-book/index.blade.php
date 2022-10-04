@@ -279,7 +279,7 @@
                 </div>
             </div>
         @else
-            @include('partials.no-data-available',['title' => 'Guest Review'])
+            @include('partials.no-data-available',['title' => 'No Guest Book entries have been created yet!'])
         @endif
 
         <div class="container padding-bottom " style="padding-top: 80px">

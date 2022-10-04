@@ -206,7 +206,7 @@
                         $dateTitle.textContent = dateSet.view.title
                     },
                     dateClick: function (info) {
-                        if(moment(info.date).isSameOrAfter(moment())) {
+                        // if(moment(info.date).isSameOrAfter(moment())) {
 
                             @if($user->is_owner)
                                 let parsed = queryString.parse(window.location.search);
@@ -214,7 +214,7 @@
                             @elseif($user->is_guest)
                                 window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
                             @endif
-                        }
+                        // }
                     },
                     eventClick: function (calEvent, jsEvent, view) {
 
