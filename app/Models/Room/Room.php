@@ -30,13 +30,19 @@ class Room extends Model implements Auditable
         'RoomTypeID',
         'RoomName',
         'Beds',
-        'HouseID'
+        'HouseID',
+        'bed_type_id'
     ];
 
 
     public function roomType()
     {
         return $this->belongsTo(RoomType::class, 'RoomTypeID', 'RoomTypeID');
+    }
+
+    public function bedType()
+    {
+        return $this->belongsTo(BedType::class);
     }
 
     public function amenities()
