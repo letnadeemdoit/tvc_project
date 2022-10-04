@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label class="form-label" for="amenities">Amenities:* <span class="ms-2 fw-semi-bold fs-12">(CTRL or CMD + Click to Select Multiple Amenities)</span></label>
+                <label class="form-label" for="amenities">Amenities: <span class="ms-2 fw-semi-bold fs-12">(CTRL or CMD + Click to Select Multiple Amenities)</span></label>
                 <select
                     type="text"
                     class="form-control @error('amenities') is-invalid @enderror"

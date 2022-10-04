@@ -45,6 +45,7 @@ class AddOrUpdateRoomForm extends Component
                 'name' => $room->RoomName,
                 'beds' => $room->Beds,
                 'type' => $room->RoomTypeID,
+                'bed_type_id' => $room->bed_type_id,
                 'amenities' => $room->amenities->pluck('AmenityID')->toArray(),
             ];
         } else {
@@ -63,7 +64,7 @@ class AddOrUpdateRoomForm extends Component
             'type' => ['required', 'exists:RoomType,RoomTypeID'],
             'beds' => ['required', 'numeric', 'min:1', 'max:20'],
             'bed_type_id' => ['required', 'exists:bed_types,id'],
-            'amenities' => ['required'],
+            'amenities' => ['nullable'],
         ])->validateWithBag('saveRoomCU');
 
 
