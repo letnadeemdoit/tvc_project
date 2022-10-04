@@ -14,6 +14,7 @@ use App\Notifications\CalendarEmailNotification;
 use App\Notifications\DeleteNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
+use Cookie;
 use Exception;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -39,9 +40,10 @@ class ScheduleVacationForm extends Component
 
     public function mount()
     {
-
         $this->model = Vacation::class;
 
+        Cookie::queue('vfc', '#3a87ad', 10000);
+        Cookie::queue('vbc', '#ffffff', 10000);
     }
 
     public function showVacationScheduleModal($toggle, $vacationId = null, $initialDate = null, $owner = null, $house = null)
@@ -82,8 +84,8 @@ class ScheduleVacationForm extends Component
         } else {
             $this->isCreating = true;
             $this->state = [
-                'background_color' => '#3a87ad',
-                'font_color' => '#ffffff',
+                'background_color' => Cookie::get('vbc', '#3a87ad'),
+                'font_color' => Cookie::get('vfc', '#ffffff'),
                 'recurrence' => 'once',
                 'book_rooms' => 0
             ];
@@ -387,7 +389,8 @@ class ScheduleVacationForm extends Component
         } catch (Exception $e) {
 
         }
-
+        Cookie::queue('vfc', $this->state['background_color'], 10000);
+        Cookie::queue('vbc', $this->state['font_color'], 10000);
         $this->emitSelf('toggle', false);
         $this->emit('vacation-schedule-successfully');
     }
