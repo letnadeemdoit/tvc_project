@@ -158,7 +158,7 @@
                                 </div>
                             @endforeach
                         @else
-                            @include('partials.no-data-available',['title' => 'No Shopping items have been created yet!'])
+                            @include('partials.no-data-available',['title' => 'Shopping List has not been created yet!'])
                         @endif
                     </div>
                 @endif
