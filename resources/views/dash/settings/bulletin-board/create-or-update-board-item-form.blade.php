@@ -33,7 +33,10 @@
 
 
                 <div class="mb-3">
-                    <label class="form-label" for="category_id">Select Category:</label>
+                   <div class="d-flex justify-content-start align-items-center mb-1">
+                       <label class="form-label me-1 me-md-3 mb-0" for="category_id">Select Category:</label>
+                         <a href="{{ route('dash.settings.category') }}" class="text-decoration-underline">Add new category</a>
+                   </div>
                     <select id="category_id" wire:model.defer="state.category_id" class="form-control">
                         <option value="" selected>Choose Category</option>
                         @forelse($categories as $category)

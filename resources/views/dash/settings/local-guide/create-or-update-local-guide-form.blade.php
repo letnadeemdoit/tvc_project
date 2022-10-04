@@ -30,7 +30,11 @@
                 <br/>
 
                 <div class="mb-3">
-                    <label class="form-label fw-normal" for="title">Select Category:</label>
+                    <div class="d-flex justify-content-start align-items-center mb-1">
+                        <label class="form-label fw-normal me-1 me-md-3 mb-0" for="category_id">Select Category:</label>
+                        <a href="{{ route('dash.settings.category') }}" class="text-decoration-underline">Add new category</a>
+                    </div>
+
                     <select name="local_guide_category_id" id="local_guide_category_id"
                             wire:model.defer="state.category_id"
                             class="form-control @error('category_id') is-invalid @enderror">

@@ -30,7 +30,7 @@ class CreateNewUser implements CreatesNewUsers
             'state_id' => ['nullable'],
             'city_id' => ['nullable'],
             'zipcode' => ['required'],
-            'image' => 'nullable|image|mimes:png,jpg,gif,tiff|max:1024',
+            'image' => 'nullable|image|mimes:png,jpg,gif,tiff|max:20480',
             'user_name' => ['required', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required'],
