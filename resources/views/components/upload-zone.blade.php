@@ -108,8 +108,10 @@
                          class="btn btn-primary btn-xs"
                          @click.prevent="startUploading()"
                      >
-{{--                         <i class="bi bi-check2"></i>--}}
-                         Save
+                         <span class="d-flex align-items-center">
+                             <i class="bi bi-check2"></i>
+                               <span class="fs-12 ms-1">Save</span>
+                         </span>
                      </a>
                  </div>
                  <p class="text-danger fs-12" x-show="files.length > 0">Click <b>save</b> button to upload your image otherwise it will not be uploaded.</p>
