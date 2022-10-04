@@ -26,6 +26,13 @@
                     <li class="breadcrumb-item active" aria-current="page">{{$album->name}}</a></li>
                 @endif
             </ol>
+            <div>
+                <label for="sort_order">Sort By</label>
+                <select name="sort_order" id="sort_order" wire:model.defer="sort_order" wire:change="changeSortOrder()" class="border px-3 py-1 rounded" style="background-color: #CDD0D5">
+                    <option value="desc" >Newest</option>
+                    <option value="asc">Oldest</option>
+                </select>
+            </div>
         </nav>
         <div class="masonry">
             @foreach($data as $dt)
@@ -50,8 +57,8 @@
             <script>
                 let album_title = document.querySelector('#page-title');
                 album_title.innerText = '{{ $album->name }}';
-                let breadcrumb = document.querySelector('#breadcrumb');
-                breadcrumb.innerText = '{{ $album->name }}';
+                {{--let breadcrumb = document.querySelector('#breadcrumb');--}}
+                {{--breadcrumb.innerText = '{{ $album->name }}';--}}
             </script>
         @endif
     @endpush
