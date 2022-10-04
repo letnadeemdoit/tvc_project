@@ -58,7 +58,7 @@
         </div>
     </div>
     @else
-        @include('partials.no-data-available',['title' => 'Bulletin Board'])
+        @include('partials.no-data-available',['title' => 'No Bulletin Boards have been created yet!'])
     @endif
 </div>
 

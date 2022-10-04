@@ -55,7 +55,7 @@
             </div>
             @endif
         @else
-            @include('partials.no-data-available',['title' => 'Local Guide'])
+            @include('partials.no-data-available',['title' => 'No Local Guide have been created yet!'])
         @endif
 
     </div>
