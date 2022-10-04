@@ -70,47 +70,46 @@
                  <div class="mt-2 mb-1" style="bottom: 10px; right: 10px; z-index: 100">
                      <a
                          href="#"
-                         class="btn btn-primary btn-xs"
+                         class="btn btn-primary" style="padding: 4px 14px; font-size: 13px !important;"
                          @click.prevent="isCropEnabled ? cropper.clear() : cropper.crop(); isCropEnabled = !isCropEnabled"
                      >
-                         <i class="bi bi-crop"></i>
+                         <i class="bi bi-crop fs" style="font-size: 14px !important;"></i>
                      </a>
                      <a
                          href="#"
-                         class="btn btn-primary btn-xs"
+                         class="btn btn-primary" style="padding: 4px 14px; font-size: 13px !important;"
                          @click.prevent="cropper.rotate(-45)"
                      >
-                         <i class="bi bi-arrow-counterclockwise"></i>
+                         <i class="bi bi-arrow-counterclockwise fs" style="font-size: 14px !important;"></i>
                      </a>
                      <a
                          href="#"
-                         class="btn btn-primary btn-xs"
+                         class="btn btn-primary" style="padding: 4px 14px; font-size: 13px !important;"
                          @click.prevent="cropper.rotate(45)"
                      >
-                         <i class="bi bi-arrow-clockwise"></i>
+                         <i class="bi bi-arrow-clockwise fs" style="font-size: 14px !important;"></i>
                      </a>
                      <a
                          href="#"
-                         class="btn btn-primary btn-xs"
+                         class="btn btn-primary" style="padding: 4px 14px; font-size: 13px !important;"
                          @click.prevent="cropper.reset()"
                      >
-                         <i class="bi bi-arrow-repeat"></i>
+                         <i class="bi bi-arrow-repeat fs" style="font-size: 14px !important;"></i>
                      </a>
                      <a
                          href="#"
-                         class="btn btn-primary btn-xs"
+                         class="btn btn-primary" style="padding: 4px 14px; font-size: 13px !important;"
                          @click.prevent="errors = []; files = []; uploadingProgress = 0; cropper = null; previewAndEdit = false"
                      >
-                         <i class="bi bi-x"></i>
+                         <i class="bi bi-x fs" style="font-size: 14px !important;"></i>
                      </a>
                      <a
                          href="#"
-                         class="btn btn-primary btn-xs"
+                         class="btn btn-primary" style="padding: 4px 14px; font-size: 13px !important;"
                          @click.prevent="startUploading()"
                      >
-                         <span class="d-flex align-items-center">
-                             <i class="bi bi-check2"></i>
-                               <span class="fs-12 ms-1">Save</span>
+                         <span class="d-flex align-items-center p-0 fs-14">
+                               <span class="ms-1 p-0">Save</span>
                          </span>
                      </a>
                  </div>
