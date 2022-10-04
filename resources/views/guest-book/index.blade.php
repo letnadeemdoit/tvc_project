@@ -113,6 +113,16 @@
             .hide_content {
                 display: none;
             }
+            .btn-review{
+                border-radius: 5px;
+                border: 1px solid #2A3342;
+                font-size: 13px;
+            }
+
+            .btn-review:hover {
+                background-color: #2A3342;
+                color: #ffffff !important;
+            }
         </style>
     @endpush
 
@@ -127,7 +137,7 @@
 
             @if(isset($data) && count($data) > 0)
                 <div class="container text-end">
-                    <button class="btn btn-outline-secondary" id="leaveReviewBtn">Leave a Review</button>
+                    <button class="btn btn-review text-uppercase text-dark px-4" id="leaveReviewBtn">Leave a Review</button>
                 </div>
             @endif
         </div>
