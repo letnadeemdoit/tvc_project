@@ -6,9 +6,9 @@
             </div>
 
             <div class="bg-review shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
-                <h1 class="text-primary font-vintage mb-0">FeedBack</h1>
+                <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
             </div>
-            <h1 class="pt-2 text-center poppins-bold">Leave a quick thank you</h1>
+            <h1 class="pt-2 text-center poppins-bold">Add an entry to our Guest Book</h1>
         </div>
         <div class="card-body">
             <form wire:submit.prevent="saveReviewFeedBackGuestBook" method="post">

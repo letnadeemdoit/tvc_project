@@ -35,12 +35,15 @@ class DestroyableConfirmationModal extends Component
         return view('livewire.modals.destroyable-confirmation-modal');
     }
 
-    public function destroy() {
+    public function destroy()
+    {
         $data = [];
+        $model = get_class($this->model);
         if ($this->model) {
             $data = $this->model->toArray();
             $this->model->delete();
         }
+        $this->model = app($model);
         $this->emitSelf('toggle', false);
         $this->emit($this->targetListener, $data);
         $this->success('Deleted successfully.');
