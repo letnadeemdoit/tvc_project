@@ -36,7 +36,7 @@
                 @if(isset($album))
                 <div class="dropdown text-center text-sm-end">
                     Order By:
-                    <button class="btn dropdown-toggle border-0 text-dark" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 160px;background-color: #CDD0D5 !important;">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 160px;">
                         {{$sort_order == 'desc' ? 'Newest' : 'Oldest'}}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
