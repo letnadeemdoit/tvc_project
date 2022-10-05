@@ -43,29 +43,30 @@
 
 
     </div>
-    <div class="dropdown text-end mb-4">
-        Order By:
-        <button class="btn dropdown-toggle border-0 text-dark" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 160px;background-color: #CDD0D5 !important;">
-            {{$sort_order == 'desc' ? 'Newest' : 'Oldest'}}
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li><a class="dropdown-item {{ $sort_order == 'desc' ? 'active' : ''}}"
-                   href="{{route('guest.bulletin-board.index', ['sort_order' => 'desc'])}}"
-                   wire:click.prevent="$set('sort_order', 'desc')"
-                >
-                    Newest</a>
-            </li>
-            <li><a class="dropdown-item {{ $sort_order == 'asc' ? 'active' : ''}}"
-                   href="{{route('guest.bulletin-board.index', ['sort_order' => 'asc'])}}"
-                   wire:click.prevent="$set('sort_order', 'asc')"
-                >
-                    Oldest</a>
-            </li>
-        </ul>
-    </div>
+
 
     <!-- dots img -->
     @if(isset($data) && count($data) > 0)
+        <div class="dropdown text-end mb-4">
+            Order By:
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 160px;">
+                {{$sort_order == 'desc' ? 'Newest' : 'Oldest'}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li><a class="dropdown-item {{ $sort_order == 'desc' ? 'active' : ''}}"
+                       href="{{route('guest.bulletin-board.index', ['sort_order' => 'desc'])}}"
+                       wire:click.prevent="$set('sort_order', 'desc')"
+                    >
+                        Newest</a>
+                </li>
+                <li><a class="dropdown-item {{ $sort_order == 'asc' ? 'active' : ''}}"
+                       href="{{route('guest.bulletin-board.index', ['sort_order' => 'asc'])}}"
+                       wire:click.prevent="$set('sort_order', 'asc')"
+                    >
+                        Oldest</a>
+                </li>
+            </ul>
+        </div>
         <div class="bg-waves" style="background-image: url('/images/bulletin-images/combined-shape.png'); background-repeat: no-repeat; background-size: auto; background-position: top right 150px;">
         <div class="padding-bottom massonary-container">
             <div class="masonry pt-3 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
