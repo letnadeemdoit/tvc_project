@@ -22,6 +22,8 @@ class BoardItemsList extends Component
 
     public $category = 'all';
 
+    public $sort_order = null;
+
     public $page = 1;
 
     public $per_page = 15;
@@ -31,6 +33,7 @@ class BoardItemsList extends Component
         'page' => ['except' => 1],
         'per_page' => ['except' => 15],
         'category' => ['except' => 'all'],
+        'sort_order' => ['except' => null]
     ];
 
     protected $paginationTheme = 'bootstrap';
@@ -63,9 +66,13 @@ class BoardItemsList extends Component
                     $query->where('slug', $this->category);
                 });
             })
-            ->orderBy('id', 'DESC')
             ->paginate($this->per_page);
-
+        if ($this->sort_order == 'desc'){
+            $data = $data->sortByDesc('id');
+        }
+        else{
+            $data = $data->sortBy('id');
+        }
         return view('bulletin-board.board-items-list',compact('data'));
     }
 }
