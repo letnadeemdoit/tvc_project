@@ -42,7 +42,13 @@
                     <th>Parent Album</th>
                     {{--                    <th>Description</th>--}}
                     <th>Photos</th>
-                    <th>Action</th>
+
+                    @if(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR)
+
+                        <th>Action</th>
+
+                    @endif
+
                 </tr>
                 </thead>
 
@@ -163,7 +169,8 @@
 
                                         <h4 class="fw-bold text-center my-3"
                                             style="color: #00000090">You can't delete this Album</h4>
-                                        <p class="fw-500 fs-15">First of all you need to switch your photo items or nested albums to
+                                        <p class="fw-500 fs-15">First of all you need to switch your photo items or
+                                            nested albums to
                                             another album or remove.</p>
                                         <div class="btn-group my-2">
                                         </div>
