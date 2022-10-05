@@ -47,14 +47,29 @@
                 display: none;
             }
 
+            @media (max-width: 992px) {
+                .mt-50{
+                    margin-top: 50px;
+                }
+            }
+            @media (min-width: 992px) {
+                .mt-62{
+                    margin-top: 62px;
+                }
+            }
+
+
         </style>
 
     </head>
+
     <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
         @include('layouts.partials.navigation-menu-top-app')
         @include('layouts.partials.navigation-menu-side-app')
-        <main id="content" role="main" class="main">
+        <main id="content" role="main" class="main" style="padding-top: 120px">
+
             {{ $slot }}
+
             @include('layouts.partials.footer-app')
         </main>
         <livewire:modals.destroyable-confirmation-modal />

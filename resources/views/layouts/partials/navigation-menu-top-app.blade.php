@@ -1,6 +1,72 @@
 <header
+    class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
+
+    <nav class="js-mega-menu navbar-nav-wrap w-100">
+        <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
+            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto mt-50 d-flex justify-content-center guest-menu" style="z-index: 999 !important;">
+                @auth
+
+                    @if(!auth()->user()->is_super_admin )
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.welcome')}}">HOME</a>
+                        </li>
+
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
+                        </li>
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD ITEMS</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
+                        </li>
+
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                        </li>
+
+                    @endif
+
+                @endauth
+
+            </ul>
+        </div>
+    </nav>
+
+</header>
+
+<header
     id="header"
-    class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white"
+    class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white mt-62"
     x-data="{avatarUrl: '{{ auth()->user()->profile_photo_url }}'}"
     @refresh-avatar.window="avatarUrl = $event.detail.profile_photo_url"
 >
@@ -8,7 +74,15 @@
         <!-- Logo -->
         <a class="navbar-brand" href="{{ route('dash.calendar') }}" aria-label="{{ config('app.name') }}">
             <img class="navbar-brand-logo d-none d-md-block" src="{{ asset('logo/logo.png') }}" alt="{{ config('app.name') }}" />
-            <img class="navbar-brand-logo d-md-none" style="min-width: 48px !important;max-width: 48px" src="{{ asset('logo/favicon.svg') }}" alt="{{ config('app.name') }}" />
+            <img class="navbar-brand-logo d-md-none"
+
+
+                 type="button" data-bs-toggle="collapse"
+                 data-bs-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false"
+                 aria-label="Toggle navigation"
+
+
+                 style="min-width: 48px !important;max-width: 48px" src="{{ asset('logo/favicon.svg') }}" alt="{{ config('app.name') }}" />
         </a>
         <!-- End Logo -->
 
@@ -28,7 +102,7 @@
                 @if(!auth()->user()->is_guest && !auth()->user()->is_super_admin)
                     @php
                         $data = auth()->user()->unreadNotifications()->get();
-                     @endphp
+                    @endphp
                     <li class="nav-item me-1 me-md-3">
                         <a href="{{ route('dash.notifications') }}" class="btn btn-ghost-secondary btn-icon rounded-circle bg-light-primary">
                             <i class="bi-bell text-primary"></i>
@@ -91,14 +165,14 @@
                                     <div class="dropdown-divider"></div>
                                 @endif
                                 @if(is_premium_subscribed())
-                                   <div class="px-3">
-                                       @foreach(auth()->user()->additional_houses as $additionalHouse)
-                                           <x-switchable-property :house="$additionalHouse" />
-                                           @if(!$loop->last)
-                                               <hr class="p-0 m-0 my-2">
-                                           @endif
-                                       @endforeach
-                                   </div>
+                                    <div class="px-3">
+                                        @foreach(auth()->user()->additional_houses as $additionalHouse)
+                                            <x-switchable-property :house="$additionalHouse" />
+                                            @if(!$loop->last)
+                                                <hr class="p-0 m-0 my-2">
+                                            @endif
+                                        @endforeach
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -141,12 +215,12 @@
 
 
                             @if(auth()->user()->is_super_admin)
-                                 <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('super-admin.manage-users') }}">Manage Users</a>
                             @endif
 
                             @if(!auth()->user()->is_guest)
-                                 <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('dash.settings.account-information') }}">Settings</a>
                             @endif
                             <div class="dropdown-divider"></div>
@@ -162,6 +236,19 @@
             </ul>
             <!-- End Navbar -->
         </div>
+
+        <button class="navbar-toggler text-primary p-0 border-0" type="button" data-bs-toggle="collapse"
+                style="font-size: 24px !important;"
+
+                data-bs-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-default">
+                    <i class="bi-list text-primary"></i>
+                </span>
+            <span class="navbar-toggler-toggled">
+                 <i class="bi-x text-primary"></i>
+                 </span>
+        </button>
     </div>
 </header>
 
