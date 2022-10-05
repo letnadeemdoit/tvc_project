@@ -25,8 +25,9 @@ class Register extends Component
     {
         $countries = Country::orderBy('name', 'ASC')->get();
 
-        $states = State::where('country_id', $this->state['country_id'] ?? '')->orderBy('name', 'ASC')->get();
-
+        $states = State::where('country_id', $this->state['country_id'] ?? '')->when( ($this->state['country_id'] ?? '') == 233, function ($query) {
+            $query->where('type', 'state');
+        })->orderBy('name', 'ASC')->get();
 //        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->orderBy('name', 'ASC')->get();
 
         return view('livewire.register',compact('countries','states'));
