@@ -53,8 +53,6 @@
         </div>
     </div>
 
-
-
     <livewire:settings.additional-houses.houses-list :user="$user"/>
     <livewire:settings.additional-houses.create-or-update-house-form :user="$user"/>
 </x-settings>

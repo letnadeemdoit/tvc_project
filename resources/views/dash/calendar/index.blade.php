@@ -27,7 +27,7 @@
                 >
                     <i class="bi-clipboard me-1" x-show="!copied"></i>
                     <i class="bi-clipboard-check-fill me-1" style="display: none" x-show="copied"></i>
-                    Copy ICS Link
+                    Add to your Calendar
                 </button>
                 <a
                     x-data

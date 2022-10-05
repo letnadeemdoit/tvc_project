@@ -34,9 +34,9 @@ class CreateOrUpdateHouseForm extends Component
 
         $states = State::where('country_id', $this->state['country_id'] ?? '')->orderBy('name', 'ASC')->get();
 
-        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->orderBy('name', 'ASC')->get();
+//        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->orderBy('name', 'ASC')->get();
 
-        return view('dash.settings.additional-houses.create-or-update-house-form', compact('countries', 'states', 'cities'));
+        return view('dash.settings.additional-houses.create-or-update-house-form', compact('countries', 'states'));
     }
 
 
@@ -57,7 +57,7 @@ class CreateOrUpdateHouseForm extends Component
 
         $country_id = Country::where('name', $this->house['country'])->first();
         $state_id = State::where('name', $this->house['State'])->first();
-        $city_id = City::where('name', $this->house['City'])->first();
+//        $city_id = City::where('name', $this->house['City'])->first();
 
         if ($house->HouseID) {
             $this->state = [
@@ -66,7 +66,7 @@ class CreateOrUpdateHouseForm extends Component
                 'address_2' => $house->Address2,
                 'country_id' => $country_id['id'] ?? null,
                 'state_id' => $state_id['id'] ?? null,
-                'city_id' => $city_id['id'] ?? null,
+                'city_id' => $house->City ?? null,
                 'zipcode' => $house->ZipCode,
                 'home_phone' => $house->HousePhone,
                 'fax' => $house->Fax,
@@ -113,7 +113,7 @@ class CreateOrUpdateHouseForm extends Component
 
         $country_name = Country::where('id', $inputs['country_id'])->first();
         $state_name = State::where('id', $inputs['state_id'])->first();
-        $city_name = City::where('id', $inputs['city_id'])->first();
+//        $city_name = City::where('id', $inputs['city_id'])->first();
 
         $this->house->fill([
             'HouseName' => $this->state['name'],
@@ -122,7 +122,7 @@ class CreateOrUpdateHouseForm extends Component
             'Address2' => $this->state['address_2'] ?? null,
             'country' => $country_name['name'] ?? null,
             'State' => $state_name['name'] ?? null,
-            'City' => $city_name['name'] ?? null,
+            'City' => $this->state['city_id']  ?? null,
             'ZipCode' => $this->state['zipcode'] ?? null,
         ])->save();
 

@@ -243,20 +243,37 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-6 col-lg-6 mx-auto">
-                        <div class="form-group mb-3 ">
-                            <label for="city_id" class="form-label">City:</label>
-                            <select
-                                name="city_id"
-                                wire:model.defer="state.city_id"
-                                class="form-control"
-                            >
-                                <option value="">--select city--</option>
-                                @foreach($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
-                            </select>
+{{--                    <div class="col-12 col-md-6 col-lg-6 mx-auto">--}}
+{{--                        <div class="form-group mb-3 ">--}}
+{{--                            <label for="city_id" class="form-label">City:</label>--}}
+{{--                            <select--}}
+{{--                                name="city_id"--}}
+{{--                                wire:model.defer="state.city_id"--}}
+{{--                                class="form-control"--}}
+{{--                            >--}}
+{{--                                <option value="">--select city--</option>--}}
+{{--                                @foreach($cities as $city)--}}
+{{--                                    <option value="{{ $city->id }}">{{ $city->name }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
 
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+                    <div class="col-12 col-md-6 mx-auto">
+                        <div class="form-group mb-3 ">
+                            <label class="form-label" for="city">City:</label>
+                            <input
+                                type="text"
+                                id="city"
+                                wire:model.defer="state.city_id"
+                                name="city"
+                                class="form-control @error('city') is-invalid @enderror"
+                                placeholder="City"
+                            />
+                            @error('city')
+                            <span class="invalid-feedback">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
 
