@@ -64,6 +64,7 @@
     </head>
 
     <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
+
         @include('layouts.partials.navigation-menu-top-app')
         @include('layouts.partials.navigation-menu-side-app')
         <main id="content" role="main" class="main" style="padding-top: 120px">
