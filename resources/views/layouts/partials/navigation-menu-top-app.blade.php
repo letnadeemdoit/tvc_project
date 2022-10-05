@@ -1,4 +1,5 @@
-<header class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white" style="background-color: #1e2022 !important;">
+<header class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white"
+        style="background-color: #1e2022 !important;">
     <nav class="js-mega-menu navbar-nav-wrap w-100">
         <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
             <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto mt-50 d-flex justify-content-center guest-menu dashboard-guest-menu"
@@ -268,22 +269,27 @@
                     </div>
                     <!-- End Account -->
                 </li>
+
+                <li class="nav-item">
+                    <button class="navbar-toggler text-primary p-0 border-0" type="button" data-bs-toggle="collapse"
+                            style="font-size: 24px !important;"
+
+                            data-bs-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                <span class="navbar-toggler-default">
+                    <i class="bi-list text-primary"></i>
+                </span>
+                        <span class="navbar-toggler-toggled">
+                 <i class="bi-x text-primary"></i>
+                 </span>
+                    </button>
+                </li>
             </ul>
             <!-- End Navbar -->
         </div>
 
-        <button class="navbar-toggler text-primary p-0 border-0" type="button" data-bs-toggle="collapse"
-                style="font-size: 24px !important;"
 
-                data-bs-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-default">
-                    <i class="bi-list text-primary"></i>
-                </span>
-            <span class="navbar-toggler-toggled">
-                 <i class="bi-x text-primary"></i>
-                 </span>
-        </button>
     </div>
 </header>
 
