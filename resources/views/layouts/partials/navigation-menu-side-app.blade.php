@@ -169,7 +169,7 @@
 
                         {{-- Super Admin--}}
 
-                        @if(auth()->user()->is_super_admin && is_any_subscribed())
+                        @if(auth()->user()->is_super_admin)
                             <div class="nav-item">
                                 <a class="nav-link  {{ link_is_active_with_class(['super-admin.manage-users']) }}"
                                    href="{{route('super-admin.manage-users')}}" data-placement="left">

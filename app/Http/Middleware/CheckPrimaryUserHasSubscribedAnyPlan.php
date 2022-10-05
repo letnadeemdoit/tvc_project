@@ -20,7 +20,8 @@ class CheckPrimaryUserHasSubscribedAnyPlan
                 $request->routeIs('dash.plans-and-pricing') ||
                 $request->routeIs('dash.paypal.process') ||
                 $request->routeIs('dash.paypal.succeeded') ||
-                $request->routeIs('dash.paypal.canceled')
+                $request->routeIs('dash.paypal.canceled') ||
+                $request->routeIs('dash.settings.account-information')
             )) {
             return redirect()->route('dash.plans-and-pricing');
         }
