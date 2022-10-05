@@ -56,6 +56,10 @@
                 .mt-62{
                     margin-top: 62px;
                 }
+
+                .dashboard-guest-menu li a{
+                    color: #dddddd !important;
+                }
             }
 
 

@@ -1,7 +1,7 @@
-<header class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
+<header class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white" style="background-color: #1e2022 !important;">
     <nav class="js-mega-menu navbar-nav-wrap w-100">
         <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
-            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto mt-50 d-flex justify-content-center guest-menu"
+            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto mt-50 d-flex justify-content-center guest-menu dashboard-guest-menu"
                 style="z-index: 999 !important;">
                 @auth
 
