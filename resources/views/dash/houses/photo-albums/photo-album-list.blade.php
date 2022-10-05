@@ -104,11 +104,14 @@
 
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
-                                <a class="btn btn-white" href="#"
-                                   wire:click="$emit('showAlbumCUModal', true, {{$dt->id}})"
-                                >
-                                    <i class="bi-pencil me-1 text-success"></i> Edit
-                                </a>
+
+                                @if(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR)
+                                    <a class="btn btn-white" href="#"
+                                       wire:click="$emit('showAlbumCUModal', true, {{$dt->id}})"
+                                    >
+                                        <i class="bi-pencil me-1 text-success"></i> Edit
+                                    </a>
+                                @endif
 
                                 @if($dt->photos->count() > 0 || $dt->nestedAlbums->count() > 0)
 
