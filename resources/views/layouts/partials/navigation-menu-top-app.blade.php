@@ -1,9 +1,8 @@
-<header
-    class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
-
+<header class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
     <nav class="js-mega-menu navbar-nav-wrap w-100">
         <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
-            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto mt-50 d-flex justify-content-center guest-menu" style="z-index: 999 !important;">
+            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto mt-50 d-flex justify-content-center guest-menu"
+                style="z-index: 999 !important;">
                 @auth
 
                     @if(!auth()->user()->is_super_admin )
@@ -12,7 +11,6 @@
                             <a class="nav-link fw-500"
                                href="{{route('guest.welcome')}}">HOME</a>
                         </li>
-
 
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link fw-500"
@@ -40,6 +38,27 @@
                                href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
                         </li>
 
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                        </li>
+
+                    @endif
+
+                    @if(auth()->user()->is_super_admin )
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.welcome')}}">HOME</a>
+                        </li>
 
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link fw-500"
@@ -53,6 +72,7 @@
                             <a class="nav-link fw-500"
                                href="{{route('guest.help')}}" tabindex="-1">HELP</a>
                         </li>
+
 
                     @endif
 
@@ -73,7 +93,8 @@
     <div class="navbar-nav-wrap">
         <!-- Logo -->
         <a class="navbar-brand" href="{{ route('dash.calendar') }}" aria-label="{{ config('app.name') }}">
-            <img class="navbar-brand-logo d-none d-md-block" src="{{ asset('logo/logo.png') }}" alt="{{ config('app.name') }}" />
+            <img class="navbar-brand-logo d-none d-md-block" src="{{ asset('logo/logo.png') }}"
+                 alt="{{ config('app.name') }}"/>
             <img class="navbar-brand-logo d-md-none"
 
 
@@ -82,15 +103,20 @@
                  aria-label="Toggle navigation"
 
 
-                 style="min-width: 48px !important;max-width: 48px" src="{{ asset('logo/favicon.svg') }}" alt="{{ config('app.name') }}" />
+                 style="min-width: 48px !important;max-width: 48px" src="{{ asset('logo/favicon.svg') }}"
+                 alt="{{ config('app.name') }}"/>
         </a>
         <!-- End Logo -->
 
         <div class="navbar-nav-wrap-content-start">
             <!-- Navbar Vertical Toggle -->
             <button type="button" class="js-navbar-vertical-aside-toggle-invoker navbar-aside-toggler">
-                <i class="bi-arrow-bar-left navbar-toggler-short-align" data-bs-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' data-bs-toggle="tooltip" data-bs-placement="right" title="Collapse"></i>
-                <i class="bi-arrow-bar-right navbar-toggler-full-align" data-bs-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' data-bs-toggle="tooltip" data-bs-placement="right" title="Expand"></i>
+                <i class="bi-arrow-bar-left navbar-toggler-short-align"
+                   data-bs-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+                   data-bs-toggle="tooltip" data-bs-placement="right" title="Collapse"></i>
+                <i class="bi-arrow-bar-right navbar-toggler-full-align"
+                   data-bs-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+                   data-bs-toggle="tooltip" data-bs-placement="right" title="Expand"></i>
             </button>
 
             <!-- End Navbar Vertical Toggle -->
@@ -104,7 +130,8 @@
                         $data = auth()->user()->unreadNotifications()->get();
                     @endphp
                     <li class="nav-item me-1 me-md-3">
-                        <a href="{{ route('dash.notifications') }}" class="btn btn-ghost-secondary btn-icon rounded-circle bg-light-primary">
+                        <a href="{{ route('dash.notifications') }}"
+                           class="btn btn-ghost-secondary btn-icon rounded-circle bg-light-primary">
                             <i class="bi-bell text-primary"></i>
                             @if(count($data) > 0)
                                 <span class="btn-status btn-sm-status btn-status-danger"></span>
@@ -118,7 +145,8 @@
                         <!-- Account -->
                         <div class="dropdown">
                             <a class="btn btn-soft-primary btn-sm dropdown-toggle" href="javascript:;"
-                               id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
+                               id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false"
+                               data-bs-auto-close="outside" data-bs-dropdown-animation>
                                 <i class="bi bi-house-fill me-1 fs-13"></i>
                                 <span class="d-none d-md-inline-block">
                                     Properties
@@ -132,7 +160,9 @@
                                 </span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account" aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
+                            <div
+                                class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account"
+                                aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
                                 <div class="dropdown-item-text">
                                     <div class="d-flex align-items-center">
                                         <div class="avatar avatar-sm avatar-circle">
@@ -147,7 +177,8 @@
                                         <div class="flex-grow-1 ms-3">
                                             <h5 class="mb-0">
                                                 @if(auth()->user()->house->primary_house_name !== null and auth()->user()->house->primary_house_name !== '')
-                                                    {{ auth()->user()->house->primary_house_name }} ({{ auth()->user()->house->HouseName }})
+                                                    {{ auth()->user()->house->primary_house_name }}
+                                                    ({{ auth()->user()->house->HouseName }})
                                                 @else
                                                     {{ auth()->user()->house->HouseName }}
                                                 @endif
@@ -167,7 +198,7 @@
                                 @if(is_premium_subscribed())
                                     <div class="px-3">
                                         @foreach(auth()->user()->additional_houses as $additionalHouse)
-                                            <x-switchable-property :house="$additionalHouse" />
+                                            <x-switchable-property :house="$additionalHouse"/>
                                             @if(!$loop->last)
                                                 <hr class="p-0 m-0 my-2">
                                             @endif
@@ -182,7 +213,9 @@
                 <li class="nav-item">
                     <!-- Account -->
                     <div class="dropdown">
-                        <a class="navbar-dropdown-account-wrapper" href="javascript:;" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
+                        <a class="navbar-dropdown-account-wrapper" href="javascript:;" id="accountNavbarDropdown"
+                           data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
+                           data-bs-dropdown-animation>
                             <div class="avatar avatar-sm avatar-circle">
                                 <img
                                     class="avatar-img"
@@ -194,7 +227,9 @@
                             </div>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account" aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
+                        <div
+                            class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account"
+                            aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
                             <div class="dropdown-item-text px-1">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-sm avatar-circle w-25">
