@@ -37,9 +37,9 @@ class HouseDetails extends Component
 
         $states = State::where('country_id', $this->state['country_id'] ?? '')->orderBy('name', 'ASC')->get();
 
-        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->orderBy('name', 'ASC')->get();
+//        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->orderBy('name', 'ASC')->get();
 
-        return view('dash.settings.house-settings.house-details',compact('countries','states','cities'));
+        return view('dash.settings.house-settings.house-details',compact('countries','states'));
     }
 
     public function onChangeCountry()
@@ -55,7 +55,7 @@ class HouseDetails extends Component
 
         $country_id = Country::where('name',$this->house['country'])->first();
         $state_id = State::where('name',$this->house['State'])->first();
-        $city_id = City::where('name',$this->house['City'])->first();
+//        $city_id = City::where('name',$this->house['City'])->first();
 
         $this->state = [
             'name' => $this->house->HouseName,
@@ -64,7 +64,7 @@ class HouseDetails extends Component
             'address_2' => $this->house->Address2,
             'country_id' => $country_id['id'] ?? null,
             'state_id' => $state_id['id'] ?? null,
-            'city_id' => $city_id['id'] ?? null,
+            'city_id' => $this->house->City ?? null,
             'zipcode' => $this->house->ZipCode,
             'home_phone' => $this->house->HousePhone,
             'fax' => $this->house->Fax,
@@ -105,7 +105,7 @@ class HouseDetails extends Component
 
         $country_name = Country::where('id',$inputs['country_id'])->first();
         $state_name = State::where('id',$inputs['state_id'])->first();
-        $city_name = City::where('id',$inputs['city_id'])->first();
+//        $city_name = City::where('id',$inputs['city_id'])->first();
 
         $this->house->fill([
             'HouseName' => $this->state['name'],
@@ -114,7 +114,7 @@ class HouseDetails extends Component
             'Address2' => $this->state['address_2'] ?? null,
             'country' => $country_name['name'] ?? null,
             'State' => $state_name['name'] ?? null,
-            'City' => $city_name['name'] ?? null,
+            'City' => $this->state['city_id'] ?? null,
             'ZipCode' => $this->state['zipcode'] ?? null,
         ])->save();
 

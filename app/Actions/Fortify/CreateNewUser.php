@@ -43,7 +43,7 @@ class CreateNewUser implements CreatesNewUsers
 
         $country_name = Country::where('id',$input['country_id'])->first();
         $state_name = State::where('id',$input['state_id'])->first();
-        $city_name = City::where('id',$input['city_id'])->first();
+//        $city_name = City::where('id',$input['city_id'])->first();
 
 
         $house = House::create([
@@ -51,7 +51,7 @@ class CreateNewUser implements CreatesNewUsers
             'primary_house_name' => $input['HouseName'],
             'country' => $country_name['name'] ?? null,
             'State' => $state_name['name'] ?? null,
-            'City' => $city_name['name'] ?? null,
+            'City' => $input['city_id'] ?? null,
             'ZipCode' => $input['zipcode'],
             'ReferredBy' => $input['Referral_paypal_account'] ?? null,
         ]);

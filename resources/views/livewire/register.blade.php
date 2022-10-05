@@ -87,28 +87,48 @@
                     @enderror
                 </div>
 
+{{--                <div class="col-md-6 mb-3">--}}
+{{--                    <fieldset class="input-group  rounded-1 ps-1">--}}
+{{--                        <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">City:</legend>--}}
+{{--                        <select--}}
+{{--                            tabindex="3"--}}
+{{--                            name="city_id"--}}
+{{--                            wire:model.defer="state.city_id"--}}
+{{--                            class="form-control form-control-lg border-0 shadow-none outline-0 select-icon"--}}
+
+{{--                        >--}}
+{{--                            <option value=""></option>--}}
+{{--                            @foreach($cities as $city)--}}
+{{--                                <option value="{{ $city->id }}">{{ $city->name }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+
+{{--                    </fieldset>--}}
+{{--                    @error('city_id')--}}
+{{--                    <span class="text-danger fw-semi-bold"--}}
+{{--                          style="font-size: 13px !important;">{{$message}}</span>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+
+
                 <div class="col-md-6 mb-3">
-                    <fieldset class="input-group  rounded-1 ps-1">
+                    <fieldset class="input-group rounded-1 ps-1">
                         <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">City:</legend>
-                        <select
-                            tabindex="3"
-                            name="city_id"
+                        <input
+                            type="text"
+                            id="city"
                             wire:model.defer="state.city_id"
-                            class="form-control form-control-lg border-0 shadow-none outline-0 select-icon"
-
-                        >
-                            <option value=""></option>
-                            @foreach($cities as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach
-                        </select>
-
+                            name="city"
+                            class="form-control form-control-lg border-0 shadow-none outline-0"
+                            tabindex="4"
+                            value="{{old('city')}}"
+                        />
                     </fieldset>
-                    @error('city_id')
-                    <span class="text-danger fw-semi-bold"
-                          style="font-size: 13px !important;">{{$message}}</span>
+                    @error('city')
+                    <span class="text-danger fw-semi-bold" style="font-size: 13px !important;">{{$message}}</span>
                     @enderror
                 </div>
+
 
                 <div class="col-md-6 mb-3">
                     <fieldset class="input-group rounded-1 ps-1">

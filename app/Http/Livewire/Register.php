@@ -27,9 +27,9 @@ class Register extends Component
 
         $states = State::where('country_id', $this->state['country_id'] ?? '')->orderBy('name', 'ASC')->get();
 
-        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->orderBy('name', 'ASC')->get();
+//        $cities = City::where('state_id', $this->state['state_id'] ?? '')->where('state_id', $this->state['state_id'] ?? '')->orderBy('name', 'ASC')->get();
 
-        return view('livewire.register',compact('countries','states','cities'));
+        return view('livewire.register',compact('countries','states'));
     }
 
 
