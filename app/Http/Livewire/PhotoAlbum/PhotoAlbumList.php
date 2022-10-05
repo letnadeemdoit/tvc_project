@@ -14,11 +14,11 @@ class PhotoAlbumList extends Component
 
     public ?Album $album;
 
-    public $sort_order = 'desc';
+    public $sort_order = null;
 
     protected $queryString = [
         'parent_id' => ['except' => null],
-        'sort_order' => ['except', 'asc']
+        'sort_order' => ['except' => null]
     ];
 
     public function mount() {
@@ -27,11 +27,11 @@ class PhotoAlbumList extends Component
         } else {
             $this->album = null;
         }
+
     }
 
     public function changeSortOrder() {
         $this->sort_order = $this->sort_order;
-
     }
 
     public function render()
@@ -60,9 +60,10 @@ class PhotoAlbumList extends Component
         if ($this->sort_order === 'desc') {
             $data = $data->sortByDesc('created_at');
         } else {
+
             $data = $data->sortBy('created_at');
         }
-
+//        dd($this->sort_order);
         return view('photo-album.photo-album-list', compact('data'));
     }
 }
