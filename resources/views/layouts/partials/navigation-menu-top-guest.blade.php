@@ -133,7 +133,7 @@
                             </li>
                             <li class="nav-item my-1 my-lg-0">
                                 <a class="nav-link {{ request()->routeIs('guest.house-items.index') ? 'active' : '' }}"
-                                   href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD LIST</a>
+                                   href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD</a>
                             </li>
                             <li class="nav-item my-1 my-lg-0">
                                 <a class="nav-link {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
