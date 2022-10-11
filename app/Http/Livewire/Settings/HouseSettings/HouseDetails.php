@@ -70,6 +70,7 @@ class HouseDetails extends Component
             'zipcode' => $this->house->ZipCode,
             'home_phone' => $this->house->HousePhone,
             'fax' => $this->house->Fax,
+            'is_default_image' => $this->house->is_default_image,
             'emergency_phone' => $this->house->EmergencyPhone,
         ];
 
