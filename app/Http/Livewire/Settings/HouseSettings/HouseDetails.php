@@ -81,6 +81,8 @@ class HouseDetails extends Component
 
         $inputs = $this->state;
 
+//        dd($inputs);
+
         if ($this->file) {
             $inputs['image'] = $this->file;
         } else {
@@ -111,6 +113,7 @@ class HouseDetails extends Component
 
         $this->house->fill([
             'HouseName' => $this->state['name'],
+            'is_default_image' => $this->state['is_default_image'] ?? 0,
             'primary_house_name' => $this->state['primary_house_name'],
             'Address1' => $this->state['address_1'] ?? null,
             'Address2' => $this->state['address_2'] ?? null,

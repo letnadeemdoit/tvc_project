@@ -100,7 +100,7 @@
                                             {{--                                       --}}
                                             <ol>
                                                 @foreach ($dt->getModified() as $attribute => $modified)
-                                                    <li class="text-break text-wrap">The {{ $attribute }} has been modified from <strong>{{ $modified['old'] ?? '' }}</strong> to <strong>{{ $modified['new'] ?? ''}}</strong></li>
+                                                    <li class="text-break text-wrap">The {{ $attribute }} has been modified from <strong>{{ $modified['old'] ?? '' }}</strong> to <strong>{{ $modified['new'] ?? ''}}</strong> by  <span class="fw-bold">{{$dt->user->user_name}}</span></li>
                                                 @endforeach
                                             </ol>
                                         </div>
