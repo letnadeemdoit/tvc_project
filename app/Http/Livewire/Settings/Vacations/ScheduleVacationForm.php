@@ -69,6 +69,20 @@ class ScheduleVacationForm extends Component
 
         if ($this->vacation->VacationName) {
             $this->isCreating = false;
+            $vacationRooms = [];
+
+            foreach ($this->vacation->rooms as $rooms) {
+                if (!isset($vacationRooms[$rooms->room_id])) {
+                    $vacationRooms[$rooms->room_id] = [];
+                }
+
+                $vacationRooms[$rooms->room_id][] = [
+                    'starts_at' => $rooms->starts_at->format('Y-m-d'),
+                    'ends_at' => $rooms->ends_at->format('Y-m-d'),
+                ];
+            }
+
+
             $this->state = [
                 'vacation_name' => $this->vacation->VacationName,
                 'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
@@ -79,7 +93,9 @@ class ScheduleVacationForm extends Component
                 'recurrence' => $this->vacation->recurrence ?? 'once',
                 'repeat_interval' => $this->vacation->repeat_interval ?? 0,
                 'book_rooms' => $this->vacation->book_rooms,
-                'rooms' => $this->vacation->schedules->pluck('RoomId')->toArray()
+                'vacation_rooms' => $vacationRooms,
+                'rooms' => collect(array_unique($this->vacation->rooms->pluck('room_id')->toArray()))->map(function ($item) { return ['room_id' => $item]; }),
+
             ];
         } else {
             $this->isCreating = true;
@@ -87,7 +103,8 @@ class ScheduleVacationForm extends Component
                 'background_color' => Cookie::get('vbc', '#E8604C'),
                 'font_color' => Cookie::get('vfc', '#ffffff'),
                 'recurrence' => 'once',
-                'book_rooms' => 0
+                'book_rooms' => 0,
+                'vacation_rooms' => [],
             ];
 
             if ($initialDate) {
@@ -105,6 +122,20 @@ class ScheduleVacationForm extends Component
         $this->dispatchBrowserEvent('schedule-vacation-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
     }
 
+    public function addRoomSchedule($roomId) {
+        if (!isset($this->state['vacation_rooms'][$roomId])) {
+            $this->state['vacation_rooms'][$roomId] = [];
+        }
+
+        $this->state['vacation_rooms'][$roomId][] = ['starts_at' => Carbon::now()->format('Y/m/d'), 'ends_at' => Carbon::now()->format('Y/m/d')];
+    }
+
+    public function removeRoomSchedule($roomId, $index) {
+
+        unset($this->state['vacation_rooms'][$roomId][$index]);
+
+        $this->state['vacation_rooms'][$roomId] = array_values($this->state['vacation_rooms'][$roomId]);
+    }
     public function saveVacationSchedule()
     {
         $this->resetErrorBag();
@@ -141,24 +172,28 @@ class ScheduleVacationForm extends Component
             'EndDateId' => $endDate->DateId,
             'EndTimeId' => $endTime->timeid,
             'repeat_interval' => $this->state['repeat_interval'] ?? 0,
+            'book_rooms' => $this->state['book_rooms'] ?? 0,
         ])->save();
 
         if (
             isset($this->state['book_rooms']) &&
             $this->state['book_rooms'] == 1 &&
-            isset($this->state['rooms']) &&
-            is_array($this->state['rooms']) &&
-            count($this->state['rooms']) > 0
+            isset($this->state['vacation_rooms']) &&
+            is_array($this->state['vacation_rooms']) &&
+            count($this->state['vacation_rooms']) > 0
         ) {
-            foreach ($this->state['rooms'] as $room) {
+            $this->vacation->rooms()->delete();
 
-                $this->vacation->rooms()->save(new VacationRoom([
-                    'room_id' => $room['room_id'],
-                    'starts_at' => $room['starts_at'],
-                    'ends_at' => $room['ends_at'],
+            foreach ($this->state['vacation_rooms'] as $key => $schedules) {
+                foreach ($schedules as $schedule) {
+                    $this->vacation->rooms()->save(new VacationRoom([
+                        'room_id' => $key,
+                        'starts_at' => $schedule['starts_at'],
+                        'ends_at' => $schedule['ends_at'],
 //                                'OwnerId' => $model->OwnerId,
 //                                'DateId' => $model->StartDateId
-                ]));
+                    ]));
+                }
             }
 
 
@@ -195,19 +230,21 @@ class ScheduleVacationForm extends Component
                 if (
                     isset($this->state['book_rooms']) &&
                     $this->state['book_rooms'] == 1 &&
-                    isset($this->state['rooms']) &&
-                    is_array($this->state['rooms']) &&
-                    count($this->state['rooms']) > 0
+                    isset($this->state['vacation_rooms']) &&
+                    is_array($this->state['vacation_rooms']) &&
+                    count($this->state['vacation_rooms']) > 0
                 ) {
-                    foreach ($this->state['rooms'] as $room) {
-                        foreach ($models as $model) {
-                            $model->rooms()->save(new VacationRoom([
-                                'room_id' => $room['room_id'],
-                                'starts_at' => $room['starts_at'],
-                                'ends_at' => $room['ends_at'],
+                    foreach ($this->state['vacation_rooms'] as $key => $schedules) {
+                        foreach ($schedules as $schedule) {
+                            foreach ($models as $model) {
+                                $model->rooms()->save(new VacationRoom([
+                                    'room_id' => $key,
+                                    'starts_at' => $schedule['starts_at'],
+                                    'ends_at' => $schedule['ends_at'],
 //                                'OwnerId' => $model->OwnerId,
 //                                'DateId' => $model->StartDateId
-                            ]));
+                                ]));
+                            }
                         }
                     }
 
@@ -274,17 +311,19 @@ class ScheduleVacationForm extends Component
                             if (
                                 isset($this->state['book_rooms']) &&
                                 $this->state['book_rooms'] == 1 &&
-                                isset($this->state['rooms']) &&
-                                is_array($this->state['rooms']) &&
-                                count($this->state['rooms']) > 0
+                                isset($this->state['vacation_rooms']) &&
+                                is_array($this->state['vacation_rooms']) &&
+                                count($this->state['vacation_rooms']) > 0
                             ) {
                                 $recurringVacation->rooms()->delete();
-                                foreach ($this->state['rooms'] as $room) {
-                                    $recurringVacation->rooms()->save(new VacationRoom([
-                                        'room_id' => $room['room_id'],
-                                        'starts_at' => $room['starts_at'],
-                                        'ends_at' => $room['ends_at'],
-                                    ]));
+                                foreach ($this->state['vacation_rooms'] as $key => $schedules) {
+                                    foreach ($schedules as $schedule) {
+                                        $recurringVacation->rooms()->save(new VacationRoom([
+                                            'room_id' => $key,
+                                            'starts_at' => $schedule['starts_at'],
+                                            'ends_at' => $schedule['ends_at'],
+                                        ]));
+                                    }
                                 }
                             }
                         }
@@ -321,17 +360,19 @@ class ScheduleVacationForm extends Component
                         if (
                             isset($this->state['book_rooms']) &&
                             $this->state['book_rooms'] == 1 &&
-                            isset($this->state['rooms']) &&
-                            is_array($this->state['rooms']) &&
-                            count($this->state['rooms']) > 0
+                            isset($this->state['vacation_rooms']) &&
+                            is_array($this->state['vacation_rooms']) &&
+                            count($this->state['vacation_rooms']) > 0
                         ) {
-                            foreach ($this->state['rooms'] as $room) {
-                                foreach ($models as $model) {
-                                    $model->rooms()->save(new VacationRoom([
-                                        'room_id' => $room['room_id'],
-                                        'starts_at' => $room['starts_at'],
-                                        'ends_at' => $room['ends_at'],
-                                    ]));
+                            foreach ($this->state['rooms'] as $key => $schedules) {
+                                foreach ($schedules as $schedule) {
+                                    foreach ($models as $model) {
+                                        $model->rooms()->save(new VacationRoom([
+                                            'room_id' => $key,
+                                            'starts_at' => $schedule['starts_at'],
+                                            'ends_at' => $schedule['ends_at'],
+                                        ]));
+                                    }
                                 }
                             }
 
