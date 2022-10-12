@@ -30,6 +30,7 @@ class House extends Model
     protected $fillable = [
         'HouseID',
         'image',
+        'is_default_image',
         'HouseName',
         'primary_house_name',
         'Address1',

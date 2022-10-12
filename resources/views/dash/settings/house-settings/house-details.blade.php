@@ -26,6 +26,28 @@
                 <br />
 
                 <div class="row">
+                    <div class="mb-3 col-12 col-lg-12">
+                        <!-- Form Switch -->
+                        <label class="row form-check form-switch mb-4" for="is_default_image">
+                            <span class="col-8 col-sm-9 ms-0">
+                              <span class="d-block text-dark mb-1">Show Default Image.</span>
+                              <span class="d-block fs-5 text-muted">
+                                  Use this option to show House Image as a default image.
+                              </span>
+                            </span>
+                            <span class="col-4 col-sm-3 text-end">
+                              <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  id="is_default_image"
+                                  name="is_default_image"
+                                  wire:model.defer="state.is_default_image"
+                                  value="1"
+                              />
+                            </span>
+                        </label>
+                        <!-- End Form Switch -->
+                    </div>
                     <div class="mb-3 col-12 col-lg-6">
                         <label class="form-label"
                                for="primary_house_name">

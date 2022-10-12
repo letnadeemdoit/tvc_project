@@ -43,8 +43,9 @@
 
         </style>
 
+{{--        @dd(current_house())--}}
         @auth
-            @if(isset(current_house()->image) && !is_null(current_house()->image))
+            @if(isset(current_house()->image) && !is_null(current_house()->image) && current_house()->is_default_image === 1)
                 <style>
                     .bulletin-image {
                         background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url({{'/storage/'.current_house()->image}});
