@@ -15,6 +15,11 @@
 
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link fw-500"
+                               href="{{route('dash.calendar')}}">Calendar</a>
+                        </li>
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
                                href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
                         </li>
 
