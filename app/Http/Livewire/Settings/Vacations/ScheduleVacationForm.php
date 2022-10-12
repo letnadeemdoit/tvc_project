@@ -124,10 +124,15 @@ class ScheduleVacationForm extends Component
 
     public function addRoomSchedule($roomId) {
         if (!isset($this->state['vacation_rooms'][$roomId])) {
-            $this->state['vacation_rooms'][$roomId] = [];
+            $this->state['vacation_rooms'][$roomId] = [
+                ['starts_at' => Carbon::now()->format('Y/m/d'), 'ends_at' => Carbon::now()->format('Y/m/d')],
+                ['starts_at' => Carbon::now()->format('Y/m/d'), 'ends_at' => Carbon::now()->format('Y/m/d')]
+            ];
+        } else {
+
+            $this->state['vacation_rooms'][$roomId][] = ['starts_at' => Carbon::now()->format('Y/m/d'), 'ends_at' => Carbon::now()->format('Y/m/d')];
         }
 
-        $this->state['vacation_rooms'][$roomId][] = ['starts_at' => Carbon::now()->format('Y/m/d'), 'ends_at' => Carbon::now()->format('Y/m/d')];
     }
 
     public function removeRoomSchedule($roomId, $index) {
