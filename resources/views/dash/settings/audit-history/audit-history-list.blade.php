@@ -96,11 +96,20 @@
 
                                                 {{$dt->event}}:</h3>
 
-                                            {{--                                        <p>On {{ $dt->getMetadata()['audit_created_at'] }}, {{ $dt->user->user_name }} [{{ $dt->getMetadata()['audit_ip_address'] }}] updated this record via {{ $dt->getMetadata()['audit_url'] }}</p>--}}
-                                            {{--                                       --}}
+{{--                                             <p>On {{ $dt->getMetadata()['audit_created_at'] }}, {{ $dt->user->user_name }} [{{ $dt->getMetadata()['audit_ip_address'] }}] updated this record via {{ $dt->getMetadata()['audit_url'] }}</p>--}}
+
                                             <ol>
+
                                                 @foreach ($dt->getModified() as $attribute => $modified)
-                                                    <li class="text-break text-wrap">The {{ $attribute }} has been modified from <strong>{{ $modified['old'] ?? '' }}</strong> to <strong>{{ $modified['new'] ?? ''}}</strong> by  <span class="fw-bold">{{$dt->user->user_name}}</span></li>
+                                                    <li class="text-break text-wrap">The {{ $attribute }} has been modified
+
+                                                      @if($dt->event !== 'created')
+                                                        from <strong>{{ $modified['old'] ?? '' }}</strong> to
+                                                      @endif
+
+                                                        <strong>{{ $modified['new'] ?? ''}}</strong> by
+                                                        <span class="fw-bold text-primary">{{$dt->user->first_name ?? ''}} {{$dt->user->last_name ?? ''}}</span>
+                                                    </li>
                                                 @endforeach
                                             </ol>
                                         </div>
