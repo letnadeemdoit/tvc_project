@@ -11,6 +11,7 @@ class PaymentInfo extends Model
 
     protected $table = 'paypal_payment_info';
 
+    protected $primaryKey = 'txnid';
     /**
      * The attributes that are mass assignable.
      *

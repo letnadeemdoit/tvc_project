@@ -9,7 +9,17 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $table = 'amenitytype';
+    protected $table = 'Schedule';
+
+    /**
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'ScheduleId';
 
     /**
      * The attributes that are mass assignable.
@@ -17,8 +27,12 @@ class Schedule extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'OwnerId',
+        'DateId',
+        'HouseId',
+        'RoomId',
+        'GuestId',
+        'VacationId'
     ];
-
 
 }

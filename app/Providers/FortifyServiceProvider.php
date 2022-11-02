@@ -40,8 +40,11 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('HouseId', $request->house_id)
+                ->where('is_confirmed', 1)
                 ->when($request->role !== 'Guest', function ($query) use ($request) {
-                    $query->where('email', $request->email)->where('user_name', $request->email);
+                    $query->where(function ($query) use ($request)  {
+                        $query->where('email', $request->email)->orWhere('user_name', $request->email);
+                    });
                 })
                 ->when($request->role === 'Guest', function ($query) use ($request) {
                     $query->where('role', 'Guest');

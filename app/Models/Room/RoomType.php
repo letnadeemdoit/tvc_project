@@ -9,7 +9,9 @@ class RoomType extends Model
 {
     use HasFactory;
 
-    protected $table = 'amenitytype';
+    protected $table = 'RoomType';
+
+//    protected $primaryKey = 'RoomTypeID';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +19,8 @@ class RoomType extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'RoomTypeID',
+        'RoomTypeVal',
     ];
 
 

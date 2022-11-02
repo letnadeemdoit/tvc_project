@@ -165,6 +165,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'bed_type_id' => 'bed type'
+    ],
 
 ];

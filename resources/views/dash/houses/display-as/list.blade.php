@@ -4,7 +4,7 @@
         <div class="row justify-content-between align-items-center flex-grow-1">
             <div class="col-12 col-md">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="card-header-title">Users</h5>
+                    <h5 class="card-header-title">Houses</h5>
                 </div>
             </div>
 

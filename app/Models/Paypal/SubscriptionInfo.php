@@ -11,6 +11,7 @@ class SubscriptionInfo extends Model
 
     protected $table = 'paypal_subscription_info';
 
+    protected $primaryKey = 'subscr_id';
     /**
      * The attributes that are mass assignable.
      *

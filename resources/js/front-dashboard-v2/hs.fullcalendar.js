@@ -8,7 +8,7 @@
 * Copyright 2021 Htmlstream
 */
 
-HSCore.components.HSFullCalendar = {
+const HSFullCalendar = {
 	collection: [],
 
 	dataAttributeName: 'data-hs-fullcalendar-options',
@@ -98,3 +98,5 @@ HSCore.components.HSFullCalendar = {
 		}
 	},
 };
+
+export default HSFullCalendar;

@@ -4,6 +4,9 @@ namespace App\Actions\Fortify;
 
 use App\Models\House;
 use App\Models\User;
+use App\Models\World\City;
+use App\Models\World\Country;
+use App\Models\World\State;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -16,42 +19,59 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array  $input
+     * @param array $input
      * @return \App\Models\User
      */
     public function create(array $input)
     {
-        $validate = Validator::make($input, [
-            'HouseName' => ['required','unique:House'],
-            'City' => ['required'],
-            'State' => ['required'],
-            'ReferredBy' => ['required'],
-            'user_name' => ['required','unique:users'],
-            'email' => ['required'],
+        Validator::make($input, [
+            'HouseName' => ['required', 'unique:House'],
+            'country_id' => ['required'],
+            'state_id' => ['nullable'],
+            'city_id' => ['nullable'],
+            'zipcode' => ['required'],
+            'image' => 'nullable|image|mimes:png,jpg,gif,tiff|max:20480',
+            'user_name' => ['required', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required'],
             'AdminOwner' => ['nullable'],
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'password' => $this->passwordRules(),
-            'password_confirmation' => 'required'
-
+            'password' => ['required', (new \Laravel\Fortify\Rules\Password)->requireNumeric()->requireUppercase()->requireSpecialCharacter(),'confirmed'],
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
+
+        $country_name = Country::where('id',$input['country_id'])->first();
+        $state_name = State::where('id',$input['state_id'])->first();
+//        $city_name = City::where('id',$input['city_id'])->first();
+
 
         $house = House::create([
             'HouseName' => $input['HouseName'],
-            'City' => $input['City'],
-            'State' => $input['State'],
-            'ReferredBy' => $input['ReferredBy'],
+            'primary_house_name' => $input['HouseName'],
+            'country' => $country_name['name'] ?? null,
+            'State' => $state_name['name'] ?? null,
+            'City' => $input['city_id'] ?? null,
+            'ZipCode' => $input['zipcode'],
+            'ReferredBy' => $input['Referral_paypal_account'] ?? null,
         ]);
 
         $getCreatedHouseId = House::orderBy('HouseID', 'desc')->first();
 
-        if ($house){
+        if ($house) {
 
-            if (!isset($input['AdminOwner'])){
-                $AdminOwner =  'N';
-            }else{
-                $AdminOwner =  $input['AdminOwner'];
+            if (isset($input['image'])){
+                $house->updateFile($input['image']);
+            }
+
+            if (!isset($input['AdminOwner'])) {
+
+                $AdminOwner = 0;
+
+            } else {
+
+                $AdminOwner = $input['AdminOwner'];
+
             }
 
             $user = User::create([
@@ -62,9 +82,14 @@ class CreateNewUser implements CreatesNewUsers
                 'last_name' => $input['last_name'],
                 'role' => $input['role'],
                 'HouseId' => $getCreatedHouseId->HouseID,
+                'is_confirmed' => 1,
+                'primary_account' => 1,
                 'old_password' => Hash::make('password'),
                 'password' => Hash::make($input['password']),
             ]);
+
+//            dd($user);
+
         }
 
         return $user;

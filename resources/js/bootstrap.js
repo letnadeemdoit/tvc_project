@@ -9,6 +9,16 @@ try {
 
     // Front Dashboard Js
     require('./front-dashboard-v2');
+
+    require('jquery-ui/ui/widgets/datepicker.js');
+    require('jquery-ui/ui/widgets/slider.js');
+    require('jquery-ui/ui/widgets/button.js');
+    require('jquery-ui/ui/widgets/selectable.js');
+    require('jquery-ui/ui/widgets/selectmenu.js');
+    require('jquery-ui/ui/widgets/controlgroup.js');
+    require('jquery-ui/ui/widgets/dialog.js');
+    // require('jquery-ui-timepicker-addon/src/jquery-ui-sliderAccess.js');
+    require('jquery-ui-timepicker-addon');
 } catch (e) {
     if (process.env.MIX_ENV === 'development') {
         console.log('Bootstrap, Jquery, Popper, Try -> Catch: ');

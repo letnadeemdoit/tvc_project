@@ -1,0 +1,97 @@
+<?php
+
+namespace App\Http\Livewire\Settings\GuestBook;
+
+use App\Http\Livewire\Traits\Toastr;
+use App\Models\GuestBook;
+use Illuminate\Support\Facades\Validator;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
+class CreateOrUpdateGusetBookForm extends Component
+{
+    use WithFileUploads;
+    use Toastr;
+
+    public $isShowingModal = false;
+
+    public $state = [];
+
+    public $file;
+
+    public ?GuestBook $guestBook;
+
+    protected $listeners = [
+        'showGuestBookCUModal',
+    ];
+
+    public function render()
+    {
+        return view('dash.settings.guest-book.create-or-update-guest-book-form') ;
+    }
+
+    public function hydrate()
+    {
+        $this->dispatchBrowserEvent('modal-is-shown');
+    }
+
+    public function showGuestBookCUModal($toggle, ?GuestBook $guestBook)
+    {
+        $this->emitSelf('toggle', $toggle);
+        $this->guestBook = $guestBook;
+        $this->reset(['state', 'file']);
+
+        if ($guestBook->id) {
+            $this->state = \Arr::only($guestBook->toArray(), ['title','name','content','image','status']);
+        }
+    }
+
+    public function saveGuestBookCU()
+    {
+        $this->resetErrorBag();
+
+        $inputs = $this->state;
+
+        if ($this->file) {
+            $inputs['image'] = $this->file;
+        }else{
+            unset($inputs['image']);
+        }
+
+        Validator::make($inputs, [
+            'name' => 'required|string|max:40',
+            'title' => 'required|string|max:80',
+            'content' => 'required',
+            'image' => 'nullable|mimes:png,jpg,gif,tiff',
+        ])->validateWithBag('saveGuestBookCU');
+
+        $this->guestBook->fill([
+            'user_id' => auth()->user()->user_id,
+            'house_id' => auth()->user()->HouseId,
+            'name' => $inputs['name'],
+            'title' => $inputs['title'],
+            'status' => $inputs['status'] ?? 0,
+            'content' => $inputs['content'],
+        ])->save();
+
+        $this->guestBook->updateFile($this->file);
+
+        $this->emitSelf('toggle', false);
+
+        $this->success('saved Successfully');
+
+        $this->emit('guest-book-cu-successfully');
+    }
+
+    public function updatedFile() {
+        $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
+    }
+
+    public function deleteFile() {
+        if ($this->guestBook->id) {
+            $this->guestBook->deleteFile();
+            $this->emit('guest-book-cu-successfully');
+        }
+    }
+
+}

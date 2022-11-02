@@ -9,16 +9,22 @@ class PhotoComment extends Model
 {
     use HasFactory;
 
-    protected $table = 'amenitytype';
+    protected $table = 'PhotoComment';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = [
-        'name',
-    ];
 
+    protected $primaryKey = 'CommentId';
+
+    protected $fillable = [
+        'PhotoId',
+        'HouseId',
+        'Comment',
+        'UserId',
+        'CommentDate',
+    ];
 
 }

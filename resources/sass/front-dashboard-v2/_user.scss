@@ -9,5 +9,13 @@
     -ms-overflow-style: none;
 }
 @import "~select2/src/scss/core";
+@import '~jquery-ui/themes/base/all.css';
+@import '~jquery-ui-timepicker-addon/src/jquery-ui-timepicker-addon.css';
+@import "~toastr/build/toastr.css";
+@import "~jsuites/dist/jsuites.css";
+@import "~cropperjs/dist/cropper.min.css";
+@import "~lightbox2/dist/css/lightbox.min.css";
+@import "~tom-select/dist/css/tom-select.bootstrap5.css";
+//@import "~@fullcalendar/bootstrap5/main.css";
 @import "../style";
 

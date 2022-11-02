@@ -7,6 +7,9 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+
+        <link rel="icon" type="image/x-icon" href="{{asset('logo/favicon.svg')}}">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -16,36 +19,78 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
         @livewireStyles
-
+    @stack('stylesheets')
         <!-- Scripts -->
 
+        <style>
+            /*i:hover {*/
+            /*    color: #fff !important;*/
+            /*}*/
+
+            /*a:hover {*/
+            /*    color: #000000;*/
+            /*}*/
+
+            i:hover {
+                color: unset !important;
+            }
+
+            .pagination-disable-button button.page-link {
+                background-color: transparent !important;
+            }
+
+            .pagination-disable-button button.page-link {
+                padding: 6px 2px !important;
+            }
+
+            .pagination-disable-button li.page-item.disabled {
+                display: none;
+            }
+
+            @media (max-width: 992px) {
+                .mt-50{
+                    margin-top: 50px;
+                }
+            }
+            @media (min-width: 992px) {
+                .mt-62{
+                    margin-top: 62px;
+                }
+
+                .dashboard-guest-menu li a{
+                    color: #dddddd !important;
+                }
+            }
+
+
+        </style>
+
     </head>
+
     <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
         @include('layouts.partials.navigation-menu-top-app')
-
         @include('layouts.partials.navigation-menu-side-app')
+        <main id="content" role="main" class="main" style="padding-top: 120px">
 
-            <main id="content" role="main" class="main">
-                {{ $slot }}
+            {{ $slot }}
 
-                @include('layouts.partials.footer-app')
-
-            </main>
-
-
-
-
+            @include('layouts.partials.footer-app')
+        </main>
+        <livewire:modals.destroyable-confirmation-modal />
         @stack('modals')
 
         @livewireScripts
-
+        <script src="{{ mix('js/app.js') }}"></script>
 
         @stack('scripts')
 
-        <script src="{{ mix('js/app.js') }}"></script>
         <script>
             $(document).ready(function () {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                })
                 window.livewire.on('hideModal', (reload = false) => {
                     $('.hideableModal').each(function () {
                         $(this).modal('hide');
@@ -61,6 +106,41 @@
                 });
             });
         </script>
+        <script>
+            $(document).ready(function () {
+                window.livewire.on('openModal', (reload = false) => {
+                    $('.createOrUpdateModal').each(function () {
+                        $(this).modal('show');
+                    });
+                });
+            });
+        </script>
+        <script>
+            // $(document).ready(function () {
+            //     window.livewire.on('openModal', (reload = false) => {
+            //         $('.createOrUpdateModal').each(function () {
+            //             $(this).modal('show');
+            //         });
+            //     });
+            // });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                window.livewire.on('openModal', (reload = false) => {
+                    $('.createOrUpdateModal').each(function () {
+                        $(this).modal('show');
+                    });
+                });
+                document.addEventListener('focusin', (e) => {
+                    if (e.target.closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
+                        e.stopImmediatePropagation();
+                    }
+                });
+            });
+        </script>
+
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script>

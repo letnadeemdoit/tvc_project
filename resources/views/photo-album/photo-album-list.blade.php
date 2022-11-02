@@ -1,0 +1,88 @@
+<div class="container padding-bottom massonary-container">
+    @if(isset($data) && count($data) > 0)
+
+        <nav aria-label="breadcrumb" class="mb-5 text-end">
+
+            <div class="d-block d-sm-flex justify-content-center justify-content-sm-between align-items-center">
+                <ol class="breadcrumb breadcrumb-no-gutter mb-0 d-flex justify-content-center mb-3 mb-sm-0">
+                    <li class="breadcrumb-item"><a href="{{route('guest.photo-album.index')}}">Photo Album</a></li>
+                    @if(isset($album))
+                        @php
+                            $loopThroughAlbum = $album->parentAlbum;
+                            $loopThroughAlbums = [];
+                        @endphp
+                        @while(true)
+                            @if($loopThroughAlbum)
+                                @php
+                                    $loopThroughAlbums[] = $loopThroughAlbum;
+                                    $loopThroughAlbum = $loopThroughAlbum->parentAlbum;
+                                @endphp
+                            @else
+                                @break
+                            @endif
+                        @endwhile
+                        @foreach(array_reverse($loopThroughAlbums) as $lta)
+                            <li class="breadcrumb-item"><a href="{{route('guest.photo-album.index', ['parent_id' => $lta->id , 'sort_order' => 'desc'])}}">{{$lta->name}}</a></li>
+                        @endforeach
+
+                        <li class="breadcrumb-item active" aria-current="page">{{$album->name}}</a></li>
+                    @endif
+                </ol>
+{{--                <label for="sort_order">Sort By</label>--}}
+{{--                <select name="sort_order" id="sort_order" wire:model.defer="sort_order" wire:change="changeSortOrder()" class="border px-3 py-1 rounded" style="background-color: #CDD0D5">--}}
+{{--                    <option value="desc" >Newest</option>--}}
+{{--                    <option value="asc">Oldest</option>--}}
+{{--                </select>--}}
+                @if(isset($album))
+                <div class="dropdown text-center text-sm-end">
+                    Order By:
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 160px;">
+                        {{$sort_order == 'desc' ? 'Newest' : 'Oldest'}}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li><a class="dropdown-item {{ $sort_order == 'desc' ? 'active' : ''}}"
+                               href="{{route('guest.photo-album.index', ['parent_id' => $album->id, 'sort_order' => 'desc' ])}}"
+{{--                               wire:click.prevent="$set('sort_order', 'desc')"--}}
+                            >
+                                Newest</a>
+                        </li>
+                        <li><a class="dropdown-item {{ $sort_order == 'asc' ? 'active' : ''}}"
+                               href="{{route('guest.photo-album.index', ['parent_id' => $album->id, 'sort_order' => 'asc'])}}"
+{{--                               wire:click.prevent="$set('sort_order', 'asc')"--}}
+                            >
+                                Oldest</a>
+                        </li>
+                    </ul>
+                </div>
+                @endif
+            </div>
+        </nav>
+        <div class="masonry">
+            @foreach($data as $dt)
+                @if($dt instanceof \App\Models\Photo\Album && ($dt->nestedAlbums->count() > 0 or $dt->photos->count() > 0))
+                    <div class="brick">
+                        <livewire:photo-album.album-card :album="$dt" wire:key="{{ $dt->id }}"/>
+                    </div>
+                @elseif($dt instanceof \App\Models\Photo\Photo)
+                    <div class="brick">
+                        <livewire:photo-album.photo-card :photo="$dt" wire:key="{{ $dt->id }}"/>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+
+    @else
+        @include('partials.no-data-available',['title' => 'No Photo Albums have been created yet!'])
+    @endif
+
+    @push('scripts')
+        @if(!is_null($album))
+            <script>
+                let album_title = document.querySelector('#page-title');
+                album_title.innerText = '{{ $album->name }}';
+                {{--let breadcrumb = document.querySelector('#breadcrumb');--}}
+                {{--breadcrumb.innerText = '{{ $album->name }}';--}}
+            </script>
+        @endif
+    @endpush
+</div>

@@ -7,11 +7,15 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
+    <link rel="icon" type="image/x-icon" href="{{asset('logo/favicon.svg')}}">
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/theme.css') }}">
+    @livewireStyles
     @stack('stylesheets')
 
     <style>
@@ -27,24 +31,10 @@
         {{ $slot }}
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
+    @livewireScripts
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
 
     @stack('scripts')
-
-
-{{--    <script src="{{asset('js/drag/min/dropzone.min.js')}}"></script>--}}
-
-{{--    <script src="{{asset('js/drag-and-drop/hs.dropzone.js')}}"></script>--}}
-
-{{--    <script>--}}
-{{--        (function() {--}}
-{{--            // INITIALIZATION OF DROPZONE--}}
-{{--            // =======================================================--}}
-{{--            HSCore.components.HSDropzone.init('.js-dropzone')--}}
-{{--        });--}}
-{{--    </script>--}}
-
-
 </body>
 </html>

@@ -10,7 +10,10 @@
                 gotoHouse: false,
                 loginAsGuest: null,
                 role: '{{ old('role', 'Guest') }}',
-                houseIsSelected: false
+                houseIsSelected: false,
+                house_id: null,
+                resetPasswordLink: '{{ route('password.request') }}',
+                house_id: '{{ old('house_id', '') }}'
             }"
             x-init="
                 @if(old('role') !== null)
@@ -22,6 +25,10 @@
                     }
                 @endif
 
+                @if(old('house_id') !== null)
+                    houseIsSelected = true;
+                @endif
+
                 $('.select2').select2({
                     ajax: {
                     url: '{{ route('select2.houses') }}',
@@ -29,14 +36,24 @@
                     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
                     }
                 }).on('select2:select', function (e)  {
+                    house_id = e.params.data.id;
                     houseIsSelected = true;
                 })
             "
         >
-            <x-jet-validation-errors class="mb-4"/>
+            @if(old('role') === 'Guest')
+                <x-jet-validation-errors class="mb-4"/>
+            @endif
 
             @if (session('status'))
-                <div class="alert alert-soft-success text-center mb-4" role="alert">
+                <div
+                    x-data="{ shown: false, timeout: null }"
+                    x-init="clearTimeout(timeout); shown = true; timeout = setTimeout(() => { shown = false }, 10000);"
+                    x-show.transition.out.opacity.duration.1500ms="shown"
+                    x-transition:leave.opacity.duration.1500ms
+                    style="display: none;"
+                    class="alert alert-soft-success text-center mb-4" role="alert"
+                >
                     {{ session('status') }}
                 </div>
             @endif
@@ -46,11 +63,11 @@
                 <input type="hidden" x-model="role" name="role" />
                 {{-- Search House --}}
                 <div x-show="!gotoHouse">
-                    <h1 class="display-4 fw-bold mb-0">Search <span class="text-primary">House</span></h1>
+                    <h1 class="display-3 poppins-bold mb-0">Search <span class="text-primary">House</span></h1>
                     <small class="text-muted mb-3 d-block">Search your house here to have beautiful vacations with your
                         family.</small>
                     <div class="bg-soft-primary p-3 rounded-1 border border-primary row g-2">
-                        <div class="col-8">
+                        <div class="col-md-8">
                             <select class="form-control form-control-lg select2" name="house_id" x-model="house_id">
                                 <option disabled selected>Search &amp; select your house</option>
                                 @if(old('house_id') !== null)
@@ -63,16 +80,26 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="col-4 d-grid">
+                        <div class="col-md-4 d-grid">
                             <button
                                 class="btn btn-primary"
-                                @click.prevent="gotoHouse = true"
+                                @click.prevent="gotoHouse = true;$dispatch('update-image','bg-login')"
                                 x-bind:disabled="!houseIsSelected"
                             >
                                 Go to House
                             </button>
                         </div>
+
                     </div>
+
+                    <div class="text-center mt-4">
+                        <p>Don't have an account?
+                            <a href="{{ route('register') }}"
+                               class="text-decoration-underline text-primary fw-600">Create account
+                            </a>
+                        </p>
+                    </div>
+
                 </div>
                 <div x-show="gotoHouse" style="display: none">
                     {{-- Login Account --}}
@@ -84,12 +111,25 @@
                             </div>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-dark-secondary btn-lg shadow-lg"
-                                    @click.prevent="loginAsGuest = false; role = 'AdministratorOrGuest';">
+                            <a class="btn btn-dark-secondary btn-lg shadow-lg"
+                                    @click.prevent="loginAsGuest = false; role = 'AdministratorOrGuest';$dispatch('update-image','bg-owner-login')">
                                 {{ __('Administrator & Owner') }}
-                            </button>
-                            <button class="btn bg-light-primary border-solid btn-lg mt-3 text-dark"
-                                    @click.prevent="loginAsGuest = true; role = 'Guest';">{{ __('Guest') }}</button>
+                            </a>
+                            <a class="btn bg-light-primary border-solid btn-lg mt-3 text-dark"
+                                    @click.prevent="loginAsGuest = true; role = 'Guest';$dispatch('update-image','bg-guest-login')">{{ __('Guest') }}</a>
+                        </div>
+                        <div class="text-center mt-3">
+
+                            <a
+                                class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
+                                href="#!"
+                                @click.prevent="gotoHouse = false; loginAsGuest = null; $dispatch('update-image','bg-search-house')"
+                            >
+
+                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2">Go Back to
+                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
+                            </a>
+
                         </div>
                     </div>
 
@@ -116,21 +156,26 @@
                         <div class="mb-4" x-show="loginAsGuest === false">
                             {{-- Administrator --}}
                             <fieldset class="input-group border rounded-1 ps-1">
-                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Username</legend>
+                                <legend class="float-none w-auto fs-5 mb-0 px-2 mb-0 ms-1">Username or Email</legend>
                                 <input type="text"
+                                       tabindex="1"
                                        class="form-control form-control-lg border-0 shadow-none outline-0"
                                        name="email"
                                        value="{{ old('email') }}"
                                        id="email"
-                                       tabindex="1"
-                                       placeholder="johnsmith1234"
+                                       placeholder="john or example@app.com"
                                        aria-label="email@address.com"
                                        required/>
                                 <a id="changePassTarget-2" class="input-group-append input-group-text border-0"
+                                   style="outline-color: transparent !important;"
                                    href="javascript:;">
                                     <i class="bi bi-person text-primary"></i>
                                 </a>
                             </fieldset>
+                            @error('email')
+                            <span class="text-danger fw-semi-bold"
+                                  style="font-size: 13px !important;">{{$message}}</span>
+                            @enderror
 
                             <span class="invalid-feedback">Please enter a valid email address.</span>
                         </div>
@@ -152,15 +197,16 @@
                                        name="password"
                                        id="password"
                                        placeholder="8+ characters required"
-                                       value="{{ old('password') }}"
                                        autocomplete="new-password"
                                        aria-label="8+ characters required"
                                        minlength="8"
+                                       tabindex="2"
                                        required
                                 />
                                 <a
                                     id="changePassTarget"
                                     class="input-group-append input-group-text border-0"
+                                    style="outline-color: transparent !important;"
                                     href="javascript:;"
                                     @click.prevent="showPassword  = !showPassword"
                                 >
@@ -168,17 +214,20 @@
                                        :class="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}"></i>
                                 </a>
                             </fieldset>
+
                             <!-- </div> -->
-                            <label class="form-label w-100 mt-3" for="password" tabindex="0">
+                            <label class="form-label w-100 mt-3" for="password" tabindex="0"
+                                   style="outline-color: transparent !important;"
+                            >
                                 <span class="float-end" x-show="loginAsGuest === false">
                                     @if (Route::has('password.request'))
                                         {{ __('Forget Password?') }}
                                         <a class="form-label-link mb-0 text-secondary fw-lighter"
-                                           href="{{ route('password.request') }}">
-                                            <span class="text-decoration-underline text-primary"> Reset</span>
+                                           style="outline-color: transparent !important;"
+                                           :href="resetPasswordLink + `?h=${house_id}`">
+                                            <span class="text-decoration-underline text-primary fw-bolder"> Reset</span>
                                         </a>
                                     @endif
-
                                 </span>
                             </label>
                             <span class="invalid-feedback">Please enter a valid password.</span>
@@ -186,37 +235,41 @@
                         <!-- End Form -->
 
 
+
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-dark-secondary btn-lg">{{ __('Log in') }}</button>
+                            <button class="btn btn-dark-secondary btn-lg" type="submit">{{ __('Log in') }}</button>
                         </div>
-                        <!-- Form Check -->
-                        <div class="form-check mt-4">
+                        <div class="form-check mt-3">
                             <label class="form-check-label" for="remember_me">
                                 {{ __('Remember me') }}
                             </label>
                             <input
                                 type="checkbox"
-                                class="form-check-input"
+                                class="form-check-input check-input"
                                 name="remember_me"
                                 value="{{ old('remember_me') }}"
-                                id="remember_me">
+                                id="remember_me"
+                            />
 
                         </div>
-                        <!-- End Form Check -->
-                        <div class="text-center mt-3" x-show="loginAsGuest === false">
-                            <p>Don't have an account? <a href="{{ route('register') }}"
-                                                         class="text-decoration-underline text-primary fw-bolder">Create
-                                    account</a></p>
+                        <div class="text-center mt-3">
+
+                            <a class="btn btn-link text-secondary d-flex align-items-center fw-normal justify-content-center"
+                               href="#!"
+                               @click.prevent="gotoHouse = true; loginAsGuest = null;$dispatch('update-image','bg-login')">
+
+                                <img src="{{asset('/images/reset-password/back-arrow.png')}}" class="me-2"> Go Back to
+                                <span class="ms-1 fw-semibold text-primary text-decoration-underline">Search House</span>
+                            </a>
+
                         </div>
                     </div>
                 </div>
+
             </form>
+
             <!-- End Form -->
         </div>
+
     </x-jet-authentication-card>
-    @push('scripts')
-        <script>
-            window.houses = @json(\App\Models\House::select('HouseID', 'HouseName')->get()->toArray())
-        </script>
-    @endpush
 </x-auth-layout>
