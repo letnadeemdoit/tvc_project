@@ -87,6 +87,7 @@ class CreateOrUpdatePhoto extends Component
         }
         $this->emitSelf('toggle', false);
 
+//        $this->emit('refresh-photos-list-in-album');
         $this->emit('photo-cu-successfully');
 
         $this->success( 'Photo ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');

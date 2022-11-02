@@ -2,23 +2,43 @@
 
 namespace App\Http\Livewire\PhotoAlbum;
 
+use App\Http\Livewire\Traits\Toastr;
 use App\Models\House;
 use App\Models\Photo\Album;
+use App\Models\Photo\Photo;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class PhotoAlbumList extends Component
 {
+
+    use WithFileUploads;
+    use Toastr;
+
     public $user;
 
     public $parent_id = null;
 
+    public $state = [];
+
+    public $file;
+
+    public $isCreating = false;
+
     public ?Album $album;
+
+    public ?Photo $photo;
 
     public $sort_order = null;
 
     protected $queryString = [
         'parent_id' => ['except' => null],
         'sort_order' => ['except' => null]
+    ];
+
+    protected $listeners = [
+        'refresh-photos-list-in-album' => '$refresh'
     ];
 
     public function mount() {

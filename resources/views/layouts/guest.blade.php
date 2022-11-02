@@ -52,7 +52,7 @@
                         background-position: 50%;
                         background-repeat: no-repeat;
                         background-size: cover;
-                        height: 435px;
+                        height: 180px;
                         background-color: #000000;
                     }
 
@@ -64,7 +64,7 @@
                         background-position: 50%;
                         background-repeat: no-repeat;
                         background-size: cover;
-                        height: 435px;
+                        height: 180px;
                     }
                 </style>
             @endif
@@ -75,7 +75,7 @@
                     background-position: 50%;
                     background-repeat: no-repeat;
                     background-size: cover;
-                    height: 435px;
+                    height: 180px;
                 }
             </style>
         @endauth

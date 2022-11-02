@@ -2,7 +2,7 @@
     @push('stylesheets')
         <style>
             .blog-detail-image {
-                height: 400px;
+                height: 180px;
                 object-fit: cover;
             }
             body{

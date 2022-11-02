@@ -65,7 +65,7 @@
 
 <header id="header" class="navbar navbar-expand-lg navbar-bordered bg-white ">
     <div class="container">
-        <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center justify-content-lg-end py-2 login-nav">
+        <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center justify-content-lg-end py-1 login-nav">
             <a class="navbar-brand" href="{{route('guest.welcome')}}">
                 <img class="navbar-brand-logo"
                      src="{{ asset('logo/logo.svg') }}"
@@ -108,6 +108,11 @@
                     @auth
 
                         @if(!auth()->user()->is_super_admin )
+
+{{--                            <li class="nav-item my-1 my-lg-0">--}}
+{{--                                <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"--}}
+{{--                                   href="{{route('dash.calendar')}}">Admin</a>--}}
+{{--                            </li>--}}
 
                             <li class="nav-item my-1 my-lg-0">
                                 <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"
