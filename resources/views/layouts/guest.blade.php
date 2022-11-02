@@ -95,4 +95,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
     @stack('scripts')
+
+    <script>
+        document.addEventListener('refresh-photos-list-in-album', function () {
+            window.location.reload();
+        })
+    </script>
+
 </html>

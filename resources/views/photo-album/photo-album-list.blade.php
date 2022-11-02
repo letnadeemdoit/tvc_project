@@ -1,4 +1,14 @@
 <div class="container padding-bottom massonary-container pt-5">
+
+    @push('stylesheets')
+        <style>
+            .toast-success {
+                background-color: #088008 !important;
+                color: #ffffff !important;
+            }
+        </style>
+    @endpush
+
     @if(isset($data) && count($data) > 0)
 
         <nav aria-label="breadcrumb" class="mb-5 text-end">
@@ -33,37 +43,41 @@
                 </ol>
 
                 @if(isset($album))
-                    <div class="dropdown text-center text-sm-end">
-
-                        <div class="col-sm-auto" x-data>
-                            <a
-                                class="btn btn-primary"
-                                href="#!"
-                                @click.prevent="window.livewire.emit('showPhotoCUModal', true)"
-                            >
-                                <i class="bi-plus me-1"></i> Add New Photo
-                            </a>
+                    <div class="dropdown text-center text-sm-end d-flex">
+                        @auth
+                            @if(auth()->user()->is_owner )
+                                <div class="me-4" x-data>
+                                    <a
+                                        class="btn btn-sm btn-soft-primary"
+                                        href="#!"
+                                        @click.prevent="window.livewire.emit('showPhotoCUModal', true)"
+                                    >
+                                        <i class="bi-plus me-1"></i> Add New Photo
+                                    </a>
+                                </div>
+                            @endif
+                        @endauth
+                        <div>
+                            Order By:
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 160px;">
+                                {{$sort_order == 'desc' ? 'Newest' : 'Oldest'}}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><a class="dropdown-item {{ $sort_order == 'desc' ? 'active' : ''}}"
+                                       href="{{route('guest.photo-album.index', ['parent_id' => $album->id, 'sort_order' => 'desc' ])}}"
+                                        {{--                               wire:click.prevent="$set('sort_order', 'desc')"--}}
+                                    >
+                                        Newest</a>
+                                </li>
+                                <li><a class="dropdown-item {{ $sort_order == 'asc' ? 'active' : ''}}"
+                                       href="{{route('guest.photo-album.index', ['parent_id' => $album->id, 'sort_order' => 'asc'])}}"
+                                        {{--                               wire:click.prevent="$set('sort_order', 'asc')"--}}
+                                    >
+                                        Oldest</a>
+                                </li>
+                            </ul>
                         </div>
-
-                        Order By:
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                                data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 160px;">
-                            {{$sort_order == 'desc' ? 'Newest' : 'Oldest'}}
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><a class="dropdown-item {{ $sort_order == 'desc' ? 'active' : ''}}"
-                                   href="{{route('guest.photo-album.index', ['parent_id' => $album->id, 'sort_order' => 'desc' ])}}"
-                                    {{--                               wire:click.prevent="$set('sort_order', 'desc')"--}}
-                                >
-                                    Newest</a>
-                            </li>
-                            <li><a class="dropdown-item {{ $sort_order == 'asc' ? 'active' : ''}}"
-                                   href="{{route('guest.photo-album.index', ['parent_id' => $album->id, 'sort_order' => 'asc'])}}"
-                                    {{--                               wire:click.prevent="$set('sort_order', 'asc')"--}}
-                                >
-                                    Oldest</a>
-                            </li>
-                        </ul>
                     </div>
                 @endif
             </div>
@@ -89,6 +103,8 @@
     @push('scripts')
         @if(!is_null($album))
             <script>
+
+
                 let album_title = document.querySelector('#page-title');
                 album_title.innerText = '{{ $album->name }}';
                 {{--let breadcrumb = document.querySelector('#breadcrumb');--}}

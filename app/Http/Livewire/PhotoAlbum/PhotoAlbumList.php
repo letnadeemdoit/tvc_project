@@ -37,9 +37,9 @@ class PhotoAlbumList extends Component
         'sort_order' => ['except' => null]
     ];
 
-    protected $listeners = [
-        'refresh-photos-list-in-album' => '$refresh'
-    ];
+//    protected $listeners = [
+//        'refresh-photos-list-in-album' => 'refreshList'
+//    ];
 
     public function mount() {
         if (!is_null($this->parent_id)) {
