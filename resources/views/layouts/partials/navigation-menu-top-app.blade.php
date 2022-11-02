@@ -1,5 +1,5 @@
 <header class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white"
-        style="background-color: #2a3342 !important;">
+        style="">
     <nav class="js-mega-menu navbar-nav-wrap w-100">
         <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
             <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto mt-50 d-flex justify-content-center guest-menu dashboard-guest-menu"
@@ -10,12 +10,12 @@
 
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link fw-500"
-                               href="{{route('dash.calendar')}}">Dashboard</a>
+                               href="{{route('dash.calendar')}}">DASHBOARD</a>
                         </li>
 
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link fw-500"
-                               href="{{route('dash.calendar')}}">Calendar</a>
+                               href="{{route('dash.calendar')}}">CALENDAR</a>
                         </li>
 
                         <li class="nav-item my-1 my-lg-0">

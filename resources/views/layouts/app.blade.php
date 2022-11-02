@@ -58,7 +58,8 @@
                 }
 
                 .dashboard-guest-menu li a{
-                    color: #dddddd !important;
+                    color: #606368 !important;
+                    font-size: 13px;
                 }
             }
 
