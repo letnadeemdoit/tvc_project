@@ -24,7 +24,7 @@ window.Lightbox2 = require('lightbox2');
 
 import * as Calendar from '@fullcalendar/core';
 
-import rrulePlugin from '@fullcalendar/rrule'
+// import rrulePlugin from '@fullcalendar/rrule'
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
@@ -34,7 +34,7 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 //
 window.FullCalendar = Calendar;
-window.rrulePlugin = rrulePlugin;
+// window.rrulePlugin = rrulePlugin;
 window.dayGridPlugin = dayGridPlugin;
 window.timeGridPlugin = timeGridPlugin;
 window.listPlugin = listPlugin;
