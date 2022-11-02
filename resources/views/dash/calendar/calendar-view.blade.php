@@ -195,7 +195,7 @@
                         timeGridPlugin,
                         listPlugin,
                         resourceTimelinePlugin,
-                        rrulePlugin
+                        // rrulePlugin
                         // bootstrap5Plugin
                     ],
                     themeSystem: 'bootstrap5',
