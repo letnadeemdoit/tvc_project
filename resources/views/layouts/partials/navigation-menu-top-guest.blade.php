@@ -114,8 +114,8 @@
                             {{--                            </li>--}}
 
                             <li class="nav-item my-1 my-lg-0">
-                                <a class="nav-link {{ request()->routeIs('dash.index') ? 'active' : '' }}"
-                                   href="{{route('dash.index')}}">ADMIN</a>
+                                <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"
+                                   href="{{route('dash.calendar')}}">ADMIN</a>
                             </li>
 
                             <li class="nav-item my-1 my-lg-0">
