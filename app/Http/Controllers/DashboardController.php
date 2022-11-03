@@ -27,6 +27,10 @@ class DashboardController extends Controller
 
     public function calendar(Request $request)
     {
+        if (\auth()->user()->is_guest){
+            return redirect(route('guest.guest-calendar'));
+        }
+
         abort_if(!is_any_subscribed(), 403);
         return view('dash.calendar.index', [
             'user' => $request->user(),
