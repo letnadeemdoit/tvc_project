@@ -47,15 +47,29 @@
                 display: none;
             }
 
+            .mt-62{
+                margin-top: 62px;
+            }
+            .h-40{
+                height: 40px !important;
+            }
             @media (max-width: 992px) {
                 .mt-50{
                     margin-top: 50px;
                 }
-            }
-            @media (min-width: 992px) {
-                .mt-62{
-                    margin-top: 62px;
+
+                .h-40{
+                    height: 20px !important;
                 }
+
+                .mt-62{
+                    margin-top: 55px;
+                }
+            }
+
+
+            @media (min-width: 992px) {
+
 
                 .dashboard-guest-menu li a{
                     color: #606368 !important;

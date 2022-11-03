@@ -99,6 +99,9 @@
     <script>
         document.addEventListener('refresh-photos-list-in-album', function () {
             window.location.reload();
+            // setTimeout(function(){
+            //     window.location.reload();
+            // }, 3000);
         })
     </script>
 

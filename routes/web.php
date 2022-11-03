@@ -32,6 +32,7 @@ Route::controller(GuestController::class)
         Route::get('/', 'welcome')->name('welcome');
         Route::get('/contact', 'contact')->name('contact');
         Route::post('/contact', 'contactMail')->name('contact.mail');
+        Route::get('/guest-calendar', 'calendar')->name('guest-calendar');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/terms-of-service', 'termsService')->name('terms-of-service');

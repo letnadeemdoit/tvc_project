@@ -1,98 +1,7 @@
-<header class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white"
-        style="">
-    <nav class="js-mega-menu navbar-nav-wrap w-100">
-        <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
-            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto mt-50 d-flex justify-content-center guest-menu dashboard-guest-menu"
-                style="z-index: 999 !important;">
-                @auth
-
-                    @if(!auth()->user()->is_super_admin )
-
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('dash.calendar')}}">DASHBOARD</a>
-                        </li>
-
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('dash.calendar')}}">CALENDAR</a>
-                        </li>
-
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
-                        </li>
-
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD ITEMS</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
-                        </li>
-
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.privacy-policy')}}">POLICIES</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.help')}}" tabindex="-1">HELP</a>
-                        </li>
-
-                    @endif
-
-                    @if(auth()->user()->is_super_admin )
-
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.welcome')}}">HOME</a>
-                        </li>
-
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.privacy-policy')}}">POLICIES</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
-                        </li>
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('guest.help')}}" tabindex="-1">HELP</a>
-                        </li>
-
-
-                    @endif
-
-                @endauth
-
-            </ul>
-        </div>
-    </nav>
-
-</header>
 
 <header
     id="header"
-    class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white mt-62"
+    class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white"
     x-data="{avatarUrl: '{{ auth()->user()->profile_photo_url }}'}"
     @refresh-avatar.window="avatarUrl = $event.detail.profile_photo_url"
 >
@@ -298,3 +207,105 @@
     </div>
 </header>
 
+<header class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white mt-62 h-40"
+>
+    <nav class="js-mega-menu navbar-nav-wrap w-100">
+        <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
+            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center guest-menu dashboard-guest-menu"
+                style="z-index: 999 !important;">
+                @auth
+
+                    @if(!auth()->user()->is_super_admin )
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('dash.calendar')}}">ADMIN</a>
+                        </li>
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('dash.calendar')}}">CALENDAR</a>
+                        </li>
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
+                        </li>
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD ITEMS</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
+                        </li>
+
+                        <div class="dropdown">
+                            <a class="navbar-dropdown-account-wrapper ms-3 ms-lg-0 pb-0 dropdown-focus" href="javascript:;"
+                               id="moreMenuList"
+                               data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
+                               data-bs-dropdown-animation>
+                                More<img src="{{asset('/images/images-home/arrow-down.svg')}}" class="img-fluid" width="20"/>
+                            </a>
+
+                            <ul class="dropdown-menu border-0" aria-labelledby="moreMenuList">
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="dropdown-item fw-500"
+                                       href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                                </li>
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="dropdown-item fw-500"
+                                       href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                                </li>
+                                <li class="nav-item my-1 my-lg-0">
+                                    <a class="dropdown-item fw-500"
+                                       href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    @endif
+
+                    @if(auth()->user()->is_super_admin )
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.welcome')}}">HOME</a>
+                        </li>
+
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                        </li>
+                        <li class="nav-item my-1 my-lg-0">
+                            <a class="nav-link fw-500"
+                               href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                        </li>
+
+
+                    @endif
+
+                @endauth
+
+            </ul>
+        </div>
+    </nav>
+
+</header>
