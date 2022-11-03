@@ -121,15 +121,15 @@ class CreateOrUpdateUserForm extends Component
         } else {
             $this->userCU->parent_id = $this->user->parent_id;
         }
-
         $this->userCU->fill([
-            'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
+//            'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
             'user_name' => $this->state['user_name'],
             'email' => $this->state['email'] ?? null,
             'role' => $this->state['role'],
             'first_name' => $this->state['first_name'],
             'last_name' => $this->state['last_name'],
-            'HouseId' => $this->user->HouseId,
+            'HouseId' => $this->state['house_id'],
+//            'HouseId' => $this->user->HouseId,
         ])->save();
 
         $createUser = $this->userCU;

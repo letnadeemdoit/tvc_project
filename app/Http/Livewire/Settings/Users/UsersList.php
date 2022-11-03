@@ -49,7 +49,7 @@ class UsersList extends Component
 
     public function render()
     {
-        $data = User::where('HouseId', $this->user->HouseId)
+        $data = User::whereIn('HouseId', [$this->user->HouseId, ...$this->user->additional_houses->pluck('HouseID')->toArray()])
             ->where('user_id', '<>', $this->user->user_id)
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {

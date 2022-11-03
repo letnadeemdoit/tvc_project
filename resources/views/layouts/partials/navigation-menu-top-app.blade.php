@@ -211,7 +211,7 @@
 >
     <nav class="js-mega-menu navbar-nav-wrap w-100">
         <div class="collapse navbar-collapse align-items-center" id="navbarTogglerDemo02">
-            <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex justify-content-center guest-menu dashboard-guest-menu"
+            <ul class="navbar-nav mb-2 mb-lg-0 shadow-sm-screen mx-auto d-flex justify-content-center guest-menu dashboard-guest-menu"
                 style="z-index: 999 !important;">
                 @auth
 
@@ -254,8 +254,9 @@
                         </li>
 
                         <div class="dropdown">
-                            <a class="navbar-dropdown-account-wrapper ms-3 ms-lg-0 pb-0 dropdown-focus" href="javascript:;"
+                            <a class="navbar-dropdown-account-wrapper fw-500 px-2 ms-lg-0 me-2 me-lg-1 pb-0 dropdown-focus" href="javascript:;"
                                id="moreMenuList"
+                               style="color: #677788"
                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
                                data-bs-dropdown-animation>
                                 More<img src="{{asset('/images/images-home/arrow-down.svg')}}" class="img-fluid" width="20"/>

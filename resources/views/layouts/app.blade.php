@@ -65,6 +65,8 @@
                 .mt-62{
                     margin-top: 55px;
                 }
+                .shadow-sm-screen{
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.20);                }
             }
 
 
@@ -75,6 +77,7 @@
                     color: #606368 !important;
                     font-size: 13px;
                 }
+
             }
 
 
