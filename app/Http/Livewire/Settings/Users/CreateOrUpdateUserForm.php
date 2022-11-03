@@ -64,6 +64,7 @@ class CreateOrUpdateUserForm extends Component
                 'first_name' => $userCU->first_name,
                 'last_name' => $userCU->last_name,
                 'email' => $userCU->email,
+                'house_id' => $userCU->HouseId,
                 'role' => $userCU->role,
             ];
         } else {
