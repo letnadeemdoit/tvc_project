@@ -18,7 +18,7 @@
             <div class="row mb-3">
                 <div class="form-group col-md-12">
                     <label class="form-label" for="user_name">Select House:</label>
-                    <select name="house_id" id="" wire:model.defer="state.house_id" class="form-control">
+                    <select name="house_id" id="" wire:model="state.house_id" class="form-control">
                         <option value="{{ current_house()->HouseID }}">{{ current_house()->HouseName }}</option>
                         @foreach(auth()->user()->additional_houses as $additionalHouse)
                             <option value="{{ $additionalHouse->HouseID }}">{{ $additionalHouse->HouseName }}</option>

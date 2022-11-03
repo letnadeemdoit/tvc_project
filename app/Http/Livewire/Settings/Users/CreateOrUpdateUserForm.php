@@ -32,9 +32,10 @@ class CreateOrUpdateUserForm extends Component
 
     public function render()
     {
+
         $isGuestAlreadyExists = User::where([
             'role' => User::ROLE_GUEST,
-            'HouseId' => $this->user->HouseId
+            'HouseId' => $this->state['house_id'] ?? $this->user->HouseId
         ])
             ->exists();
         return view('dash.settings.users.create-or-update-user-form', compact('isGuestAlreadyExists'));
