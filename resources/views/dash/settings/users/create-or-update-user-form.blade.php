@@ -21,7 +21,7 @@
                     <select name="house_id" id="" wire:model.defer="state.house_id" class="form-control">
                         <option value="{{ current_house()->HouseID }}">{{ current_house()->HouseName }}</option>
                         @foreach(auth()->user()->additional_houses as $additionalHouse)
-                            <option value="{{ $additionalHouse->HouseID }}">{{ $additionalHouse->HouseName }} {{ $additionalHouse->HouseID }}</option>
+                            <option value="{{ $additionalHouse->HouseID }}">{{ $additionalHouse->HouseName }}</option>
                         @endforeach
                     </select>
 
