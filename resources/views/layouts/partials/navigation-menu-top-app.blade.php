@@ -37,11 +37,9 @@
         </div>
 
         @if(auth()->user()->is_admin)
-            @if(auth()->user()->house->primary_house_name !== null and auth()->user()->house->primary_house_name !== '')
-            @else
-
+            @if(auth()->user()->primary_account == 1)
                 <div class="d-flex justify-content-start d-none d-lg-block">
-    {{--                <span class="fw-semi-bold text-primary">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}!</span>--}}
+                    {{--                <span class="fw-semi-bold text-primary">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}!</span>--}}
                     <form method="POST" action="{{ route('dash.switch-house') }}">
                     @method('PUT')
                     @csrf
@@ -54,7 +52,6 @@
                         </button>
                     </form>
                 </div>
-
             @endif
         @endif
 
@@ -334,9 +331,7 @@
         </div>
     </nav>
     @if(auth()->user()->is_admin)
-        @if(auth()->user()->house->primary_house_name !== null and auth()->user()->house->primary_house_name !== '')
-        @else
-
+        @if(auth()->user()->primary_account == 1)
             <div class="d-block d-lg-none">
                 {{--                <span class="fw-semi-bold text-primary">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}!</span>--}}
                 <form method="POST" class="text-center mx-auto" action="{{ route('dash.switch-house') }}">
