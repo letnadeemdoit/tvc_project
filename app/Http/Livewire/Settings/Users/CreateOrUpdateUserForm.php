@@ -90,9 +90,9 @@ class CreateOrUpdateUserForm extends Component
             'user_name' => [
                 'required',
                 $this->userCU && $this->userCU->user_name ? Rule::unique('users', 'user_name')->where(function ($query) {
-                    $query->where('HouseId', $this->user->HouseId);
+                    $query->where('HouseId', $this->state['house_id'] ?? $this->user->HouseId);
                 })->ignore($this->userCU->user_id, 'user_id') : Rule::unique('users', 'user_name')->where(function ($query) {
-                    $query->where('HouseId', $this->user->HouseId);
+                    $query->where('HouseId',$this->state['house_id'] ?? $this->user->HouseId);
                 })],
             'email' => [
                 Rule::requiredIf(isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST),

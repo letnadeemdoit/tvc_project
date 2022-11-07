@@ -59,7 +59,7 @@
                 }
 
                 .h-40{
-                    height: 20px !important;
+                    height: 50px !important;
                 }
 
                 .mt-62{

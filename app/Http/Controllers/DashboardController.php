@@ -155,6 +155,7 @@ class DashboardController extends Controller
 
     public function switchHouse(Request $request)
     {
+
         $user = User::where([
             'HouseId' => $request->house_id,
             'email' => auth()->user()->email,
