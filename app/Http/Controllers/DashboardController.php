@@ -156,16 +156,25 @@ class DashboardController extends Controller
     public function switchHouse(Request $request)
     {
 
+
         $user = User::where([
             'HouseId' => $request->house_id,
             'email' => auth()->user()->email,
         ])->first();
 
+//        $primaryAccount = \auth()->user()->primary_account;
+
         abort_if(!$user, 500, 'Sorry! unable to switch house something went wrong. Try again later.');
 
         auth()->loginUsingId($user->user_id);
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (auth()->loginUsingId($user->user_id)->primary_account == 0){
+            return redirect()->intended(RouteServiceProvider::HOME)->withCookie(cookie('switched_from_primary_account', 'yes', 5760));
+        }else{
+            return redirect()->intended(RouteServiceProvider::HOME)->cookie(cookie()->forget('switched_from_primary_account'));
+        }
+
+
     }
 
     public function manageBulletinBoard(Request $request)

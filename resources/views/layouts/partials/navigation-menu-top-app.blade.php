@@ -36,10 +36,10 @@
             <!-- End Navbar Vertical Toggle -->
         </div>
 
-        @if(auth()->user()->is_admin)
-            @if(auth()->user()->house->primary_house_name !== null and auth()->user()->house->primary_house_name !== '')
-            @else
 
+
+        @if(auth()->user()->is_admin)
+            @if(request()->cookie('switched_from_primary_account') == 'yes')
                 <div class="d-flex justify-content-start d-none d-lg-block">
     {{--                <span class="fw-semi-bold text-primary">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}!</span>--}}
                     <form method="POST" action="{{ route('dash.switch-house') }}">
@@ -333,9 +333,9 @@
             </ul>
         </div>
     </nav>
+
     @if(auth()->user()->is_admin)
-        @if(auth()->user()->house->primary_house_name !== null and auth()->user()->house->primary_house_name !== '')
-        @else
+        @if(request()->cookie('switched_from_primary_account') == 'yes')
 
             <div class="d-block d-lg-none">
                 {{--                <span class="fw-semi-bold text-primary">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}!</span>--}}
