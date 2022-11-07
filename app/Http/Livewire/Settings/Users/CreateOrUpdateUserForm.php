@@ -84,6 +84,7 @@ class CreateOrUpdateUserForm extends Component
             $this->state['user_name'] = 'Guest';
             $this->state['first_name'] = 'House';
             $this->state['last_name'] = 'Guest';
+            $this->state['email'] = 'guest@thevacationcalendar.com';
         }
 
         Validator::make($this->state, [
@@ -100,9 +101,9 @@ class CreateOrUpdateUserForm extends Component
                 'email',
                 'max:255',
                 $this->userCU && $this->userCU->user_name ? Rule::unique('users')->where(function ($query) {
-                    $query->where('HouseId', $this->user->HouseId);
+                    $query->where('HouseId', $this->state['house_id'] ?? $this->user->HouseId);
                 })->ignore($this->userCU->user_id, 'user_id') : Rule::unique('users')->where(function ($query) {
-                    $query->where('HouseId', $this->user->HouseId);
+                    $query->where('HouseId',$this->state['house_id'] ?? $this->user->HouseId);
                 })
             ],
             'role' => ['required'],
