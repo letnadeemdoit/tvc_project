@@ -49,7 +49,7 @@
                     <!-- Hidden Team ID -->
                         <input type="hidden" name="house_id" value="{{ primary_user()->HouseId }}">
                         <button type="submit" class="bg-transparent border-0 text-light-grey fw-500 fs-12">
-                            You are login as a <span class="fw-600 text-primary">{{ auth()->user()->house->HouseName }}</span> house
+                            You are currently in <span class="fw-600 text-primary">{{ auth()->user()->house->HouseName }}</span> house
                             <Span class="text-decoration-underline text-primary">Click to go Primary house</Span>
                         </button>
                     </form>
@@ -346,7 +346,7 @@
                 <!-- Hidden Team ID -->
                     <input type="hidden" name="house_id" value="{{ primary_user()->HouseId }}">
                     <button type="submit" class="bg-transparent border-0 text-light-grey fw-500 fs-11">
-                        You are login as a <span class="fw-600 text-primary">{{ auth()->user()->house->HouseName }}</span> house
+                        You are currently in  <span class="fw-600 text-primary">{{ auth()->user()->house->HouseName }}</span> house
                         <Span class="text-decoration-underline text-primary">Click to go Primary house</Span>
                     </button>
                 </form>
