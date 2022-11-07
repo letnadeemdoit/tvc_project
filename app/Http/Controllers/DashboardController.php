@@ -165,7 +165,7 @@ class DashboardController extends Controller
         auth()->loginUsingId($user->user_id);
 
         if (auth()->loginUsingId($user->user_id)->primary_account == 0){
-            return redirect()->intended(RouteServiceProvider::HOME)->withCookie(cookie('switched_from_primary_account', 'yes', 5760));
+            return redirect()->intended(RouteServiceProvider::HOME)->withCookie(cookie('switched_from_primary_account', 'yes', 120));
         }else{
             return redirect()->intended(RouteServiceProvider::HOME)->cookie(cookie()->forget('switched_from_primary_account'));
         }
