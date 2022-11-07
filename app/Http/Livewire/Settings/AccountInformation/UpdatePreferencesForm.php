@@ -39,8 +39,6 @@ class UpdatePreferencesForm extends Component
                 $user->save();
             }
         } else {
-
-            dd($this->user);
             $this->user->ShowOldSave = $this->state['show_additional_schedule_vacations_screen'] ?? null;
             $this->user->AdminOwner = $this->state['allow_administrator_to_have_owner_permissions'] ?? null;
             $this->user->save();
