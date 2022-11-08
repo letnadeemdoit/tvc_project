@@ -16,7 +16,7 @@
               x-data="{role: '{{ $state['role'] ?? \App\Models\User::ROLE_OWNER }}'}">
             {{--            <x-jet-validation-errors/>--}}
             <div class="row mb-3">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 mb-3">
                     <label class="form-label" for="user_name">Select House:</label>
                     <select name="house_id" id="" wire:model="state.house_id" class="form-control">
                         <option value="{{ current_house()->HouseID }}">{{ current_house()->HouseName }}</option>
@@ -25,22 +25,6 @@
                         @endforeach
                     </select>
 
-                    @error('user_name')
-                    <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="user_name">Username:</label>
-                    <input
-                        type="text"
-                        class="form-control @error('user_name') is-invalid @enderror"
-                        name="user_name"
-                        placeholder="User Name"
-                        id="user_name"
-                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
-                        wire:model.defer="state.user_name"
-                    />
                     @error('user_name')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -71,6 +55,24 @@
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+                <div class="form-group col-md-6">
+                    <label class="form-label" for="user_name">Username:</label>
+                    <input
+                        type="text"
+                        class="form-control @error('user_name') is-invalid @enderror"
+                        name="user_name"
+                        placeholder="User Name"
+                        id="user_name"
+                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                        wire:model.defer="state.user_name"
+                    />
+                    @error('user_name')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
             </div>
             <div class="row mb-3">
                 <div class="form-group col-md-6">
