@@ -295,12 +295,6 @@
                                             class="bi bi-calendar-week me-2"></i>Calendar</a>
                                 @endif
 
-                                @if(auth()->user()->is_guest )
-                                    <a href="{{route('guest.guest-calendar')}}" class="dropdown-item"> <i
-                                            class="bi bi-calendar-week me-2"></i>Calendar</a>
-                                @endif
-
-
                                 @if(!auth()->user()->is_guest)
                                     <a href="{{route('dash.settings.')}}" class="dropdown-item"><i
                                             class="bi bi-gear me-2"></i>Settings</a>
