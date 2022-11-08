@@ -247,7 +247,7 @@
 
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link fw-500"
-                               href="{{route('dash.calendar')}}">CALENDAR</a>
+                               href="{{route('guest.guest-calendar')}}">CALENDAR</a>
                         </li>
 
                         <li class="nav-item my-1 my-lg-0">
