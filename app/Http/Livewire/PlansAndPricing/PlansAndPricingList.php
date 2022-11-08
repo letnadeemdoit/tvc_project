@@ -17,6 +17,7 @@ class PlansAndPricingList extends Component
         $this->subscription = Subscription::where([
             'user_id' => $this->user->user_id,
             'house_id' => $this->user->HouseId,
+            ['status', '<>', 'CANCELLED']
         ])->latest()->first();
     }
 

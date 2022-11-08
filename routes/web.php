@@ -117,6 +117,7 @@ Route::middleware([
     'auth',
     config('jetstream.auth_session'),
     'verified',
+    'check-subscription-status',
     'check.primary-user.subscribed-any-plan'
 ])
     ->name('dash.')
