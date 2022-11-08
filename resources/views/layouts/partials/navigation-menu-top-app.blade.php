@@ -1,4 +1,3 @@
-
 <header
     id="header"
     class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white"
@@ -36,6 +35,29 @@
 
             <!-- End Navbar Vertical Toggle -->
         </div>
+
+
+
+        @if(auth()->user()->is_admin)
+            @if(request()->cookie('switched_from_primary_account') == 'yes')
+                <div class="d-flex justify-content-start d-none d-lg-block">
+    {{--                <span class="fw-semi-bold text-primary">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}!</span>--}}
+                    <form method="POST" action="{{ route('dash.switch-house') }}">
+                    @method('PUT')
+                    @csrf
+
+                    <!-- Hidden Team ID -->
+                        <input type="hidden" name="house_id" value="{{ primary_user()->HouseId }}">
+                        <button type="submit" class="bg-transparent border-0 text-light-grey fw-500 fs-12">
+                            You are currently in <span class="fw-600 text-primary">{{ auth()->user()->house->HouseName }}</span> house
+                            <Span class="text-decoration-underline text-primary">Click to go Primary house</Span>
+                        </button>
+                    </form>
+                </div>
+
+            @endif
+        @endif
+
 
         <div class="navbar-nav-wrap-content-end">
             <!-- Navbar -->
@@ -77,7 +99,8 @@
 
                             <div
                                 class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-account"
-                                aria-labelledby="accountNavbarDropdown" style="width: 16rem;">
+                                aria-labelledby="accountNavbarDropdown"
+                                style="width: 16rem;margin-top: 53px !important;">
                                 <div class="dropdown-item-text">
                                     <div class="d-flex align-items-center">
                                         <div class="avatar avatar-sm avatar-circle">
@@ -254,12 +277,14 @@
                         </li>
 
                         <div class="dropdown">
-                            <a class="navbar-dropdown-account-wrapper fw-500 px-2 ms-lg-0 me-2 me-lg-1 pb-0 dropdown-focus" href="javascript:;"
+                            <a class="navbar-dropdown-account-wrapper fw-500 px-2 ms-lg-0 me-2 me-lg-1 pb-0 dropdown-focus"
+                               href="javascript:;"
                                id="moreMenuList"
                                style="color: #677788"
                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
                                data-bs-dropdown-animation>
-                                More<img src="{{asset('/images/images-home/arrow-down.svg')}}" class="img-fluid" width="20"/>
+                                More<img src="{{asset('/images/images-home/arrow-down.svg')}}" class="img-fluid"
+                                         width="20"/>
                             </a>
 
                             <ul class="dropdown-menu border-0" aria-labelledby="moreMenuList">
@@ -309,4 +334,27 @@
         </div>
     </nav>
 
+    @if(auth()->user()->is_admin)
+        @if(request()->cookie('switched_from_primary_account') == 'yes')
+
+            <div class="d-block d-lg-none">
+                {{--                <span class="fw-semi-bold text-primary">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}!</span>--}}
+                <form method="POST" class="text-center mx-auto" action="{{ route('dash.switch-house') }}">
+                @method('PUT')
+                @csrf
+
+                <!-- Hidden Team ID -->
+                    <input type="hidden" name="house_id" value="{{ primary_user()->HouseId }}">
+                    <button type="submit" class="bg-transparent border-0 text-light-grey fw-500 fs-11">
+                        You are currently in  <span class="fw-600 text-primary">{{ auth()->user()->house->HouseName }}</span> house
+                        <Span class="text-decoration-underline text-primary">Click to go Primary house</Span>
+                    </button>
+                </form>
+            </div>
+
+        @endif
+    @endif
+
 </header>
+
+

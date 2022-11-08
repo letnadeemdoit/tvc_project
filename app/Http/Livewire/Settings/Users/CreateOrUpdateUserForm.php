@@ -32,9 +32,10 @@ class CreateOrUpdateUserForm extends Component
 
     public function render()
     {
+
         $isGuestAlreadyExists = User::where([
             'role' => User::ROLE_GUEST,
-            'HouseId' => $this->user->HouseId
+            'HouseId' => $this->state['house_id'] ?? $this->user->HouseId
         ])
             ->exists();
         return view('dash.settings.users.create-or-update-user-form', compact('isGuestAlreadyExists'));
@@ -83,15 +84,16 @@ class CreateOrUpdateUserForm extends Component
             $this->state['user_name'] = 'Guest';
             $this->state['first_name'] = 'House';
             $this->state['last_name'] = 'Guest';
+            $this->state['email'] = 'guest@thevacationcalendar.com';
         }
 
         Validator::make($this->state, [
             'user_name' => [
                 'required',
                 $this->userCU && $this->userCU->user_name ? Rule::unique('users', 'user_name')->where(function ($query) {
-                    $query->where('HouseId', $this->user->HouseId);
+                    $query->where('HouseId', $this->state['house_id'] ?? $this->user->HouseId);
                 })->ignore($this->userCU->user_id, 'user_id') : Rule::unique('users', 'user_name')->where(function ($query) {
-                    $query->where('HouseId', $this->user->HouseId);
+                    $query->where('HouseId',$this->state['house_id'] ?? $this->user->HouseId);
                 })],
             'email' => [
                 Rule::requiredIf(isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST),
@@ -99,9 +101,9 @@ class CreateOrUpdateUserForm extends Component
                 'email',
                 'max:255',
                 $this->userCU && $this->userCU->user_name ? Rule::unique('users')->where(function ($query) {
-                    $query->where('HouseId', $this->user->HouseId);
+                    $query->where('HouseId', $this->state['house_id'] ?? $this->user->HouseId);
                 })->ignore($this->userCU->user_id, 'user_id') : Rule::unique('users')->where(function ($query) {
-                    $query->where('HouseId', $this->user->HouseId);
+                    $query->where('HouseId',$this->state['house_id'] ?? $this->user->HouseId);
                 })
             ],
             'role' => ['required'],
@@ -129,7 +131,7 @@ class CreateOrUpdateUserForm extends Component
             'role' => $this->state['role'],
             'first_name' => $this->state['first_name'],
             'last_name' => $this->state['last_name'],
-            'HouseId' => $this->state['house_id'],
+            'HouseId' => $this->state['house_id'] ?? $this->user->HouseId,
 //            'HouseId' => $this->user->HouseId,
         ])->save();
 
