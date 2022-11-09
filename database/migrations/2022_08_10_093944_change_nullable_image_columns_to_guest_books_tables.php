@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('guest_books', function (Blueprint $table) {
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('guest_books', function (Blueprint $table) {
-            $table->dropColumn('image');
+            $table->string('image')->change();
         });
     }
 };
