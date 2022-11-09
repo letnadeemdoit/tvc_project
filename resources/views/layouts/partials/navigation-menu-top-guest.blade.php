@@ -65,7 +65,7 @@
 
 <header id="header" class="navbar navbar-expand-lg navbar-bordered bg-white ">
     <div class="container">
-        <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center justify-content-lg-end py-2 login-nav">
+        <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center justify-content-lg-end py-1 login-nav">
             <a class="navbar-brand" href="{{route('guest.welcome')}}">
                 <img class="navbar-brand-logo"
                      src="{{ asset('logo/logo.svg') }}"
@@ -102,16 +102,25 @@
                                href="{{route('guest.welcome')}}">HOME</a>
                         </li>
 
-
                     @endauth
 
                     @auth
 
                         @if(!auth()->user()->is_super_admin )
 
+                            {{--                            <li class="nav-item my-1 my-lg-0">--}}
+                            {{--                                <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"--}}
+                            {{--                                   href="{{route('dash.calendar')}}">Admin</a>--}}
+                            {{--                            </li>--}}
+
                             <li class="nav-item my-1 my-lg-0">
                                 <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"
-                                   href="{{route('dash.calendar')}}">CALENDAR</a>
+                                   href="{{route('dash.calendar')}}">ADMIN</a>
+                            </li>
+
+                            <li class="nav-item my-1 my-lg-0">
+                                <a class="nav-link {{ request()->routeIs('guest.guest-calendar') ? 'active' : '' }}"
+                                   href="{{route('guest.guest-calendar')}}">CALENDAR</a>
                             </li>
 
                             <li class="nav-item my-1 my-lg-0">
@@ -135,10 +144,39 @@
                                 <a class="nav-link {{ request()->routeIs('guest.house-items.index') ? 'active' : '' }}"
                                    href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD</a>
                             </li>
-                            <li class="nav-item my-1 my-lg-0">
-                                <a class="nav-link {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
-                                   href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
-                            </li>
+
+                            <div class="dropdown">
+
+                                <a class="navbar-dropdown-account-wrapper ms-3 ms-lg-0 nav-link pb-0 dropdown-focus"
+                                   href="javascript:;"
+                                   id="moreMenuList"
+                                   style="font-size: 15px; color: #606368 !important;"
+                                   data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
+                                   data-bs-dropdown-animation>
+                                    More<img src="{{asset('/images/images-home/arrow-down.svg')}}" class="img-fluid"
+                                             width="20"/>
+                                </a>
+
+                                <ul class="dropdown-menu border-0" aria-labelledby="moreMenuList">
+                                    <li class="nav-item my-1 my-lg-0">
+                                        <a class="dropdown-item fw-500 {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
+                                           href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
+                                    </li>
+
+                                    <li class="nav-item my-1 my-lg-0">
+                                        <a class="dropdown-item fw-500"
+                                           href="{{route('guest.privacy-policy')}}">POLICIES</a>
+                                    </li>
+                                    <li class="nav-item my-1 my-lg-0">
+                                        <a class="dropdown-item fw-500"
+                                           href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
+                                    </li>
+                                    <li class="nav-item my-1 my-lg-0">
+                                        <a class="dropdown-item fw-500"
+                                           href="{{route('guest.help')}}" tabindex="-1">HELP</a>
+                                    </li>
+                                </ul>
+                            </div>
 
                         @endif
 
@@ -252,10 +290,11 @@
                                 {{--                                </div>--}}
                                 <div class="dropdown-divider d-none"></div>
 
-                                @if(!auth()->user()->is_super_admin )
+                                @if(!auth()->user()->is_super_admin && !auth()->user()->is_guest )
                                     <a href="{{route('dash.calendar')}}" class="dropdown-item"> <i
                                             class="bi bi-calendar-week me-2"></i>Calendar</a>
                                 @endif
+
                                 @if(!auth()->user()->is_guest)
                                     <a href="{{route('dash.settings.')}}" class="dropdown-item"><i
                                             class="bi bi-gear me-2"></i>Settings</a>

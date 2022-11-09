@@ -1,0 +1,65 @@
+<x-guest-layout>
+
+    @push('stylesheets')
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    @endpush
+
+    @include('partials.sub-page-hero-section', ['title' => 'Calendar'])
+
+
+    <div class="container py-5">
+
+        @if($user->is_owner)
+            <div class="text-end mb-3">
+                <button
+                    x-data="{copied: false}"
+                    class="btn btn-outline-secondary mb-2 mb-lg-0"
+                    @click.prevent="() => {
+                    $clipboard('{{ $iCalUrl }}');
+                    copied = true;
+                    setTimeout(() => {
+                        copied = false;
+                    }, 2000);
+
+                }"
+                    x-bind:disabled="copied"
+                >
+                    <i class="bi-clipboard me-1" x-show="!copied"></i>
+                    <i class="bi-clipboard-check-fill me-1" style="display: none" x-show="copied"></i>
+                    Add to your Calendar
+                </button>
+                <a
+                    x-data
+                    class="btn btn-primary mb-2 mb-lg-0"
+                    href="javascript:;"
+                    @click.prevent="() => {
+                    let parsed = queryString.parse(window.location.search);
+                    window.livewire.emit('showVacationScheduleModal', true, null, null, parsed.owner, parsed.properties)
+                }"
+                >
+                    <i class="bi-clock me-1"></i> Schedule Vacation
+                </a>
+            </div>
+        @endif
+
+        <div class="card shadow-none">
+            <div class="card-body">
+                <livewire:calendar.calendar-view :user="$user"/>
+                <div>
+                    <livewire:settings.vacations.schedule-vacation-form :user="$user" wire:key="vsvf{{time()}}"/>
+                </div>
+                <div>
+                    <livewire:settings.vacations.request-to-join-vacation-form :user="$user" wire:key="rtjvf{{time()}}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @push('scripts')
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript"
+                src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    @endpush
+
+
+</x-guest-layout>

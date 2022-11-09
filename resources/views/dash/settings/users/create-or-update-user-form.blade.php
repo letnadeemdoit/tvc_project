@@ -12,24 +12,24 @@
                 @click.click="hide()"
             ></button>
         </div>
-        <form wire:submit.prevent="saveUserCU" class="modal-body" x-data="{role: '{{ $state['role'] ?? \App\Models\User::ROLE_OWNER }}'}">
-{{--            <x-jet-validation-errors/>--}}
+        <form wire:submit.prevent="saveUserCU" class="modal-body"
+              x-data="{role: '{{ $state['role'] ?? \App\Models\User::ROLE_OWNER }}'}">
+            {{--            <x-jet-validation-errors/>--}}
             <div class="row mb-3">
-                <div class="form-group col-md-6">
-                    <label class="form-label" for="user_name">Username:</label>
-                    <input
-                        type="text"
-                        class="form-control @error('user_name') is-invalid @enderror"
-                        name="user_name"
-                        placeholder="User Name"
-                        id="user_name"
-                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
-                        wire:model.defer="state.user_name"
-                    />
+                <div class="form-group col-md-12 mb-3">
+                    <label class="form-label" for="user_name">Select House:</label>
+                    <select name="house_id" id="" wire:model="state.house_id" class="form-control">
+                        <option value="{{ current_house()->HouseID }}">{{ current_house()->HouseName }}</option>
+                        @foreach(auth()->user()->additional_houses as $additionalHouse)
+                            <option value="{{ $additionalHouse->HouseID }}">{{ $additionalHouse->HouseName }}</option>
+                        @endforeach
+                    </select>
+
                     @error('user_name')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <div class="form-group col-md-6">
                     <label class="form-label" for="role">Role:</label>
                     <select
@@ -55,6 +55,24 @@
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+                <div class="form-group col-md-6">
+                    <label class="form-label" for="user_name">Username:</label>
+                    <input
+                        type="text"
+                        class="form-control @error('user_name') is-invalid @enderror"
+                        name="user_name"
+                        placeholder="User Name"
+                        id="user_name"
+                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                        wire:model.defer="state.user_name"
+                    />
+                    @error('user_name')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
             </div>
             <div class="row mb-3">
                 <div class="form-group col-md-6">
@@ -157,11 +175,11 @@
             </div>
 
             @if((isset($state['role']) && $state['role'] !== \App\Models\User::ROLE_GUEST) && ($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST))
-            <div class="row mb-3">
-                <label for="" class="form-label">Send Email:</label>
-                <div class="col-12 col-lg-6  mb-3 mb-sm-0">
-                    <!-- Form Radio -->
-                    <label class="form-control" for="status">
+                <div class="row mb-3">
+                    <label for="" class="form-label">Send Email:</label>
+                    <div class="col-12 col-lg-6  mb-3 mb-sm-0">
+                        <!-- Form Radio -->
+                        <label class="form-control" for="status">
                                   <span class="form-check">
                                     <input type="radio"
                                            wire:model.defer="state.send_email"
@@ -173,13 +191,13 @@
                                     >
                                     <span class="form-check-label">Yes</span>
                                   </span>
-                    </label>
-                    <!-- End Form Radio -->
-                </div>
+                        </label>
+                        <!-- End Form Radio -->
+                    </div>
 
-                <div class="col-12 col-lg-6  mb-3 mb-sm-0">
-                    <!-- Form Radio -->
-                    <label class="form-control" for="status1">
+                    <div class="col-12 col-lg-6  mb-3 mb-sm-0">
+                        <!-- Form Radio -->
+                        <label class="form-control" for="status1">
                                   <span class="form-check">
                                     <input type="radio"
                                            value="0"
@@ -188,10 +206,10 @@
                                            name="send_email" id="status1">
                                     <span class="form-check-label">No</span>
                                   </span>
-                    </label>
-                    <!-- End Form Radio -->
+                        </label>
+                        <!-- End Form Radio -->
+                    </div>
                 </div>
-            </div>
             @endif
 
             <div class="d-flex">

@@ -52,7 +52,7 @@
                         background-position: 50%;
                         background-repeat: no-repeat;
                         background-size: cover;
-                        height: 435px;
+                        height: 180px;
                         background-color: #000000;
                     }
 
@@ -64,7 +64,7 @@
                         background-position: 50%;
                         background-repeat: no-repeat;
                         background-size: cover;
-                        height: 435px;
+                        height: 180px;
                     }
                 </style>
             @endif
@@ -75,7 +75,7 @@
                     background-position: 50%;
                     background-repeat: no-repeat;
                     background-size: cover;
-                    height: 435px;
+                    height: 180px;
                 }
             </style>
         @endauth
@@ -95,4 +95,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
     @stack('scripts')
+
+    <script>
+        document.addEventListener('refresh-photos-list-in-album', function () {
+            window.location.reload();
+            // setTimeout(function(){
+            //     window.location.reload();
+            // }, 3000);
+        })
+    </script>
+
 </html>

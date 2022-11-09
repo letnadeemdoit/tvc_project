@@ -129,11 +129,13 @@
     @include('partials.sub-page-hero-section', ['title' => 'Guest Book'])
 
     <section class=" bg-light">
-        <div class="section-padding">
-            <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
-                <h1 class="text-primary font-vintage mb-0">Guest Book</h1>
-            </div>
-            <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>
+        <div class=" pt-5
+{{--        section-padding--}}
+">
+{{--            <div class="bg-guest shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">--}}
+{{--                <h1 class="text-primary font-vintage mb-0">Guest Book</h1>--}}
+{{--            </div>--}}
+{{--            <h1 class="pt-2 text-center poppins-bold">Read guest reviews here</h1>--}}
 
             @if(isset($data) && count($data) > 0)
                 <div class="container text-end">

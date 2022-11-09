@@ -32,25 +32,25 @@
     ])
 
 
-    <section class=" bg-light" style="padding-bottom: 100px !important;">
-        <div class="section-padding">
-            <div class="bg-{{$title}} shadow-1-strong rounded text-center d-flex justify-content-center align-items-center">
-                <h1 class="text-primary font-vintage mb-0">{{$title}} list</h1>
-            </div>
+    <section class=" bg-light pt-5" style="padding-bottom: 100px !important;">
+{{--        <div class="section-padding">--}}
+{{--            <div class="bg-{{$title}} shadow-1-strong rounded text-center d-flex justify-content-center align-items-center">--}}
+{{--                <h1 class="text-primary font-vintage mb-0">{{$title}} list</h1>--}}
+{{--            </div>--}}
 
 
 
-            @if($title == 'food')
-                <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available Food in House</h1>
-            @endif
+{{--            @if($title == 'food')--}}
+{{--                <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available Food in House</h1>--}}
+{{--            @endif--}}
 
-            @if($title == 'shopping')
-                <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available Shopping List</h1>
-            @endif
+{{--            @if($title == 'shopping')--}}
+{{--                <h1 class="pt-2 text-center poppins-bold text-capitalize">View Available Shopping List</h1>--}}
+{{--            @endif--}}
 
 
-        </div>
-        <div class="container mt-2  bg-light-primary p-3 p-md-5 rounded-2 house-card-border">
+{{--        </div>--}}
+        <div class="container bg-light-primary p-3 p-md-5 rounded-2 house-card-border">
             <div class="d-block d-sm-flex justify-content-between align-items-center">
                 <div class="">
 

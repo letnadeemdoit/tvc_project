@@ -101,6 +101,17 @@ class GuestController extends Controller
     {
         return view('help');
     }
+    /**
+     * Calendar
+     * @return mixed
+     */
+    public function calendar(Request $request)
+    {
+        return view('calendar',[
+            'user' => $request->user(),
+            'iCalUrl' => $request->user()->iCalUrl(),
+        ]);
+    }
 
     /**
      * Blog

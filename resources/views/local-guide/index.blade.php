@@ -1,4 +1,3 @@
-
 <x-guest-layout>
     @push('stylesheets')
 
@@ -14,19 +13,20 @@
     @include('partials.sub-page-hero-section', ['title' => 'Local Guide'])
 
     <section class="bg-lightGrey">
-        <div class="section-padding">
-        <div class="bg-guide shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center local-guide-tabs">
-            <h1 class="text-primary font-vintage mb-0">Local Guide</h1>
-        </div>
-        <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>
-        </div>
-        <livewire:local-guide.local-guide-list :user="$user" />
+{{--        <div class="section-padding">--}}
+{{--            <div--}}
+{{--                class="bg-guide shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center local-guide-tabs">--}}
+{{--                <h1 class="text-primary font-vintage mb-0">Local Guide</h1>--}}
+{{--            </div>--}}
+{{--            <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>--}}
+{{--        </div>--}}
+        <livewire:local-guide.local-guide-list :user="$user"/>
     </section>
 
     @push('scripts')
         <script>
-            $(document).ready(function(){
-                $('nav.navecation ul li a').click(function(){
+            $(document).ready(function () {
+                $('nav.navecation ul li a').click(function () {
                     $('li a').removeClass("active");
                     $(this).addClass("active");
                 });
@@ -35,30 +35,30 @@
 
 
 
-            <script>
-                $(document).ready(function(){
+        <script>
+            $(document).ready(function () {
 
-                    var list = $(".item");
-                    var numToShow = 6;
-                    var button = $("#next");
-                    var numInList = list.length;
-                    list.hide();
-                    if (numInList > numToShow) {
-                        button.show();
+                var list = $(".item");
+                var numToShow = 6;
+                var button = $("#next");
+                var numInList = list.length;
+                list.hide();
+                if (numInList > numToShow) {
+                    button.show();
+                }
+                list.slice(0, numToShow).show();
+
+                button.click(function () {
+                    var showing = list.filter(':visible').length;
+                    list.slice(showing - 1, showing + numToShow).fadeIn();
+                    var nowShowing = list.filter(':visible').length;
+                    if (nowShowing >= numInList) {
+                        button.hide();
                     }
-                    list.slice(0, numToShow).show();
-
-                    button.click(function(){
-                        var showing = list.filter(':visible').length;
-                        list.slice(showing - 1, showing + numToShow).fadeIn();
-                        var nowShowing = list.filter(':visible').length;
-                        if (nowShowing >= numInList) {
-                            button.hide();
-                        }
-                    });
-
                 });
-            </script>
+
+            });
+        </script>
 
 
     @endpush()

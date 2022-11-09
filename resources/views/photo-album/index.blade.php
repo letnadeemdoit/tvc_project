@@ -105,14 +105,17 @@
     @include('partials.sub-page-hero-section', ['title' => 'Photo Album'])
 
 
-    <div class="section-padding">
-        <div class="bg-album shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">
-            <h1 class="text-primary font-vintage mb-0">Photo Album</h1>
-        </div>
-        <h1 class="pt-2 text-center poppins-bold" id="page-title">Share discoveries with community</h1>
+{{--    <div class="section-padding">--}}
+{{--        <div class="bg-album shadow-1-strong rounded text-center  d-flex justify-content-center align-items-center">--}}
+{{--            <h1 class="text-primary font-vintage mb-0">Photo Album</h1>--}}
+{{--        </div>--}}
+{{--        <h1 class="pt-2 text-center poppins-bold" id="page-title">Share discoveries with community</h1>--}}
 
-    </div>
+{{--    </div>--}}
         <livewire:photo-album.photo-album-list :user="$user" />
+
+        <livewire:houses.photo-albums.photos.create-or-update-photo :user="$user" :album="$album"/>
+
     @push('scripts')
     @endpush
 </x-guest-layout>

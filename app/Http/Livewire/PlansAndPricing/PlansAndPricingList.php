@@ -5,6 +5,7 @@ namespace App\Http\Livewire\PlansAndPricing;
 use App\Models\Audit\User;
 use App\Models\Subscription;
 use Livewire\Component;
+use Srmklive\PayPal\Facades\PayPal;
 
 class PlansAndPricingList extends Component
 {
@@ -17,6 +18,7 @@ class PlansAndPricingList extends Component
         $this->subscription = Subscription::where([
             'user_id' => $this->user->user_id,
             'house_id' => $this->user->HouseId,
+            ['status', '<>', 'CANCELLED']
         ])->latest()->first();
     }
 
@@ -25,7 +27,8 @@ class PlansAndPricingList extends Component
         return view('dash.plans-and-pricing.plans-and-pricing-list');
     }
 
-    public function getApprovalPendingSubscriptionProperty() {
+    public function getApprovalPendingSubscriptionProperty()
+    {
 
     }
 

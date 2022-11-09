@@ -1,5 +1,5 @@
 <div class="bg-map" style="background-position: center -19% !important;">
-<div class="container pt-55">
+<div class="container pt-5">
     <div class="category-cards mb-3 d-flex scrollbar pt-0 pt-md-5" style="max-width: 100%" id="scroller" >
                 @if(count($categories) >0)
                     <ul class="nav nav-tabs border-bottom-0 blog-tabs">

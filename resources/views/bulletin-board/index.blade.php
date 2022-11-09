@@ -140,14 +140,16 @@
 
         @include('partials.sub-page-hero-section', ['title' => 'Bulletin Board'])
     <section class="bg-lightGrey">
-        <div class="container  section-padding">
-            <div class="row text-center">
-                <div
-                    class="features-img shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">
-                    <h1 class="text-primary font-vintage mb-0">Bulletin Board</h1>
-                </div>
-                <h1 class="pt-2 poppins-bold">Choose your Category</h1>
-            </div>
+        <div class="container
+{{--        section-padding--}}
+">
+{{--            <div class="row text-center">--}}
+{{--                <div--}}
+{{--                    class="features-img shadow-1-strong rounded  text-white d-flex justify-content-center align-items-center">--}}
+{{--                    <h1 class="text-primary font-vintage mb-0">Bulletin Board</h1>--}}
+{{--                </div>--}}
+{{--                <h1 class="pt-2 poppins-bold">Choose your Category</h1>--}}
+{{--            </div>--}}
             <livewire:bulletin-board.board-items-list :user="$user" />
         </div>
     </section>

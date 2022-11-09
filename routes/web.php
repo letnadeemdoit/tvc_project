@@ -32,6 +32,7 @@ Route::controller(GuestController::class)
         Route::get('/', 'welcome')->name('welcome');
         Route::get('/contact', 'contact')->name('contact');
         Route::post('/contact', 'contactMail')->name('contact.mail');
+        Route::get('/guest-calendar', 'calendar')->name('guest-calendar');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/terms-of-service', 'termsService')->name('terms-of-service');
@@ -116,6 +117,7 @@ Route::middleware([
     'auth',
     config('jetstream.auth_session'),
     'verified',
+    'check-subscription-status',
     'check.primary-user.subscribed-any-plan'
 ])
     ->name('dash.')
@@ -166,6 +168,7 @@ Route::middleware([
                 Route::get('/{plan}/{billed}/processing', 'process')->name('process');
                 Route::get('/{plan}/{billed}/succeeded', 'succeeded')->name('succeeded');
                 Route::get('/{plan}/{billed}/canceled', 'canceled')->name('canceled');
+                Route::get('/{plan}/{billed}/revise', 'reviseSubscription')->name('revise');
 //                Route::post('/ipn', 'ipn')->name('ipn');
             });
     });
