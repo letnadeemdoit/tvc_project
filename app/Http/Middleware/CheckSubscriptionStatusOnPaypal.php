@@ -24,29 +24,25 @@ class CheckSubscriptionStatusOnPaypal
             $paypal->getAccessToken();
             $user_id = auth()->user()->user_id;
 
-            $current_subscription = Subscription::where('user_id', $user_id)
-                ->whereIn('status', ['APPROVAL_PENDING', 'ACTIVE', 'REVISING'])
-                ->latest()
-                ->first();
+            $userSubscription = Subscription::where('user_id', $user_id)->latest()->first();
 
-            if ($current_subscription) {
-                $paypalSubscription = $paypal->showSubscriptionDetails($current_subscription->subscription_id);
-                Subscription::where('user_id', $user_id)->where('subscription_id', $current_subscription->subscription_id)->latest()->update([
+            if ($userSubscription && $userSubscription->status === 'APPROVAL_PENDING') {
+                $paypalSubscription = $paypal->showSubscriptionDetails($userSubscription->subscription_id);
+                $userSubscription->update([
+                    'status' => $paypalSubscription['status']
+                ]);
+            } elseif($userSubscription && $userSubscription->status === 'REVISING') {
+                $paypalSubscription = $paypal->showSubscriptionDetails($userSubscription->subscription_id);
+                $userSubscription->update([
                     'status' => $paypalSubscription['status']
                 ]);
 
-                $keep = Subscription::where('user_id', $user_id)
-                    ->where('subscription_id', $current_subscription->subscription_id)
-                    ->where('status', 'ACTIVE')
-                    ->latest()
-                    ->first();
-
-                Subscription::where('user_id', $user_id)
-                    ->where('subscription_id', $current_subscription->subscription_id)
-                    ->whereNot('id', $keep->id)
-                    ->update([
-                        'status' => 'INACTIVE'
-                    ]);
+                Subscription::where([
+                    'user_id' => $userSubscription->user_id,
+                    'subscription_id' => $userSubscription->subscription_id,
+                    ['id', '<>', $userSubscription->id]
+                ])
+                    ->update(['status' => 'INACTIVE']);
             }
 
         }
