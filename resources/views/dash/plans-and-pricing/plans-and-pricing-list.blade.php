@@ -57,12 +57,14 @@
                                 </a>
                             @endif
                         @else
+                            @if($this->subscription->period === 'monthly')
                             <a
                                 href="{{ route('dash.paypal.revise', ['basic', 'monthly']) }}"
                                 class="form-check-select-stretched-btn btn btn-primary"
                             >
                                 Downgrade
                             </a>
+                            @endif
                         @endif
                     </div>
 
@@ -366,12 +368,14 @@
                                 >Unsubscribe</a>
                             @endif
                         @else
+                            @if($this->subscription->period === 'yearly')
                             <a
                                 href="{{ route('dash.paypal.revise', ['premium', 'yearly']) }}"
                                 class="form-check-select-stretched-btn btn btn-primary"
                             >
                                 Upgrade
                             </a>
+                            @endif
                         @endif
                     </div>
 
