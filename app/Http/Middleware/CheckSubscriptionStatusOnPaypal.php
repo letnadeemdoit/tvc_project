@@ -31,18 +31,19 @@ class CheckSubscriptionStatusOnPaypal
                 $userSubscription->update([
                     'status' => $paypalSubscription['status']
                 ]);
-            } elseif($userSubscription && $userSubscription->status === 'REVISING') {
+            } elseif ($userSubscription && $userSubscription->status === 'REVISING') {
                 $paypalSubscription = $paypal->showSubscriptionDetails($userSubscription->subscription_id);
-                $userSubscription->update([
+                if ($userSubscription->update([
+                    'plan_id' => $paypalSubscription['plan_id'],
                     'status' => $paypalSubscription['status']
-                ]);
-
-                Subscription::where([
-                    'user_id' => $userSubscription->user_id,
-                    'subscription_id' => $userSubscription->subscription_id,
-                    ['id', '<>', $userSubscription->id]
-                ])
-                    ->update(['status' => 'INACTIVE']);
+                ])) {
+                    Subscription::where([
+                        'user_id' => $userSubscription->user_id,
+                        'subscription_id' => $userSubscription->subscription_id,
+                        ['id', '<>', $userSubscription->id]
+                    ])->whereNot('status', 'CANCELLED')
+                        ->update(['status' => 'COMPLETED']);
+                }
             }
 
         }
