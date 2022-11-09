@@ -249,7 +249,7 @@
                         @else
                             @if($this->subscription->period === 'monthly')
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['basic', 'monthly']) }}"
+                                    href="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
                                     class="form-check-select-stretched-btn btn btn-primary"
                                 >
                                     Upgrade
