@@ -168,6 +168,7 @@ Route::middleware([
                 Route::get('/{plan}/{billed}/processing', 'process')->name('process');
                 Route::get('/{plan}/{billed}/succeeded', 'succeeded')->name('succeeded');
                 Route::get('/{plan}/{billed}/canceled', 'canceled')->name('canceled');
+                Route::get('/{plan}/{billed}/revise', 'reviseSubscription')->name('revise');
 //                Route::post('/ipn', 'ipn')->name('ipn');
             });
     });

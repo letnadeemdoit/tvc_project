@@ -5,6 +5,7 @@ namespace App\Http\Livewire\PlansAndPricing;
 use App\Models\Audit\User;
 use App\Models\Subscription;
 use Livewire\Component;
+use Srmklive\PayPal\Facades\PayPal;
 
 class PlansAndPricingList extends Component
 {
@@ -26,7 +27,8 @@ class PlansAndPricingList extends Component
         return view('dash.plans-and-pricing.plans-and-pricing-list');
     }
 
-    public function getApprovalPendingSubscriptionProperty() {
+    public function getApprovalPendingSubscriptionProperty()
+    {
 
     }
 

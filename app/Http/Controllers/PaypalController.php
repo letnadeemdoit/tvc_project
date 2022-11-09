@@ -112,6 +112,60 @@ class PaypalController extends Controller
         return redirect()->route('dash.plans-and-pricing')->with('status', "Thank you for your order! You have been successfully subscribed");
     }
 
+    public function reviseSubscription($plan, $billed) {
+
+        $paypalsubscription = Subscription::where([
+            'user_id' => auth()->user()->user_id,
+            ['status', '<>', 'CANCELLED']
+        ])->latest()->first();
+
+        $mode = config('paypal.mode');
+
+        $data = [
+            'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
+            'application_context' => [
+                'brand_name' => config('app.name'),
+                'locale' => 'en-US',
+                'user_action' => 'SUBSCRIBE_NOW',
+                'payment_method' => [
+                    'payer_selected' => 'PAYPAL',
+                    'payee_preferred' => 'IMMEDIATE_PAYMENT_REQUIRED',
+                ],
+                    'return_url' => route('dash.paypal.succeeded', [$plan, $billed]),
+                    'cancel_url' => route('dash.paypal.canceled', [$plan, $billed])
+            ]
+        ];
+
+        $paypalSubscription = $this->paypal->reviseSubscription($paypalsubscription->subscription_id, $data);
+
+
+        $redirectTo = null;
+        foreach ($paypalSubscription['links'] ?? [] as $link) {
+            if ($link['rel'] === 'approve') {
+                $redirectTo = $link['href'];
+            }
+        }
+
+        if ($redirectTo) {
+            Subscription::create([
+                'user_id' => auth()->user()->user_id,
+                'house_id' => auth()->user()->HouseId,
+                'subscription_id' => $paypalsubscription->subscription_id,
+                'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
+                'plan' => $plan,
+                'period' => $billed,
+                'status' => 'REVISING',
+            ]);
+            return redirect($redirectTo);
+        }
+        else{
+            $error = $paypalSubscription['error'];
+            return redirect()->route('dash.plans-and-pricing')->with('error', $error['message']);
+        }
+
+
+    }
+
     public function canceled($plan, $billed)
     {
         return redirect()->route('dash.plans-and-pricing')->with('status', 'You have been cancelled order.');

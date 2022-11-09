@@ -57,7 +57,12 @@
                                 </a>
                             @endif
                         @else
-                            <p>Please unsubscribe other plan first!</p>
+                            <a
+                                href="{{ route('dash.paypal.revise', ['basic', 'monthly']) }}"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >
+                                Downgrade
+                            </a>
                         @endif
                     </div>
 
@@ -106,7 +111,28 @@
                                 </a>
                             @endif
                         @else
-                            <p>Please unsubscribe other plan first!</p>
+                            @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')
+                            <a
+                                href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >
+                                Upgrade
+                            </a>
+                            @elseif($this->subscription && $this->subscription->plan === 'premium')
+                                <a
+                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >
+                                    Downgrade
+                                </a>
+                            @else
+                                <a
+                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >
+                                    Downgrade
+                                </a>
+                            @endif
                         @endif
                     </div>
 
@@ -154,7 +180,23 @@
                                 >Unsubscribe</a>
                             @endif
                         @else
-                            <p>Please unsubscribe other plan first!</p>
+                            @if($this->subscription && $this->subscription->period === 'yearly')
+                            <a
+                                href="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >
+                                Downgrade
+                            </a>
+                            @else
+                                <a
+                                    href="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >
+                                    Upgrade
+                                </a>
+                            @endif
+
+{{--                            <p>Please unsubscribe other plan first!</p>--}}
                         @endif
                     </div>
 
@@ -203,7 +245,12 @@
                                 >Unsubscribe</a>
                             @endif
                         @else
-                            <p>Please unsubscribe other plan first!</p>
+                            <a
+                                href="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >
+                                Downgrade
+                            </a>
                         @endif
                     </div>
 
@@ -250,7 +297,28 @@
                                 >Unsubscribe</a>
                             @endif
                         @else
-                            <p>Please unsubscribe other plan first!</p>
+                            @if($this->subscription && $this->subscription->plan === 'basic')
+                                <a
+                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >
+                                    Upgrade
+                                </a>
+                            @elseif($this->subscription && $this->subscription->plan === 'premium')
+                                <a
+                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >
+                                    Downgrade
+                                </a>
+                            @else
+                                <a
+                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
+                                    class="form-check-select-stretched-btn btn btn-primary"
+                                >
+                                    Downgrade
+                                </a>
+                            @endif
                         @endif
                     </div>
 
@@ -298,7 +366,12 @@
                                 >Unsubscribe</a>
                             @endif
                         @else
-                            <p>Please unsubscribe other plan first!</p>
+                            <a
+                                href="{{ route('dash.paypal.revise', ['premium', 'yearly']) }}"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >
+                                Upgrade
+                            </a>
                         @endif
                     </div>
 
