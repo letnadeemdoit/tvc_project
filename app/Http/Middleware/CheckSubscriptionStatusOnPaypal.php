@@ -41,12 +41,12 @@ class CheckSubscriptionStatusOnPaypal
                     ->latest()
                     ->first();
 
-                Subscription::where('user_id', $user_id)
-                    ->where('subscription_id', $current_subscription->subscription_id)
-                    ->whereNot('id', $keep->id)
-                    ->update([
-                        'status' => 'INACTIVE'
-                    ]);
+//                Subscription::where('user_id', $user_id)
+//                    ->where('subscription_id', $current_subscription->subscription_id)
+//                    ->whereNot('id', $keep->id)
+//                    ->update([
+//                        'status' => 'INACTIVE'
+//                    ]);
             }
 
         }
