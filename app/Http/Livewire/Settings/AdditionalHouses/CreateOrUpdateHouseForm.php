@@ -112,8 +112,8 @@ class CreateOrUpdateHouseForm extends Component
 
         }
 
-        $country_name = Country::where('id', $inputs['country_id'])->first();
-        $state_name = State::where('id', $inputs['state_id'])->first();
+        $country_name = Country::where('id', $inputs['country_id'] ?? '')->first();
+        $state_name = State::where('id', $inputs['state_id'] ?? '')->first();
 //        $city_name = City::where('id', $inputs['city_id'])->first();
 
         $this->house->fill([
@@ -121,8 +121,8 @@ class CreateOrUpdateHouseForm extends Component
 //            'parent_id' => $this->user->primary_account == 1 ? $this->user->HouseId : null,
             'Address1' => $this->state['address_1'] ?? null,
             'Address2' => $this->state['address_2'] ?? null,
-            'country' => $country_name['name'] ?? null,
-            'State' => $state_name['name'] ?? null,
+            'country' => $country_name ? $country_name->name : null,
+            'State' => $state_name ? $state_name->name : null,
             'City' => $this->state['city_id']  ?? null,
             'ZipCode' => $this->state['zipcode'] ?? null,
         ])->save();
