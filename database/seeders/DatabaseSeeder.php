@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            BedTypesTableSeeder::class,
+            CategorySeeder::class,
+            LocalGuideCategorySeeder::class,
+            SuperAdminTableSeeder::class,
+            ReducePhotosSizeAndGenerateThumbnailSeeder::class,
+        ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
