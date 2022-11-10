@@ -45,7 +45,7 @@
                 @if(isset($album))
                     <div class="dropdown text-center text-sm-end d-flex">
                         @auth
-                            @if(auth()->user()->is_owner )
+                            @if(!auth()->user()->is_guest)
                                 <div class="me-4" x-data>
                                     <a
                                         class="btn btn-sm btn-soft-primary"
