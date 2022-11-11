@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             LocalGuideCategorySeeder::class,
             SuperAdminTableSeeder::class,
             ReducePhotosSizeAndGenerateThumbnailSeeder::class,
+            BlogSlugSeeder::class,
+            MigrateOldAccountsPhotosToDefaultAlbumSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
