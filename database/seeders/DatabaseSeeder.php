@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SuperAdminTableSeeder::class,
             ReducePhotosSizeAndGenerateThumbnailSeeder::class,
             BlogSlugSeeder::class,
+            BlogContentSeeder::class,
             MigrateOldAccountsPhotosToDefaultAlbumSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();

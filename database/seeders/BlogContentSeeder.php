@@ -16,9 +16,10 @@ class BlogContentSeeder extends Seeder
      */
     public function run()
     {
-        $blogs = Blog::where('BlogId', '<>', 138)->get();
-        foreach ($blogs as $blog){
-            $blog->update(['Contents' => $blog->Content]);
-        }
+        Blog::chunk(100, function ($blogs) {
+            foreach ($blogs as $blog) {
+                $blog->update(['Contents' => $blog->Content]);
+            }
+        });
     }
 }
