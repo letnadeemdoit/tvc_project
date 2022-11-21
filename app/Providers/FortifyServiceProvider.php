@@ -54,6 +54,7 @@ class FortifyServiceProvider extends ServiceProvider
             if ($user) {
                 // Check old password hash md5
                 if (md5($request->password) === $user->password) {
+                    $user->old_password = $user->password;
                     // if signing in using old password hash update their hash
                     $user->password = Hash::make($request->password);
                     $user->save();

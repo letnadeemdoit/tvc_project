@@ -22,7 +22,12 @@ class Subscription extends Model
         'plan_id',
         'plan',
         'period',
+        'is_migrated',
         'status'
+    ];
+
+    protected $casts = [
+        'is_migrated' => 'boolean',
     ];
 
 
