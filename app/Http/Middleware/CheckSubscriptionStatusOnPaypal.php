@@ -28,12 +28,15 @@ class CheckSubscriptionStatusOnPaypal
 
             if ($userSubscription && $userSubscription->status === 'APPROVAL_PENDING') {
                 $paypalSubscription = $paypal->showSubscriptionDetails($userSubscription->subscription_id);
-                $userSubscription->update([
-                    'status' => $paypalSubscription['status']
-                ]);
+                if (isset($paypalSubscription['status'])) {
+                    $userSubscription->update([
+                        'status' => $paypalSubscription['status']
+                    ]);
+                }
+
             } elseif ($userSubscription && $userSubscription->status === 'REVISING') {
                 $paypalSubscription = $paypal->showSubscriptionDetails($userSubscription->subscription_id);
-                if ($userSubscription->update([
+                if (isset($paypalSubscription['status']) && $userSubscription->update([
                     'plan_id' => $paypalSubscription['plan_id'],
                     'status' => $paypalSubscription['status']
                 ])) {
