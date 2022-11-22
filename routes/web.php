@@ -39,7 +39,7 @@ Route::controller(GuestController::class)
         Route::get('/ical/{ical:slug}', 'ical')->name('ical');
 
         Route::middleware(['auth'])->group(function () {
-            Route::get('/guest-calendar', 'calendar')>name('guest-calendar');
+            Route::get('/guest-calendar', 'calendar')->name('guest-calendar');
             Route::get('/search-house', 'searchHouse')->name('search-house');
             Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
             Route::get('/local-guide', 'localGuide')->name('local-guide');
