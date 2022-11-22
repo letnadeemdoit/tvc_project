@@ -32,13 +32,6 @@ Route::controller(GuestController::class)
         Route::get('/', 'welcome')->name('welcome');
         Route::get('/contact', 'contact')->name('contact');
         Route::post('/contact', 'contactMail')->name('contact.mail');
-        Route::get('/guest-calendar', 'calendar')->middleware([
-            'auth',
-            config('jetstream.auth_session'),
-            'verified',
-            'check-subscription-status',
-            'check.primary-user.subscribed-any-plan'
-        ])->name('guest-calendar');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
         Route::get('/terms-of-service', 'termsService')->name('terms-of-service');
@@ -46,7 +39,7 @@ Route::controller(GuestController::class)
         Route::get('/ical/{ical:slug}', 'ical')->name('ical');
 
         Route::middleware(['auth'])->group(function () {
-
+            Route::get('/guest-calendar', 'calendar')>name('guest-calendar');
             Route::get('/search-house', 'searchHouse')->name('search-house');
             Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
             Route::get('/local-guide', 'localGuide')->name('local-guide');
