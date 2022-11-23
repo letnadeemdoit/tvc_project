@@ -68,7 +68,7 @@
         <nav class="js-mega-menu navbar-nav-wrap d-flex justify-content-center justify-content-lg-end py-1 login-nav">
             <a class="navbar-brand" href="{{route('guest.welcome')}}">
                 <img class="navbar-brand-logo"
-                     src="{{ asset('logo/logo.svg') }}"
+                     src="{{ asset('logo/logo.png') }}"
                      alt="Logo" data-hs-theme-appearance="default"/>
             </a>
 
