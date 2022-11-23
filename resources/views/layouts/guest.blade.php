@@ -7,7 +7,7 @@
 
         <title>The Vacation Calendar</title>
 
-        <link rel="icon" type="image/x-icon" href="{{asset('logo/favicon.svg')}}">
+        <link rel="icon" type="image/x-icon" href="{{asset('logo/favicon.jpg')}}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
