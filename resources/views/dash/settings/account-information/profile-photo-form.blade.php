@@ -1,4 +1,4 @@
-<div
+ <div
     class="card"
     x-data="{
         photoName: null,
@@ -87,7 +87,7 @@
         </div>
         @error('photo')
             <div class="alert alert-soft-danger" role="alert">
-                {{ $message }}
+                {{ $message . ' and max:20MB' }}
             </div>
         @enderror
         <x-jet-action-message on="saved" class="text-center text-success"/>

@@ -5,7 +5,7 @@
             <!-- Logo -->
 
             <a class="navbar-brand" href="{{route('guest.welcome')}}" aria-label="Front">
-                <img class="img-fluid" src="{{asset('logo/logo.svg')}}" alt="Logo" data-hs-theme-appearance="default">
+                <img class="img-fluid" src="{{asset('logo/logo.jpg')}}" alt="Logo" data-hs-theme-appearance="default">
             </a>
 
             <!-- End Logo -->
