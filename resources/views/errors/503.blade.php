@@ -7,7 +7,7 @@
 <table align="center" valign="center">
     <tbody>
     <tr align="center" valign="center">
-        <td align="center" valign="center"><img alt="Maint" src="{{ asset('logo/logo.jpg') }}" width="320" /></td>
+        <td align="center" valign="center"><img alt="Maint" src="{{ asset('logo/maintenance_logo.jpg') }}" width="320" /></td>
     </tr>
     <tr align="center" valign="center">
         <td align="center" valign="center">
