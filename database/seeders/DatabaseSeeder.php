@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
             ReducePhotosSizeAndGenerateThumbnailSeeder::class,
             BlogSlugSeeder::class,
             BlogContentSeeder::class,
+            MigrateOldUsersToNewLogicUsersTableSeeder::class,
             MigrateOldAccountsPhotosToDefaultAlbumSeeder::class,
+            MigrateOldSubscriptionsToNewSubscriptionsSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
