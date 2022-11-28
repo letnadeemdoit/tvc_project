@@ -15,8 +15,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('subscription:create-or-renew')
-             ->dailyAt('00:00');
+//         $schedule->command('subscription:create-or-renew')
+//             ->dailyAt('00:00');
+
+        $schedule->command('queue:work --stop-when-empty')
+            ->everyMinute()
+            ->withoutOverlapping();
     }
 
     /**
