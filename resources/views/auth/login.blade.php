@@ -72,7 +72,7 @@
                                 <option disabled selected>Search &amp; select your house</option>
                                 @if(old('house_id') !== null)
                                     @php
-                                        $selectedHouse = \App\Models\House::where('HouseID', old('house_id'))->first();
+                                        $selectedHouse = \App\Models\House::where('HouseID', old('house_id'))->whereIn('Status', ['A','P','C'])->first();
                                     @endphp
                                     @if($selectedHouse)
                                         <option value="{{ old('house_id') }}" selected>{{ $selectedHouse->HouseName }}</option>
