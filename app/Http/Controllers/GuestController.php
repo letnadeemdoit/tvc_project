@@ -65,7 +65,7 @@ class GuestController extends Controller
         $email = $request->email;
         $comment = $request->comment;
 
-        Notification::route('mail', $user->email)
+        Notification::route('mail', $request->email)
             ->notify(new ContactUsMailNotification($firstName, $lastName, $subject, $email, $comment));
 
 //        Mail::send([], [], function ($message) use ($request) {
