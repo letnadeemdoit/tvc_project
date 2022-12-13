@@ -8,6 +8,8 @@
                 <a href="https://twitter.com/TheVacationCal"> <i class="bi-twitter mx-3 fs-3 text-white"></i></a>
                 <a href="https://www.instagram.com/thevacationcalendar/"> <i
                         class="bi-instagram fs-3 text-white"></i></a>
+                <a href="https://www.youtube.com/channel/UCXxQTnfwdvMX-Yb30X-WpYQ"> <i
+                        class="bi-youtube mx-3 fs-3 text-white"></i></a>
                 {{--                <ul class="list-unstyled d-flex mb-0">--}}
                 {{--                    <li>--}}
                 {{--                        <a href="#"> <i class="fa-brands fa-facebook-f fs-3 text-white pt-1"></i></a>--}}
@@ -113,70 +115,74 @@
                             {{--                                   href="{{route('dash.calendar')}}">Admin</a>--}}
                             {{--                            </li>--}}
 
-                            <li class="nav-item my-1 my-lg-0">
+                            <li class="nav-item my-1 my-lg-0 me-0">
                                 <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"
                                    href="{{route('dash.calendar')}}">ADMIN</a>
                             </li>
 
-                            <li class="nav-item my-1 my-lg-0">
+                            <li class="nav-item my-1 my-lg-0 me-0">
                                 <a class="nav-link {{ request()->routeIs('guest.guest-calendar') ? 'active' : '' }}"
                                    href="{{route('guest.guest-calendar')}}">CALENDAR</a>
                             </li>
 
-                            <li class="nav-item my-1 my-lg-0">
+                            <li class="nav-item my-1 my-lg-0 me-0">
                                 <a class="nav-link {{ request()->routeIs('guest.bulletin-board.index') ? 'active' : '' }}"
                                    href="{{route('guest.bulletin-board.index')}}">BULLETIN BOARD</a>
                             </li>
 
-                            <li class="nav-item my-1 my-lg-0">
+                            <li class="nav-item my-1 my-lg-0 me-0">
                                 <a class="nav-link {{ request()->routeIs('guest.blog.index') || request()->routeIs('guest.blog.show') ? 'active' : '' }}"
                                    href="{{route('guest.blog.index')}}" tabindex="-1">BLOG</a>
                             </li>
-                            <li class="nav-item my-1 my-lg-0">
+                            <li class="nav-item my-1 my-lg-0 me-0">
                                 <a class="nav-link {{ request()->routeIs('guest.photo-album.index') || request()->routeIs('guest.photo-album.show') ? 'active' : '' }}"
                                    href="{{route('guest.photo-album.index')}}" tabindex="-1">PHOTO ALBUM</a>
                             </li>
-                            <li class="nav-item my-1 my-lg-0">
+                            <li class="nav-item my-1 my-lg-0 me-0">
                                 <a class="nav-link {{ request()->routeIs('guest.local-guide.index') || request()->routeIs('guest.local-guide.show') ? 'active' : '' }}"
                                    href="{{route('guest.local-guide.index')}}" tabindex="-1">LOCAL GUIDE</a>
                             </li>
-                            <li class="nav-item my-1 my-lg-0">
+                            <li class="nav-item my-1 my-lg-0 me-0">
                                 <a class="nav-link {{ request()->routeIs('guest.house-items.index') ? 'active' : '' }}"
                                    href="{{route('guest.house-items.index')}}" tabindex="-1">FOOD</a>
                             </li>
+                            <li class="nav-item my-1 my-lg-0 me-0">
+                                <a class="nav-link {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
+                                   href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
+                            </li>
 
-                            <div class="dropdown">
+{{--                            <div class="dropdown">--}}
 
-                                <a class="navbar-dropdown-account-wrapper ms-3 ms-lg-0 nav-link pb-0 dropdown-focus"
-                                   href="javascript:;"
-                                   id="moreMenuList"
-                                   style="font-size: 15px; color: #606368 !important;"
-                                   data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
-                                   data-bs-dropdown-animation>
-                                    More<img src="{{asset('/images/images-home/arrow-down.svg')}}" class="img-fluid"
-                                             width="20"/>
-                                </a>
+{{--                                <a class="navbar-dropdown-account-wrapper ms-3 ms-lg-0 nav-link pb-0 dropdown-focus"--}}
+{{--                                   href="javascript:;"--}}
+{{--                                   id="moreMenuList"--}}
+{{--                                   style="font-size: 15px; color: #606368 !important;"--}}
+{{--                                   data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"--}}
+{{--                                   data-bs-dropdown-animation>--}}
+{{--                                    More<img src="{{asset('/images/images-home/arrow-down.svg')}}" class="img-fluid"--}}
+{{--                                             width="20"/>--}}
+{{--                                </a>--}}
 
-                                <ul class="dropdown-menu border-0" aria-labelledby="moreMenuList">
-                                    <li class="nav-item my-1 my-lg-0">
-                                        <a class="dropdown-item fw-500 {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"
-                                           href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>
-                                    </li>
+{{--                                <ul class="dropdown-menu border-0" aria-labelledby="moreMenuList">--}}
+{{--                                    <li class="nav-item my-1 my-lg-0">--}}
+{{--                                        <a class="dropdown-item fw-500 {{ request()->routeIs('guest.guest-book.index') ? 'active' : '' }}"--}}
+{{--                                           href="{{route('guest.guest-book.index')}}" tabindex="-1">GUEST BOOK</a>--}}
+{{--                                    </li>--}}
 
-                                    <li class="nav-item my-1 my-lg-0">
-                                        <a class="dropdown-item fw-500"
-                                           href="{{route('guest.privacy-policy')}}">POLICIES</a>
-                                    </li>
-                                    <li class="nav-item my-1 my-lg-0">
-                                        <a class="dropdown-item fw-500"
-                                           href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>
-                                    </li>
-                                    <li class="nav-item my-1 my-lg-0">
-                                        <a class="dropdown-item fw-500"
-                                           href="{{route('guest.help')}}" tabindex="-1">HELP</a>
-                                    </li>
-                                </ul>
-                            </div>
+{{--                                    <li class="nav-item my-1 my-lg-0">--}}
+{{--                                        <a class="dropdown-item fw-500"--}}
+{{--                                           href="{{route('guest.privacy-policy')}}">POLICIES</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item my-1 my-lg-0">--}}
+{{--                                        <a class="dropdown-item fw-500"--}}
+{{--                                           href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item my-1 my-lg-0">--}}
+{{--                                        <a class="dropdown-item fw-500"--}}
+{{--                                           href="{{route('guest.help')}}" tabindex="-1">HELP</a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
 
                         @endif
 
