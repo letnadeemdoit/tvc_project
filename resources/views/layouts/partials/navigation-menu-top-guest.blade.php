@@ -210,6 +210,10 @@
                             <a class="nav-link {{ request()->routeIs('guest.privacy-policy') ? 'active' : '' }}"
                                href="{{route('guest.privacy-policy')}}">POLICIES</a>
                         </li>
+                            <li class="nav-item my-1 my-lg-0">
+                                <a class="nav-link {{ request()->routeIs('guest.pricing') ? 'active' : '' }}"
+                                   href="{{route('guest.pricing')}}">PRICING</a>
+                            </li>
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link {{ request()->routeIs('guest.contact') ? 'active' : '' }}"
                                href="{{route('guest.contact')}}" tabindex="-1">CONTACT US</a>

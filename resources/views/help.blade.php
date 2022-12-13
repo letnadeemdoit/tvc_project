@@ -19,12 +19,12 @@
                     <!-- <div class="row">  -->
                     <!-- <div class="col-3">  -->
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                                type="button" role="tab" aria-controls="home" aria-selected="true">
+                        <button class="nav-link active" id="price-tab" data-bs-toggle="tab" data-bs-target="#price"
+                                type="button" role="tab" aria-controls="price" aria-selected="true">
                             <div class="card shadow-lg card-border rounded-3">
                                 <div class="card-body">
                                     <img src="{{asset('/images/help-images/menu-book.svg')}}" class="img-fluid m-auto">
-                                    <p>Quick Start Guide</p>
+                                    <p>Pricing</p>
                                 </div>
                             </div>
 {{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
@@ -35,17 +35,17 @@
                     <!-- </div>  -->
                     <!-- <div class="col-3"> -->
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                                type="button" role="tab" aria-controls="profile" aria-selected="false">
-                            <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5">
+                        <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                type="button" role="tab" aria-controls="home" aria-selected="true">
+                            <div class="card shadow-lg card-border rounded-3">
                                 <div class="card-body">
-                                    <img src="{{asset('/images/help-images/instructions.svg')}}" class="img-fluid  m-auto">
-                                    <p>Instructions</p>
+                                    <img src="{{asset('/images/help-images/menu-book.svg')}}" class="img-fluid m-auto">
+                                    <p>Quick Start Guide</p>
                                 </div>
                             </div>
-{{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
-{{--                                <img src="{{asset('/images/help-images/vector-2.png')}}" class="img-fluid">--}}
-{{--                            </div>--}}
+                            {{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
+                            {{--                                <img src="{{asset('/images/help-images/vector-1.png')}}" class="img-fluid">--}}
+                            {{--                            </div>--}}
                         </button>
                     </li>
                     <!-- </div>  -->
@@ -84,7 +84,147 @@
                 </div>
             </div>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="tab-pane fade show active" id="price" role="tabpanel" aria-labelledby="price-tab">
+                    <div class="accordion-section mt-80">
+                        <div class="container">
+                            <div class="m-0 m-lg-4">
+                                <div class="accordion" id="myAccordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseOne">Pricing</button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                             data-bs-parent="#myAccordion">
+                                            <div class="card-body bottom-box-shadow">
+
+                                                <p>
+                                                    TheVacationCalendar.com had the same pricing of <span class="text-primary fw-bold">$20</span> per year from its inception in 2007 through 2022. In 2022, we hired an amazing development firm to completely rebuild the site to bring it up to date with today’s standard websites. A single account can now manage rooms within a house, manage multiple rooms and continue to support as many users as needed.
+                                                    To offset the cost of the 30+ person development team as well as to cover other increasingly higher expenses, the site has a new pricing model.
+                                                </p>
+                                                <div class="table-responsive mb-5">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Price
+                                                                (billed Monthly)</th>
+                                                            <th scope="col">Price
+                                                                (billed Annually)
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <th scope="row">Basic</th>
+                                                            <td>$5</td>
+                                                            <td>$40</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Standard</th>
+                                                            <td>$7</td>
+                                                            <td>$60</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Premium</th>
+                                                            <td>$9</td>
+                                                            <td>$80</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Trial Period</th>
+                                                            <td>7 days</td>
+                                                            <td>20 days</td>
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="w-25" scope="col">Functionality</th>
+                                                            <th class="w-25" scope="col">Basic</th>
+                                                            <th class="w-25" scope="col">Standard</th>
+                                                            <th class="w-25" scope="col">Premium</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <th scope="row">Calendar</th>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Bulletin Board</th>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Blog</th>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Photo Album</th>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Local Guide</th>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Food Items</th>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Guest Book</th>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                            <td>X</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Booking Rooms</th>
+                                                            <td>-</td>
+                                                            <td>Up to 6 rooms</td>
+                                                            <td>Unlimited rooms</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Additional Properties</th>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>Up to 9 properties</td>
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="accordion-section mt-80">
                         <div class="container">
                             <div class="m-0 m-lg-4">
@@ -127,6 +267,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="accordion-section mt-80">
                         <div class="container">
