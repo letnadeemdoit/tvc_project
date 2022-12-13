@@ -34,6 +34,7 @@ Route::controller(GuestController::class)
         Route::post('/contact', 'contactMail')->name('contact.mail');
         Route::get('/policies', 'policies')->name('policies');
         Route::get('/help', 'help')->name('help');
+        Route::get('/pricing', 'pricing')->name('pricing');
         Route::get('/terms-of-service', 'termsService')->name('terms-of-service');
         Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy-policy');
         Route::get('/ical/{ical:slug}', 'ical')->name('ical');

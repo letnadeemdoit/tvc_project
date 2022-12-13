@@ -101,6 +101,16 @@ class GuestController extends Controller
     {
         return view('help');
     }
+
+    /**
+     * Pricing
+     * @return mixed
+     */
+    public function pricing()
+    {
+        return view('pricing');
+    }
+
     /**
      * Calendar
      * @return mixed

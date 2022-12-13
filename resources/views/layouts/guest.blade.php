@@ -94,6 +94,7 @@
 
     </head>
     <body>
+{{--    <div id="fb-root"></div>--}}
         <main class="bg-lightGrey" style="min-height: 100vh">
             @include('layouts.partials.navigation-menu-top-guest')
             {{ $slot }}
