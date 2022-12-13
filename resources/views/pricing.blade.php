@@ -6,12 +6,12 @@
 
 
             <div class="row my-5 py-5">
-                <div class="col-12"  x-data="{ period: 'monthly' }">
+                <div class="col-12" x-data="{ period: 'monthly' }">
                     <div class="card py-5">
                         <div class="card-body">
 
                             <div class="btn-group rounded-pill bg-primary mb-5 border border-primary p-1">
-                                <a href="#!"  x-on:click="period = 'monthly' "
+                                <a href="#!" x-on:click="period = 'monthly' "
                                    class="btn rounded-pill text-white"
                                    :class="{ 'bg-white text-dark fw-600 border-0': period === 'monthly' }"
                                 >Monthly</a>
@@ -122,9 +122,12 @@
 
                                     <tr>
                                         <th class="fw-semibold" scope="row"></th>
-                                        <td><a href="{{route('register')}}" class="btn btn-sm btn-primary px-4">Sign up</a></td>
-                                        <td><a href="{{route('register')}}" class="btn btn-sm btn-primary px-4">Sign up</a></td>
-                                        <td><a href="{{route('register')}}" class="btn btn-sm btn-primary px-4">Sign up</a></td>
+                                        <td><a href="{{route('register')}}" class="btn btn-sm btn-primary px-4">Sign
+                                                up</a></td>
+                                        <td><a href="{{route('register')}}" class="btn btn-sm btn-primary px-4">Sign
+                                                up</a></td>
+                                        <td><a href="{{route('register')}}" class="btn btn-sm btn-primary px-4">Sign
+                                                up</a></td>
                                     </tr>
 
                                     </tbody>
