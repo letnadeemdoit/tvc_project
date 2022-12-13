@@ -5,7 +5,7 @@
         </x-slot>
 
         <div
-            class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1" style="max-width: 30rem;"
+            class="w-100 content-space-t-2 content-space-t-lg-1 content-space-b-1" style="max-width: 30rem;"
             x-data="{
                 gotoHouse: false,
                 loginAsGuest: null,
@@ -41,6 +41,10 @@
                 })
             "
         >
+            <div class="d-flex justify-content-start align-items-start">
+                <img class="" src="{{ asset('logo/logo.jpg') }}"
+                     alt="{{ config('app.name') }}" width="300px"/>
+            </div>
             @if(old('role') === 'Guest')
                 <x-jet-validation-errors class="mb-4"/>
             @endif
@@ -63,7 +67,7 @@
                 <input type="hidden" x-model="role" name="role" />
                 {{-- Search House --}}
                 <div x-show="!gotoHouse">
-                    <h1 class="display-3 poppins-bold mb-0">Search <span class="text-primary">House</span></h1>
+                    <h1 class="display-3 poppins-bold mb-0 content-space-t-1">Search <span class="text-primary">House</span></h1>
                     <small class="text-muted mb-3 d-block">Search your house here to have beautiful vacations with your
                         family.</small>
                     <div class="bg-soft-primary p-3 rounded-1 border border-primary row g-2">
