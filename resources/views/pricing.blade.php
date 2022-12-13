@@ -7,7 +7,7 @@
 
             <div class="row my-5 py-5">
                 <div class="col-12"  x-data="{ period: 'monthly' }">
-                    <div class="card">
+                    <div class="card py-5">
                         <div class="card-body">
 
                             <div class="btn-group rounded-pill bg-primary mb-5 border border-primary p-1">
