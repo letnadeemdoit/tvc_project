@@ -843,26 +843,28 @@
                                         </h2>
                                         <div id="collapseFive" class="accordion-collapse collapse show"
                                              data-bs-parent="#myAccordion-3">
-{{--                                            <div class="card-body bottom-box-shadow">--}}
-{{--                                                <div id="list-example" class="list-group">--}}
-{{--                                                    <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>--}}
-{{--                                                    <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>--}}
-{{--                                                    <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>--}}
-{{--                                                    <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>--}}
-{{--                                                </div>--}}
-{{--                                                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">--}}
-{{--                                                    <h4 id="list-item-1">Item 1</h4>--}}
-{{--                                                    <p>.. box that will appear.  To edit or delete your vacation, simply click on any of the calendar days of your vacation and the edit box will appear so you can make--}}
-{{--                                                        any necessary changes. Don’t forget, Owners can only edit and delete the vacations they schedule. Administrators can e.</p>--}}
-{{--                                                    <h4 id="list-item-2">Item 2</h4>--}}
-{{--                                                    <p>..xcvzxcvzxcv.</p>--}}
-{{--                                                    <h4 id="list-item-3">Item 3</h4>--}}
-{{--                                                    <p>..qwerqr.</p>--}}
-{{--                                                    <h4 id="list-item-4">Item 4</h4>--}}
-{{--                                                    <p> box that will appear.  To edit or delete your vacation, simply click on any of the calendar days of your vacation and the edit box will appear so--}}
-{{--                                                        you can make any necessary changes. Don’t forget, Owners can only edit and delete the vacations they schedule. Administrators can e</p>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+                                            <div class="card-body bottom-box-shadow" >
+                                                  <div class="position-relative" data-bs-spy="scroll" data-bs-target="#list-example">
+                                                      <div id="list-example" class="list-group">
+                                                          <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+                                                          <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+                                                          <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
+                                                          <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+                                                      </div>
+                                                      <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+                                                          <h4 id="list-item-1">Item 1</h4>
+                                                          <p>.. box that will appear.  To edit or delete your vacation, simply click on any of the calendar days of your vacation and the edit box will appear so you can make
+                                                              any necessary changes. Don’t forget, Owners can only edit and delete the vacations they schedule. Administrators can e.</p>
+                                                          <h4 id="list-item-2">Item 2</h4>
+                                                          <p>..xcvzxcvzxcv.</p>
+                                                          <h4 id="list-item-3">Item 3</h4>
+                                                          <p>..qwerqr.</p>
+                                                          <h4 id="list-item-4">Item 4</h4>
+                                                          <p> box that will appear.  To edit or delete your vacation, simply click on any of the calendar days of your vacation and the edit box will appear so
+                                                              you can make any necessary changes. Don’t forget, Owners can only edit and delete the vacations they schedule. Administrators can e</p>
+                                                      </div>
+                                                  </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -884,6 +886,19 @@
 
         <script async defer crossorigin="anonymous"
                 src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0" nonce="ZKRqVdDg"></script>
+
+        <script>
+            // var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+            //     target: '#list-example'
+            // })
+
+            var dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'))
+            dataSpyList.forEach(function (dataSpyEl) {
+                bootstrap.ScrollSpy.getInstance(dataSpyEl)
+                    .refresh()
+            })
+
+        </script>
     @endpush
 
 </x-guest-layout>
