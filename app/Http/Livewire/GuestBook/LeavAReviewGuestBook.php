@@ -62,7 +62,12 @@ class LeavAReviewGuestBook extends Component
 
         $this->state = "";
 
-        return redirect()->route('guest.guest-book.index');
+        $this->dispatchBrowserEvent('name-updated');
+
+//        $this->success('Blog successfully.');
+
+
+//        return redirect()->route('guest.guest-book.index');
 
     }
 

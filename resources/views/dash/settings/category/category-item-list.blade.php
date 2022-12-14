@@ -74,6 +74,14 @@
                                     >
                                         <i class="bi-trash"></i>
                                     </button>
+                                @elseif($dt->localGuides->count() == 0 && is_null($dt->user_id))
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-bs-toggle="modal" data-bs-target="#defaultCategoriesLocalGuideModal"
+                                    >
+                                        <i class="bi-trash"></i>
+                                    </button>
                                 @else
                                     <button
                                         type="button"
@@ -112,7 +120,30 @@
                             </div>
                         </div>
 
+                        <div class="modal fade hideableModal" id="defaultCategoriesLocalGuideModal" tabindex="-1"
+                             aria-labelledby="defaultCategoriesLocalGuideModal" aria-hidden="true"
+                             wire:ignore.self>
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <div>
+                                          <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                                            <i class="bi-exclamation"></i>
+                                        </span>
+                                        </div>
 
+                                        <h4 class="fw-bold text-center my-3"
+                                            style="color: #00000090">You can't delete this category</h4>
+                                        <p class="fw-500 fs-15">You are not allowed to delete default categories of Local Guide .</p>
+                                        <div class="btn-group my-2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </tr>
                 @endforeach

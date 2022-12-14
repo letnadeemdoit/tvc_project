@@ -309,6 +309,37 @@
             {{--            @if(!auth()->user()->is_guest)--}}
             <livewire:guest-book.leav-a-review-guest-book :user="$user"/>
             {{--             @endif--}}
+
+
+            <div class="modal fade hideableModal" id="showMessageModal" tabindex="-1"
+                 aria-labelledby="showMessageModalLabel" aria-hidden="true"
+                 wire:ignore.self>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <h6 class="modal-title fs-10 text-white"
+                            id="showMessageModal"></h6>
+                        <div class="modal-body text-center">
+                            <div>
+                  <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-check-lg"></i>
+                </span>
+                            </div>
+
+                            <h4 class="fw-bold text-center my-3"
+                                style="color: #00000090">Remarks submitted successfully</h4>
+                            <p class="fw-500 fs-15">Your remarks will appear after getting approved by the house administrator!
+                            </p>
+                            <div class="btn-group my-2">
+                                <button type="button"
+                                        class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                        data-bs-dismiss="modal">OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </section>
@@ -342,6 +373,12 @@
                             scrollTop: $(".leaveReviewSection").offset().top},
                         '3000');
                 });
+            </script>
+
+            <script>
+                window.addEventListener('name-updated', event => {
+                    $('#showMessageModal').modal('show');
+                })
             </script>
     @endpush()
 </x-guest-layout>
