@@ -327,7 +327,7 @@
 
                             <h4 class="fw-bold text-center my-3"
                                 style="color: #00000090">Remarks submitted successfully</h4>
-                            <p class="fw-500 fs-15">Your Remarks will appear after it is approved by the house administrator!
+                            <p class="fw-500 fs-15">Your remarks will appear after getting approved by the house administrator!
                             </p>
                             <div class="btn-group my-2">
                                 <button type="button"
