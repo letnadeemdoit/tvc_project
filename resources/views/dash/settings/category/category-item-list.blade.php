@@ -66,7 +66,7 @@
                                 >
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>
-                                @if($dt->blogs->count() > 0 || $dt->bulletinBoards->count() > 0 || $dt->localGuides->count() > 0)
+                                @if($dt->blogs->count() > 0 || $dt->bulletinBoards->count() > 0 || $dt->localGuides->count() > 0 || is_null($dt->user_id))
                                     <button
                                         type="button"
                                         class="btn btn-secondary"

@@ -21,6 +21,7 @@
 {{--            <h1 class="pt-2 text-center poppins-bold">Share discoveries with community</h1>--}}
 {{--        </div>--}}
         <livewire:local-guide.local-guide-list :user="$user"/>
+        <livewire:settings.local-guide.create-or-update-local-guide-form :user="$user"/>
     </section>
 
     @push('scripts')

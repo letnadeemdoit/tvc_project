@@ -1,5 +1,23 @@
 <div class="bg-map" style="background-position: center -19% !important;">
     <div class="container  pb-5 pt-5">
+        <div class="text-center float-end d-flex">
+            @auth
+                @if(!auth()->user()->is_guest)
+                    <div class="me-4" x-data>
+                        <a
+                            class="btn btn-sm btn-soft-primary"
+                            href="#!"
+                            @click.prevent="window.livewire.emit('showLocalGuideCUModal', true)"
+                        >
+                            <i class="bi-plus me-1"></i> Add New Local Guide
+                        </a>
+                    </div>
+                @endif
+            @endauth
+        </div>
+        <br />
+        <br />
+
         <div class="d-flex justify-content-center justify-content-md-start local-guide-tabs" id="scroller">
             @if(count($categories) >0)
                 <div class="category-cards mb-3 d-flex scrollbar" style="max-width: 100%">

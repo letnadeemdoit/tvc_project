@@ -45,8 +45,10 @@ class CategoriesItemList extends Component
     public function render()
     {
         $data = Category::where('house_id', $this->user->HouseId)
+            ->orWhere('house_id', null)
             ->when($this->user->is_owner_only, function ($query) {
-                $query->where('user_id', $this->user->user_id);
+                $query
+                    ->where('user_id', $this->user->user_id);
             })
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {

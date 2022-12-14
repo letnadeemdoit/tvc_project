@@ -1,5 +1,20 @@
 <div class="bg-map" style="background-position: center -19% !important;">
 <div class="container pt-5">
+    <div class="text-center float-end text-lg-end d-flex">
+        @auth
+            @if(!auth()->user()->is_guest)
+                <div class="me-4" x-data>
+                    <a
+                        class="btn btn-sm btn-soft-primary"
+                        href="#!"
+                        @click.prevent="window.livewire.emit('showBlogCUModal', true)"
+                    >
+                        <i class="bi-plus me-1"></i> Add New Blog
+                    </a>
+                </div>
+            @endif
+        @endauth
+    </div>
     <div class="category-cards mb-3 d-flex scrollbar pt-0 pt-md-5" style="max-width: 100%" id="scroller" >
                 @if(count($categories) >0)
                     <ul class="nav nav-tabs border-bottom-0 blog-tabs">
@@ -37,7 +52,8 @@
                         <i class="bi bi-chevron-right align-items-center d-flex h-100"></i>
                     </a>
                 @endif
-            </div>
+    </div>
+
 
     @if(isset($data) && count($data) > 0)
         <div class="row category-cards pt-1">

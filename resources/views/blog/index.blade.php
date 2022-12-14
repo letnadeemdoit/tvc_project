@@ -8,6 +8,8 @@
 {{--        </div>--}}
 {{--        <h1 class="pt-2 text-center poppins-bold">Read the best stories here</h1>--}}
         <livewire:blog.blog-list :user="$user" />
+
+        <livewire:settings.blog.create-or-update-blog-item-form :user="$user" />
     </section>
 
 
