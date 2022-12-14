@@ -20,6 +20,7 @@ class UpdateNotificationPreferencesForm extends Component
         $this->state = [
             'calendar_email_list' => $this->house->CalEmailList,
             'blog_email_list' => $this->house->BlogEmailList,
+            'request_to_use_house_email_list' => $this->house->request_to_use_house_email_list,
         ];
 
     }
@@ -46,10 +47,17 @@ class UpdateNotificationPreferencesForm extends Component
                     ->separatedBy(',')
                     ->max(50)
             ],
+            'request_to_use_house_email_list' => [
+                'nullable',
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
+            ],
         ])->validateWithBag('updateNotificationPreferences');
 
         $this->house->CalEmailList = $this->state['calendar_email_list'] ?? null;
         $this->house->BlogEmailList = $this->state['blog_email_list'] ?? null;
+        $this->house->request_to_use_house_email_list = $this->state['request_to_use_house_email_list'] ?? null;
         $this->house->save();
 
         $this->emit('saved');
