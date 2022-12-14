@@ -13,7 +13,7 @@
                 houseIsSelected: false,
                 house_id: null,
                 resetPasswordLink: '{{ route('password.request') }}',
-                house_id: '{{ old('house_id', '') }}'
+                house_id: '{{ old('house_id', request()->get('houseId', '')) }}'
             }"
             x-init="
                 @if(old('role') !== null)
@@ -25,7 +25,8 @@
                     }
                 @endif
 
-                @if(old('house_id') !== null)
+                @if(old('house_id', request()->get('houseId')) !== null)
+                    gotoHouse = true;
                     houseIsSelected = true;
                 @endif
 
@@ -38,6 +39,7 @@
                 }).on('select2:select', function (e)  {
                     house_id = e.params.data.id;
                     houseIsSelected = true;
+                    window.history.pushState({}, null, `?houseId=${house_id}`);
                 })
             "
         >
@@ -74,12 +76,12 @@
                         <div class="col-md-8">
                             <select class="form-control form-control-lg select2" name="house_id" x-model="house_id">
                                 <option disabled selected>Search &amp; select your house</option>
-                                @if(old('house_id') !== null)
+                                @if(old('house_id', request()->get('houseId')) !== null)
                                     @php
-                                        $selectedHouse = \App\Models\House::where('HouseID', old('house_id'))->whereIn('Status', ['A','P','C'])->first();
+                                        $selectedHouse = \App\Models\House::where('HouseID', old('house_id', request()->get('houseId')))->whereIn('Status', ['A','P','C'])->first();
                                     @endphp
                                     @if($selectedHouse)
-                                        <option value="{{ old('house_id') }}" selected>{{ $selectedHouse->HouseName }}</option>
+                                        <option value="{{ old('house_id', request()->get('houseId')) }}" selected>{{ $selectedHouse->HouseName }}</option>
                                     @endif
                                 @endif
                             </select>

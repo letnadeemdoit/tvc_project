@@ -39,6 +39,22 @@
                 <span class="form-text">Use this option to send out a notification email that contains the contents of a newly created blog (only the initial blog not the comments)</span>
             </div>
         </div>
+        <div class="row mb-4">
+            <label class="col-sm-3 col-form-label form-label" for="request_to_use_house_email_list">Request to Use House:</label>
+            <div class="col-sm-9">
+            <textarea
+                id="request_to_use_house_email_list"
+                class="form-control @error('request_to_use_house_email_list') is-invalid @enderror"
+                placeholder="Separate multiple emails by comma, leave blank for no notification"
+                rows="4"
+                wire:model.defer="state.request_to_use_house_email_list"
+            ></textarea>
+                @error('request_to_use_house_email_list')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="form-text">Use this option to send out a notification request to Use House</span>
+            </div>
+        </div>
         <div class="d-flex align-items-center justify-content-end">
             <x-jet-action-message class="text-success me-2" on="saved"/>
             <button type="submit" class="btn btn-primary">Save</button>

@@ -48,6 +48,7 @@ class House extends Model
         'Guest',
         'CalEmailList',
         'BlogEmailList',
+        'request_to_use_house_email_list',
         'Audit_user_name',
         'Audit_Role',
         'Audit_FirstName',
