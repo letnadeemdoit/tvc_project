@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('house', function (Blueprint $table) {
+        Schema::table('House', function (Blueprint $table) {
             $table->string('request_to_use_house_email_list')->after('BlogEmailList')->nullable();
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('house', function (Blueprint $table) {
+        Schema::table('House', function (Blueprint $table) {
             $table->dropColumn('request_to_use_house_email_list');
         });
     }
