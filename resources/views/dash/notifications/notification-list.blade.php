@@ -6,13 +6,14 @@
             <div class="p-3">
                 <ul class="list-group list-group-flush">
                     @foreach($data as $dt)
+
                         @if($dt->type == 'App\Notifications\BlogNotify')
                             <li class="list-group-item border-bottom rounded-0 d-flex justify-content-start align-items-center">
                                 <h4 class="mb-0 me-3">Blog: </h4>
                                 <p class="mb-0">New Blog <b class="text-primary text-capitalize">{{$dt->data['Name']}}</b>
                                     has been created against <b class="text-primary text-capitalize">{{$dt->data['house_name']}}</b> House </p>
                             </li>
-                        @else
+                        @elseif($dt->type == 'App\Notifications\CalendarEmailNotification')
                             <li class="list-group-item border-bottom rounded-0 d-flex justify-content-start align-items-center">
                                 <h4 class="mb-0 me-3">Calendar: </h4>
 
@@ -24,6 +25,13 @@
                                 </p>
 
                             </li>
+                        @else
+                            <li class="list-group-item border-bottom rounded-0 d-flex justify-content-start align-items-center">
+                                <h4 class="mb-0 me-3">Item : </h4>
+                                <p class="mb-0">New  <b class="text-primary text-capitalize">{{$dt->data['Name']}}</b>
+                                    has been {{$dt->data['isAction']}} against <b class="text-primary text-capitalize">{{$dt->data['house_name']}}</b> House </p>
+                            </li>
+
                         @endif
                     @endforeach
                 </ul>

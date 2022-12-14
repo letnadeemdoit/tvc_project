@@ -113,6 +113,7 @@ class CreateOrUpdateFoodItemForm extends Component
                     }
 
 //                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+
                     $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
 
                     if (count($request_to_use_house_email_list) > 0) {

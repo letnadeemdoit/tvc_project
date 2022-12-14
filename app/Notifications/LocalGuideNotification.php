@@ -66,6 +66,7 @@ class LocalGuideNotification extends Notification
         return [
             'Name' => $this->items->title,
             'isAction' => $this->isAction,
+            'isModal' => 'Local Guide',
             'house_name' => $this->createdHouseName,
         ];
     }

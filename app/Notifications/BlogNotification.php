@@ -67,6 +67,7 @@ class BlogNotification extends Notification implements ShouldQueue
         return [
             'Name' => $this->items->Subject,
             'house_name' => $this->createdHouseName,
+            'isModal' => 'Blog',
             'slug' => $this->blogUrl,
         ];
     }

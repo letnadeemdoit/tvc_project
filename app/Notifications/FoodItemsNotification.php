@@ -66,6 +66,7 @@ class FoodItemsNotification extends Notification implements ShouldQueue
         return [
             'Name' => $this->items->name,
             'isAction' => $this->isAction,
+            'isModal' => 'Food Item',
             'house_name' => $this->createdHouseName,
         ];
     }
