@@ -1,4 +1,13 @@
 <x-guest-layout>
+    @push('stylesheets')
+
+        <style>
+            .toast-success{
+                background-color: #51A351 !important;
+            }
+        </style>
+
+    @endpush
     @include('partials.sub-page-hero-section', ['title' => 'House Blog'])
 
     {{--  center text row  --}}
