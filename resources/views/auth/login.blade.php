@@ -110,7 +110,7 @@
                 <div x-show="gotoHouse" style="display: none">
                     {{-- Login Account --}}
                     <div x-show="loginAsGuest === null">
-                        <div class="text-start">
+                        <div class="text-start content-space-t-1">
                             <div class="mb-5 text-center">
                                 <h1 class="display-5">Login Account</h1>
                                 <span class="divider-center text-muted mt-4">as</span>
@@ -142,14 +142,14 @@
                     <div x-show="loginAsGuest !== null" x-cloak>
                         {{-- Login Account --}}
 
-                        <div class="text-start" x-show="loginAsGuest">
+                        <div class="text-start content-space-t-1" x-show="loginAsGuest">
                             {{-- Guest --}}
                             <div class="mb-5">
                                 <h1 class="display-5">Login Account <span class="text-primary">as Guest.</span></h1>
                                 <p>{{ __('to get beautiful home for vacations to make your vacations memorable.') }}</p>
                             </div>
                         </div>
-                        <div class="text-start" x-show="loginAsGuest === false">
+                        <div class="text-start content-space-t-1" x-show="loginAsGuest === false">
                             {{-- Administrator --}}
                             <div class="mb-3">
                                 <h1 class="display-5 lh-base">Login Account <br> <span class="text-primary">as Administrator & Owner</span>
