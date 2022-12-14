@@ -11,9 +11,9 @@
             .social-feeds .card-text {
                 font-size: 12px !important;
             }
-            .feature-cards .col-lg-4 card{
-                min-height: 611px;
-            }
+            /*.feature-cards .col-lg-4 card{*/
+            /*    min-height: 611px;*/
+            /*}*/
         </style>
         <style>
             .massonary-container {
@@ -238,7 +238,7 @@
                 <div class="row py-5 feature-cards">
                     <div class="col-lg-4">
                         <!-- Card -->
-                        <div class="card p-2 text-center text-lg-start" style="height: 611px">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/bulletin-image-card.svg"
                                  alt="Card image cap"/>
                             <div class="card-body">
@@ -260,7 +260,7 @@
                     </div>
                     <div class="col-lg-4 my-4 my-lg-0">
                         <!-- Card -->
-                        <div class="card p-2 text-center text-lg-start" style="height: 611px">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/managing-vacations-card.svg"
                                  alt="Card image cap"/>
                             <div class="card-body">
@@ -280,7 +280,7 @@
                     </div>
                     <div class="col-lg-4">
                         <!-- Card -->
-                        <div class="card p-2 text-center text-lg-start" style="height: 611px">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/house-blog-card.svg"
                                  alt="Card image cap"/>
                             <div class="card-body">
@@ -309,7 +309,7 @@
                 <div class="row py-5 feature-cards">
                     <div class="col-lg-4">
                         <!-- Card -->
-                        <div class="card p-2 text-center text-lg-start" style="height: 611px">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/local-guide.png"
                                  alt="Card image cap"/>
                             <div class="card-body">
@@ -330,7 +330,7 @@
                     </div>
                     <div class="col-lg-4 my-4 my-lg-0">
                         <!-- Card -->
-                        <div class="card p-2 text-center text-lg-start" style="height: 611px">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/managing-vacations-card.svg"
                                  alt="Card image cap"/>
                             <div class="card-body">
@@ -350,7 +350,7 @@
                     </div>
                     <div class="col-lg-4">
                         <!-- Card -->
-                        <div class="card p-2 text-center text-lg-start" style="height: 611px">
+                        <div class="card p-2 text-center text-lg-start">
                             <img class="card-img-top" src="/images/images-home/house-blog-card.svg"
                                  alt="Card image cap"/>
                             <div class="card-body">
