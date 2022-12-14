@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Settings\GuestBook;
 
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\GuestBook;
+use App\Models\User;
+use App\Notifications\GuestBookNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -18,6 +21,8 @@ class CreateOrUpdateGusetBookForm extends Component
     public $state = [];
 
     public $file;
+
+    public $isCreating = false;
 
     public ?GuestBook $guestBook;
 
@@ -75,6 +80,46 @@ class CreateOrUpdateGusetBookForm extends Component
         ])->save();
 
         $this->guestBook->updateFile($this->file);
+
+        try {
+            $items = $this->guestBook;
+
+            $createdHouseName = auth()->user()->house->HouseName;
+
+            if ($this->isCreating == false) {
+                $isAction = 'created';
+            } else {
+                $isAction = 'updated';
+            }
+
+            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
+
+                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
+
+                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
+
+                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
+                    }
+
+//                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
+
+                    if (count($request_to_use_house_email_list) > 0) {
+
+                        Notification::route('mail', $request_to_use_house_email_list)
+                            ->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
+
+                    }
+                }
+
+            }
+        } catch (Exception $e) {
+
+        }
+
 
         $this->emitSelf('toggle', false);
 
