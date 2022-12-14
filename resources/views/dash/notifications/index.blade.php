@@ -69,7 +69,7 @@
                                     <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">
                                         <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">
                                             <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-image"></i> : </h4>
-                                            <p class="mb-0">New {{$dt->data['isModal'] ?? '----'}} <b
+                                            <p class="mb-0">New {{$dt->data['isModal'] ?? '--'}} <b
                                                     class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
                                                 has been created against <b
                                                     class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b>
