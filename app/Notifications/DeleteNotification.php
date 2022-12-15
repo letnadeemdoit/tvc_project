@@ -54,7 +54,7 @@ class DeleteNotification extends Notification implements ShouldQueue
             ->subject('Delete '. $this->isModel)
             ->greeting($this->isAction)
             ->line(new HtmlString( '<strong>' . $this->name. '</strong>'
-                 . $this->isModel. ' has been Deleted! again <span>' .  $this->createdHouseName . '</span> House </strong>'));
+                 . $this->isModel. ' has been Deleted again <span>' .  $this->createdHouseName . '</span> House </strong>'));
     }
 
     /**
