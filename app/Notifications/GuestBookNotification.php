@@ -65,6 +65,7 @@ class GuestBookNotification extends Notification
         return [
             'Name' => $this->items->title,
             'isAction' => $this->isAction,
+            'isModal' => 'Guest Book',
             'house_name' => $this->createdHouseName,
         ];
     }

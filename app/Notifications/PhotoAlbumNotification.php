@@ -6,19 +6,25 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 
 class PhotoAlbumNotification extends Notification
 {
     use Queueable;
+    public $items;
+    public $isAction;
+    public $createdHouseName;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($items,$isAction,$createdHouseName)
     {
-        //
+        $this->items = $items;
+        $this->isAction = $isAction;
+        $this->createdHouseName = $createdHouseName;
     }
 
     /**
@@ -29,7 +35,7 @@ class PhotoAlbumNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','database'];
     }
 
     /**
@@ -41,9 +47,11 @@ class PhotoAlbumNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->greeting('Photo')
+            ->line(new HtmlString(
+                '<strong> A new Photo  </strong>'.
+                '  has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
+            ));
     }
 
     /**
@@ -55,7 +63,10 @@ class PhotoAlbumNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'Name' => 'New Photo',
+            'isAction' => $this->isAction,
+            'isModal' => 'Photo',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

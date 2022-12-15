@@ -69,21 +69,11 @@
                                     <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">
                                         <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">
                                             <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-image"></i> : </h4>
-
-                                            @if(isset($dt->data['deleteType']))
-                                                @if($dt->data['deleteType'] == 'Blog')
-
-                                                    <p class="mb-0">A Blog <b
-                                                            class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
-                                                        has been Deleted</p>
-                                                @else
-                                                    <p class="mb-0">A Calendar <b
-                                                            class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
-                                                        has been Deleted</p>
-                                                @endif
-                                            @endif
-
-
+                                            <p class="mb-0">New {{$dt->data['isModal'] ?? '--'}} <b
+                                                    class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
+                                                has been created against <b
+                                                    class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b>
+                                                House </p>
                                         </div>
                                         <div class="d-lg-flex align-items-center d-lg-block mb-2 mb-lg-0">
                                             <p class="mb-0 text-muted mb-2 mb-lg-0">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>
@@ -92,6 +82,34 @@
                                             </form>
                                         </div>
                                     </li>
+
+
+{{--                                    <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">--}}
+{{--                                        <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">--}}
+{{--                                            <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-image"></i> : </h4>--}}
+
+{{--                                            @if(isset($dt->data['deleteType']))--}}
+{{--                                                @if($dt->data['deleteType'] == 'Blog')--}}
+
+{{--                                                    <p class="mb-0">A Blog <b--}}
+{{--                                                            class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>--}}
+{{--                                                        has been Deleted</p>--}}
+{{--                                                @else--}}
+{{--                                                    <p class="mb-0">A Calendar <b--}}
+{{--                                                            class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>--}}
+{{--                                                        has been Deleted</p>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+
+
+{{--                                        </div>--}}
+{{--                                        <div class="d-lg-flex align-items-center d-lg-block mb-2 mb-lg-0">--}}
+{{--                                            <p class="mb-0 text-muted mb-2 mb-lg-0">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>--}}
+{{--                                            <form action="{{route('dash.mark-as-read-single-notification', $dt->id)}}">--}}
+{{--                                                <button type="submit" class="text-primary px-0 bg-transparent border-0 fw-bold text-decoration-underline ms-0 ms-lg-2">Mark as Read</button>--}}
+{{--                                            </form>--}}
+{{--                                        </div>--}}
+{{--                                    </li>--}}
 
                                 @endif
                             @endforeach
