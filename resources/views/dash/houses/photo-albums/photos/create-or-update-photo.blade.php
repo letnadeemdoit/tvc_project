@@ -33,6 +33,24 @@
                 </div>
                 <br/>
 
+                @if(!$isCreating)
+                <div class="mb-3">
+                    <label class="form-label" for="">Move Photo To Album:</label>
+                    <select name="album_id" id="album_id"
+                            wire:model.defer="state.album_id" class="form-control">
+                        <option value="" selected>Select Album...</option>
+                        @forelse($albumCategory as $ac)
+{{--                            @if($album && $album->id)--}}
+{{--                                @continue($album->id == $ac->id)--}}
+{{--                            @endif--}}
+                            <option value="{{$ac->id}}">{{$ac->name}}</option>
+                        @empty
+                            <option value="" disabled selected>Create an album to select parent album</option>
+                        @endforelse
+                    </select>
+
+                </div>
+                @endif
 
                 <div class="mb-3">
                     <label class="form-label" for="description">Description:</label>

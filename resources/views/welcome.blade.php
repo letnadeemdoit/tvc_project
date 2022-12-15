@@ -261,7 +261,7 @@
                     <div class="col-lg-4 my-4 my-lg-0">
                         <!-- Card -->
                         <div class="card p-2 text-center text-lg-start">
-                            <img class="card-img-top" src="/images/images-home/managing-vacations-card.svg"
+                            <img class="card-img-top" src="/images/images-home/album-s.svg"
                                  alt="Card image cap"/>
                             <div class="card-body">
                                 <h3 class="card-title">Photo Album</h3>
@@ -331,7 +331,7 @@
                     <div class="col-lg-4 my-4 my-lg-0">
                         <!-- Card -->
                         <div class="card p-2 text-center text-lg-start">
-                            <img class="card-img-top" src="/images/images-home/managing-vacations-card.svg"
+                            <img class="card-img-top" src="/images/images-home/guest-book.svg"
                                  alt="Card image cap"/>
                             <div class="card-body">
                                 <h3 class="card-title">Guest Book</h3>
@@ -351,7 +351,7 @@
                     <div class="col-lg-4">
                         <!-- Card -->
                         <div class="card p-2 text-center text-lg-start">
-                            <img class="card-img-top" src="/images/images-home/house-blog-card.svg"
+                            <img class="card-img-top" src="/images/images-home/food-item.svg"
                                  alt="Card image cap"/>
                             <div class="card-body">
                                 <h3 class="card-title">Food & Shopping Lists</h3>
@@ -529,14 +529,14 @@
                 <div class="col-lg-6 col-xl-5 offset-lg-1 offset-xl-2 text-center">
                     <div id="big-image">
                         <img src="{{asset('/images/images-home/house-blog.png')}}" class="img-fluid" alt="tab-image"/>
-                        <img src="{{asset('/images/images-home/users.png')}}" class="img-fluid" alt="tab-image"/>
-                        <img src="{{asset('/images/images-home/notifications.png')}}" class="img-fluid"
+                        <img src="{{asset('/images/images-home/user-management.png')}}" class="img-fluid" alt="tab-image"/>
+                        <img src="{{asset('/images/images-home/notifications1.png')}}" class="img-fluid"
                              alt="tab-image"/>
-                        <img src="{{asset('/images/images-home/audit-history.png')}}" class="img-fluid"
+                        <img src="{{asset('/images/images-home/audit.png')}}" class="img-fluid"
                              alt="tab-image"/>
-                        <img src="{{asset('/images/images-home/additional-house.png')}}" class="img-fluid" alt="tab-image"/>
-                        <img src="{{asset('/images/images-home/photo-album.png')}}" class="img-fluid" alt="tab-image"/>
-                        <img src="{{asset('/images/images-home/subscription.png')}}" class="img-fluid"
+                        <img src="{{asset('/images/images-home/houses.png')}}" class="img-fluid" alt="tab-image"/>
+                        <img src="{{asset('/images/images-home/booking-room1.png')}}" class="img-fluid" alt="tab-image"/>
+                        <img src="{{asset('/images/images-home/subscription1.png')}}" class="img-fluid"
                              alt="tab-image"/>
                         <img src="{{asset('/images/images-home/manage-account.png')}}" class="img-fluid"
                              alt="tab-image"/>

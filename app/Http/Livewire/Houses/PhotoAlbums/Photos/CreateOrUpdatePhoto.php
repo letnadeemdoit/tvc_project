@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Houses\PhotoAlbums\Photos;
 
 use App\Http\Livewire\Traits\Toastr;
+use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
 use App\Notifications\PhotoAlbumNotification;
@@ -20,6 +21,8 @@ class CreateOrUpdatePhoto extends Component
 
     public $album;
 
+    public $user;
+
     public $isCreating = false;
 
     public $isShowingModal = false;
@@ -36,8 +39,19 @@ class CreateOrUpdatePhoto extends Component
 
     public function render()
     {
+        $albumCategory = Album::where('house_id', $this->user->HouseId)
+//            ->when($this->user->is_owner_only, function ($query){
+//                $query->where('user_id', $this->user->user_id);
+//            })
+//            ->where(function ($query){
+//                $query->whereDoesntHave('parentAlbum')
+//                    ->orWhereHas('parentAlbum', function ($query) {
+//                        $query->whereDoesntHave('parentAlbum');
+//                    });
+//            })
+            ->get();
 
-        return view('dash.houses.photo-albums.photos.create-or-update-photo');
+        return view('dash.houses.photo-albums.photos.create-or-update-photo', compact('albumCategory'));
 
     }
 
@@ -80,7 +94,7 @@ class CreateOrUpdatePhoto extends Component
 
         $this->photo->fill([
             'HouseId' => auth()->user()->HouseId,
-            'album_id' => $this->album->id,
+            'album_id' => $this->isCreating ? $this->album->id : $inputs['album_id'],
             'description' => $inputs['description'] ?? null,
         ])->save();
 
