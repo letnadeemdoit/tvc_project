@@ -30,7 +30,7 @@
                                 <input type="text" value="{{ $iCalUrl }}" id="addToYourCalendar" class="form-control mb-3" readonly>
                                 <button
                                     x-data="{copied: false}"
-                                    class="btn btn-outline-secondary mb-2 mb-lg-0"
+                                    class="btn btn-sm btn-outline-secondary mb-2 mb-lg-0"
                                     @click.prevent="() => {
                                         $clipboard('{{ $iCalUrl }}');
                                         copied = true;
@@ -43,8 +43,11 @@
                                     x-bind:disabled="copied"
                                 >
                                     <i class="bi-clipboard me-1" x-show="!copied"></i>
-                                    <i class="bi-clipboard-check-fill me-1" style="display: none" x-show="copied"></i>
-                                    Copy to clipboard
+                                    <i class="bi-clipboard-check-fill me-1 text-primary" style="display: none" x-show="copied"></i>
+
+                                    <span class="" x-show="!copied"> Copy to clipboard</span>
+                                    <span class="me-1 text-primary" style="display: none" x-show="copied">Copied!</span>
+
                                 </button>
                             </div>
 
