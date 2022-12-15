@@ -138,7 +138,7 @@ class CreateOrUpdateLocalGuideForm extends Component
 
         $this->success('Local Guide ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
 
-//        $this->emit('local-guide-cu-successfully');
+        $this->emit('local-guide-cu-successfully');
     }
 
     public function updatedFile() {

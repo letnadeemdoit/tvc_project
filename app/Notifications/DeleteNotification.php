@@ -14,17 +14,19 @@ class DeleteNotification extends Notification implements ShouldQueue
     public $name;
     public $isAction;
     public $createdHouseName;
+    public $isModel;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($name,$isAction,$createdHouseName)
+    public function __construct($name,$isAction,$createdHouseName,$isModel)
     {
         $this->name = $name;
         $this->isAction = $isAction;
         $this->createdHouseName = $createdHouseName;
+        $this->isModel = $isModel;
     }
 
     /**
@@ -48,13 +50,11 @@ class DeleteNotification extends Notification implements ShouldQueue
     {
 
         return (new MailMessage)
-            ->subject('Delete Blog')
-            ->greeting('Blog')
-            ->line(new HtmlString(
-                '<strong>' . $this->items->Subject . ' </strong>'.
-                '<strong>' . $this->name.'</strong> Blog has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
-            ));
 
+            ->subject('Delete '. $this->isModel)
+            ->greeting($this->isAction)
+            ->line(new HtmlString( '<strong>' . $this->name. '</strong>'
+                 . $this->isModel. ' has been Deleted!  </strong>'));
     }
 
     /**
@@ -68,6 +68,7 @@ class DeleteNotification extends Notification implements ShouldQueue
         return [
             'Name' => $this->name,
             'isAction' => $this->isAction,
+            'isModal' => $this->isModel,
             'house_name' => $this->createdHouseName,
         ];
     }

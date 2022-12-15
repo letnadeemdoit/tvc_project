@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class PhotoAlbumNotification extends Notification
+class PhotoAlbumNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $items;
