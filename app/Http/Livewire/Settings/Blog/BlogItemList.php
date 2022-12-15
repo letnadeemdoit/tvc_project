@@ -70,7 +70,8 @@ class BlogItemList extends Component
         $this->emitSelf('blog-cu-successfully');
 
         $name = $data['Subject'];
-        $deleteType = 'Blog';
+        $isAction = 'Deleted';
+        $createdHouseName = $this->user->house->HouseName;
 
         try {
 
@@ -83,7 +84,7 @@ class BlogItemList extends Component
                     $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name,$deleteType));
+                        $user->notify(new DeleteNotification($name,$isAction,$createdHouseName));
                     }
 
                     $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
@@ -91,7 +92,7 @@ class BlogItemList extends Component
                     if (count($blogEmailsList) > 0) {
 
                         Notification::route('mail', $blogEmailsList)
-                            ->notify(new DeleteNotification($name,$deleteType));
+                            ->notify(new DeleteNotification($name,$isAction,$createdHouseName));
 
                     }
                 }

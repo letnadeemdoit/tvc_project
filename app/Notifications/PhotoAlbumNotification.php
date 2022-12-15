@@ -63,9 +63,8 @@ class PhotoAlbumNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'Name' => 'New Photo',
+            'Name' => 'Photo',
             'isAction' => $this->isAction,
-            'isModal' => 'Photo',
             'house_name' => $this->createdHouseName,
         ];
     }

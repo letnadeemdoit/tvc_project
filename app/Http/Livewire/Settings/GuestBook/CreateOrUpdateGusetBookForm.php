@@ -46,8 +46,16 @@ class CreateOrUpdateGusetBookForm extends Component
         $this->guestBook = $guestBook;
         $this->reset(['state', 'file']);
 
+//        if ($guestBook->id) {
+//            $this->state = \Arr::only($guestBook->toArray(), ['title','name','content','image','status']);
+//        }
+
         if ($guestBook->id) {
+            $this->isCreating = false;
             $this->state = \Arr::only($guestBook->toArray(), ['title','name','content','image','status']);
+        } else {
+            $this->isCreating = true;
+            $this->state = [];
         }
     }
 
@@ -83,14 +91,8 @@ class CreateOrUpdateGusetBookForm extends Component
 
         try {
             $items = $this->guestBook;
-
             $createdHouseName = auth()->user()->house->HouseName;
-
-            if ($this->isCreating == false) {
-                $isAction = 'created';
-            } else {
-                $isAction = 'updated';
-            }
+            $isAction = $this->isCreating ? 'created' : 'updated';
 
             if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
 
@@ -111,7 +113,6 @@ class CreateOrUpdateGusetBookForm extends Component
 
                         Notification::route('mail', $request_to_use_house_email_list)
                             ->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
-
                     }
                 }
 
@@ -120,11 +121,10 @@ class CreateOrUpdateGusetBookForm extends Component
 
         }
 
-
         $this->emitSelf('toggle', false);
 
-        $this->success('saved Successfully');
-
+//        $this->success('saved Successfully');
+        $this->success('Guest Book ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
         $this->emit('guest-book-cu-successfully');
     }
 

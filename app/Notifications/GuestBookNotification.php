@@ -24,6 +24,7 @@ class GuestBookNotification extends Notification
     {
         $this->items = $items;
         $this->isAction = $isAction;
+
         $this->createdHouseName = $createdHouseName;
     }
 

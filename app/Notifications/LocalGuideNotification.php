@@ -51,7 +51,7 @@ class LocalGuideNotification extends Notification
             ->greeting('Local Guide')
             ->line(new HtmlString(
                 '<strong>' . $this->items->title . ' </strong>'.
-                ' GuestBook has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
+                ' Local Guide has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
             ));
     }
 

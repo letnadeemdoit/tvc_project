@@ -50,7 +50,7 @@ class FoodItemsNotification extends Notification implements ShouldQueue
             ->greeting('Food Items!')
             ->line(new HtmlString(
                 '<strong>' . $this->items->name . ' </strong>'.
-                ' Food has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
+                ' Food Item has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
             ));
     }
 

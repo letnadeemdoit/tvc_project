@@ -90,14 +90,8 @@ class CreateOrUpdatePhoto extends Component
 
         try {
             $items = $this->photo;
-
             $createdHouseName = auth()->user()->house->HouseName;
-
-            if ($this->isCreating !== false) {
-                $isAction = 'created';
-            } else {
-                $isAction = 'updated';
-            }
+            $isAction = $this->isCreating ? 'created' : 'updated';
 
             if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
 

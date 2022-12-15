@@ -102,14 +102,8 @@ class CreateOrUpdateLocalGuideForm extends Component
 
         try {
             $items = $this->localGuide;
-
             $createdHouseName = auth()->user()->house->HouseName;
-
-            if ($this->isCreating !== false) {
-                $isAction = 'created';
-            } else {
-                $isAction = 'updated';
-            }
+            $isAction = $this->isCreating ? 'created' : 'updated';
 
             if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
 
@@ -142,7 +136,7 @@ class CreateOrUpdateLocalGuideForm extends Component
 
         $this->emitSelf('toggle', false);
 
-        $this->success('Local Guide Created Successfully');
+        $this->success('Local Guide ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
 
 //        $this->emit('local-guide-cu-successfully');
     }
