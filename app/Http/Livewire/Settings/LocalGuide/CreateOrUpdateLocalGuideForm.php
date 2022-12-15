@@ -133,7 +133,6 @@ class CreateOrUpdateLocalGuideForm extends Component
 
         }
 
-
         $this->emitSelf('toggle', false);
 
         $this->success('Local Guide ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
