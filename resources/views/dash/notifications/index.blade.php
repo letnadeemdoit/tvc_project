@@ -25,27 +25,27 @@
                     <div class="p-1 p-lg-0">
                         <ul class="list-group list-group-flush">
                             @foreach($data as $dt)
-{{--                                      @if($dt->type == 'App\Notifications\BlogNotification')--}}
-{{--                                    <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">--}}
-{{--                                        <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">--}}
-{{--                                            <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-image"></i> :--}}
-{{--                                            </h4>--}}
-{{--                                            <p class="mb-0">New Blog <b--}}
-{{--                                                    class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>--}}
-{{--                                                has been created against <b--}}
-{{--                                                    class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b>--}}
-{{--                                                House </p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="d-lg-flex align-items-center d-lg-block mb-2 mb-lg-0">--}}
-{{--                                            <p class="mb-0 text-muted mb-2 mb-lg-0">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>--}}
-{{--                                            <form action="{{route('dash.mark-as-read-single-notification', $dt->id)}}">--}}
-{{--                                                <button type="submit"--}}
-{{--                                                        class="text-primary px-0 bg-transparent border-0 fw-bold text-decoration-underline ms-0 ms-lg-2">--}}
-{{--                                                    Mark as Read--}}
-{{--                                                </button>--}}
-{{--                                            </form>--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
+                                {{--                                      @if($dt->type == 'App\Notifications\BlogNotification')--}}
+                                {{--                                    <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">--}}
+                                {{--                                        <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">--}}
+                                {{--                                            <h4 class="mb-0 me-3 d-none d-lg-block">- <i class="bi bi-image"></i> :--}}
+                                {{--                                            </h4>--}}
+                                {{--                                            <p class="mb-0">New Blog <b--}}
+                                {{--                                                    class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>--}}
+                                {{--                                                has been created against <b--}}
+                                {{--                                                    class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b>--}}
+                                {{--                                                House </p>--}}
+                                {{--                                        </div>--}}
+                                {{--                                        <div class="d-lg-flex align-items-center d-lg-block mb-2 mb-lg-0">--}}
+                                {{--                                            <p class="mb-0 text-muted mb-2 mb-lg-0">{{$dt->created_at->format('d-M-Y  h:m:A')}}</p>--}}
+                                {{--                                            <form action="{{route('dash.mark-as-read-single-notification', $dt->id)}}">--}}
+                                {{--                                                <button type="submit"--}}
+                                {{--                                                        class="text-primary px-0 bg-transparent border-0 fw-bold text-decoration-underline ms-0 ms-lg-2">--}}
+                                {{--                                                    Mark as Read--}}
+                                {{--                                                </button>--}}
+                                {{--                                            </form>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </li>--}}
                                 @if($dt->type == 'App\Notifications\CalendarEmailNotification')
 
                                     <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">
@@ -81,14 +81,21 @@
                                                 <b class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
                                                 <span class="fw-600">{{$dt->data['isModal'] ?? ''}}</span>
                                                 has been
-                                                @if($dt->data['isAction'] == 'created')
-                                                    <span class="text-success fw-600">{{$dt->data['isAction'] ?? ''}}</span>
-                                                @elseif($dt->data['isAction'] == 'updated')
-                                                    <span class="text-info fw-600">{{$dt->data['isAction'] ?? ''}}</span>
-                                                @else
-                                                    <span class="text-danger fw-600">{{$dt->data['isAction'] ?? ''}}</span>
+                                                @if(isset($dt->data['isAction']))
+                                                    @if($dt->data['isAction'] == 'created')
+                                                        <span
+                                                            class="text-success fw-600">{{$dt->data['isAction'] ?? ''}}</span>
+                                                    @elseif($dt->data['isAction'] == 'updated')
+                                                        <span
+                                                            class="text-info fw-600">{{$dt->data['isAction'] ?? ''}}</span>
+                                                    @else
+                                                        <span
+                                                            class="text-danger fw-600">{{$dt->data['isAction'] ?? ''}}</span>
+                                                    @endif
                                                 @endif
-                                                against <b class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b> House
+                                                    against <b
+                                                        class="text-primary text-capitalize">{{$dt->data['house_name'] ?? ''}}</b>
+                                                    House
                                             </p>
                                         </div>
                                         <div class="d-lg-flex align-items-center d-lg-block mb-2 mb-lg-0">
