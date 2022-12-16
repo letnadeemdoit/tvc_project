@@ -79,7 +79,9 @@
                                             </h4>
                                             <p class="mb-0">
                                                 <b class="text-primary text-capitalize">{{$dt->data['Name'] ?? ''}}</b>
-                                                <span class="fw-600">{{$dt->data['isModal'] ?? ''}}</span>
+                                               @if(isset($dt->data['isModal'] ))
+                                                    <span class="fw-600">{{$dt->data['isModal'] ?? ''}}</span>
+                                                @endif
                                                 has been
                                                 @if(isset($dt->data['isAction']))
                                                     @if($dt->data['isAction'] == 'created')
