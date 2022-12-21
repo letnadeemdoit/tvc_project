@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class GuestBookNotification extends Notification
+class GuestBookNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $items;
@@ -24,6 +24,7 @@ class GuestBookNotification extends Notification
     {
         $this->items = $items;
         $this->isAction = $isAction;
+
         $this->createdHouseName = $createdHouseName;
     }
 

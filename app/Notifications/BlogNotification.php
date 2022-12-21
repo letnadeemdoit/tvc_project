@@ -13,6 +13,7 @@ class BlogNotification extends Notification implements ShouldQueue
     use Queueable;
     public $items;
     public $blogUrl;
+    public $isAction;
     public $createdHouseName;
 
     /**
@@ -20,10 +21,11 @@ class BlogNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($items,$blogUrl,$createdHouseName)
+    public function __construct($items,$blogUrl,$isAction,$createdHouseName)
     {
         $this->items = $items;
         $this->blogUrl = $blogUrl;
+        $this->isAction = $isAction;
         $this->createdHouseName = $createdHouseName;
     }
 
@@ -48,12 +50,20 @@ class BlogNotification extends Notification implements ShouldQueue
     {
         $url = $this->blogUrl;
         return (new MailMessage)
-            ->greeting('Blog!')
+
+            ->greeting('Blog')
             ->line(new HtmlString(
-                'New Blog <strong>' . $this->items->Subject.'</strong>'.
-                '  has been added for the vacation house ' . '<strong>'. $this->createdHouseName .' </strong>'
+                '<strong>' . $this->items->Subject . ' </strong>'.
+                ' Blog has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
             ))
             ->action('click to check blog', $url);
+
+//            ->greeting('Blog!')
+//            ->line(new HtmlString(
+//                'New Blog <strong>' . $this->items->Subject.'</strong>'.
+//                '  has been added for the vacation house ' . '<strong>'. $this->createdHouseName .' </strong>'
+//            ))
+//            ->action('click to check blog', $url);
     }
 
     /**
@@ -68,6 +78,7 @@ class BlogNotification extends Notification implements ShouldQueue
             'Name' => $this->items->Subject,
             'house_name' => $this->createdHouseName,
             'isModal' => 'Blog',
+            'isAction' => $this->isAction,
             'slug' => $this->blogUrl,
         ];
     }

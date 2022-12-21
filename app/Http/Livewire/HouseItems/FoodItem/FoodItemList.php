@@ -4,6 +4,9 @@ namespace App\Http\Livewire\HouseItems\FoodItem;
 
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\FoodItem;
+use App\Models\User;
+use App\Notifications\DeleteNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -29,8 +32,9 @@ class FoodItemList extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
-        'destroyed-successfully' => '$refresh',
+//        'destroyed-successfully' => '$refresh',
         'food-item-cu-successfully' => '$refresh',
+        'destroyed-successfully' => 'destroyedSuccessfully',
     ];
 
     public function mount()
@@ -59,6 +63,59 @@ class FoodItemList extends Component
             ->paginate($this->per_page);
 
         return view('dash.house-items.food-item-list.food-item-list',compact('data'));
+    }
+
+    public function destroyedSuccessfully($data)
+    {
+        $this->emitSelf('food-item-cu-successfully');
+
+        $name = $data['name'];
+        $isAction = 'Deleted';
+        $createdHouseName = $this->user->house->HouseName;
+        $isModel = 'Food Item';
+
+        try {
+
+            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
+
+                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
+
+                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
+
+                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
+                    }
+
+//                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
+
+                    if (count($request_to_use_house_email_list) > 0) {
+
+                        Notification::route('mail', $request_to_use_house_email_list)
+                            ->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
+
+                    }
+                }
+
+            }
+        } catch (Exception $e) {
+
+        }
+    }
+
+    public function destroy($id)
+    {
+        if ($this->model) {
+            $deletableModel = app($this->model)->findOrFail($id);
+            $this->emit(
+                'destroyable-confirmation-modal',
+                $this->model,
+                $id,
+                $this->destroyableConfirmationContent
+            );
+        }
     }
 
 }

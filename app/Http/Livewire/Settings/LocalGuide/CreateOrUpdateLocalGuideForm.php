@@ -102,49 +102,24 @@ class CreateOrUpdateLocalGuideForm extends Component
 
         try {
             $items = $this->localGuide;
-
             $createdHouseName = auth()->user()->house->HouseName;
+            $isAction = $this->isCreating ? 'created' : 'updated';
 
-            if ($this->isCreating !== false) {
-                $isAction = 'created';
-            } else {
-                $isAction = 'updated';
+            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
+
+            foreach ($users as $user) {
+                $user->notify(new LocalGuideNotification($items, $isAction, $createdHouseName));
             }
 
-            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
-
-                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
-
-                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-
-                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new LocalGuideNotification($items, $isAction, $createdHouseName));
-                    }
-
-//                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
-
-                    if (count($request_to_use_house_email_list) > 0) {
-
-                        Notification::route('mail', $request_to_use_house_email_list)
-                            ->notify(new LocalGuideNotification($items, $isAction, $createdHouseName));
-
-                    }
-                }
-
-            }
         } catch (Exception $e) {
 
         }
 
-
         $this->emitSelf('toggle', false);
 
-        $this->success('Local Guide Created Successfully');
+        $this->success('Local Guide ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
 
-//        $this->emit('local-guide-cu-successfully');
+        $this->emit('local-guide-cu-successfully');
     }
 
     public function updatedFile() {

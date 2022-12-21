@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class LocalGuideNotification extends Notification
+class LocalGuideNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $items;
@@ -51,7 +51,7 @@ class LocalGuideNotification extends Notification
             ->greeting('Local Guide')
             ->line(new HtmlString(
                 '<strong>' . $this->items->title . ' </strong>'.
-                ' GuestBook has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
+                ' Local Guide has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
             ));
     }
 

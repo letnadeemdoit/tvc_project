@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class PhotoAlbumNotification extends Notification
+class PhotoAlbumNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $items;
@@ -63,9 +63,8 @@ class PhotoAlbumNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'Name' => 'New Photo',
+            'Name' => 'Photo',
             'isAction' => $this->isAction,
-            'isModal' => 'Photo',
             'house_name' => $this->createdHouseName,
         ];
     }

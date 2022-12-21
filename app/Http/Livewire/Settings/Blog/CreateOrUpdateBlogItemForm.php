@@ -147,10 +147,9 @@ class CreateOrUpdateBlogItemForm extends Component
             $this->siteUrl = route('guest.blog.show', $slug);
 
             $items = $this->blogItem;
-
             $createdHouseName = $this->user->house->HouseName;
-
             $blogUrl = $this->siteUrl;
+            $isAction = $this->isCreating ? 'created' : 'updated';
 
             if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList)) {
 
@@ -159,13 +158,13 @@ class CreateOrUpdateBlogItemForm extends Component
                     $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new BlogNotification($items, $blogUrl, $createdHouseName));
+                        $user->notify(new BlogNotification($items, $blogUrl,$isAction, $createdHouseName));
                     }
 //                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
                     $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
                     if (count($blogEmailsList) > 0) {
                         Notification::route('mail', $blogEmailsList)
-                            ->notify(new BlogNotification($items, $blogUrl, $createdHouseName));
+                            ->notify(new BlogNotification($items, $blogUrl,$isAction, $createdHouseName));
                     }
                 }
             }
