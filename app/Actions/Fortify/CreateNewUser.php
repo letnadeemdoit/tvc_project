@@ -46,11 +46,13 @@ class CreateNewUser implements CreatesNewUsers
 //        $city_name = City::where('id',$input['city_id'])->first();
 
 
+
         $house = House::create([
             'HouseName' => $input['HouseName'],
             'primary_house_name' => $input['HouseName'],
             'country' => $country_name['name'] ?? null,
             'State' => $state_name['name'] ?? null,
+            'Status' => 'P',
             'City' => $input['city_id'] ?? null,
             'ZipCode' => $input['zipcode'],
             'ReferredBy' => $input['Referral_paypal_account'] ?? null,

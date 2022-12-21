@@ -1049,7 +1049,7 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <img class="card-img-top"
-                                                             src="/images/images-home/calendar1.png"
+                                                             src="/images/images-home/calendar.png"
                                                              alt="Card image cap"/>
                                                     </div>
                                                     <div class="mb-3">
