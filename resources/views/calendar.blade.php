@@ -11,23 +11,55 @@
 
         @if($user->is_owner)
             <div class="text-end mb-3">
-                <button
-                    x-data="{copied: false}"
-                    class="btn btn-outline-secondary mb-2 mb-lg-0"
-                    @click.prevent="() => {
-                    $clipboard('{{ $iCalUrl }}');
-                    copied = true;
-                    setTimeout(() => {
-                        copied = false;
-                    }, 2000);
 
-                }"
-                    x-bind:disabled="copied"
-                >
-                    <i class="bi-clipboard me-1" x-show="!copied"></i>
-                    <i class="bi-clipboard-check-fill me-1" style="display: none" x-show="copied"></i>
+                <button type="button" class="btn btn-outline-secondary mb-2 mb-lg-0" data-bs-toggle="modal"
+                        data-bs-target="#addToYourCalendarModal">
                     Add to your Calendar
                 </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="addToYourCalendarModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <input type="text" value="{{ $iCalUrl }}" id="addToYourCalendar"
+                                       class="form-control mb-3" readonly>
+
+                                <button
+                                    x-data="{copied: false}"
+                                    class="btn btn-sm btn-outline-secondary mb-2 mb-lg-0"
+                                    @click.prevent="() => {
+                                        $clipboard('{{ $iCalUrl }}');
+                                        copied = true;
+                                        document.getElementById('addToYourCalendar').select();
+                                        setTimeout(() => {
+                                            copied = false;
+                                        }, 2000);
+
+                                    }"
+                                    x-bind:disabled="copied"
+                                >
+                                    <i class="bi-clipboard me-1" x-show="!copied"></i>
+                                    <i class="bi-clipboard-check-fill me-1 text-primary" style="display: none"
+                                       x-show="copied"></i>
+
+                                    <span class="" x-show="!copied"> Copy to clipboard</span>
+                                    <span class="me-1 text-primary" style="display: none" x-show="copied">Copied!</span>
+
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
                 <a
                     x-data
                     class="btn btn-primary mb-2 mb-lg-0"
@@ -49,7 +81,8 @@
                     <livewire:settings.vacations.schedule-vacation-form :user="$user" wire:key="vsvf{{time()}}"/>
                 </div>
                 <div>
-                    <livewire:settings.vacations.request-to-join-vacation-form :user="$user" wire:key="rtjvf{{time()}}"/>
+                    <livewire:settings.vacations.request-to-join-vacation-form :user="$user"
+                                                                               wire:key="rtjvf{{time()}}"/>
                 </div>
             </div>
         </div>
