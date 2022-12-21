@@ -94,31 +94,12 @@ class CreateOrUpdateFoodItemForm extends Component
             $createdHouseName = auth()->user()->house->HouseName;
             $isAction = $this->isCreating ? 'created' : 'updated';
 
-            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
+            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
 
-                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
-
-                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-
-                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
-                    }
-
-//                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-
-                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
-
-                    if (count($request_to_use_house_email_list) > 0) {
-
-                        Notification::route('mail', $request_to_use_house_email_list)
-                            ->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
-
-                    }
-                }
-
+            foreach ($users as $user) {
+                $user->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
             }
+
         } catch (Exception $e) {
 
         }

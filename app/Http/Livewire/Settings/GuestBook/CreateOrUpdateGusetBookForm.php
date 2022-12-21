@@ -22,6 +22,8 @@ class CreateOrUpdateGusetBookForm extends Component
 
     public $file;
 
+    public $user;
+
     public $isCreating = false;
 
     public ?GuestBook $guestBook;
@@ -32,7 +34,7 @@ class CreateOrUpdateGusetBookForm extends Component
 
     public function render()
     {
-        return view('dash.settings.guest-book.create-or-update-guest-book-form') ;
+        return view('dash.settings.guest-book.create-or-update-guest-book-form');
     }
 
     public function hydrate()
@@ -52,7 +54,7 @@ class CreateOrUpdateGusetBookForm extends Component
 
         if ($guestBook->id) {
             $this->isCreating = false;
-            $this->state = \Arr::only($guestBook->toArray(), ['title','name','content','image','status']);
+            $this->state = \Arr::only($guestBook->toArray(), ['title', 'name', 'content', 'image', 'status']);
         } else {
             $this->isCreating = true;
             $this->state = [];
@@ -67,7 +69,7 @@ class CreateOrUpdateGusetBookForm extends Component
 
         if ($this->file) {
             $inputs['image'] = $this->file;
-        }else{
+        } else {
             unset($inputs['image']);
         }
 
@@ -94,29 +96,12 @@ class CreateOrUpdateGusetBookForm extends Component
             $createdHouseName = auth()->user()->house->HouseName;
             $isAction = $this->isCreating ? 'created' : 'updated';
 
-            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
+            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
 
-                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
-
-                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-
-                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
-                    }
-
-//                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
-
-                    if (count($request_to_use_house_email_list) > 0) {
-
-                        Notification::route('mail', $request_to_use_house_email_list)
-                            ->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
-                    }
-                }
-
+            foreach ($users as $user) {
+                $user->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
             }
+
         } catch (Exception $e) {
 
         }
@@ -128,11 +113,13 @@ class CreateOrUpdateGusetBookForm extends Component
         $this->emit('guest-book-cu-successfully');
     }
 
-    public function updatedFile() {
+    public function updatedFile()
+    {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
     }
 
-    public function deleteFile() {
+    public function deleteFile()
+    {
         if ($this->guestBook->id) {
             $this->guestBook->deleteFile();
             $this->emit('guest-book-cu-successfully');

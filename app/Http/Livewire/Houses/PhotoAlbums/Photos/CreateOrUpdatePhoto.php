@@ -68,8 +68,8 @@ class CreateOrUpdatePhoto extends Component
 
         if ($photo->PhotoId) {
             $this->isCreating = false;
-            $this->state = \Arr::only($photo->toArray(), ['HouseId','album_id','description','path']);
-        }else{
+            $this->state = \Arr::only($photo->toArray(), ['HouseId', 'album_id', 'description', 'path']);
+        } else {
             $this->isCreating = true;
         }
     }
@@ -101,55 +101,37 @@ class CreateOrUpdatePhoto extends Component
         if ($this->file) {
             $this->photo->updateFile($this->file, 'path');
         }
-
+        
         try {
             $items = $this->photo;
             $createdHouseName = auth()->user()->house->HouseName;
             $isAction = $this->isCreating ? 'created' : 'updated';
 
-            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
+            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
 
-                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
-
-                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-
-                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
-                    }
-
-//                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
-
-                    if (count($request_to_use_house_email_list) > 0) {
-
-                        Notification::route('mail', $request_to_use_house_email_list)
-                            ->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
-
-                    }
-                }
-
+            foreach ($users as $user) {
+                $user->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
             }
+
         } catch (Exception $e) {
 
         }
-
-
 
         $this->emitSelf('toggle', false);
 
         $this->dispatchBrowserEvent('refresh-photos-list-in-album');
         $this->emit('photo-cu-successfully');
 
-        $this->success( 'Photo ' .($this->isCreating ? 'created' : 'updated'). ' successfully.');
+        $this->success('Photo ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
     }
 
-    public function updatedFile() {
+    public function updatedFile()
+    {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
     }
 
-    public function deleteFile() {
+    public function deleteFile()
+    {
         if ($this->photo->id) {
             $this->photo->deleteFile();
             $this->emit('photo-cu-successfully');
