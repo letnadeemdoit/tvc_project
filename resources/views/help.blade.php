@@ -1025,21 +1025,20 @@
                         <div class="container">
                             <div class="m-0 m-lg-4">
                                 <div class="accordion" id="myAccordion-3">
-                                    <div class="accordion-item">
+                                    <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingFive">
                                             <button type="button" class="accordion-button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapseFive">Different
-                                                Ways to Use TheVacationCalendar.com
+                                                    data-bs-toggle="collapse" data-bs-target="#calendar">Calendar
                                             </button>
                                         </h2>
-                                        <div id="collapseFive" class="accordion-collapse collapse show"
+                                        <div id="calendar" class="accordion-collapse collapse show"
                                              data-bs-parent="#myAccordion-3">
                                             <div class="card-body bottom-box-shadow">
 
-                                                <div id="calendar" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Calendar</h3>
-                                                    </div>
+                                                <div id="collapseone" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Calendar</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">The Calendar screen
                                                             allows you to view the vacations that are already scheduled
@@ -1120,10 +1119,628 @@
                                                     </div>
                                                 </div>
 
-                                                <div id="photo-album" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Photo Album</h3>
-                                                    </div>
+{{--                                                <div id="photo-album" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Photo Album</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">The photo album is one--}}
+{{--                                                            of the most popular features (outside of the calendar) on--}}
+{{--                                                            the site.--}}
+{{--                                                            The newest version not only allows you to add photos, but--}}
+{{--                                                            you can add photo albums and even put albums inside other--}}
+{{--                                                            albums.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/album1.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">It is recommended to--}}
+{{--                                                            start by creating a few albums in the Admin section of the--}}
+{{--                                                            site. Here you can see all your albums.--}}
+{{--                                                            If an album is nested under another album, you will notice--}}
+{{--                                                            that the parent album column is populated with the parent--}}
+{{--                                                            album that the specific album resides within.--}}
+{{--                                                            You can edit and delete albums from this view, but please--}}
+{{--                                                            note the album has to be empty before you can delete it.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/album2.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">To create an album,--}}
+{{--                                                            simply click the Add New Album button. Here you can add an--}}
+{{--                                                            image (called a thumbnail) for the folder,--}}
+{{--                                                            you can select a parent album if you want this album nested,--}}
+{{--                                                            and you can label and give the album a description. A couple--}}
+{{--                                                            of important notes.--}}
+{{--                                                            If you don’t upload an image, the album will choose the--}}
+{{--                                                            first photo in the album as the thumbnail. Additionally, if--}}
+{{--                                                            you don’t select--}}
+{{--                                                            anything from the Select Parent Album, the album will be a--}}
+{{--                                                            top level album. This is not 100% intuitive and tripped me--}}
+{{--                                                            up the first time.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/album3.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">To go inside the--}}
+{{--                                                            album, click the Photos button for the album you want to--}}
+{{--                                                            see.--}}
+{{--                                                            Here you can add photos by clicking the Add New Photos and--}}
+{{--                                                            you can edit or--}}
+{{--                                                            delete existing photos by putting you mouse over the photo--}}
+{{--                                                            and clicking either the Edit button to edit or the trash can--}}
+{{--                                                            button to delete.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/album4.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">When adding a photo--}}
+{{--                                                            for the first time it is important to note that there are--}}
+{{--                                                            two saves.--}}
+{{--                                                            Once you either drag and drop or select the photo you want,--}}
+{{--                                                            you have the opportunity to rotate the photo, crop the--}}
+{{--                                                            photo, remove the photo, etc.--}}
+{{--                                                            When you are done editing, you will need to press the small--}}
+{{--                                                            Save button and upload the photo with these adjustments.--}}
+{{--                                                            Once you have uploaded your photo you have the option to add--}}
+{{--                                                            a description.--}}
+{{--                                                            When you are all set you press the Save Photo button at the--}}
+{{--                                                            bottom and the photo is added to your album.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/album5.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Your photo album is--}}
+{{--                                                            available in the Guest View by clicking Photo Album (circled--}}
+{{--                                                            in red) in the top navigation bar.--}}
+{{--                                                            Here you can see all the albums and you can click on the--}}
+{{--                                                            album to see the photos or other albums within the album.--}}
+{{--                                                            You can use the breadcrumbs (circled in green) to go up one--}}
+{{--                                                            more levels in the albums. All users have the ability to add--}}
+{{--                                                            photos to--}}
+{{--                                                            existing albums by clicking the Add New Photo (circled in--}}
+{{--                                                            blue). It is important to note that the Administrator is the--}}
+{{--                                                            only user that can create albums--}}
+{{--                                                            which is why it is helpful to set them up ahead of time for--}}
+{{--                                                            your users. This will also help to keep your photos well--}}
+{{--                                                            organized.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/album6.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Over the years we have--}}
+{{--                                                            heard from users using the site for lake house calendar,--}}
+{{--                                                            beach house calendar,--}}
+{{--                                                            mountain house calendar, cabin calendar, condo calendar, ski--}}
+{{--                                                            house calendar, river house calendar and even an RV--}}
+{{--                                                            calendar.--}}
+{{--                                                            Given the wide use of TheVacationCalendar.com,--}}
+{{--                                                            we felt a modern photo album was exactly what the site--}}
+{{--                                                            needed to help capture memories from so many great vacation--}}
+{{--                                                            homes.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+
+{{--                                                </div>--}}
+
+{{--                                                <div id="blog" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Blog</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">The blog is where your--}}
+{{--                                                            users can go to share stories about the time at your--}}
+{{--                                                            vacation home.--}}
+{{--                                                            Blogs can be organized into categories so that if you have--}}
+{{--                                                            very loquacious users,--}}
+{{--                                                            the blog won’t get overwhelming. The blog is ordered by--}}
+{{--                                                            descending date so the most recent blog will be at the top.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/blog1.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Again, as the--}}
+{{--                                                            Administrator, it is helpful to start in the Admin section--}}
+{{--                                                            of the site to set up the Categories for the blog.--}}
+{{--                                                            You can add a new Category from the Blog screens in the--}}
+{{--                                                            Admin section, going directly to the Categories in the Admin--}}
+{{--                                                            → Settings page or even access Categories when adding a new--}}
+{{--                                                            Blog entry.--}}
+
+{{--                                                            Please note that in the Categories page of the settings, you--}}
+{{--                                                            can add Categories for a variety of screens. Make sure to--}}
+{{--                                                            select Blog in the Select Type dropdown to add a new Blog--}}
+{{--                                                            category.--}}
+
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/blog2.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">From the Admin--}}
+{{--                                                            section, the Administrator can edit and delete blog entries.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/blog3.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">When adding or--}}
+{{--                                                            updating a Blog, you have the ability to add a photo which--}}
+{{--                                                            will be displayed prominently as well as a title (subject)--}}
+{{--                                                            and content.--}}
+{{--                                                            In the add and update screen you can select the category of--}}
+{{--                                                            the Blog.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/blog4.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">In the Guest View of--}}
+{{--                                                            the blog pages. Users can filter blog entries by category--}}
+{{--                                                            and then click on a blog--}}
+{{--                                                            to see all the content. Users have the option to like the--}}
+{{--                                                            blog entry as well as add comments.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top" src="/images/images-home/blog5.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="bulletin-board" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">House Bulletin Board</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">The House Bulletin--}}
+{{--                                                            Board is one part of the site that is completely controlled--}}
+{{--                                                            by the Administrator.--}}
+{{--                                                            It is important to note that the bulletin board is set up in--}}
+{{--                                                            what is known as a “card layout”. The reason for this is--}}
+{{--                                                            that a single big page--}}
+{{--                                                            of text does not work for mobile phones. As a result,--}}
+{{--                                                            to create an effective bulletin board for your house, you--}}
+{{--                                                            will need to break the content you want to convey into--}}
+{{--                                                            individual entries.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/bulletin1.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">The House Bulletin--}}
+{{--                                                            Board is set up in the Admin section of the site.--}}
+{{--                                                            Similar to other features, the Administrator can set up--}}
+{{--                                                            categories to organize the bulletin board posts.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/bulletin2.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Please note that in--}}
+{{--                                                            the Categories page of the settings, you can add--}}
+{{--                                                            Categories for a variety of screens. Make sure to select--}}
+{{--                                                            Bulletins in the Select Type dropdown to add a new Bulletin--}}
+{{--                                                            Board category.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/bulletin3.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">When adding or--}}
+{{--                                                            updating a Blog, you have the ability to add a photo which--}}
+{{--                                                            will be displayed at the top--}}
+{{--                                                            of the entry and you will be able to add a title and the--}}
+{{--                                                            bulletin board content. In the add and update screen you can--}}
+{{--                                                            select the category.--}}
+{{--                                                            Please note that by clicking the ellipse (3 dots) you will--}}
+{{--                                                            find additional formatting options for your information.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/bulletin4.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="local-guide" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Local Guide</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">The local guide works--}}
+{{--                                                            similarly to blog posts, but they are designed--}}
+{{--                                                            to be more permanent so you can create your own guide book--}}
+{{--                                                            of things to do, places to eat, and other helpful--}}
+{{--                                                            recommendations.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/local-guide1.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">The Administrator--}}
+{{--                                                            should start in the Admin section of the site--}}
+{{--                                                            to set up the Categories for the Local Guide. You can add a--}}
+{{--                                                            new Category from the Local Guide screens in the Admin--}}
+{{--                                                            section,--}}
+{{--                                                            going directly to the Categories in the Admin → Settings--}}
+{{--                                                            page or even access Categories when adding a new Local Guide--}}
+{{--                                                            entry.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/local-guide2.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Please note that in--}}
+{{--                                                            the Categories page of the settings,--}}
+{{--                                                            you can add Categories for a variety of screens.--}}
+{{--                                                            Make sure to select LocalGuide in the Select Type dropdown--}}
+{{--                                                            to add a new Local Guide category.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/local-guide3.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">When adding or--}}
+{{--                                                            updating a Local Guide entry, you have the ability to add a--}}
+{{--                                                            photo which will be displayed prominently. The Local Guide--}}
+{{--                                                            leverages Google Maps for the address so that you can--}}
+{{--                                                            type in an address and Google Maps will help you find the--}}
+{{--                                                            exact location. This allows users to--}}
+{{--                                                            click on the View to see the location on a map and easily--}}
+{{--                                                            get driving directions.--}}
+
+{{--                                                            After entering the category, title, address, hours when the--}}
+{{--                                                            item is open or available, the user has the ability--}}
+{{--                                                            to put in a detailed overview of the entry which can be--}}
+{{--                                                            formatted, include images, etc.--}}
+
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/local-guide4.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Users can access the--}}
+{{--                                                            local guides from the top navigation and by clicking on the--}}
+{{--                                                            image of the entry, can see the additional details that were--}}
+{{--                                                            provided. All your users can--}}
+{{--                                                            add ratings and comments to the local guide entries so that--}}
+{{--                                                            other guests can see what really is popular and highly--}}
+{{--                                                            rated.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/local-guide5.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="guest-book" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Guest Book</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Users can leave a--}}
+{{--                                                            review or thank you in the Guest Book section of the site.--}}
+{{--                                                            This should be very straightforward for users to do.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/guest-book1.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">The only item of note--}}
+{{--                                                            is that the posts are not put on the site until--}}
+{{--                                                            the Administrator approves them. The Administrator can see--}}
+{{--                                                            all the posts in the Admin section of the site.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/guest-book2.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Since the Guest--}}
+{{--                                                            password is a shared password, it is not possible to know--}}
+{{--                                                            who--}}
+{{--                                                            is actually posting comments. Just in case someone has less--}}
+{{--                                                            than the best intentions,--}}
+{{--                                                            the Administrator has the opportunity to review a post and--}}
+{{--                                                            then make it active if it is approved.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/guest-book3.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Whether you are using--}}
+{{--                                                            the site for lake house calendar, beach house calendar,--}}
+{{--                                                            condo calendar, ski house calendar, mountain house calendar,--}}
+{{--                                                            river house calendar, cabin calendar and even an RV--}}
+{{--                                                            calendar.--}}
+{{--                                                            We hope this feature will help you memorialize all the--}}
+{{--                                                            wonderful guests that have enjoyed your vacation home!--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="food-items" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Food Items</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Another very--}}
+{{--                                                            straightforward feature are the two Food Items pages.--}}
+{{--                                                            These pages are designed to help families keep track of the--}}
+{{--                                                            food that is in the house and what--}}
+{{--                                                            needs to be picked up at the store. This is an important--}}
+{{--                                                            feature for my family as we get the privilege--}}
+{{--                                                            to stay at an amazing home in the Caribbean from time to--}}
+{{--                                                            time. Unfortunately, groceries are crazy expensive--}}
+{{--                                                            and many items are hard to find so it is nice to bring a few--}}
+{{--                                                            things down when we come. Now everyone knows--}}
+{{--                                                            what is at the house and what pantry items need to be picked--}}
+{{--                                                            up.--}}
+
+{{--                                                            The lists can be found under Food Items on the top--}}
+{{--                                                            navigation bar. Users can switch between the two lists by--}}
+{{--                                                            using the toggle on the top right.--}}
+
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/food-item1.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">--}}
+{{--                                                            In the Admin section of the site, users can add and delete--}}
+{{--                                                            food items for the two lists.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/food-item2.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">--}}
+{{--                                                            When adding new items, users have the option to add a photo--}}
+{{--                                                            in case there is a particular brand or type of food needed.--}}
+{{--                                                            The food items in the house have a field for the--}}
+{{--                                                            expiration date and the location in the house while the--}}
+{{--                                                            shopping list items have a field for where to buy the item.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/food-item3.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="booking-rooms" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Booking Rooms</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Coming Soon!--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    --}}{{--                                                    <div class="mb-3">--}}
+{{--                                                    --}}{{--                                                        <img class="card-img-top" src="/images/images-home/food-item1.png"--}}
+{{--                                                    --}}{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    --}}{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="additional-properties" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Additional Properties</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Don’t want to have--}}
+{{--                                                            multiple logins for your lake house calendar, ski house--}}
+{{--                                                            calendar and beach house--}}
+{{--                                                            calendar? Setting up additional homes is extremely easy. As--}}
+{{--                                                            long as you have upgraded to our Premium plan, you are able--}}
+{{--                                                            to add up to 9--}}
+{{--                                                            additional houses. This is helpful if you have several--}}
+{{--                                                            cottages or cabins, or just happen to be lucky enough to--}}
+{{--                                                            have a bunch of vacation homes.--}}
+
+{{--                                                            To add another house, simply go to the Admin section, expand--}}
+{{--                                                            the settings, and click the Add New House button. Fill out--}}
+{{--                                                            the additional--}}
+{{--                                                            information and you are good to go.--}}
+
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/additional-properties1.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">To change houses, from--}}
+{{--                                                            anywhere in the Admin section of the site, you can click the--}}
+{{--                                                            Properties--}}
+{{--                                                            dropdown at the top right of the screen. You can select--}}
+{{--                                                            whichever house you want.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/additional-properties2.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">A second home is--}}
+{{--                                                            completely independent of the original. It will have its own--}}
+{{--                                                            bulletin board,--}}
+{{--                                                            photo album, blog, etc. The only items that it shares are--}}
+{{--                                                            the users. If you are an owner of one house, you are--}}
+{{--                                                            automatically an owner--}}
+{{--                                                            of the second home. This allows your users to not have to--}}
+{{--                                                            maintain multiple usernames and passwords.--}}
+
+{{--                                                            Additionally, the main benefit of having multiple houses on--}}
+{{--                                                            one account is the calendar allows users to select one or--}}
+{{--                                                            more properties.--}}
+{{--                                                            This allows users to see if there is availability across--}}
+{{--                                                            multiple houses at one time.--}}
+
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="managing-users" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Managing Users</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">A key responsibility--}}
+{{--                                                            for the Administrator is to create additional users for the--}}
+{{--                                                            site. Every user who--}}
+{{--                                                            can schedule vacations needs their own username and password--}}
+{{--                                                            so that only that person can edit or delete the scheduled--}}
+{{--                                                            vacation.--}}
+{{--                                                            The users page is located in the Admin section of the site--}}
+{{--                                                            and can be found by expanding the Settings in the left hand--}}
+{{--                                                            navigation.--}}
+
+{{--                                                            To add a new user, simply press the Add New User button,--}}
+{{--                                                            select which house the user can access and then populate--}}
+{{--                                                            information including--}}
+{{--                                                            username, email, first name and last name. You have the--}}
+{{--                                                            option of having the site send an email with this--}}
+{{--                                                            information. Users are created--}}
+{{--                                                            but are not immediately enabled, so make sure to click the--}}
+{{--                                                            enabled checkbox.--}}
+
+{{--                                                            If you ever want to remove a user, it is recommended to just--}}
+{{--                                                            unclick the enabled checkbox versus deleting the user--}}
+{{--                                                            altogether. If a user is--}}
+{{--                                                            deleted, all of the vacations, blogs, etc. that the user--}}
+{{--                                                            created will only be editable by the Administrator. You--}}
+{{--                                                            cannot recreate a user with--}}
+{{--                                                            the same username and be able to update content created by--}}
+{{--                                                            the original user.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/manage-user.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+{{--                                                <div id="audit-history" class="mb-5">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Audit History & Notifications</h3>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">Two similar pieces of--}}
+{{--                                                            functionality allow Administrators to see exactly--}}
+{{--                                                            what users are doing on the site. This is helpful if you--}}
+{{--                                                            have a user--}}
+{{--                                                            that SWEARS they created a vacation for the first week in--}}
+{{--                                                            August. You can search for the user and see exactly what--}}
+{{--                                                            he/she did.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/audit-history1.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <p class="card-text text-light-secondary">A less technical--}}
+{{--                                                            version of this can be found by clicking the icon on the--}}
+{{--                                                            page.--}}
+{{--                                                            Currently all blog and vacation changes appear here, but--}}
+{{--                                                            over time changes in other parts of the site will appear--}}
+{{--                                                            here as well.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <img class="card-img-top"--}}
+{{--                                                             src="/images/images-home/audit-history2.png"--}}
+{{--                                                             alt="Card image cap"/>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingSix">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#photo-album">Photo Album
+                                            </button>
+                                        </h2>
+                                        <div id="photo-album" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapsetwo" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Photo Album</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">The photo album is one
                                                             of the most popular features (outside of the calendar) on
@@ -1241,11 +1858,22 @@
                                                     </div>
 
                                                 </div>
-
-                                                <div id="blog" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Blog</h3>
-                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingSeven">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#blog">Blog
+                                            </button>
+                                        </h2>
+                                        <div id="blog" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapsethree" class="mb-5">
+                                                    {{--                                            <div class="mb-3">--}}
+                                                    {{--                                                <h3 class="card-title">Blog</h3>--}}
+                                                    {{--                                            </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">The blog is where your
                                                             users can go to share stories about the time at your
@@ -1315,11 +1943,23 @@
                                                              alt="Card image cap"/>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                                <div id="bulletin-board" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">House Bulletin Board</h3>
-                                                    </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingEight">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#bulletin-board">House Bulletin Board
+                                            </button>
+                                        </h2>
+                                        <div id="bulletin-board" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapsefour" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">House Bulletin Board</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">The House Bulletin
                                                             Board is one part of the site that is completely controlled
@@ -1380,11 +2020,23 @@
                                                              alt="Card image cap"/>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                                <div id="local-guide" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Local Guide</h3>
-                                                    </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingNine">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#local-guide">Local Guide
+                                            </button>
+                                        </h2>
+                                        <div id="local-guide" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapsefive" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Local Guide</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">The local guide works
                                                             similarly to blog posts, but they are designed
@@ -1465,11 +2117,23 @@
                                                              alt="Card image cap"/>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                                <div id="guest-book" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Guest Book</h3>
-                                                    </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingTen">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#guest-book">Guest Book
+                                            </button>
+                                        </h2>
+                                        <div id="guest-book" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapseSix" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Guest Book</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">Users can leave a
                                                             review or thank you in the Guest Book section of the site.
@@ -1519,11 +2183,23 @@
                                                         </p>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div id="food-items" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Food Items</h3>
-                                                    </div>
+                                        </div>
+                                </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingEleven">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#food-items">Food Items
+                                            </button>
+                                        </h2>
+                                        <div id="food-items" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapseSeven" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Food Items</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">Another very
                                                             straightforward feature are the two Food Items pages.
@@ -1575,25 +2251,46 @@
                                                              alt="Card image cap"/>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div id="booking-rooms" class="mb-5">
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingTwelve">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#booking-rooms">Booking Rooms
+                                            </button>
+                                        </h2>
+                                        <div id="booking-rooms" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapseEight" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Food Items</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
-                                                        <h3 class="card-title">Booking Rooms</h3>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <p class="card-text text-light-secondary">Coming Soon!
+                                                        <p class="card-text text-light-secondary">
+                                                            Comming Soon.!
                                                         </p>
                                                     </div>
-                                                    {{--                                                    <div class="mb-3">--}}
-                                                    {{--                                                        <img class="card-img-top" src="/images/images-home/food-item1.png"--}}
-                                                    {{--                                                             alt="Card image cap"/>--}}
-                                                    {{--                                                    </div>--}}
                                                 </div>
+                                            </div>
 
-                                                <div id="additional-properties" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Additional Properties</h3>
-                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingThirteen">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#additional-properties">Additional Properties
+                                            </button>
+                                        </h2>
+                                        <div id="additional-properties" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapseTen" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Additional Properties</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">Don’t want to have
                                                             multiple logins for your lake house calendar, ski house
@@ -1649,11 +2346,23 @@
                                                         </p>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div id="managing-users" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Managing Users</h3>
-                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingForteen">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#managing-users">Managing Users
+                                            </button>
+                                        </h2>
+                                        <div id="managing-users" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapseEleven" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Managing Users</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">A key responsibility
                                                             for the Administrator is to create additional users for the
@@ -1690,11 +2399,23 @@
                                                              alt="Card image cap"/>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div id="audit-history" class="mb-5">
-                                                    <div class="mb-3">
-                                                        <h3 class="card-title">Audit History & Notifications</h3>
-                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-3">
+                                        <h2 class="accordion-header" id="headingFifteen">
+                                            <button type="button" class="accordion-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#notifications">Audit History & Notifications
+                                            </button>
+                                        </h2>
+                                        <div id="notifications" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordion-3">
+                                            <div class="card-body bottom-box-shadow">
+                                                <div id="collapseTwelve" class="mb-5">
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <h3 class="card-title">Audit History & Notifications</h3>--}}
+{{--                                                    </div>--}}
                                                     <div class="mb-3">
                                                         <p class="card-text text-light-secondary">Two similar pieces of
                                                             functionality allow Administrators to see exactly
@@ -1725,11 +2446,10 @@
                                                              alt="Card image cap"/>
                                                     </div>
                                                 </div>
-
                                             </div>
+
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
