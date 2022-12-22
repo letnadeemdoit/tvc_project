@@ -140,9 +140,10 @@ class VacationsList extends Component
         Vacation::where('parent_id', $data['VacationId'])->delete();
 
         $name = $data['VacationName'];
-        $deleteType = 'Vacation';
-
         try {
+            $createdHouseName = $this->user->house->HouseName;
+            $isAction = 'Deleted';
+            $isModal = 'Vacation';
 
             if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
 
@@ -153,7 +154,7 @@ class VacationsList extends Component
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $deleteType));
+                        $user->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
                     }
 
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
@@ -161,7 +162,7 @@ class VacationsList extends Component
                     if (count($CalEmailList) > 0) {
 
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new DeleteNotification($name, $deleteType));
+                            ->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
 
                     }
                 }
