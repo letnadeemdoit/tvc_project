@@ -3,6 +3,7 @@
 namespace App\Models\Room;
 
 use App\Models\AmenityType;
+use App\Models\VacationRoom;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Laravel\Fortify\TwoFactorAuthenticatable;
@@ -52,6 +53,8 @@ class Room extends Model implements Auditable
 
     public function toCalendarResource()
     {
+
+//      $vRooms = VacationRoom::where('room_id', $this->RoomID)->get();
 
         return [
             'id' => $this->RoomID,

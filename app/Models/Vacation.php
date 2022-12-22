@@ -186,11 +186,13 @@ class Vacation extends Model implements Auditable
             'className' => 'fullcalendar-custom-event-hs-team',
             'backgroundColor' => $this->BackGrndColor,
             'textColor' => $this->FontColor,
-            'resourceIds' => $this->rooms->pluck('room_id')->toArray(),
+//            'resourceIds' => $this->rooms->pluck('room_id')->toArray(),
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
             'parent_id' => $this->parent_id,
+            'is_room' => false,
         ], []);
     }
+
 
 
     /**
