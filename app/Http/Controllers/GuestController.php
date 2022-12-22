@@ -68,18 +68,19 @@ class GuestController extends Controller
         Notification::route('mail', $request->email)
             ->notify(new ContactUsMailNotification($firstName, $lastName, $subject, $email, $comment));
 
-//        Mail::send([], [], function ($message) use ($request) {
-//
-//            $message->to('ddnouman@gmail.com')
-//                ->subject($request->first_name . ' ' . 'Contact Query')
-//                ->Html(
-//                    '<div style="padding: 10px; 20px">' .
-//                    '<h2> Name: ' . $request->first_name . ' ' . $request->last_name . '</h2>' .
-//                    '<p> Email: ' . $request->email . '<p/>' .
-//                    '<h4> Subject: ' . $request->subject . '<h4/>' .
-//                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
-//                    '</div>', 'text/plain');
-//        });
+        Mail::send([], [], function ($message) use ($request) {
+
+            $message->to('support@thevacationcalendar.com')
+                ->subject($request->first_name . ' ' . 'Contact Query')
+                ->Html(
+                    '<div style="padding: 10px; 20px">' .
+                    '<h2> Contact Us Notification</h2>' .
+                    '<p> Name: ' . $request->first_name . ' ' . $request->last_name . '</p>' .
+                    '<p> Email: ' . $request->email . '<p/>' .
+                    '<p> Subject: ' . $request->subject . '<p/>' .
+                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
+                    '</div>', 'text/plain');
+        });
 
         return back()->with('success', 'Your Query has been Sent Successfully!');
     }
