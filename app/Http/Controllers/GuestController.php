@@ -82,20 +82,6 @@ class GuestController extends Controller
                     '</div>', 'text/plain');
         });
 
-        Mail::send([], [], function ($message) use ($request) {
-
-            $message->to('tayyab@devdimensions.com')
-                ->subject($request->first_name . ' ' . 'Contact Query')
-                ->Html(
-                    '<div style="padding: 10px; 20px">' .
-                    '<h2> Contact Us Notification</h2>' .
-                    '<p> Name: ' . $request->first_name . ' ' . $request->last_name . '</p>' .
-                    '<p> Email: ' . $request->email . '<p/>' .
-                    '<p> Subject: ' . $request->subject . '<p/>' .
-                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
-                    '</div>', 'text/plain');
-        });
-
         return back()->with('success', 'Your Query has been Sent Successfully!');
     }
 
