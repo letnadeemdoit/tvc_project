@@ -96,51 +96,51 @@
                 </div>
 
                 <div class="card-footer border-0 text-center">
-{{--                    <div class="d-grid mb-2">--}}
-{{--                        <a href="#"--}}
-{{--                           class="form-check-select-stretched-btn btn btn-outline-primary">Coming Soon..!</a>--}}
-{{--                    </div>--}}
                     <div class="d-grid mb-2">
-                        @if(!$this->subscription)
-                            <a href="{{ route('dash.paypal.process', ['standard', 'monthly']) }}"
-                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif($this->subscription && $this->subscription->plan === 'standard' && $this->subscription->period === 'monthly')
-                            @if($this->subscription->status === 'APPROVAL_PENDING')
-                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
-                            @else
-                                <a
-                                    href="#!"
-                                    wire:click.prevent="cancelSubscription"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >
-                                    Unsubscribe
-                                </a>
-                            @endif
-                        @else
-                            @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')
-                            <a
-                                href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >
-                                Upgrade
-                            </a>
-                            @elseif($this->subscription && $this->subscription->plan === 'premium')
-                                <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >
-                                    Downgrade
-                                </a>
-                            @else
-                                <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >
-                                    Downgrade
-                                </a>
-                            @endif
-                        @endif
+                        <a href="#"
+                           class="form-check-select-stretched-btn btn btn-outline-primary">Coming Soon..!</a>
                     </div>
+{{--                    <div class="d-grid mb-2">--}}
+{{--                        @if(!$this->subscription)--}}
+{{--                            <a href="{{ route('dash.paypal.process', ['standard', 'monthly']) }}"--}}
+{{--                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>--}}
+{{--                        @elseif($this->subscription && $this->subscription->plan === 'standard' && $this->subscription->period === 'monthly')--}}
+{{--                            @if($this->subscription->status === 'APPROVAL_PENDING')--}}
+{{--                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>--}}
+{{--                            @else--}}
+{{--                                <a--}}
+{{--                                    href="#!"--}}
+{{--                                    wire:click.prevent="cancelSubscription"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >--}}
+{{--                                    Unsubscribe--}}
+{{--                                </a>--}}
+{{--                            @endif--}}
+{{--                        @else--}}
+{{--                            @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')--}}
+{{--                            <a--}}
+{{--                                href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"--}}
+{{--                                class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                            >--}}
+{{--                                Upgrade--}}
+{{--                            </a>--}}
+{{--                            @elseif($this->subscription && $this->subscription->plan === 'premium')--}}
+{{--                                <a--}}
+{{--                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >--}}
+{{--                                    Downgrade--}}
+{{--                                </a>--}}
+{{--                            @else--}}
+{{--                                <a--}}
+{{--                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >--}}
+{{--                                    Downgrade--}}
+{{--                                </a>--}}
+{{--                            @endif--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
 
                 </div>
             </div>
@@ -171,44 +171,44 @@
                 </div>
 
                 <div class="card-footer border-0 text-center">
-{{--                    <div class="d-grid mb-2">--}}
-{{--                        <a href="#"--}}
-{{--                           class="form-check-select-stretched-btn btn btn-outline-primary">Coming Soon..!</a>--}}
-{{--                    </div>--}}
                     <div class="d-grid mb-2">
-                        @if(!$this->subscription)
-                            <a href="{{ route('dash.paypal.process', ['premium', 'monthly']) }}"
-                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'monthly')
-                            @if($this->subscription->status === 'APPROVAL_PENDING')
-                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
-                            @else
-                                <a
-                                    href="#!"
-                                    wire:click.prevent="cancelSubscription"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >Unsubscribe</a>
-                            @endif
-                        @else
-                            @if($this->subscription && $this->subscription->period === 'yearly')
-                            <a
-                                href="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >
-                                Downgrade
-                            </a>
-                            @else
-                                <a
-                                    href="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >
-                                    Upgrade
-                                </a>
-                            @endif
+                        <a href="#"
+                           class="form-check-select-stretched-btn btn btn-outline-primary">Coming Soon..!</a>
+                    </div>
+{{--                    <div class="d-grid mb-2">--}}
+{{--                        @if(!$this->subscription)--}}
+{{--                            <a href="{{ route('dash.paypal.process', ['premium', 'monthly']) }}"--}}
+{{--                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>--}}
+{{--                        @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'monthly')--}}
+{{--                            @if($this->subscription->status === 'APPROVAL_PENDING')--}}
+{{--                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>--}}
+{{--                            @else--}}
+{{--                                <a--}}
+{{--                                    href="#!"--}}
+{{--                                    wire:click.prevent="cancelSubscription"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >Unsubscribe</a>--}}
+{{--                            @endif--}}
+{{--                        @else--}}
+{{--                            @if($this->subscription && $this->subscription->period === 'yearly')--}}
+{{--                            <a--}}
+{{--                                href="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"--}}
+{{--                                class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                            >--}}
+{{--                                Downgrade--}}
+{{--                            </a>--}}
+{{--                            @else--}}
+{{--                                <a--}}
+{{--                                    href="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >--}}
+{{--                                    Upgrade--}}
+{{--                                </a>--}}
+{{--                            @endif--}}
 
 {{--                            <p>Please unsubscribe other plan first!</p>--}}
-                        @endif
-                    </div>
+{{--                        @endif--}}
+{{--                    </div>--}}
 
                 </div>
             </div>
@@ -301,58 +301,58 @@
                 </div>
 
                 <div class="card-footer border-0 text-center">
-{{--                    <div class="d-grid mb-2">--}}
-{{--                        <a href="#"--}}
-{{--                           class="form-check-select-stretched-btn btn btn-outline-primary">Coming Soon..!</a>--}}
-{{--                    </div>--}}
                     <div class="d-grid mb-2">
-                        @if(!$this->subscription)
-                            <a href="{{ route('dash.paypal.process', ['standard', 'yearly']) }}"
-                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif($this->subscription && $this->subscription->plan === 'standard' && $this->subscription->period === 'yearly')
-                            @if($this->subscription->status === 'APPROVAL_PENDING')
-                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
-                            @else
-                                <a
-                                    href="#!"
-                                    wire:click.prevent="cancelSubscription"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >Unsubscribe</a>
-                            @endif
-                        @else
-                            @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'yearly')
-                                <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >
-                                    Upgrade
-                                </a>
-                            @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'yearly')
-                                <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >
-                                    Downgrade
-                                </a>
-                            @else
-                                @if($this->subscription->period === 'monthly')
-                                <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >
-                                    Upgrade
-                                </a>
-                                @else
-                                    <a
-                                        href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
-                                        class="form-check-select-stretched-btn btn btn-primary"
-                                    >
-                                        Downgrade
-                                    </a>
-                                @endif
-                            @endif
-                        @endif
+                        <a href="#"
+                           class="form-check-select-stretched-btn btn btn-outline-primary">Coming Soon..!</a>
                     </div>
+{{--                    <div class="d-grid mb-2">--}}
+{{--                        @if(!$this->subscription)--}}
+{{--                            <a href="{{ route('dash.paypal.process', ['standard', 'yearly']) }}"--}}
+{{--                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>--}}
+{{--                        @elseif($this->subscription && $this->subscription->plan === 'standard' && $this->subscription->period === 'yearly')--}}
+{{--                            @if($this->subscription->status === 'APPROVAL_PENDING')--}}
+{{--                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>--}}
+{{--                            @else--}}
+{{--                                <a--}}
+{{--                                    href="#!"--}}
+{{--                                    wire:click.prevent="cancelSubscription"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >Unsubscribe</a>--}}
+{{--                            @endif--}}
+{{--                        @else--}}
+{{--                            @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'yearly')--}}
+{{--                                <a--}}
+{{--                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >--}}
+{{--                                    Upgrade--}}
+{{--                                </a>--}}
+{{--                            @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'yearly')--}}
+{{--                                <a--}}
+{{--                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >--}}
+{{--                                    Downgrade--}}
+{{--                                </a>--}}
+{{--                            @else--}}
+{{--                                @if($this->subscription->period === 'monthly')--}}
+{{--                                <a--}}
+{{--                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >--}}
+{{--                                    Upgrade--}}
+{{--                                </a>--}}
+{{--                                @else--}}
+{{--                                    <a--}}
+{{--                                        href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"--}}
+{{--                                        class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                    >--}}
+{{--                                        Downgrade--}}
+{{--                                    </a>--}}
+{{--                                @endif--}}
+{{--                            @endif--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
 
                 </div>
             </div>
@@ -383,33 +383,33 @@
                 </div>
 
                 <div class="card-footer border-0 text-center">
-{{--                    <div class="d-grid mb-2">--}}
-{{--                        <a href="#"--}}
-{{--                           class="form-check-select-stretched-btn btn btn-outline-primary">Coming Soon..!</a>--}}
-{{--                    </div>--}}
                     <div class="d-grid mb-2">
-                        @if(!$this->subscription)
-                            <a href="{{ route('dash.paypal.process', ['premium', 'yearly']) }}"
-                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
-                        @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'yearly')
-                            @if($this->subscription->status === 'APPROVAL_PENDING')
-                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>
-                            @else
-                                <a
-                                    href="#!"
-                                    wire:click.prevent="cancelSubscription"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >Unsubscribe</a>
-                            @endif
-                        @else
-                            <a
-                                href="{{ route('dash.paypal.revise', ['premium', 'yearly']) }}"
-                                class="form-check-select-stretched-btn btn btn-primary"
-                            >
-                                Upgrade
-                            </a>
-                        @endif
+                        <a href="#"
+                           class="form-check-select-stretched-btn btn btn-outline-primary">Coming Soon..!</a>
                     </div>
+{{--                    <div class="d-grid mb-2">--}}
+{{--                        @if(!$this->subscription)--}}
+{{--                            <a href="{{ route('dash.paypal.process', ['premium', 'yearly']) }}"--}}
+{{--                               class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>--}}
+{{--                        @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'yearly')--}}
+{{--                            @if($this->subscription->status === 'APPROVAL_PENDING')--}}
+{{--                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>--}}
+{{--                            @else--}}
+{{--                                <a--}}
+{{--                                    href="#!"--}}
+{{--                                    wire:click.prevent="cancelSubscription"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                                >Unsubscribe</a>--}}
+{{--                            @endif--}}
+{{--                        @else--}}
+{{--                            <a--}}
+{{--                                href="{{ route('dash.paypal.revise', ['premium', 'yearly']) }}"--}}
+{{--                                class="form-check-select-stretched-btn btn btn-primary"--}}
+{{--                            >--}}
+{{--                                Upgrade--}}
+{{--                            </a>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
 
                 </div>
             </div>
