@@ -99,20 +99,20 @@ class CalendarView extends Component
         $events = [];
         foreach ($vacations as $vacation) {
             $events[] = $vacation->toCalendar();
+            foreach ($vacation->rooms as $room){
+                $events[] = $room->toCalendar();
+            }
         }
-
         return $events;
     }
 
     public function getResourceTimelineProperty()
     {
-
         if ($this->user->is_admin) {
             $rooms = Room::whereIn('HouseId', $this->properties ? $this->selectedHouses : User::where('email', $this->user->email)->pluck('HouseId')->toArray())->get();
         } else {
             $rooms = Room::where('HouseId', $this->user->HouseId)->get();
         }
-
 
         $resourceTimeline = [];
         foreach ($rooms as $room) {
