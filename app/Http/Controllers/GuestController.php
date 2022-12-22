@@ -259,7 +259,7 @@ class GuestController extends Controller
     {
         return response($ical->toICSUrl())->withHeaders([
             'Content-type' => 'text/calendar; charset=utf-8',
-            'Content-Disposition' => 'attachment; filename="calendar.ics"'
+//            'Content-Disposition' => 'attachment; filename="calendar.ics"'
         ]);
     }
 
