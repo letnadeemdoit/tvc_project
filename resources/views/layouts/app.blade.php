@@ -30,6 +30,12 @@
 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+        <style>
+            .daterangepicker{
+                z-index: 99999 !important;
+            }
+        </style>
+
         @livewireStyles
     @stack('stylesheets')
         <!-- Scripts -->
@@ -114,6 +120,21 @@
         <script src="{{ mix('js/app.js') }}"></script>
 
         @stack('scripts')
+
+
+        <script>
+            $(document).ready(function (e) {
+                $(document).on('click','.month', function() {
+                    // alert('');
+                });
+
+                $(document).on('click','.calendar-time', function(e) {
+                    // e.preventDefault();
+                });
+
+            });
+
+        </script>
 
         <script>
             $(document).ready(function () {
