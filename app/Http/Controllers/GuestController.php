@@ -70,7 +70,7 @@ class GuestController extends Controller
 
         Mail::send([], [], function ($message) use ($request) {
 
-            $message->to('support@thevacationcalendar.com')
+            $message->to('letnadeemdoit@gmail.com')
                 ->subject($request->first_name . ' ' . 'Contact Query')
                 ->Html(
                     '<div style="padding: 10px; 20px">' .
