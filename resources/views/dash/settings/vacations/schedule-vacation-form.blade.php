@@ -208,7 +208,7 @@
                                             </label>
                                             <input
                                                 id="room_{{ $room->RoomID . $loop->index }}date_starts_at"
-                                                type="date"5
+                                                type="date"
                                                 class="form-control form-control-sm room-dates px-2 py-1"
                                                 @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"
                                                 @endisset
