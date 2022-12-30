@@ -9,6 +9,11 @@
 
     <div class="container py-5">
 
+        <div id="calendarMessage">
+            @if(Session::has('warnMessage'))
+                <p class="alert {{ Session::get('alert-class', 'alert-warning') }}">{{ Session::get('warnMessage') }}</p>
+            @endif
+        </div>
         @if($user->is_owner)
             <div class="text-end mb-3">
 
@@ -92,6 +97,12 @@
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript"
                 src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+        <script>
+            setTimeout(function() {
+                $('#calendarMessage').fadeOut('fast');
+            }, 4000);
+        </script>
     @endpush
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Subscription;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,24 @@ class CheckPrimaryUserHasSubscribedAnyPlan
                 $request->routeIs('dash.paypal.canceled') ||
                 $request->routeIs('dash.settings.account-information')
             )) {
-            return redirect()->route('dash.plans-and-pricing');
+
+//            $user = primary_user();
+
+            $Is_Subscription = Subscription::where([
+                'user_id' => primary_user()->user_id,
+                'house_id' => primary_user()->HouseId,
+                'status' => 'CANCELLED',
+            ])->whereIn('plan', ['basic', 'standard', 'premium'])->exists();
+
+
+            if (!auth()->user()->is_admin && $Is_Subscription)
+            {
+                return redirect()->route('guest.guest-calendar')->with('warnMessage','We can not redirect to Admin side. Because the house Administrator needs to set up an active subscription.');
+            }
+            else{
+                return redirect()->route('dash.plans-and-pricing');
+            }
+
         }
         return $next($request);
     }
