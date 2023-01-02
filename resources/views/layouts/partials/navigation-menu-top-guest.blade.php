@@ -115,10 +115,12 @@
                             {{--                                   href="{{route('dash.calendar')}}">Admin</a>--}}
                             {{--                            </li>--}}
 
-{{--                            <li class="nav-item my-1 my-lg-0 me-0">--}}
-{{--                                <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"--}}
-{{--                                   href="{{route('dash.calendar')}}">ADMIN</a>--}}
-{{--                            </li>--}}
+                            @if(!auth()->user()->is_guest)
+                            <li class="nav-item my-1 my-lg-0 me-0">
+                                <a class="nav-link {{ request()->routeIs('dash.calendar') ? 'active' : '' }}"
+                                   href="{{route('dash.calendar')}}">ADMIN</a>
+                            </li>
+                            @endif
 
                             <li class="nav-item my-1 my-lg-0 me-0">
                                 <a class="nav-link {{ request()->routeIs('guest.guest-calendar') ? 'active' : '' }}"
