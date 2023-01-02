@@ -2,7 +2,7 @@
     @push('stylesheets')
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
         <style>
-            .text-muted{
+            .message-color{
                 color: rgba(var(--bs-success-rgb),var(--bs-text-opacity)) !important;
             }
         </style>
