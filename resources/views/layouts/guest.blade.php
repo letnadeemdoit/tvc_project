@@ -76,7 +76,7 @@
                 <style>
                     .bulletin-image {
                         background-image: url(/images/bulletin-images/bulletin.png);
-                        background-position: 50%;
+                        background-position: bottom;
                         background-repeat: no-repeat;
                         background-size: cover;
                         height: 180px;
@@ -87,7 +87,7 @@
             <style>
                 .bulletin-image {
                     background-image: url(/images/bulletin-images/bulletin.png);
-                    background-position: 50%;
+                    background-position: bottom;
                     background-repeat: no-repeat;
                     background-size: cover;
                     height: 180px;
