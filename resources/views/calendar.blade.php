@@ -2,6 +2,12 @@
 
     @push('stylesheets')
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+        <style>
+            .toast-success{
+                background-color: #51A351 !important;
+            }
+        </style>
+
     @endpush
 
     @include('partials.sub-page-hero-section', ['title' => 'Calendar'])

@@ -1215,7 +1215,7 @@
             <!-- End Form -->
 
             <div class="d-flex align-items-center justify-content-end">
-                <x-jet-action-message on="saved" class="text-muted"/>
+                <x-jet-action-message on="saved" class="text-muted" style="color: #0c4128"/>
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>

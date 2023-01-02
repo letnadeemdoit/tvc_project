@@ -1,4 +1,13 @@
 <x-settings>
+    @push('stylesheets')
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+        <style>
+            .text-muted{
+                color: rgba(var(--bs-success-rgb),var(--bs-text-opacity)) !important;
+            }
+        </style>
+
+    @endpush
     <x-slot name="title">
         @if($user->is_admin)
             Account Information

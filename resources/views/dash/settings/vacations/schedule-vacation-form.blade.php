@@ -181,6 +181,7 @@
                 </div>
                 @if(isset($state['book_rooms']) && $state['book_rooms'] == 1)
                     <div class="list-group list-group-flush list-group-sm mb-3">
+                        @if(count(current_house()->rooms) > 0)
                         @foreach(current_house()->rooms as $room)
                             <div class="list-group-item">
                                 <label class="d-flex p-2">
@@ -319,6 +320,11 @@
                                 @endif
                             </div>
                         @endforeach
+                        @else
+                            <div>
+                                <p>You don't have any room yet please add room first.</p>
+                            </div>
+                        @endif
                     </div>
                 @endif
             @endif
