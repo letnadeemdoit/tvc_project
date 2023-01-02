@@ -107,7 +107,7 @@
         <script>
             setTimeout(function() {
                 $('#calendarMessage').fadeOut('fast');
-            }, 4000);
+            }, 5000);
         </script>
     @endpush
 

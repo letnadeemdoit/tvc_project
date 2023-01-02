@@ -110,13 +110,13 @@
             <div class="input-group input-group-sm-vertical">
 
                 <!-- Radio Check -->
-                <label class="form-control" for="year">
-                <span class="form-check">
-                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="year"
-                         value="timelineYear"/>
-                  <span class="form-check-label">Year</span>
-                </span>
-                </label>
+{{--                <label class="form-control" for="year">--}}
+{{--                <span class="form-check">--}}
+{{--                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="year"--}}
+{{--                         value="timelineYear"/>--}}
+{{--                  <span class="form-check-label">Year</span>--}}
+{{--                </span>--}}
+{{--                </label>--}}
                 <!-- End Radio Check -->
                 <!-- Radio Check -->
                 <label class="form-control" for="month">

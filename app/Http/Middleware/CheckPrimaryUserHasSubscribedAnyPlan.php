@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Subscription;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -33,12 +34,17 @@ class CheckPrimaryUserHasSubscribedAnyPlan
                 'status' => 'CANCELLED',
             ])->whereIn('plan', ['basic', 'standard', 'premium'])->exists();
 
+            $admin = User::where([
+                'HouseId' => primary_user()->HouseId,
+                'role' => 'Administrator',
+            ])->first();
 
-            if (!auth()->user()->is_admin && $Is_Subscription)
-            {
-                return redirect()->route('guest.guest-calendar')->with('warnMessage','We can not redirect to Admin side. Because the house Administrator needs to set up an active subscription.');
-            }
-            else{
+
+            if (!auth()->user()->is_admin && $Is_Subscription) {
+
+                $message = 'This account does not have an active subscription. Please contact the house Administrator (' . $admin['first_name'] . ' ' . $admin['last_name'] . ' - ' . $admin['email'] . ') to set up an active subscription';
+                return redirect()->route('guest.guest-calendar')->with('warnMessage', $message);
+            } else {
                 return redirect()->route('dash.plans-and-pricing');
             }
 
