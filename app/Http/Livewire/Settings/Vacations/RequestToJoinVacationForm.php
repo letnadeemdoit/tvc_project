@@ -89,18 +89,18 @@ class RequestToJoinVacationForm extends Component
             try {
                 $house = $this->user->house;
 
-                if ($house && !is_null($house->CalEmailList) && !empty($house->CalEmailList)) {
+                if ($house && !is_null($house->request_to_use_house_email_list) && !empty($house->request_to_use_house_email_list)) {
 
-                    $CalEmailList = explode(',', $this->user->house->CalEmailList);
+                    $request_to_use_house_email_list = explode(',', $this->user->house->request_to_use_house_email_list);
 
-                    if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
-                        $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                    if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
+                        $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', $this->user->HouseId)->get();
                         foreach ($users as $user) {
                             $user->notify(new RequestToJoinCalendarNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
                         }
-                        $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
-                        if (count($CalEmailList) > 0) {
-                            Notification::route('mail', $CalEmailList)
+                        $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
+                        if (count($request_to_use_house_email_list) > 0) {
+                            Notification::route('mail', $request_to_use_house_email_list)
                                 ->notify(new RequestToJoinCalendarNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
                         }
 
