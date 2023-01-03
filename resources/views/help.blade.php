@@ -102,7 +102,7 @@
                                                     data-bs-toggle="collapse" data-bs-target="#collapseOne">Pricing
                                             </button>
                                         </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                        <div id="collapseOne" class="accordion-collapse collapse"
                                              data-bs-parent="#myAccordion">
                                             <div class="card-body bottom-box-shadow">
 
@@ -421,7 +421,7 @@
                                                 Guide for Administrators
                                             </button>
                                         </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                        <div id="collapseOne" class="accordion-collapse collapse"
                                              data-bs-parent="#myAccordion">
                                             <div class="card-body bottom-box-shadow">
                                                 <p>
@@ -621,7 +621,7 @@
                                                 Understanding the Different Roles
                                             </button>
                                         </h2>
-                                        <div id="collapseSeven" class="accordion-collapse collapse show"
+                                        <div id="collapseSeven" class="accordion-collapse collapse"
                                              data-bs-parent="#myAccordion-4">
                                             <div class="card-body bottom-box-shadow">
                                                 <p>TheVacationCalendar.com has three different types of users that can
@@ -1031,7 +1031,7 @@
                                                     data-bs-toggle="collapse" data-bs-target="#calendar">Calendar
                                             </button>
                                         </h2>
-                                        <div id="calendar" class="accordion-collapse collapse show"
+                                        <div id="calendar" class="accordion-collapse collapse"
                                              data-bs-parent="#myAccordion-3">
                                             <div class="card-body bottom-box-shadow">
 

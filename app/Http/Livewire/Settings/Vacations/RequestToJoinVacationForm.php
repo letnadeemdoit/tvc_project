@@ -84,7 +84,6 @@ class RequestToJoinVacationForm extends Component
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
-
         if (!$this->vacation->VacationId) {
             try {
                 $house = $this->user->house;

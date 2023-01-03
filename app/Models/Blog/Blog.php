@@ -51,6 +51,7 @@ class Blog extends Model implements Auditable
         'HouseId',
         'user_id',
         'Subject',
+        'is_public',
         'Contents',
         'Content',
         'Author',
