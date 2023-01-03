@@ -56,6 +56,20 @@
 
                 <div class="row">
                     <div class="mb-3 col-12 col-lg-12">
+                        <div class="form-check">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   value="1"
+                                   wire:model.defer="state.is_public"
+                                   id="is_public">
+                            <label class="form-check-label" for="is_public">
+                                Show as a public
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-12 col-lg-12">
                         <label class="form-label" for="Subject">Subject:</label>
                         <input
                             type="text"

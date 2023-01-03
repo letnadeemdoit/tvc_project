@@ -23,7 +23,8 @@ class GuestController extends Controller
      */
     public function welcome()
     {
-        return view('welcome');
+        $blogs = Blog::where('is_public',1)->get();
+        return view('welcome', compact('blogs'));
     }
 
     /**

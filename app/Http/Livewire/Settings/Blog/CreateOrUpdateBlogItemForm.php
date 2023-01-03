@@ -72,7 +72,7 @@ class CreateOrUpdateBlogItemForm extends Component
 
         if ($blogItem->BlogId) {
             $this->isCreating = false;
-            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'image', 'category_id', ' name']);
+            $this->state = \Arr::only($blogItem->toArray(), ['Subject', 'Contents', 'is_public', 'image', 'category_id', ' name']);
             $this->state['tags'] = $blogItem->tags->pluck('name')->toArray();
         } else {
             $this->isCreating = true;
@@ -99,13 +99,20 @@ class CreateOrUpdateBlogItemForm extends Component
             ],
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'Contents' => 'required|max:4000000000',
+            'is_public' => 'nullable',
             'category_id' => 'required',
         ])->validateWithBag('saveBlogItemCU');
 
-        if ($this->isCreating){
+        if (isset($inputs['is_public']) && $inputs['is_public'] == 1) {
+            $is_public = 1;
+        } else {
+            $is_public = 0;
+        }
+
+        if ($this->isCreating) {
             $this->blogItem->user_id = $this->user->user_id;
             $this->blogItem->HouseId = $this->user->HouseId;
-            $this->blogItem->Author = $this->user->first_name." ".$this->user->last_name;
+            $this->blogItem->Author = $this->user->first_name . " " . $this->user->last_name;
             $this->blogItem->BlogDate = $date;
             $this->blogItem->Audit_user_name = $this->user->Audit_user_name;
             $this->blogItem->Audit_Role = $this->user->Audit_Role;
@@ -115,11 +122,12 @@ class CreateOrUpdateBlogItemForm extends Component
         }
         $slug = Str::slug($inputs['Subject']);
         $this->blogItem->fill([
-                'Subject' => $inputs['Subject'],
-                'Contents' => $inputs['Contents'] ?? '',
-                'category_id' => $inputs['category_id'] ?? null,
-                'slug' => $slug,
-            ])->save();
+            'Subject' => $inputs['Subject'],
+            'Contents' => $inputs['Contents'] ?? '',
+            'category_id' => $inputs['category_id'] ?? null,
+            'is_public' => $is_public,
+            'slug' => $slug,
+        ])->save();
 
 //        $tagIds = [];
 //
@@ -158,13 +166,13 @@ class CreateOrUpdateBlogItemForm extends Component
                     $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new BlogNotification($items, $blogUrl,$isAction, $createdHouseName));
+                        $user->notify(new BlogNotification($items, $blogUrl, $isAction, $createdHouseName));
                     }
 //                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
                     $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
                     if (count($blogEmailsList) > 0) {
                         Notification::route('mail', $blogEmailsList)
-                            ->notify(new BlogNotification($items, $blogUrl,$isAction, $createdHouseName));
+                            ->notify(new BlogNotification($items, $blogUrl, $isAction, $createdHouseName));
                     }
                 }
             }
