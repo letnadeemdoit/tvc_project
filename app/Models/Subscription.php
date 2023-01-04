@@ -47,4 +47,9 @@ class Subscription extends Model
         $paypal->getAccessToken();
         $paypal->cancelSubscription($this->subscription_id, '-');
     }
+
+    public function processingSubscriptions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ProcessingSubscription::class);
+    }
 }

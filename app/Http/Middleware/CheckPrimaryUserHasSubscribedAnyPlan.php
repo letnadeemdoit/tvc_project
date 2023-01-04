@@ -39,7 +39,6 @@ class CheckPrimaryUserHasSubscribedAnyPlan
                 'role' => 'Administrator',
             ])->first();
 
-
             if (!auth()->user()->is_admin && $Is_Subscription) {
 
                 $message = 'This account does not have an active subscription. Please contact the house Administrator (' . $admin['first_name'] . ' ' . $admin['last_name'] . ' - ' . $admin['email'] . ') to set up an active subscription';
