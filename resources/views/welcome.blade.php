@@ -670,10 +670,9 @@
                                                             style="width:50px !important;height:50px !important;object-fit: cover;"
                                                         >
                                                     @endif
-                @dd($blog->user)
                                                     @php
-                                                    $first_name = $blog->user->first_name;
-                                                    $last_name = str($blog->user->last_name ?? '')->substr(0, 1);
+                                                    $first_name = optional($blog->user)->first_name;
+                                                    $last_name = str(optional($blog->user)->last_name ?? '')->substr(0, 1);
                                                     $user_name = str('By '.($first_name ?? ''). ' ' . ($last_name ?? ''))->upper();
                                                     @endphp
                                                     <div class="ps-3">
