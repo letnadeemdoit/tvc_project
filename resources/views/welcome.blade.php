@@ -672,9 +672,9 @@
                                                     @endif
 
                                                     <div class="ps-3">
-{{--                                                        <h5 class="mb-1 fw-bold"--}}
-{{--                                                            style="color: #2A3342">{{ Str::upper('By '.$blog->user->first_name. ' ' .substr($blog->user->last_name, 0, 1))  }}</h5>--}}
-{{--                                                        <p class="mb-0 fs-13 txt-clr">{{\Carbon\Carbon::parse($blog->BlogDate)->format('d M Y')}}</p>--}}
+                                                        <h5 class="mb-1 fw-bold"
+                                                            style="color: #2A3342">{{ Str::upper('By '.$blog->user->first_name. ' ' . mb_substr($blog->user->last_name, 0, 1))  }}</h5>
+                                                        <p class="mb-0 fs-13 txt-clr">{{\Carbon\Carbon::parse($blog->BlogDate)->format('d M Y')}}</p>
                                                     </div>
                                                 </div>
                                             </div>
