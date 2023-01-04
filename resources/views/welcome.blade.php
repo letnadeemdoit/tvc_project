@@ -670,7 +670,7 @@
                                                             style="width:50px !important;height:50px !important;object-fit: cover;"
                                                         >
                                                     @endif
-
+                @dd($blog->user)
                                                     @php
                                                     $first_name = $blog->user->first_name;
                                                     $last_name = str($blog->user->last_name ?? '')->substr(0, 1);
