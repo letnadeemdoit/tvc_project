@@ -673,8 +673,8 @@
 
                                                     @php
                                                     $first_name = $blog->user->first_name;
-                                                    $last_name = str($blog->user->last_name)->substr(0, 1);
-                                                    $user_name = str('By '.$first_name. ' ' . $last_name)->upper();
+                                                    $last_name = str($blog->user->last_name ?? '')->substr(0, 1);
+                                                    $user_name = str('By '.($first_name ?? ''). ' ' . ($last_name ?? ''))->upper();
                                                     @endphp
                                                     <div class="ps-3">
                                                         <h5 class="mb-1 fw-bold"
