@@ -330,6 +330,7 @@ class PaypalController extends Controller
      */
     public function ipn(Request $request)
     {
+        Log::error('IPN: ', $request->all());
         if ($this->paypal->validateIpn()) {
 
             $txn_id = $this->paypal->ipnData['txn_id'];
