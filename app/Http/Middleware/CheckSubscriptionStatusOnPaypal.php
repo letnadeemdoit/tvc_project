@@ -75,7 +75,6 @@ class CheckSubscriptionStatusOnPaypal
 //                }
 //
 //            } else
-
             if ($userSubscription && $userSubscription->processingSubscriptions->count() > 0) {
                 $paypalSubscription = $paypal->showSubscriptionDetails($userSubscription->subscription_id);
 
@@ -97,7 +96,7 @@ class CheckSubscriptionStatusOnPaypal
                         $processingSubscription->delete();
                     }
 
-                } elseif (isset($paypalSubscription['status']) && $paypalSubscription['status'] !== 'ACTIVE' && $paypalSubscription['status'] !== 'APPROVAL_PENDING') {
+                } elseif (isset($paypalSubscription['status']) && $paypalSubscription['status'] !== 'ACTIVE' && $paypalSubscription['status'] !== 'APPROVAL_PENDING' && $paypalSubscription['status'] !== 'APPROVED') {
                     $userSubscription->update(['status' => $paypalSubscription['status']]);
                     if ($userSubscription->processingSubscriptions && $userSubscription->processingSubscriptions->count() > 0){
                         foreach ($userSubscription->processingSubscriptions as $processSubscription){
