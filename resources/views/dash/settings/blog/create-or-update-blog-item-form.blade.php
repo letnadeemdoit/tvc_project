@@ -63,7 +63,7 @@
                                    wire:model.defer="state.is_public"
                                    id="is_public">
                             <label class="form-check-label" for="is_public">
-                                Show as a public
+                                Share blog post publically on the home page of <a href="https://thevacationcalendar.com">TheVacationCalendar.com</a>
                             </label>
                         </div>
                     </div>

@@ -16,11 +16,21 @@
     <div class="container py-5">
 
         <div id="calendarMessage">
-            @if(Session::has('warnMessage'))
-                <p class="alert {{ Session::get('alert-class', 'alert-warning') }}">{{ Session::get('warnMessage') }}</p>
+            @if(!auth()->user()->is_admin && !is_any_subscribed())
+                @php
+                    $admin = \App\Models\User::where([
+                        'HouseId' => primary_user()->HouseId,
+                        'role' => 'Administrator',
+                    ])->first();
+                @endphp
+                <p class="alert alert-warning">This account does not have an active subscription. Please contact the house Administrator ({{$admin['first_name'] . ' ' . $admin['last_name'] . ' - ' . $admin['email']}}) to set up an active subscription</p>
+{{--                    <p class="alert {{ Session::get('alert-class', 'alert-warning') }}">{{ Session::get('warnMessage') }}</p>--}}
+            @elseif(auth()->user()->is_admin && !is_any_subscribed())
+                <p class="alert alert-warning">Currently there is no subscription plan. Please subscribe any plan. <a href="{{route('dash.plans-and-pricing')}}">plans-and-pricing</a></p>
+
             @endif
         </div>
-        @if($user->is_owner)
+        @if($user->is_owner && is_any_subscribed())
             <div class="text-end mb-3">
 
                 <button type="button" class="btn btn-outline-secondary mb-2 mb-lg-0" data-bs-toggle="modal"
@@ -86,6 +96,7 @@
         @endif
 
         <div class="card shadow-none">
+            @if(is_any_subscribed())
             <div class="card-body">
                 <livewire:calendar.calendar-view :user="$user"/>
                 <div>
@@ -96,6 +107,7 @@
                                                                                wire:key="rtjvf{{time()}}"/>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 
@@ -104,11 +116,11 @@
         <script type="text/javascript"
                 src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-        <script>
-            setTimeout(function() {
-                $('#calendarMessage').fadeOut('fast');
-            }, 5000);
-        </script>
+{{--        <script>--}}
+{{--            setTimeout(function() {--}}
+{{--                $('#calendarMessage').fadeOut('fast');--}}
+{{--            }, 5000);--}}
+{{--        </script>--}}
     @endpush
 
 

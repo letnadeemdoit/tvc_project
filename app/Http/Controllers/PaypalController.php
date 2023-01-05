@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
+use App\Models\ProcessingSubscription;
 use Carbon\Carbon;
 use App\Models\Paypal\PaymentInfo;
 use App\Models\Paypal\SubscriptionInfo;
@@ -67,14 +68,14 @@ class PaypalController extends Controller
             if (isset($paypalSubscription['error'])) {
                 Log::channel('paypal')->error('Create Subscription: ', [$paypalSubscription['error']]);
             } else {
-                Subscription::create([
+                $subscription = Subscription::create([
                     'user_id' => auth()->user()->user_id,
                     'house_id' => auth()->user()->HouseId,
                     'subscription_id' => $paypalSubscription['id'],
                     'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
                     'plan' => $plan,
                     'period' => $billed,
-                    'status' => $paypalSubscription['status'],
+                    'status' => 'IN_PROCESS',
                     'application_context' => [
                         'brand_name' => config('app.name'),
                         'locale' => 'en-US',
@@ -86,6 +87,15 @@ class PaypalController extends Controller
                         'return_url' => route('dash.paypal.succeeded', [$plan, $billed]),
                         'cancel_url' => route('dash.paypal.canceled', [$plan, $billed])
                     ]
+                ]);
+
+
+                ProcessingSubscription::create([
+                    'subscription_id' => $subscription['id'],
+                    'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
+                    'plan' => $plan,
+                    'period' => $billed,
+                    'status' => $paypalSubscription['status'],
                 ]);
 
                 $redirectTo = null;
@@ -121,6 +131,7 @@ class PaypalController extends Controller
             'user_id' => auth()->user()->user_id,
             ['status', '<>', 'CANCELLED']
         ])->latest()->first();
+
 
         $mode = config('paypal.mode');
 
@@ -252,29 +263,48 @@ class PaypalController extends Controller
             }
         }
 
-        $paypalSubscription = $this->paypal->reviseSubscription($paypalsubscription->subscription_id, $data);
-
         $redirectTo = null;
-        foreach ($paypalSubscription['links'] ?? [] as $link) {
-            if ($link['rel'] === 'approve') {
-                $redirectTo = $link['href'];
+
+        $processingSubscription = ProcessingSubscription::where([
+            'subscription_id' => $paypalsubscription->id,
+        ])->latest()->first();
+        if (!is_null($processingSubscription) && $processingSubscription->status === 'APPROVAL_PENDING'){
+
+            $paypalSubscription = $this->paypal->showSubscriptionDetails($paypalsubscription->subscription_id);
+
+            foreach ($paypalSubscription['links'] ?? [] as $link) {
+                if ($link['rel'] === 'approve') {
+                    $redirectTo = $link['href'];
+                }
             }
         }
-
-        if ($redirectTo) {
-            Subscription::create([
-                'user_id' => auth()->user()->user_id,
-                'house_id' => auth()->user()->HouseId,
-                'subscription_id' => $paypalsubscription->subscription_id,
+        else
+        {
+            $reviseSubscription = $this->paypal->reviseSubscription($paypalsubscription->subscription_id, $data);
+            foreach ($reviseSubscription['links'] ?? [] as $link) {
+                if ($link['rel'] === 'approve') {
+                    $redirectTo = $link['href'];
+                }
+            }
+//            dd($reviseSubscription);
+            $paypalSubscription = $this->paypal->showSubscriptionDetails($paypalsubscription->subscription_id);
+//            dd($paypalSubscription);
+            ProcessingSubscription::create([
+                'subscription_id' => $paypalsubscription->id,
                 'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
                 'plan' => $plan,
                 'period' => $billed,
-                'status' => 'REVISING',
+                'status' => 'APPROVAL_PENDING',
             ]);
+
+        }
+
+        if ($redirectTo) {
+
             return redirect($redirectTo);
         }
         else{
-            $error = $paypalSubscription['error'];
+            $error = $reviseSubscription['error'];
             return redirect()->route('dash.plans-and-pricing')->with('error', $error['message']);
         }
 

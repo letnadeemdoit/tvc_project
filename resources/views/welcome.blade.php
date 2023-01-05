@@ -670,10 +670,20 @@
                                                             style="width:50px !important;height:50px !important;object-fit: cover;"
                                                         >
                                                     @endif
+                                                    @php
+                                                    if ($blog->user){
+                                                        $first_name = optional($blog->user)->first_name;
+                                                        $last_name = str(optional($blog->user)->last_name ?? '')->substr(0, 1);
+                                                        $user_name = str('By '.($first_name ?? ''). ' ' . ($last_name ?? ''))->upper();
+                                                    }
+                                                    else{
+                                                        $user_name = 'By ' . $blog->Author;
+                                                    }
 
+                                                    @endphp
                                                     <div class="ps-3">
                                                         <h5 class="mb-1 fw-bold"
-                                                            style="color: #2A3342">{{ Str::upper('By '.$blog->Author) }}</h5>
+                                                            style="color: #2A3342">{{ $user_name  }}</h5>
                                                         <p class="mb-0 fs-13 txt-clr">{{\Carbon\Carbon::parse($blog->BlogDate)->format('d M Y')}}</p>
                                                     </div>
                                                 </div>
