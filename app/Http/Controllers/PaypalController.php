@@ -125,190 +125,189 @@ class PaypalController extends Controller
         return redirect()->route('dash.plans-and-pricing')->with('status', "Thank you for your order! You have been successfully subscribed");
     }
 
-    public function reviseSubscription($plan, $billed) {
+    public function reviseSubscription($plan, $billed)
+    {
+        try {
+            $paypalsubscription = Subscription::where([
+                'user_id' => auth()->user()->user_id,
+                ['status', '<>', 'CANCELLED']
+            ])->latest()->first();
 
-        $paypalsubscription = Subscription::where([
-            'user_id' => auth()->user()->user_id,
-            ['status', '<>', 'CANCELLED']
-        ])->latest()->first();
 
+            $mode = config('paypal.mode');
 
-        $mode = config('paypal.mode');
+            $start_date = $paypalsubscription->updated_at->subDays(30);
 
-        $start_date =  $paypalsubscription->updated_at->subDays(30);
-
-        $data = [
-            'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
-            'application_context' => [
-                'brand_name' => config('app.name'),
-                'locale' => 'en-US',
-                'user_action' => 'SUBSCRIBE_NOW',
-                'payment_method' => [
-                    'payer_selected' => 'PAYPAL',
-                    'payee_preferred' => 'IMMEDIATE_PAYMENT_REQUIRED',
+            $data = [
+                'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
+                'application_context' => [
+                    'brand_name' => config('app.name'),
+                    'locale' => 'en-US',
+                    'user_action' => 'SUBSCRIBE_NOW',
+                    'payment_method' => [
+                        'payer_selected' => 'PAYPAL',
+                        'payee_preferred' => 'IMMEDIATE_PAYMENT_REQUIRED',
+                    ],
+                    'return_url' => route('dash.paypal.succeeded', [$plan, $billed]),
+                    'cancel_url' => route('dash.paypal.canceled', [$plan, $billed])
                 ],
-                'return_url' => route('dash.paypal.succeeded', [$plan, $billed]),
-                'cancel_url' => route('dash.paypal.canceled', [$plan, $billed])
-            ],
 
 
-        ];
+            ];
 
-        if ($billed === 'yearly'){
-            $calculatedPrice4Upgrade = 0;
-            $months = Carbon::now()->diffInMonths($start_date);
-            switch ($months) {
-                case 0:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 20;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 40;
-                    }
-                    break;
-                case 1:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 18;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 36;
-                    }
-                    break;
-                case 2:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 16;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 32;
-                    }
-                    break;
-                case 3:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 14;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 28;
-                    }
-                    break;
-                case 4:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 12;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 24;
-                    }
-                    break;
-                case 5:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 10;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 20;
-                    }
-                    break;
-                case 6:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 8;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 16;
-                    }
-                    break;
-                case 7:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 6;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 12;
-                    }
-                    break;
-                case 8:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 4;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 8;
-                    }
-                    break;
-                case 9:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 2;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 4;
-                    }
-                    break;
-                case 10:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 0;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 2;
-                    }
-                    break;
-                case 11:
-                    if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')){
-                        $calculatedPrice4Upgrade = 0;
-                    } elseif($paypalsubscription->plan === 'basic' && $plan === 'premium') {
-                        $calculatedPrice4Upgrade = 0;
-                    }
-                    break;
-            }
+            if ($billed === 'yearly') {
+                $calculatedPrice4Upgrade = 0;
+                $months = Carbon::now()->diffInMonths($start_date);
+                switch ($months) {
+                    case 0:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 20;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 40;
+                        }
+                        break;
+                    case 1:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 18;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 36;
+                        }
+                        break;
+                    case 2:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 16;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 32;
+                        }
+                        break;
+                    case 3:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 14;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 28;
+                        }
+                        break;
+                    case 4:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 12;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 24;
+                        }
+                        break;
+                    case 5:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 10;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 20;
+                        }
+                        break;
+                    case 6:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 8;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 16;
+                        }
+                        break;
+                    case 7:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 6;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 12;
+                        }
+                        break;
+                    case 8:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 4;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 8;
+                        }
+                        break;
+                    case 9:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 2;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 4;
+                        }
+                        break;
+                    case 10:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 0;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 2;
+                        }
+                        break;
+                    case 11:
+                        if (($paypalsubscription->plan === 'basic' && $plan === 'standard') || ($paypalsubscription->plan === 'standard' && $plan === 'premium')) {
+                            $calculatedPrice4Upgrade = 0;
+                        } elseif ($paypalsubscription->plan === 'basic' && $plan === 'premium') {
+                            $calculatedPrice4Upgrade = 0;
+                        }
+                        break;
+                }
 
 
-            if ($calculatedPrice4Upgrade > 0) {
-                $data['plan'] = [
-                    'billing_cycles' => [
-                        [
-                            'sequence' => 1,
-                            'total_cycles' => 0,
-                            'pricing_scheme' => [
-                                'fixed_price' => [
-                                    'value' => $calculatedPrice4Upgrade,
-                                    'currency_code' => 'USD'
+                if ($calculatedPrice4Upgrade > 0) {
+                    $data['plan'] = [
+                        'billing_cycles' => [
+                            [
+                                'sequence' => 1,
+                                'total_cycles' => 0,
+                                'pricing_scheme' => [
+                                    'fixed_price' => [
+                                        'value' => $calculatedPrice4Upgrade,
+                                        'currency_code' => 'USD'
+                                    ]
                                 ]
                             ]
                         ]
-                    ]
-                ];
-            }
-        }
-
-        $redirectTo = null;
-
-        $processingSubscription = ProcessingSubscription::where([
-            'subscription_id' => $paypalsubscription->id,
-        ])->latest()->first();
-        if (!is_null($processingSubscription) && $processingSubscription->status === 'APPROVAL_PENDING'){
-
-            $paypalSubscription = $this->paypal->showSubscriptionDetails($paypalsubscription->subscription_id);
-
-            foreach ($paypalSubscription['links'] ?? [] as $link) {
-                if ($link['rel'] === 'approve') {
-                    $redirectTo = $link['href'];
+                    ];
                 }
             }
-        }
-        else
-        {
-            $reviseSubscription = $this->paypal->reviseSubscription($paypalsubscription->subscription_id, $data);
-            foreach ($reviseSubscription['links'] ?? [] as $link) {
-                if ($link['rel'] === 'approve') {
-                    $redirectTo = $link['href'];
-                }
-            }
-//            dd($reviseSubscription);
-            $paypalSubscription = $this->paypal->showSubscriptionDetails($paypalsubscription->subscription_id);
-//            dd($paypalSubscription);
-            ProcessingSubscription::create([
+
+            $redirectTo = null;
+
+            $processingSubscription = ProcessingSubscription::where([
                 'subscription_id' => $paypalsubscription->id,
-                'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
-                'plan' => $plan,
-                'period' => $billed,
-                'status' => 'APPROVAL_PENDING',
-            ]);
+            ])->latest()->first();
+            if (!is_null($processingSubscription) && $processingSubscription->status === 'APPROVAL_PENDING') {
 
+                $paypalSubscription = $this->paypal->showSubscriptionDetails($paypalsubscription->subscription_id);
+
+                foreach ($paypalSubscription['links'] ?? [] as $link) {
+                    if ($link['rel'] === 'approve') {
+                        $redirectTo = $link['href'];
+                    }
+                }
+            } else {
+
+                $reviseSubscription = $this->paypal->reviseSubscription($paypalsubscription->subscription_id, $data);
+                foreach ($reviseSubscription['links'] ?? [] as $link) {
+                    if ($link['rel'] === 'approve') {
+                        $redirectTo = $link['href'];
+                    }
+                }
+
+                $paypalSubscription = $this->paypal->showSubscriptionDetails($paypalsubscription->subscription_id);
+
+                ProcessingSubscription::create([
+                    'subscription_id' => $paypalsubscription->id,
+                    'plan_id' => config("paypal.$mode.plans.$plan.$billed"),
+                    'plan' => $plan,
+                    'period' => $billed,
+                    'status' => 'APPROVAL_PENDING',
+                ]);
+
+
+            }
+
+
+            if ($redirectTo) {
+                return redirect($redirectTo);
+            }
+        } catch (\Exception $e) {
+            Log::channel('paypal')->error('Create Subscription: ', [$e->getMessage()]);
         }
-
-        if ($redirectTo) {
-
-            return redirect($redirectTo);
-        }
-        else{
-            $error = $reviseSubscription['error'];
-            return redirect()->route('dash.plans-and-pricing')->with('error', $error['message']);
-        }
-
-
+        return redirect()->route('dash.plans-and-pricing')->with('status', 'Sorry we are unable to process your subscription right now please try again later or contact with you vendor.');
     }
 
     public function canceled($plan, $billed)
