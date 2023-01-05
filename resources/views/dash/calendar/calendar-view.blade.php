@@ -80,9 +80,12 @@
                             Properties: {{ $properties ? 'Customized' : 'All'  }}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuProperties">
-                            <a href="#" class="dropdown-item {{ $properties === null || count($selectedHouses) === $this->houses->count()? 'active' : '' }}" wire:click.prevent="setProperty()">All</a>
+                            <a href="#"
+                               class="dropdown-item {{ $properties === null || count($selectedHouses) === $this->houses->count()? 'active' : '' }}"
+                               wire:click.prevent="setProperty()">All</a>
                             @foreach($this->houses as $house)
-                                <div class="dropdown-item {{ in_array($house->HouseID, $selectedHouses) ? 'active' : '' }}">
+                                <div
+                                    class="dropdown-item {{ in_array($house->HouseID, $selectedHouses) ? 'active' : '' }}">
                                     <div class="form-check">
                                         <input
                                             type="checkbox"
@@ -92,7 +95,8 @@
                                             wire:change.prevent="setProperty({{ $house->HouseID }})"
                                             value="{{ $house->HouseID }}"
                                         />
-                                        <label class="form-check-label" for="house{{ $house->HouseID }}">{{ $house->HouseName }}</label>
+                                        <label class="form-check-label"
+                                               for="house{{ $house->HouseID }}">{{ $house->HouseName }}</label>
                                     </div>
                                 </div>
                             @endforeach
@@ -110,14 +114,14 @@
             <div class="input-group input-group-sm-vertical">
 
                 <!-- Radio Check -->
-{{--                <label class="form-control" for="year">--}}
-{{--                <span class="form-check">--}}
-{{--                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="year"--}}
-{{--                         value="timelineYear"/>--}}
-{{--                  <span class="form-check-label">Year</span>--}}
-{{--                </span>--}}
-{{--                </label>--}}
-                <!-- End Radio Check -->
+            {{--                <label class="form-control" for="year">--}}
+            {{--                <span class="form-check">--}}
+            {{--                  <input type="radio" class="form-check-input" data-fc-grid-view name="calendar_view" id="year"--}}
+            {{--                         value="timelineYear"/>--}}
+            {{--                  <span class="form-check-label">Year</span>--}}
+            {{--                </span>--}}
+            {{--                </label>--}}
+            <!-- End Radio Check -->
                 <!-- Radio Check -->
                 <label class="form-control" for="month">
                 <span class="form-check">
@@ -216,22 +220,34 @@
                         $dateTitle.textContent = dateSet.view.title
                     },
                     dateClick: function (info) {
-                        // if(moment(info.date).isSameOrAfter(moment())) {
+                        console.log('info ', info)
+                        console.log('info.view.type  ', info.view.type)
 
-                            @if($user->is_owner)
-                                let parsed = queryString.parse(window.location.search);
-                                window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr, parsed.owner);
-                            @elseif($user->is_guest)
-                                window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
-                            @endif
-                        // }
+                        @if($user->is_owner)
+
+                        let parsed = queryString.parse(window.location.search);
+
+                        console.log('info.dateStr', info.resource._resource.id);
+
+                        if (info.view.type === 'resourceTimelineMonth') {
+                            window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
+                        } else {
+                            window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr, parsed.owner);
+                        }
+                        @elseif($user->is_guest)
+                        window.livewire.emit('showRequestToJoinVacationModal', true, null, info.dateStr)
+                        @endif
                     },
                     eventClick: function (calEvent, jsEvent, view) {
 
+                        console.log('cal event', calEvent);
+                        console.log('jsEvent', jsEvent);
+                        console.log('view', view);
+
                         @if($user->is_guest)
-                            window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
+                        window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
                         @else
-                            window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                        window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
                         @endif
                     },
                     // eventContent: function (arg) {
@@ -256,9 +272,9 @@
                     //     return {domNodes: arrayOfDomNodes}
                     // },
                     eventContent({event}) {
-                        if(event.extendedProps.is_room) {
+                        if (event.extendedProps.is_room) {
                             return {
-                                html:  `
+                                html: `
                                 <div>
                                     <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !event.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
                                     <div class="d-flex px-2 py-0">
@@ -274,15 +290,15 @@
                         }
 
                         return {
-                            html:  `
+                            html: `
                                 <div>
                                     <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !event.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
                                     <div class="d-flex px-2 py-1">
                                         ${
-                                            event.extendedProps.imageUrl
-                                                ? `<img class="avatar avatar-xs me-2" style="object-fit: cover" src="${event.extendedProps.imageUrl}" alt="Image Description">`
-                                                : ''
-                                        }
+                                event.extendedProps.imageUrl
+                                    ? `<img class="avatar avatar-xs me-2" style="object-fit: cover" src="${event.extendedProps.imageUrl}" alt="Image Description">`
+                                    : ''
+                            }
                                         <span class="fc-event-title fc-sticky" style="color: ${event.textColor}">${event.title}</span>
                                     </div>
                                 </div>

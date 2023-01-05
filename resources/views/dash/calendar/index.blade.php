@@ -75,6 +75,11 @@
         <div>
             <livewire:settings.vacations.schedule-vacation-form :user="$user" wire:key="vsvf{{time()}}"/>
         </div>
+
+        <div>
+            <livewire:settings.vacations.schedule-vacation-room-form :user="$user" wire:key="vsvrf{{time()}}"/>
+        </div>
+
         <div>
             <livewire:settings.vacations.request-to-join-vacation-form :user="$user" wire:key="rtjvf{{time()}}"/>
         </div>

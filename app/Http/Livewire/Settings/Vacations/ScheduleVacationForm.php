@@ -141,6 +141,7 @@ class ScheduleVacationForm extends Component
 
         $this->state['vacation_rooms'][$roomId] = array_values($this->state['vacation_rooms'][$roomId]);
     }
+
     public function saveVacationSchedule()
     {
         $this->resetErrorBag();
