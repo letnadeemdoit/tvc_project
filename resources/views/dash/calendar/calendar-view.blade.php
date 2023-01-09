@@ -186,6 +186,11 @@
     @push('scripts')
         <script>
             $(document).ready(function () {
+
+                window.addEventListener('vacationScheduled', function (e) {
+                    $('#rooms').click();
+
+                });
                 // Fullcalendar controls
                 const
                     $prevMonthBtn = document.querySelector('[data-fc-prev-month]'),
@@ -227,8 +232,6 @@
 
                         let parsed = queryString.parse(window.location.search);
 
-                        console.log('info.dateStr', info.resource._resource.id);
-
                         if (info.view.type === 'resourceTimelineMonth') {
                             window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
                         } else {
@@ -244,10 +247,17 @@
                         console.log('jsEvent', jsEvent);
                         console.log('view', view);
 
+                        console.log(calEvent.event);
+
                         @if($user->is_guest)
                         window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
                         @else
-                        window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                        if (calEvent.view.type == 'resourceTimelineMonth') {
+                            window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id,calEvent.event.extendedProps.vacation_room_id)
+
+                        } else if(calEvent.view.type == 'dayGridMonth') {
+                            window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                        }
                         @endif
                     },
                     // eventContent: function (arg) {

@@ -3,7 +3,7 @@
 >
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $vacation && $vacation->VacationName ? "Update" : 'Add' }} Vacation Room</h5>
+            <h5 class="modal-title">{{ $vacationRoom && $vacationRoom->id ? "Update" : 'Add' }} Vacation Room</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -28,7 +28,7 @@
                     {{--                    placeholder="Vacation name"--}}
                     {{--                    wire:model.defer="state.vacation_name"--}}
                     wire:model="state.vacation_id"
-                    wire:change="onChangeVacation"
+                    wire:change="onChangeRoomVacation"
                 >
                     <option value="">Select Vacation</option>
 
@@ -43,11 +43,11 @@
                 <label class="form-label" for="schedule_start_end_datetime">Start & End Datetime:</label>
                 <input
                     type="text"
-                    class="form-control @error('start_datetime') is-invalid @enderror"
+                    class="form-control @error('start_end_datetime') is-invalid @enderror"
                     name="start_datetime"
                     id="schedule_room_start_end_date"
                     placeholder="Start & end date"
-                    wire:model.defer="state.start_end_date"
+                    wire:model.defer="state.start_end_datetime"
                     readonly
                 />
                 @error('start_datetime')
@@ -56,7 +56,7 @@
             </div>
 
             <div class="d-flex">
-                @if($user->is_owner && $vacation && $vacation->VacationId)
+                @if($user->is_owner && $vacationRoom && $vacationRoom->id)
                     <a
                         href="#!"
                         class="btn btn-danger px-5"
@@ -70,7 +70,7 @@
                     type="submit"
                     class="btn btn-primary ms-auto"
                 >
-                    {{ $vacation && $vacation->VacationName ? "Update" : 'Add' }} Vacation
+                    {{ $vacationRoom && $vacationRoom->id ? "Update" : 'Add' }} Vacation
                 </button>
             </div>
         </form>
@@ -85,9 +85,9 @@
                     minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
                     maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
                     // minDate: moment().format('MM/DD/YYYY'),
-                    startDate: @isset($state['start_date']) '{{ $state['start_date'] }}'
+                    startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
                     @else moment().set('minute', 0) @endisset,
-                    endDate: @isset($state['end_date']) '{{ $state['end_date'] }}'
+                    endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
                     @else moment().set('minute', 0).add(2, 'days') @endisset,
                     locale: {
                         format: 'MM/DD/YYYY HH:mm'
@@ -103,23 +103,13 @@
                     set('state.start_end_date', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'));
                 });
 
-                window.addEventListener('onChangeVacation', function (e) {
-                    console.log(e.detail)
 
-                    $('#schedule_room_start_end_date').data('daterangepicker').setStartDate(e.detail.startsAt);
-                    $('#schedule_room_start_end_date').data('daterangepicker').setEndDate(e.detail.endsAt);
-                    $('#schedule_room_start_end_date').val(`${e.detail.startsAt} - ${e.detail.endsAt}`);
-
-                    // alert('Name updated to: ' + event.detail.startsAt);
-                })
-
-
-                // window.addEventListener('schedule-vacation-daterangepicker-update', function (e) {
-                //     console.log(e.detail);
-                //     $('#schedule_room_start_end_date').data('daterangepicker').setStartDate(e.detail.startDatetime);
-                //     $('#schedule_room_start_end_date').data('daterangepicker').setEndDate(e.detail.endDatetime);
-                //     $('#schedule_room_start_end_date').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
-                // });
+                window.addEventListener('schedule-vacation-room-daterangepicker-update', function (e) {
+                    console.log(e.detail);
+                    $('#schedule_room_start_end_date').data('daterangepicker').setStartDate(e.detail.startDatetime);
+                    $('#schedule_room_start_end_date').data('daterangepicker').setEndDate(e.detail.endDatetime);
+                    $('#schedule_room_start_end_date').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
+                });
             });
         </script>
     @endpush
