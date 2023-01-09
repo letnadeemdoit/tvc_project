@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Settings\Vacations;
 
+use App\Models\Room\Room;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
@@ -9,8 +10,10 @@ use App\Notifications\CalendarEmailNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class ScheduleVacationRoomForm extends Component
@@ -23,7 +26,7 @@ class ScheduleVacationRoomForm extends Component
 
     public $house = null;
 
-    public $roomId = null;
+    public $room = null;
 
     public $vacationRoomId = null;
     public $selectedVacation = [];
@@ -39,15 +42,17 @@ class ScheduleVacationRoomForm extends Component
 
     protected $listeners = [
         'showVacationRoomScheduleModal',
-        'setVacationId' => 'setVacationId',
+//        'setVacationId' => 'setVacationId',
     ];
 
+//    public function setVacationId($VacationId){
+//        $this->vacationId = $VacationId;
+//    }
 
-    public function setVacationId($VacationId){
-        $this->vacationId = $VacationId;
-    }
     public function showVacationRoomScheduleModal($toggle, $roomId, $vacationRoomId = null, $initialDate = null, $owner = null, $house = null)
     {
+        $this->room = Room::where('RoomID', $roomId)->first();
+
         $this->vacationRoom = VacationRoom::firstOrNew(['id' => $vacationRoomId]);
         $this->reset('state');
 
@@ -78,20 +83,18 @@ class ScheduleVacationRoomForm extends Component
 
         if ($this->vacationRoom->id) {
             $this->isCreating = false;
-            $vacationRooms = [];
-//            dd($this->vacationRoom);
             $this->state = [
                 'vacation_id' => $this->vacationRoom->vacation_id,
                 'start_datetime' => $this->vacationRoom->starts_at->format('m/d/Y h:i'),
                 'end_datetime' => $this->vacationRoom->ends_at->format('m/d/Y h:i'),
                 'start_end_datetime' => $this->vacationRoom->starts_at->format('m/d/Y h:i') . ' - ' . $this->vacationRoom->ends_at->format('m/d/Y h:i'),
-
             ];
 
         } else {
             $this->isCreating = true;
             $this->state = [
                 'vacation_id' => $this->vacationId,
+                'room_id' => $roomId,
                 'book_rooms' => 0,
                 'vacation_rooms' => [],
             ];
@@ -108,53 +111,61 @@ class ScheduleVacationRoomForm extends Component
             }
         }
 
-        $this->dispatchBrowserEvent('schedule-vacation-room-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
+//        $this->dispatchBrowserEvent('schedule-vacation-room-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
     }
 
     public function onChangeRoomVacation()
     {
-        $selectedVacation = VacationRoom::where('room_id', $this->roomId)->first();
-        dd($selectedVacation);
+        $selectedVacation = Vacation::where('VacationId', $this->state['vacation_id'] ?? '')->first();
 
-        $this->dispatchBrowserEvent('schedule-vacation-room-daterangepicker-update', ['startsAt' => $this->selectedVacation->startDatetime->format('m/d/Y h:i'), 'endsAt' => $this->selectedVacation->endDatetime->format('m/d/Y h:i')]);
+        $this->dispatchBrowserEvent('on-vacation-room-change', ['startsAt' => $selectedVacation->startDatetime->format('m/d/Y h:i'), 'endsAt' => $selectedVacation->endDatetime->format('m/d/Y h:i')]);
     }
 
     public function saveVacationRoomSchedule()
     {
         $this->resetErrorBag();
 
-        if($this->isCreating){
-            $this->vacationRoom->room_id = $this->roomId;
-        }
+        $startDatetime = Carbon::parse($this->state['start_datetime']);
+        $endDatetime = Carbon::parse($this->state['end_datetime']);
 
-
-        $dates = explode(' - ', $this->state['start_end_datetime']);
-
-        $startDatetime = Carbon::parse($dates[0])->format('Y-m-d h:i');
-        $endDatetime = Carbon::parse($dates[1])->format('Y-m-d h:i');
-
-
-        $vacationRoom = VacationRoom::where('id', $this->vacationRoomId)->where('room_id', $this->roomId)->first();
-        if (!is_null($vacationRoom)){
-            $is_Exist = VacationRoom::where('id', $this->vacationRoomId)
-                ->where('room_id', $this->roomId)
-            ->whereHas('starts_at', function ($query) {
-                    $query->where('starts_at', '>=', $startDatetime);
-            })
-                ->orWhereHas('ends_at', function ($query) {
-                    $query->where('ends_at', '<=', $endDatetime);
-                })
-                ->first();
-
-            dd($is_Exist);
-        }
         Validator::make($this->state, [
             'vacation_id' => ['required'],
-            ])->validateWithBag('saveVacationRoomSchedule');
+            'start_datetime' => ['required'],
+        ])->after(function ($validator) use ($startDatetime, $endDatetime){
+            $vacationRoom = VacationRoom::where('id', $this->state['vacation_id'] ?? '')
+                ->where(function ($query) use ($startDatetime, $endDatetime) {
+                    $query
+                        ->where(function ($query) use ($startDatetime, $endDatetime) {
+                            $query
+                                ->where('starts_at', '>=', $startDatetime)
+                                ->where('starts_at', '<=', $endDatetime);
+                        })
+                        ->orWhere(function ($query) use ($startDatetime, $endDatetime) {
+                            $query
+                                ->where('ends_at', '>=', $startDatetime)
+                                ->where('ends_at', '<=', $endDatetime);
+                        })
+                        ->orWhere(function ($query) use ($startDatetime, $endDatetime) {
+                            $query
+                                ->where('starts_at', '<=', $startDatetime)
+                                ->where('ends_at', '>=', $startDatetime);
+                        })
+                        ->orWhere(function ($query) use ($startDatetime, $endDatetime) {
+                            $query
+                                ->where('starts_at', '<=', $endDatetime)
+                                ->where('ends_at', '>=', $endDatetime);
+                        });
 
+                })
+                ->when(!$this->isCreating, function ($query) {
+                    $query->whereNot('id', $this->vacationRoom->id);
+                })
+                ->first();
+            if ($vacationRoom) {
+                $validator->errors()->add('starts_at', __('Room already reserved in this vacation at given datetime'));
+            }
+        })->validateWithBag('saveVacationRoomSchedule');
 
-//        $startDatetime = Carbon::parse($this->state['start_datetime']);
-//        $endDatetime = Carbon::parse($this->state['end_datetime']);
 
         $this->vacationRoom->fill([
             'vacation_id' => $this->state['vacation_id'],

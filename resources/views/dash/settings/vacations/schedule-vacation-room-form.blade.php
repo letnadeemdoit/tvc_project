@@ -16,13 +16,15 @@
             wire:submit.prevent="saveVacationRoomSchedule"
             class="modal-body"
         >
+
+            <x-jet-validation-errors />
             {{--            <x-jet-validation-errors />--}}
             <div class="form-group mb-3">
                 <label class="form-label" for="vacation_name">Select Vacation:</label>
 
                 <select
                     type="text"
-                    class="form-control @error('vacation_name') is-invalid @enderror"
+                    class="form-control @error('vacation_id') is-invalid @enderror"
                     name="vacation_id"
                     {{--                    id="vacation_name"--}}
                     {{--                    placeholder="Vacation name"--}}
@@ -38,12 +40,15 @@
                         @endforeach
                     @endif
                 </select>
+                @error('vacation_id')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group mb-3">
                 <label class="form-label" for="schedule_start_end_datetime">Start & End Datetime:</label>
                 <input
                     type="text"
-                    class="form-control @error('start_end_datetime') is-invalid @enderror"
+                    class="form-control @error('start_datetime') is-invalid @enderror"
                     name="start_datetime"
                     id="schedule_room_start_end_date"
                     placeholder="Start & end date"
@@ -103,12 +108,10 @@
                     set('state.start_end_date', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'));
                 });
 
-
-                window.addEventListener('schedule-vacation-room-daterangepicker-update', function (e) {
+                window.addEventListener('on-vacation-room-change', function (e) {
                     console.log(e.detail);
                     $('#schedule_room_start_end_date').data('daterangepicker').setStartDate(e.detail.startDatetime);
                     $('#schedule_room_start_end_date').data('daterangepicker').setEndDate(e.detail.endDatetime);
-                    $('#schedule_room_start_end_date').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
                 });
             });
         </script>
