@@ -28,8 +28,8 @@ class VacationRoom extends Model
      * @var array
      */
     protected $casts = [
-        'starts_at' => 'date',
-        'ends_at' => 'date',
+        'starts_at' => 'datetime',
+        'ends_at' => 'datetime',
     ];
 
     public function room(){
@@ -44,6 +44,7 @@ class VacationRoom extends Model
     {
         return array_merge([
             'id' => $this->vacation_id,
+            'vacation_room_id' => $this->id,
             'title' => $this->room->RoomName . ' '. '('.$this->vacation->VacationName.')',
             'start' => str_replace(' ', 'T', $this->starts_at->format('Y-m-d')),
             'end' => str_replace(' ', 'T', $this->ends_at->format('Y-m-d')),

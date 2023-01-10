@@ -18,6 +18,7 @@ class CalendarView extends Component
 
     public $user;
 
+    public $vacationId = null;
     public $selectedHouses = [];
     public $properties = null;
 
@@ -25,12 +26,15 @@ class CalendarView extends Component
     protected $queryString = [
         'properties' => ['except' => null],
         'owner' => ['except' => null],
+        'vacationId' => ['except' => null],
     ];
 
     protected $listeners = [
+        'setVacationId' => 'setVacationId',
         'vacation-schedule-successfully' => 'renderCalendar',
         'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
-        'destroy-vacation' => 'destroy'
+        'destroy-vacation' => 'destroy',
+        'vacation-room-destroyed-successfully' => 'renderCalendar'
     ];
 
     public function mount()
@@ -82,6 +86,10 @@ class CalendarView extends Component
     public function updatedOwner()
     {
         $this->renderCalendar();
+    }
+
+    public function setVacationId($VacationId){
+        $this->vacationId = $VacationId;
     }
 
     public function getEventsProperty()

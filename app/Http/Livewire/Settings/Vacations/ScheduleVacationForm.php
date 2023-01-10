@@ -141,6 +141,7 @@ class ScheduleVacationForm extends Component
 
         $this->state['vacation_rooms'][$roomId] = array_values($this->state['vacation_rooms'][$roomId]);
     }
+
     public function saveVacationSchedule()
     {
         $this->resetErrorBag();
@@ -435,6 +436,12 @@ class ScheduleVacationForm extends Component
         } catch (Exception $e) {
 
         }
+
+        if (isset($this->state['book_rooms']) && $this->state['book_rooms'] == 1){
+            $this->dispatchBrowserEvent('vacationScheduled');
+            $this->emit('setVacationId', $this->vacation->VacationId);
+        }
+
         Cookie::queue('vbc', $this->state['background_color'], 10000);
         Cookie::queue('vfc', $this->state['font_color'], 10000);
         $this->emitSelf('toggle', false);

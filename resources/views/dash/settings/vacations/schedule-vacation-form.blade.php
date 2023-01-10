@@ -179,154 +179,154 @@
                         wire:model="state.book_rooms"
                     />
                 </div>
-                @if(isset($state['book_rooms']) && $state['book_rooms'] == 1)
-                    <div class="list-group list-group-flush list-group-sm mb-3">
-                        @if(count(current_house()->rooms) > 0)
-                        @foreach(current_house()->rooms as $room)
-                            <div class="list-group-item">
-                                <label class="d-flex p-2">
-                                    <input
-                                        class="form-check-input me-1"
-                                        type="checkbox"
-                                        value="{{ $room->RoomID }}"
-                                        wire:model="state.rooms.{{$loop->index}}.room_id"
-                                    />
-                                    <span class="ms-2">
-                                        <span class="fw-semi-bold">{{ $room->RoomName }}</span> <br/>
-                                        <small style="font-size: 11px;" class="text-muted"><strong>Type:</strong> {{ $room->roomType->RoomTypeVal }}</small>,
-                                        <small style="font-size: 11px;" class="text-muted"><strong>Amenities:</strong> {{ implode(', ', $room->amenities->pluck('AmenityName')->toArray()) }}</small>,
-                                        <small style="font-size: 11px;" class="text-muted"><strong>Beds:</strong> {{ $room->Beds }}</small>
-                                    </span>
-                                </label>
-                                @if(count($state['vacation_rooms']) > 0 && isset($state['vacation_rooms'][$room->RoomID]))
-                                    @foreach($state['vacation_rooms'][$room->RoomID] as $vacationRoom)
-                                        <div class="d-flex align-items-center {{ !$loop->first ? 'mt-3' : '' }}">
-                                            <label
-                                                class="me-2"
-                                                for="room_{{ $room->RoomID . $loop->index }}date_starts_at"
-                                            >
-                                                From:*
-                                            </label>
-                                            <input
-                                                id="room_{{ $room->RoomID . $loop->index }}date_starts_at"
-                                                type="date"
-                                                class="form-control form-control-sm room-dates px-2 py-1"
-                                                @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"
-                                                @endisset
-                                                @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"
-                                                @endisset
-                                                {{ isset($state['rooms']) && isset($state['rooms'][$loop->parent->index]) && isset($state['rooms'][$loop->parent->index]['room_id']) && $state['rooms'][$loop->parent->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
-                                                wire:model="state.vacation_rooms.{{$room->RoomID}}.{{ $loop->index }}.starts_at"
-                                                wire:loading.attr="disabled"
-                                                wire:target="addRoomSchedule,removeRoomSchedule"
-                                            />
-                                            <label
-                                                class="ms-3 me-2"
-                                                for="room_{{ $room->RoomID . $loop->index }}date_ends_at"
-                                            >
-                                                To:*
-                                            </label>
-                                            <input
-                                                id="room_{{ $room->RoomID . $loop->index }}date_ends_at"
-                                                type="date"
-                                                class="form-control form-control-sm room-dates px-2 py-1"
-                                                @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"
-                                                @endisset
-                                                @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"
-                                                @endisset
-                                                {{ isset($state['rooms']) && isset($state['rooms'][$loop->parent->index]) && isset($state['rooms'][$loop->parent->index]['room_id']) && $state['rooms'][$loop->parent->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
-                                                wire:model="state.vacation_rooms.{{$room->RoomID}}.{{ $loop->index }}.ends_at"
-                                                wire:loading.attr="disabled"
-                                                wire:target="addRoomSchedule,removeRoomSchedule"
-                                            />
-                                            @if($loop->last)
-                                                <button
-                                                    {{ isset($state['rooms']) && isset($state['rooms'][$loop->parent->index]) && isset($state['rooms'][$loop->parent->index]['room_id']) && $state['rooms'][$loop->parent->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
-                                                    wire:click.prevent="addRoomSchedule({{ $room->RoomID }})"
-                                                    wire:target="addRoomSchedule,removeRoomSchedule"
-                                                    wire:loading.attr="disabled"
-                                                    class="position-absolute btn btn-link p-0"
-                                                    style="right: -15px"
-                                                >
-                                                    <i class="bi bi-plus-square-fill"></i>
-                                                </button>
-                                            @else
-                                                <button
-                                                    class="position-absolute btn btn-link p-0"
-                                                    style="right: -15px"
-                                                    wire:click.prevent="removeRoomSchedule({{ $room->RoomID }}, {{ $loop->index }})"
-                                                    wire:loading.attr="disabled"
-                                                    wire:target="addRoomSchedule,removeRoomSchedule"
+{{--                @if(isset($state['book_rooms']) && $state['book_rooms'] == 1)--}}
+{{--                    <div class="list-group list-group-flush list-group-sm mb-3">--}}
+{{--                        @if(count(current_house()->rooms) > 0)--}}
+{{--                        @foreach(current_house()->rooms as $room)--}}
+{{--                            <div class="list-group-item">--}}
+{{--                                <label class="d-flex p-2">--}}
+{{--                                    <input--}}
+{{--                                        class="form-check-input me-1"--}}
+{{--                                        type="checkbox"--}}
+{{--                                        value="{{ $room->RoomID }}"--}}
+{{--                                        wire:model="state.rooms.{{$loop->index}}.room_id"--}}
+{{--                                    />--}}
+{{--                                    <span class="ms-2">--}}
+{{--                                        <span class="fw-semi-bold">{{ $room->RoomName }}</span> <br/>--}}
+{{--                                        <small style="font-size: 11px;" class="text-muted"><strong>Type:</strong> {{ $room->roomType->RoomTypeVal }}</small>,--}}
+{{--                                        <small style="font-size: 11px;" class="text-muted"><strong>Amenities:</strong> {{ implode(', ', $room->amenities->pluck('AmenityName')->toArray()) }}</small>,--}}
+{{--                                        <small style="font-size: 11px;" class="text-muted"><strong>Beds:</strong> {{ $room->Beds }}</small>--}}
+{{--                                    </span>--}}
+{{--                                </label>--}}
+{{--                                @if(count($state['vacation_rooms']) > 0 && isset($state['vacation_rooms'][$room->RoomID]))--}}
+{{--                                    @foreach($state['vacation_rooms'][$room->RoomID] as $vacationRoom)--}}
+{{--                                        <div class="d-flex align-items-center {{ !$loop->first ? 'mt-3' : '' }}">--}}
+{{--                                            <label--}}
+{{--                                                class="me-2"--}}
+{{--                                                for="room_{{ $room->RoomID . $loop->index }}date_starts_at"--}}
+{{--                                            >--}}
+{{--                                                From:*--}}
+{{--                                            </label>--}}
+{{--                                            <input--}}
+{{--                                                id="room_{{ $room->RoomID . $loop->index }}date_starts_at"--}}
+{{--                                                type="date"--}}
+{{--                                                class="form-control form-control-sm room-dates px-2 py-1"--}}
+{{--                                                @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"--}}
+{{--                                                @endisset--}}
+{{--                                                @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"--}}
+{{--                                                @endisset--}}
+{{--                                                {{ isset($state['rooms']) && isset($state['rooms'][$loop->parent->index]) && isset($state['rooms'][$loop->parent->index]['room_id']) && $state['rooms'][$loop->parent->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}--}}
+{{--                                                wire:model="state.vacation_rooms.{{$room->RoomID}}.{{ $loop->index }}.starts_at"--}}
+{{--                                                wire:loading.attr="disabled"--}}
+{{--                                                wire:target="addRoomSchedule,removeRoomSchedule"--}}
+{{--                                            />--}}
+{{--                                            <label--}}
+{{--                                                class="ms-3 me-2"--}}
+{{--                                                for="room_{{ $room->RoomID . $loop->index }}date_ends_at"--}}
+{{--                                            >--}}
+{{--                                                To:*--}}
+{{--                                            </label>--}}
+{{--                                            <input--}}
+{{--                                                id="room_{{ $room->RoomID . $loop->index }}date_ends_at"--}}
+{{--                                                type="date"--}}
+{{--                                                class="form-control form-control-sm room-dates px-2 py-1"--}}
+{{--                                                @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"--}}
+{{--                                                @endisset--}}
+{{--                                                @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"--}}
+{{--                                                @endisset--}}
+{{--                                                {{ isset($state['rooms']) && isset($state['rooms'][$loop->parent->index]) && isset($state['rooms'][$loop->parent->index]['room_id']) && $state['rooms'][$loop->parent->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}--}}
+{{--                                                wire:model="state.vacation_rooms.{{$room->RoomID}}.{{ $loop->index }}.ends_at"--}}
+{{--                                                wire:loading.attr="disabled"--}}
+{{--                                                wire:target="addRoomSchedule,removeRoomSchedule"--}}
+{{--                                            />--}}
+{{--                                            @if($loop->last)--}}
+{{--                                                <button--}}
+{{--                                                    {{ isset($state['rooms']) && isset($state['rooms'][$loop->parent->index]) && isset($state['rooms'][$loop->parent->index]['room_id']) && $state['rooms'][$loop->parent->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}--}}
+{{--                                                    wire:click.prevent="addRoomSchedule({{ $room->RoomID }})"--}}
+{{--                                                    wire:target="addRoomSchedule,removeRoomSchedule"--}}
+{{--                                                    wire:loading.attr="disabled"--}}
+{{--                                                    class="position-absolute btn btn-link p-0"--}}
+{{--                                                    style="right: -15px"--}}
+{{--                                                >--}}
+{{--                                                    <i class="bi bi-plus-square-fill"></i>--}}
+{{--                                                </button>--}}
+{{--                                            @else--}}
+{{--                                                <button--}}
+{{--                                                    class="position-absolute btn btn-link p-0"--}}
+{{--                                                    style="right: -15px"--}}
+{{--                                                    wire:click.prevent="removeRoomSchedule({{ $room->RoomID }}, {{ $loop->index }})"--}}
+{{--                                                    wire:loading.attr="disabled"--}}
+{{--                                                    wire:target="addRoomSchedule,removeRoomSchedule"--}}
 
-                                                    {{ isset($state['rooms']) && isset($state['rooms'][$loop->parent->index]) && isset($state['rooms'][$loop->parent->index]['room_id']) && $state['rooms'][$loop->parent->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
-                                                >
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <div class="d-flex align-items-center">
-                                        <label
-                                            class="me-2"
-                                            for="room_{{ $room->RoomID}}date_starts_at"
-                                        >
-                                            From:*
-                                        </label>
-                                        <input
-                                            id="room_{{ $room->RoomID }}date_starts_at"
-                                            type="date"
-                                            class="form-control form-control-sm room-dates px-2 py-1"
-                                            @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"
-                                            @endisset
-                                            @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"
-                                            @endisset
-                                            {{ isset($state['rooms']) && isset($state['rooms'][$loop->index]) && isset($state['rooms'][$loop->index]['room_id']) && $state['rooms'][$loop->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
-                                            wire:model="state.vacation_rooms.{{$room->RoomID}}.{{ $loop->index }}.starts_at"
-                                            wire:loading.attr="disabled"
-                                            wire:target="addRoomSchedule,removeRoomSchedule"
-                                        />
-                                        <label
-                                            class="ms-3 me-2"
-                                            for="room_{{ $room->RoomID . $loop->index }}date_ends_at"
-                                        >
-                                            To:*
-                                        </label>
-                                        <input
-                                            id="room_{{ $room->RoomID . $loop->index }}date_ends_at"
-                                            type="date"
-                                            class="form-control form-control-sm room-dates px-2 py-1"
-                                            @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"
-                                            @endisset
-                                            @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"
-                                            @endisset
-                                            {{ isset($state['rooms']) && isset($state['rooms'][$loop->index]) && isset($state['rooms'][$loop->index]['room_id']) && $state['rooms'][$loop->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
-                                            wire:model="state.vacation_rooms.{{$room->RoomID}}.{{ $loop->index }}.ends_at"
-                                            wire:loading.attr="disabled"
-                                            wire:target="addRoomSchedule,removeRoomSchedule"
-                                        />
+{{--                                                    {{ isset($state['rooms']) && isset($state['rooms'][$loop->parent->index]) && isset($state['rooms'][$loop->parent->index]['room_id']) && $state['rooms'][$loop->parent->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}--}}
+{{--                                                >--}}
+{{--                                                    <i class="bi bi-trash"></i>--}}
+{{--                                                </button>--}}
+{{--                                            @endif--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
+{{--                                @else--}}
+{{--                                    <div class="d-flex align-items-center">--}}
+{{--                                        <label--}}
+{{--                                            class="me-2"--}}
+{{--                                            for="room_{{ $room->RoomID}}date_starts_at"--}}
+{{--                                        >--}}
+{{--                                            From:*--}}
+{{--                                        </label>--}}
+{{--                                        <input--}}
+{{--                                            id="room_{{ $room->RoomID }}date_starts_at"--}}
+{{--                                            type="date"--}}
+{{--                                            class="form-control form-control-sm room-dates px-2 py-1"--}}
+{{--                                            @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"--}}
+{{--                                            @endisset--}}
+{{--                                            @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"--}}
+{{--                                            @endisset--}}
+{{--                                            {{ isset($state['rooms']) && isset($state['rooms'][$loop->index]) && isset($state['rooms'][$loop->index]['room_id']) && $state['rooms'][$loop->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}--}}
+{{--                                            wire:model="state.vacation_rooms.{{$room->RoomID}}.{{ $loop->index }}.starts_at"--}}
+{{--                                            wire:loading.attr="disabled"--}}
+{{--                                            wire:target="addRoomSchedule,removeRoomSchedule"--}}
+{{--                                        />--}}
+{{--                                        <label--}}
+{{--                                            class="ms-3 me-2"--}}
+{{--                                            for="room_{{ $room->RoomID . $loop->index }}date_ends_at"--}}
+{{--                                        >--}}
+{{--                                            To:*--}}
+{{--                                        </label>--}}
+{{--                                        <input--}}
+{{--                                            id="room_{{ $room->RoomID . $loop->index }}date_ends_at"--}}
+{{--                                            type="date"--}}
+{{--                                            class="form-control form-control-sm room-dates px-2 py-1"--}}
+{{--                                            @isset($state['start_datetime']) min="{{ \Carbon\Carbon::parse($state['start_datetime'])->format('Y-m-d') }}"--}}
+{{--                                            @endisset--}}
+{{--                                            @isset($state['end_datetime']) max="{{ \Carbon\Carbon::parse($state['end_datetime'])->format('Y-m-d') }}"--}}
+{{--                                            @endisset--}}
+{{--                                            {{ isset($state['rooms']) && isset($state['rooms'][$loop->index]) && isset($state['rooms'][$loop->index]['room_id']) && $state['rooms'][$loop->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}--}}
+{{--                                            wire:model="state.vacation_rooms.{{$room->RoomID}}.{{ $loop->index }}.ends_at"--}}
+{{--                                            wire:loading.attr="disabled"--}}
+{{--                                            wire:target="addRoomSchedule,removeRoomSchedule"--}}
+{{--                                        />--}}
 
-                                        <button
-                                            {{ isset($state['rooms']) && isset($state['rooms'][$loop->index]) && isset($state['rooms'][$loop->index]['room_id']) && $state['rooms'][$loop->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}
-                                            class="position-absolute btn btn-link p-0"
-                                            style="right: -15px"
-                                            wire:click.prevent="addRoomSchedule({{ $room->RoomID }})"
-                                            wire:target="addRoomSchedule,removeRoomSchedule"
-                                            wire:loading.attr="disabled"
-                                        >
-                                            <i class="bi bi-plus-square-fill"></i>
-                                        </button>
-                                    </div>
-                                @endif
-                            </div>
-                        @endforeach
-                        @else
-                            <div>
-                                <p>You don't have any room yet please add room first.</p>
-                            </div>
-                        @endif
-                    </div>
-                @endif
+{{--                                        <button--}}
+{{--                                            {{ isset($state['rooms']) && isset($state['rooms'][$loop->index]) && isset($state['rooms'][$loop->index]['room_id']) && $state['rooms'][$loop->index]['room_id'] == $room->RoomID ? '' : 'disabled'  }}--}}
+{{--                                            class="position-absolute btn btn-link p-0"--}}
+{{--                                            style="right: -15px"--}}
+{{--                                            wire:click.prevent="addRoomSchedule({{ $room->RoomID }})"--}}
+{{--                                            wire:target="addRoomSchedule,removeRoomSchedule"--}}
+{{--                                            wire:loading.attr="disabled"--}}
+{{--                                        >--}}
+{{--                                            <i class="bi bi-plus-square-fill"></i>--}}
+{{--                                        </button>--}}
+{{--                                    </div>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                        @else--}}
+{{--                            <div>--}}
+{{--                                <p>You don't have any room yet please add room first.</p>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                @endif--}}
             @endif
             <div class="d-flex">
                 @if($user->is_owner && $vacation && $vacation->VacationId)
