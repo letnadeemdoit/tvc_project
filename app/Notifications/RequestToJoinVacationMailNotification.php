@@ -49,10 +49,10 @@ class RequestToJoinVacationMailNotification extends Notification implements Shou
         return (new MailMessage)
             ->greeting('Request to Join vacation!')
             ->line(new HtmlString(
-                'Reply at : <strong>'.  'NoReply@theVacationCalendar.com' . '</strong>'
+                'Reply at : <strong>'.  $this->owner->email . '</strong>'
             ))
             ->line(new HtmlString(
-                'Name : <strong>' . $this->owner->first_name . ' ' . $this->owner->last_name . '</strong>'
+                'Name : <strong>' . $this->owner->first_name . ' ' . $this->owner->last_name . ' ' .  ( $this->owner->role ) .'</strong>'
             ))
             ->line(new HtmlString(
                 'Start Date : <strong>'. $this->startDate . ' </strong>'

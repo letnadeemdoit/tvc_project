@@ -43,6 +43,13 @@ class Subscription extends Model
 
     public function cancel()
     {
+        ProcessingSubscription::create([
+            'subscription_id' => $this->id,
+            'plan_id' =>$this->plan_id,
+            'plan' => $this->plan,
+            'period' => $this->period,
+            'status' => 'APPROVAL_PENDING',
+        ]);
         $paypal = PayPal::setProvider();
         $paypal->getAccessToken();
         $paypal->cancelSubscription($this->subscription_id, '-');

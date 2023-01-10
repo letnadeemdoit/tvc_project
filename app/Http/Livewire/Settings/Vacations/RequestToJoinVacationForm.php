@@ -133,7 +133,7 @@ class RequestToJoinVacationForm extends Component
             if ($owner) {
                 try {
                     Notification::route('mail', $owner->email)
-                        ->notify( new RequestToJoinVacationMailNotification($owner,$this->state['start_datetime'],$this->state['end_datetime']));
+                        ->notify( new RequestToJoinVacationMailNotification($this->user,$this->state['start_datetime'],$this->state['end_datetime']));
 //                    Mail::send([], [], function (Message $message) use ($owner) {
 //                        $message->to($owner->email)
 //                            ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))

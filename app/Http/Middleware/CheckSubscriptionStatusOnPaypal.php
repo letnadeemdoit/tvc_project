@@ -22,8 +22,8 @@ class CheckSubscriptionStatusOnPaypal
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check()) {
 
+        if (auth()->check()) {
             $paypal = PayPal::setProvider();
             $paypal->getAccessToken();
             $user = auth()->user();
@@ -31,7 +31,9 @@ class CheckSubscriptionStatusOnPaypal
 
             $userSubscription = Subscription::where('user_id', $user_id)->latest()->first();
 
-
+            $subscriptions = Subscription::where('user_id', $user_id)->get();
+//            $paypalSubscription = $paypal->showSubscriptionDetails('I-CF359NALJHV9');
+//            dd($paypalSubscription);
             $processingSubscription = null;
 //            if (isset($paypalSubscription['plan_id'])){
 //                $processingSubscription = ProcessingSubscription::where('plan_id', $paypalSubscription['plan_id'])->latest()->first();
@@ -75,12 +77,13 @@ class CheckSubscriptionStatusOnPaypal
 //                }
 //
 //            } else
-            if ($userSubscription && $userSubscription->processingSubscriptions->count() > 0) {
-                $paypalSubscription = $paypal->showSubscriptionDetails($userSubscription->subscription_id);
+            foreach ($subscriptions as $subscription){
+            if ($subscription && $subscription->processingSubscriptions->count() > 0) {
+                $paypalSubscription = $paypal->showSubscriptionDetails($subscription->subscription_id);
 
                 if (isset($paypalSubscription['status']) && $paypalSubscription['status'] === 'ACTIVE') {
                     $processingSubscription = ProcessingSubscription::where([
-                        'subscription_id' => $userSubscription->id,
+                        'subscription_id' => $subscription->id,
                         'plan_id' => $paypalSubscription['plan_id'],
                         'status' => 'APPROVAL_PENDING'
                     ])->first();
@@ -97,13 +100,14 @@ class CheckSubscriptionStatusOnPaypal
                     }
 
                 } elseif (isset($paypalSubscription['status']) && $paypalSubscription['status'] !== 'ACTIVE' && $paypalSubscription['status'] !== 'APPROVAL_PENDING' && $paypalSubscription['status'] !== 'APPROVED') {
-                    $userSubscription->update(['status' => $paypalSubscription['status']]);
-                    if ($userSubscription->processingSubscriptions && $userSubscription->processingSubscriptions->count() > 0){
-                        foreach ($userSubscription->processingSubscriptions as $processSubscription){
+                    $subscription->update(['status' => $paypalSubscription['status']]);
+                    if ($subscription->processingSubscriptions && $subscription->processingSubscriptions->count() > 0){
+                        foreach ($subscription->processingSubscriptions as $processSubscription){
                             $processSubscription->delete();
                         }
                     }
                 }
+            }
 //                if (isset($paypalSubscription['status']) && $userSubscription->update([
 //                        'plan_id' => $paypalSubscription['plan_id'],
 //                        'status' => $paypalSubscription['status']
