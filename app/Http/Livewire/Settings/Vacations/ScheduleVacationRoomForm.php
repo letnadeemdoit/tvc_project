@@ -139,6 +139,7 @@ class ScheduleVacationRoomForm extends Component
             }
 
             $vacationRoom = VacationRoom::where('vacation_id', $this->state['vacation_id'] ?? '')
+                ->where('room_id', $this->state['room_id'])
                 ->where(function ($query) use ($startDatetime, $endDatetime) {
                     $query
                         ->where(function ($query) use ($startDatetime, $endDatetime) {
