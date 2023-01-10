@@ -33,7 +33,8 @@ class CalendarView extends Component
         'setVacationId' => 'setVacationId',
         'vacation-schedule-successfully' => 'renderCalendar',
         'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
-        'destroy-vacation' => 'destroy'
+        'destroy-vacation' => 'destroy',
+        'vacation-room-destroyed-successfully' => 'renderCalendar'
     ];
 
     public function mount()

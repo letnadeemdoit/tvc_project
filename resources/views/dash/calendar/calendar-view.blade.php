@@ -226,8 +226,6 @@
                     },
                     dateClick: function (info) {
                         console.log('info ', info)
-                        console.log('info.view.type  ', info.view.type)
-
                         @if($user->is_owner)
 
                         let parsed = queryString.parse(window.location.search);
@@ -243,19 +241,13 @@
                     },
                     eventClick: function (calEvent, jsEvent, view) {
 
-                        console.log('cal event', calEvent);
-                        console.log('jsEvent', jsEvent);
-                        console.log('view', view);
-
-                        console.log(calEvent.event);
-
                         @if($user->is_guest)
                         window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
                         @else
                         if (calEvent.view.type == 'resourceTimelineMonth') {
-                            window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id,calEvent.event.extendedProps.vacation_room_id)
+                            window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id, calEvent.event.extendedProps.vacation_room_id)
 
-                        } else if(calEvent.view.type == 'dayGridMonth') {
+                        } else if (calEvent.view.type == 'dayGridMonth') {
                             window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
                         }
                         @endif

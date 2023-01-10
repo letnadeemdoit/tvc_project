@@ -50,7 +50,7 @@
                     type="text"
                     class="form-control @error('start_datetime') is-invalid @enderror"
                     name="start_datetime"
-                    id="schedule_room_start_end_date"
+                    id="schedule_room_start_end_datetime"
                     placeholder="Start & end date"
                     wire:model.defer="state.start_end_datetime"
                     readonly
@@ -65,7 +65,7 @@
                     <a
                         href="#!"
                         class="btn btn-danger px-5"
-                        wire:click.prevent="deleteVacation"
+                        wire:click.prevent="destroy({{ $vacationRoom->id }})"
                     >
                         <i class="bi-trash me-2"></i> Delete
                     </a>
@@ -75,7 +75,7 @@
                     type="submit"
                     class="btn btn-primary ms-auto"
                 >
-                    {{ $vacationRoom && $vacationRoom->id ? "Update" : 'Add' }} Vacation
+                    {{ $vacationRoom && $vacationRoom->id ? "Update" : 'Add' }} Vacation Room
                 </button>
             </div>
         </form>
@@ -83,7 +83,7 @@
     @push('scripts')
         <script>
             $(function () {
-                $('#schedule_room_start_end_date').daterangepicker({
+                $('#schedule_room_start_end_datetime').daterangepicker({
                     timePicker: true,
                     timePickerIncrement: 60,
                     showDropdowns: true,
@@ -99,19 +99,22 @@
                     }
                 });
 
-                $('#schedule_room_start_end_date').on('apply.daterangepicker', function (ev, picker) {
+                $('#schedule_room_start_end_datetime').on('apply.daterangepicker', function (ev, picker) {
                     @this.
                     set('state.start_date', picker.startDate.format('MM/DD/YYYY HH:mm'));
                     @this.
                     set('state.end_date', picker.endDate.format('MM/DD/YYYY HH:mm'));
                     @this.
-                    set('state.start_end_date', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'));
+                    set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'));
                 });
 
                 window.addEventListener('on-vacation-room-change', function (e) {
                     console.log(e.detail);
-                    $('#schedule_room_start_end_date').data('daterangepicker').setStartDate(e.detail.startDatetime);
-                    $('#schedule_room_start_end_date').data('daterangepicker').setEndDate(e.detail.endDatetime);
+                    $('#schedule_room_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
+                    $('#schedule_room_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
+
+                    // $('#schedule_room_start_end_date').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
+
                 });
             });
         </script>

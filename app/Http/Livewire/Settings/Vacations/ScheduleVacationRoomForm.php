@@ -2,22 +2,18 @@
 
 namespace App\Http\Livewire\Settings\Vacations;
 
+use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Room\Room;
-use App\Models\User;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
-use App\Notifications\CalendarEmailNotification;
-use App\Rules\VacationSchedule;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class ScheduleVacationRoomForm extends Component
 {
+    use Destroyable;
+
     public $user;
     public $vacationRoom;
 
@@ -42,12 +38,14 @@ class ScheduleVacationRoomForm extends Component
 
     protected $listeners = [
         'showVacationRoomScheduleModal',
-//        'setVacationId' => 'setVacationId',
+        'setVacationId' => 'setVacationId',
+        'vacation-room-destroyed-successfully' => 'destroyedSuccessfully',
     ];
 
-//    public function setVacationId($VacationId){
-//        $this->vacationId = $VacationId;
-//    }
+    public function setVacationId($VacationId)
+    {
+        $this->vacationId = $VacationId;
+    }
 
     public function showVacationRoomScheduleModal($toggle, $roomId, $vacationRoomId = null, $initialDate = null, $owner = null, $house = null)
     {
@@ -85,8 +83,8 @@ class ScheduleVacationRoomForm extends Component
             $this->isCreating = false;
             $this->state = [
                 'vacation_id' => $this->vacationRoom->vacation_id,
-                'start_datetime' => $this->vacationRoom->starts_at->format('m/d/Y h:i'),
-                'end_datetime' => $this->vacationRoom->ends_at->format('m/d/Y h:i'),
+                'start_date' => $this->vacationRoom->starts_at->format('m/d/Y h:i'),
+                'end_date' => $this->vacationRoom->ends_at->format('m/d/Y h:i'),
                 'start_end_datetime' => $this->vacationRoom->starts_at->format('m/d/Y h:i') . ' - ' . $this->vacationRoom->ends_at->format('m/d/Y h:i'),
             ];
 
@@ -102,8 +100,8 @@ class ScheduleVacationRoomForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
-                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
-                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_date'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['end_date'] = $initialDatetime->format('m/d/Y h:i');
                     $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' . $initialDatetime->format('m/d/Y h:i');
                 } catch (\Exception $e) {
 
@@ -125,14 +123,22 @@ class ScheduleVacationRoomForm extends Component
     {
         $this->resetErrorBag();
 
-        $startDatetime = Carbon::parse($this->state['start_datetime']);
-        $endDatetime = Carbon::parse($this->state['end_datetime']);
+        $startDatetime = Carbon::parse($this->state['start_date'])->format('Y-m-d H:i:s');
+        $endDatetime = Carbon::parse($this->state['end_date'])->format('Y-m-d H:i:s');
 
         Validator::make($this->state, [
             'vacation_id' => ['required'],
-            'start_datetime' => ['required'],
-        ])->after(function ($validator) use ($startDatetime, $endDatetime){
-            $vacationRoom = VacationRoom::where('id', $this->state['vacation_id'] ?? '')
+            'start_date' => ['required'],
+        ])->after(function ($validator) use ($startDatetime, $endDatetime) {
+
+            $vacation = Vacation::where('VacationId', $this->state['vacation_id'] ?? '')->first();
+
+
+            if ($vacation && !($vacation->startDatetime->lte($startDatetime) && $vacation->endDatetime->gte($endDatetime))) {
+                $validator->errors()->add('vacation_id', __('Room date time should between/equal to  '. $vacation->startDatetime .' - '. $vacation->endDatetime  .' date.'));
+            }
+
+            $vacationRoom = VacationRoom::where('vacation_id', $this->state['vacation_id'] ?? '')
                 ->where(function ($query) use ($startDatetime, $endDatetime) {
                     $query
                         ->where(function ($query) use ($startDatetime, $endDatetime) {
@@ -157,15 +163,22 @@ class ScheduleVacationRoomForm extends Component
                         });
 
                 })
+
                 ->when(!$this->isCreating, function ($query) {
                     $query->whereNot('id', $this->vacationRoom->id);
                 })
                 ->first();
+
+//            dd($vacationRoom);
+
             if ($vacationRoom) {
                 $validator->errors()->add('starts_at', __('Room already reserved in this vacation at given datetime'));
             }
         })->validateWithBag('saveVacationRoomSchedule');
 
+        if ($this->isCreating) {
+            $this->vacationRoom->room_id = $this->state['room_id'];
+        }
 
         $this->vacationRoom->fill([
             'vacation_id' => $this->state['vacation_id'],
@@ -182,5 +195,34 @@ class ScheduleVacationRoomForm extends Component
     {
         $vacations = Vacation::where('HouseId', current_house()->HouseID)->get();
         return view('dash.settings.vacations.schedule-vacation-room-form', compact('vacations'));
+    }
+
+
+    public function mount()
+    {
+        $this->model = VacationRoom::class;
+    }
+
+//    public function destroyedSuccessfully($data)
+//    {
+//        dd('ds');
+//
+//        $this->emit('vacation-room-destroyed-successfully');
+//    }
+
+    public function destroy($id)
+    {
+        $this->emitSelf('toggle', false);
+
+        if ($this->model) {
+            $deletableModel = app($this->model)->findOrFail($id);
+            $this->emit(
+                'destroyable-confirmation-modal',
+                $this->model,
+                $id,
+                $this->destroyableConfirmationContent,
+                "vacation-schedule-successfully"
+            );
+        }
     }
 }
