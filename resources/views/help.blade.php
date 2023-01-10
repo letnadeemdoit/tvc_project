@@ -108,15 +108,13 @@
 
                                                 <p>
                                                     TheVacationCalendar.com had the same pricing of <span
-                                                        class="text-primary fw-bold">$20</span> per year from its
-                                                    inception in 2007 through 2022. In 2022, we hired an amazing
-                                                    development firm to completely rebuild the site to bring it up to
-                                                    date with today’s standard websites. A single account can now manage
-                                                    rooms within a house, manage multiple rooms and continue to support
-                                                    as many users as needed.
-                                                    To offset the cost of the 30+ person development team as well as to
-                                                    cover other increasingly higher expenses, the site has a new pricing
-                                                    model.
+                                                        class="text-primary fw-bold">$20</span> per year from its inception in 2007 through 2022.
+                                                    In 2022, we hired an amazing development firm to completely rebuild the site to bring it
+                                                    up to date with today’s standard websites. A single account can now manage rooms within
+                                                    a house, manage multiple rooms and continue to support as many users as needed. To offset
+                                                    the cost of the 30+ person development team as well as to cover other increasingly higher
+                                                    expenses, the site has a new pricing model.
+
                                                 </p>
                                                 <div class="table-responsive mb-5">
                                                     <table class="table table-bordered">
@@ -245,10 +243,10 @@
                                             <div class="card-body bottom-box-shadow">
 
                                                 <p>
-                                                    TheVacationCalendar.com relies on PayPal’s subscription
-                                                    capabilities. Keeping your payment information safe is of the utmost
-                                                    importance to us, so we use PayPal as they have best of breed
-                                                    security that we could never replicate.</p>
+                                                    TheVacationCalendar.com relies on PayPal’s subscription capabilities. Keeping your payment information
+                                                    safe is of the utmost importance to us, so we use PayPal as they have best of breed security
+                                                    that we could never replicate.
+                                                </p>
 
                                                 <p>
                                                     Please note that having an up to date payment option in your PayPal
@@ -269,6 +267,9 @@
 
                                                 <img src="{{asset('images/paypal.png')}}" class="img-fluid w-100 mb-4 mt-2" style="object-fit: cover" alt="">
 
+                                                <h3>
+                                                    Payment Timing
+                                                </h3>
                                                 <p>
                                                     PayPal subscriptions will apply the automatic payment at the
                                                     beginning of the payment cycle. So if you are paying for a year of
@@ -281,12 +282,17 @@
                                                     Upgrading
                                                 </h3>
                                                 <p>
-                                                    Upgrades take effect immediately, meaning you will receive the new
-                                                    functionality right away. For accounts billed monthly, the new fee
-                                                    will be assessed on the next billing cycle. For accounts billed
-                                                    annually, a one time charge is assessed for the new functionality
-                                                    for the remainder of the payment cycle.
+                                                    Upgrading or downgrading a subscription will immediately cancel your existing subscription
+                                                    and create a new subscription. Users will receive a free trial of 7 days for monthly subscriptions
+                                                    and 20 days for yearly subscriptions. You will be charged the new rate at the end of the trial
+                                                    period. If you upgrade or downgrade a yearly subscription causing you to lose an unused portion
+                                                    of the prior subscription, please email
+                                                    support@thevcationcalendar.com and a prorated refund will be provided for the remainder
+                                                    of the initial subscription that was not used. The refund will be made within 14 days after
+                                                    the initial payment is made for the new subscription per the refund schedule below.
+                                                    Unfortunately, PayPal does not support this process so it will be handled manually.
                                                 </p>
+
 
                                                 <div class="table-responsive mb-5">
                                                     <table class="table table-bordered">
@@ -294,12 +300,11 @@
                                                         <tr>
                                                             <th scope="col">Current Subscription</th>
                                                             <th class="text-center" scope="col">
-                                                                Basic to Standard or
-                                                                Standard to Premium
+                                                                Upgrade/Downgrade 1 Tier
 
                                                             </th>
                                                             <th class="text-center" scope="col">Price
-                                                                Basic to Premium
+                                                                Upgrade/Downgrade 2 Tiers
                                                             </th>
                                                         </tr>
                                                         </thead>
@@ -366,14 +371,14 @@
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">In 11th Month</th>
-                                                            <td class="text-center">No charge</td>
-                                                            <td class="text-center">$2</td>
+                                                            <td class="text-center">No refund</td>
+                                                            <td class="text-center">No refund</td>
 
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">In 12th Month</th>
-                                                            <td class="text-center">No charge</td>
-                                                            <td class="text-center">No charge</td>
+                                                            <td class="text-center">No refund</td>
+                                                            <td class="text-center">No refund</td>
 
                                                         </tr>
 
@@ -382,21 +387,13 @@
                                                     </table>
                                                 </div>
 
-                                                <h3>Downgrading & Canceling</h3>
+                                                <h3>Canceling</h3>
                                                 <p>
-                                                    PayPal does not support the ability to cancel or downgrade a
-                                                    subscription at the end of an active payment cycle. We hope that
-                                                    they will add this feature at some point, but for now, if you cancel
-                                                    your subscription, the cancellation will immediately take effect.
-                                                    Similarly, if you are looking to downgrade your subscription or you
-                                                    want to switch from paying annually to monthly, the change will take
-                                                    effect immediately and you will lose the remainder of your pre-paid
-                                                    subscription. If your intention is to use the site through the end
-                                                    of your current payment cycle, simply add a reminder to your
-                                                    calendar to cancel the subscription closer to the end of your
-                                                    payment cycle. Similarly, if you intend to switch from annually to
-                                                    monthly, please wait until just before your subscription renews to
-                                                    make the change.
+                                                    PayPal does not support the ability to cancel subscription at the end of an active payment cycle.
+                                                    We hope that they will add this feature at some point, but for now, if you cancel your
+                                                    subscription, the cancellation will immediately take effect. If your intention is to use the
+                                                    site through the end of your current payment cycle, simply add a reminder
+                                                    to your calendar to cancel the subscription closer to the end of your payment cycle
                                                 </p>
 
                                             </div>
