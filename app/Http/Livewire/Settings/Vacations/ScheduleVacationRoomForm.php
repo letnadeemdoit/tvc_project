@@ -130,11 +130,13 @@ class ScheduleVacationRoomForm extends Component
             'vacation_id' => ['required'],
             'start_date' => ['required'],
         ])->after(function ($validator) use ($startDatetime, $endDatetime) {
+
             $vacation = Vacation::where('VacationId', $this->state['vacation_id'] ?? '')->first();
 
             if ($vacation && !($vacation->startDatetime->lte($startDatetime) && $vacation->endDatetime->gte($endDatetime))) {
-                $validator->errors()->add('vacation_id', __('Room date time should between/equal to  '. $vacation->startDatetime .' - '. $vacation->endDatetime  .' date.'));
+                $validator->errors()->add('vacation_id', __('You can schedule room  ' . $vacation->startDatetime . ' - ' . $vacation->endDatetime . ' date time against ' . $vacation->VacationName . '  vacation.'));
             }
+
             $vacationRoom = VacationRoom::where('vacation_id', $this->state['vacation_id'] ?? '')
                 ->where('room_id', $this->state['room_id'])
                 ->where(function ($query) use ($startDatetime, $endDatetime) {
