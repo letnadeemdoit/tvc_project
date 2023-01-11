@@ -83,6 +83,7 @@ class ScheduleVacationRoomForm extends Component
             $this->isCreating = false;
             $this->state = [
                 'vacation_id' => $this->vacationRoom->vacation_id,
+                'room_id' => $this->vacationRoom->room_id,
                 'start_date' => $this->vacationRoom->starts_at->format('m/d/Y h:i'),
                 'end_date' => $this->vacationRoom->ends_at->format('m/d/Y h:i'),
                 'start_end_datetime' => $this->vacationRoom->starts_at->format('m/d/Y h:i') . ' - ' . $this->vacationRoom->ends_at->format('m/d/Y h:i'),
@@ -123,6 +124,7 @@ class ScheduleVacationRoomForm extends Component
     {
         $this->resetErrorBag();
 
+//        dd($this->state['start_date']);
         $startDatetime = Carbon::parse($this->state['start_date'])->format('Y-m-d H:i:s');
         $endDatetime = Carbon::parse($this->state['end_date'])->format('Y-m-d H:i:s');
 
