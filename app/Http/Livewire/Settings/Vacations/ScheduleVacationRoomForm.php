@@ -39,7 +39,7 @@ class ScheduleVacationRoomForm extends Component
     protected $listeners = [
         'showVacationRoomScheduleModal',
         'setVacationId' => 'setVacationId',
-        'vacation-room-destroyed-successfully' => 'destroyedSuccessfully',
+//        'vacation-schedule-successfully' => 'destroyedSuccessfully',
     ];
 
     public function setVacationId($VacationId)
@@ -49,6 +49,7 @@ class ScheduleVacationRoomForm extends Component
 
     public function showVacationRoomScheduleModal($toggle, $roomId, $vacationRoomId = null, $initialDate = null, $owner = null, $house = null)
     {
+
         $this->room = Room::where('RoomID', $roomId)->first();
 
         $this->vacationRoom = VacationRoom::firstOrNew(['id' => $vacationRoomId]);
@@ -203,15 +204,13 @@ class ScheduleVacationRoomForm extends Component
 
 //    public function destroyedSuccessfully($data)
 //    {
-//        dd('ds');
-//
 //        $this->emit('vacation-room-destroyed-successfully');
+//
 //    }
 
     public function destroy($id)
     {
         $this->emitSelf('toggle', false);
-
         if ($this->model) {
             $deletableModel = app($this->model)->findOrFail($id);
             $this->emit(
@@ -219,7 +218,7 @@ class ScheduleVacationRoomForm extends Component
                 $this->model,
                 $id,
                 $this->destroyableConfirmationContent,
-                "vacation-schedule-successfully"
+                "vacation-deleted-successfully"
             );
         }
     }
