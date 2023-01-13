@@ -279,7 +279,7 @@
                                                     their needs.
                                                 </p>
                                                 <h3>
-                                                    Upgrading
+                                                    Upgrading & Downgrading
                                                 </h3>
                                                 <p>
                                                     Upgrading or downgrading a subscription will immediately cancel your existing subscription
