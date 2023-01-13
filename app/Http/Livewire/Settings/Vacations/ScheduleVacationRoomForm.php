@@ -199,13 +199,6 @@ class ScheduleVacationRoomForm extends Component
         $this->model = VacationRoom::class;
     }
 
-//    public function destroyedSuccessfully($data)
-//    {
-//        dd('ds');
-//
-//        $this->emit('vacation-room-destroyed-successfully');
-//    }
-
     public function destroy($id)
     {
         $this->emitSelf('toggle', false);
