@@ -387,7 +387,7 @@
                                                     </table>
                                                 </div>
 
-                                                <h3>Canceling</h3>
+                                                <h3>Cancelling</h3>
                                                 <p>
                                                     PayPal does not support the ability to cancel subscription at the end of an active payment cycle.
                                                     We hope that they will add this feature at some point, but for now, if you cancel your
