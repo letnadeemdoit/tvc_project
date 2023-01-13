@@ -122,6 +122,8 @@
             {{ $slot }}
         </main>
         @include('layouts.partials.footer-guest')
+    <livewire:modals.destroyable-confirmation-modal/>
+    @stack('modals')
     </body>
     @livewireScripts
     <!-- Scripts -->

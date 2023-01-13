@@ -375,6 +375,10 @@
                     // window.calendar.setResources(resourceTimeline);
                     window.calendar.render();
                 });
+
+                window.livewire.on('vacation-deleted-successfully', function () {
+                   window.location.reload();
+                });
             });
         </script>
     @endpush
