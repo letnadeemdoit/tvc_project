@@ -54,10 +54,10 @@ class RequestToJoinCalendarNotification extends Notification implements ShouldQu
     {
         return (new MailMessage)
 
-            ->greeting('Request To Join House')
+            ->greeting('Request to Use Vacation Home')
 
-            ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to join your house from <strong>' . $this->startDate.'</strong>'.
-                ' to ' . '<strong>'. $this->endDate .'</strong>'.' against  <strong> '.$this->createdHouseName .' '.'</strong>'. 'House'))
+            ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to use <strong>' . $this->createdHouseName.'</strong>'.
+                ' from ' . '<strong>'. $this->startDate .'</strong>'.' to  <strong> '.$this->endDate .' '.'</strong>'. 'date'))
 
             ->line(new HtmlString('They can be reached at the following email address: <strong>' .
                 $this->email.'</strong>'));
