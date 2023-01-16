@@ -138,11 +138,11 @@
         if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0)
         {
             $(document).ready(function (e) {
-                $(document).on('click ', '.month', function () {
+                $(document).on('mousedown click ', '.month', function () {
                     alert('Choose your DateTime')
                 });
 
-                $(document).on('click', '.calendar-time', function (e) {
+                $(document).on('mousedown click', '.calendar-time', function (e) {
                     alert('Choose your DateTime')
                 });
             });
