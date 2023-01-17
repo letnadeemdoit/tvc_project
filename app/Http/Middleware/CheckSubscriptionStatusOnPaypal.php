@@ -30,7 +30,7 @@ class CheckSubscriptionStatusOnPaypal
 
 
             $subscriptions = Subscription::where('user_id', $user_id)->get();
-//            $paypalSubscription = $paypal->showSubscriptionDetails('I-CF359NALJHV9');
+//            $paypalSubscription = $paypal->showSubscriptionDetails('I-YFGCD7BKK4SD');
 //            dd($paypalSubscription);
             $processingSubscription = null;
 //            if (isset($paypalSubscription['plan_id'])){
@@ -75,7 +75,7 @@ class CheckSubscriptionStatusOnPaypal
 //                }
 //
 //            } else
-            $userSubscription = Subscription::where('user_id', $user_id)->latest()->first();
+            $userSubscription = Subscription::where('user_id', $user_id)->where('status', 'ACTIVE')->latest()->first();
 
             foreach ($subscriptions as $subscription){
             if ($subscription && $subscription->processingSubscriptions->count() > 0) {
