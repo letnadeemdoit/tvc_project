@@ -75,7 +75,7 @@ class CheckSubscriptionStatusOnPaypal
 //                }
 //
 //            } else
-            $userSubscription = Subscription::where('user_id', $user_id)->where('status', 'ACTIVE')->latest()->first();
+            $userSubscription = Subscription::where('user_id', $user_id)->latest()->first();
 
             foreach ($subscriptions as $subscription){
             if ($subscription && $subscription->processingSubscriptions->count() > 0) {
@@ -84,7 +84,7 @@ class CheckSubscriptionStatusOnPaypal
 
                     if (!is_null($userSubscription)){
                         $checkSubscription = Subscription::where('user_id', $user_id)->where('subscription_id', '<>', $userSubscription->subscription_id)->where('status', 'ACTIVE')->first();
-                        if (!is_null($checkSubscription)){
+                        if ($checkSubscription){
                             $checkSubscription->cancel();
                             ProcessingSubscription::create([
                                 'subscription_id' => $userSubscription->id,
