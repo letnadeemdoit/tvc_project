@@ -159,7 +159,7 @@ class PaypalController extends Controller
 //            $start_date_day = $paypalsubscription->updated_at->subDays(15);
 
             if ($subscription->status === 'ACTIVE'){
-                $subscription->cancel();
+//                $subscription->cancel();
                 return $this->process($plan, $billed);
             }
 
