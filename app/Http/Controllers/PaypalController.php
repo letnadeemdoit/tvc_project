@@ -131,10 +131,11 @@ class PaypalController extends Controller
     {
 
         try {
-            $subscription = Subscription::where([
-                'user_id' => auth()->user()->user_id,
-                ['status', '<>', 'CANCELLED']
-            ])->latest()->first();
+                return $this->process($plan, $billed);
+//            $subscription = Subscription::where([
+//                'user_id' => auth()->user()->user_id,
+//                ['status', '<>', 'CANCELLED']
+//            ])->latest()->first();
 
 
 //            $mode = config('paypal.mode');
@@ -158,10 +159,10 @@ class PaypalController extends Controller
 //            $start_date_month = $paypalsubscription->updated_at->subDays(30);
 //            $start_date_day = $paypalsubscription->updated_at->subDays(15);
 
-            if ($subscription){
-//                $subscription->cancel();
-                return $this->process($plan, $billed);
-            }
+//            if ($subscription){
+////                $subscription->cancel();
+//                return $this->process($plan, $billed);
+//            }
 
 
 //            if ($billed === 'yearly') {
