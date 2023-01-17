@@ -74,7 +74,6 @@ class RequestToJoinVacationForm extends Component
     public function sendRequestToJoinVacation()
     {
         $this->resetErrorBag();
-
         Validator::make($this->state, [
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'string', 'max:255'],
@@ -85,8 +84,6 @@ class RequestToJoinVacationForm extends Component
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
-
-        $vacation_name = $this->state['vacation_name'];
 
         if (!$this->vacation->VacationId) {
             try {
@@ -114,6 +111,8 @@ class RequestToJoinVacationForm extends Component
 
             }
         } else {
+
+            $vacation_name = $this->state['vacation_name'];
 
             $owner = $this->vacation->VacationId && $this->vacation->owner ? $this->vacation->owner : User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
             try {

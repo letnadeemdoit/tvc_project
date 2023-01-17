@@ -54,7 +54,7 @@ class RequestToJoinVacationMailNotification extends Notification implements Shou
             ->line(new HtmlString('<strong>' . $this->owner['name'] . '(' . $this->owner['role'] . ') ' . ' </strong> has requested to join your vacation <strong>'
                 . $this->vacation_name . '</strong> from' .
                 ' ' . '<strong>' . $this->startDate . '</strong> to ' . '  <strong> ' . $this->endDate . '
-                ' . '</strong>' . 'date'))
+                ' . '</strong>' . 'date.'))
             ->line(new HtmlString(
                 'Reply at : <strong>' . $this->owner['email'] . '</strong>'
             ));
