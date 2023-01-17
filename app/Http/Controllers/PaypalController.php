@@ -68,6 +68,15 @@ class PaypalController extends Controller
             if (isset($paypalSubscription['error'])) {
                 Log::channel('paypal')->error('Create Subscription: ', [$paypalSubscription['error']]);
             } else {
+                $checkSubscription = Subscription::where('user_id', auth()->user()->user_id)->where('status', 'IN_PROCESS')->latest()->first();
+                if (!is_null($checkSubscription)){
+                    $checkSubscription->delete();
+                    if ($checkSubscription->processingSubscriptions && $checkSubscription->processingSubscriptions->count() > 0){
+                        foreach ($checkSubscription->processingSubscriptions as $processSubscription){
+                            $processSubscription->delete();
+                        }
+                    }
+                }
                 $subscription = Subscription::create([
                     'user_id' => auth()->user()->user_id,
                     'house_id' => auth()->user()->HouseId,
