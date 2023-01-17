@@ -86,6 +86,13 @@ class CheckSubscriptionStatusOnPaypal
                         $checkSubscription = Subscription::where('user_id', $user_id)->where('subscription_id', '<>', $userSubscription->subscription_id)->where('status', 'ACTIVE')->first();
                         if (!is_null($checkSubscription)){
                             $checkSubscription->cancel();
+                            ProcessingSubscription::create([
+                                'subscription_id' => $userSubscription->id,
+                                'plan_id' => $userSubscription->plan_id,
+                                'plan' => $userSubscription->plan,
+                                'period' => $userSubscription->period,
+                                'status' => 'APPROVAL_PENDING',
+                            ]);
                         }
                     }
                     $processingSubscription = ProcessingSubscription::where([
