@@ -1,4 +1,4 @@
-<div x-data="{isYearly: {{ $this->subscription->period === 'yearly' ? 1: 0  }}}">
+<div x-data="{isYearly: {{ $this->subscription && $this->subscription->period === 'yearly' ? 1: 0  }}}">
     @if($this->subscription && $this->subscription->status === 'APPROVAL_PENDING')
         <div class="alert alert-success mb-4" role="alert">
             You have been subscribed successfully! Please wait until we confirm your plan.
@@ -12,7 +12,7 @@
                 type="checkbox"
                 x-model="isYearly"
                 value="0"
-                {{$this->subscription->period === 'yearly' ? 'checked': '' }}
+                {{$this->subscription && $this->subscription->period === 'yearly' ? 'checked': '' }}
 
             />
             <label class="form-check-label">Annually</label>
