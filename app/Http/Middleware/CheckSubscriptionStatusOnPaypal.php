@@ -22,7 +22,6 @@ class CheckSubscriptionStatusOnPaypal
      */
     public function handle(Request $request, Closure $next)
     {
-
         if (auth()->check()) {
             $paypal = PayPal::setProvider();
             $paypal->getAccessToken();
