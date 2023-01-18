@@ -69,20 +69,21 @@ class PaypalController extends Controller
                 Log::channel('paypal')->error('Create Subscription: ', [$paypalSubscription['error']]);
             } else {
                 $checkSubscription = Subscription::where('user_id', auth()->user()->user_id)->latest()->first();
-                if (!is_null($checkSubscription) && $checkSubscription->status === 'IN_PROCESS'){
+                if (!is_null($checkSubscription) && $checkSubscription->status === 'IN_PROCESS') {
                     $paypalSubscription = $this->paypal->showSubscriptionDetails($checkSubscription->subscription_id);
-                    if($paypalSubscription && $paypalSubscription['status'] === 'APPROVAL_PENDING'){
+                    if ($paypalSubscription['status'] === 'APPROVAL_PENDING') {
                         $redirectTo = null;
                         foreach ($paypalSubscription['links'] ?? [] as $link) {
                             if ($link['rel'] === 'approve') {
                                 $redirectTo = $link['href'];
                             }
                         }
-                        if ($redirectTo) {
+                        if (!is_null($redirectTo)) {
                             return redirect($redirectTo);
                         }
                     }
                 }
+
                 $subscription = Subscription::create([
                     'user_id' => auth()->user()->user_id,
                     'house_id' => auth()->user()->HouseId,

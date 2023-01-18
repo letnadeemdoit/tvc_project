@@ -422,7 +422,7 @@
     </div>
 
         <div class="modal fade" id="unsubscribeModal" tabindex="-1" aria-labelledby="unsubscribeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <h6 class="modal-title fs-10 text-white"
                         id="deleteConfirmationModalLabel">{{ 'Delete!'}}</h6>
@@ -434,7 +434,7 @@
                         </div>
 
                         <h4 class="fw-bold text-center my-3"
-                            style="color: #00000090">Are you sure to unsubscribe subscription.!</h4>
+                            style="color: #00000090">Are you sure to unsubscribe plan.!</h4>
                         <p class="fw-500 fs-15">You would not be able to recover this!</p>
                         <div class="btn-group my-2">
                             <button type="button"
