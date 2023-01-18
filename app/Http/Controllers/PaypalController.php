@@ -63,27 +63,30 @@ class PaypalController extends Controller
 
         try {
             $checkSubscription = Subscription::where('user_id', auth()->user()->user_id)->latest()->first();
-            $checkPaypalSubscription = $this->paypal->showSubscriptionDetails($checkSubscription->subscription_id);
-            if ($checkPaypalSubscription['status'] === 'APPROVAL_PENDING'){
-                $processingSubscription = ProcessingSubscription::where([
-                    'subscription_id' => $checkSubscription->id,
-                    'status' => 'APPROVAL_PENDING'
-                ])->first();
-                if (!is_null($processingSubscription) && $processingSubscription->plan === $plan && $processingSubscription->period === $billed) {
-                    $redirectTo = null;
-                    foreach ($checkPaypalSubscription['links'] ?? [] as $link) {
-                        if ($link['rel'] === 'approve') {
-                            $redirectTo = $link['href'];
+            if (!is_null($checkSubscription)){
+                $checkPaypalSubscription = $this->paypal->showSubscriptionDetails($checkSubscription->subscription_id);
+                if ($checkPaypalSubscription['status'] === 'APPROVAL_PENDING'){
+                    $processingSubscription = ProcessingSubscription::where([
+                        'subscription_id' => $checkSubscription->id,
+                        'status' => 'APPROVAL_PENDING'
+                    ])->first();
+                    if (!is_null($processingSubscription) && $processingSubscription->plan === $plan && $processingSubscription->period === $billed) {
+                        $redirectTo = null;
+                        foreach ($checkPaypalSubscription['links'] ?? [] as $link) {
+                            if ($link['rel'] === 'approve') {
+                                $redirectTo = $link['href'];
+                            }
                         }
+                        if (!is_null($redirectTo)) {
+                            return redirect($redirectTo);
+                        }
+                    } else {
+                        $processingSubscription->delete();
+                        $processingSubscription->subscription->delete();
                     }
-                    if (!is_null($redirectTo)) {
-                        return redirect($redirectTo);
-                    }
-                } else {
-                    $processingSubscription->delete();
-                    $processingSubscription->subscription->delete();
                 }
             }
+
 
 
             $paypalSubscription = $this->paypal->createSubscription([
