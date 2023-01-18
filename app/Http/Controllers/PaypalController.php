@@ -71,7 +71,7 @@ class PaypalController extends Controller
                 $checkSubscription = Subscription::where('user_id', auth()->user()->user_id)->latest()->first();
                 if (!is_null($checkSubscription) && $checkSubscription->status === 'IN_PROCESS') {
                     $paypalSubscription = $this->paypal->showSubscriptionDetails($checkSubscription->subscription_id);
-                    if ($paypalSubscription['status'] === 'APPROVAL_PENDING') {
+                    if ($paypalSubscription['status'] === 'APPROVAL_PENDING' && $checkSubscription->plan === $plan && $checkSubscription->period === $billed) {
                         $redirectTo = null;
                         foreach ($paypalSubscription['links'] ?? [] as $link) {
                             if ($link['rel'] === 'approve') {
@@ -80,6 +80,14 @@ class PaypalController extends Controller
                         }
                         if (!is_null($redirectTo)) {
                             return redirect($redirectTo);
+                        }
+                    }
+                    else{
+                        $checkSubscription->delete();
+                        if ($checkSubscription->processingSubscriptions && $checkSubscription->processingSubscriptions->count() > 0){
+                            foreach ($checkSubscription->processingSubscriptions as $processSubscription){
+                                $processSubscription->delete();
+                            }
                         }
                     }
                 }
