@@ -53,6 +53,7 @@ class PaypalController extends Controller
      */
     public function process($plan, $billed)
     {
+
         $mode = config('paypal.mode');
 
         abort_if(
@@ -61,6 +62,31 @@ class PaypalController extends Controller
         );
 
         try {
+            $checkSubscription = Subscription::where('user_id', auth()->user()->user_id)->latest()->first();
+            if (!is_null($checkSubscription) && $checkSubscription->status === 'IN_PROCESS') {
+                $checkPaypalSubscription = $this->paypal->showSubscriptionDetails($checkSubscription->subscription_id);
+                if ($checkPaypalSubscription['status'] === 'APPROVAL_PENDING' && $checkSubscription->plan === $plan && $checkSubscription->period === $billed) {
+                    $redirectTo = null;
+                    foreach ($checkPaypalSubscription['links'] ?? [] as $link) {
+                        if ($link['rel'] === 'approve') {
+                            $redirectTo = $link['href'];
+                        }
+                    }
+                    if (!is_null($redirectTo)) {
+                        return redirect($redirectTo);
+                    }
+                }
+                else{
+                    $checkSubscription->delete();
+                    if ($checkSubscription->processingSubscriptions && $checkSubscription->processingSubscriptions->count() > 0){
+                        foreach ($checkSubscription->processingSubscriptions as $processSubscription){
+                            $processSubscription->delete();
+                        }
+                    }
+                }
+            }
+
+
             $paypalSubscription = $this->paypal->createSubscription([
                 'plan_id' => config("paypal.$mode.plans.$plan.$billed")
             ]);
@@ -68,30 +94,6 @@ class PaypalController extends Controller
             if (isset($paypalSubscription['error'])) {
                 Log::channel('paypal')->error('Create Subscription: ', [$paypalSubscription['error']]);
             } else {
-                $checkSubscription = Subscription::where('user_id', auth()->user()->user_id)->latest()->first();
-                if (!is_null($checkSubscription) && $checkSubscription->status === 'IN_PROCESS') {
-                    $paypalSubscription = $this->paypal->showSubscriptionDetails($checkSubscription->subscription_id);
-                    if ($paypalSubscription['status'] === 'APPROVAL_PENDING' && $checkSubscription->plan === $plan && $checkSubscription->period === $billed) {
-                        $redirectTo = null;
-                        foreach ($paypalSubscription['links'] ?? [] as $link) {
-                            if ($link['rel'] === 'approve') {
-                                $redirectTo = $link['href'];
-                            }
-                        }
-                        if (!is_null($redirectTo)) {
-                            return redirect($redirectTo);
-                        }
-                    }
-                    else{
-                        $checkSubscription->delete();
-                        if ($checkSubscription->processingSubscriptions && $checkSubscription->processingSubscriptions->count() > 0){
-                            foreach ($checkSubscription->processingSubscriptions as $processSubscription){
-                                $processSubscription->delete();
-                            }
-                        }
-                    }
-                }
-
                 $subscription = Subscription::create([
                     'user_id' => auth()->user()->user_id,
                     'house_id' => auth()->user()->HouseId,

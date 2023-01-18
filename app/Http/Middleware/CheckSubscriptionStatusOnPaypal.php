@@ -75,32 +75,17 @@ class CheckSubscriptionStatusOnPaypal
 //                }
 //
 //            } else
-            $userSubscription = Subscription::where('user_id', $user_id)->latest()->first();
 
             foreach ($subscriptions as $subscription){
             if ($subscription && $subscription->processingSubscriptions->count() > 0) {
                 $paypalSubscription = $paypal->showSubscriptionDetails($subscription->subscription_id);
                 if (isset($paypalSubscription['status']) && $paypalSubscription['status'] === 'ACTIVE') {
 
-                    if (!is_null($userSubscription)){
-                        $checkSubscription = Subscription::where('user_id', $user_id)->where('subscription_id', '<>', $userSubscription->subscription_id)->where('status', 'ACTIVE')->first();
-                        if ($checkSubscription){
-                            $checkSubscription->cancel();
-                            ProcessingSubscription::create([
-                                'subscription_id' => $userSubscription->id,
-                                'plan_id' => $userSubscription->plan_id,
-                                'plan' => $userSubscription->plan,
-                                'period' => $userSubscription->period,
-                                'status' => 'APPROVAL_PENDING',
-                            ]);
-                        }
-                    }
                     $processingSubscription = ProcessingSubscription::where([
                         'subscription_id' => $subscription->id,
                         'plan_id' => $paypalSubscription['plan_id'],
                         'status' => 'APPROVAL_PENDING'
                     ])->first();
-
                     if ($processingSubscription) {
                         $processingSubscription->subscription->update([
                             'plan_id' => $paypalSubscription['plan_id'],
@@ -111,6 +96,21 @@ class CheckSubscriptionStatusOnPaypal
 
                         $processingSubscription->delete();
                     }
+                    $userSubscription = Subscription::where('user_id', $user_id)->latest()->first();
+                    if (!is_null($userSubscription) && $userSubscription->status === 'ACTIVE'){
+                        $checkSubscription = Subscription::where('user_id', $user_id)->where('subscription_id', '<>', $userSubscription->subscription_id)->where('status', 'ACTIVE')->first();
+                        if ($checkSubscription){
+                            $checkSubscription->cancel();
+//                            ProcessingSubscription::create([
+//                                'subscription_id' => $userSubscription->id,
+//                                'plan_id' => $userSubscription->plan_id,
+//                                'plan' => $userSubscription->plan,
+//                                'period' => $userSubscription->period,
+//                                'status' => 'APPROVAL_PENDING',
+//                            ]);
+                        }
+                    }
+
 
                 } elseif (isset($paypalSubscription['status']) && $paypalSubscription['status'] !== 'ACTIVE' && $paypalSubscription['status'] !== 'APPROVAL_PENDING' && $paypalSubscription['status'] !== 'APPROVED') {
                     $subscription->update(['status' => $paypalSubscription['status']]);
