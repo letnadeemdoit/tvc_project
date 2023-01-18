@@ -80,12 +80,8 @@ class PaypalController extends Controller
                         return redirect($redirectTo);
                     }
                 } else {
-                    $checkSubscription->delete();
-                    if ($checkSubscription->processingSubscriptions && $checkSubscription->processingSubscriptions->count() > 0) {
-                        foreach ($checkSubscription->processingSubscriptions as $processSubscription) {
-                            $processSubscription->delete();
-                        }
-                    }
+                    $processingSubscription->delete();
+                    $processingSubscription->subscription->delete();
                 }
             }
 
