@@ -13,6 +13,7 @@ class RequestToJoinVacationMailNotification extends Notification implements Shou
     use Queueable;
 
     public $vacation_name;
+    public $house_name;
     public $owner;
     public $startDate;
     public $endDate;
@@ -22,9 +23,10 @@ class RequestToJoinVacationMailNotification extends Notification implements Shou
      *
      * @return void
      */
-    public function __construct($vacation_name,$owner, $startDate, $endDate)
+    public function __construct($vacation_name,$house_name,$owner, $startDate, $endDate)
     {
         $this->vacation_name = $vacation_name;
+        $this->house_name = $house_name;
         $this->owner = $owner;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -54,7 +56,7 @@ class RequestToJoinVacationMailNotification extends Notification implements Shou
             ->line(new HtmlString('<strong>' . $this->owner['name'] . '(' . $this->owner['role'] . ') ' . ' </strong> has requested to join your vacation <strong>'
                 . $this->vacation_name . '</strong> from' .
                 ' ' . '<strong>' . $this->startDate . '</strong> to ' . '  <strong> ' . $this->endDate . '
-                ' . '</strong>' . 'date.'))
+                ' . '</strong>' . 'date at <strong>' .$this->house_name.'. </strong>'))
             ->line(new HtmlString(
                 'Reply at : <strong>' . $this->owner['email'] . '</strong>'
             ));
