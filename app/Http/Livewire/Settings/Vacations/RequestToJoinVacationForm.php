@@ -113,6 +113,7 @@ class RequestToJoinVacationForm extends Component
         } else {
 
             $vacation_name = $this->state['vacation_name'];
+            $house_name = $this->user->house->HouseName;
 
             $owner = $this->vacation->VacationId && $this->vacation->owner ? $this->vacation->owner : User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
             try {
@@ -120,7 +121,7 @@ class RequestToJoinVacationForm extends Component
                 $this->state_user['name'] = $owner->first_name . ' ' . $owner->last_name;
                 $this->state_user['role'] = $owner->role;
                 Notification::route('mail', $this->state['email'])
-                    ->notify( new RequestToJoinVacationMailNotification($vacation_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
+                    ->notify( new RequestToJoinVacationMailNotification($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
 //                Mail::queue('rtjv')->send([], [], function (Message $message) use ($owner) {
 //                    $message->to($this->state['email'])
 //                        ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
@@ -143,7 +144,7 @@ class RequestToJoinVacationForm extends Component
                     $this->state_user['role'] = $this->user->role;
 
                     Notification::route('mail', $owner->email)
-                        ->notify( new RequestToJoinVacationMailNotification($vacation_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
+                        ->notify( new RequestToJoinVacationMailNotification($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
 //                    Mail::send([], [], function (Message $message) use ($owner) {
 //                        $message->to($owner->email)
 //                            ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
