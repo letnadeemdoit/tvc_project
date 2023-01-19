@@ -507,7 +507,7 @@
                             href="#"
                             class="btn btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
                         >
-                            Yes Proceed
+                            Yes,Proceed!
                         </a>
                     </div>
                 </div>
@@ -522,7 +522,6 @@
         $(document).ready(function () {
             $('.upgrade-downgrade').click(function () {
                 let value = $(this).attr('data_value');
-                console.log(value);
                 $('#confirmUpgrade a').attr('href', value);
             });
         });
