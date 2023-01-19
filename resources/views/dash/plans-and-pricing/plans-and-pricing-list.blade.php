@@ -47,22 +47,21 @@
                             <a href="{{ route('dash.paypal.process', ['basic', 'monthly']) }}"
                                class="form-check-select-stretched-btn btn btn-outline-primary">Subscribe</a>
                         @elseif($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')
-{{--                            @if($this->subscription->status === 'APPROVAL_PENDING')--}}
-{{--                                <p class="text-center text-info">Waiting payment confirmation from paypal!</p>--}}
-{{--                            @else--}}
-                                <a
-                                    href="#!"
-                                    data-bs-toggle="modal" data-bs-target="#unsubscribeModal"
-                                    class="form-check-select-stretched-btn btn btn-primary"
-                                >
-                                    Unsubscribe
-                                </a>
-{{--                            @endif--}}
+                            <a
+                                href="#!"
+                                data-bs-toggle="modal" data-bs-target="#unsubscribeModal"
+                                class="form-check-select-stretched-btn btn btn-primary"
+                            >
+                                Unsubscribe
+                            </a>
+                            {{--                            @endif--}}
                         @else
                             {{--                            @if($this->subscription->period !== 'yearly')--}}
                             <a
-                                href="{{ route('dash.paypal.revise', ['basic', 'monthly']) }}"
-                                class="form-check-select-stretched-btn btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                data_value="{{ route('dash.paypal.revise', ['basic', 'monthly']) }}"
+                                href="#!"
+                                class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                             >
                                 Downgrade
                             </a>
@@ -121,22 +120,28 @@
                         @else
                             @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Upgrade
                                 </a>
                             @elseif($this->subscription && $this->subscription->plan === 'premium')
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
                             @else
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
@@ -194,15 +199,19 @@
                         @else
                             @if($this->subscription && $this->subscription->period === 'yearly')
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
                             @else
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Upgrade
                                 </a>
@@ -259,15 +268,19 @@
                         @else
                             @if($this->subscription->period === 'monthly')
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Upgrade
                                 </a>
                             @else
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
@@ -324,30 +337,38 @@
                         @else
                             @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'yearly')
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Upgrade
                                 </a>
                             @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'yearly')
                                 <a
-                                    href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
-                                    class="form-check-select-stretched-btn btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
                             @else
                                 @if($this->subscription->period === 'monthly')
                                     <a
-                                        href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
-                                        class="form-check-select-stretched-btn btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                        data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
+                                        href="#!"
+                                        class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                     >
                                         Upgrade
                                     </a>
                                 @else
                                     <a
-                                        href="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
-                                        class="form-check-select-stretched-btn btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                        data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
+                                        href="#!"
+                                        class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                                     >
                                         Downgrade
                                     </a>
@@ -405,8 +426,10 @@
                             @endif
                         @else
                             <a
-                                href="{{ route('dash.paypal.revise', ['premium', 'yearly']) }}"
-                                class="form-check-select-stretched-btn btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                data_value="{{ route('dash.paypal.revise', ['premium', 'yearly']) }}"
+                                href="#!"
+                                class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
                             >
                                 Upgrade
                             </a>
@@ -421,44 +444,87 @@
 
     </div>
 
-        <div class="modal fade" id="unsubscribeModal" tabindex="-1" aria-labelledby="unsubscribeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <h6 class="modal-title fs-10 text-white"
-                        id="deleteConfirmationModalLabel">{{ 'Delete!'}}</h6>
-                    <div class="modal-body text-center">
-                        <div>
-              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+    <div class="modal fade" id="unsubscribeModal" tabindex="-1" aria-labelledby="unsubscribeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <h6 class="modal-title fs-10 text-white"
+                    id="deleteConfirmationModalLabel">{{ 'Delete!'}}</h6>
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary"
+                    style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
                     <i class="bi-exclamation"></i>
                 </span>
-                        </div>
+                    </div>
 
-                        <h4 class="fw-bold text-center my-3"
-                            style="color: #00000090">Are you sure to unsubscribe plan.!</h4>
-                        <p class="fw-500 fs-15">You would not be able to recover this!</p>
-                        <div class="btn-group my-2">
-                            <button type="button"
-                                    class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
-                                    data-bs-dismiss="modal">Cancel
-                            </button>
-                            <button type="button"
-                                    class="btn btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
-                                    wire:click.prevent="cancelSubscription">
-                                <div wire:loading.remove wire:target="cancelSubscription">
-                                    Yes,Unsubscribe!
-                                </div>
-                                <div wire:loading wire:target="cancelSubscription">
-                                    Unsubscribing...
-                                </div>
-                            </button>
-                        </div>
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Are you sure to unsubscribe plan.!</h4>
+                    <p class="fw-500 fs-15">You would not be able to recover this!</p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Cancel
+                        </button>
+                        <button type="button"
+                                class="btn btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                wire:click.prevent="cancelSubscription">
+                            <div wire:loading.remove wire:target="cancelSubscription">
+                                Yes,Unsubscribe!
+                            </div>
+                            <div wire:loading wire:target="cancelSubscription">
+                                Unsubscribing...
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="upgradeModal" tabindex="-1" aria-labelledby="upgradeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <h6 class="modal-title fs-10 text-white"
+                    id="deleteConfirmationModalLabel">{{ 'Delete!'}}</h6>
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary"
+                    style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Are you sure to change plan.!</h4>
+{{--                    <p class="fw-500 fs-15">You would not be able to recover this!</p>--}}
+                    <div class="btn-group my-2" id="confirmUpgrade">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Cancel
+                        </button>
+                        <a
+                            href="#"
+                            class="btn btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                        >
+                            Yes Proceed
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
 @push('scripts')
-
+    <script>
+        $(document).ready(function () {
+            $('.upgrade-downgrade').click(function () {
+                let value = $(this).attr('data_value');
+                console.log(value);
+                $('#confirmUpgrade a').attr('href', value);
+            });
+        });
+    </script>
 @endpush
