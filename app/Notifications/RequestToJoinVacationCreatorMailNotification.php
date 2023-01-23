@@ -58,6 +58,7 @@ class RequestToJoinVacationCreatorMailNotification extends Notification implemen
                 ' ' . '<strong>' . $this->startDate . '</strong> to ' . '  <strong> ' . $this->endDate . '
                 ' . '</strong>' . '.'));
 
+
     }
 
     /**
