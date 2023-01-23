@@ -117,8 +117,8 @@ class RequestToJoinVacationForm extends Component
 
             $owner = $this->vacation->VacationId && $this->vacation->owner ? $this->vacation->owner : User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
             try {
-                $this->state_user['email'] = $owner->email;
-                $this->state_user['name'] = $owner->first_name . ' ' . $owner->last_name;
+                $this->state_user['email'] = null;
+                $this->state_user['name'] = $this->state['name'];
                 $this->state_user['role'] = $owner->role;
                 Notification::route('mail', $this->state['email'])
                     ->notify( new RequestToJoinVacationMailNotification($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
@@ -140,7 +140,7 @@ class RequestToJoinVacationForm extends Component
             if ($owner) {
                 try {
                     $this->state_user['email'] = $this->state['email'];
-                    $this->state_user['name'] = $this->user->first_name . ' ' . $this->user->last_name;
+                    $this->state_user['name'] = $this->state['name'];
                     $this->state_user['role'] = $this->user->role;
 
                     Notification::route('mail', $owner->email)

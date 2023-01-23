@@ -61,7 +61,7 @@ class RequestToJoinCalendarNotification extends Notification implements ShouldQu
                 ' from ' . '<strong>'. $this->startDate .'</strong>'.' to  <strong> '.$this->endDate .'
                 '.'</strong>'. 'date.'))
 
-            ->line(new HtmlString('They can be reached at the following email address: <strong>' .
+            ->line(new HtmlString('Reply to: <strong>' .
                 $this->email.'</strong>'));
 
     }
