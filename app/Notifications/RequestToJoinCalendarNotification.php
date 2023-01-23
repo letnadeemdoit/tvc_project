@@ -59,7 +59,7 @@ class RequestToJoinCalendarNotification extends Notification implements ShouldQu
             ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to use <strong>'
                 . $this->createdHouseName.'</strong>'.
                 ' from ' . '<strong>'. $this->startDate .'</strong>'.' to  <strong> '.$this->endDate .'
-                '.'</strong>'. 'date.'))
+                '.'</strong>'. '.'))
 
             ->line(new HtmlString('Reply to: <strong>' .
                 $this->email.'</strong>'));
