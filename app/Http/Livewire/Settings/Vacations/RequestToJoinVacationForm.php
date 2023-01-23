@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\CalendarEmailNotification;
 use App\Notifications\RequestToJoinCalendarNotification;
+use App\Notifications\RequestToJoinVacationCreatorMailNotification;
 use App\Notifications\RequestToJoinVacationMailNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
@@ -117,11 +118,10 @@ class RequestToJoinVacationForm extends Component
 
             $owner = $this->vacation->VacationId && $this->vacation->owner ? $this->vacation->owner : User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
             try {
-                $this->state_user['email'] = null;
                 $this->state_user['name'] = $this->state['name'];
                 $this->state_user['role'] = $owner->role;
                 Notification::route('mail', $this->state['email'])
-                    ->notify( new RequestToJoinVacationMailNotification($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
+                    ->notify( new RequestToJoinVacationCreatorMailNotification($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
 //                Mail::queue('rtjv')->send([], [], function (Message $message) use ($owner) {
 //                    $message->to($this->state['email'])
 //                        ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
