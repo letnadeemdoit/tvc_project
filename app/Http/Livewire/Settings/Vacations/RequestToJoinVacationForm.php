@@ -8,6 +8,7 @@ use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\CalendarEmailNotification;
+use App\Notifications\RequestToJoinCalendarAdminNotification;
 use App\Notifications\RequestToJoinCalendarNotification;
 use App\Notifications\RequestToJoinVacationCreatorMailNotification;
 use App\Notifications\RequestToJoinVacationMailNotification;
@@ -85,11 +86,9 @@ class RequestToJoinVacationForm extends Component
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
-
         if (!$this->vacation->VacationId) {
             try {
                 $house = $this->user->house;
-
                 if ($house && !is_null($house->request_to_use_house_email_list) && !empty($house->request_to_use_house_email_list)) {
 
                     $request_to_use_house_email_list = explode(',', $this->user->house->request_to_use_house_email_list);
@@ -103,6 +102,13 @@ class RequestToJoinVacationForm extends Component
                         if (count($request_to_use_house_email_list) > 0) {
                             Notification::route('mail', $request_to_use_house_email_list)
                                 ->notify(new RequestToJoinCalendarNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+
+                            $admin = User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
+
+                            Notification::route('mail', $admin->email)
+                                ->notify(new RequestToJoinCalendarAdminNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+
+
                         }
 
                     }
