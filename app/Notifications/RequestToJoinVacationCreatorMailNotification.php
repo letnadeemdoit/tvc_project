@@ -56,7 +56,7 @@ class RequestToJoinVacationCreatorMailNotification extends Notification implemen
             ->line(new HtmlString('<strong>' . $this->owner['name'] . ' </strong> has requested to join vacation <strong>'
                 . $this->vacation_name . '</strong> from' .
                 ' ' . '<strong>' . $this->startDate . '</strong> to ' . '  <strong> ' . $this->endDate . '
-                ' . '</strong>' . 'date at <strong>' .$this->house_name.'. </strong>'));
+                ' . '</strong>' . '.'));
 
     }
 
