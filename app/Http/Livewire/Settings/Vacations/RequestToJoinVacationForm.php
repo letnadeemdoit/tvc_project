@@ -170,7 +170,11 @@ class RequestToJoinVacationForm extends Component
         }
 
         $this->emitSelf('toggle', false);
-        $this->success('Your request to join vacation has been submitted successful.');
+        if (!$this->vacation->VacationId) {
+            $this->success('Your request to use vacation home has been submitted successful.');
+        }else{
+            $this->success('Your request to join vacation has been submitted successful.');
+        }
     }
 
     public function render()
