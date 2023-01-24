@@ -103,9 +103,9 @@ class RequestToJoinVacationForm extends Component
                             Notification::route('mail', $request_to_use_house_email_list)
                                 ->notify(new RequestToJoinCalendarNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
 
-                            $admin = User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
+//                            $admin = User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
 
-                            Notification::route('mail', $admin->email)
+                            Notification::route('mail', $this->state['email'])
                                 ->notify(new RequestToJoinCalendarAdminNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
 
 
