@@ -639,7 +639,7 @@
                         @if(!auth()->user()->is_guest)
                             <div class="me-4" x-data>
                                 <a
-                                    class="btn btn-sm btn-soft-primary"
+                                    class="btn btn-sm btn-primary"
                                     href="#!"
                                     @click.prevent="window.livewire.emit('showBlogCUModal', true)"
                                 >
