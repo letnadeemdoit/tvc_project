@@ -37,6 +37,12 @@
                     <!-- List Checked -->
                     <ul class="list-checked list-checked-primary mb-0">
                         <li class="list-checked-item">Basic site functionality</li>
+                        <li class="list-checked-item">
+                            Monthly plans include an initial free 7 day trial period to try the site. If you cancel within the 7 days, you will not be charged.
+                        </li>
+                        <li class="list-checked-item">
+                            Upgrading or downgrading a subscriptions will immediately cancel your existing subscription and create a new subscription. Refunds for unused partial months are not provided. You will be charged the new rate at the end of the trial period. It is recommended not to upgrade or downgrade until the end of you current billing cycle.
+                        </li>
                     </ul>
                     <!-- End List Checked -->
                 </div>
@@ -92,6 +98,12 @@
                     <ul class="list-checked list-checked-primary mb-0">
                         <li class="list-checked-item">Basic site functionality</li>
                         <li class="list-checked-item">Manage up to 6 rooms</li>
+                        <li class="list-checked-item">
+                            Monthly plans include an initial free 7 day trial period to try the site. If you cancel within the 7 days, you will not be charged.
+                        </li>
+                        <li class="list-checked-item">
+                            Upgrading or downgrading a subscriptions will immediately cancel your existing subscription and create a new subscription. Refunds for unused partial months are not provided. You will be charged the new rate at the end of the trial period. It is recommended not to upgrade or downgrade until the end of you current billing cycle.
+                        </li>
                     </ul>
                     <!-- End List Checked -->
                 </div>
@@ -173,6 +185,12 @@
                         <li class="list-checked-item">Full site functionality</li>
                         <li class="list-checked-item">Unlimited rooms</li>
                         <li class="list-checked-item">Manage up to 9 additional properties</li>
+                        <li class="list-checked-item">
+                            Monthly plans include an initial free 7 day trial period to try the site. If you cancel within the 7 days, you will not be charged.
+                        </li>
+                        <li class="list-checked-item">
+                            Upgrading or downgrading a subscriptions will immediately cancel your existing subscription and create a new subscription. Refunds for unused partial months are not provided. You will be charged the new rate at the end of the trial period. It is recommended not to upgrade or downgrade until the end of you current billing cycle.
+                        </li>
                     </ul>
                     <!-- End List Checked -->
                 </div>
@@ -246,6 +264,12 @@
                     <!-- List Checked -->
                     <ul class="list-checked list-checked-primary mb-0">
                         <li class="list-checked-item">Basic site functionality</li>
+                        <li class="list-checked-item">
+                            Yearly plans include an initial free 20 day trial period to try the site. If you cancel within the 30 days, you will not be charged.
+                        </li>
+                        <li class="list-checked-item">
+                            Upgrading or downgrading a subscription will immediately cancel your existing subscription and create a new subscription. You will be charged the new rate at the end of the trial period.
+                        </li>
                     </ul>
                     <!-- End List Checked -->
                 </div>
@@ -311,6 +335,12 @@
                     <ul class="list-checked list-checked-primary mb-0">
                         <li class="list-checked-item">Basic site functionality</li>
                         <li class="list-checked-item">Manage up to 6 rooms</li>
+                        <li class="list-checked-item">
+                            Yearly plans include an initial free 20 day trial period to try the site. If you cancel within the 30 days, you will not be charged.
+                        </li>
+                        <li class="list-checked-item">
+                            Upgrading or downgrading a subscription will immediately cancel your existing subscription and create a new subscription. You will be charged the new rate at the end of the trial period.
+                        </li>
                     </ul>
                     <!-- End List Checked -->
                 </div>
@@ -401,6 +431,12 @@
                         <li class="list-checked-item">Full site functionality</li>
                         <li class="list-checked-item">Unlimited rooms</li>
                         <li class="list-checked-item">Manage up to 9 additional properties</li>
+                        <li class="list-checked-item">
+                            Yearly plans include an initial free 20 day trial period to try the site. If you cancel within the 30 days, you will not be charged.
+                        </li>
+                        <li class="list-checked-item">
+                            Upgrading or downgrading a subscription will immediately cancel your existing subscription and create a new subscription. You will be charged the new rate at the end of the trial period.
+                        </li>
                     </ul>
                     <!-- End List Checked -->
                 </div>

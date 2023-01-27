@@ -12,6 +12,10 @@ use App\Notifications\RequestToJoinCalendarAdminNotification;
 use App\Notifications\RequestToJoinCalendarNotification;
 use App\Notifications\RequestToJoinVacationCreatorMailNotification;
 use App\Notifications\RequestToJoinVacationMailNotification;
+use App\Notifications\RequestToJoinVacationNotification1;
+use App\Notifications\RequestToJoinVacationNotification2;
+use App\Notifications\RequestToUseVacationHomeNotification1;
+use App\Notifications\RequestToUseVacationHomeNotification2;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
 use Exception;
@@ -96,17 +100,17 @@ class RequestToJoinVacationForm extends Component
                     if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
                         $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', $this->user->HouseId)->get();
                         foreach ($users as $user) {
-                            $user->notify(new RequestToJoinCalendarNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+                            $user->notify(new RequestToUseVacationHomeNotification2($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
                         }
                         $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
                         if (count($request_to_use_house_email_list) > 0) {
                             Notification::route('mail', $request_to_use_house_email_list)
-                                ->notify(new RequestToJoinCalendarNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+                                ->notify(new RequestToUseVacationHomeNotification2($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
 
 //                            $admin = User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
 
                             Notification::route('mail', $this->state['email'])
-                                ->notify(new RequestToJoinCalendarAdminNotification($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+                                ->notify(new RequestToUseVacationHomeNotification1($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
 
 
                         }
@@ -127,7 +131,7 @@ class RequestToJoinVacationForm extends Component
                 $this->state_user['name'] = $this->state['name'];
                 $this->state_user['role'] = $owner->role;
                 Notification::route('mail', $this->state['email'])
-                    ->notify( new RequestToJoinVacationCreatorMailNotification($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
+                    ->notify( new RequestToJoinVacationNotification1($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
 //                Mail::queue('rtjv')->send([], [], function (Message $message) use ($owner) {
 //                    $message->to($this->state['email'])
 //                        ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
@@ -150,7 +154,7 @@ class RequestToJoinVacationForm extends Component
                     $this->state_user['role'] = $this->user->role;
 
                     Notification::route('mail', $owner->email)
-                        ->notify( new RequestToJoinVacationMailNotification($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
+                        ->notify( new RequestToJoinVacationNotification2($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
 //                    Mail::send([], [], function (Message $message) use ($owner) {
 //                        $message->to($owner->email)
 //                            ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))

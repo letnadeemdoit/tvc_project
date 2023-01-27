@@ -10,8 +10,11 @@
 
     @endpush
 
-    @include('partials.sub-page-hero-section', ['title' => 'Calendar'])
-
+        @if(!auth()->user()->is_admin && !is_any_subscribed())
+            @include('partials.sub-page-hero-section', ['title' => 'Subscription Expired!'])
+        @else
+            @include('partials.sub-page-hero-section', ['title' => 'Calendar'])
+        @endif
 
     <div class="container py-5">
 
@@ -23,7 +26,9 @@
                         'role' => 'Administrator',
                     ])->first();
                 @endphp
-                <p class="alert alert-warning">This account does not have an active subscription. Please contact the house Administrator ({{$admin['first_name'] . ' ' . $admin['last_name'] . ' - ' . $admin['email']}}) to set up an active subscription</p>
+                <h3>No Active Subscription</h3>
+                <br />
+                <p class="alert alert-warning">This account does not have an active subscription. Please contact the house Administrator <strong>({{$admin['first_name'] . ' ' . $admin['last_name'] . ' - ' . $admin['email']}})</strong> to set up an active subscription</p>
 {{--                    <p class="alert {{ Session::get('alert-class', 'alert-warning') }}">{{ Session::get('warnMessage') }}</p>--}}
             @elseif(auth()->user()->is_admin && !is_any_subscribed())
                 <p class="alert alert-warning">Currently there is no subscription plan. Please subscribe any plan. <a href="{{route('dash.plans-and-pricing')}}">plans-and-pricing</a></p>

@@ -396,6 +396,11 @@
                                                     to your calendar to cancel the subscription closer to the end of your payment cycle
                                                 </p>
 
+                                                <h3>Refund Schedule</h3>
+                                                <p>
+                                                    Please email support@thevcationcalendar.com and a prorated refund will be provided for the remainder of the initial subscription that was not used. The refund will be made within 14 days after the initial payment is made for the new subscription per the refund schedule.
+                                                </p>
+
                                             </div>
                                         </div>
                                     </div>

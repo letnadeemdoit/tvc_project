@@ -8,9 +8,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class RequestToJoinCalendarNotification extends Notification implements ShouldQueue
+class RequestToUseVacationHomeNotification2 extends Notification implements ShouldQueue
 {
     use Queueable;
+
     public $name;
     public $email;
     public $createdHouseName;

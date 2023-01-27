@@ -2,6 +2,9 @@
     @push('stylesheets')
 
         <style>
+            .toast-success{
+                background-color: #51A351 !important;
+            }
             .w-60-h-60 {
                 width: 64px !important;
                 height: 66px !important;
@@ -628,9 +631,26 @@
                     class="mt-70 mb-2 text-center shadow-1-strong rounded  text-white social-img d-flex justify-content-center align-items-center">
                     <h1 class="text-primary font-vintage pt-2 mb-0">Find Your Vacation House</h1>
                 </div>
-                <h1 class="text-center text-white">See our blogs.</h1>
+                <div>
+                    <h1 class="text-center text-white">See our blogs.</h1>
+                </div>
+                <div class="text-center float-end text-lg-end d-flex">
+                    @auth
+                        @if(!auth()->user()->is_guest)
+                            <div class="me-4" x-data>
+                                <a
+                                    class="btn btn-sm btn-soft-primary"
+                                    href="#!"
+                                    @click.prevent="window.livewire.emit('showBlogCUModal', true)"
+                                >
+                                    <i class="bi-plus me-1"></i> Add New Blog
+                                </a>
+                            </div>
+                        @endif
+                    @endauth
+                </div>
 
-                <div class="row mt-5">
+                <div class="row mt-10">
                     @if(isset($blogs) && count($blogs) > 0)
                         @foreach($blogs as $blog)
                             <div class="col-12 col-md-6 col-lg-3 mb-4 item">
@@ -1209,6 +1229,14 @@
 
             {{--                </div>--}}
             {{--            </div>--}}
+            @php
+              $user = \Illuminate\Support\Facades\Auth::user();
+            @endphp
+            @auth
+                @if(!auth()->user()->is_guest)
+                    <livewire:settings.blog.create-or-update-blog-item-form :user=$user />
+                @endif
+            @endauth
         </section>
         {{--        <section class="d-none">--}}
         {{--            <div class="masonry pt-55">--}}

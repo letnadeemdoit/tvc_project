@@ -8,13 +8,13 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class RequestToJoinCalendarAdminNotification extends Notification implements ShouldQueue
+class RequestToJoinVacationNotification1 extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $name;
-    public $email;
-    public $createdHouseName;
+    public $vacation_name;
+    public $house_name;
+    public $owner;
     public $startDate;
     public $endDate;
 
@@ -23,11 +23,11 @@ class RequestToJoinCalendarAdminNotification extends Notification implements Sho
      *
      * @return void
      */
-    public function __construct($name,$email,$createdHouseName,$startDate,$endDate)
+    public function __construct($vacation_name,$house_name,$owner, $startDate, $endDate)
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->createdHouseName = $createdHouseName;
+        $this->vacation_name = $vacation_name;
+        $this->house_name = $house_name;
+        $this->owner = $owner;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
     }
@@ -40,9 +40,7 @@ class RequestToJoinCalendarAdminNotification extends Notification implements Sho
      */
     public function via($notifiable)
     {
-        return [
-            'mail','database'
-        ];
+        return ['mail'];
     }
 
     /**
@@ -54,13 +52,13 @@ class RequestToJoinCalendarAdminNotification extends Notification implements Sho
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->greeting('Confirmation of Your Request to Join A Vacation')
+            ->line(new HtmlString('<strong>' . $this->owner['name'] . ' </strong> has requested to join vacation <strong>'
+                . $this->vacation_name . '</strong> from' .
+                ' ' . '<strong>' . $this->startDate . '</strong> to ' . '  <strong> ' . $this->endDate . '
+                ' . '</strong>' . '.'));
 
-            ->greeting('Confirmation of Request to Use Vacation Home')
 
-            ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to use <strong>'
-                . $this->createdHouseName.'</strong>'.
-                ' from ' . '<strong>'. $this->startDate .'</strong>'.' to  <strong> '.$this->endDate .'
-                '.'</strong>'. '.'));
     }
 
     /**
