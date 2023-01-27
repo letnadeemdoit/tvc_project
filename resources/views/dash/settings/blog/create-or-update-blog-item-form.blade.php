@@ -90,7 +90,9 @@
 
                         <div class="d-flex justify-content-start align-items-center mb-1">
                             <label class="form-label me-1 me-md-3 mb-0" for="category_id">Select Category:</label>
+                            @if(auth()->user()->is_admin)
                             <a href="{{ route('dash.settings.category') }}" class="text-decoration-underline">Add new category</a>
+                            @endif
                         </div>
 
                         <select id="category_id" wire:model.defer="state.category_id"
