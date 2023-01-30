@@ -52,6 +52,7 @@ class RequestToJoinVacationNotification1 extends Notification implements ShouldQ
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->subject('Request To Join Vacation')
             ->greeting('Confirmation of Your Request to Join A Vacation')
             ->line(new HtmlString('<strong>' . $this->owner['name'] . ' </strong> has requested to join vacation <strong>'
                 . $this->vacation_name . '</strong> from' .

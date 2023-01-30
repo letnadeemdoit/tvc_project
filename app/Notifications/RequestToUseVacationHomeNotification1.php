@@ -54,7 +54,7 @@ class RequestToUseVacationHomeNotification1 extends Notification implements Shou
     public function toMail($notifiable)
     {
         return (new MailMessage)
-
+            ->subject('Request To Use Vacation Home')
             ->greeting('Confirmation of Request to Use Vacation Home')
 
             ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to use <strong>'

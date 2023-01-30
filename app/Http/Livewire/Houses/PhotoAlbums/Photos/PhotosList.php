@@ -63,7 +63,7 @@ class PhotosList extends Component
         $name = 'Photo';
         $isAction = 'Deleted';
         $createdHouseName = $this->user->house->HouseName;
-        $isModel = '';
+        $isModel = 'Photo';
 
         try {
 

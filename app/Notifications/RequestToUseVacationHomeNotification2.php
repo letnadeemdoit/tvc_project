@@ -55,6 +55,7 @@ class RequestToUseVacationHomeNotification2 extends Notification implements Shou
     {
         return (new MailMessage)
 
+            ->subject('Request To Use Vacation Home')
             ->greeting('Request to Use Vacation Home')
 
             ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to use <strong>'
