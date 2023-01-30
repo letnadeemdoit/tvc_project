@@ -34,7 +34,7 @@ class FoodItemList extends Component
     protected $listeners = [
 //        'destroyed-successfully' => '$refresh',
         'food-item-cu-successfully' => '$refresh',
-        'destroyed-successfully' => 'destroyedSuccessfully',
+        'destroyed-successfully' => 'destroyedSuccessfully'
     ];
 
     public function mount()

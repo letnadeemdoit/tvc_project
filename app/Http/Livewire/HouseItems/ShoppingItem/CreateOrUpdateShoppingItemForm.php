@@ -4,6 +4,9 @@ namespace App\Http\Livewire\HouseItems\ShoppingItem;
 
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\ShoppingItem;
+use App\Models\User;
+use App\Notifications\FoodItemsNotification;
+use App\Notifications\ShoppingItemsNotification;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -17,6 +20,8 @@ class CreateOrUpdateShoppingItemForm extends Component
     public $isShowingModal = false;
 
     public $state = [];
+
+    public $user;
 
     public $file;
 
@@ -82,6 +87,21 @@ class CreateOrUpdateShoppingItemForm extends Component
         ])->save();
 
         $this->shoppingItemList->updateFile($this->file);
+
+        try {
+            $items = $this->shoppingItemList;
+            $createdHouseName = auth()->user()->house->HouseName;
+            $isAction = $this->isCreating ? 'created' : 'updated';
+
+            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
+
+            foreach ($users as $user) {
+                $user->notify(new ShoppingItemsNotification($items, $isAction, $createdHouseName));
+            }
+
+        } catch (Exception $e) {
+
+        }
 
         $this->emitSelf('toggle', false);
 
