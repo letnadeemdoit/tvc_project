@@ -133,23 +133,23 @@
 
 <script>
 
-    if (window.matchMedia('(max-width: 576px)').matches) {
-
-        if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0)
-        {
-            $(document).ready(function (e) {
-                $(document).on('mousedown click ', '.month', function () {
-                    alert('Choose your DateTime')
-                });
-
-                $(document).on('mousedown click', '.calendar-time', function (e) {
-                    alert('Choose your DateTime')
-                });
-            });
-        }
-    } else {
-        //...
-    }
+//    if (window.matchMedia('(max-width: 576px)').matches) {
+//
+//        if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0)
+//        {
+//            $(document).ready(function (e) {
+//                $(document).on('mousedown click ', '.month', function () {
+//                    alert('Choose your DateTime')
+//                });
+//
+//                $(document).on('mousedown click', '.calendar-time', function (e) {
+//                    alert('Choose your DateTime')
+//                });
+//            });
+//        }
+//    } else {
+//        //...
+//    }
 
 
 </script>
