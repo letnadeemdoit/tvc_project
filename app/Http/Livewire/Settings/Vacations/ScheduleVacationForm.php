@@ -29,22 +29,103 @@ class ScheduleVacationForm extends Component
     public $state = [];
     public ?Vacation $vacation;
 
+    public $vacationListRoute = null;
+
     public $house = null;
     public $owner = null;
 
     public $isCreating = false;
 
-    protected $listeners = [
-        'showVacationScheduleModal',
-    ];
+//    protected $listeners = [
+//        'showVacationScheduleModal',
+//    ];
 
-    public function mount()
+    public function mount($vacationId = null, $initialDate = null, $owner = null, $house = null, $vacationListRoute = null)
     {
         $this->model = Vacation::class;
 
+        $this->vacationListRoute = $vacationListRoute;
+
         Cookie::queue('vbc', '#E8604C', 10000);
         Cookie::queue('vfc', '#ffffff', 10000);
+
+        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
+        $this->reset('state');
+
+        $this->house = $house;
+        $this->owner = $owner;
+
+        if ($this->vacation->VacationName && !$this->user->is_admin) {
+            if ($this->vacation->OwnerId !== $this->user->user_id) {
+//                $this->emit('showRequestToJoinVacationModal', true, $vacationId);
+            } elseif ($this->vacation->parent_id !== null) {
+                $this->vacation = Vacation::firstOrNew(['VacationID' => $this->vacation->parent_id]);
+            }
+        } elseif ($this->vacation->parent_id !== null) {
+            $this->vacation = Vacation::firstOrNew(['VacationID' => $this->vacation->parent_id]);
+        }
+
+//        $this->emitSelf('toggle', $toggle);
+
+        if ($this->vacation->VacationName) {
+            $this->isCreating = false;
+            $vacationRooms = [];
+
+            foreach ($this->vacation->rooms as $rooms) {
+                if (!isset($vacationRooms[$rooms->room_id])) {
+                    $vacationRooms[$rooms->room_id] = [];
+                }
+
+                $vacationRooms[$rooms->room_id][] = [
+                    'starts_at' => $rooms->starts_at->format('Y-m-d'),
+                    'ends_at' => $rooms->ends_at->format('Y-m-d'),
+                ];
+            }
+
+
+            $this->state = [
+                'vacation_name' => $this->vacation->VacationName,
+                'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
+                'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
+                'background_color' => $this->vacation->BackGrndColor,
+                'font_color' => $this->vacation->FontColor,
+                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y h:i'),
+                'recurrence' => $this->vacation->recurrence ?? 'once',
+                'repeat_interval' => $this->vacation->repeat_interval ?? 0,
+                'book_rooms' => $this->vacation->book_rooms,
+                'vacation_rooms' => $vacationRooms,
+                'rooms' => collect(array_unique($this->vacation->rooms->pluck('room_id')->toArray()))->map(function ($item) { return ['room_id' => $item]; }),
+
+            ];
+        } else {
+            $this->isCreating = true;
+            $this->state = [
+                'background_color' => Cookie::get('vbc', '#E8604C'),
+                'font_color' => Cookie::get('vfc', '#ffffff'),
+                'recurrence' => 'once',
+                'book_rooms' => 0,
+                'vacation_rooms' => [],
+            ];
+
+            if ($initialDate) {
+                try {
+                    $initialDatetime = Carbon::parse($initialDate);
+                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' . $initialDatetime->format('m/d/Y h:i');
+                } catch (\Exception $e) {
+
+                }
+            }
+        }
+
+        $this->dispatchBrowserEvent('schedule-vacation-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
+
     }
+
+//    public function hydrate(){
+//        return redirect()->route('dash.request-to-join-vacation');
+//    }
 
     public function showVacationScheduleModal($toggle, $vacationId = null, $initialDate = null, $owner = null, $house = null)
     {
@@ -56,8 +137,9 @@ class ScheduleVacationForm extends Component
 
         if ($this->vacation->VacationName && !$this->user->is_admin) {
             if ($this->vacation->OwnerId !== $this->user->user_id) {
-                $this->emit('showRequestToJoinVacationModal', true, $vacationId);
-                return;
+                return redirect()->route('dash.request-to-join-vacation' , ['vacationId' => $vacationId , 'initialDate' => null]);
+//                $this->emit('showRequestToJoinVacationModal', true, $vacationId);
+//                return;
             } elseif ($this->vacation->parent_id !== null) {
                 $this->vacation = Vacation::firstOrNew(['VacationID' => $this->vacation->parent_id]);
             }
@@ -65,7 +147,7 @@ class ScheduleVacationForm extends Component
             $this->vacation = Vacation::firstOrNew(['VacationID' => $this->vacation->parent_id]);
         }
 
-        $this->emitSelf('toggle', $toggle);
+//        $this->emitSelf('toggle', $toggle);
 
         if ($this->vacation->VacationName) {
             $this->isCreating = false;
@@ -444,8 +526,19 @@ class ScheduleVacationForm extends Component
 
         Cookie::queue('vbc', $this->state['background_color'], 10000);
         Cookie::queue('vfc', $this->state['font_color'], 10000);
-        $this->emitSelf('toggle', false);
-        $this->emit('vacation-schedule-successfully');
+//        $this->emitSelf('toggle', false);
+        if ($this->isCreating) {
+            if($this->vacationListRoute === 'vacationListRoute'){
+                return redirect()->route('dash.settings.vacations')->with('successMessage', 'Your vacation has been scheduled successfully.');   ;
+            }
+            else{
+                return redirect()->route('dash.calendar')->with('successMessage', 'Your vacation has been scheduled successfully.');   ;
+            }
+        }
+        else{
+            return redirect()->route('dash.calendar')->with('successMessage', 'Scheduled vacation has been updated successfully.');   ;
+        }
+//        $this->emit('vacation-schedule-successfully');
     }
 
 

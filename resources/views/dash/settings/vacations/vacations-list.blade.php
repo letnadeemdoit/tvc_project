@@ -125,8 +125,9 @@
                         <td class="text-capitalize">{{ $dt->recurrence ?: 'none' }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
-                                <a class="btn btn-white" href="#"
-                                   wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"
+                                <a class="btn btn-white"
+                                   href="{{ route('dash.schedule-vacation', ['vacationId' => $dt->VacationId, 'initialDate' => null, 'owner' => null, 'vacationListRoute' => 'vacationListRoute']) }}"
+{{--                                   wire:click.prevent="$emit('showVacationScheduleModal', true, {{$dt->VacationId}})"--}}
                                 >
                                     <i class="bi-pencil me-1 text-success"></i> Edit
                                 </a>

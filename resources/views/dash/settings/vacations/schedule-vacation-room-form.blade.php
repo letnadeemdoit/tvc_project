@@ -1,16 +1,16 @@
-<x-modals.bs-modal
+<div
     id="scheduleRoomVacation"
 >
     <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header mb-2">
             <h5 class="modal-title">{{ $vacationRoom && $vacationRoom->id ? "Update" : 'Add' }} Vacation Room</h5>
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                @click.click="hide()"
-            ></button>
+{{--            <button--}}
+{{--                type="button"--}}
+{{--                class="btn-close"--}}
+{{--                data-bs-dismiss="modal"--}}
+{{--                aria-label="Close"--}}
+{{--                @click.click="hide()"--}}
+{{--            ></button>--}}
         </div>
         <form
             wire:submit.prevent="saveVacationRoomSchedule"
@@ -119,4 +119,4 @@
             });
         </script>
     @endpush
-</x-modals.bs-modal>
+</div>

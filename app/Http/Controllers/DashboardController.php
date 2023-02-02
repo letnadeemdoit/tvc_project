@@ -8,6 +8,7 @@ use App\Models\GuestBook;
 use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
+use App\Models\Vacation;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -18,11 +19,61 @@ use phpDocumentor\Reflection\Utils;
 class DashboardController extends Controller
 {
 
+    public ?Vacation $vacation;
+
     public function index()
     {
         $users = User::paginate(20);
         return view('dash.index', compact('users'));
 
+    }
+
+    public function scheduleVacation(Request $request){
+        $vacationId = $request->query('vacationId');
+        $initialDate = $request->query('initialDate');
+        $owner = $request->query('owner');
+        $vacationListRoute = $request->query('vacationListRoute');
+        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
+        if ($this->vacation->VacationName && !$request->user()->is_admin) {
+            if ($this->vacation->OwnerId !== $request->user()->user_id) {
+                return redirect()->route('dash.request-to-join-vacation', ['vacationId' => $vacationId, 'initialDate' => null]);
+            }
+        }
+        return view('dash.settings.vacations.schedule-vacation.schedule-vacation', [
+            'vacationId' => $vacationId,
+            'initialDate' => $initialDate,
+            'owner' => $owner,
+            'vacationListRoute' => $vacationListRoute,
+            'user' => $request->user(),
+        ]);
+    }
+
+    public function scheduleVacationRoom(Request $request){
+        $roomId = $request->query('roomId');
+        $vacationRoomId = $request->query('vacationRoomId');
+        $initialDate = $request->query('initialDate');
+        $owner = $request->query('owner');
+        return view('dash.settings.vacations.schedule-vacation.schedule-vacation-room', [
+            'roomId' => $roomId,
+            'vacationRoomId' => $vacationRoomId,
+            'initialDate' => $initialDate,
+            'owner' => $owner,
+            'user' => $request->user(),
+        ]);
+    }
+    public function requestToJoinVacation(Request $request){
+        $vacationId = $request->query('vacationId');
+        $initialDate = $request->query('initialDate');
+//        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
+//
+//        if ($request->user()->is_guest && (is_null($this->vacation)) || !is_null($this->vacation) && !$this->vacation->VacationId) {
+//            return redirect()->route('guest.guest-request-to-join-vacation', ['vacationId' => $vacationId, 'initialDate' => null]);
+//        }
+        return view('dash.settings.vacations.schedule-vacation.request-to-join-vacation', [
+            'vacationId' => $vacationId,
+            'initialDate' => $initialDate,
+            'user' => $request->user(),
+        ]);
     }
 
     public function calendar(Request $request)

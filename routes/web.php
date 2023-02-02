@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::controller(GuestController::class)
     ->name('guest.')
     ->group(function () {
@@ -41,8 +42,9 @@ Route::controller(GuestController::class)
 
         Route::middleware(['auth'])->group(function () {
             Route::get('/guest-calendar', 'calendar')->name('guest-calendar');
+            Route::get('/guest-request-to-join-vacation', 'requestToJoinVacation')->name('guest-request-to-join-vacation');
             Route::get('/search-house', 'searchHouse')->name('search-house');
-            Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
+//            Route::get('/bulletin/{HouseId}', [Cards::class, 'cardItem'])->name('card');
             Route::get('/local-guide', 'localGuide')->name('local-guide');
             Route::get('/single-album', 'singleAlbum')->name('single-album');
             Route::get('/album-photo', 'photoGalleryView')->name('album-photo');
@@ -123,6 +125,9 @@ Route::middleware([
     ->name('dash.')
     ->group(function () {
 //        Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+        Route::get('/schedule-vacation', [DashboardController::class, 'scheduleVacation'])->name('schedule-vacation');
+        Route::get('/schedule-vacation-room', [DashboardController::class, 'scheduleVacationRoom'])->name('schedule-vacation-room');
+        Route::get('/request-to-join-vacation', [DashboardController::class, 'requestToJoinVacation'])->name('request-to-join-vacation');
         Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
         Route::resource('users', UserController::class);
         Route::get('/blogs', [DashboardController::class, 'blogs'])->name('blogs');

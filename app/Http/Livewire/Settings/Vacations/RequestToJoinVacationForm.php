@@ -43,8 +43,39 @@ class RequestToJoinVacationForm extends Component
     ];
 
     protected $listeners = [
-        'showRequestToJoinVacationModal'
+//        'showRequestToJoinVacationModal'
     ];
+
+    public function mount($vacationId, $initialDate = null) {
+//        $this->emitSelf('toggle', $toggle);
+        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
+        $this->reset('state');
+
+        if ($this->vacation->VacationId) {
+            $this->state = [
+                'vacation_name' => $this->vacation->VacationName,
+                'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
+                'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
+                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y h:i')
+            ];
+        } else {
+            $this->state = [];
+
+            if ($initialDate) {
+                try {
+                    $initialDatetime = Carbon::parse($initialDate);
+                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' . $initialDatetime->format('m/d/Y h:i');
+                } catch (\Exception $e) {
+
+                }
+            }
+        }
+
+        $this->dispatchBrowserEvent('rtjv-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
+
+    }
 
     public function showRequestToJoinVacationModal($toggle, $vacationId, $initialDate = null)
     {
@@ -173,12 +204,24 @@ class RequestToJoinVacationForm extends Component
             }
         }
 
-        $this->emitSelf('toggle', false);
-        if (!$this->vacation->VacationId) {
-            $this->success('Your request to use vacation home has been submitted successful.');
-        }else{
-            $this->success('Your request to join vacation has been submitted successful.');
+        if ($this->user->is_guest){
+            if (!$this->vacation->VacationId) {
+                return redirect()->route('guest.guest-calendar')->with('successMessage', 'Your request to use vacation home has been submitted successful.');
+            }
+            else{
+                return redirect()->route('guest.guest-calendar')->with('successMessage', 'Your request to join vacation has been submitted successful.');
+            }
         }
+        else{
+            return redirect()->route('dash.calendar')->with('successMessage', 'Your request to join vacation has been submitted successful.');
+        }
+
+//        $this->emitSelf('toggle', false);
+//        if (!$this->vacation->VacationId) {
+//            $this->success('Your request to use vacation home has been submitted successful.');
+//        }else{
+//            $this->success('Your request to join vacation has been submitted successful.');
+//        }
     }
 
     public function render()

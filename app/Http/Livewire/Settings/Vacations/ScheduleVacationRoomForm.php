@@ -37,17 +37,18 @@ class ScheduleVacationRoomForm extends Component
     ];
 
     protected $listeners = [
-        'showVacationRoomScheduleModal',
+//        'showVacationRoomScheduleModal',
         'setVacationId' => 'setVacationId',
 //        'vacation-schedule-successfully' => 'destroyedSuccessfully',
     ];
 
     public function setVacationId($VacationId)
     {
+        dd($VacationId);
         $this->vacationId = $VacationId;
     }
 
-    public function showVacationRoomScheduleModal($toggle, $roomId, $vacationRoomId = null, $initialDate = null, $owner = null, $house = null)
+    public function showVacationRoomScheduleModal($roomId, $vacationRoomId = null, $initialDate = null, $owner = null, $house = null)
     {
 
         $this->room = Room::where('RoomID', $roomId)->first();
@@ -78,7 +79,7 @@ class ScheduleVacationRoomForm extends Component
             $this->vacationRoom = Vacation::firstOrNew(['VacationID' => $this->vacationRoom->parent_id]);
         }
 
-        $this->emitSelf('toggle', $toggle);
+//        $this->emitSelf('toggle', $toggle);
 
         if ($this->vacationRoom->id) {
             $this->isCreating = false;
@@ -184,8 +185,14 @@ class ScheduleVacationRoomForm extends Component
             'ends_at' => $endDatetime,
         ])->save();
 
-        $this->emitSelf('toggle', false);
-        $this->emit('vacation-schedule-successfully');
+        if($this->isCreating) {
+            return redirect()->route('dash.calendar')->with('successMessage', 'Your vacation room has been scheduled successfully.');
+        }
+        else{
+            return redirect()->route('dash.calendar')->with('successMessage', 'Scheduled vacation room has been updated successfully.');
+        }
+//        $this->emitSelf('toggle', false);
+//        $this->emit('vacation-schedule-successfully');
     }
 
 
@@ -196,9 +203,72 @@ class ScheduleVacationRoomForm extends Component
     }
 
 
-    public function mount()
+    public function mount($roomId, $vacationRoomId = null, $initialDate = null, $owner = null, $house = null)
     {
         $this->model = VacationRoom::class;
+        $this->room = Room::where('RoomID', $roomId)->first();
+
+        $this->vacationRoom = VacationRoom::firstOrNew(['id' => $vacationRoomId]);
+        $this->reset('state');
+
+        $this->house = $house;
+        $this->owner = $owner;
+
+        $this->roomId = $this->vacationRoom['room_id'];
+
+        $this->vacationRoomId = $vacationRoomId;
+
+//        if ($this->vacationRoom->OwnerId !== $this->user->user_id) {
+//            $this->emit('showRequestToJoinVacationModal', true, $this->vacationRoom->vacation_id);
+//            return;
+//        }
+
+        if ($this->vacationRoom->VacationName && !$this->user->is_admin) {
+            if ($this->vacation->OwnerId !== $this->user->user_id) {
+                $this->emit('showRequestToJoinVacationModal', true, $this->vacation_id);
+                return;
+            } elseif ($this->vacationRoom->parent_id !== null) {
+                $this->vacation = Vacation::firstOrNew(['VacationID' => $this->vacationRoom->parent_id]);
+            }
+        } elseif ($this->vacationRoom->parent_id !== null) {
+            $this->vacationRoom = Vacation::firstOrNew(['VacationID' => $this->vacationRoom->parent_id]);
+        }
+
+//        $this->emitSelf('toggle', $toggle);
+
+        if ($this->vacationRoom->id) {
+            $this->isCreating = false;
+            $this->state = [
+                'vacation_id' => $this->vacationRoom->vacation_id,
+                'room_id' => $this->vacationRoom->room_id,
+                'start_date' => $this->vacationRoom->starts_at->format('m/d/Y h:i'),
+                'end_date' => $this->vacationRoom->ends_at->format('m/d/Y h:i'),
+                'start_end_datetime' => $this->vacationRoom->starts_at->format('m/d/Y h:i') . ' - ' . $this->vacationRoom->ends_at->format('m/d/Y h:i'),
+            ];
+
+        } else {
+            $this->isCreating = true;
+            $this->state = [
+                'vacation_id' => $this->vacationId,
+                'room_id' => $roomId,
+                'book_rooms' => 0,
+                'vacation_rooms' => [],
+            ];
+
+            if ($initialDate) {
+                try {
+                    $initialDatetime = Carbon::parse($initialDate);
+                    $this->state['start_date'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['end_date'] = $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' . $initialDatetime->format('m/d/Y h:i');
+                } catch (\Exception $e) {
+
+                }
+            }
+        }
+
+//        $this->dispatchBrowserEvent('schedule-vacation-room-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
+
     }
 
 //    public function destroyedSuccessfully($data)

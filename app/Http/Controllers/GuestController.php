@@ -7,6 +7,7 @@ use App\Models\GuestBook;
 use App\Models\ICal;
 use App\Models\Photo\Album;
 use App\Models\Subscription;
+use App\Models\Vacation;
 use App\Notifications\ContactUsMailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -17,6 +18,7 @@ use Srmklive\PayPal\Facades\PayPal;
 
 class GuestController extends Controller
 {
+
     /**
      * Welcome
      * @return mixed
@@ -122,6 +124,17 @@ class GuestController extends Controller
         return view('calendar',[
             'user' => $request->user(),
             'iCalUrl' => $request->user()->iCalUrl(),
+        ]);
+    }
+
+    public function requestToJoinVacation(Request $request)
+    {
+        $vacationId = $request->query('vacationId');
+        $initialDate = $request->query('initialDate');
+        return view('request-to-join-vacation', [
+            'vacationId' => $vacationId,
+            'initialDate' => $initialDate,
+            'user' => $request->user(),
         ]);
     }
 

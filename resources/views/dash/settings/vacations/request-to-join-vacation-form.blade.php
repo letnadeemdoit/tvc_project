@@ -1,7 +1,7 @@
-<x-modals.bs-modal id="requestToJoinVacation">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">
+<div id="requestToJoinVacation">
+    <div class="container pt-5 col-12 col-md-8">
+        <div class="modal-header mb-2">
+            <h5 class="modal-title pb-3">
                 @if($user->is_guest && (is_null($vacation) || !is_null($vacation) && !$vacation->VacationId))
                     Request to use the House
                 @else
@@ -9,13 +9,13 @@
                     <small class="d-block">To request to join this vacation, provide your name, email, the dates you want to come and click "Request to Join"</small>
                 @endif
             </h5>
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                @click.click="hide()"
-            ></button>
+{{--            <button--}}
+{{--                type="button"--}}
+{{--                class="btn-close"--}}
+{{--                data-bs-dismiss="modal"--}}
+{{--                aria-label="Close"--}}
+{{--                @click.click="hide()"--}}
+{{--            ></button>--}}
         </div>
         <form
             wire:submit.prevent="sendRequestToJoinVacation"
@@ -177,4 +177,4 @@
             });
         </script>
     @endpush
-</x-modals.bs-modal>
+</div>
