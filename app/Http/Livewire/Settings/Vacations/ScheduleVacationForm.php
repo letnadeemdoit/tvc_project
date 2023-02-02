@@ -536,7 +536,12 @@ class ScheduleVacationForm extends Component
             }
         }
         else{
-            return redirect()->route('dash.calendar')->with('successMessage', 'Scheduled vacation has been updated successfully.');   ;
+            if($this->vacationListRoute === 'vacationListRoute'){
+                return redirect()->route('dash.settings.vacations')->with('successMessage', 'Your vacation has been scheduled successfully.');   ;
+            }
+            else{
+                return redirect()->route('dash.calendar')->with('successMessage', 'Scheduled vacation has been updated successfully.');   ;
+            }
         }
 //        $this->emit('vacation-schedule-successfully');
     }
