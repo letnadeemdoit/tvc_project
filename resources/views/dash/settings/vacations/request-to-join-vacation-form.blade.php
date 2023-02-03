@@ -174,6 +174,20 @@
 
                     $('#rtjv_start_end_datetime').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
                 });
+
+                $('#rtjv_start_end_datetime').click(function () {
+                    if ($(window).innerWidth() <= 567) {
+                        $('.daterangepicker').css('display', 'flex');
+                        $('.daterangepicker').css('overflow', 'scroll');
+                        $('.daterangepicker').css('max-width', '500px');
+                        $('.drp-buttons').css('display', 'flex');
+                        $('.drp-buttons').css('justify-content', 'space-between');
+                        $('.drp-buttons').css('margin', 'auto');
+                        $('.drp-buttons').css('height', '50px');
+                    }
+                });
+
+
             });
         </script>
     @endpush

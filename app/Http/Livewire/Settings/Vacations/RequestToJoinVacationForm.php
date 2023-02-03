@@ -54,9 +54,9 @@ class RequestToJoinVacationForm extends Component
         if ($this->vacation->VacationId) {
             $this->state = [
                 'vacation_name' => $this->vacation->VacationName,
-                'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
-                'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
-                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y h:i')
+                'start_datetime' => $this->vacation->start_datetime->format('m/d/Y H:i'),
+                'end_datetime' => $this->vacation->end_datetime->format('m/d/Y H:i'),
+                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y H:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y H:i')
             ];
         } else {
             $this->state = [];
@@ -64,16 +64,16 @@ class RequestToJoinVacationForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
-                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
-                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
-                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' . $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y H:i');
+                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y H:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
                 } catch (\Exception $e) {
 
                 }
             }
         }
 
-        $this->dispatchBrowserEvent('rtjv-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
+        $this->dispatchBrowserEvent('rtjv-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y H:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y H:i')]);
 
     }
 

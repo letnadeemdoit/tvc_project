@@ -119,7 +119,7 @@ class ScheduleVacationRoomForm extends Component
     {
         $selectedVacation = Vacation::where('VacationId', $this->state['vacation_id'] ?? '')->first();
 
-        $this->dispatchBrowserEvent('on-vacation-room-change', ['startsAt' => $selectedVacation->startDatetime->format('m/d/Y h:i'), 'endsAt' => $selectedVacation->endDatetime->format('m/d/Y h:i')]);
+        $this->dispatchBrowserEvent('on-vacation-room-change', ['startsAt' => $selectedVacation->startDatetime->format('m/d/Y H:i'), 'endsAt' => $selectedVacation->endDatetime->format('m/d/Y H:i')]);
     }
 
     public function saveVacationRoomSchedule()
@@ -241,9 +241,9 @@ class ScheduleVacationRoomForm extends Component
             $this->state = [
                 'vacation_id' => $this->vacationRoom->vacation_id,
                 'room_id' => $this->vacationRoom->room_id,
-                'start_date' => $this->vacationRoom->starts_at->format('m/d/Y h:i'),
-                'end_date' => $this->vacationRoom->ends_at->format('m/d/Y h:i'),
-                'start_end_datetime' => $this->vacationRoom->starts_at->format('m/d/Y h:i') . ' - ' . $this->vacationRoom->ends_at->format('m/d/Y h:i'),
+                'start_date' => $this->vacationRoom->starts_at->format('m/d/Y H:i'),
+                'end_date' => $this->vacationRoom->ends_at->format('m/d/Y H:i'),
+                'start_end_datetime' => $this->vacationRoom->starts_at->format('m/d/Y H:i') . ' - ' . $this->vacationRoom->ends_at->format('m/d/Y H:i'),
             ];
 
         } else {
@@ -258,9 +258,9 @@ class ScheduleVacationRoomForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
-                    $this->state['start_date'] = $initialDatetime->format('m/d/Y h:i');
-                    $this->state['end_date'] = $initialDatetime->format('m/d/Y h:i');
-                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' . $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_date'] = $initialDatetime->format('m/d/Y H:i');
+                    $this->state['end_date'] = $initialDatetime->format('m/d/Y H:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
                 } catch (\Exception $e) {
 
                 }

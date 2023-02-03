@@ -82,14 +82,15 @@ class ScheduleVacationForm extends Component
                 ];
             }
 
+//            dd($this->vacation->start_datetime . ' ' . $this->vacation->end_datetime);
 
             $this->state = [
                 'vacation_name' => $this->vacation->VacationName,
-                'start_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i'),
-                'end_datetime' => $this->vacation->end_datetime->format('m/d/Y h:i'),
+                'start_datetime' => $this->vacation->start_datetime->format('m/d/Y H:i'),
+                'end_datetime' => $this->vacation->end_datetime->format('m/d/Y H:i'),
                 'background_color' => $this->vacation->BackGrndColor,
                 'font_color' => $this->vacation->FontColor,
-                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y h:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y h:i'),
+                'start_end_datetime' => $this->vacation->start_datetime->format('m/d/Y H:i') . ' - ' . $this->vacation->end_datetime->format('m/d/Y H:i'),
                 'recurrence' => $this->vacation->recurrence ?? 'once',
                 'repeat_interval' => $this->vacation->repeat_interval ?? 0,
                 'book_rooms' => $this->vacation->book_rooms,
@@ -110,16 +111,16 @@ class ScheduleVacationForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
-                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y h:i');
-                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y h:i');
-                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y h:i') . ' - ' . $initialDatetime->format('m/d/Y h:i');
+                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y H:i');
+                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y H:i');
+                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
                 } catch (\Exception $e) {
 
                 }
             }
         }
 
-        $this->dispatchBrowserEvent('schedule-vacation-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y h:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y h:i')]);
+        $this->dispatchBrowserEvent('schedule-vacation-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y ::i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y H:i')]);
 
     }
 
@@ -241,6 +242,7 @@ class ScheduleVacationForm extends Component
 
         $startDatetime = Carbon::parse($this->state['start_datetime']);
         $endDatetime = Carbon::parse($this->state['end_datetime']);
+
 
         $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
