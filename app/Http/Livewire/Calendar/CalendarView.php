@@ -133,7 +133,7 @@ class CalendarView extends Component
     public function renderCalendar()
     {
         $this->emit('rerender-calendar', $this->events, $this->resourceTimeline);
-        $this->emit('vacation-schedule-successfully');
+//        $this->emit('vacation-schedule-successfully');
     }
 
     public function getOwnersProperty()

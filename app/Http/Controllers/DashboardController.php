@@ -9,11 +9,13 @@ use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
 use App\Models\Vacation;
+use App\Notifications\DeleteNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use phpDocumentor\Reflection\Utils;
 
 class DashboardController extends Controller
@@ -81,8 +83,40 @@ class DashboardController extends Controller
         if (\auth()->user()->is_guest){
             return redirect(route('guest.guest-calendar'));
         }
-
         abort_if(!is_any_subscribed(), 403);
+        if ($request->query('VacationName') && $request->query('VacationId'))
+        {
+            Vacation::where('parent_id', $request->query('VacationId'))->delete();
+            Vacation::where('parent_id', $request->query('VacationId'))->delete();
+
+            $name = $request->query('VacationName');
+            try {
+                $user = Auth::user();
+                $createdHouseName = $user->house->HouseName;
+                $isAction = 'Deleted';
+                $isModal = 'Vacation';
+
+                if (!is_null($user->house->CalEmailList) && !empty($user->house->CalEmailList)) {
+                    $CalEmailList = explode(',', $user->house->CalEmailList);
+                    if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+                        $users = User::whereIn('email', $CalEmailList)->where('HouseId', $user->HouseId)->get();
+
+                        foreach ($users as $user) {
+                            $user->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                        }
+                        $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+                        if (count($CalEmailList) > 0) {
+                            Notification::route('mail', $CalEmailList)
+                                ->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                        }
+                    }
+                }
+                return redirect()->route('dash.calendar')->with('successMessage', 'Your vacation has been deleted successfully.');
+                $this->vacation = null;
+            } catch (Exception $e) {
+
+            }
+        }
         return view('dash.calendar.index', [
             'user' => $request->user(),
             'iCalUrl' => $request->user()->iCalUrl(),

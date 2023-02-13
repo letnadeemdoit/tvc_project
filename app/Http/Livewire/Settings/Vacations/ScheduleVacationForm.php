@@ -24,6 +24,7 @@ use Livewire\Component;
 
 class ScheduleVacationForm extends Component
 {
+    use Destroyable;
     public $user;
 
     public $state = [];
@@ -35,10 +36,13 @@ class ScheduleVacationForm extends Component
     public $owner = null;
 
     public $isCreating = false;
-
-//    protected $listeners = [
-//        'showVacationScheduleModal',
-//    ];
+    protected $destroyableConfirmationContent = [
+        'title' => '',
+        'description' => ''
+    ];
+    protected $listeners = [
+        'vacation-deleted-successfully' => 'destroyedSuccessfully'
+    ];
 
     public function mount($vacationId = null, $initialDate = null, $owner = null, $house = null, $vacationListRoute = null)
     {
@@ -599,12 +603,56 @@ class ScheduleVacationForm extends Component
         if (!$endDate->exists) $endDate->save();
         if (!$endTime->exists) $endTime->save();
     }
+    public function destroyedSuccessfully($data)
+    {
+        Vacation::where('parent_id', $data['VacationId'])->delete();
+        Vacation::where('parent_id', $data['VacationId'])->delete();
+
+        $name = $data['VacationName'];
+        try {
+            $createdHouseName = $this->user->house->HouseName;
+            $isAction = 'Deleted';
+            $isModal = 'Vacation';
+
+            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
+
+                $CalEmailList = explode(',', $this->user->house->CalEmailList);
+
+                if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                    }
+
+                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+
+                    if (count($CalEmailList) > 0) {
+
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+
+                    }
+                }
+            }
+            return redirect()->route('dash.calendar')->with('successMessage', 'Your vacation has been deleted successfully.');
+            $this->vacation = null;
+        } catch (Exception $e) {
+
+        }
+    }
 
     public function deleteVacation()
     {
-        $this->emitSelf('toggle', false);
-        $this->emit('destroy-vacation', $this->vacation->parent_id ?: $this->vacation->VacationId);
-
-        $this->vacation = null;
+        if ($this->model) {
+            $deletableModel = app($this->model)->findOrFail($this->vacation->parent_id ?: $this->vacation->VacationId);
+            $this->emit(
+                'destroyable-confirmation-modal',
+                $this->model,
+                $this->vacation->parent_id ?: $this->vacation->VacationId,
+                $this->destroyableConfirmationContent,
+            );
+        }
     }
 }

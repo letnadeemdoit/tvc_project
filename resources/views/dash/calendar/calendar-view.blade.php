@@ -237,14 +237,24 @@
                             url = url.replace('__roomId__', info.resource._resource.id);
                             url = url.replace('__vacationRoomId__', null);
                             url = url.replace('__initialDate__', info.dateStr);
-                            url = url.replace('__owner__', parsed.owner);
+                            if (parsed.owner){
+                                url = url.replace('__owner__', parsed.owner);
+                            }
+                            else {
+                                url = url.replace('__owner__', '');
+                            }
                             location.href = url;
                             // window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
                         } else {
                             var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
                             url = url.replace('__vacationId__', null);
                             url = url.replace('__initialDate__', info.dateStr);
-                            url = url.replace('__owner__', parsed.owner);
+                            if (parsed.owner){
+                                url = url.replace('__owner__', parsed.owner);
+                            }
+                            else {
+                                url = url.replace('__owner__', '');
+                            }
                             location.href = url;
                             // window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr, parsed.owner);
                         }
@@ -397,16 +407,19 @@
                     calendar.getEventSources().map(es => {
                         es.remove();
                     });
+
                     window.calendar.addEventSource(events);
 
                     calendar.getResources().map(r => {
                         r.remove();
                     });
+
                     resourceTimeline.map(r => {
                         window.calendar.addResource(r);
                     })
                     // window.calendar.setResources(resourceTimeline);
                     window.calendar.render();
+
                 });
 
                 window.livewire.on('vacation-deleted-successfully', function () {

@@ -347,7 +347,8 @@
                 $('#schedule_start_end_datetime').daterangepicker({
                     timePicker: true,
                     timePickerIncrement: 60,
-                    showDropdowns: true,
+                    showDropdowns: false,
+                    // autoApply: true,
                     minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
                     maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
                     // minDate: moment().format('MM/DD/YYYY'),
@@ -383,17 +384,17 @@
                     $('.room-dates').attr('max', moment(e.detail.startDatetime, 'DD/MM/YYYY').format('YYYY-MM-DD'));
                 });
 
-                $('#schedule_start_end_datetime').click(function () {
-                    if ($(window).innerWidth() <= 567) {
-                        $('.daterangepicker').css('display', 'flex');
-                        $('.daterangepicker').css('overflow', 'scroll');
-                        $('.daterangepicker').css('max-width', '500px');
-                        $('.drp-buttons').css('display', 'flex');
-                        $('.drp-buttons').css('justify-content', 'space-between');
-                        $('.drp-buttons').css('margin', 'auto');
-                        $('.drp-buttons').css('height', '50px');
-                    }
-                });
+                // $('#schedule_start_end_datetime').click(function () {
+                //     if ($(window).innerWidth() <= 567) {
+                //         $('.daterangepicker').css('display', 'flex');
+                //         $('.daterangepicker').css('overflow', 'scroll');
+                //         $('.daterangepicker').css('max-width', '500px');
+                //         $('.drp-buttons').css('display', 'flex');
+                //         $('.drp-buttons').css('justify-content', 'space-between');
+                //         $('.drp-buttons').css('margin', 'auto');
+                //         $('.drp-buttons').css('height', '50px');
+                //     }
+                // });
 
 
             });

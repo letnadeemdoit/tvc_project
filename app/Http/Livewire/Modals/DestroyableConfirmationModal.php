@@ -46,6 +46,7 @@ class DestroyableConfirmationModal extends Component
         $this->model = app($model);
         $this->emitSelf('toggle', false);
         $this->emit($this->targetListener, $data);
+        $this->dispatchBrowserEvent($this->targetListener, $data);
         $this->success('Deleted successfully.');
     }
 }
