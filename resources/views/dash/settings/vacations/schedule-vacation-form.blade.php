@@ -321,32 +321,55 @@
 {{--                    </div>--}}
 {{--                @endif--}}
             @endif
-            <div class="d-flex">
+            <div class="row ">
                 @if($user->is_owner && $vacation && $vacation->VacationId)
-                    <a
-                        href="#!"
-                        class="btn btn-danger px-5"
-                        wire:click.prevent="deleteVacation"
-                    >
-                        <i class="bi-trash me-2"></i> Delete
-                    </a>
-                @endif
+                    <div class="col-12 col-sm-4 col-md-6">
+                        <a
+                            href="#!"
+                            class="btn btn-danger px-5 d-block d-sm-inline-block"
+                            wire:click.prevent="deleteVacation"
+                        >
+                            <i class="bi-trash me-2 d-none d-sm-inline-block"></i> Delete
+                        </a>
+                    </div>
 
-                <button
-                    type="submit"
-                    class="btn btn-primary ms-auto"
-                >
-                    {{ $vacation && $vacation->VacationName ? "Update" : 'Add' }} Vacation
-                </button>
+                @endif
+                <div class=" mt-2 mt-sm-0 col-12 col-sm-8 col-md-6 d-block d-sm-flex  justify-content-sm-end">
+                    <div class="d-block d-sm-inline-block">
+                        <button
+                            href="#!"
+                            class="btn btn-secondary ms-sm-auto w-100 w-sm-auto"
+                            wire:click.prevent="cancelVacation"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+
+
+                    <div class="mt-2 mt-sm-0">
+                        <button
+                            type="submit"
+                            class="btn btn-primary ms-sm-2 w-100 w-sm-auto"
+                        >
+                            {{ $vacation && $vacation->VacationName ? "Update" : 'Add' }} Vacation
+                        </button>
+                    </div>
+
+
+
+                </div>
+
             </div>
         </form>
     </div>
     @push('scripts')
         <script>
             $(function () {
+                var datePicker;
                 $('#schedule_start_end_datetime').daterangepicker({
                     timePicker: true,
                     timePickerIncrement: 60,
+                    validateOnBlur: false,
                     showDropdowns: false,
                     // autoApply: true,
                     minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
@@ -360,8 +383,23 @@
                         format: 'MM/DD/YYYY HH:mm'
                     }
                 });
+                $('#schedule_start_end_datetime').on('change.daterangepicker', function (ev) {
+                    var currentValue = $('#schedule_start_end_datetime').val();
+                    var dateTime = currentValue.split('-');
+                @this.
+                set('state.start_datetime', dateTime[0]);
+                @this.
+                set('state.end_datetime', dateTime[1]);
+                @this.
+                set('state.start_end_datetime', dateTime[0] + ' - ' + dateTime[1]);
+
+                    // $('.room-dates').attr('min', picker.startDate.format('YYYY-MM-DD'));
+                    // $('.room-dates').attr('max', picker.endDate.format('YYYY-MM-DD'));
+                });
 
                 $('#schedule_start_end_datetime').on('apply.daterangepicker', function (ev, picker) {
+                    datePicker = picker;
+                    console.log(datePicker);
                     @this.
                     set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'));
                     @this.
@@ -374,7 +412,7 @@
                 });
 
                 window.addEventListener('schedule-vacation-daterangepicker-update', function (e) {
-                    console.log(e.detail);
+                    console.log('nadeem');
                     $('#schedule_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
                     $('#schedule_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
 
@@ -383,6 +421,16 @@
                     $('.room-dates').attr('min', moment(e.detail.startDatetime, 'DD/MM/YYYY').format('YYYY-MM-DD'));
                     $('.room-dates').attr('max', moment(e.detail.startDatetime, 'DD/MM/YYYY').format('YYYY-MM-DD'));
                 });
+
+                // $(document).mouseup(function(e)
+                // {
+                //     console.log('Nadeem');
+                //     let container = $('#schedule_start_end_datetime');
+                //     if (!container.is(e.target) && container.has(e.target).length === 0)
+                //     {
+                //         $('.daterangepicker').hide();
+                //     }
+                // });
 
                 // $('#schedule_start_end_datetime').click(function () {
                 //     if ($(window).innerWidth() <= 567) {

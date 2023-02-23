@@ -8,6 +8,7 @@ use App\Models\Guest;
 use App\Models\GuestBook;
 use App\Models\User;
 use App\Notifications\DeleteNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -68,7 +69,7 @@ class GuestBookList extends Component
 
     public function destroyedSuccessfully($data)
     {
-        $this->emitSelf('food-item-cu-successfully');
+        $this->emitSelf('guest-book-cu-successfully');
 
         $name = $data['name'];
         $isAction = 'Deleted';
@@ -76,36 +77,33 @@ class GuestBookList extends Component
         $isModel = 'Guest Book';
 
         try {
-
-            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
-
-            foreach ($users as $user) {
-                $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-            }
-//            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
+//            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
 //
-//                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
-//
-//                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-//
-////                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
-//                    $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
-//                    foreach ($users as $user) {
-//                        $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-//                    }
-//
-////                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-//                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
-//
-//                    if (count($request_to_use_house_email_list) > 0) {
-//
-//                        Notification::route('mail', $request_to_use_house_email_list)
-//                            ->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-//
-//                    }
-//                }
-//
+//            foreach ($users as $user) {
+//                $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
 //            }
+            if (!is_null($this->user->house->guest_book_email_list) && !empty($this->user->house->guest_book_email_list)) {
+
+                $guestBookEmailsList = explode(',', $this->user->house->guest_book_email_list);
+
+                if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
+
+                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                    }
+
+                    $guestBookEmailsList = array_diff($guestBookEmailsList, $users->pluck('email')->toArray());
+
+                    if (count($guestBookEmailsList) > 0) {
+
+                        Notification::route('mail', $guestBookEmailsList)
+                            ->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+
+                    }
+                }
+            }
         } catch (Exception $e) {
 
         }

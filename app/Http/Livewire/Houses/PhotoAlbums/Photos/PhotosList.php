@@ -66,36 +66,34 @@ class PhotosList extends Component
         $isModel = 'Photo';
 
         try {
-            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
-
-            foreach ($users as $user) {
-                $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-            }
-
-//            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
+//            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
 //
-//                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
-//
-//                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-//
-////                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
-//                    $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
-//                    foreach ($users as $user) {
-//                        $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-//                    }
-//
-////                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-//                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
-//
-//                    if (count($request_to_use_house_email_list) > 0) {
-//
-//                        Notification::route('mail', $request_to_use_house_email_list)
-//                            ->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-//
-//                    }
-//                }
-//
+//            foreach ($users as $user) {
+//                $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
 //            }
+
+            if (!is_null($this->user->house->photo_email_list) && !empty($this->user->house->photo_email_list)) {
+
+                $photoEmailsList = explode(',', $this->user->house->photo_email_list);
+
+                if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
+
+                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                    }
+
+                    $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
+
+                    if (count($photoEmailsList) > 0) {
+
+                        Notification::route('mail', $photoEmailsList)
+                            ->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+
+                    }
+                }
+            }
         } catch (Exception $e) {
 
         }

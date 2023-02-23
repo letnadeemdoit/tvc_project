@@ -39,9 +39,10 @@ class CheckPrimaryUserHasSubscribedAnyPlan
                 'role' => 'Administrator',
             ])->first();
 
-            if (!auth()->user()->is_admin && $Is_Subscription) {
+            if (!auth()->user()->is_admin && $Is_Subscription || !auth()->user()->is_admin && !$Is_Subscription) {
                 return redirect()->route('guest.guest-calendar');
-            } else {
+            }
+            else {
                 return redirect()->route('dash.plans-and-pricing');
             }
 

@@ -18,6 +18,7 @@ use Cookie;
 use Exception;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -246,6 +247,7 @@ class ScheduleVacationForm extends Component
 
         $startDatetime = Carbon::parse($this->state['start_datetime']);
         $endDatetime = Carbon::parse($this->state['end_datetime']);
+
 
 
         $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
@@ -497,6 +499,15 @@ class ScheduleVacationForm extends Component
 //            }
 //        }
 
+        if (isset($this->state['book_rooms']) && $this->state['book_rooms'] == 1){
+            Session::put('setVacationId', $this->vacation->VacationId);
+            Session::put('startDatetimeVacation', $startDatetime);
+//            $this->dispatchBrowserEvent('vacationScheduled');
+//            $this->emit('setVacationId', $this->vacation->VacationId);
+        }else{
+            Session::put('startDatetimeVacation', $startDatetime);
+        }
+
         try {
 
             $items = $this->vacation;
@@ -525,28 +536,23 @@ class ScheduleVacationForm extends Component
 
         }
 
-        if (isset($this->state['book_rooms']) && $this->state['book_rooms'] == 1){
-            $this->dispatchBrowserEvent('vacationScheduled');
-            $this->emit('setVacationId', $this->vacation->VacationId);
-        }
-
         Cookie::queue('vbc', $this->state['background_color'], 10000);
         Cookie::queue('vfc', $this->state['font_color'], 10000);
 //        $this->emitSelf('toggle', false);
         if ($this->isCreating) {
             if($this->vacationListRoute === 'vacationListRoute'){
-                return redirect()->route('dash.settings.vacations')->with('successMessage', 'Your vacation has been scheduled successfully.');   ;
+                return redirect()->route('dash.settings.vacations')->with('successMessage', 'Your vacation has been scheduled successfully.');
             }
             else{
-                return redirect()->route('dash.calendar')->with('successMessage', 'Your vacation has been scheduled successfully.');   ;
+                return redirect()->route('dash.calendar')->with('successMessage' , 'Your vacation has been scheduled successfully.');
             }
         }
         else{
             if($this->vacationListRoute === 'vacationListRoute'){
-                return redirect()->route('dash.settings.vacations')->with('successMessage', 'Your vacation has been scheduled successfully.');   ;
+                return redirect()->route('dash.settings.vacations')->with('successMessage', 'Your vacation has been scheduled successfully.');
             }
             else{
-                return redirect()->route('dash.calendar')->with('successMessage', 'Scheduled vacation has been updated successfully.');   ;
+                return redirect()->route('dash.calendar')->with('successMessage' , 'Your vacation has been scheduled successfully.');
             }
         }
 //        $this->emit('vacation-schedule-successfully');
@@ -606,7 +612,7 @@ class ScheduleVacationForm extends Component
     public function destroyedSuccessfully($data)
     {
         Vacation::where('parent_id', $data['VacationId'])->delete();
-        Vacation::where('parent_id', $data['VacationId'])->delete();
+//        Vacation::where('parent_id', $data['VacationId'])->delete();
 
         $name = $data['VacationName'];
         try {
@@ -647,6 +653,7 @@ class ScheduleVacationForm extends Component
     {
         if ($this->model) {
             $deletableModel = app($this->model)->findOrFail($this->vacation->parent_id ?: $this->vacation->VacationId);
+            Session::put('startDatetimeForDeleteVacation', $deletableModel->start_datetime);
             $this->emit(
                 'destroyable-confirmation-modal',
                 $this->model,
@@ -654,5 +661,8 @@ class ScheduleVacationForm extends Component
                 $this->destroyableConfirmationContent,
             );
         }
+    }
+    public function cancelVacation(){
+        return redirect()->route('dash.calendar');
     }
 }

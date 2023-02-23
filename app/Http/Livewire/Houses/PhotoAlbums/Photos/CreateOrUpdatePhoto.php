@@ -101,21 +101,47 @@ class CreateOrUpdatePhoto extends Component
         if ($this->file) {
             $this->photo->updateFile($this->file, 'path');
         }
-        
+
         try {
             $items = $this->photo;
-            $createdHouseName = auth()->user()->house->HouseName;
+            $createdHouseName = $this->user->house->HouseName;
             $isAction = $this->isCreating ? 'created' : 'updated';
 
-            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
+            if (!is_null($this->user->house->photo_email_list) && !empty($this->user->house->photo_email_list)) {
 
-            foreach ($users as $user) {
-                $user->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
+                $photoEmailsList = explode(',', $this->user->house->photo_email_list);
+                if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
+                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
+                    }
+//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+                    $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
+                    if (count($photoEmailsList) > 0) {
+                        Notification::route('mail', $photoEmailsList)
+                            ->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
+                    }
+                }
             }
-
         } catch (Exception $e) {
 
         }
+
+//        try {
+//            $items = $this->photo;
+//            $createdHouseName = auth()->user()->house->HouseName;
+//            $isAction = $this->isCreating ? 'created' : 'updated';
+//
+//            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
+//
+//            foreach ($users as $user) {
+//                $user->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
+//            }
+//
+//        } catch (Exception $e) {
+//
+//        }
 
         $this->emitSelf('toggle', false);
 

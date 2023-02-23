@@ -10,6 +10,7 @@ use App\Models\Vacation;
 use App\Notifications\DeleteNotification;
 use Exception;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class CalendarView extends Component
@@ -17,6 +18,12 @@ class CalendarView extends Component
     use Destroyable;
 
     public $user;
+
+    public $startVacationDataTime;
+
+    public $startRoomDatetime;
+
+    public $setVacationId;
 
     public $vacationId = null;
     public $selectedHouses = [];
@@ -44,6 +51,28 @@ class CalendarView extends Component
             if ($this->properties) {
                 $this->selectedHouses = explode(',', $this->properties);
             }
+        }
+        if (session()->has('startDatetimeForDeleteRoom')) {
+            $this->startRoomDatetime = session()->get('startDatetimeForDeleteRoom');
+            session()->forget('startDatetimeForDeleteRoom');
+        }
+        if (session()->has('startDatetimeForDeleteVacation')) {
+            $this->startVacationDataTime = session()->get('startDatetimeForDeleteVacation');
+            session()->forget('startDatetimeForDeleteVacation');
+        }
+        if (session()->has('setVacationId')){
+            $this->setVacationId = session()->get('setVacationId');
+            Session::put('setVacationIdForRoom', $this->setVacationId);
+            session()->forget('setVacationId');
+
+        }
+        if (session()->has('startDatetimeVacation')){
+            $this->startVacationDataTime = session()->get('startDatetimeVacation');
+            session()->forget('startDatetimeVacation');
+        }
+        if (session()->has('startRoomDatetime')) {
+            $this->startRoomDatetime = session()->get('startRoomDatetime');
+            session()->forget('startRoomDatetime');
         }
     }
 
@@ -133,6 +162,7 @@ class CalendarView extends Component
     public function renderCalendar()
     {
         $this->emit('rerender-calendar', $this->events, $this->resourceTimeline);
+        session()->forget('setVacationId');
 //        $this->emit('vacation-schedule-successfully');
     }
 

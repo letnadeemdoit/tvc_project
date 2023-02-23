@@ -40,6 +40,74 @@
             </div>
         </div>
         <div class="row mb-4">
+            <label class="col-sm-3 col-form-label form-label" for="local_guide_email_list">Send email when new local guide items are
+                added:</label>
+            <div class="col-sm-9">
+            <textarea
+                id="local_guide_email_list"
+                class="form-control @error('local_guide_email_list') is-invalid @enderror"
+                placeholder="Separate multiple emails by comma, leave blank for no notification"
+                rows="4"
+                wire:model.defer="state.local_guide_email_list"
+            ></textarea>
+                @error('local_guide_email_list')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="form-text">Use this option to send out a notification email that contains the contents of a newly created local guide (only the initial local guide not the comments)</span>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <label class="col-sm-3 col-form-label form-label" for="guest_book_email_list">Send email when new guest book items are
+                added:</label>
+            <div class="col-sm-9">
+            <textarea
+                id="guest_book_email_list"
+                class="form-control @error('guest_book_email_list') is-invalid @enderror"
+                placeholder="Separate multiple emails by comma, leave blank for no notification"
+                rows="4"
+                wire:model.defer="state.guest_book_email_list"
+            ></textarea>
+                @error('guest_book_email_list')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="form-text">Use this option to send out a notification email that contains the contents of a newly created guest book (only the initial guest book not the comments)</span>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <label class="col-sm-3 col-form-label form-label" for="photo_email_list">Send email when new photo items are
+                added:</label>
+            <div class="col-sm-9">
+            <textarea
+                id="photo_email_list"
+                class="form-control @error('photo_email_list') is-invalid @enderror"
+                placeholder="Separate multiple emails by comma, leave blank for no notification"
+                rows="4"
+                wire:model.defer="state.photo_email_list"
+            ></textarea>
+                @error('photo_email_list')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="form-text">Use this option to send out a notification email that contains the contents of a newly created photo (only the initial photo not the comments)</span>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <label class="col-sm-3 col-form-label form-label" for="food_item_list">Send email when new food items are
+                added:</label>
+            <div class="col-sm-9">
+            <textarea
+                id="food_item_list"
+                class="form-control @error('food_item_list') is-invalid @enderror"
+                placeholder="Separate multiple emails by comma, leave blank for no notification"
+                rows="4"
+                wire:model.defer="state.food_item_list"
+            ></textarea>
+                @error('food_item_list')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="form-text">Use this option to send out a notification email that contains the contents of a newly created food (only the initial food not the comments)</span>
+            </div>
+        </div>
+        <div class="row mb-4">
             <label class="col-sm-3 col-form-label form-label" for="request_to_use_house_email_list">Request to Use House:</label>
             <div class="col-sm-9">
             <textarea

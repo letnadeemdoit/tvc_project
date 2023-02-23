@@ -91,18 +91,44 @@ class CreateOrUpdateFoodItemForm extends Component
 
         try {
             $items = $this->foodItemList;
-            $createdHouseName = auth()->user()->house->HouseName;
+            $createdHouseName = $this->user->house->HouseName;
             $isAction = $this->isCreating ? 'created' : 'updated';
 
-            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
+            if (!is_null($this->user->house->food_item_list) && !empty($this->user->house->food_item_list)) {
 
-            foreach ($users as $user) {
-                $user->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
+                $foodEmailsList = explode(',', $this->user->house->food_item_list);
+                if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
+                    $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
+                    }
+//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+                    $foodEmailsList = array_diff($foodEmailsList, $users->pluck('email')->toArray());
+                    if (count($foodEmailsList) > 0) {
+                        Notification::route('mail', $foodEmailsList)
+                            ->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
+                    }
+                }
             }
-
         } catch (Exception $e) {
 
         }
+
+//        try {
+//            $items = $this->foodItemList;
+//            $createdHouseName = auth()->user()->house->HouseName;
+//            $isAction = $this->isCreating ? 'created' : 'updated';
+//
+//            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
+//
+//            foreach ($users as $user) {
+//                $user->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
+//            }
+//
+//        } catch (Exception $e) {
+//
+//        }
 
         $this->emitSelf('toggle', false);
         $this->emit('food-item-cu-successfully');

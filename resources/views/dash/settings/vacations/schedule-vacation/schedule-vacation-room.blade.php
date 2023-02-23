@@ -16,5 +16,18 @@
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript"
                 src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+            <script>
+                $(function () {
+                    window.addEventListener('destroyed-successfully', function (e) {
+                        console.log(e.detail);
+                        var url = "{!! route('dash.calendar', ['VacationId' => '__VacationId__','RoomId' => '__RoomId__','SetStartDate' => '__SetStartDate__']) !!}";
+                        url = url.replace('__VacationId__', e.detail.vacation_id);
+                        url = url.replace('__RoomId__', e.detail.room_id);
+                        url = url.replace('__SetStartDate__', e.detail.starts_at);
+                        location.href = url;
+                        // window.location.href = url;
+                    });
+                })
+            </script>
     @endpush
 </x-dashboard-layout>

@@ -7,6 +7,7 @@ use App\Models\Room\Room;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -36,6 +37,11 @@ class ScheduleVacationRoomForm extends Component
         'vacationId' => ['except' => null],
     ];
 
+    protected $destroyableConfirmationContent = [
+        'title' => '',
+        'description' => ''
+    ];
+
     protected $listeners = [
 //        'showVacationRoomScheduleModal',
         'setVacationId' => 'setVacationId',
@@ -44,7 +50,6 @@ class ScheduleVacationRoomForm extends Component
 
     public function setVacationId($VacationId)
     {
-        dd($VacationId);
         $this->vacationId = $VacationId;
     }
 
@@ -185,6 +190,10 @@ class ScheduleVacationRoomForm extends Component
             'ends_at' => $endDatetime,
         ])->save();
 
+        session()->forget('startDatetime');
+        Session::put('startRoomDatetime', $startDatetime);
+
+
         if($this->isCreating) {
             return redirect()->route('dash.calendar')->with('successMessage', 'Your vacation room has been scheduled successfully.');
         }
@@ -205,6 +214,10 @@ class ScheduleVacationRoomForm extends Component
 
     public function mount($roomId, $vacationRoomId = null, $initialDate = null, $owner = null, $house = null)
     {
+        if (session()->has('setVacationIdForRoom')){
+            $this->vacationId = session()->get('setVacationIdForRoom');
+            session()->forget('setVacationIdForRoom');
+        }
         $this->model = VacationRoom::class;
         $this->room = Room::where('RoomID', $roomId)->first();
 
@@ -288,8 +301,10 @@ class ScheduleVacationRoomForm extends Component
                 $this->model,
                 $id,
                 $this->destroyableConfirmationContent,
-                "vacation-deleted-successfully"
             );
         }
+    }
+    public function cancelRoomVacation(){
+        return redirect()->route('dash.calendar');
     }
 }

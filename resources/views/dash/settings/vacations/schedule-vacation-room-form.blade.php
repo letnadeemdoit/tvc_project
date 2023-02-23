@@ -60,24 +60,71 @@
                 @enderror
             </div>
 
-            <div class="d-flex">
+            <div class="row ">
                 @if($user->is_owner && $vacationRoom && $vacationRoom->id)
-                    <a
-                        href="#!"
-                        class="btn btn-danger px-5"
-                        wire:click.prevent="destroy({{ $vacationRoom->id }})"
-                    >
-                        <i class="bi-trash me-2"></i> Delete
-                    </a>
-                @endif
+                    <div class="col-12 col-sm-4 col-md-6">
+                        <a
+                            href="#!"
+                            class="btn btn-danger px-5 d-block d-sm-inline-block"
+                            wire:click.prevent="destroy({{ $vacationRoom->id }})"
+                        >
+                            <i class="bi-trash me-2 d-none d-sm-inline-block"></i> Delete
+                        </a>
+                    </div>
 
-                <button
-                    type="submit"
-                    class="btn btn-primary ms-auto"
-                >
-                    {{ $vacationRoom && $vacationRoom->id ? "Update" : 'Add' }} Vacation Room
-                </button>
+                @endif
+                <div class=" mt-2 mt-sm-0 col-12 col-sm-8 col-md-6 d-block d-sm-flex  justify-content-sm-end">
+                    <div class="d-block d-sm-inline-block">
+                        <button
+                            href="#!"
+                            class="btn btn-secondary ms-sm-auto w-100 w-sm-auto"
+                            wire:click.prevent="cancelRoomVacation"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+
+
+                    <div class="mt-2 mt-sm-0">
+                        <button
+                            type="submit"
+                            class="btn btn-primary ms-sm-2 w-100 w-sm-auto"
+                        >
+                            {{ $vacationRoom && $vacationRoom->id ? "Update" : 'Add' }} Vacation Room
+                        </button>
+                    </div>
+
+
+
+                </div>
+
             </div>
+
+{{--            <div class="d-flex">--}}
+{{--                @if($user->is_owner && $vacationRoom && $vacationRoom->id)--}}
+{{--                    <a--}}
+{{--                        href="#!"--}}
+{{--                        class="btn btn-danger px-5"--}}
+{{--                        wire:click.prevent="destroy({{ $vacationRoom->id }})"--}}
+{{--                    >--}}
+{{--                        <i class="bi-trash me-2"></i> Delete--}}
+{{--                    </a>--}}
+{{--                @endif--}}
+
+{{--                    <button--}}
+{{--                        href="#!"--}}
+{{--                        class="btn btn-secondary ms-auto"--}}
+{{--                        wire:click.prevent="cancelRoomVacation"--}}
+{{--                    >--}}
+{{--                        Cancel--}}
+{{--                    </button>--}}
+{{--                    <button--}}
+{{--                    type="submit"--}}
+{{--                    class="btn btn-primary ms-2"--}}
+{{--                >--}}
+{{--                    {{ $vacationRoom && $vacationRoom->id ? "Update" : 'Add' }} Vacation Room--}}
+{{--                </button>--}}
+{{--            </div>--}}
         </form>
     </div>
     @push('scripts')
@@ -97,6 +144,21 @@
                     locale: {
                         format: 'MM/DD/YYYY HH:mm'
                     }
+                });
+
+                $('#schedule_room_start_end_datetime').on('change.daterangepicker', function (ev) {
+                    var currentValue = $('#schedule_room_start_end_datetime').val();
+                    var dateTime = currentValue.split('-');
+                    console.log(dateTime);
+                @this.
+                set('state.start_datetime', dateTime[0]);
+                @this.
+                set('state.end_datetime', dateTime[1]);
+                @this.
+                set('state.start_end_datetime', dateTime[0] + ' - ' + dateTime[1]);
+
+                    // $('.room-dates').attr('min', picker.startDate.format('YYYY-MM-DD'));
+                    // $('.room-dates').attr('max', picker.endDate.format('YYYY-MM-DD'));
                 });
 
                 $('#schedule_room_start_end_datetime').on('apply.daterangepicker', function (ev, picker) {

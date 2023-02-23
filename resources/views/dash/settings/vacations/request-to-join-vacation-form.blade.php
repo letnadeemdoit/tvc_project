@@ -162,6 +162,17 @@
                     }
                 });
 
+                $('#rtjv_start_end_datetime').on('change.daterangepicker', function (ev) {
+                    var currentValue = $('#rtjv_start_end_datetime').val();
+                    var dateTime = currentValue.split('-');
+                @this.
+                set('state.start_datetime', dateTime[0], true);
+                @this.
+                set('state.end_datetime', dateTime[1], true);
+                @this.
+                set('state.start_end_datetime', dateTime[0] + ' - ' + dateTime[1], true);
+                });
+
                 $('#rtjv_start_end_datetime').on('apply.daterangepicker', function(ev, picker) {
                     @this.set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'), true);
                     @this.set('state.end_datetime', picker.endDate.format('MM/DD/YYYY HH:mm'), true);

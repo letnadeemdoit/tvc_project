@@ -212,6 +212,16 @@
                     }
                 });
 
+                // $('input[name="datetimes"]').on('change.daterangepicker', function (ev) {
+                //     var currentValue = $('input[name="datetimes"]').val();
+                //     var dateTime = currentValue.split('-');
+                //
+                // @this.
+                // set('from', dateTime[0]);
+                // @this.
+                // set('to', dateTime[1]);
+                // });
+
                 $('input[name="datetimes"]').on('apply.daterangepicker', function (ev, picker) {
                     @this.
                     set('from', picker.startDate.format('DD-MM-YYYY'));

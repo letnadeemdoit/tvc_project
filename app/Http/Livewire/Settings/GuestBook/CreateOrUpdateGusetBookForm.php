@@ -93,18 +93,44 @@ class CreateOrUpdateGusetBookForm extends Component
 
         try {
             $items = $this->guestBook;
-            $createdHouseName = auth()->user()->house->HouseName;
+            $createdHouseName = $this->user->house->HouseName;
             $isAction = $this->isCreating ? 'created' : 'updated';
 
-            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
+            if (!is_null($this->user->house->guest_book_email_list) && !empty($this->user->house->guest_book_email_list)) {
 
-            foreach ($users as $user) {
-                $user->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
+                $guestBookEmailsList = explode(',', $this->user->house->guest_book_email_list);
+                if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
+                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
+                    }
+//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+                    $guestBookEmailsList = array_diff($guestBookEmailsList, $users->pluck('email')->toArray());
+                    if (count($guestBookEmailsList) > 0) {
+                        Notification::route('mail', $guestBookEmailsList)
+                            ->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
+                    }
+                }
             }
-
         } catch (Exception $e) {
 
         }
+
+//        try {
+//            $items = $this->guestBook;
+//            $createdHouseName = auth()->user()->house->HouseName;
+//            $isAction = $this->isCreating ? 'created' : 'updated';
+//
+//            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
+//
+//            foreach ($users as $user) {
+//                $user->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
+//            }
+//
+//        } catch (Exception $e) {
+//
+//        }
 
         $this->emitSelf('toggle', false);
 

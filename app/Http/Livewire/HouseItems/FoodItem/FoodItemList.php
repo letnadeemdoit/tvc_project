@@ -76,35 +76,34 @@ class FoodItemList extends Component
 
         try {
 
-            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
-
-            foreach ($users as $user) {
-                $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-            }
-//            if (!is_null(auth()->user()->house->request_to_use_house_email_list) && !empty(auth()->user()->house->request_to_use_house_email_list)) {
+//            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
 //
-//                $request_to_use_house_email_list = explode(',', auth()->user()->house->request_to_use_house_email_list);
-//
-//                if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-//
-////                    $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', auth()->user()->HouseId)->get();
-//                    $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
-//                    foreach ($users as $user) {
-//                        $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-//                    }
-//
-////                  Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-//                    $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
-//
-//                    if (count($request_to_use_house_email_list) > 0) {
-//
-//                        Notification::route('mail', $request_to_use_house_email_list)
-//                            ->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-//
-//                    }
-//                }
-//
+//            foreach ($users as $user) {
+//                $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
 //            }
+
+            if (!is_null($this->user->house->food_item_list) && !empty($this->user->house->food_item_list)) {
+
+                $foodItemEmailsList = explode(',', $this->user->house->food_item_list);
+
+                if (count($foodItemEmailsList) > 0 && !empty($foodItemEmailsList)) {
+
+                    $users = User::whereIn('email', $foodItemEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                    }
+
+                    $foodItemEmailsList = array_diff($foodItemEmailsList, $users->pluck('email')->toArray());
+
+                    if (count($foodItemEmailsList) > 0) {
+
+                        Notification::route('mail', $foodItemEmailsList)
+                            ->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+
+                    }
+                }
+            }
         } catch (Exception $e) {
 
         }
