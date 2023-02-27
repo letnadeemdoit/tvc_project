@@ -55,7 +55,7 @@ class CalendarEmailNotification extends Notification implements ShouldQueue
 
             ->greeting('Vacation Calendar')
 
-            ->line(new HtmlString('A New Vacation <strong>' . $this->items->VacationName.'</strong>'. ' has been scheduled against ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
+            ->line(new HtmlString('A New Vacation <strong>' . $this->items->VacationName.'</strong>'. ' has been scheduled for ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
 
             ->line(new HtmlString('The duration of the vacation is from <strong>' . $this->startDate->RealDate.'</strong>'. ' to ' . '<strong>'. $this->endDate->RealDate .' '.'Date'.'</strong>'));
 

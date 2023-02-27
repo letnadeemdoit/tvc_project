@@ -15,78 +15,142 @@
             </section>
             <div class="help-page-tabs mt-80">
                 <div class="bg-border">
-                    <ul class="nav nav-tabs  border-bottom-0 d-flex justify-content-center" id="myTab" role="tablist">
-                        <!-- <div class="row">  -->
-                        <!-- <div class="col-3">  -->
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="price-tab" data-bs-toggle="tab" data-bs-target="#price"
+
+{{--                    zaheer styling start--}}
+                    <div class="row row-cols-2  row-cols-md-4 g-4 nav nav-tabs" >
+                        <div class="col text-center">
+                            <button class="nav-link active w-100 h-100 p-0" id="price-tab" data-bs-toggle="tab" data-bs-target="#price"
                                     type="button" role="tab" aria-controls="price" aria-selected="true">
-                                <div class="card shadow-lg card-border rounded-3 mt-0">
-                                    <div class="card-body">
-                                        <img src="{{asset('/images/help-images/menu-book.svg')}}"
-                                             class="img-fluid m-auto">
-                                        <p>Pricing</p>
+                            <div class=" h-100 shadow-lg card-border rounded-3 mt-0 w-auto bg-white " style="min-height: 170px">
+                                <div class="card-body h-100 d-flex align-items-center text-center px-3 px-md-2">
+                                    <div class="m-auto">
+                                    <img src="{{asset('/images/help-images/menu-book.svg')}}"
+                                         class="img-fluid ">
+                                    <p>Pricing</p>
                                     </div>
                                 </div>
-                                {{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
-                                {{--                                <img src="{{asset('/images/help-images/vector-1.png')}}" class="img-fluid">--}}
-                                {{--                            </div>--}}
+                            </div>
                             </button>
-                        </li>
-                        <!-- </div>  -->
-                        <!-- <div class="col-3"> -->
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                        </div>
+                        <div class="col text-center">
+                            <button class="nav-link w-100 h-100 p-0" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                                     type="button" role="tab" aria-controls="home" aria-selected="true">
-                                <div class="card shadow-lg card-border rounded-3 mt-lg-5">
-                                    <div class="card-body">
-                                        <img src="{{asset('/images/help-images/menu-book.svg')}}"
-                                             class="img-fluid m-auto">
-                                        <p>Quick Start Guide</p>
+                            <div class="h-100 shadow-lg card-border rounded-3 mt-lg-5 w-auto bg-white" style="min-height: 170px">
+                                <div class="card-body h-100 d-flex align-items-center text-center px-3 px-md-2">
+                                    <div class="m-auto">
+                                    <img src="{{asset('/images/help-images/menu-book.svg')}}"
+                                         class="img-fluid m-auto">
+                                    <p>Quick Start Guide</p>
                                     </div>
                                 </div>
-                                {{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
-                                {{--                                <img src="{{asset('/images/help-images/vector-1.png')}}" class="img-fluid">--}}
-                                {{--                            </div>--}}
+                            </div>
                             </button>
-                        </li>
-                        <!-- </div>  -->
-                        <!-- <div class="col-3"> -->
-
-                        <li class="nav-item " role="presentation">
-                            <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users"
+                        </div>
+                        <div class="col text-center">
+                            <button class="nav-link w-100 h-100 p-0" id="users-tab" data-bs-toggle="tab" data-bs-target="#users"
                                     type="button" role="tab" aria-controls="users" aria-selected="false">
-                                <div class="card shadow-lg card-border rounded-3 mt-lg-n1 ">
-                                    <div class="card-body">
-                                        <img src="{{asset('/images/help-images/users.svg')}}" class="img-fluid  m-auto">
-                                        <p><span class="d-none d-lg-block">Understanding the different Roles</span>
-                                        </p>
+                            <div class="h-100 shadow-lg card-border rounded-3 mt-lg-n1 w-auto bg-white" style="min-height: 170px">
+                                <div class="card-body h-100 d-flex align-items-center text-center px-3 px-md-2">
+                                    <div class="m-auto">
+                                    <img src="{{asset('/images/help-images/users.svg')}}" class="img-fluid  m-auto">
+                                    <p><span class="">Understanding the different Roles</span>
+                                    </p>
                                     </div>
                                 </div>
+                            </div>
                             </button>
-                        </li>
-
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                        </div>
+                        <div class="col text-center">
+                            <button class="nav-link w-100 h-100 p-0" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
                                     type="button" role="tab" aria-controls="contact" aria-selected="false">
-                                <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5  ">
-                                    <div class="card-body">
-                                        <img src="{{asset('/images/help-images/vacation-calendar.svg')}}"
-                                             class="img-fluid m-auto">
-                                        <p><span class="d-none d-lg-block">Detailed Instructions</span></p>
+                            <div class="h-100 shadow-lg card-border rounded-3 mt-0 mt-lg-5 w-auto bg-white " style="min-height: 170px">
+                                <div class="card-body h-100 d-flex align-items-center text-center px-3 px-md-2">
+                                    <div class="m-auto">
+                                    <img src="{{asset('/images/help-images/vacation-calendar.svg')}}"
+                                         class="img-fluid m-auto">
+                                    <p><span class="">Detailed Instructions</span></p>
                                     </div>
                                 </div>
-                                {{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
-                                {{--                                <img src="{{asset('/images/help-images/vector-3.png')}}" class="img-fluid">--}}
-                                {{--                            </div>--}}
+                            </div>
                             </button>
-                        </li>
-                        <!-- </div>  -->
-                        <!-- <div class="col-3">  -->
+                        </div>
 
-                        <!-- </div>  -->
-                        <!-- </div> -->
-                    </ul>
+                    </div>
+
+
+{{--              zaheer styling ending here      --}}
+{{--                    <ul class="nav nav-tabs  border-bottom-0 d-flex justify-content-center" id="myTab" role="tablist">--}}
+{{--                        <!-- <div class="row">  -->--}}
+{{--                        <!-- <div class="col-3">  -->--}}
+{{--                        <li class="nav-item" role="presentation">--}}
+{{--                            <button class="nav-link active" id="price-tab" data-bs-toggle="tab" data-bs-target="#price"--}}
+{{--                                    type="button" role="tab" aria-controls="price" aria-selected="true">--}}
+{{--                                <div class="card shadow-lg card-border rounded-3 mt-0">--}}
+{{--                                    <div class="card-body">--}}
+{{--                                        <img src="{{asset('/images/help-images/menu-book.svg')}}"--}}
+{{--                                             class="img-fluid m-auto">--}}
+{{--                                        <p>Pricing</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                --}}{{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
+{{--                                --}}{{--                                <img src="{{asset('/images/help-images/vector-1.png')}}" class="img-fluid">--}}
+{{--                                --}}{{--                            </div>--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+{{--                        <!-- </div>  -->--}}
+{{--                        <!-- <div class="col-3"> -->--}}
+{{--                        <li class="nav-item" role="presentation">--}}
+{{--                            <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"--}}
+{{--                                    type="button" role="tab" aria-controls="home" aria-selected="true">--}}
+{{--                                <div class="card shadow-lg card-border rounded-3 mt-lg-5">--}}
+{{--                                    <div class="card-body">--}}
+{{--                                        <img src="{{asset('/images/help-images/menu-book.svg')}}"--}}
+{{--                                             class="img-fluid m-auto">--}}
+{{--                                        <p>Quick Start Guide</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                --}}{{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
+{{--                                --}}{{--                                <img src="{{asset('/images/help-images/vector-1.png')}}" class="img-fluid">--}}
+{{--                                --}}{{--                            </div>--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+{{--                        <!-- </div>  -->--}}
+{{--                        <!-- <div class="col-3"> -->--}}
+
+{{--                        <li class="nav-item " role="presentation">--}}
+{{--                            <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users"--}}
+{{--                                    type="button" role="tab" aria-controls="users" aria-selected="false">--}}
+{{--                                <div class="card shadow-lg card-border rounded-3 mt-lg-n1 ">--}}
+{{--                                    <div class="card-body">--}}
+{{--                                        <img src="{{asset('/images/help-images/users.svg')}}" class="img-fluid  m-auto">--}}
+{{--                                        <p><span class="d-none d-lg-block">Understanding the different Roles</span>--}}
+{{--                                        </p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+
+{{--                        <li class="nav-item" role="presentation">--}}
+{{--                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"--}}
+{{--                                    type="button" role="tab" aria-controls="contact" aria-selected="false">--}}
+{{--                                <div class="card shadow-lg card-border rounded-3 mt-0 mt-lg-5  ">--}}
+{{--                                    <div class="card-body">--}}
+{{--                                        <img src="{{asset('/images/help-images/vacation-calendar.svg')}}"--}}
+{{--                                             class="img-fluid m-auto">--}}
+{{--                                        <p><span class="d-none d-lg-block">Detailed Instructions</span></p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                --}}{{--                            <div class="text-end bg-arrow d-none d-lg-block">--}}
+{{--                                --}}{{--                                <img src="{{asset('/images/help-images/vector-3.png')}}" class="img-fluid">--}}
+{{--                                --}}{{--                            </div>--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+{{--                        <!-- </div>  -->--}}
+{{--                        <!-- <div class="col-3">  -->--}}
+
+{{--                        <!-- </div>  -->--}}
+{{--                        <!-- </div> -->--}}
+{{--                    </ul>--}}
                 </div>
             </div>
             <div class="tab-content" id="myTabContent">
@@ -95,11 +159,14 @@
                     <div class="accordion-section mt-80">
                         <div class="container">
                             <div class="m-0 m-lg-4">
+
+
+
                                 <div class="accordion" id="myAccordion">
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingOne">
-                                            <button type="button" class="accordion-button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapseOne">Pricing
+                                            <button type="button" class="accordion-button collapsed"  aria-expanded="true"
+                                                    data-bs-toggle="collapse" aria-controls="collapseOne" data-bs-target="#collapseOne">Pricing
                                             </button>
                                         </h2>
                                         <div id="collapseOne" class="accordion-collapse collapse"
@@ -234,7 +301,7 @@
 
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingTwo">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed"  aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#collapseTwo">Paypal
                                             </button>
                                         </h2>
@@ -415,16 +482,16 @@
                     <div class="accordion-section mt-80">
                         <div class="container">
                             <div class="m-0 m-lg-4">
-                                <div class="accordion" id="myAccordion">
+                                <div class="accordion" id="myAccordionSecond">
                                     <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button type="button" class="accordion-button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapseOne">Quick Start
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button type="button" class="accordion-button collapsed"  aria-expanded="true"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseThree">Quick Start
                                                 Guide for Administrators
                                             </button>
                                         </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse"
-                                             data-bs-parent="#myAccordion">
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordionSecond">
                                             <div class="card-body bottom-box-shadow">
                                                 <p>
                                                     Here are the steps to quickly get your house up and running quickly.
@@ -517,14 +584,14 @@
                                         </div>
                                     </div>
                                     <div class="accordion-item mt-3">
-                                        <h2 class="accordion-header" id="headingTwo">
+                                        <h2 class="accordion-header" id="headingFour">
                                             <button type="button" class="accordion-button collapsed"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseTwo">Quick Start Guide for Owners
+                                                    data-bs-toggle="collapse"  aria-expanded="true"
+                                                    data-bs-target="#collapseFour">Quick Start Guide for Owners
                                             </button>
                                         </h2>
-                                        <div id="collapseTwo" class="accordion-collapse collapse"
-                                             data-bs-parent="#myAccordion">
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                             data-bs-parent="#myAccordionSecond">
                                             <div class="card-body bottom-box-shadow">
                                                 <p class="mb-3">
                                                     Here are the steps to take advantage of your shared vacation home.
@@ -618,7 +685,7 @@
                                 <div class="accordion" id="myAccordion-4">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingSeven">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed"  aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#collapseSeven">
                                                 Understanding the Different Roles
                                             </button>
@@ -1029,7 +1096,7 @@
                                 <div class="accordion" id="myAccordion-3">
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingFive">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed"  aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#calendar">Calendar
                                             </button>
                                         </h2>
@@ -1732,7 +1799,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingSix">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#photo-album">Photo Album
                                             </button>
                                         </h2>
@@ -1865,7 +1932,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingSeven">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#blog">Blog
                                             </button>
                                         </h2>
@@ -1951,7 +2018,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingEight">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#bulletin-board">House Bulletin Board
                                             </button>
                                         </h2>
@@ -2028,7 +2095,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingNine">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#local-guide">Local Guide
                                             </button>
                                         </h2>
@@ -2125,7 +2192,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingTen">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#guest-book">Guest Book
                                             </button>
                                         </h2>
@@ -2191,7 +2258,7 @@
                                 </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingEleven">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#food-items">Food Items
                                             </button>
                                         </h2>
@@ -2259,7 +2326,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingTwelve">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#booking-rooms">Booking Rooms
                                             </button>
                                         </h2>
@@ -2282,7 +2349,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingThirteen">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#additional-properties">Additional Properties
                                             </button>
                                         </h2>
@@ -2354,7 +2421,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingForteen">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed"  aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#managing-users">Managing Users
                                             </button>
                                         </h2>
@@ -2407,7 +2474,7 @@
                                     </div>
                                     <div class="accordion-item mb-3">
                                         <h2 class="accordion-header" id="headingFifteen">
-                                            <button type="button" class="accordion-button"
+                                            <button type="button" class="accordion-button collapsed" aria-expanded="true"
                                                     data-bs-toggle="collapse" data-bs-target="#notifications">Audit History & Notifications
                                             </button>
                                         </h2>
