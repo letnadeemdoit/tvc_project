@@ -25,6 +25,9 @@ class ScheduleVacationRoomForm extends Component
 
     public $room = null;
 
+    public $start_datetime = null;
+    public $end_datetime = null;
+
     public $vacationRoomId = null;
     public $selectedVacation = [];
     public $owner = null;
@@ -136,6 +139,7 @@ class ScheduleVacationRoomForm extends Component
 
         Validator::make($this->state, [
             'vacation_id' => ['required'],
+            'occupant_name' => ['required'],
             'start_date' => ['required'],
         ])->after(function ($validator) use ($startDatetime, $endDatetime) {
 
@@ -186,6 +190,7 @@ class ScheduleVacationRoomForm extends Component
 
         $this->vacationRoom->fill([
             'vacation_id' => $this->state['vacation_id'],
+            'occupant_name' => $this->state['occupant_name'],
             'starts_at' => $startDatetime,
             'ends_at' => $endDatetime,
         ])->save();
@@ -218,6 +223,8 @@ class ScheduleVacationRoomForm extends Component
             $this->vacationId = session()->get('setVacationIdForRoom');
             session()->forget('setVacationIdForRoom');
         }
+
+
         $this->model = VacationRoom::class;
         $this->room = Room::where('RoomID', $roomId)->first();
 
@@ -230,6 +237,15 @@ class ScheduleVacationRoomForm extends Component
         $this->roomId = $this->vacationRoom['room_id'];
 
         $this->vacationRoomId = $vacationRoomId;
+
+        if (!is_null($this->vacationId)){
+            $currentVacation = Vacation::where('VacationID' ,$this->vacationId)->first();
+        }
+        else{
+            $currentVacation = Vacation::where('VacationID' , $this->vacationRoom->vacation_id)->first();
+        }
+        $this->start_datetime = $currentVacation->start_datetime;
+        $this->end_datetime = $currentVacation->end_datetime;
 
 //        if ($this->vacationRoom->OwnerId !== $this->user->user_id) {
 //            $this->emit('showRequestToJoinVacationModal', true, $this->vacationRoom->vacation_id);
@@ -253,6 +269,7 @@ class ScheduleVacationRoomForm extends Component
             $this->isCreating = false;
             $this->state = [
                 'vacation_id' => $this->vacationRoom->vacation_id,
+                'occupant_name' => $this->vacationRoom->occupant_name,
                 'room_id' => $this->vacationRoom->room_id,
                 'start_date' => $this->vacationRoom->starts_at->format('m/d/Y H:i'),
                 'end_date' => $this->vacationRoom->ends_at->format('m/d/Y H:i'),

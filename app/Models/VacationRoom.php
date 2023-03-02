@@ -17,6 +17,7 @@ class VacationRoom extends Model
      */
     protected $fillable = [
         'vacation_id',
+        'occupant_name',
         'room_id',
         'starts_at',
         'ends_at'
@@ -44,8 +45,9 @@ class VacationRoom extends Model
     {
         return array_merge([
             'id' => $this->vacation_id,
+            'occupant_name' => $this->occupant_name,
             'vacation_room_id' => $this->id,
-            'title' => $this->room->RoomName . ' '. '('.$this->vacation->VacationName.')',
+            'title' => $this->room->RoomName . ' '. '('.$this->occupant_name.')',
             'start' => str_replace(' ', 'T', $this->starts_at->format('Y-m-d H:i:s')),
             'end' => str_replace(' ', 'T', $this->ends_at->format('Y-m-d H:i:s')),
             'allDay' => false,

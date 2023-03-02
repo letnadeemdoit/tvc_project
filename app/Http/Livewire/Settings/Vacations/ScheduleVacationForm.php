@@ -84,6 +84,7 @@ class ScheduleVacationForm extends Component
                 $vacationRooms[$rooms->room_id][] = [
                     'starts_at' => $rooms->starts_at->format('Y-m-d'),
                     'ends_at' => $rooms->ends_at->format('Y-m-d'),
+                    'occupant_name' => $rooms->occupant_name,
                 ];
             }
 
@@ -286,6 +287,7 @@ class ScheduleVacationForm extends Component
                         'room_id' => $key,
                         'starts_at' => $schedule['starts_at'],
                         'ends_at' => $schedule['ends_at'],
+                        'occupant_name' => $schedule['occupant_name'],
 //                                'OwnerId' => $model->OwnerId,
 //                                'DateId' => $model->StartDateId
                     ]));

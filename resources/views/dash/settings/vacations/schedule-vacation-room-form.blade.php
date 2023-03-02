@@ -45,6 +45,20 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
+                <label class="form-label" for="occupant_name">Occupant Name:</label>
+                <input
+                    type="text"
+                    class="form-control @error('occupant_name') is-invalid @enderror"
+                    name="start_datetime"
+                    id="occupant_name"
+                    placeholder="occupant name"
+                    wire:model.defer="state.occupant_name"
+                />
+                @error('occupant_name')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group mb-3">
                 <label class="form-label" for="schedule_start_end_datetime">Start & End Datetime:</label>
                 <input
                     type="text"
@@ -143,6 +157,16 @@
                     @else moment().set('minute', 0).add(2, 'days') @endisset,
                     locale: {
                         format: 'MM/DD/YYYY HH:mm'
+                    },
+                    isInvalidDate: function(ele) {
+                        var compareDate = moment(ele._d).format('DD-MM-YYYY HH:mm');
+                        var startDate = moment('{{ $start_datetime }}').format('DD-MM-YYYY HH:mm');
+                        var endDate = moment('{{ $end_datetime }}').format('DD-MM-YYYY HH:mm');
+                        if (compareDate >= startDate && compareDate <= endDate) {
+                            return false;
+                        }else {
+                            return true;
+                        }
                     }
                 });
 
