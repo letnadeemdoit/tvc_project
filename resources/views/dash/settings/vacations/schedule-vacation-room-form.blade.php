@@ -159,14 +159,21 @@
                         format: 'MM/DD/YYYY HH:mm'
                     },
                     isInvalidDate: function(ele) {
-                        var compareDate = moment(ele._d).format('DD-MM-YYYY HH:mm');
-                        var startDate = moment('{{ $start_datetime }}').format('DD-MM-YYYY HH:mm');
-                        var endDate = moment('{{ $end_datetime }}').format('DD-MM-YYYY HH:mm');
-                        if (compareDate >= startDate && compareDate <= endDate) {
+                        var compareDate = moment(ele._d, 'DD-MM-YYYY HH:mm');
+                        var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');
+                        var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');
+
+                        if(moment(compareDate).isBetween(startDate, endDate)){
                             return false;
-                        }else {
+                        }
+                        else {
                             return true;
                         }
+                        // if (compareDate >= startDate && compareDate <= endDate) {
+                        //     return false;
+                        // }else {
+                        //     return true;
+                        // }
                     }
                 });
 

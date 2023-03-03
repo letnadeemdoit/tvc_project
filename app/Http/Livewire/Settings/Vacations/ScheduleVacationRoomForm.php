@@ -240,12 +240,14 @@ class ScheduleVacationRoomForm extends Component
 
         if (!is_null($this->vacationId)){
             $currentVacation = Vacation::where('VacationID' ,$this->vacationId)->first();
+            $this->start_datetime = $currentVacation->start_datetime->format('d-m-Y H:i');
+            $this->end_datetime = $currentVacation->end_datetime->format('d-m-Y H:i');
         }
-        else{
+        if($this->vacationRoom->vacation_id){
             $currentVacation = Vacation::where('VacationID' , $this->vacationRoom->vacation_id)->first();
+            $this->start_datetime = $currentVacation->start_datetime->format('d-m-Y H:i');
+            $this->end_datetime = $currentVacation->end_datetime->format('d-m-Y H:i');
         }
-        $this->start_datetime = $currentVacation->start_datetime;
-        $this->end_datetime = $currentVacation->end_datetime;
 
 //        if ($this->vacationRoom->OwnerId !== $this->user->user_id) {
 //            $this->emit('showRequestToJoinVacationModal', true, $this->vacationRoom->vacation_id);
