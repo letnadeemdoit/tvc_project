@@ -151,9 +151,9 @@
                     minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
                     maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
                     // minDate: moment().format('MM/DD/YYYY'),
-                    startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
+                    startDate: @isset($state['start_date']) '{{ $state['start_date'] }}'
                     @else moment().set('minute', 0) @endisset,
-                    endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
+                    endDate: @isset($state['end_date']) '{{ $state['end_date'] }}'
                     @else moment().set('minute', 0).add(2, 'days') @endisset,
                     locale: {
                         format: 'MM/DD/YYYY HH:mm'
@@ -182,9 +182,9 @@
                     var dateTime = currentValue.split('-');
                     console.log(dateTime);
                 @this.
-                set('state.start_datetime', dateTime[0]);
+                set('state.start_date', dateTime[0]);
                 @this.
-                set('state.end_datetime', dateTime[1]);
+                set('state.end_date', dateTime[1]);
                 @this.
                 set('state.start_end_datetime', dateTime[0] + ' - ' + dateTime[1]);
 

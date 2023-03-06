@@ -134,8 +134,8 @@ class ScheduleVacationRoomForm extends Component
     {
         $this->resetErrorBag();
 
-        $startDatetime = Carbon::parse($this->state['start_date'])->format('Y-m-d H:i:s');
-        $endDatetime = Carbon::parse($this->state['end_date'])->format('Y-m-d H:i:s');
+        $startDatetime = Carbon::parse($this->state['start_date'])->format('Y-m-d H:i');
+        $endDatetime = Carbon::parse($this->state['end_date'])->format('Y-m-d H:i');
 
         Validator::make($this->state, [
             'vacation_id' => ['required'],

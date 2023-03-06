@@ -82,8 +82,8 @@ class ScheduleVacationForm extends Component
                 }
 
                 $vacationRooms[$rooms->room_id][] = [
-                    'starts_at' => $rooms->starts_at->format('Y-m-d'),
-                    'ends_at' => $rooms->ends_at->format('Y-m-d'),
+                    'starts_at' => $rooms->starts_at->format('Y-m-d H:i'),
+                    'ends_at' => $rooms->ends_at->format('Y-m-d H:i'),
                     'occupant_name' => $rooms->occupant_name,
                 ];
             }
