@@ -265,8 +265,6 @@
                         @endif
                     },
                     eventClick: function (calEvent, jsEvent, view) {
-
-                        console.log(calEvent);
                         @if($user->is_guest)
                         var url = "{!! route('guest.guest-request-to-join-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__']) !!}";
                         url = url.replace('__vacationId__', calEvent.event.id);
@@ -276,7 +274,7 @@
                         @else
                         if (calEvent.view.type == 'resourceTimelineMonth') {
                             var url = "{!! route('dash.schedule-vacation-room', ['roomId' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
-                            url = url.replace('__roomId__', calEvent.event.id);
+                            url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
                             url = url.replace('__vacationRoomId__', calEvent.event.extendedProps.vacation_room_id);
                             url = url.replace('__initialDate__', null);
                             url = url.replace('__owner__', null);

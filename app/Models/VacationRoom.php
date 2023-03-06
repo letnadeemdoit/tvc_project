@@ -46,6 +46,7 @@ class VacationRoom extends Model
         return array_merge([
             'id' => $this->vacation_id,
             'occupant_name' => $this->occupant_name,
+            'room_id' => $this->room_id,
             'vacation_room_id' => $this->id,
             'title' => $this->room->RoomName . ' '. '('.$this->occupant_name.')',
             'start' => str_replace(' ', 'T', $this->starts_at->format('Y-m-d H:i:s')),
