@@ -25,6 +25,9 @@ class CalendarView extends Component
 
     public $setVacationId;
 
+    public $start_vac;
+    public $end_vac;
+
     public $vacationId = null;
     public $selectedHouses = [];
     public $properties = null;
@@ -64,7 +67,9 @@ class CalendarView extends Component
             $this->setVacationId = session()->get('setVacationId');
             Session::put('setVacationIdForRoom', $this->setVacationId);
             session()->forget('setVacationId');
-
+            $currentVacation = Vacation::where('VacationID' ,$this->setVacationId)->first();
+            $this->start_vac = $currentVacation->start_datetime->format('Y-m-d H:i');
+            $this->end_vac = $currentVacation->end_datetime->format('Y-m-d H:i');
         }
         if (session()->has('startDatetimeVacation')){
             $this->startVacationDataTime = session()->get('startDatetimeVacation');

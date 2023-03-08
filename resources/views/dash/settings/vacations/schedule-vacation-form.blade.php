@@ -172,6 +172,7 @@
                         wire:model="state.book_rooms"
                     />
                 </div>
+
 {{--                @if(isset($state['book_rooms']) && $state['book_rooms'] == 1)--}}
 {{--                    <div class="list-group list-group-flush list-group-sm mb-3">--}}
 {{--                        @if(count(current_house()->rooms) > 0)--}}
@@ -323,7 +324,7 @@
             @endif
             <div class="row ">
                 @if($user->is_owner && $vacation && $vacation->VacationId)
-                    <div class="col-12 col-sm-4 col-md-6">
+                    <div class="col-12 col-sm-4 col-md-5">
                         <a
                             href="#!"
                             class="btn btn-danger px-5 d-block d-sm-inline-block"
@@ -334,17 +335,16 @@
                     </div>
 
                 @endif
-                <div class=" mt-2 mt-sm-0 col-12 col-sm-8 col-md-6 d-block d-sm-flex  justify-content-sm-end">
+                <div class=" mt-2 mt-sm-0 col-12 col-sm-8 col-md-7 d-block d-sm-flex  justify-content-sm-end">
                     <div class="d-block d-sm-inline-block">
                         <button
                             href="#!"
-                            class="btn btn-secondary ms-sm-auto w-100 w-sm-auto"
+                            class="btn btn-secondary me-sm-auto w-100 w-sm-auto"
                             wire:click.prevent="cancelVacation"
                         >
                             Cancel
                         </button>
                     </div>
-
 
                     <div class="mt-2 mt-sm-0">
                         <button
@@ -354,6 +354,21 @@
                             {{ $vacation && $vacation->VacationName ? "Update" : 'Add' }} Vacation
                         </button>
                     </div>
+
+                    @if(primary_user()->enable_rooms == 1)
+                    @if(isset($state['book_rooms']) && $state['book_rooms'] == 1 && !$isCreating)
+                        <div class="d-block d-sm-inline-block">
+                            <button
+                                href="#!"
+                                class="btn btn-primary ms-sm-2  w-100 w-sm-auto"
+                                wire:click.prevent="manageRooms"
+                            >
+                                Manage Rooms
+                            </button>
+                        </div>
+                    @endisset
+                    @endif
+
 
 
 

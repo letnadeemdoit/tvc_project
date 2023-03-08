@@ -9,6 +9,7 @@ use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
 use App\Models\Vacation;
+use App\Models\VacationRoom;
 use App\Notifications\DeleteNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
@@ -32,6 +33,14 @@ class DashboardController extends Controller
     }
 
     public function scheduleVacation(Request $request){
+        if ($request->query('Vacation_Id') && $request->query('isRoom')){
+            $vacationId = $request->query('Vacation_Id');
+            $currentVacation = Vacation::where('VacationID' ,$vacationId)->first();
+            $start_datetime = $currentVacation->start_datetime;
+            Session::put('setVacationId', $vacationId);
+            Session::put('startDatetimeVacation', $start_datetime);
+            return redirect()->route('dash.calendar');
+        }
         $vacationId = $request->query('vacationId');
         $initialDate = $request->query('initialDate');
         $owner = $request->query('owner');

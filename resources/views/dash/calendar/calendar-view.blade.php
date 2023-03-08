@@ -224,6 +224,19 @@
                     datesSet(dateSet) {
                         $dateTitle.textContent = dateSet.view.title
                     },
+                    validRange: function(nowDate) {
+                        if ($('input[name=calendar_view]:checked').val() === 'resourceTimelineMonth'){
+                            var setVacationId = "<?php echo $setVacationId; ?>";
+                            var start_vac = "<?php echo $start_vac; ?>";
+                            var end_vac = "<?php echo $end_vac; ?>";
+                            if(setVacationId){
+                                return {
+                                    start: start_vac,
+                                    end: end_vac
+                                };
+                            }
+                        }
+                    },
                     dateClick: function (info) {
                         console.log('info ', info)
                         @if($user->is_owner)
@@ -273,6 +286,7 @@
                         // window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
                         @else
                         if (calEvent.view.type == 'resourceTimelineMonth') {
+                            console.log(calEvent);
                             var url = "{!! route('dash.schedule-vacation-room', ['roomId' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
                             url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
                             url = url.replace('__vacationRoomId__', calEvent.event.extendedProps.vacation_room_id);
@@ -283,12 +297,23 @@
                             // window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id, calEvent.event.extendedProps.vacation_room_id)
 
                         } else if (calEvent.view.type == 'dayGridMonth') {
-                            var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
-                            url = url.replace('__vacationId__', calEvent.event.id);
-                            url = url.replace('__initialDate__', null);
-                            url = url.replace('__owner__', null);
-                            location.href = url;
-                            // window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                            if(calEvent.event.extendedProps.is_room){
+                                var url = "{!! route('dash.schedule-vacation', ['Vacation_Id' => '__vacationId__', 'Room_Id' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'isRoom' => '__isRoom__']) !!}";
+                                url = url.replace('__vacationId__', calEvent.event.id);
+                                url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
+                                url = url.replace('__vacationRoomId__', calEvent.event.extendedProps.vacation_room_id);
+                                url = url.replace('__isRoom__', calEvent.event.extendedProps.is_room);
+                                location.href = url;
+                            }
+                            else {
+                                var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
+                                url = url.replace('__vacationId__', calEvent.event.id);
+                                url = url.replace('__initialDate__', null);
+                                url = url.replace('__owner__', null);
+                                location.href = url;
+                                // window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                            }
+
                         }
                         else if (calEvent.view.type == 'multiMonthYear') {
                             var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";

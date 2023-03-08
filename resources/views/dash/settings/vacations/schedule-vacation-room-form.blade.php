@@ -19,6 +19,19 @@
 
             <x-jet-validation-errors />
             {{--            <x-jet-validation-errors />--}}
+            @if(!$this->isCreating)
+                <div class="form-group mb-3">
+                    <label class="form-label" for="room_name">Room Name:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        disabled
+                        name="room_name"
+                        id="room_name"
+                        wire:model="state.room_name"
+                    />
+                </div>
+            @endif
             <div class="form-group mb-3">
                 <label class="form-label" for="vacation_name">Select Vacation:</label>
 

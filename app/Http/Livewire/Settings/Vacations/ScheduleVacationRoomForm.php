@@ -276,6 +276,7 @@ class ScheduleVacationRoomForm extends Component
         if ($this->vacationRoom->id) {
             $this->isCreating = false;
             $this->state = [
+                'room_name' => $this->room->RoomName,
                 'vacation_id' => $this->vacationRoom->vacation_id,
                 'occupant_name' => $this->vacationRoom->occupant_name,
                 'room_id' => $this->vacationRoom->room_id,
