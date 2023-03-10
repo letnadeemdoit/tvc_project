@@ -311,12 +311,10 @@
                             // window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id, calEvent.event.extendedProps.vacation_room_id)
 
                         } else if (calEvent.view.type == 'dayGridMonth') {
-                            if(popover != null){
-                                $('.fc-popover').hide();
-                                popover = null;
-                            }
-                            else {
-                                if(calEvent.event.extendedProps.is_room){
+                            if (calEvent.event.extendedProps.is_room) {
+                                if (popover != null) {
+                                    $('.fc-popover').hide();
+                                    popover = null;
                                     var url = "{!! route('dash.schedule-vacation', ['Vacation_Id' => '__vacationId__', 'Room_Id' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'isRoom' => '__isRoom__']) !!}";
                                     url = url.replace('__vacationId__', calEvent.event.id);
                                     url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
@@ -325,6 +323,18 @@
                                     location.href = url;
                                 }
                                 else {
+                                    var url = "{!! route('dash.schedule-vacation', ['Vacation_Id' => '__vacationId__', 'Room_Id' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'isRoom' => '__isRoom__']) !!}";
+                                    url = url.replace('__vacationId__', calEvent.event.id);
+                                    url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
+                                    url = url.replace('__vacationRoomId__', calEvent.event.extendedProps.vacation_room_id);
+                                    url = url.replace('__isRoom__', calEvent.event.extendedProps.is_room);
+                                    location.href = url;
+                                }
+                            } else {
+                                if (popover != null) {
+                                    $('.fc-popover').hide();
+                                    popover = null;
+                                }else {
                                     var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
                                     url = url.replace('__vacationId__', calEvent.event.id);
                                     url = url.replace('__initialDate__', null);
