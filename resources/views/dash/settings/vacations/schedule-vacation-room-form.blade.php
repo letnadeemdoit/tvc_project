@@ -176,8 +176,10 @@
                         var compareDate = moment(ele._d, 'DD-MM-YYYY HH:mm');
                         var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');
                         var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');
+                        console.log(startDate);
+                        console.log(endDate);
 
-                        if(moment(compareDate).isBetween(startDate, endDate)){
+                        if(moment(compareDate).isBetween(startDate, endDate, null, '[]')){
                             return false;
                         }
                         else {
@@ -190,11 +192,11 @@
                         var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');
                         var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');
 
-                        if(moment(compareDate).isBetween(startDate, endDate)){
+                        if(moment(compareDate).isBetween(startDate, endDate, null, '[]')){
                             return 'text-dark';
                         }
                         else {
-                            return 'bg-primary text-light';
+                            return 'bg-warning text-light';
                         }
                         // if(absent.indexOf(moment(date).format('YYYY-MM-DD'))>=0)
                         // {
