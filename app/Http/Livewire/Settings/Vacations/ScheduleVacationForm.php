@@ -120,7 +120,6 @@ class ScheduleVacationForm extends Component
                     $this->state['start_datetime'] = $initialDatetime->addHour(12)->format('m/d/Y H:i');
                     $this->state['end_datetime'] = $initialDatetime->format('m/d/Y H:i');
                     $this->state['start_end_datetime'] = $initialDatetime->addHour(12)->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
-//                    dd($this->state['end_datetime']);
                 } catch (\Exception $e) {
 
                 }

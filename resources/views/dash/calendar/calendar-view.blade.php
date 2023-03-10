@@ -182,12 +182,20 @@
         </div>
 
     </div>
+    @if(isset($start_vac) && !is_null($start_vac))
+        <div id="vacation_bar" class="row justify-content-center" style="display: none">
+            <div class="col-6">
+                <span>You can schedule room between {{ $start_vac }} to {{ $end_vac }}</span>
+            </div>
+        </div>
+    @endif
 
     <div id='calendar' class="fullcalendar-custom" wire:ignore></div>
     @push('scripts')
         <script>
             $(document).ready(function () {
 
+                var popover = null;
                 // window.addEventListener('vacationScheduled', function (e) {
                 // });
                 // Fullcalendar controls
@@ -238,7 +246,7 @@
                         }
                     },
                     dateClick: function (info) {
-                        console.log('info ', info)
+                        // console.log('info ', info)
                         @if($user->is_owner)
 
                         let parsed = queryString.parse(window.location.search);
@@ -257,16 +265,22 @@
                             location.href = url;
                             // window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
                         } else {
-                            var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
-                            url = url.replace('__vacationId__', null);
-                            url = url.replace('__initialDate__', info.dateStr);
-                            if (parsed.owner){
-                                url = url.replace('__owner__', parsed.owner);
+                            if(popover != null){
+                                $('.fc-popover').hide();
+                                popover = null;
                             }
                             else {
-                                url = url.replace('__owner__', '');
+                                var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
+                                url = url.replace('__vacationId__', null);
+                                url = url.replace('__initialDate__', info.dateStr);
+                                if (parsed.owner){
+                                    url = url.replace('__owner__', parsed.owner);
+                                }
+                                else {
+                                    url = url.replace('__owner__', '');
+                                }
+                                location.href = url;
                             }
-                            location.href = url;
                             // window.livewire.emit('showVacationScheduleModal', true, null, info.dateStr, parsed.owner);
                         }
                         @elseif($user->is_guest)
@@ -297,21 +311,27 @@
                             // window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id, calEvent.event.extendedProps.vacation_room_id)
 
                         } else if (calEvent.view.type == 'dayGridMonth') {
-                            if(calEvent.event.extendedProps.is_room){
-                                var url = "{!! route('dash.schedule-vacation', ['Vacation_Id' => '__vacationId__', 'Room_Id' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'isRoom' => '__isRoom__']) !!}";
-                                url = url.replace('__vacationId__', calEvent.event.id);
-                                url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
-                                url = url.replace('__vacationRoomId__', calEvent.event.extendedProps.vacation_room_id);
-                                url = url.replace('__isRoom__', calEvent.event.extendedProps.is_room);
-                                location.href = url;
+                            if(popover != null){
+                                $('.fc-popover').hide();
+                                popover = null;
                             }
                             else {
-                                var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
-                                url = url.replace('__vacationId__', calEvent.event.id);
-                                url = url.replace('__initialDate__', null);
-                                url = url.replace('__owner__', null);
-                                location.href = url;
-                                // window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                                if(calEvent.event.extendedProps.is_room){
+                                    var url = "{!! route('dash.schedule-vacation', ['Vacation_Id' => '__vacationId__', 'Room_Id' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'isRoom' => '__isRoom__']) !!}";
+                                    url = url.replace('__vacationId__', calEvent.event.id);
+                                    url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
+                                    url = url.replace('__vacationRoomId__', calEvent.event.extendedProps.vacation_room_id);
+                                    url = url.replace('__isRoom__', calEvent.event.extendedProps.is_room);
+                                    location.href = url;
+                                }
+                                else {
+                                    var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
+                                    url = url.replace('__vacationId__', calEvent.event.id);
+                                    url = url.replace('__initialDate__', null);
+                                    url = url.replace('__owner__', null);
+                                    location.href = url;
+                                    // window.livewire.emit('showVacationScheduleModal', true, calEvent.event.id)
+                                }
                             }
 
                         }
@@ -461,15 +481,25 @@
                 if(startRoomDatetime){
                     window.calendar.gotoDate(startRoomDatetime);
                     $('#rooms').click();
+                    $('#vacation_bar').show();
                 }
 
                 var setVacationId = "<?php echo $setVacationId; ?>";
                 if(setVacationId){
                     $('#rooms').click();
+                    $('#vacation_bar').show();
                 }
                 window.livewire.on('vacation-deleted-successfully', function () {
                    window.location.reload();
                 });
+
+                $('.fc-daygrid-more-link').on('click', function (event) {
+                    setTimeout(function() {
+                        popover = document.querySelector('.fc-popover');
+                        console.log(popover);
+                    }, 100);
+                });
+
             });
         </script>
     @endpush

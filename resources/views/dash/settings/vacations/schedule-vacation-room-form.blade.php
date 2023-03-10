@@ -39,6 +39,7 @@
                     type="text"
                     class="form-control @error('vacation_id') is-invalid @enderror"
                     name="vacation_id"
+                    @if(!$isCreating) disabled @endif
                     {{--                    id="vacation_name"--}}
                     {{--                    placeholder="Vacation name"--}}
                     {{--                    wire:model.defer="state.vacation_name"--}}
@@ -182,12 +183,28 @@
                         else {
                             return true;
                         }
-                        // if (compareDate >= startDate && compareDate <= endDate) {
-                        //     return false;
-                        // }else {
-                        //     return true;
+                    },
+                    isCustomDate:function(ele)
+                    {
+                        var compareDate = moment(ele._d, 'DD-MM-YYYY HH:mm');
+                        var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');
+                        var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');
+
+                        if(moment(compareDate).isBetween(startDate, endDate)){
+                            return 'text-dark';
+                        }
+                        else {
+                            return 'bg-primary text-light';
+                        }
+                        // if(absent.indexOf(moment(date).format('YYYY-MM-DD'))>=0)
+                        // {
+                        //     return 'bg-danger text-light absent';
                         // }
-                    }
+                        // else if(present.indexOf(moment(date).format('YYYY-MM-DD'))>=0)
+                        // {
+                        //     return 'bg-primary text-light';
+                        // }
+                    },
                 });
 
                 $('#schedule_room_start_end_datetime').on('change.daterangepicker', function (ev) {

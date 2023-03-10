@@ -297,8 +297,8 @@ class ScheduleVacationRoomForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
-                    $this->state['start_date'] = $initialDatetime->format('m/d/Y') . ' ' . $start_time;
-                    $this->state['end_date'] = $initialDatetime->format('m/d/Y') . ' ' . $end_time;
+                    $this->state['start_date'] = $initialDatetime->addHour(12)->format('m/d/Y H:i');
+                    $this->state['end_date'] = $initialDatetime->format('m/d/Y H:i');
                     $this->state['start_end_datetime'] = $this->state['start_date'] . ' - ' . $this->state['end_date'];
                 } catch (\Exception $e) {
 
