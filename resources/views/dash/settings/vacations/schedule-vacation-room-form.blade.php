@@ -158,6 +158,8 @@
     @push('scripts')
         <script>
             $(function () {
+                var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');
+                var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');
                 $('#schedule_room_start_end_datetime').daterangepicker({
                     timePicker: true,
                     timePickerIncrement: 60,
@@ -173,12 +175,10 @@
                         format: 'MM/DD/YYYY HH:mm'
                     },
                     isInvalidDate: function(ele) {
+                        {{--console.log({{$state['start_date']}});--}}
                         var compareDate = moment(ele._d, 'DD-MM-YYYY HH:mm');
-                        var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');
-                        var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');
-                        console.log(startDate);
-                        console.log(endDate);
-
+                        {{--startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');--}}
+                        {{--endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');--}}
                         if(moment(compareDate).isBetween(startDate, endDate, null, '[]')){
                             return false;
                         }
@@ -189,8 +189,8 @@
                     isCustomDate:function(ele)
                     {
                         var compareDate = moment(ele._d, 'DD-MM-YYYY HH:mm');
-                        var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');
-                        var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');
+                        {{--startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');--}}
+                        {{--endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');--}}
 
                         if(moment(compareDate).isBetween(startDate, endDate, null, '[]')){
                             return 'text-dark';
@@ -198,21 +198,12 @@
                         else {
                             return 'bg-warning text-light';
                         }
-                        // if(absent.indexOf(moment(date).format('YYYY-MM-DD'))>=0)
-                        // {
-                        //     return 'bg-danger text-light absent';
-                        // }
-                        // else if(present.indexOf(moment(date).format('YYYY-MM-DD'))>=0)
-                        // {
-                        //     return 'bg-primary text-light';
-                        // }
                     },
                 });
 
                 $('#schedule_room_start_end_datetime').on('change.daterangepicker', function (ev) {
                     var currentValue = $('#schedule_room_start_end_datetime').val();
                     var dateTime = currentValue.split('-');
-                    console.log(dateTime);
                 @this.
                 set('state.start_date', dateTime[0]);
                 @this.
@@ -234,11 +225,21 @@
                 });
 
                 window.addEventListener('on-vacation-room-change', function (e) {
-                    console.log(e.detail);
-                    $('#schedule_room_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
-                    $('#schedule_room_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
+                @this.
+                set('state.start_date', e.detail.startsAt);
+                @this.
+                set('state.end_date', e.detail.endsAt);
+                @this.
+                set('state.start_end_datetime', e.detail.startsAt + ' - ' + e.detail.endsAt);
 
-                    // $('#schedule_room_start_end_date').val(`${e.detail.startDatetime} - ${e.detail.endDatetime}`);
+                startDate =  moment(e.detail.startDate, 'DD-MM-YYYY HH:mm');
+
+                endDate =  moment(e.detail.endDate, 'DD-MM-YYYY HH:mm');
+
+
+                    $('#schedule_room_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startsAt);
+                    $('#schedule_room_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endsAt);
+
 
                 });
 

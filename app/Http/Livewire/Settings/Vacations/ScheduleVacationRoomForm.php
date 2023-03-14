@@ -126,8 +126,11 @@ class ScheduleVacationRoomForm extends Component
     public function onChangeRoomVacation()
     {
         $selectedVacation = Vacation::where('VacationId', $this->state['vacation_id'] ?? '')->first();
-
-        $this->dispatchBrowserEvent('on-vacation-room-change', ['startsAt' => $selectedVacation->startDatetime->format('m/d/Y H:i'), 'endsAt' => $selectedVacation->endDatetime->format('m/d/Y H:i')]);
+        $this->start_datetime = $selectedVacation->start_datetime->format('d-m-Y H:i');
+        $this->end_datetime = $selectedVacation->end_datetime->format('d-m-Y H:i');
+        $this->state['start_date'] = $selectedVacation->start_datetime->format('m/d/Y h:i');
+        $this->state['end_date'] = $selectedVacation->end_datetime->format('m/d/Y h:i');
+        $this->dispatchBrowserEvent('on-vacation-room-change', ['startsAt' => $selectedVacation->startDatetime->format('m/d/Y H:i'), 'endsAt' => $selectedVacation->endDatetime->format('m/d/Y H:i'), 'startDate' => $this->start_datetime, 'endDate' => $this->end_datetime]);
     }
 
     public function saveVacationRoomSchedule()
@@ -241,14 +244,14 @@ class ScheduleVacationRoomForm extends Component
         $this->vacationRoomId = $vacationRoomId;
 
         if (!is_null($this->vacationId)){
-            $currentVacation = Vacation::where('VacationID' ,$this->vacationId)->first();
+            $currentVacation = Vacation::where('VacationId' ,$this->vacationId)->first();
             $this->start_datetime = $currentVacation->start_datetime->format('d-m-Y H:i');
             $start_time = $currentVacation->start_datetime->addHour(1)->format('H:i');
             $this->end_datetime = $currentVacation->end_datetime->format('d-m-Y H:i');
             $end_time = $currentVacation->end_datetime->format('H:i');
         }
         if($this->vacationRoom->vacation_id){
-            $currentVacation = Vacation::where('VacationID' , $this->vacationRoom->vacation_id)->first();
+            $currentVacation = Vacation::where('VacationId' , $this->vacationRoom->vacation_id)->first();
             $this->start_datetime = $currentVacation->start_datetime->format('d-m-Y H:i');
             $start_time = $currentVacation->start_datetime->addHour(1)->format('H:i');
             $this->end_datetime = $currentVacation->end_datetime->format('d-m-Y H:i');
