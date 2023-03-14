@@ -184,8 +184,8 @@
     </div>
     @if(isset($start_vac) && !is_null($start_vac))
         <div id="vacation_bar" class="row justify-content-center" style="display: none">
-            <div class="col-6">
-                <span>You can schedule room between {{ $start_vac }} to {{ $end_vac }}</span>
+            <div class="col-10">
+                <span>You can schedule room between {{ $start_vac }} to {{ $end_vac }} against vacation({{ $name_vac }})</span>
             </div>
         </div>
     @endif
@@ -380,6 +380,11 @@
                         if (event.extendedProps.is_room) {
                             return {
                                 html: `
+                                <style>
+                                    .fullcalendar-custom .fc-event-resizable{
+                                     max-width : 100% !important;
+                                     }
+                                </style>
                                 <div>
                                     <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !event.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
                                     <div class="d-flex px-2 py-0">
