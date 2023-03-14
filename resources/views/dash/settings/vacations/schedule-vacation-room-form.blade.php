@@ -57,6 +57,9 @@
                 @error('vacation_id')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
+                <div wire:loading wire:target="state.vacation_id" class="text-success">
+                    Updating vacation...
+                </div>
             </div>
             <div class="form-group mb-3">
                 <label class="form-label" for="occupant_name">Occupant Name:</label>
