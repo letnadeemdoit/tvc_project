@@ -135,9 +135,10 @@ class CalendarView extends Component
                 ->when($this->user->user_id !== $this->owner && $this->owner !== null, function ($query) {
                     $query->where('OwnerId', $this->owner);
                 })
+                ->orderBy('VacationId','ASC')
                 ->get();
         } else {
-            $vacations = Vacation::where('HouseId', $this->user->HouseId)->get();
+            $vacations = Vacation::where('HouseId', $this->user->HouseId)->orderBy('VacationId','ASC')->get();
         }
 
         $events = [];

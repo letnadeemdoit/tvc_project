@@ -46,7 +46,7 @@
                     wire:model="state.vacation_id"
                     wire:change="onChangeRoomVacation"
                 >
-                    <option value="">Select Vacation</option>
+                    <option disabled value="">Select Vacation</option>
 
                     @if(isset($vacations) && count($vacations) > 0)
                         @foreach($vacations as $v)
@@ -228,21 +228,17 @@
                 });
 
                 window.addEventListener('on-vacation-room-change', function (e) {
-                @this.
-                set('state.start_date', e.detail.startsAt);
-                @this.
-                set('state.end_date', e.detail.endsAt);
-                @this.
-                set('state.start_end_datetime', e.detail.startsAt + ' - ' + e.detail.endsAt);
+                // @this.
+                // set('state.start_date', e.detail.startsAt);
+                // @this.
+                // set('state.end_date', e.detail.endsAt);
+                // @this.
+                // set('state.start_end_datetime', e.detail.startsAt + ' - ' + e.detail.endsAt);
 
                 startDate =  moment(e.detail.startDate, 'DD-MM-YYYY HH:mm');
-
                 endDate =  moment(e.detail.endDate, 'DD-MM-YYYY HH:mm');
-
-
                     $('#schedule_room_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startsAt);
                     $('#schedule_room_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endsAt);
-
 
                 });
 
