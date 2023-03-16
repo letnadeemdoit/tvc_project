@@ -160,9 +160,14 @@ class CalendarView extends Component
         }
 
         $resourceTimeline = [];
+
         foreach ($rooms as $room) {
             $resourceTimeline[] = $room->toCalendarResource();
         }
+        $resourceTimeline[] = array(
+            "id" => 00,
+            "title" => "Vacations"
+        );
 
         return $resourceTimeline;
     }
