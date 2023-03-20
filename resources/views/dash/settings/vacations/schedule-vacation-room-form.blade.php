@@ -56,7 +56,7 @@
                     type="text"
                     class="form-control @error('vacation_id') is-invalid @enderror"
                     name="vacation_id"
-                    @if(!$isCreating) disabled @endif
+                    disabled
                     {{--                    id="vacation_name"--}}
                     {{--                    placeholder="Vacation name"--}}
                     {{--                    wire:model.defer="state.vacation_name"--}}
