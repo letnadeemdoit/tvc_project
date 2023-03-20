@@ -25,6 +25,8 @@ class ScheduleVacationRoomForm extends Component
 
     public $room = null;
 
+    public $houseRooms = null;
+
     public $start_datetime = null;
     public $end_datetime = null;
 
@@ -187,12 +189,13 @@ class ScheduleVacationRoomForm extends Component
             }
         })->validateWithBag('saveVacationRoomSchedule');
 
-        if ($this->isCreating) {
-            $this->vacationRoom->room_id = $this->state['room_id'];
-        }
+//        if ($this->isCreating) {
+//            $this->vacationRoom->room_id = $this->state['room_id'];
+//        }
 
         $this->vacationRoom->fill([
             'vacation_id' => $this->state['vacation_id'],
+            'room_id' => $this->state['room_id'],
             'occupant_name' => $this->state['occupant_name'],
             'starts_at' => $startDatetime,
             'ends_at' => $endDatetime,
@@ -216,6 +219,7 @@ class ScheduleVacationRoomForm extends Component
     public function render()
     {
         $vacations = Vacation::where('HouseId', current_house()->HouseID)->get();
+        $this->houseRooms = Room::where('HouseID', current_house()->HouseID)->get();
         return view('dash.settings.vacations.schedule-vacation-room-form', compact('vacations'));
     }
 
@@ -273,7 +277,6 @@ class ScheduleVacationRoomForm extends Component
         } elseif ($this->vacationRoom->parent_id !== null) {
             $this->vacationRoom = Vacation::firstOrNew(['VacationID' => $this->vacationRoom->parent_id]);
         }
-
 //        $this->emitSelf('toggle', $toggle);
 
         if ($this->vacationRoom->id) {
@@ -291,7 +294,7 @@ class ScheduleVacationRoomForm extends Component
         } else {
             $this->isCreating = true;
             $this->state = [
-                'vacation_id' => $this->vacationId,
+                'vacation_id' => $this->vacationId ?? $this->vacationRoom->vacation_id,
                 'room_id' => $roomId,
                 'book_rooms' => 0,
                 'vacation_rooms' => [],

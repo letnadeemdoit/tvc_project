@@ -17,21 +17,38 @@
             class="modal-body"
         >
 
-            <x-jet-validation-errors />
+            <x-jet-validation-errors/>
             {{--            <x-jet-validation-errors />--}}
-            @if(!$this->isCreating)
-                <div class="form-group mb-3">
-                    <label class="form-label" for="room_name">Room Name:</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        disabled
-                        name="room_name"
-                        id="room_name"
-                        wire:model="state.room_name"
-                    />
+            <div class="form-group mb-3">
+                <label class="form-label" for="room_name">Room Name:</label>
+                <select
+                    type="text"
+                    class="form-control @error('room_name') is-invalid @enderror"
+                    name="room_name"
+                    wire:model="state.room_id"
+                >
+                    <option disabled value="">Select Room</option>
+
+                    @if(isset($houseRooms) && count($houseRooms) > 0)
+                        @foreach($houseRooms as $v)
+                            <option value="{{$v->RoomID}}">{{ $v->RoomName }}</option>
+                        @endforeach
+                    @endif
+                </select>
+                @error('room_name')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <div wire:loading wire:target="state.room_id" class="text-success">
+                    Updating Room...
                 </div>
-            @endif
+{{--                <input--}}
+{{--                    type="text"--}}
+{{--                    class="form-control"--}}
+{{--                    name="room_name"--}}
+{{--                    id="room_name"--}}
+{{--                    wire:model="state.room_name"--}}
+{{--                />--}}
+            </div>
             <div class="form-group mb-3">
                 <label class="form-label" for="vacation_name">Select Vacation:</label>
 
