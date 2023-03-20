@@ -233,7 +233,6 @@ class ScheduleVacationRoomForm extends Component
             session()->forget('setVacationIdForRoom');
         }
 
-
         $this->model = VacationRoom::class;
         $this->room = Room::where('RoomID', $roomId)->first();
 
@@ -294,7 +293,6 @@ class ScheduleVacationRoomForm extends Component
         } else {
             $this->isCreating = true;
             $this->state = [
-                'vacation_id' => $this->vacationId ?? $this->vacationRoom->vacation_id,
                 'room_id' => $roomId,
                 'book_rooms' => 0,
                 'vacation_rooms' => [],
@@ -306,6 +304,16 @@ class ScheduleVacationRoomForm extends Component
                     $this->state['start_date'] = $initialDatetime->addHour(12)->format('m/d/Y H:i');
                     $this->state['end_date'] = $initialDatetime->format('m/d/Y H:i');
                     $this->state['start_end_datetime'] = $this->state['start_date'] . ' - ' . $this->state['end_date'];
+
+                    $vacations = Vacation::where('HouseId', current_house()->HouseID)->get();
+                    $currentDate = date('Y-m-d H:i', strtotime($initialDatetime));
+                    foreach ($vacations as $vacation) {
+                        $start_date = date('Y-m-d H:i', strtotime($vacation->start_datetime));
+                        $end_date = date('Y-m-d H:i', strtotime($vacation->end_datetime));
+                        if (($currentDate >= $start_date) && ($currentDate <= $end_date)){
+                            $this->state['vacation_id'] = $vacation->VacationId;
+                        }
+                    }
                 } catch (\Exception $e) {
 
                 }
