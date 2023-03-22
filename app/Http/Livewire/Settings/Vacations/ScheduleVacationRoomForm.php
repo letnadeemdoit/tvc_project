@@ -312,6 +312,8 @@ class ScheduleVacationRoomForm extends Component
                         $end_date = date('Y-m-d H:i', strtotime($vacation->end_datetime));
                         if (($currentDate >= $start_date) && ($currentDate <= $end_date)){
                             $this->state['vacation_id'] = $vacation->VacationId;
+                            $this->start_datetime = $vacation->start_datetime->format('d-m-Y H:i');
+                            $this->end_datetime = $vacation->end_datetime->format('d-m-Y H:i');
                         }
                     }
                 } catch (\Exception $e) {

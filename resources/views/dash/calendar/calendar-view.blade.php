@@ -384,6 +384,7 @@
                                     .fullcalendar-custom .fc-event-resizable{
                                      max-width : 100% !important;
                                      }
+
                                 </style>
                                 <div>
                                     <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !event.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
@@ -401,6 +402,12 @@
 
                         return {
                             html: `
+                                 <style>
+                                    .fullcalendar-custom .fc-event-resizable{
+                                     max-width : 100% !important;
+                                     }
+
+                                </style>
                                 <div>
                                     <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !event.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
                                     <div class="d-flex px-2 py-1">
