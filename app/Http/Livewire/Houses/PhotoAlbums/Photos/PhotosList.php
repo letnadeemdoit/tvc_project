@@ -52,7 +52,7 @@ class PhotosList extends Component
     public function render()
     {
         $data = Photo::where('album_id', $this->album->id)
-            ->paginate($this->per_page);
+            ->get();
         return view('dash.houses.photo-albums.photos.photos-list',compact('data'));
     }
 
