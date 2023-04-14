@@ -41,7 +41,6 @@
             </div>
         </div>
         <!-- End Col -->
-
         <div class="col-lg-6">
             <div class="d-flex justify-content-lg-end">
                 @if($user->is_owner && !$user->is_owner_only)
@@ -73,7 +72,8 @@
                         </div>
                     </div>
                 @endif
-                @if($user->is_admin)
+{{--                    @if($user->is_admin) before--}}
+                @if(!$user->is_guest)
                     <div class="dropdown ms-1">
                         <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuProperties"
                                 data-bs-toggle="dropdown" aria-expanded="false" data-offset="10,20">

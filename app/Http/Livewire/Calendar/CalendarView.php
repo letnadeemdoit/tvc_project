@@ -29,6 +29,8 @@ class CalendarView extends Component
     public $end_vac;
     public $name_vac;
 
+    public $user_ad = null;
+
     public $vacationId = null;
     public $selectedHouses = [];
     public $properties = null;
@@ -51,7 +53,8 @@ class CalendarView extends Component
     public function mount()
     {
         $this->model = Vacation::class;
-        if ($this->user->is_admin) {
+//        if ($this->user->is_admin) { before
+        if (!$this->user->is_guest) {
             if ($this->properties) {
                 $this->selectedHouses = explode(',', $this->properties);
             }
@@ -101,7 +104,27 @@ class CalendarView extends Component
 
     public function getHousesProperty()
     {
-        return House::whereHas('users', function ($query) {
+        if ($this->user->role === 'Owner'){
+            $this->user_ad = User::where('user_id', $this->user->parent_id)->where('role', 'Administrator')->first();
+            return House::whereHas('users', function ($query) {
+                $query->where([
+                    'role' => User::ROLE_ADMINISTRATOR,
+                ])->where(function ($query) {
+                    $query->where('email', $this->user_ad->email)
+                        ->when($this->user_ad->primary_account, function ($query) {
+                            $query->orWhere('parent_id', $this->user_ad->user_id);
+                        })
+                        ->when(!$this->user_ad->primary_account, function ($query) {
+                            $query->orWhere(function ($query) {
+                                $query->where('parent_id', $this->user_ad->user_id)
+                                    ->orWhere('user_id', $this->user_ad->user_id);
+                            });
+                        });
+                });
+            })->get();
+        }
+        elseif($this->user->role === 'Administrator'){
+            return House::whereHas('users', function ($query) {
             $query->where([
                 'role' => User::ROLE_ADMINISTRATOR,
             ])->where(function ($query) {
@@ -117,6 +140,7 @@ class CalendarView extends Component
                     });
             });
         })->get();
+        }
     }
 
     public function updatedOwner()
@@ -130,7 +154,8 @@ class CalendarView extends Component
 
     public function getEventsProperty()
     {
-        if ($this->user->is_admin) {
+//        if ($this->user->is_admin) { before
+        if (!$this->user->is_guest) {
             $vacations = Vacation::whereIn('HouseId', $this->properties ? $this->selectedHouses : $this->houses->pluck('HouseID')->toArray())
                 ->when($this->user->user_id !== $this->owner && $this->owner !== null, function ($query) {
                     $query->where('OwnerId', $this->owner);
