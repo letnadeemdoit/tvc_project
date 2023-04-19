@@ -27,6 +27,8 @@ class User extends Authenticatable implements Auditable
     const ROLE_OWNER = 'Owner';
     const ROLE_GUEST = 'Guest';
 
+    public $user_ad = null;
+
     const PAYPAL_PRODUCT_ID = 'PROD-5NU26276VJ273353M';
 
     /**
@@ -260,23 +262,38 @@ class User extends Authenticatable implements Auditable
 
     public function getAdditionalHousesAttribute()
     {
-        return House::whereHas('users', function ($query) {
-            $query->where([
-                'role' => self::ROLE_ADMINISTRATOR,
-                ['HouseId', '<>', $this->HouseId]
-            ])->where(function ($query) {
-                $query->where('email', $this->email)
-                    ->when($this->primary_account, function ($query) {
-                        $query->orWhere('parent_id', $this->user_id);
-                    })
-                    ->when(!$this->primary_account, function ($query) {
-                        $query->orWhere(function ($query) {
-                            $query->where('parent_id', $this->user_id)
-                                ->orWhere('user_id', $this->user_id);
+        $user = auth()->user();
+        if ($user->role === 'Owner'){
+//            $this->user_ad = User::where('parent_id', $user->parent_id)->where('role', 'Owner')->first();
+            $this->user_ad = $user;
+            return House::whereHas('users', function ($query) {
+                $query->where([
+                    'role' => self::ROLE_OWNER,
+                    ['HouseId', '<>', $this->user_ad->HouseId],
+                    'parent_id' =>  $this->user_ad->parent_id
+                ]);
+            })->get();
+        }
+        elseif ($user->role === 'Administrator'){
+            return House::whereHas('users', function ($query) {
+                $query->where([
+                    'role' => self::ROLE_ADMINISTRATOR,
+                    ['HouseId', '<>', $this->HouseId]
+                ])->where(function ($query) {
+                    $query->where('email', $this->email)
+                        ->when($this->primary_account, function ($query) {
+                            $query->orWhere('parent_id', $this->user_id);
+                        })
+                        ->when(!$this->primary_account, function ($query) {
+                            $query->orWhere(function ($query) {
+                                $query->where('parent_id', $this->user_id)
+                                    ->orWhere('user_id', $this->user_id);
+                            });
                         });
-                    });
-            });
-        })->get();
+                });
+            })->get();
+
+        }
     }
 
     public function ical()

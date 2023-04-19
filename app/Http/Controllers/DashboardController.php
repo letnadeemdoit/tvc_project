@@ -284,15 +284,22 @@ class DashboardController extends Controller
             'HouseId' => $request->house_id,
             'email' => auth()->user()->email,
         ])->first();
-
-        abort_if(!$user, 500, 'Sorry! unable to switch house something went wrong. Try again later.');
-
-        auth()->loginUsingId($user->user_id);
-
-        if (auth()->loginUsingId($user->user_id)->primary_account == 0){
-            return redirect()->intended(RouteServiceProvider::HOME)->withCookie(cookie('switched_from_primary_account', 'yes', 120));
-        }else{
+//        abort_if(!$user, 500, 'Sorry! unable to switch house something went wrong. Try again later.');
+        //Modified
+        if (auth()->user()->role === 'Owner') {
+            $new_user = User::where('parent_id', auth()->user()->parent_id)->where('HouseId', $request->house_id)->where('role', 'Owner')->first();
+            auth()->loginUsingId($new_user->user_id);
             return redirect()->intended(RouteServiceProvider::HOME)->cookie(cookie()->forget('switched_from_primary_account'));
+        }
+        else{
+            //Origional
+            auth()->loginUsingId($user->user_id);
+
+            if (auth()->loginUsingId($user->user_id)->primary_account == 0){
+                return redirect()->intended(RouteServiceProvider::HOME)->withCookie(cookie('switched_from_primary_account', 'yes', 120));
+            }else{
+                return redirect()->intended(RouteServiceProvider::HOME)->cookie(cookie()->forget('switched_from_primary_account'));
+            }
         }
     }
 

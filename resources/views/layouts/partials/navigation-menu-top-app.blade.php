@@ -77,7 +77,7 @@
                     </li>
                 @endif
 
-                @if(auth()->user()->is_admin)
+                @if(!auth()->user()->is_guest)
                     <li class="nav-item">
                         <!-- Account -->
                         <div class="dropdown">
@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
 
-                                @if(!auth()->user()->is_guest)
+                                @if(auth()->user()->is_admin)
                                     <a class="dropdown-item"
                                        href="{{ route('dash.settings.house-setting') }}">
                                         <i class="bi bi-gear-wide-connected me-1"></i>Settings</a>

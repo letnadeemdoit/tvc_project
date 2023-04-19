@@ -61,6 +61,7 @@ class UsersList extends Component
                 });
             })
             ->orderBy('created_at', 'DESC')
+            ->groupBy('email')   //Aditional
             ->paginate($this->per_page);
         return view('dash.settings.users.users-list', compact('data'));
     }

@@ -60,14 +60,28 @@ class CreateOrUpdateUserForm extends Component
 
         if ($userCU->user_id) {
             $this->isCreating = false;
-            $this->state = [
-                'user_name' => $userCU->user_name,
-                'first_name' => $userCU->first_name,
-                'last_name' => $userCU->last_name,
-                'email' => $userCU->email,
-                'house_id' => $userCU->HouseId,
-                'role' => $userCU->role,
-            ];
+            if ($userCU->role === 'Owner'){
+                $user = User::where('parent_id', $userCU->parent_id)->where('role', $userCU->role)->where('email', $userCU->email)->get();
+//                $this->state = [
+//                    'house_id' => $userCU->pluck('HouseId')->toArray(),
+//                ];
+                $this->state = [
+                    'user_name' => $userCU->user_name,
+                    'first_name' => $userCU->first_name,
+                    'last_name' => $userCU->last_name,
+                    'email' => $userCU->email,
+                    'house_id' => $user->pluck('HouseId')->toArray(),
+                    'role' => $userCU->role,
+                ];
+            }
+//            $this->state = [
+//                'user_name' => $userCU->user_name,
+//                'first_name' => $userCU->first_name,
+//                'last_name' => $userCU->last_name,
+//                'email' => $userCU->email,
+//                'house_id' => $userCU->HouseId,
+//                'role' => $userCU->role,
+//            ];
         } else {
             $this->isCreating = true;
             $this->state = [
@@ -124,28 +138,53 @@ class CreateOrUpdateUserForm extends Component
         } else {
             $this->userCU->parent_id = $this->user->parent_id;
         }
-        $this->userCU->fill([
-//            'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
-            'user_name' => $this->state['user_name'],
-            'email' => $this->state['email'] ?? null,
-            'role' => $this->state['role'],
-            'first_name' => $this->state['first_name'],
-            'last_name' => $this->state['last_name'],
-            'HouseId' => $this->state['house_id'] ?? $this->user->HouseId,
-//            'HouseId' => $this->user->HouseId,
-        ])->save();
-
-        $createUser = $this->userCU;
-
-        try {
-            if (isset($this->state['send_email']) && $this->state['send_email'] == 1) {
-                if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
-                    $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail));
+        if (is_array($this->state['house_id']) && count($this->state['house_id']) > 1 && !$this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
+            foreach ($this->state['house_id'] as $houseId) {
+                $user = User::firstOrNew([
+                    'parent_id' => $this->userCU->parent_id,
+                    'HouseId' => $houseId,
+                    'email' => $this->state['email']
+                ]);
+                if (!$user->exists) {
+                    $user->fill([
+                        ...$this->userCU->toArray(),
+                        'user_id' => null,
+                        'HouseId' => $houseId,
+                        'user_name' => $this->state['user_name'],
+                        'email' => $this->state['email'] ?? null,
+                        'role' => $this->state['role'],
+                        'first_name' => $this->state['first_name'],
+                        'last_name' => $this->state['last_name'],
+                        'HouseId' => $houseId,
+                    ])->save();
                 }
             }
-        } catch (\Exception $e) {
-
         }
+        else{
+            $this->userCU->fill([
+//            'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
+                'user_name' => $this->state['user_name'],
+                'email' => $this->state['email'] ?? null,
+                'role' => $this->state['role'],
+                'first_name' => $this->state['first_name'],
+                'last_name' => $this->state['last_name'],
+                'HouseId' => $this->state['house_id'] ?? $this->user->HouseId,
+//            'HouseId' => $this->user->HouseId,
+            ])->save();
+
+            $createUser = $this->userCU;
+
+            try {
+                if (isset($this->state['send_email']) && $this->state['send_email'] == 1) {
+                    if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
+                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail));
+                    }
+                }
+            } catch (\Exception $e) {
+
+            }
+        }
+
 
         $this->emitSelf('toggle', false);
         $this->emit('user-cu-successfully');
