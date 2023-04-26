@@ -121,6 +121,7 @@ class CreateOrUpdateUserForm extends Component
                 })
             ],
             'role' => ['required'],
+            'house_id' => ['required'],
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
             'password' => [$this->userCU && $this->userCU->user_name ? 'nullable' : 'required', (new \Laravel\Fortify\Rules\Password)->requireNumeric()->requireUppercase()->requireSpecialCharacter(), 'confirmed'],
@@ -138,7 +139,7 @@ class CreateOrUpdateUserForm extends Component
         } else {
             $this->userCU->parent_id = $this->user->parent_id;
         }
-        if (is_array($this->state['house_id']) && count($this->state['house_id']) > 1 && !$this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
+        if (is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && !$this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
             foreach ($this->state['house_id'] as $houseId) {
                 $user = User::firstOrNew([
                     'parent_id' => $this->userCU->parent_id,
@@ -159,6 +160,19 @@ class CreateOrUpdateUserForm extends Component
                     ])->save();
                 }
             }
+
+                $users = User::whereNotIn('HouseId', $this->state['house_id'])
+                    ->where([
+                    'parent_id' => $this->userCU->parent_id,
+                    'email' => $this->state['email'],
+                    'role' => 'Owner'
+                ])->get();
+                if (count($users) > 0) {
+                    foreach ($users as $user){
+                        $user->delete();
+                    }
+                }
+
         }
         else{
             $this->userCU->fill([
