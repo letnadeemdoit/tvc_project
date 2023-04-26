@@ -270,6 +270,7 @@ class User extends Authenticatable implements Auditable
                 $query->where([
                     'role' => self::ROLE_OWNER,
                     ['HouseId', '<>', $this->user_ad->HouseId],
+                    ['HouseId', '<>', 0],
                     'parent_id' =>  $this->user_ad->parent_id
                 ]);
             })->get();
