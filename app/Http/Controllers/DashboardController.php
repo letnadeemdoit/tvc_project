@@ -287,7 +287,12 @@ class DashboardController extends Controller
 //        abort_if(!$user, 500, 'Sorry! unable to switch house something went wrong. Try again later.');
         //Modified
         if (auth()->user()->role === 'Owner') {
-            $new_user = User::where('parent_id', auth()->user()->parent_id)->where('HouseId', $request->house_id)->where('role', 'Owner')->first();
+            $new_user = User::where([
+                'parent_id' => auth()->user()->parent_id,
+                'HouseId' => $request->house_id,
+                'email' => auth()->user()->email,
+                'role' => 'Owner'
+            ])->first();
             auth()->loginUsingId($new_user->user_id);
             return redirect()->intended(RouteServiceProvider::HOME)->cookie(cookie()->forget('switched_from_primary_account'));
         }

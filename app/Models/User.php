@@ -269,8 +269,9 @@ class User extends Authenticatable implements Auditable
             return House::whereHas('users', function ($query) {
                 $query->where([
                     'role' => self::ROLE_OWNER,
-                    ['HouseId', '<>', $this->user_ad->HouseId],
+                    ['email', $this->user_ad->email],
                     ['HouseId', '<>', 0],
+                    ['HouseId', '<>', $this->user_ad->HouseId],
                     'parent_id' =>  $this->user_ad->parent_id
                 ]);
             })->get();
