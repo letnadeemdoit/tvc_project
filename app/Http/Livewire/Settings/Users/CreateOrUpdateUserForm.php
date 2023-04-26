@@ -144,7 +144,7 @@ class CreateOrUpdateUserForm extends Component
                 $user = User::firstOrNew([
                     'parent_id' => $this->userCU->parent_id,
                     'HouseId' => $houseId,
-                    'email' => $this->state['email']
+                    'role' => 'Owner'
                 ]);
                 if (!$user->exists) {
                     $user->fill([
@@ -156,8 +156,20 @@ class CreateOrUpdateUserForm extends Component
                         'role' => $this->state['role'],
                         'first_name' => $this->state['first_name'],
                         'last_name' => $this->state['last_name'],
-                        'HouseId' => $houseId,
                     ])->save();
+                }
+                else{
+                    User::where([
+                        'parent_id' => $this->userCU->parent_id,
+                        'HouseId' => $houseId,
+                        'role' => 'Owner'
+                    ])->update([
+                        'user_name' => $this->state['user_name'],
+                        'email' => $this->state['email'],
+                        'first_name' => $this->state['first_name'],
+                        'last_name' => $this->state['last_name'],
+                        'password' => $this->userCU->password ?? $this->user->password,
+                    ]);
                 }
             }
 
