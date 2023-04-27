@@ -67,6 +67,7 @@ class User extends Authenticatable implements Auditable
         'is_confirmed',
         'primary_account',
         'parent_id',
+        'owner_id',
         'role',
         'OwnerId',
         'date_created',

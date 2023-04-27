@@ -144,12 +144,15 @@ class CreateOrUpdateUserForm extends Component
                 $user = User::firstOrNew([
                     'parent_id' => $this->userCU->parent_id,
                     'HouseId' => $houseId,
-                    'role' => 'Owner'
+                    'role' => 'Owner',
+                    'email' => $this->userCU->email
                 ]);
                 if (!$user->exists) {
                     $user->fill([
                         ...$this->userCU->toArray(),
                         'user_id' => null,
+                        'password' => $this->userCU->password,
+                        'owner_id' => $this->userCU->user_id,
                         'HouseId' => $houseId,
                         'user_name' => $this->state['user_name'],
                         'email' => $this->state['email'] ?? null,
@@ -162,13 +165,17 @@ class CreateOrUpdateUserForm extends Component
                     User::where([
                         'parent_id' => $this->userCU->parent_id,
                         'HouseId' => $houseId,
-                        'role' => 'Owner'
-                    ])->update([
+                        'role' => 'Owner',
+                    ])->where(function ($query) {
+                        $query->where('user_id', $this->userCU->user_id)
+                            ->orWhere('owner_id', $this->userCU->user_id);
+                    })
+                        ->update([
                         'user_name' => $this->state['user_name'],
-                        'email' => $this->state['email'],
                         'first_name' => $this->state['first_name'],
                         'last_name' => $this->state['last_name'],
-                        'password' => $this->userCU->password ?? $this->user->password,
+                        'email' => $this->state['email'],
+                        'password' => $this->userCU->password,
                     ]);
                 }
             }
@@ -176,6 +183,7 @@ class CreateOrUpdateUserForm extends Component
                 $users = User::whereNotIn('HouseId', $this->state['house_id'])
                     ->where([
                     'parent_id' => $this->userCU->parent_id,
+                    'owner_id' => $this->userCU->user_id,
                     'email' => $this->state['email'],
                     'role' => 'Owner'
                 ])->get();
