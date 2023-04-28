@@ -112,7 +112,6 @@ class CalendarView extends Component
                 ])->where([
                     ['email', $this->user->email],
                     ['HouseId', '<>', 0],
-                    ['HouseId', '<>', $this->user->HouseId],
                     'parent_id' =>  $this->user->parent_id
                 ]);
             })->get();

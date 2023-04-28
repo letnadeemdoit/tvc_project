@@ -46,8 +46,7 @@ class CreateOrUpdateUserForm extends Component
         $userCU = User::find($user);
         if ($user === null) {
             $userCU = new User();
-//        } else if (is_int($user) && $userCU === null) {
-        } else if ($userCU === null) {
+        } else if (is_int($user) && $userCU === null) {
             $this->warning('Sorry! unable to find user. If you deleted the and see this message again and again please refresh the page.');
             return;
         }
