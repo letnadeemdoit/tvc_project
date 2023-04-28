@@ -105,23 +105,33 @@ class CalendarView extends Component
     public function getHousesProperty()
     {
         if ($this->user->role === 'Owner'){
-            $this->user_ad = User::where('user_id', $this->user->parent_id)->where('role', 'Administrator')->first();
+//            $this->user_ad = User::where('user_id', $this->user->parent_id)->where('role', 'Administrator')->first();
             return House::whereHas('users', function ($query) {
                 $query->where([
-                    'role' => User::ROLE_ADMINISTRATOR,
-                ])->where(function ($query) {
-                    $query->where('email', $this->user_ad->email)
-                        ->when($this->user_ad->primary_account, function ($query) {
-                            $query->orWhere('parent_id', $this->user_ad->user_id);
-                        })
-                        ->when(!$this->user_ad->primary_account, function ($query) {
-                            $query->orWhere(function ($query) {
-                                $query->where('parent_id', $this->user_ad->user_id)
-                                    ->orWhere('user_id', $this->user_ad->user_id);
-                            });
-                        });
-                });
+                    'role' => User::ROLE_OWNER,
+                ])->where([
+                    ['email', $this->user->email],
+                    ['HouseId', '<>', 0],
+                    ['HouseId', '<>', $this->user->HouseId],
+                    'parent_id' =>  $this->user->parent_id
+                ]);
             })->get();
+            //            return House::whereHas('users', function ($query) {
+//                $query->where([
+//                    'role' => User::ROLE_ADMINISTRATOR,
+//                ])->where(function ($query) {
+//                    $query->where('email', $this->user_ad->email)
+//                        ->when($this->user_ad->primary_account, function ($query) {
+//                            $query->orWhere('parent_id', $this->user_ad->user_id);
+//                        })
+//                        ->when(!$this->user_ad->primary_account, function ($query) {
+//                            $query->orWhere(function ($query) {
+//                                $query->where('parent_id', $this->user_ad->user_id)
+//                                    ->orWhere('user_id', $this->user_ad->user_id);
+//                            });
+//                        });
+//                });
+//            })->get();
         }
         elseif($this->user->role === 'Administrator'){
             return House::whereHas('users', function ($query) {

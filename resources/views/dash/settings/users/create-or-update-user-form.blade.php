@@ -19,9 +19,11 @@
                 <div class="form-group col-md-12 mb-3">
                     <label class="form-label" for="house_id">Select House:</label>
                     <select
-                        name="house_id" id=""
+                        name="house_id"
+                        id="house_id"
                         wire:model="state.house_id"
-                        class="form-control @error('house_id') is-invalid @enderror" @if(count(auth()->user()->additional_houses) >= 1 && !$isCreating && (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_OWNER)) multiple @endif>
+                        class="form-control @error('house_id') is-invalid @enderror" @if(count(auth()->user()->additional_houses) >= 1 && !$isCreating && (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_OWNER)) multiple @endif >
+                        @if($isCreating)<option value="" selected>Select House</option>@endif
                         <option value="{{ current_house()->HouseID }}">{{ current_house()->HouseName }}</option>
                         @foreach(auth()->user()->additional_houses as $additionalHouse)
                             <option value="{{ $additionalHouse->HouseID }}">{{ $additionalHouse->HouseName }}</option>
