@@ -43,7 +43,8 @@
         <!-- End Col -->
         <div class="col-lg-6">
             <div class="d-flex justify-content-lg-end">
-                @if($user->is_owner && !$user->is_owner_only)
+{{--                @if($user->is_owner && !$user->is_owner_only)--}}
+                @if(!$user->is_guest)
                     <div class="dropdown ms-1">
                         <button type="button" class="btn btn-white dropdown-toggle w-100"
                                 id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -247,7 +248,7 @@
                     },
                     dateClick: function (info) {
                         // console.log('info ', info)
-                        @if($user->is_owner)
+                        @if(!$user->is_guest)
 
                         let parsed = queryString.parse(window.location.search);
 
@@ -377,6 +378,7 @@
                     //     return {domNodes: arrayOfDomNodes}
                     // },
                     eventContent({event}) {
+
                         if (event.extendedProps.is_room) {
                             return {
                                 html: `

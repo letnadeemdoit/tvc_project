@@ -194,10 +194,27 @@ class CreateOrUpdateUserForm extends Component
                 }
 
         }
+        elseif (is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && $this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
+            foreach ($this->state['house_id'] as $houseId) {
+                $newUser = new User();
+                $newUser->fill([
+                    ...$this->userCU->toArray(),
+                    'user_name' => $this->state['user_name'],
+                    'password' => $this->userCU->password,
+                    'owner_id' => $this->user->user_id,
+                    'email' => $this->state['email'] ?? null,
+                    'role' => $this->state['role'],
+                    'first_name' => $this->state['first_name'],
+                    'last_name' => $this->state['last_name'],
+                    'HouseId' => $houseId,
+                ])->save();
+            }
+        }
         else{
             $this->userCU->fill([
 //            'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
                 'user_name' => $this->state['user_name'],
+                'password' => $this->userCU->password,
                 'owner_id' => $this->user->user_id,
                 'email' => $this->state['email'] ?? null,
                 'role' => $this->state['role'],

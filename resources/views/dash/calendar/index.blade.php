@@ -10,7 +10,8 @@
     </x-slot>
 
     <x-slot name="headerRightActions">
-        @if($user->is_owner)
+{{--        @if($user->is_owner)--}}
+        @if(!$user->is_guest)
             <div class="col-sm-auto">
 
                 <button type="button" class="btn btn-outline-secondary mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
