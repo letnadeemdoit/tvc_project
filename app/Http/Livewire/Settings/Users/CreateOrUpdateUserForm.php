@@ -145,7 +145,6 @@ class CreateOrUpdateUserForm extends Component
                     'parent_id' => $this->userCU->parent_id,
                     'HouseId' => $houseId,
                     'role' => 'Owner',
-                    'owner_id' => $this->userCU->parent_id,
                 ])->where(function ($query) {
                         $query->where('email', $this->state['email'])
                             ->orWhere('email', $this->userCU->email);
@@ -157,7 +156,6 @@ class CreateOrUpdateUserForm extends Component
                         ...$this->userCU->toArray(),
                         'user_id' => null,
                         'password' => $this->userCU->password,
-                        'owner_id' => $this->userCU->parent_id,
                         'HouseId' => $houseId,
                         'user_name' => $this->state['user_name'],
                         'email' => $this->state['email'] ?? null,
@@ -180,7 +178,6 @@ class CreateOrUpdateUserForm extends Component
                 $users = User::whereNotIn('HouseId', $this->state['house_id'])
                     ->where([
                     'parent_id' => $this->userCU->parent_id,
-                    'owner_id' => $this->userCU->parent_id,
                     'role' => 'Owner'
                 ])->where(function ($query) {
                         $query->where('email', $this->state['email'])
@@ -201,7 +198,6 @@ class CreateOrUpdateUserForm extends Component
                     ...$this->userCU->toArray(),
                     'user_name' => $this->state['user_name'],
                     'password' => $this->userCU->password,
-                    'owner_id' => $this->user->user_id,
                     'email' => $this->state['email'] ?? null,
                     'role' => $this->state['role'],
                     'first_name' => $this->state['first_name'],
@@ -215,7 +211,6 @@ class CreateOrUpdateUserForm extends Component
 //            'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
                 'user_name' => $this->state['user_name'],
                 'password' => $this->userCU->password,
-                'owner_id' => $this->user->user_id,
                 'email' => $this->state['email'] ?? null,
                 'role' => $this->state['role'],
                 'first_name' => $this->state['first_name'],
