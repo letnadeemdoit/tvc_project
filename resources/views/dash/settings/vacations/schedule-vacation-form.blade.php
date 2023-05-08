@@ -6,7 +6,7 @@
             <h5 class="modal-title">{{ $vacation && $vacation->VacationName ? "Update" : 'Add' }} Vacation</h5>
         </div>
         <form
-            wire:submit.prevent="checkVacationSchedule"
+                wire:submit.prevent="checkVacationSchedule('updateVac')"
             class="modal-body"
         >
             {{--            <x-jet-validation-errors />--}}
@@ -361,7 +361,7 @@
                             <button
                                 href="#!"
                                 class="btn btn-primary ms-sm-2  w-100 w-sm-auto"
-                                wire:click.prevent="manageRooms"
+                                wire:click.prevent="checkVacationSchedule('manageVac')"
                             >
                                 Manage Rooms
                             </button>
@@ -390,7 +390,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
-                    <button type="button" class="btn btn-primary" wire:click.prevent="saveVacationSchedule">Yes update</button>
+                    @if($updateVac)
+                        <button type="button" class="btn btn-primary" wire:click.prevent="saveVacationSchedule">Yes update</button>
+                    @elseif($manageVac)
+                        <button type="button" class="btn btn-primary" wire:click.prevent="manageRooms">Yes update</button>
+                    @endif
                 </div>
             </div>
         </div>

@@ -36,6 +36,9 @@ class ScheduleVacationForm extends Component
     public $house = null;
     public $owner = null;
 
+    public $updateVac = false;
+    public $manageVac = false;
+
     public $isCreating = false;
     protected $destroyableConfirmationContent = [
         'title' => '',
@@ -231,19 +234,32 @@ class ScheduleVacationForm extends Component
         $this->state['vacation_rooms'][$roomId] = array_values($this->state['vacation_rooms'][$roomId]);
     }
 
-    public function checkVacationSchedule(){
-        if ($this->isCreating ) {
+    public function checkVacationSchedule($data){
+        if ($this->isCreating) {
             $this->saveVacationSchedule();
         }
         else{
+            $this->updateVac = false;
+            $this->manageVac = false;
             $startDatetime = Carbon::parse($this->state['start_datetime']);
             $endDatetime = Carbon::parse($this->state['end_datetime']);
             if($this->vacation->start_datetime->format('m/d/Y') !== $startDatetime->format('m/d/Y') || $this->vacation->end_datetime->format('m/d/Y') !== $endDatetime->format('m/d/Y')){
+                if ($data === 'updateVac'){
+                    $this->updateVac = true;
+                }
+                elseif ($data === 'manageVac'){
+                    $this->manageVac = true;
+                }
                 $data = 'Are You Sure to update Vacation';
                 $this->dispatchBrowserEvent('sure-to-update-vacation',['data' => $data]);
             }
             else{
-                $this->saveVacationSchedule();
+                if ($data === 'updateVac'){
+                    $this->saveVacationSchedule();
+                }
+                elseif ($data === 'manageVac'){
+                    $this->manageRooms();
+                }
             }
         }
     }
@@ -604,6 +620,12 @@ class ScheduleVacationForm extends Component
 
         $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
+        if (!$this->isCreating){
+            if($this->vacation->start_datetime->format('m/d/Y') !== $startDatetime->format('m/d/Y') || $this->vacation->end_datetime->format('m/d/Y') !== $endDatetime->format('m/d/Y')){
+                $this->vacation->rooms()->delete();
+                unset($this->state['vacation_rooms']);
+            }
+        }
         if ($this->isCreating) {
             $this->vacation->HouseId = $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId;
             $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;

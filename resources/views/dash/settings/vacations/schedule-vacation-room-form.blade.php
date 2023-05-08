@@ -57,7 +57,7 @@
                     id="select-vacation"
                     class="form-control @error('vacation_id') is-invalid @enderror"
                     name="vacation_id"
-                    @if(isset($state['vacation_id'])) disabled  @endif
+                    @if(!$isCreating) disabled  @endif
                     {{--                    id="vacation_name"--}}
                     {{--                    placeholder="Vacation name"--}}
                     {{--                    wire:model.defer="state.vacation_name"--}}
@@ -258,9 +258,9 @@
                     $('#schedule_room_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startsAt);
                     $('#schedule_room_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endsAt);
 
-                    setTimeout(function() {
-                        $('#select-vacation').attr('disabled', false);
-                    }, 2000);
+                    // setTimeout(function() {
+                    //     $('#select-vacation').attr('disabled', false);
+                    // }, 2000);
                 });
 
                 // $('#schedule_room_start_end_datetime').click(function () {
