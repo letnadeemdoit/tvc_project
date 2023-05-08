@@ -253,18 +253,32 @@
                         let parsed = queryString.parse(window.location.search);
 
                         if (info.view.type === 'resourceTimelineMonth') {
-                            var url = "{!! route('dash.schedule-vacation-room', ['roomId' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
-                            url = url.replace('__roomId__', info.resource._resource.id);
-                            url = url.replace('__vacationRoomId__', null);
-                            url = url.replace('__initialDate__', info.dateStr);
-                            if (parsed.owner){
-                                url = url.replace('__owner__', parsed.owner);
+                            if (info.resource._resource.id !== 0 && info.resource._resource.title !== 'Vacations') {
+                                var url = "{!! route('dash.schedule-vacation-room', ['roomId' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
+                                url = url.replace('__roomId__', info.resource._resource.id);
+                                url = url.replace('__vacationRoomId__', null);
+                                url = url.replace('__initialDate__', info.dateStr);
+                                if (parsed.owner){
+                                    url = url.replace('__owner__', parsed.owner);
+                                }
+                                else {
+                                    url = url.replace('__owner__', '');
+                                }
+                                location.href = url;
+                                // window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
                             }
                             else {
-                                url = url.replace('__owner__', '');
+                                var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
+                                url = url.replace('__vacationId__', null);
+                                url = url.replace('__initialDate__', info.dateStr);
+                                if (parsed.owner){
+                                    url = url.replace('__owner__', parsed.owner);
+                                }
+                                else {
+                                    url = url.replace('__owner__', '');
+                                }
+                                location.href = url;
                             }
-                            location.href = url;
-                            // window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
                         } else {
                             if(popover != null){
                                 $('.fc-popover').hide();
@@ -301,16 +315,23 @@
                         // window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
                         @else
                         if (calEvent.view.type == 'resourceTimelineMonth') {
-                            console.log(calEvent);
-                            var url = "{!! route('dash.schedule-vacation-room', ['roomId' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
-                            url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
-                            url = url.replace('__vacationRoomId__', calEvent.event.extendedProps.vacation_room_id);
-                            url = url.replace('__initialDate__', null);
-                            url = url.replace('__owner__', null);
-                            location.href = url;
-                            console.log(url);
-                            // window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id, calEvent.event.extendedProps.vacation_room_id)
-
+                            if (calEvent.event.extendedProps.is_room) {
+                                var url = "{!! route('dash.schedule-vacation-room', ['roomId' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
+                                url = url.replace('__roomId__', calEvent.event.extendedProps.room_id);
+                                url = url.replace('__vacationRoomId__', calEvent.event.extendedProps.vacation_room_id);
+                                url = url.replace('__initialDate__', null);
+                                url = url.replace('__owner__', null);
+                                location.href = url;
+                                console.log(url);
+                                // window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id, calEvent.event.extendedProps.vacation_room_id)
+                            }
+                            else {
+                                var url = "{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
+                                url = url.replace('__vacationId__', calEvent.event.id);
+                                url = url.replace('__initialDate__', null);
+                                url = url.replace('__owner__', null);
+                                location.href = url;
+                            }
                         } else if (calEvent.view.type == 'dayGridMonth') {
                             if (calEvent.event.extendedProps.is_room) {
                                 if (popover != null) {

@@ -231,6 +231,22 @@ class ScheduleVacationForm extends Component
         $this->state['vacation_rooms'][$roomId] = array_values($this->state['vacation_rooms'][$roomId]);
     }
 
+    public function checkVacationSchedule(){
+        if ($this->isCreating ) {
+            $this->saveVacationSchedule();
+        }
+        else{
+            $startDatetime = Carbon::parse($this->state['start_datetime']);
+            $endDatetime = Carbon::parse($this->state['end_datetime']);
+            if($this->vacation->start_datetime->format('m/d/Y') !== $startDatetime->format('m/d/Y') || $this->vacation->end_datetime->format('m/d/Y') !== $endDatetime->format('m/d/Y')){
+                $data = 'Are You Sure to update Vacation';
+                $this->dispatchBrowserEvent('sure-to-update-vacation',['data' => $data]);
+            }
+            else{
+                $this->saveVacationSchedule();
+            }
+        }
+    }
     public function saveVacationSchedule()
     {
         $this->resetErrorBag();
@@ -252,6 +268,13 @@ class ScheduleVacationForm extends Component
 
 
         $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
+
+        if (!$this->isCreating){
+            if($this->vacation->start_datetime->format('m/d/Y') !== $startDatetime->format('m/d/Y') || $this->vacation->end_datetime->format('m/d/Y') !== $endDatetime->format('m/d/Y')){
+                $this->vacation->rooms()->delete();
+                unset($this->state['vacation_rooms']);
+            }
+        }
 
         if ($this->isCreating) {
             $this->vacation->HouseId = $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId;
@@ -293,7 +316,6 @@ class ScheduleVacationForm extends Component
                     ]));
                 }
             }
-
 
         }
 

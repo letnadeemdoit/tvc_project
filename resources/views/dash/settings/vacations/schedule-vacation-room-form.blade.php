@@ -51,19 +51,20 @@
             </div>
             <div class="form-group mb-3">
                 <label class="form-label" for="vacation_name">Select Vacation:</label>
-
+{{--                @dd( $state['vacation_id'] )--}}
                 <select
                     type="text"
+                    id="select-vacation"
                     class="form-control @error('vacation_id') is-invalid @enderror"
                     name="vacation_id"
-                    disabled
+                    @if(isset($state['vacation_id'])) disabled  @endif
                     {{--                    id="vacation_name"--}}
                     {{--                    placeholder="Vacation name"--}}
                     {{--                    wire:model.defer="state.vacation_name"--}}
                     wire:model="state.vacation_id"
                     wire:change="onChangeRoomVacation"
                 >
-                    <option disabled value="">Select Vacation</option>
+                    <option @if(!$isCreating) disabled  @endif value="">Select Vacation</option>
 
                     @if(isset($vacations) && count($vacations) > 0)
                         @foreach($vacations as $v)
@@ -257,6 +258,9 @@
                     $('#schedule_room_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startsAt);
                     $('#schedule_room_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endsAt);
 
+                    setTimeout(function() {
+                        $('#select-vacation').attr('disabled', false);
+                    }, 2000);
                 });
 
                 // $('#schedule_room_start_end_datetime').click(function () {

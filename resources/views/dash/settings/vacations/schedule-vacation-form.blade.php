@@ -6,7 +6,7 @@
             <h5 class="modal-title">{{ $vacation && $vacation->VacationName ? "Update" : 'Add' }} Vacation</h5>
         </div>
         <form
-            wire:submit.prevent="saveVacationSchedule"
+            wire:submit.prevent="checkVacationSchedule"
             class="modal-body"
         >
             {{--            <x-jet-validation-errors />--}}
@@ -377,6 +377,24 @@
             </div>
         </form>
     </div>
+    <div class="modal fade" id="vacationConfirmModal" tabindex="-1" aria-labelledby="vacationConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="vacationConfirmModalLabel">Vacation update confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure to update this vacation with new start date</p>
+                    <p>Once vacation is updated all room's booked on that vacation will be deleted.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-primary" wire:click.prevent="saveVacationSchedule">Yes update</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @push('scripts')
         <script>
             $(function () {
@@ -427,7 +445,6 @@
                 });
 
                 window.addEventListener('schedule-vacation-daterangepicker-update', function (e) {
-                    console.log('nadeem');
                     $('#schedule_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startDatetime);
                     $('#schedule_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endDatetime);
 
@@ -435,6 +452,11 @@
 
                     $('.room-dates').attr('min', moment(e.detail.startDatetime, 'DD/MM/YYYY').format('YYYY-MM-DD'));
                     $('.room-dates').attr('max', moment(e.detail.startDatetime, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+                });
+
+
+                window.addEventListener('sure-to-update-vacation', function (e) {
+                    $('#vacationConfirmModal').modal('show');
                 });
 
                 // $(document).mouseup(function(e)
