@@ -243,7 +243,9 @@ class ScheduleVacationForm extends Component
             $this->manageVac = false;
             $startDatetime = Carbon::parse($this->state['start_datetime']);
             $endDatetime = Carbon::parse($this->state['end_datetime']);
-            if($this->vacation->start_datetime->format('m/d/Y') !== $startDatetime->format('m/d/Y') || $this->vacation->end_datetime->format('m/d/Y') !== $endDatetime->format('m/d/Y')){
+
+            $rooms = VacationRoom::where('vacation_id', $this->vacation->VacationId)->get();
+            if((count($rooms) > 0) && ($this->vacation->start_datetime->format('m/d/Y') !== $startDatetime->format('m/d/Y') || $this->vacation->end_datetime->format('m/d/Y') !== $endDatetime->format('m/d/Y'))){
                 if ($data === 'updateVac'){
                     $this->updateVac = true;
                 }

@@ -65,7 +65,7 @@
                              let parsed = queryString.parse(window.location.search);
                              var url = '{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}';
                              url = url.replace('__vacationId__', null);
-                             url = url.replace('__initialDate__', parsed.properties);
+                             url = url.replace('__initialDate__', null);
                              url = url.replace('__owner__', parsed.owner);
                              location.href = url;
 {{--                        let parsed = queryString.parse(window.location.search);--}}
