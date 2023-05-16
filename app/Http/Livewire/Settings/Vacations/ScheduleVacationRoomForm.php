@@ -201,6 +201,9 @@ class ScheduleVacationRoomForm extends Component
             'ends_at' => $endDatetime,
         ])->save();
 
+
+        Session::put('setVacationId', $this->state['vacation_id']);
+
         session()->forget('startDatetime');
         Session::put('startRoomDatetime', $startDatetime);
 
@@ -218,7 +221,7 @@ class ScheduleVacationRoomForm extends Component
 
     public function render()
     {
-        $vacations = Vacation::where('HouseId', current_house()->HouseID)->get();
+        $vacations = Vacation::where('HouseId', current_house()->HouseID)->orderBy('VacationName')->get();
         $this->houseRooms = Room::where('HouseID', current_house()->HouseID)->get();
         return view('dash.settings.vacations.schedule-vacation-room-form', compact('vacations'));
     }
@@ -301,19 +304,26 @@ class ScheduleVacationRoomForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
-                    $this->state['start_date'] = $initialDatetime->addHour(12)->format('m/d/Y H:i');
-                    $this->state['end_date'] = $initialDatetime->format('m/d/Y H:i');
+                    $this->state['start_date'] = $initialDatetime->format('m/d/Y');
+                    $this->state['end_date'] = $initialDatetime->format('m/d/Y');
                     $this->state['start_end_datetime'] = $this->state['start_date'] . ' - ' . $this->state['end_date'];
 
                     $vacations = Vacation::where('HouseId', current_house()->HouseID)->get();
-                    $currentDate = date('Y-m-d H:i', strtotime($initialDatetime));
+                    $currentDate = date('Y-m-d', strtotime($initialDatetime));
                     foreach ($vacations as $vacation) {
-                        $start_date = date('Y-m-d H:i', strtotime($vacation->start_datetime));
-                        $end_date = date('Y-m-d H:i', strtotime($vacation->end_datetime));
+                        $start_date = date('Y-m-d', strtotime($vacation->start_datetime));
+                        $end_date = date('Y-m-d', strtotime($vacation->end_datetime));
                         if (($currentDate >= $start_date) && ($currentDate <= $end_date)){
                             $this->state['vacation_id'] = $vacation->VacationId;
-                            $this->start_datetime = $vacation->start_datetime->format('d-m-Y H:i');
-                            $this->end_datetime = $vacation->end_datetime->format('d-m-Y H:i');
+                            $this->start_datetime = $vacation->start_datetime->format('d-m-Y');
+                            $this->end_datetime = $vacation->end_datetime->format('d-m-Y');
+
+                            $startdate = explode(' ', $this->start_datetime);
+                            $this->state['start_date'] = $this->state['start_date']. ' ' .$startdate[1];
+                            $enddate = explode(' ', $this->end_datetime);
+                            $this->state['end_date'] = $this->state['end_date']. ' ' .$enddate[1];
+                            $this->state['start_end_datetime'] = $this->state['start_date'] . ' - ' . $this->state['end_date'];
+
                         }
                     }
                 } catch (\Exception $e) {
