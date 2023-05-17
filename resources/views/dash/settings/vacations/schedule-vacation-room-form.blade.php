@@ -179,10 +179,10 @@
     @push('scripts')
         <script>
             $(function () {
-                var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');
-                var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');
+                var startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY');
+                var endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY');
                 $('#schedule_room_start_end_datetime').daterangepicker({
-                    timePicker: true,
+                    timePicker: false,
                     timePickerIncrement: 60,
                     showDropdowns: false,
                     minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
@@ -193,11 +193,11 @@
                     endDate: @isset($state['end_date']) '{{ $state['end_date'] }}'
                     @else moment().set('minute', 0).add(2, 'days') @endisset,
                     locale: {
-                        format: 'MM/DD/YYYY HH:mm'
+                        format: 'MM/DD/YYYY'
                     },
                     isInvalidDate: function(ele) {
                         {{--console.log({{$state['start_date']}});--}}
-                        var compareDate = moment(ele._d, 'DD-MM-YYYY HH:mm');
+                        var compareDate = moment(ele._d, 'DD-MM-YYYY');
                         {{--startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');--}}
                         {{--endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');--}}
                         if(moment(compareDate).isBetween(startDate, endDate, null, '[]')){
@@ -209,7 +209,7 @@
                     },
                     isCustomDate:function(ele)
                     {
-                        var compareDate = moment(ele._d, 'DD-MM-YYYY HH:mm');
+                        var compareDate = moment(ele._d, 'DD-MM-YYYY');
                         {{--startDate = moment('{{ $start_datetime }}', 'DD-MM-YYYY HH:mm');--}}
                         {{--endDate = moment('{{ $end_datetime }}', 'DD-MM-YYYY HH:mm');--}}
 
@@ -238,11 +238,11 @@
 
                 $('#schedule_room_start_end_datetime').on('apply.daterangepicker', function (ev, picker) {
                     @this.
-                    set('state.start_date', picker.startDate.format('MM/DD/YYYY HH:mm'));
+                    set('state.start_date', picker.startDate.format('MM/DD/YYYY'));
                     @this.
-                    set('state.end_date', picker.endDate.format('MM/DD/YYYY HH:mm'));
+                    set('state.end_date', picker.endDate.format('MM/DD/YYYY'));
                     @this.
-                    set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'));
+                    set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
                 });
 
                 window.addEventListener('on-vacation-room-change', function (e) {
@@ -253,7 +253,7 @@
                 // @this.
                 // set('state.start_end_datetime', e.detail.startsAt + ' - ' + e.detail.endsAt);
 
-                startDate =  moment(e.detail.startDate, 'DD-MM-YYYY HH:mm');
+                startDate =  moment(e.detail.startDate, 'DD-MM-YYYY');
                 endDate =  moment(e.detail.endDate, 'DD-MM-YYYY HH:mm');
                     $('#schedule_room_start_end_datetime').data('daterangepicker').setStartDate(e.detail.startsAt);
                     $('#schedule_room_start_end_datetime').data('daterangepicker').setEndDate(e.detail.endsAt);

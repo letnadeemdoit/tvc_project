@@ -139,8 +139,15 @@ class ScheduleVacationRoomForm extends Component
     {
         $this->resetErrorBag();
 
-        $startDatetime = Carbon::parse($this->state['start_date'])->format('Y-m-d H:i');
-        $endDatetime = Carbon::parse($this->state['end_date'])->format('Y-m-d H:i');
+        $startDatetime = Carbon::parse($this->state['start_date'])->format('Y-m-d');
+        $endDatetime = Carbon::parse($this->state['end_date'])->format('Y-m-d');
+
+        $current_vacation = Vacation::where('VacationId', $this->state['vacation_id'] ?? '')->first();
+
+        $startdate = explode(' ', $current_vacation->startDatetime);
+        $startDatetime = $startDatetime. ' ' .$startdate[1];
+        $enddate = explode(' ', $current_vacation->endDatetime);
+        $endDatetime = $endDatetime. ' ' .$enddate[1];
 
         Validator::make($this->state, [
             'vacation_id' => ['required'],
@@ -288,10 +295,19 @@ class ScheduleVacationRoomForm extends Component
                 'vacation_id' => $this->vacationRoom->vacation_id,
                 'occupant_name' => $this->vacationRoom->occupant_name,
                 'room_id' => $this->vacationRoom->room_id,
-                'start_date' => $this->vacationRoom->starts_at->format('m/d/Y H:i'),
-                'end_date' => $this->vacationRoom->ends_at->format('m/d/Y H:i'),
-                'start_end_datetime' => $this->vacationRoom->starts_at->format('m/d/Y H:i') . ' - ' . $this->vacationRoom->ends_at->format('m/d/Y H:i'),
+                'start_date' => $this->vacationRoom->starts_at->format('m/d/Y'),
+                'end_date' => $this->vacationRoom->ends_at->format('m/d/Y'),
+                'start_end_datetime' => $this->vacationRoom->starts_at->format('m/d/Y') . ' - ' . $this->vacationRoom->ends_at->format('m/d/Y'),
             ];
+
+            $startdate = explode(' ', $this->start_datetime);
+//            $this->state['start_date'] = $this->state['start_date']. ' ' .$startdate[1];
+            $enddate = explode(' ', $this->end_datetime);
+//            $this->state['end_date'] = $this->state['end_date']. ' ' .$enddate[1];
+//            $this->state['start_end_datetime'] = $this->state['start_date'] . ' - ' . $this->state['end_date'];
+            $this->start_datetime = $startdate[0];
+            $this->end_datetime = $enddate[0];
+//            dd($this->state['start_date'] . ' ' . $this->state['end_date']);
 
         } else {
             $this->isCreating = true;
