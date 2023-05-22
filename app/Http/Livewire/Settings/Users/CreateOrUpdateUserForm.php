@@ -93,7 +93,6 @@ class CreateOrUpdateUserForm extends Component
     public function saveUserCU()
     {
         $this->resetErrorBag();
-
         if (isset($this->state['role']) && $this->state['role'] === User::ROLE_GUEST) {
             $this->state['user_name'] = 'Guest';
             $this->state['first_name'] = 'House';

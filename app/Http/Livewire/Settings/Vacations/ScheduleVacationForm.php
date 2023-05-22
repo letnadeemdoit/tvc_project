@@ -51,7 +51,6 @@ class ScheduleVacationForm extends Component
     public function mount($vacationId = null, $initialDate = null, $owner = null, $house = null, $vacationListRoute = null)
     {
         $this->model = Vacation::class;
-
         $this->vacationListRoute = $vacationListRoute;
 
         Cookie::queue('vbc', '#E8604C', 10000);
@@ -513,7 +512,6 @@ class ScheduleVacationForm extends Component
                                     }
                                 }
                             }
-
                         }
                     }
 
