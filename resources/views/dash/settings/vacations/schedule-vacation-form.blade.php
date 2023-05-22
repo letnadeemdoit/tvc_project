@@ -377,28 +377,63 @@
             </div>
         </form>
     </div>
+
     <div class="modal fade" id="vacationConfirmModal" tabindex="-1" aria-labelledby="vacationConfirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="vacationConfirmModalLabel">Vacation update confirmation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure to update this vacation with new start date</p>
-                    <p>Once vacation is updated all room's booked on that vacation will be deleted.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
-                    @if($updateVac)
-                        <button type="button" class="btn btn-primary" wire:click.prevent="saveVacationSchedule">Yes update</button>
-                    @elseif($manageVac)
-                        <button type="button" class="btn btn-primary" wire:click.prevent="manageRooms">Yes update</button>
-                    @endif
+{{--                <h5 class="modal-title" id="vacationConfirmModalLabel">Vacation update confirmation</h5>--}}
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Are you sure to update this vacation</h4>
+                    <p class="fw-500 fs-15">Once vacation is updated all room's booked on that vacation will be deleted.</p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Cancel
+                        </button>
+                        @if($updateVac)
+                            <button type="button" class="btn btn-primary" wire:click.prevent="saveVacationSchedule">Yes update</button>
+                        @elseif($manageVac)
+                            <button type="button" class="btn btn-primary" wire:click.prevent="manageRooms">Yes update</button>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="selectRelevantVacationModal" tabindex="-1" aria-labelledby="selectRelevantVacationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+{{--                <h6 class="modal-title fs-10 text-white"--}}
+{{--                    id="selectRelevantVacationModalLabel">relevant</h6>--}}
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Select the relevant property</h4>
+                    <p class="fw-500 fs-15">This vacation is scheduled in different house please switch to relevant house before updating this vacation</p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @push('scripts')
         <script>
             $(function () {
@@ -461,6 +496,10 @@
 
                 window.addEventListener('sure-to-update-vacation', function (e) {
                     $('#vacationConfirmModal').modal('show');
+                });
+
+                window.addEventListener('select-the-relevant-property', function (e) {
+                    $('#selectRelevantVacationModal').modal('show');
                 });
 
                 // $(document).mouseup(function(e)

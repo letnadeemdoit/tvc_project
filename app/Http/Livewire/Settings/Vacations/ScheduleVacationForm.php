@@ -256,10 +256,18 @@ class ScheduleVacationForm extends Component
             }
             else{
                 if ($data === 'updateVac'){
-                    $this->saveVacationSchedule();
+                    if ($this->user->HouseId === $this->vacation->HouseId){
+                        $this->saveVacationSchedule();
+                    }else{
+                        $this->dispatchBrowserEvent('select-the-relevant-property',['data' => null]);
+                    }
                 }
                 elseif ($data === 'manageVac'){
-                    $this->manageRooms();
+                    if ($this->user->HouseId === $this->vacation->HouseId){
+                        $this->manageRooms();
+                    }else{
+                        $this->dispatchBrowserEvent('select-the-relevant-property',['data' => null]);
+                    }
                 }
             }
         }
