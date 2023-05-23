@@ -97,33 +97,69 @@ class CreateOrUpdateUserForm extends Component
             $this->state['last_name'] = 'Guest';
             $this->state['email'] = 'guest@thevacationcalendar.com';
         }
-
-        Validator::make($this->state, [
-            'user_name' => [
-                'required',
-                $this->user && $this->user->user_name ? Rule::unique('users', 'user_name')->where(function ($query) {
-                    $query->where('HouseId', $this->state['house_id'] ?? $this->user->HouseId);
-                })->ignore($this->user->user_id, 'user_id') : Rule::unique('users', 'user_name')->where(function ($query) {
-                    $query->where('HouseId',$this->state['house_id'] ?? $this->user->HouseId);
-                })],
-            'email' => [
-                Rule::requiredIf(isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST),
-                'string',
-                'email',
-                'max:255',
-                $this->user && $this->user->user_name ? Rule::unique('users')->where(function ($query) {
-                    $query->where('HouseId', $this->state['house_id'] ?? $this->user->HouseId);
-                })->ignore($this->user->user_id, 'user_id') : Rule::unique('users')->where(function ($query) {
-                    $query->where('HouseId',$this->state['house_id'] ?? $this->user->HouseId);
-                })
-            ],
-            'role' => ['required'],
-            'house_id' => ['required'],
-            'first_name' => ['required', 'string', 'max:100'],
-            'last_name' => ['required', 'string', 'max:100'],
-            'password' => [$this->user && $this->user->user_name ? 'nullable' : 'required', (new \Laravel\Fortify\Rules\Password)->requireNumeric()->requireUppercase()->requireSpecialCharacter(), 'confirmed'],
-        ])->validateWithBag('saveUserCU');
-
+        if (!$this->isCreating && isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER) {
+            $users = User::whereIn('HouseId', $this->state['house_id'])
+                ->where([
+                    'parent_id' => $this->user->parent_id,
+                    'role' => 'Owner',
+                    'email' => $this->user->email
+                ])
+                ->get();
+            foreach ($users as $user){
+                Validator::make($this->state, [
+                    'user_name' => [
+                        'required',
+                        $user && $user->user_name ? Rule::unique('users', 'user_name')->where(function ($query) {
+                            $query->where('HouseId', $this->state['house_id'] ?? $user->HouseId);
+                        })->ignore($user->user_id, 'user_id') : Rule::unique('users', 'user_name')->where(function ($query) {
+                            $query->where('HouseId',$this->state['house_id'] ?? $user->HouseId);
+                        })],
+                    'email' => [
+                        Rule::requiredIf(isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST),
+                        'string',
+                        'email',
+                        'max:255',
+                        $user && $user->user_name ? Rule::unique('users')->where(function ($query) {
+                            $query->where('HouseId', $this->state['house_id'] ?? $user->HouseId);
+                        })->ignore($user->user_id, 'user_id') : Rule::unique('users')->where(function ($query) {
+                            $query->where('HouseId',$this->state['house_id'] ?? $user->HouseId);
+                        })
+                    ],
+                    'role' => ['required'],
+                    'house_id' => ['required'],
+                    'first_name' => ['required', 'string', 'max:100'],
+                    'last_name' => ['required', 'string', 'max:100'],
+                    'password' => [$this->user && $this->user->user_name ? 'nullable' : 'required', (new \Laravel\Fortify\Rules\Password)->requireNumeric()->requireUppercase()->requireSpecialCharacter(), 'confirmed'],
+                ])->validateWithBag('saveUserCU');
+            }
+        }
+        else{
+            Validator::make($this->state, [
+                'user_name' => [
+                    'required',
+                    $this->user && $this->user->user_name ? Rule::unique('users', 'user_name')->where(function ($query) {
+                        $query->where('HouseId', $this->state['house_id'] ?? $this->user->HouseId);
+                    })->ignore($this->user->user_id, 'user_id') : Rule::unique('users', 'user_name')->where(function ($query) {
+                        $query->where('HouseId',$this->state['house_id'] ?? $this->user->HouseId);
+                    })],
+                'email' => [
+                    Rule::requiredIf(isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST),
+                    'string',
+                    'email',
+                    'max:255',
+                    $this->user && $this->user->user_name ? Rule::unique('users')->where(function ($query) {
+                        $query->where('HouseId', $this->state['house_id'] ?? $this->user->HouseId);
+                    })->ignore($this->user->user_id, 'user_id') : Rule::unique('users')->where(function ($query) {
+                        $query->where('HouseId',$this->state['house_id'] ?? $this->user->HouseId);
+                    })
+                ],
+                'role' => ['required'],
+                'house_id' => ['required'],
+                'first_name' => ['required', 'string', 'max:100'],
+                'last_name' => ['required', 'string', 'max:100'],
+                'password' => [$this->user && $this->user->user_name ? 'nullable' : 'required', (new \Laravel\Fortify\Rules\Password)->requireNumeric()->requireUppercase()->requireSpecialCharacter(), 'confirmed'],
+            ])->validateWithBag('saveUserCU');
+        }
 
         if (isset($this->state['password'])) {
             $sendPasswordToMail = $this->state['password'];
