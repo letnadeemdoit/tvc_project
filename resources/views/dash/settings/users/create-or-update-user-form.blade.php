@@ -3,7 +3,7 @@
 >
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $user && $user->user_name ? "Update" : 'Add' }} User</h5>
+            <h5 class="modal-title">{{ $userCU && $userCU->user_name ? "Update" : 'Add' }} User</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -43,14 +43,14 @@
                         id="role"
                         wire:model="state.role"
                     >
-                        @if($user && $user->role !== \App\Models\User::ROLE_GUEST)
+                        @if($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST)
                             <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
                             <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
                         @endif
 
-                        @if(($user && $user->role == \App\Models\User::ROLE_GUEST) || ($user && $user->role == null))
+                        @if(($userCU && $userCU->role == \App\Models\User::ROLE_GUEST) || ($userCU && $userCU->role == null))
                             <option
-                                value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists && ($user && $user->role !== \App\Models\User::ROLE_GUEST)? 'disabled' : '' }}>
+                                value="{{ \App\Models\User::ROLE_GUEST }}" {{ $isGuestAlreadyExists && ($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST)? 'disabled' : '' }}>
                                 Guest
                             </option>
                         @endif
@@ -68,7 +68,7 @@
                         name="user_name"
                         placeholder="User Name"
                         id="user_name"
-                        {{ ($user && $user->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
                         wire:model.defer="state.user_name"
                     />
                     @error('user_name')
@@ -87,7 +87,7 @@
                         name="first_name"
                         placeholder="First Name"
                         id="first_name"
-                        {{ ($user && $user->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
                         wire:model.defer="state.first_name"
                     />
                     @error('first_name')
@@ -102,7 +102,7 @@
                         name="last_name"
                         placeholder="Last Name"
                         id="last_name"
-                        {{ ($user && $user->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                        {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
                         wire:model.defer="state.last_name"
                     />
                     @error('last_name')
@@ -118,7 +118,7 @@
                     name="email"
                     placeholder="Email"
                     id="email"
-                    {{ ($user && $user->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
+                    {{ ($userCU && $userCU->role === \App\Models\User::ROLE_GUEST) || (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_GUEST) ? 'disabled' : '' }}
                     wire:model.defer="state.email"
                 />
                 @error('email')
@@ -178,7 +178,7 @@
                 </div>
             </div>
 
-            @if((isset($state['role']) && $state['role'] !== \App\Models\User::ROLE_GUEST) && ($user && $user->role !== \App\Models\User::ROLE_GUEST))
+            @if((isset($state['role']) && $state['role'] !== \App\Models\User::ROLE_GUEST) && ($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST))
                 <div class="row mb-3">
                     <label for="" class="form-label">Send Email:</label>
                     <div class="col-12 col-lg-6  mb-3 mb-sm-0">
@@ -221,7 +221,7 @@
                     type="submit"
                     class="btn btn-primary ms-auto"
                 >
-                    {{ $user && $user->user_name ? "Update" : 'Add' }} User
+                    {{ $userCU && $userCU->user_name ? "Update" : 'Add' }} User
                 </button>
             </div>
         </form>
