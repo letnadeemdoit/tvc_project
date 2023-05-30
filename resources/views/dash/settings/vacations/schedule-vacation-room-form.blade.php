@@ -20,11 +20,11 @@
             <x-jet-validation-errors/>
             {{--            <x-jet-validation-errors />--}}
             <div class="form-group mb-3">
-                <label class="form-label" for="room_name">Room Name:</label>
+                <label class="form-label" for="room_id">Room Name:</label>
                 <select
                     type="text"
-                    class="form-control @error('room_name') is-invalid @enderror"
-                    name="room_name"
+                    class="form-control @error('room_id') is-invalid @enderror"
+                    name="room_id"
                     wire:model="state.room_id"
                 >
                     <option disabled value="">Select Room</option>
@@ -35,7 +35,7 @@
                         @endforeach
                     @endif
                 </select>
-                @error('room_name')
+                @error('room_id')
                 <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
                 <div wire:loading wire:target="state.room_id" class="text-success">
