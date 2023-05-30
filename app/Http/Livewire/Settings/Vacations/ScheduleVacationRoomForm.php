@@ -163,7 +163,7 @@ class ScheduleVacationRoomForm extends Component
             }
 
             $vacationRoom = VacationRoom::where('vacation_id', $this->state['vacation_id'] ?? '')
-                ->where('room_id', $this->state['room_id'])
+                ->where('room_id', $this->state['room_id'] ?? '')
                 ->where(function ($query) use ($startDatetime, $endDatetime) {
                     $query
                         ->where(function ($query) use ($startDatetime, $endDatetime) {
@@ -313,11 +313,15 @@ class ScheduleVacationRoomForm extends Component
         } else {
             $this->isCreating = true;
             $this->state = [
-                'room_id' => $roomId,
                 'book_rooms' => 0,
                 'vacation_rooms' => [],
             ];
-
+            $Rooms = Room::where('HouseID', current_house()->HouseID)->get();
+            if(isset($Rooms) && count($Rooms) > 0){
+                $this->state = [
+                'room_id' => $roomId,
+                ];
+            }
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);

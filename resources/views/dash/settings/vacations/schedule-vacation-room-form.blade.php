@@ -25,7 +25,8 @@
                     type="text"
                     class="form-control @error('room_id') is-invalid @enderror"
                     name="room_id"
-                    wire:model="state.room_id"
+                    id="room_id"
+                    wire:model.defer="state.room_id"
                 >
                     <option disabled value="">Select Room</option>
 
