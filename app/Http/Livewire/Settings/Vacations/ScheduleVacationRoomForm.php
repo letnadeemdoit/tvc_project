@@ -150,6 +150,7 @@ class ScheduleVacationRoomForm extends Component
         $endDatetime = $endDatetime. ' ' .$enddate[1];
 
         Validator::make($this->state, [
+            'room_id' => ['required'],
             'vacation_id' => ['required'],
             'occupant_name' => ['required'],
             'start_date' => ['required'],
