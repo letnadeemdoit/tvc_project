@@ -323,7 +323,7 @@
 {{--                @endif--}}
             @endif
             <div class="row ">
-                @if($user->is_owner && $vacation && $vacation->VacationId)
+                @if(!$user->is_guest && $vacation && $vacation->VacationId)
                     <div class="col-12 col-sm-4 col-md-5">
                         <a
                             href="#!"

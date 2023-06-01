@@ -7,6 +7,7 @@ use App\Models\House;
 use App\Models\Room\Room;
 use App\Models\User;
 use App\Models\Vacation;
+use App\Models\VacationRoom;
 use App\Notifications\DeleteNotification;
 use Exception;
 use Illuminate\Support\Facades\Notification;
@@ -47,7 +48,9 @@ class CalendarView extends Component
         'vacation-schedule-successfully' => 'renderCalendar',
         'destroyed-scheduled-successfully' => 'destroyedSuccessfully',
         'destroy-vacation' => 'destroy',
-        'vacation-room-destroyed-successfully' => 'renderCalendar'
+        'vacation-room-destroyed-successfully' => 'renderCalendar',
+        'checkHouseRelevantRoom' => 'checkHouseRelevantRoom',
+        'checkRoomExistInHouse' => 'checkRoomExistInHouse'
     ];
 
     public function mount()
@@ -84,6 +87,40 @@ class CalendarView extends Component
             $this->startRoomDatetime = session()->get('startRoomDatetime');
             session()->forget('startRoomDatetime');
         }
+    }
+
+    public function checkHouseRelevantRoom($roomId , $start_date){
+        if($this->user->primary_account){
+            $houses = House::where('HouseID', $this->user->HouseId)->orWhere('parent_id',$this->user->HouseId)->get();
+            $houseIds = $houses->pluck('HouseID')->toArray();
+            $vacations = Vacation::whereIn('HouseId', $houseIds)->get();
+        }
+        else{
+            $user = User::where('parent_id', primary_user()->user_id)->first();
+            $houses = House::where('HouseID', $user->HouseId)->orWhere('parent_id',$user->HouseId)->get();
+            $houseIds = $houses->pluck('HouseID')->toArray();
+            $vacations = Vacation::whereIn('HouseId', $houseIds)->get();
+        }
+        $currentDate = date('Y-m-d', strtotime($start_date));
+        foreach ($vacations as $vacation) {
+            $start_date = date('Y-m-d', strtotime($vacation->start_datetime));
+            $end_date = date('Y-m-d', strtotime($vacation->end_datetime));
+            if (($currentDate >= $start_date) && ($currentDate <= $end_date)){
+                $house_id = $vacation->HouseId;
+                if ($house_id !==current_house()->HouseID){
+                    $this->dispatchBrowserEvent('select-relevant-room');
+                }
+                else{
+                    $Room = Room::where('HouseID', current_house()->HouseID)->where('RoomID', $roomId)->first();
+                    $this->dispatchBrowserEvent('current-room', ['room' => $Room]);
+                }
+            }
+        }
+    }
+    public function checkRoomExistInHouse($roomId, $vacation_room_id){
+        $roomVacation = VacationRoom::where('id', $vacation_room_id)->where('room_id', $roomId)->first();
+        $vacation = Vacation::where('VacationId', $roomVacation->vacation_id)->first();
+        $this->dispatchBrowserEvent('current-vacation-room', ['vacation' => $vacation]);
     }
 
     public function render()

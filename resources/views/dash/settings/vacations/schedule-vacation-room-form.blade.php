@@ -111,7 +111,7 @@
             </div>
 
             <div class="row ">
-                @if($user->is_owner && $vacationRoom && $vacationRoom->id)
+                @if(!$user->is_guest && $vacationRoom && $vacationRoom->id)
                     <div class="col-12 col-sm-4 col-md-6">
                         <a
                             href="#!"
