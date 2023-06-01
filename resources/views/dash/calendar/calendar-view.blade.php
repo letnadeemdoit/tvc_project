@@ -283,6 +283,15 @@
                         if (info.view.type === 'resourceTimelineMonth') {
                             if (info.resource._resource.id !== 0 && info.resource._resource.title !== 'Vacations') {
                                 await window.livewire.emit('checkHouseRelevantRoom', info.resource._resource.id, info.dateStr);
+                                $.blockUI({ css: {
+                                        border: 'none',
+                                        padding: '15px',
+                                        // backgroundColor: '#000',
+                                        '-webkit-border-radius': '10px',
+                                        '-moz-border-radius': '10px',
+                                        opacity: .5,
+                                        color: '#fff'
+                                    } });
                                 window.addEventListener('current-room', function (e) {
                                     if(e.detail.room !== null) {
                                         var url = "{!! route('dash.schedule-vacation-room', ['roomId' => '__roomId__', 'vacationRoomId' => '__vacationRoomId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}";
@@ -300,6 +309,7 @@
                                         $('#selectRelevantRoomModal').modal('show');
                                     }
                                 });
+
                                 // window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
                             }
                             else {
@@ -352,6 +362,15 @@
                         if (calEvent.view.type == 'resourceTimelineMonth') {
                             if (calEvent.event.extendedProps.is_room) {
                                 window.livewire.emit('checkRoomExistInHouse', calEvent.event.extendedProps.room_id, calEvent.event.extendedProps.vacation_room_id);
+                                $.blockUI({ css: {
+                                        border: 'none',
+                                        padding: '15px',
+                                        // backgroundColor: '#000',
+                                        '-webkit-border-radius': '10px',
+                                        '-moz-border-radius': '10px',
+                                        opacity: .5,
+                                        color: '#fff'
+                                    } });
                                 window.addEventListener('current-vacation-room', function (e) {
                                     let current_houseid = "<?php echo current_house()->HouseID; ?>";
                                     if(e.detail.vacation.HouseId == current_houseid) {
@@ -443,7 +462,6 @@
                     //     return {domNodes: arrayOfDomNodes}
                     // },
                     eventContent({event}) {
-
                         if (event.extendedProps.is_room) {
                             return {
                                 html: `
@@ -593,9 +611,11 @@
                     $('#selectRelevantRoomModal').modal('show');
                 });
 
-
-
+                $('#selectRelevantRoomModal').on('shown.bs.modal', function (e) {
+                    $.unblockUI();
+                })
             });
+
         </script>
     @endpush
 </div>
