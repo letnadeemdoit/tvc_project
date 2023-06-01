@@ -976,16 +976,23 @@ class ScheduleVacationForm extends Component
 
     public function deleteVacation()
     {
-        if ($this->model) {
-            $deletableModel = app($this->model)->findOrFail($this->vacation->parent_id ?: $this->vacation->VacationId);
-            Session::put('startDatetimeForDeleteVacation', $deletableModel->start_datetime);
-            $this->emit(
-                'destroyable-confirmation-modal',
-                $this->model,
-                $this->vacation->parent_id ?: $this->vacation->VacationId,
-                $this->destroyableConfirmationContent,
-            );
+        if($this->vacation->HouseId == current_house()->HouseID){
+            if ($this->model) {
+                $deletableModel = app($this->model)->findOrFail($this->vacation->parent_id ?: $this->vacation->VacationId);
+                Session::put('startDatetimeForDeleteVacation', $deletableModel->start_datetime);
+                $this->emit(
+                    'destroyable-confirmation-modal',
+                    $this->model,
+                    $this->vacation->parent_id ?: $this->vacation->VacationId,
+                    $this->destroyableConfirmationContent,
+                );
+            }
         }
+        else{
+            $this->dispatchBrowserEvent('select-the-relevant-property-to-delete',['data' => null]);
+
+        }
+
     }
     public function cancelVacation(){
         return redirect()->route('dash.calendar');
