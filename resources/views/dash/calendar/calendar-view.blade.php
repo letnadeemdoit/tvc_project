@@ -207,7 +207,7 @@
 
                     <h4 class="fw-bold text-center my-3"
                         style="color: #00000090">Select the relevant property</h4>
-                    <p class="fw-500 fs-15">This vacation is scheduled in different house please switch to relevant house before updating this vacation</p>
+                    <p class="fw-500 fs-15">This room is scheduled in different house please switch to relevant house before adding or updating room</p>
                     <div class="btn-group my-2">
                         <button type="button"
                                 class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
