@@ -32,6 +32,8 @@ class CalendarView extends Component
 
     public $user_ad = null;
 
+    public $roomData = null;
+
     public $vacationId = null;
     public $selectedHouses = [];
     public $properties = null;
@@ -107,14 +109,19 @@ class CalendarView extends Component
             $end_date = date('Y-m-d', strtotime($vacation->end_datetime));
             if (($currentDate >= $start_date) && ($currentDate <= $end_date)){
                 $house_id = $vacation->HouseId;
-                if ($house_id !==current_house()->HouseID){
-                    $this->dispatchBrowserEvent('select-relevant-room');
+                if ($house_id == current_house()->HouseID){
+                    $this->roomData = Room::where('HouseID', current_house()->HouseID)->where('RoomID', $roomId)->first();
                 }
-                else{
-                    $Room = Room::where('HouseID', current_house()->HouseID)->where('RoomID', $roomId)->first();
-                    $this->dispatchBrowserEvent('current-room', ['room' => $Room]);
-                }
+//                else{
+//                    $this->dispatchBrowserEvent('select-relevant-room');
+//                }
             }
+        }
+        if (!is_null($this->roomData)){
+            $this->dispatchBrowserEvent('current-room', ['room' => $this->roomData]);
+        }
+        else{
+            $this->dispatchBrowserEvent('current-room', ['room' => null]);
         }
     }
     public function checkRoomExistInHouse($roomId, $vacation_room_id){
