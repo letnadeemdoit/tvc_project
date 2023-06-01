@@ -219,6 +219,30 @@
         </div>
     </div>
 
+    <div class="modal fade" id="changeAccountSettingToAccessRoomModal" tabindex="-1" aria-labelledby="changeAccountSettingToAccessRoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Change Account Information</h4>
+                    <p class="fw-500 fs-15">This account does not have allowed to access room booking screen. Please contact the house Administrator <strong>({{primary_user()->first_name . ' ' . primary_user()->last_name . ' - ' . primary_user()->email}})</strong> to set up account information to access room screen</p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     @push('scripts')
         <script>
@@ -282,6 +306,9 @@
 
                         if (info.view.type === 'resourceTimelineMonth') {
                             if (info.resource._resource.id !== 0 && info.resource._resource.title !== 'Vacations') {
+                                @if(primary_user()->enable_rooms !== 1)
+                                $('#changeAccountSettingToAccessRoomModal').modal('show');
+                                @else
                                 await window.livewire.emit('checkHouseRelevantRoom', info.resource._resource.id, info.dateStr);
                                 $.blockUI({ css: {
                                         border: 'none',
@@ -309,6 +336,8 @@
                                         $('#selectRelevantRoomModal').modal('show');
                                     }
                                 });
+
+                                @endif
 
                                 // window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
                             }
@@ -361,6 +390,9 @@
                         @else
                         if (calEvent.view.type == 'resourceTimelineMonth') {
                             if (calEvent.event.extendedProps.is_room) {
+                                @if(primary_user()->enable_rooms !== 1)
+                                $('#changeAccountSettingToAccessRoomModal').modal('show');
+                                @else
                                 window.livewire.emit('checkRoomExistInHouse', calEvent.event.extendedProps.room_id, calEvent.event.extendedProps.vacation_room_id);
                                 $.blockUI({ css: {
                                         border: 'none',
@@ -385,6 +417,7 @@
                                         $('#selectRelevantRoomModal').modal('show');
                                     }
                                 });
+                                @endif
 
                                 // window.livewire.emit('showVacationRoomScheduleModal', true, calEvent.event.id, calEvent.event.extendedProps.vacation_room_id)
                             }
