@@ -48,6 +48,9 @@ class UsersList extends Component
                 $owner->update(['is_confirmed' => !!$toggle]);
             }
         }
+        else{
+            $user->update(['is_confirmed' => !!$toggle]);
+        }
         $this->emitSelf('user-cu-successfully');
         $this->emitSelf('saved-' . $user->user_id);
     }
