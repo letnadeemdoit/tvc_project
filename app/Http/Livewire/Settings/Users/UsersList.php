@@ -42,7 +42,12 @@ class UsersList extends Component
     }
 
     public function isConfirmed($toggle, User $user) {
-        $user->update(['is_confirmed' => !!$toggle]);
+        $usersOwner = User::where('parent_id', $user->parent_id)->where('email', $user->email)->where('role', 'Owner')->get();
+        if (count($usersOwner) > 0){
+            foreach ($usersOwner as $owner){
+                $owner->update(['is_confirmed' => !!$toggle]);
+            }
+        }
         $this->emitSelf('user-cu-successfully');
         $this->emitSelf('saved-' . $user->user_id);
     }
