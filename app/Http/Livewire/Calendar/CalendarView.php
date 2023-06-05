@@ -110,11 +110,8 @@ class CalendarView extends Component
             if (($currentDate >= $start_date) && ($currentDate <= $end_date)){
                 $house_id = $vacation->HouseId;
                 if ($house_id == current_house()->HouseID){
-                    $this->roomData = Room::where('HouseID', current_house()->HouseID)->where('RoomID', $roomId)->first();
+                    $this->roomData = Room::where('HouseID', $this->user->HouseId)->where('RoomID', $roomId)->first();
                 }
-//                else{
-//                    $this->dispatchBrowserEvent('select-relevant-room');
-//                }
             }
         }
         if (!is_null($this->roomData)){
