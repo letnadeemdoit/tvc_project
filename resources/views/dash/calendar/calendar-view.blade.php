@@ -306,9 +306,9 @@
 
                         if (info.view.type === 'resourceTimelineMonth') {
                             if (info.resource._resource.id !== 0 && info.resource._resource.title !== 'Vacations') {
-                                @if(primary_user()->enable_rooms !== 1)
-                                $('#changeAccountSettingToAccessRoomModal').modal('show');
-                                @else
+{{--                                @if(primary_user()->enable_rooms !== 1)--}}
+{{--                                $('#changeAccountSettingToAccessRoomModal').modal('show');--}}
+{{--                                @else--}}
                                 await window.livewire.emit('checkHouseRelevantRoom', info.resource._resource.id, info.dateStr);
                                 $.blockUI({ css: {
                                         border: 'none',
@@ -337,7 +337,7 @@
                                     }
                                 });
 
-                                @endif
+{{--                                @endif--}}
 
                                 // window.livewire.emit('showVacationRoomScheduleModal', true, info.resource._resource.id, null, info.dateStr, parsed.owner);
                             }
