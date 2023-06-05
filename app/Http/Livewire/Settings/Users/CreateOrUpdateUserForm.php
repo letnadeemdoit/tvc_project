@@ -24,6 +24,8 @@ class CreateOrUpdateUserForm extends Component
 
     public ?User $user;
 
+    public $new_houseid = null;
+
     public $isCreating = false;
 
     protected $listeners = [
@@ -74,6 +76,11 @@ class CreateOrUpdateUserForm extends Component
                     'role' => $userCU->role,
                 ];
             }
+            elseif ($userCU->role === 'Guest'){
+                $this->state = [
+                    'role' => $userCU->role,
+                ];
+            }
 //            $this->state = [
 //                'user_name' => $userCU->user_name,
 //                'first_name' => $userCU->first_name,
@@ -102,19 +109,20 @@ class CreateOrUpdateUserForm extends Component
         if (!$this->isCreating && isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER) {
             $users = User::whereIn('HouseId', $this->state['house_id'])
                 ->where([
-                    'parent_id' => $this->userCU->parent_id,
+                    'parent_id' => primary_user()->user_id,
                     'role' => 'Owner',
                     'email' => $this->userCU->email
                 ])
                 ->get();
             foreach ($users as $user){
+                $this->new_houseid = $user->HouseId;
                 Validator::make($this->state, [
                     'user_name' => [
                         'required',
                         $user && $user->user_name ? Rule::unique('users', 'user_name')->where(function ($query) {
-                            $query->where('HouseId', $this->state['house_id'] ?? $user->HouseId);
+                            $query->where('HouseId', $this->new_houseid);
                         })->ignore($user->user_id, 'user_id') : Rule::unique('users', 'user_name')->where(function ($query) {
-                            $query->where('HouseId',$this->state['house_id'] ?? $user->HouseId);
+                            $query->where('HouseId',$this->new_houseid);
                         })],
                     'email' => [
                         Rule::requiredIf(isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST),
@@ -122,9 +130,9 @@ class CreateOrUpdateUserForm extends Component
                         'email',
                         'max:255',
                         $user && $user->user_name ? Rule::unique('users')->where(function ($query) {
-                            $query->where('HouseId', $this->state['house_id'] ?? $user->HouseId);
+                            $query->where('HouseId', $this->new_houseid);
                         })->ignore($user->user_id, 'user_id') : Rule::unique('users')->where(function ($query) {
-                            $query->where('HouseId',$this->state['house_id'] ?? $user->HouseId);
+                            $query->where('HouseId',$this->new_houseid);
                         })
                     ],
                     'role' => ['required'],
@@ -135,7 +143,7 @@ class CreateOrUpdateUserForm extends Component
                 ])->validateWithBag('saveUserCU');
             }
         }
-        else{
+        else if((!$this->isCreating && (isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST)) || $this->isCreating){
             Validator::make($this->state, [
                 'user_name' => [
                     'required',
@@ -174,7 +182,7 @@ class CreateOrUpdateUserForm extends Component
         } else {
             $this->userCU->parent_id = $this->user->parent_id;
         }
-        if (is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && !$this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
+        if (isset($this->state['house_id']) && is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && !$this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
             foreach ($this->state['house_id'] as $houseId) {
                 $user = User::where([
                     'parent_id' => $this->userCU->parent_id,
@@ -226,7 +234,7 @@ class CreateOrUpdateUserForm extends Component
                 }
 
         }
-        elseif (is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && $this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
+        elseif (isset($this->state['house_id']) && is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && $this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
             foreach ($this->state['house_id'] as $houseId) {
                 $newUser = new User();
                 $newUser->fill([
@@ -250,8 +258,8 @@ class CreateOrUpdateUserForm extends Component
                 'role' => $this->state['role'],
                 'first_name' => $this->state['first_name'],
                 'last_name' => $this->state['last_name'],
+//                'HouseId' => $this->state['house_id'][0] ?? $this->user->HouseId,
                 'HouseId' => $this->state['house_id'] ?? $this->user->HouseId,
-//            'HouseId' => $this->user->HouseId,
             ])->save();
 
             $createUser = $this->userCU;
