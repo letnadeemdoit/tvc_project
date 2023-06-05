@@ -98,8 +98,7 @@ class CalendarView extends Component
             $vacations = Vacation::whereIn('HouseId', $houseIds)->get();
         }
         else{
-            $user = User::where('parent_id', $this->user->user_id)->first();
-            $houses = House::where('HouseID', $user->HouseId)->orWhere('parent_id',$user->HouseId)->get();
+            $houses = House::where('HouseID', primary_user()->HouseId)->orWhere('parent_id',primary_user()->HouseId)->get();
             $houseIds = $houses->pluck('HouseID')->toArray();
             $vacations = Vacation::whereIn('HouseId', $houseIds)->get();
         }
@@ -109,7 +108,8 @@ class CalendarView extends Component
             $end_date = date('Y-m-d', strtotime($vacation->end_datetime));
             if (($currentDate >= $start_date) && ($currentDate <= $end_date)){
                 $house_id = $vacation->HouseId;
-                if ($house_id == $this->user->HouseId){
+                $user_id = $vacation->OwnerId;
+                if ($house_id == $this->user->HouseId && $this->user->user_id == $user_id){
                     $this->roomData = Room::where('HouseID', $this->user->HouseId)->where('RoomID', $roomId)->first();
                 }
             }
