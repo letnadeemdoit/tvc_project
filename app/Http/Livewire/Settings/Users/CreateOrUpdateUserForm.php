@@ -100,16 +100,20 @@ class CreateOrUpdateUserForm extends Component
         }
     }
     public function confirmUserVac(){
-
-        $difference = array_diff($this->current_houses,$this->state['house_id']);
-        $result = array_values($difference);
-        if (count($result) > 0){
-            if (array_diff( $result ,$this->current_houses)){
-                $this->saveUserCU();
+        if (!$this->isCreating){
+            $difference = array_diff($this->current_houses,$this->state['house_id']);
+            $result = array_values($difference);
+            if (count($result) > 0){
+                if (array_diff( $result ,$this->current_houses)){
+                    $this->saveUserCU();
+                }else{
+                    $this->dispatchBrowserEvent('sure-to-update',['data' => null]);
+                }
             }else{
-                $this->dispatchBrowserEvent('sure-to-update',['data' => null]);
+                $this->saveUserCU();
             }
-        }else{
+        }
+        else{
             $this->saveUserCU();
         }
     }
