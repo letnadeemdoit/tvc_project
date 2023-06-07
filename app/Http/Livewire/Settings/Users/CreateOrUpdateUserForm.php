@@ -26,6 +26,8 @@ class CreateOrUpdateUserForm extends Component
 
     public $new_houseid = null;
 
+    public $current_houses = null;
+
     public $isCreating = false;
 
     protected $listeners = [
@@ -75,6 +77,7 @@ class CreateOrUpdateUserForm extends Component
                     'house_id' => $user->pluck('HouseId')->toArray(),
                     'role' => $userCU->role,
                 ];
+                $this->current_houses  = $user->pluck('HouseId')->toArray();
             }
             elseif ($userCU->role === 'Guest'){
                 $this->state = [
@@ -94,6 +97,20 @@ class CreateOrUpdateUserForm extends Component
             $this->state = [
                 'role' => User::ROLE_OWNER,
             ];
+        }
+    }
+    public function confirmUserVac(){
+
+        $difference = array_diff($this->current_houses,$this->state['house_id']);
+        $result = array_values($difference);
+        if (count($result) > 0){
+            if (array_diff( $result ,$this->current_houses)){
+                $this->saveUserCU();
+            }else{
+                $this->dispatchBrowserEvent('sure-to-update',['data' => null]);
+            }
+        }else{
+            $this->saveUserCU();
         }
     }
 
@@ -281,6 +298,7 @@ class CreateOrUpdateUserForm extends Component
         $this->emitSelf('toggle', false);
         $this->emit('user-cu-successfully');
 
+        $this->dispatchBrowserEvent('confirm-to-update',['data' => null]);
         $this->success('User ' . ($this->isCreating ? 'created' : 'updated') . ' successfully.');
     }
 }
