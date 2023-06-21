@@ -11,11 +11,13 @@ use App\Models\World\State;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use App\Http\Livewire\Traits\Toastr;
 use Livewire\WithFileUploads;
 
 class CreateOrUpdateHouseForm extends Component
 {
     use WithFileUploads;
+    use Toastr;
 
     public $user;
 
@@ -146,17 +148,19 @@ class CreateOrUpdateHouseForm extends Component
         }
 
         $this->emitSelf('toggle', false);
+//        $this->emit('additional-cu-successfully');
+
 
         $maxAdditionalHouse = \App\Models\House::whereHas('users', function ($query) {
             $query->where('email', $this->user->email)
                 ->where('HouseId', '<>', $this->user->HouseId);
         })->count();
 
-        $this->emit('additional-house-cu-successfully');
-
         if ($maxAdditionalHouse == 9) {
             return redirect()->route('dash.settings.additional-houses');
         }
+
+        return redirect()->route('dash.settings.additional-houses');
 
     }
 
