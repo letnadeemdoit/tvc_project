@@ -81,6 +81,7 @@ class CreateOrUpdateUserForm extends Component
             }
             elseif ($userCU->role === 'Guest'){
                 $this->state = [
+                    'house_id' => $userCU->HouseId,
                     'role' => $userCU->role,
                 ];
             }
@@ -100,7 +101,7 @@ class CreateOrUpdateUserForm extends Component
         }
     }
     public function confirmUserVac(){
-        if (!$this->isCreating){
+        if (!$this->isCreating && $this->state['role'] === User::ROLE_OWNER){
             $difference = array_diff($this->current_houses,$this->state['house_id']);
             $result = array_values($difference);
             if (count($result) > 0){

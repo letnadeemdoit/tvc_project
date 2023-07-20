@@ -25,7 +25,7 @@
                             class="form-control @error('house_id') is-invalid @enderror" @if(count(auth()->user()->additional_houses) >= 1 && (isset($state['role']) && $state['role'] === \App\Models\User::ROLE_OWNER)) multiple @endif >
                             @if(count(auth()->user()->additional_houses) == 0 || ($isCreating && isset($state['role']) && $state['role'] !== \App\Models\User::ROLE_OWNER))<option value="" selected>Select House</option>@endif
                             <option value="{{ current_house()->HouseID }}" wire:key="house-{{ current_house()->HouseID }}">{{ current_house()->HouseName }}</option>
-                            @if((isset($state['role']) && $state['role'] === \App\Models\User::ROLE_OWNER))
+                            @if((isset($state['role'])))
                                 @foreach(auth()->user()->additional_houses as $additionalHouse)
                                     <option value="{{ $additionalHouse->HouseID }}">{{ $additionalHouse->HouseName }}</option>
                                 @endforeach
