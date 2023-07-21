@@ -272,6 +272,12 @@ class CreateOrUpdateUserForm extends Component
             }
         }
         else{
+            if(is_array($this->state['house_id'])){
+                $stateHouseId = $this->state['house_id'][0];
+            }
+            else{
+                $stateHouseId = $this->state['house_id'];
+            }
             $this->userCU->fill([
 //            'parent_id' => $this->user->primary_account ? $this->user->user_id : $this->user->parent_id,
                 'user_name' => $this->state['user_name'],
@@ -281,7 +287,7 @@ class CreateOrUpdateUserForm extends Component
                 'first_name' => $this->state['first_name'],
                 'last_name' => $this->state['last_name'],
 //                'HouseId' => $this->state['house_id'][0] ?? $this->user->HouseId,
-                'HouseId' => $this->state['house_id'] ?? $this->user->HouseId,
+                'HouseId' => $stateHouseId ?? $this->user->HouseId,
             ])->save();
 
             $createUser = $this->userCU;
