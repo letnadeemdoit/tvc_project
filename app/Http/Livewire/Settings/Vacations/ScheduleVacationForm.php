@@ -278,7 +278,7 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
@@ -566,15 +566,14 @@ class ScheduleVacationForm extends Component
                 $CalEmailList = explode(',', $this->user->house->CalEmailList);
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
-
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
                     foreach ($users as $user) {
-                        $user->notify(new CalendarEmailNotification($items, $createdHouseName, $startDate, $endDate));
+                        $user->notify(new CalendarEmailNotification($items,$this->user, $createdHouseName, $startDate, $endDate));
                     }
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new CalendarEmailNotification($items, $createdHouseName, $startDate, $endDate));
+                            ->notify(new CalendarEmailNotification($items,$this->user, $createdHouseName, $startDate, $endDate));
                     }
 
                 }
@@ -979,7 +978,8 @@ class ScheduleVacationForm extends Component
         if($this->vacation->HouseId == current_house()->HouseID){
             if ($this->model) {
                 $deletableModel = app($this->model)->findOrFail($this->vacation->parent_id ?: $this->vacation->VacationId);
-                Session::put('startDatetimeForDeleteVacation', $deletableModel->start_datetime);
+                Session::put('startDatetimeOfVacation', $deletableModel->start_datetime->format('m/d/Y H:i'));
+                Session::put('endDatetimeOfVacation', $deletableModel->end_datetime->format('m/d/Y H:i'));
                 $this->emit(
                     'destroyable-confirmation-modal',
                     $this->model,

@@ -45,7 +45,7 @@
                     {{--                    </th>--}}
                     <th>Name</th>
                     <th>Type</th>
-                    <th>Amenities</th>
+{{--                    <th>Amenities</th>--}}
                     <th>Beds</th>
                     <th>Bed's Type</th>
                     <th>Action</th>
@@ -67,7 +67,7 @@
                         <td>
                             {{ $dt->roomType->RoomTypeVal }}
                         </td>
-                        <td>{{ implode(', ', $dt->amenities->pluck('Abreviation')->toArray()) }}</td>
+{{--                        <td>{{ implode(', ', $dt->amenities->pluck('Abreviation')->toArray()) }}</td>--}}
                         <td>{{ $dt->Beds }}</td>
                         <td>{{ optional($dt->bedType)->name ?? '-' }}</td>
 

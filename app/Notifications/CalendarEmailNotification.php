@@ -13,6 +13,7 @@ class CalendarEmailNotification extends Notification implements ShouldQueue
     use Queueable;
 
     public $items;
+    public $user;
     public $createdHouseName;
     public $startDate;
     public $endDate;
@@ -22,9 +23,10 @@ class CalendarEmailNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($items,$createdHouseName,$startDate,$endDate)
+    public function __construct($items,$user,$createdHouseName,$startDate,$endDate)
     {
         $this->items = $items;
+        $this->user = $user;
         $this->createdHouseName = $createdHouseName;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -57,7 +59,11 @@ class CalendarEmailNotification extends Notification implements ShouldQueue
 
             ->line(new HtmlString('A New Vacation <strong>' . $this->items->VacationName.'</strong>'. ' has been scheduled for ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
 
-            ->line(new HtmlString('The duration of the vacation is from <strong>' . $this->startDate->RealDate.'</strong>'. ' to ' . '<strong>'. $this->endDate->RealDate .' '.'Date'.'</strong>'));
+            ->line(new HtmlString('This change was made by <strong>' . $this->user->first_name. ' ' . $this->user->last_name . '('. $this->user->email . ')' .  '</strong>'))
+
+            ->line(new HtmlString('The duration of the vacation is from <strong>' . $this->startDate->RealDate.'</strong>'. ' to ' . '<strong>'. $this->endDate->RealDate .'</strong>'));
+
+//            ->line(new HtmlString('The duration of the vacation is from <strong>' . $this->startDate->RealDate.'</strong>'. ' to ' . '<strong>'. $this->endDate->RealDate .' '.'Date'.'</strong>'));
 
     }
 

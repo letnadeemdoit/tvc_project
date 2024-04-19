@@ -84,34 +84,34 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="address_1">Address 1:</label>
-                    <input
-                        type="text"
-                        id="address_1"
-                        wire:model.defer="state.address_1"
-                        name="address_1"
-                        class="form-control @error('address_1') is-invalid @enderror"
-                        placeholder="Address line 1"
-                    />
-                    @error('address_1')
-                    <span class="invalid-feedback">{{$message}}</span>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="address_2">Address 2:</label>
-                    <input
-                        type="text"
-                        id="address_2"
-                        wire:model.defer="state.address_2"
-                        name="address_2"
-                        class="form-control @error('address_2') is-invalid @enderror"
-                        placeholder="Address line 2"
-                    />
-                    @error('address_2')
-                    <span class="invalid-feedback">{{$message}}</span>
-                    @enderror
-                </div>
+{{--                <div class="mb-3">--}}
+{{--                    <label class="form-label" for="address_1">Address 1:</label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        id="address_1"--}}
+{{--                        wire:model.defer="state.address_1"--}}
+{{--                        name="address_1"--}}
+{{--                        class="form-control @error('address_1') is-invalid @enderror"--}}
+{{--                        placeholder="Address line 1"--}}
+{{--                    />--}}
+{{--                    @error('address_1')--}}
+{{--                    <span class="invalid-feedback">{{$message}}</span>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--                <div class="mb-3">--}}
+{{--                    <label class="form-label" for="address_2">Address 2:</label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        id="address_2"--}}
+{{--                        wire:model.defer="state.address_2"--}}
+{{--                        name="address_2"--}}
+{{--                        class="form-control @error('address_2') is-invalid @enderror"--}}
+{{--                        placeholder="Address line 2"--}}
+{{--                    />--}}
+{{--                    @error('address_2')--}}
+{{--                    <span class="invalid-feedback">{{$message}}</span>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
 
                     <div class="row mt-4 mb-2">
                         <div class="col-12 col-md-6 col-lg-3 mx-auto">

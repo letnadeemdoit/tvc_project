@@ -82,24 +82,24 @@
                     @enderror
                 </div>
             </div>
-            <div class="form-group mb-3">
-                <label class="form-label" for="amenities">Amenities: <span class="ms-2 fw-semi-bold fs-12">(CTRL or CMD + Click to Select Multiple Amenities)</span></label>
-                <select
-                    type="text"
-                    class="form-control @error('amenities') is-invalid @enderror"
-                    name="amenities"
-                    id="amenities"
-                    wire:model.defer="state.amenities"
-                    multiple
-                >
-                    @foreach($this->amenities as $amenity)
-                        <option value="{{ $amenity->AmenityID }}">{{ $amenity->Abreviation }}</option>
-                    @endforeach
-                </select>
-                @error('amenities')
-                <span class="invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+{{--            <div class="form-group mb-3">--}}
+{{--                <label class="form-label" for="amenities">Amenities: <span class="ms-2 fw-semi-bold fs-12">(CTRL or CMD + Click to Select Multiple Amenities)</span></label>--}}
+{{--                <select--}}
+{{--                    type="text"--}}
+{{--                    class="form-control @error('amenities') is-invalid @enderror"--}}
+{{--                    name="amenities"--}}
+{{--                    id="amenities"--}}
+{{--                    wire:model.defer="state.amenities"--}}
+{{--                    multiple--}}
+{{--                >--}}
+{{--                    @foreach($this->amenities as $amenity)--}}
+{{--                        <option value="{{ $amenity->AmenityID }}">{{ $amenity->Abreviation }}</option>--}}
+{{--                    @endforeach--}}
+{{--                </select>--}}
+{{--                @error('amenities')--}}
+{{--                <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                @enderror--}}
+{{--            </div>--}}
 
             <div class="d-flex">
                 <button

@@ -392,7 +392,7 @@
 
                     <div class="form-check mt-2">
                         <label class="form-check-label" for="AdminOwner">
-                            Allow Administrator to have Owner Permissions.
+                            Allow Administrator to have Scheduler Permissions.
                         </label>
                         <input
                             type="checkbox"

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Settings\Users;
 
 use App\Http\Livewire\Traits\Toastr;
+use App\Models\House;
 use App\Models\User;
 use App\Notifications\CalendarEmailNotification;
 use App\Notifications\CreateUserEmailNotification;
@@ -292,10 +293,12 @@ class CreateOrUpdateUserForm extends Component
 
             $createUser = $this->userCU;
 
+            $houseName = House::where('HouseID', $stateHouseId ?? $this->user->HouseId)->value('HouseName');
+
             try {
                 if (isset($this->state['send_email']) && $this->state['send_email'] == 1) {
                     if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
-                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail));
+                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
                     }
                 }
             } catch (\Exception $e) {

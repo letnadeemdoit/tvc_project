@@ -7,9 +7,11 @@ use App\Models\House;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\DeleteNotification;
+use App\Notifications\DeleteVacationNotification;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -25,6 +27,9 @@ class VacationsList extends Component
     public $per_page = 15;
     public $owner = null;
 
+    public $startDatetimeOfDelVacation;
+
+    public $endDatetimeOfDelVacation;
     public $selectedHouses = [];
     public $properties = null;
 
@@ -135,6 +140,16 @@ class VacationsList extends Component
 
     public function destroyedSuccessfully($data)
     {
+
+        if (session()->has('startDatetimeOfVacation')) {
+            $this->startDatetimeOfDelVacation = session()->get('startDatetimeOfVacation');
+            session()->forget('startDatetimeOfVacation');
+        }
+        if (session()->has('endDatetimeOfVacation')) {
+            $this->endDatetimeOfDelVacation = session()->get('endDatetimeOfVacation');
+            session()->forget('endDatetimeOfVacation');
+        }
+
         $this->emitSelf('vacation-schedule-successfully');
 
         Vacation::where('parent_id', $data['VacationId'])->delete();
@@ -154,7 +169,7 @@ class VacationsList extends Component
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                        $user->notify(new DeleteVacationNotification($name,$this->user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
                     }
 
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
@@ -162,7 +177,7 @@ class VacationsList extends Component
                     if (count($CalEmailList) > 0) {
 
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                            ->notify(new DeleteVacationNotification($name,$this->user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
 
                     }
                 }
@@ -176,6 +191,8 @@ class VacationsList extends Component
     {
         if ($this->model) {
             $deletableModel = app($this->model)->findOrFail($id);
+            Session::put('startDatetimeOfVacation', $deletableModel->start_datetime->format('m/d/Y H:i'));
+            Session::put('endDatetimeOfVacation', $deletableModel->end_datetime->format('m/d/Y H:i'));
             $this->emit(
                 'destroyable-confirmation-modal',
                 $this->model,

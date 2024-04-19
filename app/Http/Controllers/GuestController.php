@@ -83,6 +83,7 @@ class GuestController extends Controller
                     '<p> Subject: ' . $request->subject . '<p/>' .
                     '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
                     '</div>', 'text/plain');
+            $message->from($request->email, $request->first_name. ' ' . $request->last_name);
         });
 
         return back()->with('success', 'Your Query has been Sent Successfully!');

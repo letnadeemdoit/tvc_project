@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\SuperAdmin;
 
 use App\Http\Livewire\Traits\Toastr;
+use App\Models\House;
 use App\Models\User;
 use App\Notifications\CreateUserEmailNotification;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -115,11 +116,13 @@ class CreateOrUpdateUserForm extends Component
 
         $createUser = $this->userCU;
 
+        $houseName = House::where('HouseID', $this->user->HouseId)->value('HouseName');
+
         try {
 
             if (isset($this->state['send_email']) && $this->state['send_email'] == 1){
                 if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)){
-                    $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail));
+                    $createUser->notify(new CreateUserEmailNotification($createUser,$sendPasswordToMail,$houseName));
                 }
             }
 

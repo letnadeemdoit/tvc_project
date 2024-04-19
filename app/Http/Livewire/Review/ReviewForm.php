@@ -87,4 +87,12 @@ class ReviewForm extends Component
         $this->emit('refresh-reviews');
 
     }
+
+    public function deleteLocalGuideReview($reviewId){
+        if ($reviewId){
+            $reviewsQuery = $this->localGuide->reviews();
+            $reviewsQuery->where('id', $reviewId)->delete();
+        }
+    }
+
 }

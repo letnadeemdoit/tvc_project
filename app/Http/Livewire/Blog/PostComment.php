@@ -96,6 +96,13 @@ class PostComment extends Component
         }
     }
 
+    public function deleteBlogComment($commentId){
+        if ($commentId){
+            $commentsQuery = $this->blog->comments();
+            $commentsQuery->where('id', $commentId)->delete();
+        }
+    }
+
     public  function moreComment(){
         $this->showAllComments = true;
     }

@@ -119,7 +119,7 @@
                         <div class="d-grid gap-2">
                             <a class="btn btn-dark-secondary btn-lg shadow-lg"
                                     @click.prevent="loginAsGuest = false; role = 'AdministratorOrGuest';$dispatch('update-image','bg-owner-login')">
-                                {{ __('Administrator & Owner') }}
+                                {{ __('Administrator & Scheduler') }}
                             </a>
                             <a class="btn bg-light-primary border-solid btn-lg mt-3 text-dark"
                                     @click.prevent="loginAsGuest = true; role = 'Guest';$dispatch('update-image','bg-guest-login')">{{ __('Guest') }}</a>
@@ -152,7 +152,7 @@
                         <div class="text-start content-space-t-1" x-show="loginAsGuest === false">
                             {{-- Administrator --}}
                             <div class="mb-3">
-                                <h1 class="display-5 lh-base">Login Account <br> <span class="text-primary">as Administrator & Owner</span>
+                                <h1 class="display-5 lh-base">Login Account <br> <span class="text-primary">as Administrator & Scheduler</span>
                                 </h1>
                                 <p class="text-secondary">To keep track of your vacation home in use.</p>
                             </div>

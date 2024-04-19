@@ -271,7 +271,7 @@
             @foreach($totalReviewLocalGuide as $review)
                 @continue(is_null($review->user))
                 <div class="row mt-5 mb-3 more-reviews">
-                    <div class="col-12 col-lg-9">
+                    <div class="col-10 col-lg-7">
                         <div class="d-flex w-100">
                             <div class="flex-shrink-0">
 
@@ -310,6 +310,17 @@
                             </div>
                         </div>
                     </div>
+                    @if(auth()->user()->is_admin)
+                        <div class="col-2">
+                            <div class="d-flex w-100">
+                                <a class="btn btn-ghost-danger" title="Delete Comment" href="#"
+                                   wire:click.prevent="deleteLocalGuideReview({{$review->id}})"
+                                >
+                                    <i class="bi-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             @endforeach
 

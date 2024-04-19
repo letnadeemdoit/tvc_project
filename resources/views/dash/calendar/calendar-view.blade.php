@@ -49,7 +49,7 @@
                         <button type="button" class="btn btn-white dropdown-toggle w-100"
                                 id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi-people-fill me-2"></i>
-                            Owner: {{ $this->owner ? optional(\App\Models\User::where('user_id', $this->owner)->where('HouseId', $this->user->HouseId)->first())->name : 'You' }}
+                            Scheduler: {{ $this->owner ? optional(\App\Models\User::where('user_id', $this->owner)->where('HouseId', $this->user->HouseId)->first())->name : 'You' }}
                         </button>
 
                         <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="usersExportDropdown" style="">
@@ -60,7 +60,7 @@
                                      alt="{{ $user->name }}">
                                 {{ $user->name }}
                             </a>
-                            <span class="dropdown-header">Owners</span>
+                            <span class="dropdown-header">Schedulers</span>
                             @foreach($this->owners as $owner)
                                 <a id="owner{{ $owner->user_id }}"
                                    class="dropdown-item {{ $this->owner === $owner->user_id ? 'active' : '' }}" href="#"
