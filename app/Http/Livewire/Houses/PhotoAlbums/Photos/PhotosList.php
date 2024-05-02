@@ -51,7 +51,7 @@ class PhotosList extends Component
 
     public function render()
     {
-        $data = Photo::where('album_id', $this->album->id)
+        $data = Photo::where('album_id', $this->album->id)->orderBy('sort_order', 'ASC')
             ->get();
         return view('dash.houses.photo-albums.photos.photos-list',compact('data'));
     }

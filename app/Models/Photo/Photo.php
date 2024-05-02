@@ -33,6 +33,7 @@ class Photo extends Model implements Auditable
     protected $fillable = [
         'HouseId',
         'album_id',
+        'sort_order',
         'description',
         'path',
     ];

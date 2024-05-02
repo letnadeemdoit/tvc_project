@@ -155,6 +155,7 @@ Route::middleware([
             ->group(function () {
                 Route::redirect('/', '/settings/account-information');
                 Route::get('account-information', 'accountInformation')->name('account-information');
+                Route::get('calendar-settings', 'calendarSettings')->name('calendar-settings');
                 Route::get('billing', 'billing')->name('billing');
                 Route::get('users', 'users')->name('users');
                 Route::get('rooms', 'rooms')->name('rooms');
@@ -164,6 +165,7 @@ Route::middleware([
                 Route::get('vacations', 'vacations')->name('vacations');
                 Route::get('audit-history', 'auditHistory')->name('audit-history');
                 Route::get('category', 'category')->name('category');
+                Route::get('unsubscribe-plan', 'unsubscribePlan')->name('unsubscribe-plan');
             });
 
         Route::controller(\App\Http\Controllers\PaypalController::class)

@@ -458,6 +458,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="selectRelevantVacationDatesModal" tabindex="-1" aria-labelledby="selectRelevantVacationDatesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Select relevant dates to schedule vacation</h4>
+                    <p class="fw-500 fs-15">
+                        Unable to create vacation: Dates are outside the allowed scheduling window of {{isset($defaultStartDate) ? $defaultStartDate->format('d-m-Y') : null}} to {{isset($defaultEndDate) ? $defaultEndDate->format('d-m-Y') : null}}.
+                    </p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @push('scripts')
         <script>
             $(function () {
@@ -474,7 +500,9 @@
                     startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
                     @else moment().set('minute', 0) @endisset,
                     endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
-                    @else moment().set('minute', 0).add(2, 'days') @endisset,
+                    @else
+                        @isset($state['is_default_time']) moment().set('minute', 0) @else moment().set('minute', 0).add(2, 'days') @endisset
+                    @endisset,
                     locale: {
                         format: 'MM/DD/YYYY HH:mm'
                     }
@@ -528,6 +556,10 @@
 
                 window.addEventListener('select-the-relevant-property-to-delete', function (e) {
                     $('#selectRelevantVacationToDeleteModal').modal('show');
+                });
+
+                window.addEventListener('select-relevant-vacation-dates', function (e) {
+                    $('#selectRelevantVacationDatesModal').modal('show');
                 });
 
                 // $(document).mouseup(function(e)

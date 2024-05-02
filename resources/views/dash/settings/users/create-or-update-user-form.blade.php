@@ -48,7 +48,7 @@
                         >
                             @if($userCU && $userCU->role !== \App\Models\User::ROLE_GUEST)
                                 <option value="{{ \App\Models\User::ROLE_ADMINISTRATOR }}">Administrator</option>
-                                <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Owner</option>
+                                <option value="{{ \App\Models\User::ROLE_OWNER }}" selected>Scheduler</option>
                             @endif
 
                             @if(($userCU && $userCU->role == \App\Models\User::ROLE_GUEST) || ($userCU && $userCU->role == null))

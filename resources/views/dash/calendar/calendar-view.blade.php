@@ -282,6 +282,14 @@
                     headerToolbar: false,
                     editable: true,
                     defaultAllDay: false,
+                    @if($calendarRowsHeight === 'dynamic')
+                    dayMaxEventRows: true,
+                    views: {
+                        timeGrid: {
+                            dayMaxEventRows: 6
+                        }
+                    },
+                    @endif
                     datesSet(dateSet) {
                         $dateTitle.textContent = dateSet.view.title
                     },
@@ -495,7 +503,9 @@
                     //     return {domNodes: arrayOfDomNodes}
                     // },
                     eventContent({event}) {
+
                         if (event.extendedProps.is_room) {
+                            let eventHeight = event.extendedProps.is_room ? 70 : 40; // Adjust these values as needed
                             return {
                                 html: `
                                 <style>

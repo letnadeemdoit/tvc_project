@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Settings\AccountInformation;
+namespace App\Http\Livewire\Settings\CalendarSettings;
 
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -18,7 +18,7 @@ class EnableOrDisableRooms extends Component
 
     public function render()
     {
-        return view('dash.settings.account-information.enable-or-disable-rooms');
+        return view('dash.settings.calendar-settings.enable-or-disable-rooms');
     }
 
     public function enableOrDisableRooms()

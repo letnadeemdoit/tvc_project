@@ -26,6 +26,8 @@ class CreateOrUpdatePhoto extends Component
     public $isCreating = false;
 
     public $isShowingModal = false;
+    public $isPhotoOrder = false;
+    public $isChangeAlbumOrder = false;
 
     public $state = [];
 
@@ -51,7 +53,9 @@ class CreateOrUpdatePhoto extends Component
 //            })
             ->get();
 
-        return view('dash.houses.photo-albums.photos.create-or-update-photo', compact('albumCategory'));
+        $albumPhotosOrder = range(1, 100);
+
+        return view('dash.houses.photo-albums.photos.create-or-update-photo', compact('albumCategory', 'albumPhotosOrder'));
 
     }
 
@@ -68,7 +72,7 @@ class CreateOrUpdatePhoto extends Component
 
         if ($photo->PhotoId) {
             $this->isCreating = false;
-            $this->state = \Arr::only($photo->toArray(), ['HouseId', 'album_id', 'description', 'path']);
+            $this->state = \Arr::only($photo->toArray(), ['HouseId', 'album_id','sort_order', 'description', 'path']);
         } else {
             $this->isCreating = true;
         }
@@ -100,6 +104,11 @@ class CreateOrUpdatePhoto extends Component
 
         if ($this->file) {
             $this->photo->updateFile($this->file, 'path');
+        }
+
+        if (!$this->isCreating && isset($inputs['sort_order'])){
+            $sortOrder = (int) $inputs['sort_order'];
+            $this->photo->update(['sort_order' => $sortOrder]);
         }
 
         try {
@@ -162,6 +171,13 @@ class CreateOrUpdatePhoto extends Component
             $this->photo->deleteFile();
             $this->emit('photo-cu-successfully');
         }
+    }
+
+    public function onChangePhotosAlbum(){
+        $this->isChangeAlbumOrder = true;
+    }
+    public function onReorderPhotos(){
+        $this->isPhotoOrder  = true;
     }
 
 

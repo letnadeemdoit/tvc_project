@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Audit\House;
+use App\Models\ProcessingSubscription;
 use App\Models\Room\Room;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -20,6 +22,14 @@ class SettingController extends Controller
     {
         abort_if(!$request->user()->is_admin || ($request->user()->is_admin && !$request->user()->primary_account), 403);
         return view('dash.settings.billing.index', [
+            'user' => $request->user()
+        ]);
+    }
+
+    public function calendarSettings(Request $request)
+    {
+        abort_if(!$request->user()->is_admin || ($request->user()->is_admin && !$request->user()->primary_account), 403);
+        return view('dash.settings.calendar-settings.index', [
             'user' => $request->user()
         ]);
     }
@@ -118,6 +128,34 @@ class SettingController extends Controller
     {
         abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.category.index', [
+            'user' => $request->user()
+        ]);
+    }
+
+    public function unsubscribePlan(Request $request)
+    {
+        abort_if(!$request->user()->is_admin || ($request->user()->is_admin && !$request->user()->primary_account), 403);
+
+        $subscription = Subscription::where([
+            'user_id' => auth()->user()->user_id,
+            'house_id' => auth()->user()->HouseId
+        ])->whereNotIn('status', ['CANCELLED','IN_PROCESS','COMPLETED','APPROVED'])->latest()->first();
+
+        $paypalsubscription = Subscription::where([
+            'user_id' => auth()->user()->user_id,
+            'status' => 'ACTIVE'
+        ])->latest()->first();
+        ProcessingSubscription::create([
+            'subscription_id' => $paypalsubscription->id,
+            'plan_id' => $paypalsubscription->plan_id,
+            'plan' => $paypalsubscription->plan,
+            'period' => $paypalsubscription->period,
+            'status' => 'APPROVAL_PENDING',
+        ]);
+        $subscription->cancel();
+
+        session()->flash('status', 'You have been unsubscribed successfully. You may see the status is not changed as soon as verified from paypal it will update automatically.');
+        return view('dash.settings.billing.index', [
             'user' => $request->user()
         ]);
     }

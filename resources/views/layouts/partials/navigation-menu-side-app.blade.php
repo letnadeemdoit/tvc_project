@@ -288,6 +288,14 @@
                                                 Billing</a>
                                         @endif
 
+                                            @if(auth()->user()->is_admin)
+                                                <a class="nav-link {{ link_is_active_with_class('dash.settings.calendar-settings') }}"
+                                                   href="{{ route('dash.settings.calendar-settings') }}">
+                                                    <img src="{{asset('images/icons/calendar.svg')}}" class="me-2"
+                                                         style="width: 13px;opacity: 0.7" alt="">
+                                                    Calendar Settings</a>
+                                            @endif
+
                                             <a class="nav-link {{ link_is_active_with_class('dash.settings.notifications') }}"
                                                href="{{ route('dash.settings.notifications') }}">
                                                 <img src="{{asset('images/icons/notifications-icon.svg')}}" class="me-2"

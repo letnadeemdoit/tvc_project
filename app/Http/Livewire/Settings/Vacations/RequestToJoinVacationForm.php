@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Settings\Vacations;
 
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Calendar;
+use App\Models\CalendarSetting;
 use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
@@ -33,6 +34,9 @@ class RequestToJoinVacationForm extends Component
 
     public $state = [];
     public ?Vacation $vacation;
+
+    public $defaultStartDate = null;
+    public $defaultEndDate = null;
     public $state_user = null;
 
     public $house = null;
@@ -121,48 +125,58 @@ class RequestToJoinVacationForm extends Component
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('saveVacationSchedule');
-        if (!$this->vacation->VacationId) {
-            try {
-                $house = $this->user->house;
-                if ($house && !is_null($house->request_to_use_house_email_list) && !empty($house->request_to_use_house_email_list)) {
 
-                    $request_to_use_house_email_list = explode(',', $this->user->house->request_to_use_house_email_list);
+        $selectedStartDate = Carbon::parse($this->state['start_datetime']);
+        $selectedEndDate = Carbon::parse($this->state['end_datetime']);
+        $vacationDefaultStartEndDate = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+        $this->defaultStartDate = $vacationDefaultStartEndDate->start_datetime;
+        $this->defaultEndDate = $vacationDefaultStartEndDate->end_datetime;
 
-                    if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-                        $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', $this->user->HouseId)->get();
-                        foreach ($users as $user) {
-                            $user->notify(new RequestToUseVacationHomeNotification2($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
-                        }
-                        $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
-                        if (count($request_to_use_house_email_list) > 0) {
-                            Notification::route('mail', $request_to_use_house_email_list)
-                                ->notify(new RequestToUseVacationHomeNotification2($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+        if (($selectedStartDate->gte($this->defaultStartDate) && $selectedStartDate->lte($this->defaultEndDate)) &&
+            ($selectedEndDate->gte($this->defaultStartDate) && $selectedEndDate->lte($this->defaultEndDate))) {
+
+            if (!$this->vacation->VacationId) {
+                try {
+                    $house = $this->user->house;
+                    if ($house && !is_null($house->request_to_use_house_email_list) && !empty($house->request_to_use_house_email_list)) {
+
+                        $request_to_use_house_email_list = explode(',', $this->user->house->request_to_use_house_email_list);
+
+                        if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
+                            $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', $this->user->HouseId)->get();
+                            foreach ($users as $user) {
+                                $user->notify(new RequestToUseVacationHomeNotification2($this->state['name'], $this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+                            }
+                            $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
+                            if (count($request_to_use_house_email_list) > 0) {
+                                Notification::route('mail', $request_to_use_house_email_list)
+                                    ->notify(new RequestToUseVacationHomeNotification2($this->state['name'], $this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
 
 //                            $admin = User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
 
-                            Notification::route('mail', $this->state['email'])
-                                ->notify(new RequestToUseVacationHomeNotification1($this->state['name'],$this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+                                Notification::route('mail', $this->state['email'])
+                                    ->notify(new RequestToUseVacationHomeNotification1($this->state['name'], $this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
 
+
+                            }
 
                         }
-
                     }
+
+                } catch (Exception $e) {
+
                 }
+            } else {
 
-            } catch (Exception $e) {
+                $vacation_name = $this->state['vacation_name'];
+                $house_name = $this->user->house->HouseName;
 
-            }
-        } else {
-
-            $vacation_name = $this->state['vacation_name'];
-            $house_name = $this->user->house->HouseName;
-
-            $owner = $this->vacation->VacationId && $this->vacation->owner ? $this->vacation->owner : User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
-            try {
-                $this->state_user['name'] = $this->state['name'];
-                $this->state_user['role'] = $owner->role;
-                Notification::route('mail', $this->state['email'])
-                    ->notify( new RequestToJoinVacationNotification1($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
+                $owner = $this->vacation->VacationId && $this->vacation->owner ? $this->vacation->owner : User::where(['HouseId' => $this->user->HouseId, 'role' => User::ROLE_ADMINISTRATOR])->first();
+                try {
+                    $this->state_user['name'] = $this->state['name'];
+                    $this->state_user['role'] = $owner->role;
+                    Notification::route('mail', $this->state['email'])
+                        ->notify(new RequestToJoinVacationNotification1($vacation_name, $house_name, $this->state_user, $this->state['start_datetime'], $this->state['end_datetime']));
 //                Mail::queue('rtjv')->send([], [], function (Message $message) use ($owner) {
 //                    $message->to($this->state['email'])
 //                        ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
@@ -174,18 +188,18 @@ class RequestToJoinVacationForm extends Component
 //                            "</div>", 'text/plain'
 //                        );
 //                });
-            } catch (\Exception $e) {
+                } catch (\Exception $e) {
 
-            }
+                }
 
-            if ($owner) {
-                try {
-                    $this->state_user['email'] = $this->state['email'];
-                    $this->state_user['name'] = $this->state['name'];
-                    $this->state_user['role'] = $this->user->role;
+                if ($owner) {
+                    try {
+                        $this->state_user['email'] = $this->state['email'];
+                        $this->state_user['name'] = $this->state['name'];
+                        $this->state_user['role'] = $this->user->role;
 
-                    Notification::route('mail', $owner->email)
-                        ->notify( new RequestToJoinVacationNotification2($vacation_name,$house_name,$this->state_user,$this->state['start_datetime'],$this->state['end_datetime']));
+                        Notification::route('mail', $owner->email)
+                            ->notify(new RequestToJoinVacationNotification2($vacation_name, $house_name, $this->state_user, $this->state['start_datetime'], $this->state['end_datetime']));
 //                    Mail::send([], [], function (Message $message) use ($owner) {
 //                        $message->to($owner->email)
 //                            ->replyTo('NoReply@theVacationCalendar.com', config('app.name'))
@@ -198,23 +212,21 @@ class RequestToJoinVacationForm extends Component
 //                                "</div>", 'text/plain'
 //                            );
 //                    });
-                } catch (\Exception $e) {
+                    } catch (\Exception $e) {
 
+                    }
                 }
             }
-        }
 
-        if ($this->user->is_guest){
-            if (!$this->vacation->VacationId) {
-                return redirect()->route('guest.guest-calendar')->with('successMessage', 'Your request to use vacation home has been submitted successful.');
+            if ($this->user->is_guest) {
+                if (!$this->vacation->VacationId) {
+                    return redirect()->route('guest.guest-calendar')->with('successMessage', 'Your request to use vacation home has been submitted successful.');
+                } else {
+                    return redirect()->route('guest.guest-calendar')->with('successMessage', 'Your request to join vacation has been submitted successful.');
+                }
+            } else {
+                return redirect()->route('dash.calendar')->with('successMessage', 'Your request to join vacation has been submitted successful.');
             }
-            else{
-                return redirect()->route('guest.guest-calendar')->with('successMessage', 'Your request to join vacation has been submitted successful.');
-            }
-        }
-        else{
-            return redirect()->route('dash.calendar')->with('successMessage', 'Your request to join vacation has been submitted successful.');
-        }
 
 //        $this->emitSelf('toggle', false);
 //        if (!$this->vacation->VacationId) {
@@ -222,6 +234,9 @@ class RequestToJoinVacationForm extends Component
 //        }else{
 //            $this->success('Your request to join vacation has been submitted successful.');
 //        }
+        } else {
+            $this->dispatchBrowserEvent('select-relevant-vacation-dates', ['data' => null]);
+        }
     }
 
     public function render()

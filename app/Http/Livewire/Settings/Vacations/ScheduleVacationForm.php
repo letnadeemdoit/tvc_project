@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Settings\Vacations;
 
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Calendar;
+use App\Models\CalendarSetting;
 use App\Models\Schedule;
 use App\Models\Time;
 use App\Models\User;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use function Symfony\Component\Translation\t;
 
 class ScheduleVacationForm extends Component
 {
@@ -35,6 +37,9 @@ class ScheduleVacationForm extends Component
 
     public $house = null;
     public $owner = null;
+
+    public $defaultStartDate = null;
+    public $defaultEndDate = null;
 
     public $updateVac = false;
     public $manageVac = false;
@@ -107,6 +112,10 @@ class ScheduleVacationForm extends Component
 
             ];
         } else {
+            $vacationDefaultStartEndTime = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+            $defaultStartTime = $vacationDefaultStartEndTime->start_datetime;
+            $defaultEndTime = $vacationDefaultStartEndTime->end_datetime;
+
             $this->isCreating = true;
             $this->state = [
                 'background_color' => Cookie::get('vbc', '#E8604C'),
@@ -119,13 +128,25 @@ class ScheduleVacationForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
-                    $this->state['start_datetime'] = $initialDatetime->addHour(12)->format('m/d/Y H:i');
-                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y H:i');
-                    $this->state['start_end_datetime'] = $initialDatetime->addHour(12)->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
+                    if ($vacationDefaultStartEndTime && $vacationDefaultStartEndTime->id) {
+                        $this->state['is_default_time'] = true;
+                        $this->state['start_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultStartTime->format('H:i');
+                        $this->state['end_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultEndTime->format('H:i');
+                        $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultStartTime->format('H:i') . ' - ' . $initialDatetime->format('m/d/Y') . ' ' . $defaultEndTime->format('H:i');
+                    }
+                    else
+                    {
+                        $this->state['start_datetime'] = $initialDatetime->addHour(12)->format('m/d/Y H:i');
+                        $this->state['end_datetime'] = $initialDatetime->format('m/d/Y H:i');
+                        $this->state['start_end_datetime'] = $initialDatetime->addHour(12)->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
+                    }
+
                 } catch (\Exception $e) {
 
                 }
             }
+
+//            dd($this->state);
         }
 
         $this->dispatchBrowserEvent('schedule-vacation-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y ::i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y H:i')]);
@@ -233,7 +254,26 @@ class ScheduleVacationForm extends Component
         $this->state['vacation_rooms'][$roomId] = array_values($this->state['vacation_rooms'][$roomId]);
     }
 
-    public function checkVacationSchedule($data){
+    public function checkVacationSchedule($data)
+    {
+        $selectedStartDate = Carbon::parse($this->state['start_datetime']);
+        $selectedEndDate = Carbon::parse($this->state['end_datetime']);
+        $vacationDefaultStartEndDate = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+
+        if (!$vacationDefaultStartEndDate || $vacationDefaultStartEndDate->enable_schedule_window === 0) {
+            $this->updateOrScheduleVacation($data);
+        } else {
+            $this->defaultStartDate = $vacationDefaultStartEndDate->start_datetime;
+            $this->defaultEndDate = $vacationDefaultStartEndDate->end_datetime;
+            if (($vacationDefaultStartEndDate->enable_schedule_window === 1) && ($selectedStartDate->gte($this->defaultStartDate) && $selectedStartDate->lte($this->defaultEndDate)) &&
+                ($selectedEndDate->gte($this->defaultStartDate) && $selectedEndDate->lte($this->defaultEndDate))) {
+                $this->updateOrScheduleVacation($data);
+            } else {
+                $this->dispatchBrowserEvent('select-relevant-vacation-dates', ['data' => null]);
+            }
+        }
+    }
+    public function updateOrScheduleVacation($data){
         if ($this->isCreating) {
             $this->saveVacationSchedule();
         }
@@ -242,7 +282,6 @@ class ScheduleVacationForm extends Component
             $this->manageVac = false;
             $startDatetime = Carbon::parse($this->state['start_datetime']);
             $endDatetime = Carbon::parse($this->state['end_datetime']);
-
             $rooms = VacationRoom::where('vacation_id', $this->vacation->VacationId)->get();
             if((count($rooms) > 0) && ($this->vacation->start_datetime->format('m/d/Y') !== $startDatetime->format('m/d/Y') || $this->vacation->end_datetime->format('m/d/Y') !== $endDatetime->format('m/d/Y'))){
                 if ($data === 'updateVac'){
@@ -611,7 +650,7 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],

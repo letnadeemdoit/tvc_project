@@ -67,7 +67,7 @@
                                 data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                 data_value="{{ route('dash.paypal.revise', ['basic', 'monthly']) }}"
                                 href="#!"
-                                class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
                             >
                                 Downgrade
                             </a>
@@ -135,7 +135,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-success upgrade-downgrade"
                                 >
                                     Upgrade
                                 </a>
@@ -144,7 +144,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
@@ -153,7 +153,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
@@ -220,7 +220,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
@@ -229,7 +229,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-success upgrade-downgrade"
                                 >
                                     Upgrade
                                 </a>
@@ -295,7 +295,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-success upgrade-downgrade"
                                 >
                                     Upgrade
                                 </a>
@@ -304,7 +304,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
@@ -370,7 +370,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-success upgrade-downgrade"
                                 >
                                     Upgrade
                                 </a>
@@ -379,7 +379,7 @@
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
                                 >
                                     Downgrade
                                 </a>
@@ -389,7 +389,7 @@
                                         data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                         data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
                                         href="#!"
-                                        class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                        class="form-check-select-stretched-btn btn btn-success upgrade-downgrade"
                                     >
                                         Upgrade
                                     </a>
@@ -398,7 +398,7 @@
                                         data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                         data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
                                         href="#!"
-                                        class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                        class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
                                     >
                                         Downgrade
                                     </a>
@@ -465,7 +465,7 @@
                                 data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                 data_value="{{ route('dash.paypal.revise', ['premium', 'yearly']) }}"
                                 href="#!"
-                                class="form-check-select-stretched-btn btn btn-primary upgrade-downgrade"
+                                class="form-check-select-stretched-btn btn btn-success upgrade-downgrade"
                             >
                                 Upgrade
                             </a>

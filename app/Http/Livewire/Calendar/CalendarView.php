@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Calendar;
 
 use App\Http\Livewire\Traits\Destroyable;
+use App\Models\CalendarSetting;
 use App\Models\House;
 use App\Models\Room\Room;
 use App\Models\User;
@@ -32,6 +33,7 @@ class CalendarView extends Component
 
     public $user_ad = null;
 
+    public $calendarRowsHeight = 'fixed';
     public $roomData = null;
 
     public $vacationId = null;
@@ -63,6 +65,10 @@ class CalendarView extends Component
             if ($this->properties) {
                 $this->selectedHouses = explode(',', $this->properties);
             }
+        }
+        $calendarSetting = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+        if ($calendarSetting && $calendarSetting->id) {
+            $this->calendarRowsHeight = $calendarSetting->calendar_height === 'fixed' ? 'fixed' : 'dynamic';
         }
         if (session()->has('startDatetimeForDeleteRoom')) {
             $this->startRoomDatetime = session()->get('startDatetimeForDeleteRoom');
