@@ -122,8 +122,8 @@ class DashboardController extends Controller
                     if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
                         $users = User::whereIn('email', $CalEmailList)->where('HouseId', $user->HouseId)->get();
 
-                        foreach ($users as $user) {
-                            $user->notify(new DeleteVacationNotification($name,$user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
+                        foreach ($users as $us) {
+                            $us->notify(new DeleteVacationNotification($name,$user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
                         }
                         $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                         if (count($CalEmailList) > 0) {
