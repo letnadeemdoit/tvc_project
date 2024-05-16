@@ -128,6 +128,7 @@ Route::middleware([
         Route::get('/schedule-vacation', [DashboardController::class, 'scheduleVacation'])->name('schedule-vacation');
         Route::get('/schedule-vacation-room', [DashboardController::class, 'scheduleVacationRoom'])->name('schedule-vacation-room');
         Route::get('/request-to-join-vacation', [DashboardController::class, 'requestToJoinVacation'])->name('request-to-join-vacation');
+        Route::get('/schedule-calendar-task', [DashboardController::class, 'scheduleCalendarTask'])->name('schedule-calendar-task');
         Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
         Route::resource('users', UserController::class);
         Route::get('/blogs', [DashboardController::class, 'blogs'])->name('blogs');
@@ -163,6 +164,7 @@ Route::middleware([
                 Route::get('house-setting', 'houseSetting')->name('house-setting');
                 Route::get('notifications', 'notifications')->name('notifications');
                 Route::get('vacations', 'vacations')->name('vacations');
+                Route::get('vacation-request-approval', 'vacationRequestApproval')->name('vacation-request-approval');
                 Route::get('audit-history', 'auditHistory')->name('audit-history');
                 Route::get('category', 'category')->name('category');
                 Route::get('unsubscribe-plan', 'unsubscribePlan')->name('unsubscribe-plan');

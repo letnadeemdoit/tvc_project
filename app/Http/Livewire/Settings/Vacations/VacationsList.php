@@ -87,6 +87,10 @@ class VacationsList extends Component
                 });
             })
             ->where('OwnerId', $this->owner ?: $this->user->user_id)
+//            ->whereNotIn('OwnerId', User::where('HouseId', primary_user()->HouseId)
+//                ->where('role', 'Guest')
+//                ->pluck('user_id')
+//                ->toArray())
             ->whereHas('startDate', function ($query) {
                 $query->whereDate('RealDate', '>=', Carbon::parse($this->from)->format('Y-m-d'));
             })

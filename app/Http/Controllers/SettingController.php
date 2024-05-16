@@ -105,6 +105,14 @@ class SettingController extends Controller
             'iCalUrl' => $request->user()->iCalUrl(),
         ]);
     }
+    public function vacationRequestApproval(Request $request)
+    {
+        abort_if(!$request->user()->is_admin, 403);
+
+        return view('dash.settings.vacation-request-approval.index', [
+            'user' => $request->user(),
+        ]);
+    }
 
 
 

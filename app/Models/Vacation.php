@@ -52,7 +52,11 @@ class Vacation extends Model implements Auditable
         'recurrence',
         'repeat_interval',
         'parent_id',
-        'book_rooms'
+        'book_rooms',
+        'is_vac_approved',
+        'is_calendar_task',
+        'EndRepeatDateId'
+
     ];
 
     /**
@@ -178,18 +182,20 @@ class Vacation extends Model implements Auditable
     {
         return array_merge([
             'id' => $this->VacationId,
+            'OwnerId' => $this->OwnerId,
             'title' => $this->VacationName,
             'start' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
             'end' => str_replace(' ', 'T', $this->end_datetime->format('Y-m-d H:i:s')),
             'allDay' => false,
             'display' => 'block',
             'className' => 'fullcalendar-custom-event-hs-team',
-            'backgroundColor' => $this->BackGrndColor,
+            'backgroundColor' => $this->owner->role === 'Owner' ? $this->is_vac_approved === 0 ? '#CCCCCC' : $this->BackGrndColor : $this->BackGrndColor,
             'textColor' => $this->FontColor,
             'resourceIds' => [00],
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
             'parent_id' => $this->parent_id,
             'is_room' => false,
+            'user_role' => optional(User::where('user_id', $this->OwnerId)->first())->role
         ], []);
     }
 

@@ -35,6 +35,8 @@ class RequestToJoinVacationForm extends Component
     public $state = [];
     public ?Vacation $vacation;
 
+    public $vacationDefaultStartEndDate = null;
+    public $isEnableScheduleWindow = false;
     public $defaultStartDate = null;
     public $defaultEndDate = null;
     public $state_user = null;
@@ -52,9 +54,20 @@ class RequestToJoinVacationForm extends Component
 
     public function mount($vacationId, $initialDate = null) {
 //        $this->emitSelf('toggle', $toggle);
-        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
         $this->reset('state');
 
+        $this->vacationDefaultStartEndDate = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
+        if($this->vacationDefaultStartEndDate && $this->vacationDefaultStartEndDate->enable_schedule_window === 1){
+            $this->isEnableScheduleWindow = true;
+            $this->defaultStartDate = $this->vacationDefaultStartEndDate->start_datetime;
+            $this->defaultEndDate = $this->vacationDefaultStartEndDate->end_datetime;
+        }
+        else{
+            $this->isEnableScheduleWindow = false;
+        }
+
+
+        $this->vacation = Vacation::firstOrNew(['VacationID' => $vacationId]);
         if ($this->vacation->VacationId) {
             $this->state = [
                 'vacation_name' => $this->vacation->VacationName,
@@ -68,6 +81,7 @@ class RequestToJoinVacationForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
+                    $this->state['guest_vacation'] = null;
                     $this->state['start_datetime'] = $initialDatetime->format('m/d/Y H:i');
                     $this->state['end_datetime'] = $initialDatetime->format('m/d/Y H:i');
                     $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
@@ -75,7 +89,10 @@ class RequestToJoinVacationForm extends Component
 
                 }
             }
+
+
         }
+
 
         $this->dispatchBrowserEvent('rtjv-daterangepicker-update', ['startDatetime' => $this->state['start_datetime'] ?? now()->format('m/d/Y H:i'), 'endDatetime' => $this->state['end_datetime'] ?? now()->addDays(2)->format('m/d/Y H:i')]);
 
@@ -116,6 +133,7 @@ class RequestToJoinVacationForm extends Component
     {
         $this->resetErrorBag();
         Validator::make($this->state, [
+            'guest_vacation' => !$this->vacation->VacationId ? ['required'] : ['nullable'],
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'string', 'max:255'],
             'start_datetime' => [
@@ -128,14 +146,38 @@ class RequestToJoinVacationForm extends Component
 
         $selectedStartDate = Carbon::parse($this->state['start_datetime']);
         $selectedEndDate = Carbon::parse($this->state['end_datetime']);
-        $vacationDefaultStartEndDate = CalendarSetting::where('house_id', $this->user->HouseId)->first();
-        $this->defaultStartDate = $vacationDefaultStartEndDate->start_datetime;
-        $this->defaultEndDate = $vacationDefaultStartEndDate->end_datetime;
 
-        if (($selectedStartDate->gte($this->defaultStartDate) && $selectedStartDate->lte($this->defaultEndDate)) &&
-            ($selectedEndDate->gte($this->defaultStartDate) && $selectedEndDate->lte($this->defaultEndDate))) {
+        if (($this->isEnableScheduleWindow && ($selectedStartDate->gte($this->defaultStartDate) && $selectedStartDate->lte($this->defaultEndDate)) &&
+            ($selectedEndDate->gte($this->defaultStartDate) && $selectedEndDate->lte($this->defaultEndDate))) || !$this->isEnableScheduleWindow) {
 
             if (!$this->vacation->VacationId) {
+
+                // Creating guest vacation
+                if($this->user->is_guest){
+                    $startDatetime = Carbon::parse($this->state['start_datetime']);
+                    $endDatetime = Carbon::parse($this->state['end_datetime']);
+                    $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
+
+                    $this->vacation->fill([
+                        'HouseId' => primary_user()->HouseId,
+                        'OwnerId' => $this->user->user_id,
+                        'BackGrndColor' => '#CCCCCC',
+                        'FontColor' => '#ffffff',
+                        'VacationName' => $this->state['guest_vacation'],
+                        'recurrence' => null,
+                        'StartDateId' => $startDate->DateId,
+                        'StartTimeId' => $startTime->timeid,
+                        'EndDateId' => $endDate->DateId,
+                        'EndTimeId' => $endTime->timeid,
+                        'repeat_interval' => 0,
+                        'book_rooms' => 0,
+                        'is_vac_approved' => 0,
+                    ])->save();
+                }
+                // End creating guest vacation
+
+
+
                 try {
                     $house = $this->user->house;
                     if ($house && !is_null($house->request_to_use_house_email_list) && !empty($house->request_to_use_house_email_list)) {
@@ -243,4 +285,54 @@ class RequestToJoinVacationForm extends Component
     {
         return view('dash.settings.vacations.request-to-join-vacation-form');
     }
+
+    public function syncCalendar($startDatetime, $endDatetime, &$startDate, &$startTime, &$endDate, &$endTime)
+    {
+        // Start Datetime
+        $startDay = $startDatetime->day;
+        $startMonth = $startDatetime->month;
+        $startYear = $startDatetime->year;
+        $stDate = $startDatetime->format('Y-m-d');
+        $stTime = $startDatetime->format('H:i');
+
+        $startDate = Calendar::firstOrNew([
+            'Day' => $startDay,
+            'Month' => $startMonth,
+            'Year' => $startYear,
+            'RealDate' => $stDate,
+        ]);
+
+        $startTime = Time::firstOrNew([
+            'time' => $stTime,
+        ]);
+
+        if (!$startDate->exists) $startDate->save();
+        if (!$startTime->exists) $startTime->save();
+
+        // End Datetime
+
+        $endDay = $endDatetime->day;
+        $endMonth = $endDatetime->month;
+        $endYear = $endDatetime->year;
+        $enDate = $endDatetime->format('Y-m-d');
+        $enTime = $endDatetime->format('H:i');
+
+        $endDate = Calendar::firstOrNew([
+            'Day' => $endDay,
+            'Month' => $endMonth,
+            'Year' => $endYear,
+            'RealDate' => $enDate,
+        ]);
+
+        $endTime = Time::firstOrNew([
+            'time' => $enTime,
+        ]);
+
+        if (!$endDate->exists) $endDate->save();
+        if (!$endTime->exists) $endTime->save();
+    }
+
+
+
+
 }

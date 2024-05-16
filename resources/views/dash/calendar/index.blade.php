@@ -74,6 +74,19 @@
                 >
                     <i class="bi-clock me-1"></i> Schedule Vacation
                 </a>
+
+{{--                <a--}}
+{{--                    x-data--}}
+{{--                    class="btn btn-primary mb-2 mb-lg-0"--}}
+{{--                    href="javascript:;"--}}
+{{--                    @click.prevent="() => {--}}
+{{--                             var url = '{!! route('dash.schedule-calendar-task', ['vacationId' => '__vacationId__']) !!}';--}}
+{{--                             url = url.replace('__vacationId__', null);--}}
+{{--                             location.href = url;--}}
+{{--                    }"--}}
+{{--                >--}}
+{{--                    <i class="bi-calendar me-1"></i> Schedule Tasks--}}
+{{--                </a>--}}
             </div>
         @endif
     </x-slot>

@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\CalendarSetting;
 use App\Models\User;
 use App\Models\Vacation;
 use Carbon\Carbon;
@@ -104,6 +105,40 @@ class VacationSchedule implements Rule
             $this->status = 'end-date-is-not-greater-than-start-date';
             return false;
         }
+
+
+        //Vacation Overlapping Code
+        $primaryHouseId = primary_user()->HouseId;
+        $existingVacation = Vacation::where(['HouseId' => $primaryHouseId, 'is_vac_approved' => 0])
+            ->whereIn('OwnerId', function ($query) use ($primaryHouseId) {
+                $query->select('user_id')
+                    ->from('users')
+                    ->where('HouseId', $primaryHouseId)
+                    ->whereIn('role', ['Owner','Guest']);
+            })
+
+            ->where(function ($query) {
+                $query->whereHas('startDate', function ($query) {
+                    $query->whereDate('RealDate', '>=', Carbon::parse($this->startDatetime)->format('Y-m-d'))
+                        ->whereDate('RealDate', '<=', Carbon::parse($this->endDatetime)->format('Y-m-d'));
+                })
+                    ->orWhereHas('endDate', function ($query) {
+                        $query->whereDate('RealDate', '>=', Carbon::parse($this->startDatetime)->format('Y-m-d'))
+                            ->whereDate('RealDate', '<=', Carbon::parse($this->endDatetime)->format('Y-m-d'));
+                    });
+            })
+            ->first();
+
+        $calendarSettings = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
+        if ($calendarSettings && $calendarSettings->overlap_vacation === 'unapproved vacations' && $existingVacation && $existingVacation->VacationId){
+            return true;
+        }
+        elseif ($calendarSettings && $calendarSettings->overlap_vacation === 'all vacations'){
+            return true;
+        }
+        //End Vacation Overlapping Code
+
+//        return true;
 
         $startDatetime = $this->startDatetime->format('m/d/Y H:i');
         $endDatetime = $this->endDatetime->format('m/d/Y H:i');

@@ -85,6 +85,21 @@
                     @enderror
                 </div>
             </div>
+            @if($user->is_guest && (is_null($vacation) || !is_null($vacation) && !$vacation->VacationId))
+                <div class="form-group mb-3">
+                    <label class="form-label" for="guest_vacation">Vacation Name:</label>
+                    <input
+                        type="text"
+                        class="form-control @error('guest_vacation') is-invalid @enderror"
+                        name="guest_vacation"
+                        id="guest_vacation"
+                        wire:model.defer="state.guest_vacation"
+                    />
+                    @error('guest_vacation')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+            @endif
             <div class="form-group mb-3">
                 <label class="form-label" for="rtjv_start_end_datetime">Start & End Datetime:</label>
                 <input

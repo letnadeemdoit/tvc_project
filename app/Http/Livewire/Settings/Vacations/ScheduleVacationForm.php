@@ -116,6 +116,7 @@ class ScheduleVacationForm extends Component
             $defaultStartTime = $vacationDefaultStartEndTime->start_datetime;
             $defaultEndTime = $vacationDefaultStartEndTime->end_datetime;
 
+
             $this->isCreating = true;
             $this->state = [
                 'background_color' => Cookie::get('vbc', '#E8604C'),
@@ -317,7 +318,7 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
@@ -328,8 +329,6 @@ class ScheduleVacationForm extends Component
 
         $startDatetime = Carbon::parse($this->state['start_datetime']);
         $endDatetime = Carbon::parse($this->state['end_datetime']);
-
-
 
         $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
@@ -650,7 +649,7 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],

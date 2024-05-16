@@ -38,6 +38,30 @@
             <!-- End Card -->
         @endif
 
+        @if($user->is_admin)
+            <!-- Card -->
+            <livewire:settings.calendar-settings.enable-owner-vacation-approval :user="$user"/>
+            <!-- End Card -->
+        @endif
+
+        @if($user->is_admin)
+            <!-- Card -->
+            <livewire:settings.calendar-settings.allow-overlapping-vacations :user="$user"/>
+            <!-- End Card -->
+        @endif
+
+        @if($user->is_admin)
+            <!-- Card -->
+            <livewire:settings.calendar-settings.allow-guest-to-schedule-vacations :user="$user"/>
+            <!-- End Card -->
+        @endif
+
+        @if($user->is_admin)
+            <!-- Card -->
+            <livewire:settings.calendar-settings.enable-calendar-entries :user="$user"/>
+            <!-- End Card -->
+        @endif
+
 
         <!-- End Card -->
     </div>

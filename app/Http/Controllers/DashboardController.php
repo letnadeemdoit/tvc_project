@@ -93,6 +93,15 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function scheduleCalendarTask(Request $request){
+        $vacationId = $request->query('vacationId');
+
+        return view('dash.settings.vacations.schedule-vacation.schedule-informational-entries', [
+            'vacationId' => $vacationId,
+            'user' => $request->user(),
+        ]);
+    }
+
     public function calendar(Request $request)
     {
         if (\auth()->user()->is_guest){

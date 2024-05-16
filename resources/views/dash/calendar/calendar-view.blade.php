@@ -243,6 +243,35 @@
         </div>
     </div>
 
+    <div class="modal fade" id="guestVacationModal" tabindex="-1" aria-labelledby="guestVacationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Guest Vacation</h4>
+                    <p class="fw-500 fs-15">It's guest vacation and need to approve by house administrator <strong>({{primary_user()->first_name . ' ' . primary_user()->last_name . ' - ' . primary_user()->email}})</strong></p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 
     @push('scripts')
         <script>
@@ -390,12 +419,24 @@
                     },
                     eventClick: function (calEvent, jsEvent, view) {
                         @if($user->is_guest)
-                        var url = "{!! route('guest.guest-request-to-join-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__']) !!}";
-                        url = url.replace('__vacationId__', calEvent.event.id);
-                        url = url.replace('__initialDate__', null);
-                        location.href = url;
-                        // window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
+                        let guest_id = "<?php echo $user->user_id; ?>";
+                        let ownerId = calEvent.event.extendedProps.OwnerId.toString();
+                        if (guest_id !== ownerId && calEvent.event.extendedProps.user_role !== 'Guest'){
+                            var url = "{!! route('guest.guest-request-to-join-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__']) !!}";
+                            url = url.replace('__vacationId__', calEvent.event.id);
+                            url = url.replace('__initialDate__', null);
+                            location.href = url;
+                            // window.livewire.emit('showRequestToJoinVacationModal', true, calEvent.event.id)
+                        }
+                        else {
+                            $('#guestVacationModal').modal('show');
+                            return false;
+                        }
                         @else
+                        if (calEvent.event.extendedProps.user_role === 'Guest'){
+                            $('#guestVacationModal').modal('show');
+                            return false;
+                        }
                         if (calEvent.view.type == 'resourceTimelineMonth') {
                             if (calEvent.event.extendedProps.is_room) {
                                 @if(primary_user()->enable_rooms !== 1)
