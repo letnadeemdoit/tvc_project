@@ -17,7 +17,7 @@ class UpdateStartEndTimeOfVacation extends Component
     public $vacationDefaultStartEndTime;
 
     public function mount(){
-        $this->vacationDefaultStartEndTime = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+        $this->vacationDefaultStartEndTime = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
         if ($this->vacationDefaultStartEndTime && $this->vacationDefaultStartEndTime->id){
             $this->state = [
                 'update_start_time' => $this->vacationDefaultStartEndTime->start_datetime->format('H:i'),
@@ -39,11 +39,11 @@ class UpdateStartEndTimeOfVacation extends Component
         $vacationStartTime = Carbon::parse($this->state['update_start_time']);
         $vacationEndTime = Carbon::parse($this->state['update_end_time']);
 
-        $this->vacationDefaultStartEndTime = CalendarSetting::firstOrNew(['house_id' => $this->user->HouseId]);
+        $this->vacationDefaultStartEndTime = CalendarSetting::firstOrNew(['house_id' => primary_user()->HouseId]);
 
         $this->syncCalendar($vacationStartTime, $vacationEndTime, $startTime, $endTime);
 
-        if($this->vacationDefaultStartEndTime->id){
+        if($this->vacationDefaultStartEndTime && $this->vacationDefaultStartEndTime->id){
             $this->vacationDefaultStartEndTime->fill([
                 'StartTimeId' => $startTime->timeid,
                 'EndTimeId' => $endTime->timeid,
@@ -51,8 +51,8 @@ class UpdateStartEndTimeOfVacation extends Component
         }
         else{
             $this->vacationDefaultStartEndTime->fill([
-                'user_id' => $this->user->user_id,
-                'house_id' => $this->user->HouseId,
+                'user_id' => primary_user()->user_id,
+                'house_id' => primary_user()->HouseId,
                 'StartTimeId' => $startTime->timeid,
                 'EndTimeId' => $endTime->timeid,
             ])->save();

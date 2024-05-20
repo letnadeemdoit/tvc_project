@@ -66,7 +66,7 @@ class CalendarView extends Component
                 $this->selectedHouses = explode(',', $this->properties);
             }
         }
-        $calendarSetting = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+        $calendarSetting = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
         if ($calendarSetting && $calendarSetting->id) {
             $this->calendarRowsHeight = $calendarSetting->calendar_height === 'fixed' ? 'fixed' : 'dynamic';
         }

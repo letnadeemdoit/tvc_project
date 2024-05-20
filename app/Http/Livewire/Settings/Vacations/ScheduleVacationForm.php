@@ -112,7 +112,7 @@ class ScheduleVacationForm extends Component
 
             ];
         } else {
-            $vacationDefaultStartEndTime = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+            $vacationDefaultStartEndTime = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
 
             $this->isCreating = true;
             $this->state = [
@@ -260,7 +260,7 @@ class ScheduleVacationForm extends Component
     {
         $selectedStartDate = Carbon::parse($this->state['start_datetime']);
         $selectedEndDate = Carbon::parse($this->state['end_datetime']);
-        $vacationDefaultStartEndDate = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+        $vacationDefaultStartEndDate = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
 
         if (!$vacationDefaultStartEndDate || $vacationDefaultStartEndDate->enable_schedule_window === 0) {
             $this->updateOrScheduleVacation($data);

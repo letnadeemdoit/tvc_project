@@ -23,7 +23,7 @@ class EnableSchedulingWindow extends Component
     ];
 
     public function mount(){
-        $this->calendarSettings = CalendarSetting::where('house_id', $this->user->HouseId)->first();
+        $this->calendarSettings = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
         if ($this->calendarSettings && $this->calendarSettings->id && $this->calendarSettings->enable_schedule_window === 1){
             $this->state = [
                 'enable_scheduling_window' => $this->calendarSettings->enable_schedule_window,
@@ -88,7 +88,7 @@ class EnableSchedulingWindow extends Component
         $vacationStartDate = Carbon::parse($this->state['vacation_start_date']);
         $vacationEndDate = Carbon::parse($this->state['vacation_end_date']);
 
-        $this->calendarSettings = CalendarSetting::firstOrNew(['house_id' => $this->user->HouseId]);
+        $this->calendarSettings = CalendarSetting::firstOrNew(['house_id' => primary_user()->HouseId]);
 
         $this->syncCalendar($vacationStartDate, $vacationEndDate, $startDate, $endDate);
 
@@ -101,8 +101,8 @@ class EnableSchedulingWindow extends Component
         }
         else{
             $this->calendarSettings->fill([
-                'user_id' => $this->user->user_id,
-                'house_id' => $this->user->HouseId,
+                'user_id' => primary_user()->user_id,
+                'house_id' => primary_user()->HouseId,
                 'enable_schedule_window' => $this->state['enable_scheduling_window'] ?? 0,
                 'StartDateId' => $startDate->DateId,
                 'EndDateId' => $endDate->DateId,

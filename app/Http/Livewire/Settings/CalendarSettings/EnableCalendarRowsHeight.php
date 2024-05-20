@@ -16,7 +16,7 @@ class EnableCalendarRowsHeight extends Component
 
     public function mount()
     {
-        $this->calendarRowsHeight = CalendarSetting::firstOrCreate(['house_id' => $this->user->HouseId, 'user_id' => $this->user->user_id]);
+        $this->calendarRowsHeight = CalendarSetting::firstOrCreate(['house_id' => primary_user()->HouseId, 'user_id' => primary_user()->user_id]);
         $this->state = [
             'calendar_height' => $this->calendarRowsHeight->calendar_height === 'dynamic' ? true : false,
         ];
@@ -40,8 +40,8 @@ class EnableCalendarRowsHeight extends Component
         ];
 
         if (!$this->calendarRowsHeight->id) {
-            $data['user_id'] = $this->user->user_id;
-            $data['house_id'] = $this->user->HouseId;
+            $data['user_id'] = primary_user()->user_id;
+            $data['house_id'] = primary_user()->HouseId;
         }
 
         $this->calendarRowsHeight->update($data);
