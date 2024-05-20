@@ -28,7 +28,7 @@ class SettingController extends Controller
 
     public function calendarSettings(Request $request)
     {
-        abort_if(!$request->user()->is_admin || ($request->user()->is_admin && !$request->user()->primary_account), 403);
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.settings.calendar-settings.index', [
             'user' => $request->user()
         ]);
