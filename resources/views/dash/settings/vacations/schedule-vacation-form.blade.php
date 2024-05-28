@@ -484,6 +484,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="vacationIsOutsideTheDefinedLengthModal" tabindex="-1" aria-labelledby="vacationIsOutsideTheDefinedLengthModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Schedule vacation inside given length</h4>
+                    <p class="fw-500 fs-15">
+                        Unable to create vacation: Your max vacation length is {{ $maxVacationLength }} days.
+                    </p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @push('scripts')
         <script>
             $(function () {
@@ -560,6 +586,10 @@
 
                 window.addEventListener('select-relevant-vacation-dates', function (e) {
                     $('#selectRelevantVacationDatesModal').modal('show');
+                });
+
+                window.addEventListener('vacation-is-outside-the-defined-length', function (e) {
+                    $('#vacationIsOutsideTheDefinedLengthModal').modal('show');
                 });
 
                 // $(document).mouseup(function(e)

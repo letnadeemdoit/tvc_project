@@ -34,22 +34,6 @@
                 <br/>
 
                 @if(!$isCreating)
-                    <div class="mb-3">
-                        <label class="form-label" for="">Reorder Photo:</label>
-                        <select name="sort_order" id="sort_order"
-                                wire:model.defer="state.sort_order"
-                                wire:change="onReorderPhotos"
-                                @if($isChangeAlbumOrder) disabled @endif
-                                class="form-control">
-                            <option value="" selected>Select Order Number...</option>
-                            @foreach($albumPhotosOrder as $ac)
-                                <option value="{{$ac}}">{{$ac}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                @endif
-
-                @if(!$isCreating)
                 <div class="mb-3">
                     <label class="form-label" for="">Move Photo To Album:</label>
                     <select name="album_id" id="album_id"

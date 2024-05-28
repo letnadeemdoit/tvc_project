@@ -195,7 +195,8 @@ class Vacation extends Model implements Auditable
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
             'parent_id' => $this->parent_id,
             'is_room' => false,
-            'user_role' => optional(User::where('user_id', $this->OwnerId)->first())->role
+            'user_role' => optional(User::where('user_id', $this->OwnerId)->first())->role,
+            'is_calendar_task' => $this->is_calendar_task,
         ], []);
     }
 

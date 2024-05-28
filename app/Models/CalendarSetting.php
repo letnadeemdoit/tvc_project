@@ -26,7 +26,8 @@ class CalendarSetting extends Model
         'vacation_length',
         'overlap_vacation',
         'allow_guest_vacations',
-        'allow_informational_entries'
+        'allow_informational_entries',
+        'enable_max_vacation_length',
     ];
 
 

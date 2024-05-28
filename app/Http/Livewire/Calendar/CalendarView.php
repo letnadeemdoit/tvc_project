@@ -328,4 +328,8 @@ class CalendarView extends Component
 
         }
     }
+
+    public function editCalendarTask(){
+        $this->dispatchBrowserEvent('edit-calendar-task');
+    }
 }

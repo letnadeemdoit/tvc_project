@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Board;
+use App\Models\CalendarSetting;
 use App\Models\GuestBook;
 use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
@@ -179,9 +180,13 @@ class DashboardController extends Controller
 
             }
         }
+
+        $calendarSettings = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
+
         return view('dash.calendar.index', [
             'user' => $request->user(),
             'iCalUrl' => $request->user()->iCalUrl(),
+            'isEnableTaskScheduled' => $calendarSettings ? $calendarSettings->allow_informational_entries : null,
         ]);
     }
 

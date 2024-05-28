@@ -40,6 +40,7 @@ class RequestToJoinVacationForm extends Component
     public $defaultStartDate = null;
     public $defaultEndDate = null;
     public $state_user = null;
+    public $maxVacationLength = null;
 
     public $house = null;
     public $owner = null;
@@ -156,6 +157,17 @@ class RequestToJoinVacationForm extends Component
                 if($this->user->is_guest){
                     $startDatetime = Carbon::parse($this->state['start_datetime']);
                     $endDatetime = Carbon::parse($this->state['end_datetime']);
+
+                    if($this->vacationDefaultStartEndDate && $this->vacationDefaultStartEndDate->enable_max_vacation_length === 1){
+                        $vacationHours = $selectedStartDate->diffInHours($selectedEndDate);
+                        $definedHours = $this->vacationDefaultStartEndDate->vacation_length * 24;
+                        $this->maxVacationLength =  $this->vacationDefaultStartEndDate->vacation_length;
+                        if ($vacationHours > $definedHours){
+                            $this->dispatchBrowserEvent('vacation-is-outside-the-defined-length', ['data' => null]);
+                            return false;
+                        }
+                    }
+
                     $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
                     $this->vacation->fill([

@@ -267,6 +267,38 @@
         </div>
     </div>
 
+    <div class="modal fade" id="showTaskDetailModal" tabindex="-1" aria-labelledby="showTaskDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-secondary border-secondary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-clock"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">BOOKABLE APPOINTMENT SCHEDULE</h4>
+                    <p class="fw-500 fs-15" id="task_description"></p>
+                    <p class="fw-500 fs-15" id="task_description_date_time"></p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-secondary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Cancel
+                        </button>
+                        @if($user->is_admin)
+                            <button type="button"
+                                    class="btn px-5 btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                    wire:click.prevent="editCalendarTask"
+                            >
+                                Edit
+                            </button>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -418,6 +450,19 @@
                         @endif
                     },
                     eventClick: function (calEvent, jsEvent, view) {
+                        if(calEvent.event.extendedProps.is_calendar_task === 1){
+                            $('#showTaskDetailModal').modal('show');
+                            $('#task_description').text(calEvent.event.title);
+                            $('#task_description_date_time').text(`${moment(calEvent.event.start).format('hh:mm A')} - ${moment(calEvent.event.end).format('hh:mm A')}`);
+
+                            window.addEventListener('edit-calendar-task', function (e) {
+                                var url = "{!! route('dash.schedule-calendar-task', ['vacationId' => '__vacationId__']) !!}";
+                                url = url.replace('__vacationId__', calEvent.event.id);
+                                location.href = url;
+                            });
+
+                            return false;
+                        }
                         @if($user->is_guest)
                         let guest_id = "<?php echo $user->user_id; ?>";
                         let ownerId = calEvent.event.extendedProps.OwnerId.toString();
@@ -563,6 +608,30 @@
                                           <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
                                         </svg>
                                        <span class="fc-event-title fc-sticky py-0" style="color: ${event.textColor}; font-size: 12px !important;">${event.title}</span>
+                                    </div>
+                                </div>
+                            `
+                            }
+                        }
+
+                        if (event.extendedProps.is_calendar_task === 1) {
+                            return {
+                                html: `
+                                <style>
+                                     .fullcalendar-custom .fc-event-resizable{
+                                     max-width : 100% !important;
+                                     }
+
+                                </style>
+                                <div>
+                                    <div class="fc-event-time">${$('input[name=calendar_view]:checked').val() === 'timeGridWeek' && !event.allDay ? moment(event.start).format('HH:mm') + '-' + moment(event.end).format('HH:mm') : ''}</div>
+                                    <div class="d-flex px-2 py-0">
+                                       <span class="fc-event-title fc-sticky py-0" style="color: ${event.textColor}; font-size: 12px !important;">
+                                            ${event.title}
+                                       </span>
+                                       <span class="fc-event-title fc-sticky px-2" style="color: ${event.textColor}; font-size: 10px !important;padding-top:1px">
+                                            ( ${moment(event.start).format('hh:mm A') + '-' + moment(event.end).format('hh:mm A')} )
+                                       </span>
                                     </div>
                                 </div>
                             `

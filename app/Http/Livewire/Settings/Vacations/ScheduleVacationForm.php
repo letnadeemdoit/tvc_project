@@ -38,6 +38,7 @@ class ScheduleVacationForm extends Component
     public $house = null;
     public $owner = null;
 
+    public $maxVacationLength = null;
     public $defaultStartDate = null;
     public $defaultEndDate = null;
 
@@ -260,7 +261,17 @@ class ScheduleVacationForm extends Component
     {
         $selectedStartDate = Carbon::parse($this->state['start_datetime']);
         $selectedEndDate = Carbon::parse($this->state['end_datetime']);
+
         $vacationDefaultStartEndDate = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
+        if($vacationDefaultStartEndDate && $vacationDefaultStartEndDate->enable_max_vacation_length === 1){
+            $vacationHours = $selectedStartDate->diffInHours($selectedEndDate);
+            $definedHours = $vacationDefaultStartEndDate->vacation_length * 24;
+            $this->maxVacationLength =  $vacationDefaultStartEndDate->vacation_length;
+            if ($vacationHours > $definedHours){
+                $this->dispatchBrowserEvent('vacation-is-outside-the-defined-length', ['data' => null]);
+                return false;
+            }
+        }
 
         if (!$vacationDefaultStartEndDate || $vacationDefaultStartEndDate->enable_schedule_window === 0) {
             $this->updateOrScheduleVacation($data);

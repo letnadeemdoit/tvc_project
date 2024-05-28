@@ -37,6 +37,7 @@ class PhotosList extends Component
 //        'destroyed-successfully' => '$refresh',
         'photo-cu-successfully' => '$refresh',
         'destroyed-successfully' => 'destroyedSuccessfully',
+        'swapPhotos' => 'swapPhotos',
     ];
 
     public function mount()
@@ -51,15 +52,64 @@ class PhotosList extends Component
 
     public function render()
     {
-        $data = Photo::where('album_id', $this->album->id)->orderBy('sort_order', 'ASC')
+        $data = Photo::where('album_id', $this->album->id)
+            ->orderBy('created_at', 'DESC')
             ->get();
         return view('dash.houses.photo-albums.photos.photos-list',compact('data'));
     }
 
+    public function swapPhotos($index1, $index2)
+    {
+        $photos = Photo::where('album_id', $this->album->id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        if ($index1 < 0 || $index2 < 0 || $index1 >= $photos->count() || $index2 >= $photos->count()) {
+            return;
+        }
+
+        $photo1 = $photos[$index1];
+        $photo2 = $photos[$index2];
+
+        // Swap all columns
+        $tempHouseId = $photo1->HouseId;
+        $photo1->HouseId = $photo2->HouseId;
+        $photo2->HouseId = $tempHouseId;
+
+        $tempAlbumId = $photo1->album_id;
+        $photo1->album_id = $photo2->album_id;
+        $photo2->album_id = $tempAlbumId;
+
+        $tempSortOrder = $photo1->sort_order;
+        $photo1->sort_order = $photo2->sort_order;
+        $photo2->sort_order = $tempSortOrder;
+
+        $tempDescription = $photo1->description;
+        $photo1->description = $photo2->description;
+        $photo2->description = $tempDescription;
+
+        $tempPath = $photo1->path;
+        $photo1->path = $photo2->path;
+        $photo2->path = $tempPath;
+
+//        $tempCreatedAt = $photo1->created_at;
+//        $photo1->created_at = $photo2->created_at;
+//        $photo2->created_at = $tempCreatedAt;
+//
+//        $tempUpdatedAt = $photo1->updated_at;
+//        $photo1->updated_at = $photo2->updated_at;
+//        $photo2->updated_at = $tempUpdatedAt;
+
+        // Save changes
+        $photo1->save();
+        $photo2->save();
+
+        $this->render();
+    }
+
     public function destroyedSuccessfully($data)
     {
-        $this->emitSelf('photo-cu-successfully');
-
+        $this->dispatchBrowserEvent('refresh-photos-list-in-album');
         $name = 'Photo';
         $isAction = 'Deleted';
         $createdHouseName = $this->user->house->HouseName;
@@ -110,6 +160,7 @@ class PhotosList extends Component
                 $this->destroyableConfirmationContent
             );
         }
+
     }
 
 }

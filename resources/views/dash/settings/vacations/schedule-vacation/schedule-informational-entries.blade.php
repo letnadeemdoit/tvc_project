@@ -3,7 +3,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     @endpush
     <x-slot name="title">
-        <h1 class="page-header-title">Schedule Vacation</h1>
+        <h1 class="page-header-title">Schedule Calendar Task</h1>
     </x-slot>
 
     <div>

@@ -71,27 +71,29 @@ class PhotoAlbumList extends Component
 
         if ($this->album && $this->album->photos->count() > 0) {
             $albumPhotos = $this->album->photos;
-            $sortedPhotos = $albumPhotos->sortBy('sort_order');
+            $sortedPhotos = $albumPhotos->sortBy('created_at');
             $data = $data->merge($sortedPhotos);
 //            $data = $data->merge($this->album->photos);
         }
+
         $data->shuffle();
 
-        if ($this->sort_order){
-            if ($this->sort_order === 'desc'){
-                $data = $data->sortByDesc('created_at');
-            }
-            elseif ($this->sort_order === 'asc'){
-                $data = $data->sortBy('created_at');
-            }
-        }
-
-//        if ($this->sort_order === 'desc') {
-//            $data = $data->sortByDesc('created_at');
-//        } else {
-//
-//            $data = $data->sortBy('created_at');
+//        if ($this->sort_order){
+//            if ($this->sort_order === 'desc'){
+//                $data = $data->sortByDesc('created_at');
+//            }
+//            elseif ($this->sort_order === 'asc'){
+//                $data = $data->sortBy('created_at');
+//            }
 //        }
+
+
+        if ($this->sort_order === 'desc') {
+            $data = $data->sortByDesc('created_at');
+        } else {
+
+            $data = $data->sortBy('created_at');
+        }
 
         return view('photo-album.photo-album-list', compact('data'));
     }

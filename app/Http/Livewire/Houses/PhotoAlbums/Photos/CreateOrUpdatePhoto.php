@@ -53,9 +53,7 @@ class CreateOrUpdatePhoto extends Component
 //            })
             ->get();
 
-        $albumPhotosOrder = range(1, 100);
-
-        return view('dash.houses.photo-albums.photos.create-or-update-photo', compact('albumCategory', 'albumPhotosOrder'));
+        return view('dash.houses.photo-albums.photos.create-or-update-photo', compact('albumCategory'));
 
     }
 
@@ -104,11 +102,6 @@ class CreateOrUpdatePhoto extends Component
 
         if ($this->file) {
             $this->photo->updateFile($this->file, 'path');
-        }
-
-        if (!$this->isCreating && isset($inputs['sort_order'])){
-            $sortOrder = (int) $inputs['sort_order'];
-            $this->photo->update(['sort_order' => $sortOrder]);
         }
 
         try {

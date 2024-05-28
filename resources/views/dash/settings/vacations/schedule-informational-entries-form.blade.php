@@ -25,43 +25,20 @@
                 @enderror
             </div>
 
-            <div class="row mb-3">
-                <div class="col-12 col-lg-6 mb-sm-0">
-                    <div class="mb-3">
-                        <label for="task_start_date" class="form-label">Task Start
-                            Date:</label>
-                        <input
-                            type="text"
-                            class="form-control @error('task_start_date') is-invalid @enderror"
-                            name="task_start_date"
-                            wire:model.defer="state.task_start_date"
-                            id="calendar_task_start_date"
-                            placeholder="Start Date"
-                            readonly
-                        />
-                        @error('task_start_date')
-                        <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 mb-sm-0">
-                    <div class="mb-3">
-                        <label for="task_end_date" class="form-label">Task End
-                            Date:</label>
-                        <input
-                            type="text"
-                            class="form-control @error('task_end_date') is-invalid @enderror"
-                            name="task_end_date"
-                            wire:model.defer="state.task_end_date"
-                            id="calendar_task_end_date"
-                            placeholder="End Date"
-                            readonly
-                        />
-                        @error('task_end_date')
-                        <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="schedule_start_end_datetime">Start & End Datetime:</label>
+                <input
+                    type="text"
+                    class="form-control @error('start_datetime') is-invalid @enderror"
+                    name="start_datetime"
+                    id="schedule_start_end_datetime"
+                    placeholder="Start & end date time"
+                    wire:model.defer="state.start_end_datetime"
+                    readonly
+                />
+                @error('start_datetime')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="row mb-3">
@@ -72,7 +49,6 @@
                         <span class="form-check">
                             <input type="radio"
                                    wire:model="state.recurrence"
-                                   wire:change.prevent="updateRecurrence('once')"
                                    value="once"
                                    class="form-check-input"
                                    checked
@@ -90,7 +66,6 @@
                         <span class="form-check">
                             <input type="radio"
                                    wire:model="state.recurrence"
-                                   wire:change.prevent="updateRecurrence('weekly')"
                                    value="weekly"
                                    class="form-check-input"
                                    checked
@@ -110,7 +85,6 @@
                             <input type="radio"
                                    value="yearly"
                                    wire:model="state.recurrence"
-                                   wire:change.prevent="updateRecurrence('yearly')"
                                    class="form-check-input"
                                    name="recurrence"
                                    id="recurrence_yearly"
@@ -121,26 +95,45 @@
                     <!-- End Form Radio -->
                 </div>
             </div>
+            @if(isset($state['recurrence']) && $state['recurrence'] !== 'once')
+                <div class="form-group mb-3">
+                    <label
+                        class="form-label"
+                        for="repeat_interval"
+                    >Repeat Interval:</label>
+                    <input
+                        type="number"
+                        class="form-control @error('repeat_interval') is-invalid @enderror"
+                        name="repeat_interval"
+                        id="repeat_interval"
+                        placeholder="Task Repeat Interval"
+                        wire:model.defer="state.repeat_interval"
+                    />
+                    @error('repeat_interval')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+            @endif
             {{--            @if(isset($state['recurrence']) && $state['recurrence'] === 'weekly')--}}
-            <div class="form-group mb-3" id="view_end_repeat_date" wire:ignore>
-                <label
-                    class="form-label"
-                    for="end_repeat_date"
-                >End Repeat Date:</label>
-                <input
-                    type="text"
-                    class="form-control @error('end_repeat_date') is-invalid @enderror"
-                    name="end_repeat_date"
-                    id="end_task_repeat_date"
-                    placeholder="End Repeat Date"
-                    wire:model.defer="state.end_repeat_date"
-                    readonly
-                />
-                @error('end_repeat_date')
-                <span class="invalid-feedback">{{ $message }}</span>
-                @enderror
+{{--            <div class="form-group mb-3" id="view_end_repeat_date" wire:ignore>--}}
+{{--                <label--}}
+{{--                    class="form-label"--}}
+{{--                    for="end_repeat_date"--}}
+{{--                >End Repeat Date:</label>--}}
+{{--                <input--}}
+{{--                    type="text"--}}
+{{--                    class="form-control @error('end_repeat_date') is-invalid @enderror"--}}
+{{--                    name="end_repeat_date"--}}
+{{--                    id="end_task_repeat_date"--}}
+{{--                    placeholder="End Repeat Date"--}}
+{{--                    wire:model.defer="state.end_repeat_date"--}}
+{{--                    readonly--}}
+{{--                />--}}
+{{--                @error('end_repeat_date')--}}
+{{--                <span class="invalid-feedback">{{ $message }}</span>--}}
+{{--                @enderror--}}
 
-            </div>
+{{--            </div>--}}
             {{--            @endif--}}
 
 
@@ -150,7 +143,7 @@
                         <a
                             href="#!"
                             class="btn btn-danger px-5 d-block d-sm-inline-block"
-                            wire:click.prevent="deleteVacation"
+                            wire:click.prevent="deleteCalendarTask"
                         >
                             <i class="bi-trash me-2 d-none d-sm-inline-block"></i> Delete
                         </a>
@@ -192,102 +185,66 @@
         <script>
             $(document).ready(function() {
 
-                //calendar_task_start_date
-                $('#calendar_task_start_date').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
+                var datePicker;
+                $('#schedule_start_end_datetime').daterangepicker({
+                    timePicker: true,
+                    timePickerIncrement: 60,
+                    validateOnBlur: false,
+                    showDropdowns: false,
+                    // autoApply: true,
                     minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
                     maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
-                    startDate: @isset($state['task_start_date']) '{{ $state['task_start_date'] }}'
+                    // minDate: moment().format('MM/DD/YYYY'),
+                    startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
                     @else moment().set('minute', 0) @endisset,
+                    endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
+                    @else moment().set('minute', 0).add(2, 'days') @endisset,
                     locale: {
-                        format: 'MM/DD/YYYY'
+                        format: 'MM/DD/YYYY HH:mm'
                     }
                 });
+                $('#schedule_start_end_datetime').on('change.daterangepicker', function (ev) {
+                    var currentValue = $('#schedule_start_end_datetime').val();
+                    var dateTime = currentValue.split('-');
+                @this.
+                set('state.start_datetime', dateTime[0]);
+                @this.
+                set('state.end_datetime', dateTime[1]);
+                @this.
+                set('state.start_end_datetime', dateTime[0] + ' - ' + dateTime[1]);
 
-                $('#calendar_task_start_date').on('apply.daterangepicker', function (ev, picker) {
-                    ev.preventDefault();
-                @this.set('state.task_start_date', picker.startDate.format('MM/DD/YYYY'));
+                    // $('.room-dates').attr('min', picker.startDate.format('YYYY-MM-DD'));
+                    // $('.room-dates').attr('max', picker.endDate.format('YYYY-MM-DD'));
+                });
+
+                $('#schedule_start_end_datetime').on('apply.daterangepicker', function (ev, picker) {
+                    datePicker = picker;
+                    console.log(datePicker);
+                @this.
+                set('state.start_datetime', picker.startDate.format('MM/DD/YYYY HH:mm'));
+                @this.
+                set('state.end_datetime', picker.endDate.format('MM/DD/YYYY HH:mm'));
+                @this.
+                set('state.start_end_datetime', picker.startDate.format('MM/DD/YYYY HH:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY HH:mm'));
+
+                    $('.room-dates').attr('min', picker.startDate.format('YYYY-MM-DD'));
+                    $('.room-dates').attr('max', picker.endDate.format('YYYY-MM-DD'));
                 });
 
 
-                $('#calendar_task_start_date').on('change.daterangepicker', function (ev) {
-                    ev.preventDefault();
-                    var currentValue = $('#calendar_task_start_date').val();
-                @this.set('state.task_start_date', currentValue);
-                });
+{{--                @if(isset($state['recurrence']) && $state['recurrence'] !== 'weekly')--}}
+{{--                   $('#view_end_repeat_date').hide();--}}
+{{--                @endif--}}
 
-
-                //calendar_task_end_date
-                $('#calendar_task_end_date').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
-                    maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
-
-                    startDate: @isset($state['task_end_date']) '{{ $state['task_end_date'] }}'
-                    @else moment().set('minute', 0) @endisset,
-
-                    locale: {
-                        format: 'MM/DD/YYYY'
-                    }
-                });
-
-                $('#calendar_task_end_date').on('apply.daterangepicker', function (ev, picker) {
-                    ev.preventDefault();
-                @this.set('state.task_end_date', picker.startDate.format('MM/DD/YYYY'));
-                });
-
-
-                $('#calendar_task_end_date').on('change.daterangepicker', function (ev) {
-                    ev.preventDefault();
-                    var currentValue = $('#calendar_task_end_date').val();
-                @this.set('state.task_end_date', currentValue);
-                });
-
-
-                // end_repeat_date
-                $('#end_task_repeat_date').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
-                    maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
-
-                    startDate: @isset($state['end_repeat_date']) '{{ $state['end_repeat_date'] }}'
-                    @else moment().set('minute', 0) @endisset,
-
-                    locale: {
-                        format: 'MM/DD/YYYY'
-                    }
-                });
-
-                $('#end_task_repeat_date').on('apply.daterangepicker', function (ev, picker) {
-                    ev.preventDefault();
-                @this.set('state.end_repeat_date', picker.startDate.format('MM/DD/YYYY'));
-                });
-
-
-                $('#end_task_repeat_date').on('change.daterangepicker', function (ev) {
-                    ev.preventDefault();
-                    var currentValue = $('#end_task_repeat_date').val();
-                @this.set('state.end_repeat_date', currentValue);
-                });
-
-
-
-                @if(isset($state['recurrence']) && $state['recurrence'] !== 'weekly')
-                   $('#view_end_repeat_date').hide();
-                @endif
-
-                window.livewire.on('enableUpdateRecurrence', function (recurrence) {
-                    console.log("Called");
-                   if (recurrence === 'weekly'){
-                       $('#view_end_repeat_date').show();
-                   }
-                   else {
-                       $('#view_end_repeat_date').hide();
-                   }
-                });
+{{--                window.livewire.on('enableUpdateRecurrence', function (recurrence) {--}}
+{{--                    console.log("Called");--}}
+{{--                   if (recurrence === 'weekly'){--}}
+{{--                       $('#view_end_repeat_date').show();--}}
+{{--                   }--}}
+{{--                   else {--}}
+{{--                       $('#view_end_repeat_date').hide();--}}
+{{--                   }--}}
+{{--                });--}}
 
             });
 
