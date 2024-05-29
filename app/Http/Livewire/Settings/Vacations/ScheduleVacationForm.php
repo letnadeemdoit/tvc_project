@@ -134,8 +134,8 @@ class ScheduleVacationForm extends Component
 
                         $this->state['is_default_time'] = true;
                         $this->state['start_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultStartTime->format('H:i');
-                        $this->state['end_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultEndTime->format('H:i');
-                        $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultStartTime->format('H:i') . ' - ' . $initialDatetime->format('m/d/Y') . ' ' . $defaultEndTime->format('H:i');
+                        $this->state['end_datetime'] = $initialDatetime->addDays(1)->format('m/d/Y') . ' ' . $defaultEndTime->format('H:i');
+                        $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultStartTime->format('H:i') . ' - ' . $initialDatetime->addDays(1)->format('m/d/Y') . ' ' . $defaultEndTime->format('H:i');
                     }
                     else
                     {

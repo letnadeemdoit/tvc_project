@@ -108,15 +108,19 @@ class VacationSchedule implements Rule
 
 
         //Vacation Overlapping Code
-        $primaryHouseId = primary_user()->HouseId;
-        $existingVacation = Vacation::where(['HouseId' => $primaryHouseId, 'is_vac_approved' => 0])
-            ->whereIn('OwnerId', function ($query) use ($primaryHouseId) {
+        $houseId = $this->user->HouseId;
+        $existingVacation = Vacation::when($this->user->is_owner_only, function ($query) {
+            $query->where('HouseId', $this->user->HouseId)->where('OwnerId', $this->user->user_id);
+        })->when($this->user->is_guest, function ($query) {
+            $query->where('HouseId', $this->user->HouseId);
+        })
+            ->whereIn('OwnerId', function ($query) use ($houseId) {
                 $query->select('user_id')
                     ->from('users')
-                    ->where('HouseId', $primaryHouseId)
-                    ->whereIn('role', ['Owner','Guest']);
+                    ->where('HouseId', $houseId)
+                    ->whereIn('role', ['Owner', 'Guest']);
             })
-
+            ->where('is_vac_approved', 0)
             ->where(function ($query) {
                 $query->whereHas('startDate', function ($query) {
                     $query->whereDate('RealDate', '>=', Carbon::parse($this->startDatetime)->format('Y-m-d'))

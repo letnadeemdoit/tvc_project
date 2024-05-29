@@ -100,7 +100,7 @@
                     <label
                         class="form-label"
                         for="repeat_interval"
-                    >Repeat Interval:</label>
+                    >How many times should this event repeat?</label>
                     <input
                         type="number"
                         class="form-control @error('repeat_interval') is-invalid @enderror"

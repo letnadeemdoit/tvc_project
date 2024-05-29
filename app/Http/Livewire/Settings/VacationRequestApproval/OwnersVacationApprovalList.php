@@ -43,8 +43,12 @@ class OwnersVacationApprovalList extends Component
 
     public function render()
     {
-        $houseId = primary_user()->HouseId;
-        $data = Vacation::where(['HouseId' => $houseId, 'is_vac_approved' => 0])
+        $houseId = $this->user->HouseId;
+        $data = Vacation::when($this->user->is_owner_only, function ($query) {
+            $query->where('HouseId', $this->user->HouseId)->where('OwnerId', $this->user->user_id);
+        })->when($this->user->is_guest, function ($query) {
+            $query->where('HouseId', $this->user->HouseId);
+        })
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query
@@ -55,8 +59,9 @@ class OwnersVacationApprovalList extends Component
                 $query->select('user_id')
                     ->from('users')
                     ->where('HouseId', $houseId)
-                    ->whereIn('role', ['Owner','Guest']);
+                    ->whereIn('role', ['Owner', 'Guest']);
             })
+            ->where('is_vac_approved', 0)
             ->whereHas('startDate', function ($query) {
                 $query->whereDate('RealDate', '>=', Carbon::parse($this->from)->format('Y-m-d'));
             })

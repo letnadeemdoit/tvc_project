@@ -320,4 +320,8 @@ class ScheduleInformationalEntriesForm extends Component
         }
     }
 
+    public function cancelVacation(){
+        return redirect()->route('dash.calendar');
+    }
+
 }
