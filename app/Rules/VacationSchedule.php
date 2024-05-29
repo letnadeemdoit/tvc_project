@@ -110,7 +110,7 @@ class VacationSchedule implements Rule
         //Vacation Overlapping Code
         $houseId = $this->user->HouseId;
         $existingVacation = Vacation::when($this->user->is_owner_only, function ($query) {
-            $query->where('HouseId', $this->user->HouseId)->where('OwnerId', $this->user->user_id);
+            $query->where('HouseId', $this->user->HouseId);
         })->when($this->user->is_guest, function ($query) {
             $query->where('HouseId', $this->user->HouseId);
         })
