@@ -84,6 +84,7 @@ class OwnersVacationApprovalList extends Component
             [
                 'is_vac_approved' => !!$toggle,
                 'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : $owner->user_id,
+                'HouseId' => $ownerRole === 'Guest' ? primary_user()->HouseId : $owner->HouseId,
                 'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : $vacation->BackGrndColor
             ]
         );

@@ -289,7 +289,7 @@ class RequestToJoinVacationForm extends Component
         $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
         $this->vacation->fill([
-            'HouseId' => primary_user()->HouseId,
+            'HouseId' => $this->user->HouseId,
             'OwnerId' => $this->user->user_id,
             'BackGrndColor' => '#CCCCCC',
             'FontColor' => '#ffffff',
