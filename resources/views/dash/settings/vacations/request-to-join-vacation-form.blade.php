@@ -85,7 +85,7 @@
                     @enderror
                 </div>
             </div>
-            @if($user->is_guest && (is_null($vacation) || !is_null($vacation) && !$vacation->VacationId))
+            @if($user->is_guest && $isGuestScheduleVacation && (is_null($vacation) || !is_null($vacation) && !$vacation->VacationId))
                 <div class="form-group mb-3">
                     <label class="form-label" for="guest_vacation">Vacation Name:</label>
                     <input

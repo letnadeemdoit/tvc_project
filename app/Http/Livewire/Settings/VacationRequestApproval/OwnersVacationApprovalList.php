@@ -76,13 +76,27 @@ class OwnersVacationApprovalList extends Component
 
     public function isVacApproved($toggle, Vacation $vacation)
     {
+
+        $owner = User::where('user_id', $vacation->OwnerId)->first();
+        $ownerRole = optional($owner)->role;
+
         $vacation->update(
             [
                 'is_vac_approved' => !!$toggle,
-                'OwnerId' => $vacation->owner->role === 'Guest' ? primary_user()->user_id : $vacation->owner->user_id,
-                'BackGrndColor' => $vacation->owner->role === 'Guest' ? '#FF5733' : $vacation->BackGrndColor
+                'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : $owner->user_id,
+                'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : $vacation->BackGrndColor
             ]
         );
+        $recurringVacations = $vacation->recurrings;
+        if (count($recurringVacations) > 0){
+            foreach ($recurringVacations as $recurringVacation) {
+                $recurringVacation->update([
+                    'is_vac_approved' => !!$toggle,
+                    'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : $owner->user_id,
+                    'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : $vacation->BackGrndColor
+                ]);
+            }
+        }
 
         $this->emitSelf('user-cu-successfully');
         $this->emitSelf('saved-' . $vacation->VacationId);

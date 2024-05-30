@@ -471,7 +471,7 @@
                     <h4 class="fw-bold text-center my-3"
                         style="color: #00000090">Select relevant dates to schedule vacation</h4>
                     <p class="fw-500 fs-15">
-                        Unable to create vacation: Dates are outside the allowed scheduling window of {{isset($defaultStartDate) ? $defaultStartDate->format('d-m-Y') : null}} to {{isset($defaultEndDate) ? $defaultEndDate->format('d-m-Y') : null}}.
+                        Unable to {{$vacation && $vacation->VacationName ? 'update' : 'create'}} vacation: Dates are outside the allowed scheduling window of {{isset($defaultStartDate) ? $defaultStartDate->format('m-d-Y') : null}} to {{isset($defaultEndDate) ? $defaultEndDate->format('m-d-Y') : null}}.
                     </p>
                     <div class="btn-group my-2">
                         <button type="button"
@@ -497,7 +497,7 @@
                     <h4 class="fw-bold text-center my-3"
                         style="color: #00000090">Schedule vacation inside given length</h4>
                     <p class="fw-500 fs-15">
-                        Unable to create vacation: Your max vacation length is {{ $maxVacationLength }} days.
+                        Unable to {{$vacation && $vacation->VacationName ? 'update' : 'create'}} vacation: Your max vacation length is {{ $maxVacationLength }} days.
                     </p>
                     <div class="btn-group my-2">
                         <button type="button"

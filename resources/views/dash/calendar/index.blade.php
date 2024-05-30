@@ -75,7 +75,10 @@
                     <i class="bi-clock me-1"></i> Schedule Vacation
                 </a>
 
-                @if($isEnableTaskScheduled === 1 && $user->is_admin)
+                @php
+                    $isEnableTaskScheduled = App\Models\CalendarSetting::where('house_id', primary_user()->HouseId)->first();
+                @endphp
+                @if($isEnableTaskScheduled && $isEnableTaskScheduled->allow_informational_entries === 1 && $user->is_admin)
                     <a
                         x-data
                         class="btn btn-primary mb-2 mb-lg-0"

@@ -42,6 +42,10 @@ class ScheduleVacationForm extends Component
     public $defaultStartDate = null;
     public $defaultEndDate = null;
 
+    public $calendarSettings = null;
+
+    public $isOwnerVacApproval = false;
+
     public $updateVac = false;
     public $manageVac = false;
 
@@ -76,6 +80,14 @@ class ScheduleVacationForm extends Component
             }
         } elseif ($this->vacation->parent_id !== null) {
             $this->vacation = Vacation::firstOrNew(['VacationID' => $this->vacation->parent_id]);
+        }
+
+        $this->calendarSettings = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
+        if($this->calendarSettings && $this->calendarSettings->owner_vacation_approval === 1) {
+            $this->isOwnerVacApproval = false;
+        }
+        else{
+            $this->isOwnerVacApproval = true;
         }
 
 //        $this->emitSelf('toggle', $toggle);
@@ -113,7 +125,6 @@ class ScheduleVacationForm extends Component
 
             ];
         } else {
-            $vacationDefaultStartEndTime = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
 
             $this->isCreating = true;
             $this->state = [
@@ -128,9 +139,9 @@ class ScheduleVacationForm extends Component
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
 
-                    if ($vacationDefaultStartEndTime && $vacationDefaultStartEndTime->id) {
-                        $defaultStartTime = $vacationDefaultStartEndTime->start_datetime;
-                        $defaultEndTime = $vacationDefaultStartEndTime->end_datetime;
+                    if ($this->calendarSettings && $this->calendarSettings->enable_schedule_window === 1) {
+                        $defaultStartTime = $this->calendarSettings->start_datetime;
+                        $defaultEndTime = $this->calendarSettings->end_datetime;
 
                         $this->state['is_default_time'] = true;
                         $this->state['start_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultStartTime->format('H:i');
@@ -368,6 +379,7 @@ class ScheduleVacationForm extends Component
             'EndTimeId' => $endTime->timeid,
             'repeat_interval' => $this->state['repeat_interval'] ?? 0,
             'book_rooms' => $this->state['book_rooms'] ?? 0,
+            'is_vac_approved' => $this->isCreating ? ($this->user->is_owner_only && $this->isOwnerVacApproval ? 1: 0) : $this->vacation->is_vac_approved,
         ])->save();
 
         if (
@@ -418,6 +430,7 @@ class ScheduleVacationForm extends Component
                         'EndTimeId' => $endTime->timeid,
                         'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
                         'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
+                        'is_vac_approved' => $this->user->is_owner_only && $this->isOwnerVacApproval ? 1: 0,
                     ]);
                 }
 
@@ -445,6 +458,7 @@ class ScheduleVacationForm extends Component
 
                 }
             } else {
+
                 $repeatInterval = intval($this->state['repeat_interval'] ?? 0);
 
                 $recurringVacations = $this->vacation->recurrings;
@@ -471,6 +485,8 @@ class ScheduleVacationForm extends Component
                                 'StartTimeId' => $startTime->timeid,
                                 'EndDateId' => $endDate->DateId,
                                 'EndTimeId' => $endTime->timeid,
+                                'is_vac_approved' => $this->vacation->is_vac_approved,
+
                             ]);
                         } else {
                             $recurringVacation->rooms()->delete();
@@ -501,6 +517,7 @@ class ScheduleVacationForm extends Component
                                 'StartTimeId' => $startTime->timeid,
                                 'EndDateId' => $endDate->DateId,
                                 'EndTimeId' => $endTime->timeid,
+                                'is_vac_approved' => $this->vacation->is_vac_approved,
                             ]);
 
                             if (
@@ -548,6 +565,7 @@ class ScheduleVacationForm extends Component
                                 'EndTimeId' => $endTime->timeid,
                                 'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
                                 'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
+                                'is_vac_approved' => $this->vacation->is_vac_approved,
                             ]);
                         }
 

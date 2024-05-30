@@ -142,8 +142,6 @@ class VacationSchedule implements Rule
         }
         //End Vacation Overlapping Code
 
-//        return true;
-
         $startDatetime = $this->startDatetime->format('m/d/Y H:i');
         $endDatetime = $this->endDatetime->format('m/d/Y H:i');
         $ignoredVacationId = $this->vacation->VacationId ?? -1;

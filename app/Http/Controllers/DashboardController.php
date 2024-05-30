@@ -181,12 +181,10 @@ class DashboardController extends Controller
             }
         }
 
-        $calendarSettings = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
 
         return view('dash.calendar.index', [
             'user' => $request->user(),
             'iCalUrl' => $request->user()->iCalUrl(),
-            'isEnableTaskScheduled' => $calendarSettings ? $calendarSettings->allow_informational_entries : null,
         ]);
     }
 

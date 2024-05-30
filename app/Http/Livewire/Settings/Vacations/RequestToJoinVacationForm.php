@@ -35,7 +35,9 @@ class RequestToJoinVacationForm extends Component
     public $state = [];
     public ?Vacation $vacation;
 
-    public $vacationDefaultStartEndDate = null;
+    public $calendarSetting = null;
+
+    public $isGuestScheduleVacation = false;
     public $isEnableScheduleWindow = false;
     public $defaultStartDate = null;
     public $defaultEndDate = null;
@@ -57,14 +59,14 @@ class RequestToJoinVacationForm extends Component
 //        $this->emitSelf('toggle', $toggle);
         $this->reset('state');
 
-        $this->vacationDefaultStartEndDate = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
-        if($this->vacationDefaultStartEndDate && $this->vacationDefaultStartEndDate->enable_schedule_window === 1){
+        $this->calendarSetting = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
+        if($this->calendarSetting && $this->calendarSetting->enable_schedule_window === 1){
             $this->isEnableScheduleWindow = true;
-            $this->defaultStartDate = $this->vacationDefaultStartEndDate->start_datetime;
-            $this->defaultEndDate = $this->vacationDefaultStartEndDate->end_datetime;
+            $this->defaultStartDate = $this->calendarSetting->start_datetime;
+            $this->defaultEndDate = $this->calendarSetting->end_datetime;
         }
-        else{
-            $this->isEnableScheduleWindow = false;
+        if ($this->calendarSetting && $this->calendarSetting->allow_guest_vacations === 1){
+            $this->isGuestScheduleVacation = true;
         }
 
 
@@ -134,61 +136,43 @@ class RequestToJoinVacationForm extends Component
     {
         $this->resetErrorBag();
         Validator::make($this->state, [
-            'guest_vacation' => !$this->vacation->VacationId ? ['required'] : ['nullable'],
+            'guest_vacation' => $this->isGuestScheduleVacation && !$this->vacation->VacationId ? ['required'] : ['nullable'],
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'string', 'max:255'],
-            'start_datetime' => [
+            'start_datetime' => $this->isGuestScheduleVacation && !$this->vacation->VacationId ? [
                 'required',
-//                new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)
-            ],
+                new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)
+            ] : ['required'],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
-        ])->validateWithBag('saveVacationSchedule');
+        ])->validateWithBag('sendRequestToJoinVacation');
 
         $selectedStartDate = Carbon::parse($this->state['start_datetime']);
         $selectedEndDate = Carbon::parse($this->state['end_datetime']);
 
-        if (($this->isEnableScheduleWindow && ($selectedStartDate->gte($this->defaultStartDate) && $selectedStartDate->lte($this->defaultEndDate)) &&
-            ($selectedEndDate->gte($this->defaultStartDate) && $selectedEndDate->lte($this->defaultEndDate))) || !$this->isEnableScheduleWindow) {
+        if ($this->isGuestScheduleVacation && !$this->vacation->VacationId && $this->user->is_guest) {
+            if (($this->isEnableScheduleWindow && ($selectedStartDate->gte($this->defaultStartDate) && $selectedStartDate->lte($this->defaultEndDate)) &&
+                    ($selectedEndDate->gte($this->defaultStartDate) && $selectedEndDate->lte($this->defaultEndDate))) || !$this->isEnableScheduleWindow) {
 
-            if (!$this->vacation->VacationId) {
-
-                // Creating guest vacation
-                if($this->user->is_guest){
-                    $startDatetime = Carbon::parse($this->state['start_datetime']);
-                    $endDatetime = Carbon::parse($this->state['end_datetime']);
-
-                    if($this->vacationDefaultStartEndDate && $this->vacationDefaultStartEndDate->enable_max_vacation_length === 1){
-                        $vacationHours = $selectedStartDate->diffInHours($selectedEndDate);
-                        $definedHours = $this->vacationDefaultStartEndDate->vacation_length * 24;
-                        $this->maxVacationLength =  $this->vacationDefaultStartEndDate->vacation_length;
-                        if ($vacationHours > $definedHours){
-                            $this->dispatchBrowserEvent('vacation-is-outside-the-defined-length', ['data' => null]);
-                            return false;
-                        }
+                if ($this->calendarSetting && $this->calendarSetting->enable_max_vacation_length === 1) {
+                    $vacationHours = $selectedStartDate->diffInHours($selectedEndDate);
+                    $definedHours = $this->calendarSetting->vacation_length * 24;
+                    $this->maxVacationLength = $this->calendarSetting->vacation_length;
+                    if ($vacationHours > $definedHours) {
+                        $this->dispatchBrowserEvent('vacation-is-outside-the-defined-length', ['data' => null]);
+                        return false;
                     }
-
-                    $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
-
-                    $this->vacation->fill([
-                        'HouseId' => primary_user()->HouseId,
-                        'OwnerId' => $this->user->user_id,
-                        'BackGrndColor' => '#CCCCCC',
-                        'FontColor' => '#ffffff',
-                        'VacationName' => $this->state['guest_vacation'],
-                        'recurrence' => null,
-                        'StartDateId' => $startDate->DateId,
-                        'StartTimeId' => $startTime->timeid,
-                        'EndDateId' => $endDate->DateId,
-                        'EndTimeId' => $endTime->timeid,
-                        'repeat_interval' => 0,
-                        'book_rooms' => 0,
-                        'is_vac_approved' => 0,
-                    ])->save();
                 }
+                // Creating guest vacation
+                $this->saveVacationSchedule();
                 // End creating guest vacation
 
+            } else {
+                $this->dispatchBrowserEvent('select-relevant-vacation-dates', ['data' => null]);
+            }
+        } else {
 
+            if (!$this->vacation->VacationId) {
 
                 try {
                     $house = $this->user->house;
@@ -281,6 +265,7 @@ class RequestToJoinVacationForm extends Component
             } else {
                 return redirect()->route('dash.calendar')->with('successMessage', 'Your request to join vacation has been submitted successful.');
             }
+        }
 
 //        $this->emitSelf('toggle', false);
 //        if (!$this->vacation->VacationId) {
@@ -288,15 +273,69 @@ class RequestToJoinVacationForm extends Component
 //        }else{
 //            $this->success('Your request to join vacation has been submitted successful.');
 //        }
-        } else {
-            $this->dispatchBrowserEvent('select-relevant-vacation-dates', ['data' => null]);
-        }
+
     }
 
     public function render()
     {
         return view('dash.settings.vacations.request-to-join-vacation-form');
     }
+
+
+
+    public function saveVacationSchedule(){
+        $startDatetime = Carbon::parse($this->state['start_datetime']);
+        $endDatetime = Carbon::parse($this->state['end_datetime']);
+        $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
+
+        $this->vacation->fill([
+            'HouseId' => primary_user()->HouseId,
+            'OwnerId' => $this->user->user_id,
+            'BackGrndColor' => '#CCCCCC',
+            'FontColor' => '#ffffff',
+            'VacationName' => $this->state['guest_vacation'],
+            'recurrence' => null,
+            'StartDateId' => $startDate->DateId,
+            'StartTimeId' => $startTime->timeid,
+            'EndDateId' => $endDate->DateId,
+            'EndTimeId' => $endTime->timeid,
+            'repeat_interval' => 0,
+            'book_rooms' => 0,
+            'is_vac_approved' => 0,
+        ])->save();
+
+        try {
+
+            $items = $this->vacation;
+            $createdHouseName = $this->user->house->HouseName;
+
+            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
+
+                $CalEmailList = explode(',', $this->user->house->CalEmailList);
+
+                if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                    foreach ($users as $user) {
+                        $user->notify(new CalendarEmailNotification($items,$this->user, $createdHouseName, $startDate, $endDate));
+                    }
+                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+                    if (count($CalEmailList) > 0) {
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new CalendarEmailNotification($items,$this->user, $createdHouseName, $startDate, $endDate));
+                    }
+
+                }
+            }
+
+        } catch (Exception $e) {
+
+        }
+
+        return redirect()->route('guest.guest-calendar')->with('successMessage', 'Your vacation has been created successful.');
+
+
+    }
+
 
     public function syncCalendar($startDatetime, $endDatetime, &$startDate, &$startTime, &$endDate, &$endTime)
     {

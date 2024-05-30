@@ -180,6 +180,7 @@ class Vacation extends Model implements Auditable
 
     public function toCalendar()
     {
+
         return array_merge([
             'id' => $this->VacationId,
             'OwnerId' => $this->OwnerId,
@@ -189,10 +190,7 @@ class Vacation extends Model implements Auditable
             'allDay' => false,
             'display' => 'block',
             'className' => 'fullcalendar-custom-event-hs-team',
-            'backgroundColor' => $this->owner->role === 'Owner' ?
-                (optional(CalendarSetting::where('house_id', primary_user()->HouseId)->first())->owner_vacation_approval === 1 && $this->is_vac_approved === 0 ?
-                    '#CCCCCC' : $this->BackGrndColor)
-                : $this->BackGrndColor,
+            'backgroundColor' => optional(User::where('user_id', $this->OwnerId)->first())->role === 'Owner' && $this->is_vac_approved === 0 ? '#CCCCCC' : $this->BackGrndColor,
             'textColor' => $this->FontColor,
             'resourceIds' => [00],
             'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
