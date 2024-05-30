@@ -80,11 +80,13 @@ class OwnersVacationApprovalList extends Component
         $owner = User::where('user_id', $vacation->OwnerId)->first();
         $ownerRole = optional($owner)->role;
 
+        $adminUser = User::where('HouseId', $vacation->HouseId)->where('role', 'Administrator')->first();
+
         $vacation->update(
             [
                 'is_vac_approved' => !!$toggle,
-                'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : $owner->user_id,
-                'HouseId' => $ownerRole === 'Guest' ? primary_user()->HouseId : $owner->HouseId,
+                'OwnerId' => $ownerRole === 'Guest' ? $adminUser->user_id : $owner->user_id,
+                'HouseId' => $ownerRole === 'Guest' ? $adminUser->HouseId : $owner->HouseId,
                 'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : $vacation->BackGrndColor
             ]
         );
@@ -93,7 +95,7 @@ class OwnersVacationApprovalList extends Component
             foreach ($recurringVacations as $recurringVacation) {
                 $recurringVacation->update([
                     'is_vac_approved' => !!$toggle,
-                    'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : $owner->user_id,
+                    'OwnerId' => $ownerRole === 'Guest' ? $adminUser->user_id : $owner->user_id,
                     'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : $vacation->BackGrndColor
                 ]);
             }
