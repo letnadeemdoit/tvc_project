@@ -62,6 +62,7 @@ class OwnersVacationApprovalList extends Component
                     ->whereIn('role', ['Owner', 'Guest']);
             })
             ->where('is_vac_approved', 0)
+            ->where('is_calendar_task', 0)
             ->whereHas('startDate', function ($query) {
                 $query->whereDate('RealDate', '>=', Carbon::parse($this->from)->format('Y-m-d'));
             })

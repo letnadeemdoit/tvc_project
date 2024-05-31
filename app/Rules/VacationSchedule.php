@@ -121,6 +121,7 @@ class VacationSchedule implements Rule
                     ->whereIn('role', ['Owner', 'Guest']);
             })
             ->where('is_vac_approved', 0)
+            ->where('is_calendar_task', 0)
             ->where(function ($query) {
                 $query->whereHas('startDate', function ($query) {
                     $query->whereDate('RealDate', '>=', Carbon::parse($this->startDatetime)->format('Y-m-d'))

@@ -86,6 +86,7 @@ class VacationsList extends Component
                         });
                 });
             })
+            ->where('is_calendar_task', 0)
             ->where('OwnerId', $this->owner ?: $this->user->user_id)
 //            ->whereNotIn('OwnerId', User::where('HouseId', primary_user()->HouseId)
 //                ->where('role', 'Guest')
