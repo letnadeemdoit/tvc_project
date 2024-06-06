@@ -19,6 +19,26 @@
         </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Monthly -->
     <div class="row mb-3 justify-content-center" x-show="!isYearly">
         <div class="col-12 col-md-4 col-lg-4 mb-3">
@@ -60,7 +80,15 @@
                             >
                                 Unsubscribe
                             </a>
-                            {{--                            @endif--}}
+                        @elseif($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'yearly')
+                            <a
+                                data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                data_value="{{ route('dash.paypal.revise', ['basic', 'monthly']) }}"
+                                href="#!"
+                                class="form-check-select-stretched-btn btn btn-info upgrade-downgrade"
+                            >
+                                Convert to Monthly
+                            </a>
                         @else
                             {{--                            @if($this->subscription->period !== 'yearly')--}}
                             <a
@@ -130,7 +158,7 @@
                                 </a>
                             @endif
                         @else
-                            @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')
+                            @if($this->subscription && $this->subscription->plan === 'basic' && ($this->subscription->period === 'monthly' || $this->subscription->period === 'yearly' ))
                                 <a
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
@@ -139,7 +167,16 @@
                                 >
                                     Upgrade
                                 </a>
-                            @elseif($this->subscription && $this->subscription->plan === 'premium')
+                            @elseif($this->subscription && $this->subscription->plan === 'standard' && $this->subscription->period === 'yearly')
+                                <a
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-info upgrade-downgrade"
+                                >
+                                    Convert to Monthly
+                                </a>
+                            @elseif($this->subscription && $this->subscription->plan === 'premium' && ($this->subscription->period === 'monthly' || $this->subscription->period === 'yearly'))
                                 <a
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
@@ -148,15 +185,15 @@
                                 >
                                     Downgrade
                                 </a>
-                            @else
-                                <a
-                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
-                                    data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"
-                                    href="#!"
-                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
-                                >
-                                    Downgrade
-                                </a>
+{{--                            @else--}}
+{{--                                <a--}}
+{{--                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"--}}
+{{--                                    data_value="{{ route('dash.paypal.revise', ['standard', 'monthly']) }}"--}}
+{{--                                    href="#!"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"--}}
+{{--                                >--}}
+{{--                                    Downgrade--}}
+{{--                                </a>--}}
                             @endif
                         @endif
                     </div>
@@ -215,15 +252,24 @@
                                 >Unsubscribe</a>
                             @endif
                         @else
-                            @if($this->subscription && $this->subscription->period === 'yearly')
+                            @if($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'yearly')
                                 <a
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-info upgrade-downgrade"
                                 >
-                                    Downgrade
+                                    Convert to Monthly
                                 </a>
+{{--                            @elseif($this->subscription && $this->subscription->period === 'yearly')--}}
+{{--                                <a--}}
+{{--                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"--}}
+{{--                                    data_value="{{ route('dash.paypal.revise', ['premium', 'monthly']) }}"--}}
+{{--                                    href="#!"--}}
+{{--                                    class="form-check-select-stretched-btn btn btn-warning upgrade-downgrade"--}}
+{{--                                >--}}
+{{--                                    Downgrade--}}
+{{--                                </a>--}}
                             @else
                                 <a
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
@@ -290,14 +336,14 @@
                                 >Unsubscribe</a>
                             @endif
                         @else
-                            @if($this->subscription->period === 'monthly')
+                            @if($this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')
                                 <a
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['basic', 'yearly']) }}"
                                     href="#!"
-                                    class="form-check-select-stretched-btn btn btn-success upgrade-downgrade"
+                                    class="form-check-select-stretched-btn btn btn-info upgrade-downgrade"
                                 >
-                                    Upgrade
+                                    Convert to Annual
                                 </a>
                             @else
                                 <a
@@ -365,7 +411,16 @@
                                 >Unsubscribe</a>
                             @endif
                         @else
-                            @if($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'yearly')
+                            @if($this->subscription && $this->subscription->plan === 'standard' && $this->subscription->period === 'monthly')
+                                <a
+                                    data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                    data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
+                                    href="#!"
+                                    class="form-check-select-stretched-btn btn btn-info upgrade-downgrade"
+                                >
+                                    Convert to Annual
+                                </a>
+                            @elseif($this->subscription && $this->subscription->plan === 'basic' && $this->subscription->period === 'yearly')
                                 <a
                                     data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                     data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
@@ -384,7 +439,7 @@
                                     Downgrade
                                 </a>
                             @else
-                                @if($this->subscription->period === 'monthly')
+                                @if($this->subscription->plan === 'basic' && $this->subscription->period === 'monthly')
                                     <a
                                         data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                         data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
@@ -393,7 +448,7 @@
                                     >
                                         Upgrade
                                     </a>
-                                @else
+                                @elseif($this->subscription->plan === 'premium' && $this->subscription->period === 'monthly')
                                     <a
                                         data-bs-toggle="modal" data-bs-target="#upgradeModal"
                                         data_value="{{ route('dash.paypal.revise', ['standard', 'yearly']) }}"
@@ -460,6 +515,15 @@
                                     class="form-check-select-stretched-btn btn btn-primary"
                                 >Unsubscribe</a>
                             @endif
+                        @elseif($this->subscription && $this->subscription->plan === 'premium' && $this->subscription->period === 'monthly')
+                            <a
+                                data-bs-toggle="modal" data-bs-target="#upgradeModal"
+                                data_value="{{ route('dash.paypal.revise', ['premium', 'yearly']) }}"
+                                href="#!"
+                                class="form-check-select-stretched-btn btn btn-info upgrade-downgrade"
+                            >
+                                Convert to Annual
+                            </a>
                         @else
                             <a
                                 data-bs-toggle="modal" data-bs-target="#upgradeModal"
@@ -479,6 +543,33 @@
         <!-- End Col -->
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div class="modal fade" id="unsubscribeModal" tabindex="-1" aria-labelledby="unsubscribeModalLabel"
          aria-hidden="true">

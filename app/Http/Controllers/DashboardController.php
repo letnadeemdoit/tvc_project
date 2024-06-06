@@ -9,6 +9,7 @@ use App\Models\GuestBook;
 use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
+use Cookie;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
 use App\Notifications\DeleteNotification;
@@ -105,6 +106,10 @@ class DashboardController extends Controller
 
     public function calendar(Request $request)
     {
+
+        //Function to save HouseId and User Role into cookies
+        $this->setHouseInCookie();
+
         if (\auth()->user()->is_guest){
             return redirect(route('guest.guest-calendar'));
         }
@@ -356,6 +361,15 @@ class DashboardController extends Controller
         return view('dash.settings.blog.index', [
             'user' => $request->user()
         ]);
+    }
+
+    public function setHouseInCookie()
+    {
+        $user = Auth::user();
+        $lifetime = time() + 60 * 60 * 24 * 30; // 30 days
+        Cookie::queue('house_id', $user->HouseId, $lifetime);
+        Cookie::queue('user_role', $user->role, $lifetime);
+
     }
 
 }

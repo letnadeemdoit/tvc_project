@@ -53,7 +53,7 @@ class PhotosList extends Component
     public function render()
     {
         $data = Photo::where('album_id', $this->album->id)
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('created_at', 'ASC')
             ->get();
         return view('dash.houses.photo-albums.photos.photos-list',compact('data'));
     }
@@ -61,7 +61,7 @@ class PhotosList extends Component
     public function swapPhotos($index1, $index2)
     {
         $photos = Photo::where('album_id', $this->album->id)
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('created_at', 'ASC')
             ->get();
 
         if ($index1 < 0 || $index2 < 0 || $index1 >= $photos->count() || $index2 >= $photos->count()) {

@@ -179,7 +179,7 @@
                         <td>
                             <span class="d-block mb-0">{{ $dt->name }}</span>
                         </td>
-                        <td>{{ $dt->role }}</td>
+                        <td>{{ $dt->role === 'Owner' ? 'Scheduler' : $dt->role }}</td>
                         <td x-data="" class="" style="width: 120px">
                             <div class="form-check">
                                 <input

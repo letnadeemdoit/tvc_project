@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog\Blog;
 use App\Models\GuestBook;
+use App\Models\House;
 use App\Models\ICal;
 use App\Models\Photo\Album;
 use App\Models\Subscription;
@@ -359,4 +360,23 @@ class GuestController extends Controller
 
         return response('');
     }
+
+
+    /**
+     * getHouseImage
+     * @return mixed
+     */
+
+    public function getHouseImage(Request $request)
+    {
+        $houseId = $request->input('houseId');
+        $selectedHouse = House::where('HouseID', $houseId)->select('HouseID', 'image')->firstOrFail();
+
+        if ($selectedHouse) {
+            return response()->json($selectedHouse);
+        } else {
+            return response()->json(['message' => 'House not found'], 404);
+        }
+    }
+
 }

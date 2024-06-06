@@ -31,10 +31,20 @@
             </div>
             <div class="d-grid d-sm-flex justify-content-md-end align-items-sm-center gap-2">
                 <div class="form-group">
+                    <button
+                        type="button"
+                        class="btn btn-primary btn-sm"
+                        wire:click="toggleVacations"
+                        wire:loading.attr="disabled"
+                    >
+                        Show {{ $vacations === 'approved' ? 'Unapproved' : 'Approved' }}
+                    </button>
+                </div>
+                <div class="form-group">
                     <input
                         type="text"
                         class="form-control form-control-sm"
-                        name="datetimes"
+                        name="approval_date_times"
                         style="min-width: 200px"
                         readonly
                     />
@@ -54,7 +64,7 @@
                     <th>Created By</th>
                     <th>Role</th>
                     <th>Schedule Dates</th>
-                    <th>Approve</th>
+                    <th>Approve/Un Approve</th>
                 </tr>
                 </thead>
 
@@ -148,20 +158,27 @@
                 src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <script>
             $(function () {
-                $('input[name="datetimes"]').daterangepicker({
+                $('input[name="approval_date_times"]').daterangepicker({
                     opens: 'left',
                     // timePicker: true,
-                    startDate: '{{ $from }}',
-                    endDate: '{{ $to }}',
+                    startDate: '{{ \Carbon\Carbon::parse($from)->format('m/d/Y') }}',
+                    endDate: '{{ \Carbon\Carbon::parse($to)->format('m/d/Y') }}',
                     locale: {
-                        format: 'DD/MM/YYYY'
+                        format: 'MM/DD/YYYY'
                     }
                 });
 
-                $('input[name="datetimes"]').on('apply.daterangepicker', function (ev, picker) {
+                $('input[name="approval_date_times"]').on('apply.daterangepicker', function (ev, picker) {
                 @this.set('from', picker.startDate.format('DD-MM-YYYY'));
                 @this.set('to', picker.endDate.format('DD-MM-YYYY'));
                 });
+
+                Livewire.on('updateUrl', params => {
+                    const url = new URL(window.location);
+                    Object.keys(params).forEach(key => url.searchParams.set(key, params[key]));
+                    window.history.pushState({}, '', url);
+                });
+
             });
         </script>
     @endpush

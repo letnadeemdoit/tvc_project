@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Settings\Vacations;
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\Calendar;
 use App\Models\CalendarSetting;
+use App\Models\GuestContact;
 use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
@@ -304,6 +305,21 @@ class RequestToJoinVacationForm extends Component
             'is_vac_approved' => 0,
         ])->save();
 
+        $guestContact = GuestContact::firstOrNew(['house_id'=> $this->user->HouseId,'guest_id'=> $this->user->user_id]);
+        if ($guestContact && $guestContact->id) {
+            $guestContact->update(
+                [
+                    'guest_email' => $this->state['email'],
+                ]
+            );
+        } else {
+            $guestContact->fill([
+                'guest_id' => $this->user->user_id,
+                'house_id' => $this->user->HouseId,
+                'guest_email' => $this->state['email'],
+            ])->save();
+        }
+
         try {
 
             $items = $this->vacation;
@@ -316,12 +332,12 @@ class RequestToJoinVacationForm extends Component
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
                     foreach ($users as $user) {
-                        $user->notify(new CalendarEmailNotification($items,$this->user, $createdHouseName, $startDate, $endDate));
+                        $user->notify(new CalendarEmailNotification($items, $this->user, $createdHouseName, $startDate, $endDate));
                     }
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new CalendarEmailNotification($items,$this->user, $createdHouseName, $startDate, $endDate));
+                            ->notify(new CalendarEmailNotification($items, $this->user, $createdHouseName, $startDate, $endDate));
                     }
 
                 }

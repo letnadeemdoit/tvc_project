@@ -32,6 +32,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import adaptivePlugin from '@fullcalendar/adaptive';
 
 //
 window.FullCalendar = Calendar;
@@ -42,6 +43,7 @@ window.timeGridPlugin = timeGridPlugin;
 window.listPlugin = listPlugin;
 window.interactionPlugin = interactionPlugin;
 window.resourceTimelinePlugin = resourceTimelinePlugin;
+window.adaptivePlugin = adaptivePlugin;
 
 window.bootstrap5Plugin = bootstrap5Plugin;
 

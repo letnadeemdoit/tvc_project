@@ -40,6 +40,11 @@ Route::controller(GuestController::class)
         Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy-policy');
         Route::get('/ical/{ical:slug}', 'ical')->name('ical');
 
+        Route::post('/house-data', 'getHouseImage')->name('get-house-data');
+
+
+
+
         Route::middleware(['auth'])->group(function () {
             Route::get('/guest-calendar', 'calendar')->name('guest-calendar');
             Route::get('/guest-request-to-join-vacation', 'requestToJoinVacation')->name('guest-request-to-join-vacation');

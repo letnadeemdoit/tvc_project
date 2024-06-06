@@ -100,3 +100,60 @@
     <!-- End Row -->
 </div>
 <!-- End Content -->
+
+@if(request()->routeIs('login') || request()->routeIs('password.request') || request()->routeIs('password.reset'))
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var houseId = null;
+                var continueInterval = true;
+
+                // Start the interval
+                startInterval();
+                async function startInterval() {
+                    // Check every 5 seconds
+                    setInterval(checkRouteForHouseId, 1000);
+                }
+
+                async function checkRouteForHouseId() {
+                    if (!continueInterval) {
+                        return false;
+                    }
+                    // Get the current URL
+                    const url = new URL(window.location.href);
+                    // Check if houseId parameter exists
+                   houseId = url.searchParams.get('houseId');
+                   @if(request()->routeIs('password.request') || request()->routeIs('password.reset'))
+                       houseId = url.searchParams.get('h');
+                   @endif
+
+                    if (houseId) {
+                        try {
+                            continueInterval = false;
+                            const response = await fetch("{{ route('guest.get-house-data') }}", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                                },
+                                body: JSON.stringify({ houseId: houseId })
+                            });
+                            if (response.status === 200) {
+                                const houseData = await response.json();
+                                if(houseData.image){
+                                    let imagePath  =houseData.image;
+                                    const imageUrl = `{{ asset('storage/${imagePath}') }}`;
+                                    document.querySelector('[x-ref="image_container"]').style.backgroundImage = `url(${imageUrl})`;
+                                }
+                            } else {
+                                console.error('Failed to fetch house data');
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                        }
+                    }
+                }
+            });
+        </script>
+    @endpush
+@endif

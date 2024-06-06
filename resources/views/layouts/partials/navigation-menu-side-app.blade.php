@@ -346,7 +346,7 @@
                                            href="{{ route('dash.settings.vacation-request-approval') }}">
                                             <img src="{{asset('images/icons/category-icon.svg')}}" class="me-2"
                                                  style="width: 13px;opacity: 0.7" alt="">
-                                            Vacation Request</a>
+                                            Vacation Approval</a>
                                     @endif
                                     @if(auth()->user()->is_admin)
                                         <a class="nav-link {{ link_is_active_with_class('dash.settings.audit-history') }}"

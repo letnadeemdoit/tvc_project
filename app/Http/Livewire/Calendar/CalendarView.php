@@ -34,6 +34,10 @@ class CalendarView extends Component
     public $user_ad = null;
 
     public $calendarRowsHeight = 'fixed';
+    public $isCalendarSchedulingWindow = false;
+    public $schedulingStartDate = null;
+    public $schedulingEndDate = null;
+    public $isEnableGuestVacation = false;
     public $roomData = null;
 
     public $vacationId = null;
@@ -69,6 +73,14 @@ class CalendarView extends Component
         $calendarSetting = CalendarSetting::where('house_id', primary_user()->HouseId)->first();
         if ($calendarSetting && $calendarSetting->id) {
             $this->calendarRowsHeight = $calendarSetting->calendar_height === 'fixed' ? 'fixed' : 'dynamic';
+            if ($calendarSetting->enable_schedule_window === 1){
+                $this->isCalendarSchedulingWindow = true;
+                $this->schedulingStartDate = $calendarSetting->start_datetime;
+                $this->schedulingEndDate = $calendarSetting->end_datetime;
+            }
+            if ($calendarSetting->allow_guest_vacations === 1){
+                $this->isEnableGuestVacation = true;
+            }
         }
         if (session()->has('startDatetimeForDeleteRoom')) {
             $this->startRoomDatetime = session()->get('startDatetimeForDeleteRoom');

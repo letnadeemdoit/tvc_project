@@ -43,6 +43,14 @@
         <!-- End Col -->
         <div class="col-lg-6">
             <div class="d-flex justify-content-lg-end">
+                <button
+                    type="button"
+                    id="printButton"
+                    class="btn btn-primary btn-sm btn-no-focus me-1"
+                    title="Previous month"
+                >
+                    Print  Calendar
+                </button>
 {{--                @if($user->is_owner && !$user->is_owner_only)--}}
                 @if(!$user->is_guest)
                     <div class="dropdown ms-1">
@@ -300,6 +308,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="selectRelevantVacationDatesModal" tabindex="-1" aria-labelledby="selectRelevantVacationDatesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Select relevant dates to schedule vacation</h4>
+                    <p class="fw-500 fs-15">
+                        Unable to create vacation: Selected date is outside the allowed scheduling window of {{isset($schedulingStartDate) ? $schedulingStartDate->format('m-d-Y') : null}} to {{isset($schedulingEndDate) ? $schedulingEndDate->format('m-d-Y') : null}}.
+                    </p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -326,7 +360,8 @@
                 })
 
                 HSFullCalendar.init('#calendar', {
-                    schedulerLicenseKey: '0575425642-fcs-1661876207',
+                    schedulerLicenseKey: '0993297183-fcs-1693415986',
+                    // schedulerLicenseKey: '0575425642-fcs-1661876207',
                     resourceAreaHeaderContent: 'Rooms',
                     resources: @js($this->resourceTimeline),
                     plugins: [
@@ -336,6 +371,7 @@
                         listPlugin,
                         resourceTimelinePlugin,
                         multiMonthPlugin,
+                        adaptivePlugin,
                         // rrulePlugin
                         // bootstrap5Plugin
                     ],
@@ -366,8 +402,34 @@
                                 };
                             }
                         }
+                        @if($this->isCalendarSchedulingWindow)
+                        if ($('input[name=calendar_view]:checked').val() !== 'multiMonthYear') {
+                            var schedulingStartDate = "<?php echo $this->schedulingStartDate; ?>";
+                            var schedulingEndDate = "<?php echo $this->schedulingEndDate; ?>";
+                            return {
+                                start: schedulingStartDate,
+                                end: schedulingEndDate
+                            };
+                        }
+                        @endif
                     },
                     dateClick: async function (info) {
+
+                        @if($isCalendarSchedulingWindow)
+                        let scheduling_start_date = "<?php echo $schedulingStartDate->format('Y-m-d'); ?>";
+                        let scheduling_end_date = "<?php echo $schedulingEndDate->format('Y-m-d'); ?>";
+                        if(info.dateStr < scheduling_start_date || info.dateStr > scheduling_end_date){
+                            @if($user->is_guest)
+                                @if($isEnableGuestVacation)
+                                     $('#selectRelevantVacationDatesModal').modal('show');
+                                     return false;
+                                @endif
+                            @else
+                                $('#selectRelevantVacationDatesModal').modal('show');
+                                return false;
+                            @endif
+                        }
+                        @endif
                         // console.log('info ', info)
                         @if(!$user->is_guest)
 
@@ -767,6 +829,30 @@
                 $('#selectRelevantRoomModal').on('shown.bs.modal', function (e) {
                     $.unblockUI();
                 })
+
+                $(document).ready(function () {
+                    $('#printButton').on('click', function () {
+                        let printContents = document.getElementById('calendar').innerHTML;
+
+                        // Create a new window for the print content with default size
+                        let printWindow = window.open('', '', 'height=auto,width=auto');
+                        printWindow.document.write('<html><head><title>Print Calendar</title>');
+                        printWindow.document.write('</head><body>');
+                        printWindow.document.write(printContents);
+                        printWindow.document.write('</body></html>');
+
+                        // Wait for the new window content to be fully loaded before printing
+                        printWindow.document.close();
+                        printWindow.onload = function () {
+                            printWindow.print();
+                            printWindow.close();
+                        };
+
+                        // Optionally reinitialize the calendar if needed
+                        window.calendar.render();
+                    });
+                });
+
             });
 
         </script>

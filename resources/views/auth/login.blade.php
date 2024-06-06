@@ -106,6 +106,25 @@
                         </p>
                     </div>
 
+                    <div class="text-center mt-4">
+                        @if(Cookie::get('house_id') && Cookie::get('user_role'))
+                            @php
+                            $userRole = Cookie::get('user_role');
+                            $houseId = Cookie::get('house_id');
+                            $houseName = \App\Models\House::where('HouseID', $houseId)->select('HouseName')->first();
+                            @endphp
+                            <p>
+                                <a href="javascript:void(0);"
+                                   class="text-decoration-underline text-primary fw-600"
+                                   @click.prevent="gotoHouse = true;house_id={{$houseId}};$dispatch('update-image','bg-login');window.history.pushState({}, null, `?houseId={{$houseId}}`);
+                                   @if($userRole === 'Guest') loginAsGuest = true @else loginAsGuest = false  @endif"
+                                >Click here to log into
+                                </a>
+                                <strong>{{ $houseName->HouseName }}</strong> as a <strong>{{$userRole === 'Owner' ? 'Scheduler' : $userRole }}</strong>
+                            </p>
+                        @endif
+                    </div>
+
                 </div>
                 <div x-show="gotoHouse" style="display: none">
                     {{-- Login Account --}}
@@ -275,6 +294,7 @@
             </form>
 
             <!-- End Form -->
+
         </div>
 
     </x-jet-authentication-card>
