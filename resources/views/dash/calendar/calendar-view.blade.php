@@ -43,14 +43,14 @@
         <!-- End Col -->
         <div class="col-lg-6">
             <div class="d-flex justify-content-lg-end">
-                <button
-                    type="button"
-                    id="printButton"
-                    class="btn btn-primary btn-sm btn-no-focus me-1"
-                    title="Previous month"
-                >
-                    Print  Calendar
-                </button>
+{{--                <button--}}
+{{--                    type="button"--}}
+{{--                    id="printButton"--}}
+{{--                    class="btn btn-primary btn-sm btn-no-focus me-1"--}}
+{{--                    title="Previous month"--}}
+{{--                >--}}
+{{--                    Print  Calendar--}}
+{{--                </button>--}}
 {{--                @if($user->is_owner && !$user->is_owner_only)--}}
                 @if(!$user->is_guest)
                     <div class="dropdown ms-1">
@@ -371,7 +371,7 @@
                         listPlugin,
                         resourceTimelinePlugin,
                         multiMonthPlugin,
-                        adaptivePlugin,
+                        // adaptivePlugin,
                         // rrulePlugin
                         // bootstrap5Plugin
                     ],
@@ -830,28 +830,28 @@
                     $.unblockUI();
                 })
 
-                $(document).ready(function () {
-                    $('#printButton').on('click', function () {
-                        let printContents = document.getElementById('calendar').innerHTML;
-
-                        // Create a new window for the print content with default size
-                        let printWindow = window.open('', '', 'height=auto,width=auto');
-                        printWindow.document.write('<html><head><title>Print Calendar</title>');
-                        printWindow.document.write('</head><body>');
-                        printWindow.document.write(printContents);
-                        printWindow.document.write('</body></html>');
-
-                        // Wait for the new window content to be fully loaded before printing
-                        printWindow.document.close();
-                        printWindow.onload = function () {
-                            printWindow.print();
-                            printWindow.close();
-                        };
-
-                        // Optionally reinitialize the calendar if needed
-                        window.calendar.render();
-                    });
-                });
+                // $(document).ready(function () {
+                //     $('#printButton').on('click', function () {
+                //         let printContents = document.getElementById('calendar').innerHTML;
+                //
+                //         // Create a new window for the print content with default size
+                //         let printWindow = window.open('', '', 'height=auto,width=auto');
+                //         printWindow.document.write('<html><head><title>Print Calendar</title>');
+                //         printWindow.document.write('</head><body>');
+                //         printWindow.document.write(printContents);
+                //         printWindow.document.write('</body></html>');
+                //
+                //         // Wait for the new window content to be fully loaded before printing
+                //         printWindow.document.close();
+                //         printWindow.onload = function () {
+                //             printWindow.print();
+                //             printWindow.close();
+                //         };
+                //
+                //         // Optionally reinitialize the calendar if needed
+                //         window.calendar.render();
+                //     });
+                // });
 
             });
 
