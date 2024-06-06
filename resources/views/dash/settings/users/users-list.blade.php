@@ -148,6 +148,7 @@
                     {{--                    </th>--}}
                     <th>Username</th>
                     <th>Full name</th>
+                    <th>House name</th>
                     <th>Role</th>
                     <th style="width: 120px">Enabled</th>
                     <th class="text-end">Action</th>
@@ -179,6 +180,7 @@
                         <td>
                             <span class="d-block mb-0">{{ $dt->name }}</span>
                         </td>
+                        <td>{{ $dt->house->HouseName }}</td>
                         <td>{{ $dt->role === 'Owner' ? 'Scheduler' : $dt->role }}</td>
                         <td x-data="" class="" style="width: 120px">
                             <div class="form-check">

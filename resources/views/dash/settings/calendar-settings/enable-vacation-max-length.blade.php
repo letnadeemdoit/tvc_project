@@ -35,7 +35,7 @@
                                     <label
                                         class="form-label"
                                         for="vacation_length"
-                                    >Vacation Length:</label>
+                                    >Maximum Number of Days:</label>
                                     <input
                                         type="number"
                                         class="form-control @error('vacation_length') is-invalid @enderror"

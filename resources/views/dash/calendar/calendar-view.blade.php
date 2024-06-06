@@ -402,7 +402,7 @@
                                 };
                             }
                         }
-                        @if($this->isCalendarSchedulingWindow)
+                        @if($this->isCalendarSchedulingWindow && !$user->is_admin)
                         if ($('input[name=calendar_view]:checked').val() !== 'multiMonthYear') {
                             var schedulingStartDate = "<?php echo $this->schedulingStartDate; ?>";
                             var schedulingEndDate = "<?php echo $this->schedulingEndDate; ?>";
