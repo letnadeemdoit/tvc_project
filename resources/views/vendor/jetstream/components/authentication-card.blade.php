@@ -144,6 +144,9 @@
                                     let imagePath  =houseData.login_image;
                                     const imageUrl = `{{ asset('storage/${imagePath}') }}`;
                                     document.querySelector('[x-ref="image_container"]').style.backgroundImage = `url(${imageUrl})`;
+                                    document.querySelector('[x-ref="image_container"]').style.backgroundRepeat = 'no-repeat';
+                                    document.querySelector('[x-ref="image_container"]').style.backgroundPosition = '50%';
+                                    document.querySelector('[x-ref="image_container"]').style.backgroundSize = 'cover';
                                 }
                             } else {
                                 console.error('Failed to fetch house data');
