@@ -71,7 +71,7 @@ class OwnersVacationApprovalList extends Component
     {
         $houseId = $this->user->HouseId;
         $roles = ['Owner'];
-        if ($this->user->is_admin && $this->user->primary_account) {
+        if ($this->user->is_admin) {
             $roles[] = 'Guest';
         }
 
