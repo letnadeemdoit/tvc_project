@@ -35,6 +35,8 @@ class CalendarView extends Component
 
     public $calendarRowsHeight = 'fixed';
     public $isCalendarSchedulingWindow = false;
+
+    public $enableCalendarAccess = false;
     public $schedulingStartDate = null;
     public $schedulingEndDate = null;
     public $isEnableGuestVacation = false;
@@ -80,6 +82,9 @@ class CalendarView extends Component
             }
             if ($calendarSetting->allow_guest_vacations === 1){
                 $this->isEnableGuestVacation = true;
+            }
+            if ($calendarSetting->enable_calendar_access === 1){
+                $this->enableCalendarAccess = true;
             }
         }
         if (session()->has('startDatetimeForDeleteRoom')) {

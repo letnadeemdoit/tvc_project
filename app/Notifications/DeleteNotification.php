@@ -48,14 +48,24 @@ class DeleteNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+//        return (new MailMessage)
+//
+//            ->subject('Deleted'. ' ' . $this->isModel)
+//            ->greeting($this->isAction)
+//            ->line(new HtmlString( '<strong>' . $this->name.  '</strong> '
+//                . $this->isModel. ' has been Deleted against <span>' .  $this->createdHouseName .  ' </span> House </strong>'));
 
         return (new MailMessage)
-
-            ->subject('Deleted'. ' ' . $this->isModel)
+            ->subject('Deleted' . ' ' . $this->isModel)
             ->greeting($this->isAction)
-            ->line(new HtmlString( '<strong>' . $this->name.  '</strong> '
-                 . $this->isModel. ' has been Deleted against <span>' .  $this->createdHouseName .  ' </span> House </strong>'));
+            ->line(new HtmlString(
+                '<strong>' . $this->name . '</strong> '
+                . $this->isModel . ' has been '
+                . ($this->isAction === 'Rejected' ? 'Rejected' : 'Deleted')
+                . ' against <span>' . $this->createdHouseName . '</span> House </strong>'
+            ));
     }
+
 
     /**
      * Get the array representation of the notification.

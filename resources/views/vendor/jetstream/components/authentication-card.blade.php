@@ -140,8 +140,8 @@
                             });
                             if (response.status === 200) {
                                 const houseData = await response.json();
-                                if(houseData.image){
-                                    let imagePath  =houseData.image;
+                                if(houseData.login_image){
+                                    let imagePath  =houseData.login_image;
                                     const imageUrl = `{{ asset('storage/${imagePath}') }}`;
                                     document.querySelector('[x-ref="image_container"]').style.backgroundImage = `url(${imageUrl})`;
                                 }

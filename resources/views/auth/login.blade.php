@@ -41,6 +41,23 @@
                     houseIsSelected = true;
                     window.history.pushState({}, null, `?houseId=${house_id}`);
                 })
+
+                $('.click-to-login').click(function(){
+                  @if(Cookie::get('house_id') && Cookie::get('user_role'))
+                    @php
+                       $userRole = Cookie::get('user_role');
+                       $houseId = Cookie::get('house_id');
+                       $houseName = \App\Models\House::where('HouseID', $houseId)->select('HouseName')->first();
+                    @endphp
+                    house_id = {{$houseId}};
+                    @if($userRole === 'Guest')
+                    role = 'Guest';
+                    @else
+                    role = 'AdministratorOrGuest';
+                    @endif
+                  @endif
+                })
+
             "
         >
             <div class="d-flex justify-content-start align-items-start">
@@ -67,6 +84,7 @@
             <form class="js-validate needs-validation" novalidate method="POST" action="{{ route('login') }}">
                 @csrf
                 <input type="hidden" x-model="role" name="role" />
+                <input type="hidden" x-model="house_id" name="house_id" />
                 {{-- Search House --}}
                 <div x-show="!gotoHouse">
                     <h1 class="display-3 poppins-bold mb-0 content-space-t-1">Search <span class="text-primary">House</span></h1>
@@ -115,7 +133,7 @@
                             @endphp
                             <p>
                                 <a href="javascript:void(0);"
-                                   class="text-decoration-underline text-primary fw-600"
+                                   class="text-decoration-underline text-primary fw-600 click-to-login"
                                    @click.prevent="gotoHouse = true;house_id={{$houseId}};$dispatch('update-image','bg-login');window.history.pushState({}, null, `?houseId={{$houseId}}`);
                                    @if($userRole === 'Guest') loginAsGuest = true @else loginAsGuest = false  @endif"
                                 >Click here to log into

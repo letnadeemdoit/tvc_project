@@ -6,6 +6,7 @@ use App\Http\Livewire\Traits\Destroyable;
 use App\Models\GuestContact;
 use App\Models\User;
 use App\Models\Vacation;
+use App\Notifications\DeleteNotification;
 use App\Notifications\GuestVacationApprovedNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
@@ -18,6 +19,7 @@ class OwnersVacationApprovalList extends Component
     use Destroyable;
 
     public $user;
+    public $notificationEmail = null;
 
     public $search = '';
     public $page = 1;
@@ -37,6 +39,10 @@ class OwnersVacationApprovalList extends Component
         'from',
         'to',
         'vacations' => ['except' => '']
+    ];
+
+    protected $listeners = [
+        'destroyed-successfully' => 'destroyedSuccessfully',
     ];
 
     protected $paginationTheme = 'bootstrap';
@@ -71,7 +77,7 @@ class OwnersVacationApprovalList extends Component
 
         $data = Vacation::when($this->user->is_owner_only, function ($query) {
             $query->where('HouseId', $this->user->HouseId)->where('OwnerId', $this->user->user_id);
-        })->when($this->user->is_guest, function ($query) {
+        })->when($this->user->is_admin, function ($query) {
             $query->where('HouseId', $this->user->HouseId);
         })
             ->when($this->search !== '', function ($query) {
@@ -143,6 +149,50 @@ class OwnersVacationApprovalList extends Component
         $this->emitSelf($toggle === 1 ? 'approved-' . $vacation->VacationId : 'unapproved-' . $vacation->VacationId);
 
 //        $this->emitSelf('saved-' . $vacation->VacationId);
+    }
+
+    public function destroyedSuccessfully($data)
+    {
+        Vacation::where('parent_id', $data['VacationId'])->delete();
+        $vacationName = $data['VacationName'];
+        $owner = User::where('user_id', $data['OwnerId'])->first();
+        $ownerRole = optional($owner)->role;
+
+        try {
+            if ($ownerRole === 'Guest'){
+                $guestContact = GuestContact::where('house_id', $owner->HouseId)->where('guest_id', $owner->user_id)->first();
+                $this->notificationEmail = $guestContact->guest_email;
+            }
+            else{
+                $this->notificationEmail = $owner->email;
+            }
+
+            $createdHouseName = $owner->house->HouseName;
+            $isAction = 'Rejected';
+            $isModal = 'Vacation';
+            Notification::route('mail', $this->notificationEmail)
+                ->notify(new DeleteNotification($vacationName, $isAction,$createdHouseName,$isModal));
+
+        } catch (Exception $e) {
+
+        }
+
+        $this->emitSelf('user-cu-successfully');
+
+    }
+        public function destroy($id)
+    {
+        $rejected = 'rejected';
+        if ($this->model) {
+            $deletableModel = app($this->model)->findOrFail($id);
+            $this->emit(
+                'destroyable-confirmation-modal',
+                $this->model,
+                $id,
+                $this->destroyableConfirmationContent,
+                $rejected
+            );
+        }
     }
 
 

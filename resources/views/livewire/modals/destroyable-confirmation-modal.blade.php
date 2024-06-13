@@ -21,10 +21,10 @@
                         class="btn btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
                         wire:click.prevent="destroy">
                     <div wire:loading.remove wire:target="destroy">
-                        Yes,Delete!
+                        {{ $this->reject === 'rejected' ? 'Yes,Reject!' : 'Yes,Delete!'}}
                     </div>
                     <div wire:loading wire:target="destroy">
-                        Deleting...
+                        {{ $this->reject === 'rejected' ? 'Rejecting...' : 'Deleting...'}}
                     </div>
                 </button>
             </div>

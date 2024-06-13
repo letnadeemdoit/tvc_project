@@ -68,6 +68,12 @@
             <!-- End Card -->
         @endif
 
+        @if($user->is_admin)
+            <!-- Card -->
+            <livewire:settings.calendar-settings.enable-calendar-access :user="$user"/>
+            <!-- End Card -->
+        @endif
+
 
         <!-- End Card -->
     </div>

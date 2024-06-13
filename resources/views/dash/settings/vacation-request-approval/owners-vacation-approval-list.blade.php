@@ -64,7 +64,16 @@
                     <th>Created By</th>
                     <th>Role</th>
                     <th>Schedule Dates</th>
-                    <th>Approve/Un Approve</th>
+                    @foreach($data as $dt)
+                        @if($dt->is_vac_approved === 0)
+                            <th>Approve</th>
+                            <th>Reject</th>
+                            @break
+                        @else
+                            <th>Un Approve</th>
+                            @break
+                        @endif
+                    @endforeach
                 </tr>
                 </thead>
 
@@ -93,6 +102,18 @@
                                     <x-jet-action-message on="saved-{{$dt->VacationId}}" class="text-success" />
                                 </label>
                             </div>
+                        </td>
+
+                        <td>
+                            @if($dt->is_vac_approved === 0)
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm"
+                                    wire:click.prevent="destroy({{$dt->VacationId}})"
+                                >
+                                    <i class="bi-trash"></i>
+                                </button>
+                            @endif
                         </td>
 
                     </tr>

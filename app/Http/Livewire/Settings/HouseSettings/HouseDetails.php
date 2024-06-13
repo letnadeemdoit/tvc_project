@@ -10,6 +10,7 @@ use App\Models\World\State;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Rules\PortraitImage;
 
 class HouseDetails extends Component
 {
@@ -23,6 +24,8 @@ class HouseDetails extends Component
     public $state = [];
 
     public $file;
+
+    public $login_file;
 
     public ?House $house;
 
@@ -89,9 +92,15 @@ class HouseDetails extends Component
         } else {
             unset($inputs['image']);
         }
+        if ($this->login_file) {
+            $inputs['login_image'] = $this->login_file;
+        } else {
+            unset($inputs['login_image']);
+        }
 
         Validator::make($inputs, [
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
+            'login_image' => ['nullable', 'mimes:png,jpg,gif,tiff', new PortraitImage],
             'primary_house_name' => ['nullable', 'string', 'max:100'],
 
             'name' => [
@@ -124,7 +133,8 @@ class HouseDetails extends Component
             'ZipCode' => $this->state['zipcode'] ?? null,
         ])->save();
 
-        $this->house->updateFile($this->file);
+        $this->house->updateFile($this->file, 'image');
+        $this->house->updateFile($this->login_file,'login_image');
 
         $this->emitSelf('toggle', false);
 
@@ -134,6 +144,7 @@ class HouseDetails extends Component
     public function updatedFile()
     {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
+        $this->validateOnly('login_file', ['login_file', 'required|mimes:png,jpg,gif,tiff', new PortraitImage]);
     }
 
     public function deleteFile()

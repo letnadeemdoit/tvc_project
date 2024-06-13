@@ -85,16 +85,25 @@ class RequestToJoinVacationForm extends Component
             if ($initialDate) {
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
-                    $this->state['guest_vacation'] = null;
-                    $this->state['start_datetime'] = $initialDatetime->format('m/d/Y H:i');
-                    $this->state['end_datetime'] = $initialDatetime->format('m/d/Y H:i');
-                    $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
+
+                    if ($this->calendarSetting && $this->calendarSetting->enable_schedule_window === 1) {
+                        $defaultStartTime = $this->calendarSetting->start_datetime;
+                        $defaultEndTime = $this->calendarSetting->end_datetime;
+
+                        $this->state['guest_vacation'] = null;
+                        $this->state['start_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultStartTime->format('H:i');
+                        $this->state['end_datetime'] = $initialDatetime->addDays(1)->format('m/d/Y') . ' ' . $defaultEndTime->format('H:i');
+                        $this->state['start_end_datetime'] = $initialDatetime->format('m/d/Y') . ' ' . $defaultStartTime->format('H:i') . ' - ' . $initialDatetime->addDays(1)->format('m/d/Y') . ' ' . $defaultEndTime->format('H:i');
+                    } else {
+                        $this->state['guest_vacation'] = null;
+                        $this->state['start_datetime'] = $initialDatetime->addHour(12)->format('m/d/Y H:i');
+                        $this->state['end_datetime'] = $initialDatetime->format('m/d/Y H:i');
+                        $this->state['start_end_datetime'] = $initialDatetime->addHour(12)->format('m/d/Y H:i') . ' - ' . $initialDatetime->format('m/d/Y H:i');
+                    }
                 } catch (\Exception $e) {
 
                 }
             }
-
-
         }
 
 

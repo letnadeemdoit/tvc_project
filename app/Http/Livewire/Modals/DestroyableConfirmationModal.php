@@ -10,6 +10,7 @@ class DestroyableConfirmationModal extends Component
     use Toastr;
 
     public $model = null;
+    public $reject = null;
     public $confirmationContent = [
         'title' => 'Are you sure you want to delete this?',
         'description' => 'You would not be able to recover this!'
@@ -20,8 +21,15 @@ class DestroyableConfirmationModal extends Component
         'destroyable-confirmation-modal' => 'confirming'
     ];
 
-    public function confirming($model, $id, $confirmationContent = [], $targetListener = 'destroyed-successfully')
+    public function confirming($model, $id, $confirmationContent = [],$rejected = null,$targetListener = 'destroyed-successfully')
     {
+        if ($rejected === 'rejected'){
+            $this->reject = $rejected;
+            $this->confirmationContent = [
+                'title' => 'Are you sure you want to reject this?',
+                'description' => 'You would not be able to recover this!'
+            ];
+        }
         $this->emitSelf('toggle', true);
         $this->model = app($model)->find($id);
         $this->targetListener = $targetListener;
@@ -47,6 +55,11 @@ class DestroyableConfirmationModal extends Component
         $this->emitSelf('toggle', false);
         $this->emit($this->targetListener, $data);
         $this->dispatchBrowserEvent($this->targetListener, $data);
-        $this->success('Deleted successfully.');
+        if ($this->reject === 'rejected'){
+            $this->success('Rejected successfully.');
+        }
+        else{
+            $this->success('Deleted successfully.');
+        }
     }
 }

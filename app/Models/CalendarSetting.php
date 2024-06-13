@@ -28,6 +28,7 @@ class CalendarSetting extends Model
         'allow_guest_vacations',
         'allow_informational_entries',
         'enable_max_vacation_length',
+        'enable_calendar_access'
     ];
 
 
