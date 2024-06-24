@@ -144,7 +144,9 @@ class HouseDetails extends Component
     public function updatedFile()
     {
         $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
-        $this->validateOnly('login_file', ['login_file', 'required|mimes:png,jpg,gif,tiff', new PortraitImage]);
+        if ($this->login_file){
+            $this->validateOnly('login_file', ['login_file', 'required|mimes:png,jpg,gif,tiff', new PortraitImage]);
+        }
     }
 
     public function deleteFile()

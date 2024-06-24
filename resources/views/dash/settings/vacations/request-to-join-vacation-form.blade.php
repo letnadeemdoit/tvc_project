@@ -221,7 +221,9 @@
                     showDropdowns: false,
                     minYear: parseInt(moment().subtract(10, 'years').format('YYYY'), 10),
                     maxYear: parseInt(moment().add(10, 'years').format('YYYY'), 10),
+                    @if($user->is_guest && !$isGuestScheduleVacation && (is_null($vacation) || !is_null($vacation) && !$vacation->VacationId))
                     minDate: moment().format('MM/DD/YYYY'),
+                    @endif
                     startDate: @isset($state['start_datetime']) '{{ $state['start_datetime'] }}'
                     @else moment().set('minute', 0) @endisset,
                     endDate: @isset($state['end_datetime']) '{{ $state['end_datetime'] }}'
