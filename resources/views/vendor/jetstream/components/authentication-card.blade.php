@@ -140,7 +140,7 @@
                             });
                             if (response.status === 200) {
                                 const houseData = await response.json();
-                                if(houseData.login_image){
+                                if(houseData.login_image && houseData.is_default_login_image === 1){
                                     let imagePath  =houseData.login_image;
                                     const imageUrl = `{{ asset('storage/${imagePath}') }}`;
                                     document.querySelector('[x-ref="image_container"]').style.backgroundImage = `url(${imageUrl})`;

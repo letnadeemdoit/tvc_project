@@ -74,6 +74,7 @@ class HouseDetails extends Component
             'home_phone' => $this->house->HousePhone,
             'fax' => $this->house->Fax,
             'is_default_image' => $this->house->is_default_image,
+            'is_default_login_image' => $this->house->is_default_login_image,
             'emergency_phone' => $this->house->EmergencyPhone,
         ];
 
@@ -124,6 +125,7 @@ class HouseDetails extends Component
         $this->house->fill([
             'HouseName' => $this->state['name'],
             'is_default_image' => $this->state['is_default_image'] ?? 0,
+            'is_default_login_image' => $this->state['is_default_login_image'] ?? 0,
             'primary_house_name' => $this->state['primary_house_name'],
             'Address1' => $this->state['address_1'] ?? null,
             'Address2' => $this->state['address_2'] ?? null,

@@ -72,9 +72,11 @@
         <div class="padding-bottom massonary-container">
             <div class="masonry pt-3 pb-4" style="background-image:url('/images/bulletin-images/dark-dots.png'); background-repeat:no-repeat;background-position: center bottom;">
                 @foreach($data as $dt)
-                    <div class="brick  pe-md-1 ">
-                        <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
-                    </div>
+                    @if(!(auth()->user()->is_guest && $dt->is_private === 1))
+                        <div class="brick pe-md-1">
+                            <livewire:bulletin-board.board-item-card :dt="$dt" wire:key="{{ $dt->id }}"/>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>

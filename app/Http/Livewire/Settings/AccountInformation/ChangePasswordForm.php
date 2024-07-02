@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Settings\AccountInformation;
 
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Rules\Password;
 use Livewire\Component;
@@ -19,7 +20,8 @@ class ChangePasswordForm extends Component
         return view('dash.settings.account-information.change-password-form');
     }
 
-    public function changePassword() {
+    public function changePassword()
+    {
         $this->resetErrorBag();
 
         Validator::make($this->state, [
@@ -36,9 +38,17 @@ class ChangePasswordForm extends Component
             ]
         ])->validateWithBag('changePassword');
 
-        $this->user->fill([
-            'password' => \Hash::make($this->state['new_password']),
-        ])->save();
+        if ($this->user->role === 'Owner') {
+            $houseIds = User::where('email', $this->user->email)->where('role', 'Owner')->get()->pluck('HouseId');
+            User::whereIn('HouseId', $houseIds)->where('email', $this->user->email)->update([
+                'password' => \Hash::make($this->state['new_password']),
+            ]);
+        } else {
+            $this->user->fill([
+                'password' => \Hash::make($this->state['new_password']),
+            ])->save();
+        }
+
 
         $this->emit('saved');
         $this->reset('state');

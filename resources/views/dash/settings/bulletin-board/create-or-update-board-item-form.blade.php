@@ -27,28 +27,46 @@
 
                 <div>
                     <x-upload-zone wire:model="file" />
-                    <x-jet-input-error for="image" />
+                    <x-jet-input-error for="image"/>
                 </div>
                 <br/>
 
 
                 <div class="mb-3">
-                   <div class="d-flex justify-content-start align-items-center mb-1">
-                       <label class="form-label me-1 me-md-3 mb-0" for="category_id">Select Category:</label>
-                         <a href="{{ route('dash.settings.category') }}" class="text-decoration-underline">Add new category</a>
-                   </div>
+                    <div class="d-flex justify-content-start align-items-center mb-1">
+                        <label class="form-label me-1 me-md-3 mb-0" for="category_id">Select Category:</label>
+                        <a href="{{ route('dash.settings.category') }}" class="text-decoration-underline">Add new
+                            category</a>
+                    </div>
                     <select id="category_id" wire:model.defer="state.category_id" class="form-control">
                         <option value="" selected>Choose Category</option>
                         @forelse($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @empty
-                            <option value="" disabled selected>No category exist To add category go to category section</option>
+                            <option value="" disabled selected>No category exist To add category go to category
+                                section
+                            </option>
                         @endforelse
 
                     </select>
                     @error('category_id')
                     <span class="invalid-feedback d-block">{{$message}}</span>
                     @enderror
+                </div>
+
+                <div class="row">
+                    <div class="mb-3 col-12 col-lg-12">
+                        <div class="form-check">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   value="1"
+                                   wire:model.defer="state.is_private"
+                                   id="is_public">
+                            <label class="form-check-label" for="is_private">
+                                Hide this bulletin board item from guest.
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mb-3">

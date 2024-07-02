@@ -32,6 +32,7 @@ class House extends Model
         'image',
         'login_image',
         'is_default_image',
+        'is_default_login_image',
         'HouseName',
         'primary_house_name',
         'Address1',

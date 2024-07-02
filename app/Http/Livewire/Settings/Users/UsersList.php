@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Settings\Users;
-
+use App\Http\Livewire\Traits\Toastr;
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\User;
 use Livewire\Component;
@@ -11,8 +11,14 @@ class UsersList extends Component
 {
     use WithPagination;
     use Destroyable;
+    use Toastr;
 
     public $user;
+
+    public $deletedUserId = null;
+    public $houseIds = null;
+    public $currentProperty = null;
+    public $isUserMultiplePropertiies = false;
 
     public $search = '';
     public $page = 1;
@@ -72,5 +78,37 @@ class UsersList extends Component
             ->groupBy('email')   //Aditional
             ->paginate($this->per_page);
         return view('dash.settings.users.users-list', compact('data'));
+    }
+    public function confirmProperty($id){
+        $this->deletedUserId = $id;
+        $deletedUser = User::where('user_id', $id)->first();
+        $this->currentProperty = $deletedUser->house->HouseName;
+        $this->houseIds = User::where('email', $deletedUser->email)->where('role', 'Owner')->get()->pluck('HouseId');
+        if (count($this->houseIds) > 1){
+
+            $this->isUserMultiplePropertiies = true;
+        }
+        $this->dispatchBrowserEvent('sure-to-delete',['data' => null]);
+    }
+    public function deleteCurrent(){
+        if ($this->model) {
+            $deletedUser = User::where('user_id', $this->deletedUserId)->first();
+            User::where('HouseId', $deletedUser->HouseId)->where('email', $deletedUser->email)->delete();
+            $this->emitSelf('toggle', false);
+            $this->emitSelf('user-cu-successfully');
+            $this->dispatchBrowserEvent('confirm-deleted',['data' => null]);
+            $this->success('Deleted successfully.');
+        }
+    }
+
+    public function deleteAllProperties(){
+        if ($this->model && count($this->houseIds) > 1) {
+            $deletedUser = User::where('user_id', $this->deletedUserId)->first();
+            User::whereIn('HouseId', $this->houseIds)->where('email', $deletedUser->email)->delete();
+            $this->emitSelf('toggle', false);
+            $this->emitSelf('user-cu-successfully');
+            $this->dispatchBrowserEvent('confirm-deleted',['data' => null]);
+            $this->success('Deleted successfully.');
+        }
     }
 }

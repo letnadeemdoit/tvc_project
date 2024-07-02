@@ -50,7 +50,7 @@ class CreateOrUpdateBoardItemForm extends Component
         $this->reset(['state', 'file']);
 
         if ($boardItem->id) {
-            $this->state = \Arr::only($boardItem->toArray(), ['title', 'image','category_id', 'Board']);
+            $this->state = \Arr::only($boardItem->toArray(), ['title', 'image','category_id', 'Board','is_private']);
         }
     }
 
@@ -71,14 +71,22 @@ class CreateOrUpdateBoardItemForm extends Component
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
 //            'category_id' => 'nullable|exists:categories,id',
             'category_id' => 'required',
+            'is_private' => 'nullable',
             'Board' => 'required|max:60000',
         ])->validateWithBag('saveBulletinBoardCU');
+
+        if (isset($inputs['is_private']) && $inputs['is_private'] == 1) {
+            $is_private = 1;
+        } else {
+            $is_private = 0;
+        }
 
         $this->boardItem->fill([
             'HouseId' => auth()->user()->HouseId,
             'title' => $inputs['title'] ?? '',
             'category_id' => $inputs['category_id'] ?? null,
             'Board' => $inputs['Board'],
+            'is_private' => $is_private,
         ])->save();
 
         $this->boardItem->updateFile($this->file);

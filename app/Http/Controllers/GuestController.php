@@ -370,7 +370,7 @@ class GuestController extends Controller
     public function getHouseImage(Request $request)
     {
         $houseId = $request->input('houseId');
-        $selectedHouse = House::where('HouseID', $houseId)->select('HouseID', 'login_image')->firstOrFail();
+        $selectedHouse = House::where('HouseID', $houseId)->select('HouseID', 'login_image','is_default_login_image')->firstOrFail();
 
         if ($selectedHouse) {
             return response()->json($selectedHouse);

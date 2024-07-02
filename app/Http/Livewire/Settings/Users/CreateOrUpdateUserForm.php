@@ -85,6 +85,15 @@ class CreateOrUpdateUserForm extends Component
                     'house_id' => $userCU->HouseId,
                     'role' => $userCU->role,
                 ];
+            } elseif ($userCU->role === 'Administrator') {
+                $this->state = [
+                    'house_id' => $userCU->HouseId,
+                    'role' => $userCU->role,
+                    'user_name' => $userCU->user_name,
+                    'first_name' => $userCU->first_name,
+                    'last_name' => $userCU->last_name,
+                    'email' => $userCU->email,
+                ];
             }
 //            $this->state = [
 //                'user_name' => $userCU->user_name,

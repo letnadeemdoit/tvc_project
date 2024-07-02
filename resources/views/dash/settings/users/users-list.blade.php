@@ -180,7 +180,23 @@
                         <td>
                             <span class="d-block mb-0">{{ $dt->name }}</span>
                         </td>
-                        <td>{{ $dt->house->HouseName }}</td>
+                        @if($dt->role === 'Owner')
+                            @php
+                                $allUsers = App\Models\User::where('email', $dt->email)->where('role', 'Owner')->get();
+                                $houseNames = $allUsers->map(function($user) {
+                                    return $user->house->HouseName;
+                                });
+                                if ($houseNames->count() > 1) {
+                                    $firstHouseName = $houseNames->shift();
+                                    $houseNamesString = $firstHouseName . ',<br>' . $houseNames->implode(', ');
+                                } else {
+                                    $houseNamesString = $houseNames->implode(', ');
+                                }
+                            @endphp
+                            <td>{!! $houseNamesString !!}</td>
+                        @else
+                            <td>{{ $dt->house->HouseName }}</td>
+                        @endif
                         <td>{{ $dt->role === 'Owner' ? 'Scheduler' : $dt->role }}</td>
                         <td x-data="" class="" style="width: 120px">
                             <div class="form-check">
@@ -228,7 +244,11 @@
                                     <button
                                         type="button"
                                         class="btn btn-danger btn-sm"
-                                        wire:click.prevent="destroy({{$dt->user_id}})"
+                                        @if($dt->role === 'Owner')
+                                            wire:click.prevent="confirmProperty({{$dt->user_id}})"
+                                        @else
+                                            wire:click.prevent="destroy({{$dt->user_id}})"
+                                        @endif
                                     >
                                         <i class="bi-trash"></i>
                                     </button>
@@ -313,4 +333,65 @@
         <!-- End Footer -->
     </div>
     <!-- End Card -->
+
+    <div class="modal fade" id="deleteUserConfirmationModal" tabindex="-1"
+         aria-labelledby="deleteUserConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <h6 class="modal-title fs-10 text-white"
+                    id="deleteUserConfirmationModalLabel">Delete!</h6>
+                <div class="modal-body text-center">
+                    <div>
+                  <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Are you sure?</h4>
+                    <p class="fw-500 fs-15">Delete access to all properties or just {{$this->currentProperty}}</p>
+                    <div class="btn-group my-2">
+                        @if($isUserMultiplePropertiies)
+                            <button type="button"
+                                    class="btn btn-secondary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                    wire:click.prevent="deleteAllProperties">
+                                <div wire:loading.remove wire:target="deleteAllProperties">
+                                    Delete All!
+                                </div>
+                                <div wire:loading wire:target="deleteAllProperties">
+                                    Deleting...
+                                </div>
+                            </button>
+                        @endif
+                        <button type="button"
+                                class="btn btn-primary fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                wire:click.prevent="deleteCurrent">
+                            <div wire:loading.remove wire:target="deleteCurrent">
+                                Delete Current!
+                            </div>
+                            <div wire:loading wire:target="deleteCurrent">
+                                Deleting...
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @push('scripts')
+        <script>
+            $(function () {
+                window.addEventListener('sure-to-delete', function (e) {
+                    $('#deleteUserConfirmationModal').modal('show');
+                });
+
+                window.addEventListener('confirm-deleted', function (e) {
+                    $('#deleteUserConfirmationModal').modal('hide');
+                });
+            });
+        </script>
+    @endpush
+
+
 </div>
