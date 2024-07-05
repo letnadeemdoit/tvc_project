@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Srmklive\PayPal\Facades\PayPal;
+use GuzzleHttp\Client;
 
 class GuestController extends Controller
 {
@@ -62,7 +63,8 @@ class GuestController extends Controller
             'comment' => 'required',
         ]);
 
-        $user = auth()->user();
+        $current_user = auth()->user();
+
         $firstName = $request->first_name;
         $lastName = $request->last_name;
         $subject = $request->subject;
@@ -87,6 +89,79 @@ class GuestController extends Controller
                     '</div>', 'text/plain');
 //            $message->from($request->email, $request->first_name. ' ' . $request->last_name);
         });
+
+
+
+        $client = new Client();
+        try {
+            // Check if contact exists
+            $response = $client->get('https://api.hubapi.com/crm/v3/objects/contacts/' . $email, [
+                'query' => ['idProperty' => 'email'],
+                'headers' => [
+                    'Authorization' => 'Bearer ' . env('HUBSPOT_API_TOKEN', ''),
+                    'Content-Type' => 'application/json',
+                ],
+            ]);
+
+            $contact = json_decode($response->getBody(), true);
+
+            if (!isset($contact['id'])) {
+                // Contact does not exist, create it
+                $response = $client->post('https://api.hubapi.com/crm/v3/objects/contacts', [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . env('HUBSPOT_API_TOKEN', ''),
+                        'Content-Type' => 'application/json',
+                    ],
+                    'json' => [
+                        'properties' => [
+                            'email' => $email,
+                            'firstname' => $firstName,
+                            'lastname' => $lastName,
+                            'houseid' => $current_user->HouseId,
+                            'housename' => $current_user->house->HouseName,
+                        ],
+                    ],
+                ]);
+
+                $contact = json_decode($response->getBody(), true);
+            }
+
+            $contactId = $contact['properties']['hs_object_id'];
+
+            // Create a ticket & associate to contact
+            $client->post('https://api.hubapi.com/crm/v3/objects/tickets', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . env('HUBSPOT_API_TOKEN', ''),
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'properties' => [
+                        'hs_pipeline' => '0',
+                        'hs_pipeline_stage' => '1',
+                        'hs_ticket_priority' => 'MEDIUM',
+                        'subject' => $subject,
+                        'content' => $comment,
+                    ],
+                    'associations' => [
+                        [
+                            'to' => [
+                                'id' => $contactId,
+                            ],
+                            'types' => [
+                                [
+                                    'associationCategory' => 'HUBSPOT_DEFINED',
+                                    'associationTypeId' => 16,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return back()->withErrors('There was an error processing your request: ' . $e->getMessage());
+        }
+
+
 
         return back()->with('success', 'Your Query has been Sent Successfully!');
     }
