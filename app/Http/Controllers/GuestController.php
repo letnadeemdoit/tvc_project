@@ -71,25 +71,26 @@ class GuestController extends Controller
         $email = $request->email;
         $comment = $request->comment;
 
-//        Notification::route('mail', $request->email)
-//            ->notify(new ContactUsMailNotification($firstName, $lastName, $subject, $email, $comment));
-//
-//        Mail::send([], [], function ($message) use ($request) {
-//
-//            $message->to('support@thevacationcalendar.com')
-//                ->subject($request->first_name . ' ' . 'Contact Query')
-//                ->Html(
-//                    '<div style="padding: 10px; 20px">' .
-//                    '<h2> Contact Us Notification</h2>' .
-//                    '<p> Name: ' . $request->first_name . ' ' . $request->last_name . '</p>' .
-//                    '<p> Email: ' . $request->email . '<p/>' .
-//                    '<p> Subject: ' . $request->subject . '<p/>' .
-//                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
-//                    '</div>', 'text/plain');
-////            $message->from($request->email, $request->first_name. ' ' . $request->last_name);
-//        });
+        Notification::route('mail', $request->email)
+            ->notify(new ContactUsMailNotification($firstName, $lastName, $subject, $email, $comment));
+
+        Mail::send([], [], function ($message) use ($request) {
+
+            $message->to('support@thevacationcalendar.com')
+                ->subject($request->first_name . ' ' . 'Contact Query')
+                ->Html(
+                    '<div style="padding: 10px; 20px">' .
+                    '<h2> Contact Us Notification</h2>' .
+                    '<p> Name: ' . $request->first_name . ' ' . $request->last_name . '</p>' .
+                    '<p> Email: ' . $request->email . '<p/>' .
+                    '<p> Subject: ' . $request->subject . '<p/>' .
+                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
+                    '</div>', 'text/plain');
+//            $message->from($request->email, $request->first_name. ' ' . $request->last_name);
+        });
 
 
+        $hubspot_token = "pat-na1-7409a27d-793f-44db-a107-859970e43efb";
 
         $client = new Client();
         try {
@@ -97,7 +98,8 @@ class GuestController extends Controller
             $response = $client->get('https://api.hubapi.com/crm/v3/objects/contacts/' . $email, [
                 'query' => ['idProperty' => 'email'],
                 'headers' => [
-                    'Authorization' => 'Bearer ' . env('HUBSPOT_API_TOKEN', ''),
+                    'Authorization' => 'Bearer ' . $hubspot_token,
+//                    'Authorization' => 'Bearer ' . env('HUBSPOT_API_TOKEN', ''),
                     'Content-Type' => 'application/json',
                 ],
             ]);
@@ -108,7 +110,7 @@ class GuestController extends Controller
                 // Contact does not exist, create it
                 $response = $client->post('https://api.hubapi.com/crm/v3/objects/contacts', [
                     'headers' => [
-                        'Authorization' => 'Bearer ' . env('HUBSPOT_API_TOKEN', ''),
+                        'Authorization' => 'Bearer ' . $hubspot_token,
                         'Content-Type' => 'application/json',
                     ],
                     'json' => [
@@ -130,7 +132,7 @@ class GuestController extends Controller
             // Create a ticket & associate to contact
             $client->post('https://api.hubapi.com/crm/v3/objects/tickets', [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . env('HUBSPOT_API_TOKEN', ''),
+                    'Authorization' => 'Bearer ' . $hubspot_token,
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
