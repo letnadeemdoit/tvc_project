@@ -64,7 +64,8 @@ class UsersList extends Component
     public function render()
     {
         $data = User::whereIn('HouseId', [$this->user->HouseId, ...$this->user->additional_houses->pluck('HouseID')->toArray()])
-            ->where('user_id', '<>', $this->user->user_id)
+//            ->where('user_id', '<>', $this->user->user_id)
+            ->where('email', '<>', primary_user()->email)
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($query) {
                     $query
@@ -83,7 +84,7 @@ class UsersList extends Component
         $this->deletedUserId = $id;
         $deletedUser = User::where('user_id', $id)->first();
         $this->currentProperty = $deletedUser->house->HouseName;
-        $this->houseIds = User::where('email', $deletedUser->email)->where('role', 'Owner')->get()->pluck('HouseId');
+        $this->houseIds = User::where('email', $deletedUser->email)->where('role', $deletedUser->role)->get()->pluck('HouseId');
         if (count($this->houseIds) > 1){
 
             $this->isUserMultiplePropertiies = true;
@@ -102,7 +103,7 @@ class UsersList extends Component
     }
 
     public function deleteAllProperties(){
-        if ($this->model && count($this->houseIds) > 1) {
+        if ($this->model && count($this->houseIds) > 0) {
             $deletedUser = User::where('user_id', $this->deletedUserId)->first();
             User::whereIn('HouseId', $this->houseIds)->where('email', $deletedUser->email)->delete();
             $this->emitSelf('toggle', false);

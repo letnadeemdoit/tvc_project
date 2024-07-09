@@ -65,7 +65,7 @@ class CreateOrUpdateUserForm extends Component
 
         if ($userCU->user_id) {
             $this->isCreating = false;
-            if ($userCU->role === 'Owner'){
+            if ($userCU->role !== 'Guest'){
                 $user = User::where('parent_id', $userCU->parent_id)->where('role', $userCU->role)->where('email', $userCU->email)->get();
 //                $this->state = [
 //                    'house_id' => $userCU->pluck('HouseId')->toArray(),
@@ -85,16 +85,17 @@ class CreateOrUpdateUserForm extends Component
                     'house_id' => $userCU->HouseId,
                     'role' => $userCU->role,
                 ];
-            } elseif ($userCU->role === 'Administrator') {
-                $this->state = [
-                    'house_id' => $userCU->HouseId,
-                    'role' => $userCU->role,
-                    'user_name' => $userCU->user_name,
-                    'first_name' => $userCU->first_name,
-                    'last_name' => $userCU->last_name,
-                    'email' => $userCU->email,
-                ];
             }
+//            elseif ($userCU->role === 'Administrator') {
+//                $this->state = [
+//                    'house_id' => $userCU->HouseId,
+//                    'role' => $userCU->role,
+//                    'user_name' => $userCU->user_name,
+//                    'first_name' => $userCU->first_name,
+//                    'last_name' => $userCU->last_name,
+//                    'email' => $userCU->email,
+//                ];
+//            }
 //            $this->state = [
 //                'user_name' => $userCU->user_name,
 //                'first_name' => $userCU->first_name,
@@ -111,7 +112,7 @@ class CreateOrUpdateUserForm extends Component
         }
     }
     public function confirmUserVac(){
-        if (!$this->isCreating && $this->state['role'] === User::ROLE_OWNER){
+        if (!$this->isCreating && $this->state['role'] !== User::ROLE_GUEST){
             $difference = array_diff($this->current_houses,$this->state['house_id']);
             $result = array_values($difference);
             if (count($result) > 0){
@@ -138,11 +139,11 @@ class CreateOrUpdateUserForm extends Component
             $this->state['last_name'] = 'Guest';
             $this->state['email'] = 'guest@thevacationcalendar.com';
         }
-        if (!$this->isCreating && isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER) {
+        if (!$this->isCreating && isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST) {
             $users = User::whereIn('HouseId', $this->state['house_id'])
                 ->where([
                     'parent_id' => primary_user()->user_id,
-                    'role' => 'Owner',
+                    'role' => $this->state['role'],
                     'email' => $this->userCU->email
                 ])
                 ->get();
@@ -151,9 +152,9 @@ class CreateOrUpdateUserForm extends Component
                 Validator::make($this->state, [
                     'user_name' => [
                         'required',
-                        $user && $user->user_name ? Rule::unique('users', 'user_name')->where(function ($query) {
+                        $user && $user->user_name ? Rule::unique('users','user_name')->where(function ($query) {
                             $query->where('HouseId', $this->new_houseid);
-                        })->ignore($user->user_id, 'user_id') : Rule::unique('users', 'user_name')->where(function ($query) {
+                        })->ignore($user->user_id, 'user_id') : Rule::unique('users','user_name')->where(function ($query) {
                             $query->where('HouseId',$this->new_houseid);
                         })],
                     'email' => [
@@ -161,7 +162,7 @@ class CreateOrUpdateUserForm extends Component
                         'string',
                         'email',
                         'max:255',
-                        $user && $user->user_name ? Rule::unique('users')->where(function ($query) {
+                        $user && $user->email ? Rule::unique('users')->where(function ($query) {
                             $query->where('HouseId', $this->new_houseid);
                         })->ignore($user->user_id, 'user_id') : Rule::unique('users')->where(function ($query) {
                             $query->where('HouseId',$this->new_houseid);
@@ -173,6 +174,7 @@ class CreateOrUpdateUserForm extends Component
                     'last_name' => ['required', 'string', 'max:100'],
                     'password' => [$this->userCU && $this->userCU->user_name ? 'nullable' : 'required', (new \Laravel\Fortify\Rules\Password)->requireNumeric()->requireUppercase()->requireSpecialCharacter(), 'confirmed'],
                 ])->validateWithBag('saveUserCU');
+
             }
         }
         else if((!$this->isCreating && (isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST)) || $this->isCreating){
@@ -214,13 +216,14 @@ class CreateOrUpdateUserForm extends Component
         } else {
             $this->userCU->parent_id = $this->user->parent_id;
         }
-        if (isset($this->state['house_id']) && is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && !$this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
+        if (isset($this->state['house_id']) && is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && !$this->isCreating && (isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST)){
             foreach ($this->state['house_id'] as $houseId) {
                 $user = User::where([
                     'parent_id' => $this->userCU->parent_id,
                     'HouseId' => $houseId,
-                    'role' => 'Owner',
-                ])->where(function ($query) {
+                    'role' => $this->state['role'],
+                ])
+                    ->where(function ($query) {
                         $query->where('email', $this->state['email'])
                             ->orWhere('email', $this->userCU->email);
                     })
@@ -253,7 +256,7 @@ class CreateOrUpdateUserForm extends Component
                 $users = User::whereNotIn('HouseId', $this->state['house_id'])
                     ->where([
                     'parent_id' => $this->userCU->parent_id,
-                    'role' => 'Owner'
+                    'role' => $this->state['role']
                 ])->where(function ($query) {
                         $query->where('email', $this->state['email'])
                             ->orWhere('email', $this->userCU->email);
@@ -266,7 +269,7 @@ class CreateOrUpdateUserForm extends Component
                 }
 
         }
-        elseif (isset($this->state['house_id']) && is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && $this->isCreating && (isset($this->state['role']) && $this->state['role'] === User::ROLE_OWNER)){
+        elseif (isset($this->state['house_id']) && is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && $this->isCreating && (isset($this->state['role']) && $this->state['role'] !== User::ROLE_GUEST)){
             foreach ($this->state['house_id'] as $houseId) {
                 $newUser = new User();
                 $newUser->fill([

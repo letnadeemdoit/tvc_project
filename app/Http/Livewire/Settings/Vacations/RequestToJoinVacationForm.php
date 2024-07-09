@@ -333,10 +333,9 @@ class RequestToJoinVacationForm extends Component
 
             $items = $this->vacation;
             $createdHouseName = $this->user->house->HouseName;
+            if (!is_null($this->user->house->request_to_use_house_email_list) && !empty($this->user->house->request_to_use_house_email_list)) {
 
-            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
-
-                $CalEmailList = explode(',', $this->user->house->CalEmailList);
+                $CalEmailList = explode(',', $this->user->house->request_to_use_house_email_list);
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();

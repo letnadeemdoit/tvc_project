@@ -180,9 +180,9 @@
                         <td>
                             <span class="d-block mb-0">{{ $dt->name }}</span>
                         </td>
-                        @if($dt->role === 'Owner')
+                        @if($dt->role !== 'Guest')
                             @php
-                                $allUsers = App\Models\User::where('email', $dt->email)->where('role', 'Owner')->get();
+                                $allUsers = App\Models\User::where('email', $dt->email)->whereIn('role', ['Owner','Administrator'])->get();
                                 $houseNames = $allUsers->map(function($user) {
                                     return $user->house->HouseName;
                                 });
@@ -244,7 +244,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-danger btn-sm"
-                                        @if($dt->role === 'Owner')
+                                        @if($dt->role !== 'Guest')
                                             wire:click.prevent="confirmProperty({{$dt->user_id}})"
                                         @else
                                             wire:click.prevent="destroy({{$dt->user_id}})"
