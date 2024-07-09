@@ -182,7 +182,13 @@
                         </td>
                         @if($dt->role !== 'Guest')
                             @php
-                                $allUsers = App\Models\User::where('email', $dt->email)->whereIn('role', ['Owner','Administrator'])->get();
+                                $allUsers = App\Models\User::where('email', $dt->email)
+                                ->whereIn('role', ['Owner', 'Administrator'])
+                                ->where(function ($query) {
+                                    $query->where('user_id', primary_user()->user_id)
+                                          ->orWhere('parent_id', primary_user()->user_id);
+                                })
+                                ->get();
                                 $houseNames = $allUsers->map(function($user) {
                                     return $user->house->HouseName;
                                 });
