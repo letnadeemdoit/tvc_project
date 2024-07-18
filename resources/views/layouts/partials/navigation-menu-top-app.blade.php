@@ -239,7 +239,6 @@
                 @auth
 
                     @if(!auth()->user()->is_super_admin )
-
                         @if(auth()->user()->is_admin )
                             <li class="nav-item my-1 my-lg-0">
                                 <a class="nav-link fw-500"
