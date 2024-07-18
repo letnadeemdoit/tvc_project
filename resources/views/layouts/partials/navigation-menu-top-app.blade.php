@@ -240,10 +240,12 @@
 
                     @if(!auth()->user()->is_super_admin )
 
-                        <li class="nav-item my-1 my-lg-0">
-                            <a class="nav-link fw-500"
-                               href="{{route('dash.calendar')}}">ADMIN</a>
-                        </li>
+                        @if(auth()->user()->is_admin )
+                            <li class="nav-item my-1 my-lg-0">
+                                <a class="nav-link fw-500"
+                                   href="{{route('dash.calendar')}}">ADMIN</a>
+                            </li>
+                        @endif
 
                         <li class="nav-item my-1 my-lg-0">
                             <a class="nav-link fw-500"

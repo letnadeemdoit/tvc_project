@@ -112,11 +112,14 @@
 
 </head>
 
-<body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
+<body class="has-navbar-vertical-aside {{auth()->user()->is_admin ? 'navbar-vertical-aside-show-xl' : ''}}   footer-offset">
 
 @include('layouts.partials.navigation-menu-top-app')
-@include('layouts.partials.navigation-menu-side-app')
-<main id="content" role="main" class="main" style="padding-top: 120px">
+@if(auth()->user()->is_admin)
+    @include('layouts.partials.navigation-menu-side-app')
+
+@endif
+<main id="content" role="main" class="{{auth()->user()->is_admin ? 'main' : ''}}" style="padding-top: 120px">
 
     {{ $slot }}
 
