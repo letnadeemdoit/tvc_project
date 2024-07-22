@@ -129,7 +129,7 @@ class CreateOrUpdateHouseForm extends Component
             'ZipCode' => $this->state['zipcode'] ?? null,
         ])->save();
 
-        $this->house->updateFile($this->file);
+//        $this->house->updateFile($this->file);
 
         $user = User::firstOrNew([
             'user_id' => $this->user->user_id,

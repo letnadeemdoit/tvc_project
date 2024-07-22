@@ -45,9 +45,10 @@ class Register extends Component
         $inputs = $this->state;
 
         $inputs['role'] = 'Administrator';
-        if ($this->file)  {
-            $inputs['image']  = $this->file;
-        }
+
+//        if ($this->file)  {
+//            $inputs['image']  = $this->file;
+//        }
 
         event(new Registered($user = $creator->create($inputs)));
 

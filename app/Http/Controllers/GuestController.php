@@ -145,24 +145,24 @@ class GuestController extends Controller
 
 
 
-
-        Notification::route('mail', $request->email)
-            ->notify(new ContactUsMailNotification($firstName, $lastName, $subject, $email, $comment));
-
-        Mail::send([], [], function ($message) use ($request) {
-
-            $message->to('support@thevacationcalendar.com')
-                ->subject($request->first_name . ' ' . 'Contact Query')
-                ->Html(
-                    '<div style="padding: 10px; 20px">' .
-                    '<h2> Contact Us Notification</h2>' .
-                    '<p> Name: ' . $request->first_name . ' ' . $request->last_name . '</p>' .
-                    '<p> Email: ' . $request->email . '<p/>' .
-                    '<p> Subject: ' . $request->subject . '<p/>' .
-                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
-                    '</div>', 'text/plain');
-//            $message->from($request->email, $request->first_name. ' ' . $request->last_name);
-        });
+//
+//        Notification::route('mail', $request->email)
+//            ->notify(new ContactUsMailNotification($firstName, $lastName, $subject, $email, $comment));
+//
+//        Mail::send([], [], function ($message) use ($request) {
+//
+//            $message->to('support@thevacationcalendar.com')
+//                ->subject($request->first_name . ' ' . 'Contact Query')
+//                ->Html(
+//                    '<div style="padding: 10px; 20px">' .
+//                    '<h2> Contact Us Notification</h2>' .
+//                    '<p> Name: ' . $request->first_name . ' ' . $request->last_name . '</p>' .
+//                    '<p> Email: ' . $request->email . '<p/>' .
+//                    '<p> Subject: ' . $request->subject . '<p/>' .
+//                    '<p> Comment: ' . $request->comment . '<p/>' . '</br>' .
+//                    '</div>', 'text/plain');
+////            $message->from($request->email, $request->first_name. ' ' . $request->last_name);
+//        });
 
         return back()->with('success', 'Your Query has been Sent Successfully!');
     }

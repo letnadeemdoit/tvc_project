@@ -150,21 +150,21 @@
                 {{--                    <span class="invalid-feedback d-block">{{$message}}</span>--}}
                 {{--                    @enderror--}}
                 {{--                </div>--}}
-                <div>
-                    @if($house && $house->image)
-                        <div class="d-flex mb-3">
-                            <div class="mx-auto">
-                                <img src="{{ $house->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>
-                            </div>
-                        </div>
-                    @endif
-                </div>
+{{--                <div>--}}
+{{--                    @if($house && $house->image)--}}
+{{--                        <div class="d-flex mb-3">--}}
+{{--                            <div class="mx-auto">--}}
+{{--                                <img src="{{ $house->getFileUrl() }}" class="img-thumbnail rounded" style="max-height: 120px"/>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
+{{--                </div>--}}
 
-                <div>
-                    <x-upload-zone wire:model="file" />
-                    <x-jet-input-error for="image" />
-                </div>
-                <br/>
+{{--                <div>--}}
+{{--                    <x-upload-zone wire:model="file" />--}}
+{{--                    <x-jet-input-error for="image" />--}}
+{{--                </div>--}}
+{{--                <br/>--}}
                 <div class="mb-3">
                     <label class="form-label" for="name">Name:</label>
                     <input
