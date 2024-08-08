@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Room\Room;
+use DateInterval;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -43,6 +44,9 @@ class VacationRoom extends Model
 
     public function toCalendar()
     {
+        // I use this solution because rooms overlap the vacation on calendar
+        $endsAtMinus10Minutes = (clone $this->ends_at)->sub(new DateInterval('PT10M'));
+
         return array_merge([
             'id' => $this->vacation_id,
             'occupant_name' => $this->occupant_name,
@@ -50,7 +54,8 @@ class VacationRoom extends Model
             'vacation_room_id' => $this->id,
             'title' => $this->room->RoomName . ' '. '('.$this->occupant_name.')',
             'start' => str_replace(' ', 'T', $this->starts_at->format('Y-m-d H:i:s')),
-            'end' => str_replace(' ', 'T', $this->ends_at->format('Y-m-d H:i:s')),
+            'end' => str_replace(' ', 'T', $endsAtMinus10Minutes->format('Y-m-d H:i:s')),
+//            'end' => str_replace(' ', 'T', $this->ends_at->format('Y-m-d H:i:s')),
             'allDay' => false,
             'display' => 'block',
             'className' => 'fullcalendar-custom-event-hs-team',
