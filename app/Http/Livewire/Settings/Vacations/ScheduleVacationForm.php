@@ -139,7 +139,7 @@ class ScheduleVacationForm extends Component
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
 
-                    if ($this->calendarSettings && $this->calendarSettings->enable_schedule_window === 1) {
+                    if ($this->calendarSettings && $this->calendarSettings->start_datetime) {
                         $defaultStartTime = $this->calendarSettings->start_datetime;
                         $defaultEndTime = $this->calendarSettings->end_datetime;
 
