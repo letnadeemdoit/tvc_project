@@ -13,23 +13,28 @@ class GuestVacationApprovedNotification extends Notification implements ShouldQu
     use Queueable;
 
     public $guestUser;
+
+    public $vacContent;
     public $adminUser;
 
     public $vacation;
 
     public $houseName;
+    public $guestName;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($guestContact,$adminUser,$vacation,$houseName)
+    public function __construct($vacContent,$guestName,$guestContact,$adminUser,$vacation,$houseName)
     {
+        $this->vacContent = $vacContent;
         $this->guestUser = $guestContact;
         $this->adminUser = $adminUser;
         $this->vacation = $vacation;
         $this->houseName = $houseName;
+        $this->guestName = $guestName;
     }
 
     /**
@@ -52,8 +57,8 @@ class GuestVacationApprovedNotification extends Notification implements ShouldQu
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Vacation Approved!')
-            ->line(new HtmlString('Your Vacation <strong>' . $this->vacation->VacationName.'</strong>'. ' has been Approved by house Administrator <strong>' . $this->adminUser->first_name . ' ' . $this->adminUser->last_name  .'</strong>'. '   Against   ' . '<strong>'. $this->houseName .' '.'House'.'</strong>'))
+            ->greeting('Vacation ' . $this->vacContent . '!')
+            ->line(new HtmlString('<strong>' . $this->guestName.'</strong>'. ' Your Vacation <strong>' . $this->vacation->VacationName.'</strong>'. ' has been ' . $this->vacContent . ' by house Administrator <strong>' . $this->adminUser->first_name . ' ' . $this->adminUser->last_name  .'</strong>'. '   Against   ' . '<strong>'. $this->houseName .' '.'House'.'</strong>'))
             ->line('Thank you for using our application!');
     }
 
@@ -66,10 +71,12 @@ class GuestVacationApprovedNotification extends Notification implements ShouldQu
     public function toArray($notifiable)
     {
         return [
+            'vacContent' => $this->vacContent,
             'guestUser' => $this->guestUser,
             'adminUser' => $this->adminUser,
             'vacation' => $this->vacation ,
             'houseName' => $this->houseName ,
+            'guestName' => $this->guestName ,
         ];
     }
 }

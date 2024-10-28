@@ -55,7 +55,8 @@ class Vacation extends Model implements Auditable
         'book_rooms',
         'is_vac_approved',
         'is_calendar_task',
-        'EndRepeatDateId'
+        'EndRepeatDateId',
+        'original_owner',
 
     ];
 

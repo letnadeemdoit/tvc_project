@@ -282,7 +282,8 @@ class DashboardController extends Controller
 
     public function planAndPricing(Request $request)
     {
-        abort_if(!$request->user()->is_admin ||  ($request->user()->is_admin && !$request->user()->primary_account), 403);
+//        abort_if(!$request->user()->is_admin ||  ($request->user()->is_admin && !$request->user()->primary_account), 403);
+        abort_if(!$request->user()->is_admin, 403);
         return view('dash.plans-and-pricing.index', [
             'user' => $request->user()
         ]);

@@ -1,7 +1,7 @@
 <div id="enableOwnerVacationApproval" class="card">
     @if(!$user->is_super_admin)
         <div class="card-header">
-            <h4 class="card-title">Owner vacations</h4>
+            <h4 class="card-title">Scheduler vacations</h4>
         </div>
 
         <!-- Body -->
@@ -12,9 +12,9 @@
                     <!-- Form Switch -->
                     <label class="row form-check form-switch mb-4" for="calendar_height">
                             <span class="col-8 col-sm-9 ms-0">
-                              <span class="d-block text-dark mb-1">Owner vacations approval</span>
+                              <span class="d-block text-dark mb-1">Scheduler vacations approval</span>
                               <span class="d-block fs-5 text-muted">
-                                  Use this option to enable Owner vacations approval by Admin.
+                                  Use this option to enable Scheduler vacations approval by Admin.
                               </span>
                             </span>
                         <span class="col-4 col-sm-3 text-end">

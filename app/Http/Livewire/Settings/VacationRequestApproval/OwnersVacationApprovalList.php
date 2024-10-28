@@ -73,6 +73,7 @@ class OwnersVacationApprovalList extends Component
         $roles = ['Owner'];
         if ($this->user->is_admin) {
             $roles[] = 'Guest';
+            $roles[] = 'Administrator';
         }
 
         $data = Vacation::when($this->user->is_owner_only, function ($query) {
@@ -86,7 +87,7 @@ class OwnersVacationApprovalList extends Component
                         ->where('VacationName', 'LIKE', "%$this->search%");
                 });
             })
-            ->whereIn('OwnerId', function ($query) use ($houseId,$roles) {
+            ->whereIn('OwnerId', function ($query) use ($houseId, $roles) {
                 $query->select('user_id')
                     ->from('users')
                     ->where('HouseId', $houseId)
@@ -103,6 +104,16 @@ class OwnersVacationApprovalList extends Component
             ->with('owner')
             ->orderBy('VacationId', 'DESC')
             ->paginate($this->per_page);
+
+        // Iterate over the data to exclude based on role and original_owner
+        foreach ($data as $key => $d) {
+            $ownerRole = $d->owner->role ?? '';
+            $originalOwner = $d->original_owner;
+            if ($ownerRole === 'Administrator' && is_null($originalOwner) && $this->vacations === 'unapproved' && $d->is_vac_approved === 0) {
+                unset($data[$key]);
+            }
+        }
+
         return view('dash.settings.vacation-request-approval.owners-vacation-approval-list', compact('data'));
     }
 
@@ -115,31 +126,76 @@ class OwnersVacationApprovalList extends Component
         $vacation->update(
             [
                 'is_vac_approved' => !!$toggle,
-                'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : $owner->user_id,
-                'HouseId' => $ownerRole === 'Guest' ? primary_user()->HouseId : $owner->HouseId,
-                'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : $vacation->BackGrndColor
+                'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : ($ownerRole === 'Administrator' ? $vacation->original_owner : $owner->user_id),
+//                'HouseId' => $ownerRole === 'Guest' ? $vacation->HouseId : ($ownerRole === 'Administrator' ? $vacation->HouseId : $owner->HouseId),
+                'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : ($ownerRole === 'Administrator' ? '#CCCCCC' : $vacation->BackGrndColor),
             ]
         );
         $recurringVacations = $vacation->recurrings;
-        if (count($recurringVacations) > 0){
+        if (count($recurringVacations) > 0) {
             foreach ($recurringVacations as $recurringVacation) {
                 $recurringVacation->update([
                     'is_vac_approved' => !!$toggle,
-                    'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : $owner->user_id,
-                    'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : $vacation->BackGrndColor
+                    'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : ($ownerRole === 'Administrator' ? $vacation->original_owner : $owner->user_id),
+                    'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : ($ownerRole === 'Administrator' ? '#CCCCCC' : $vacation->BackGrndColor),
                 ]);
             }
         }
 
         try {
-            if ($ownerRole === 'Guest'){
-                $guestContact = GuestContact::where('house_id', $owner->HouseId)->where('guest_id', $owner->user_id)->first();
-                $guestEmail = $guestContact->guest_email;
-                $houseName = $guestContact->house->HouseName;
+            if ($ownerRole !== 'Owner') {
 
-                Notification::route('mail', $guestEmail)
-                    ->notify(new GuestVacationApprovedNotification($guestContact,$adminUser,$vacation,$houseName));
+                // Send notifications and update guest contacts
+                $guestContact = GuestContact::where([
+                    'house_id' => $vacation->HouseId,
+                    'guest_id' => $vacation->original_owner,
+                    'guest_vac_id' => $vacation->VacationId,
+                ])->first();
+
+
+                if ($guestContact && $guestContact->guest_id) {
+                    $guestContact->update([
+                        'guest_vac_color' => $ownerRole === 'Guest' ? '#FF5733' : '#CCCCCC',
+                        'is_approved' => $ownerRole === 'Guest' ? 1 : 0,
+                    ]);
+
+                    $vacContent = $ownerRole === 'Guest' ? 'Approved' : 'Unapproved';
+                    $houseName = $guestContact->house->HouseName;
+                    $guestName = $guestContact->guest_name;
+                    Notification::route('mail', $guestContact->guest_email)
+                        ->notify(new GuestVacationApprovedNotification(
+                            $vacContent,
+                            $guestName,
+                            $guestContact,
+                            $adminUser,
+                            $vacation,
+                            $houseName
+                        ));
+                }
             }
+            // Previous Code
+//            if ($ownerRole === 'Guest') {
+//                $guestContacts = GuestContact::where([
+//                    'house_id' => $owner->HouseId,
+//                    'guest_id' => $owner->user_id,
+//                    'is_approved' => 0
+//                ])->get();
+//                if (count($guestContacts) > 0) {
+//                    foreach ($guestContacts as $guestContact) {
+//                        $guestContact->update(
+//                            [
+//                                'guest_vac_color' => $vacation->BackGrndColor,
+//                                'is_approved' => 1,
+//                            ]
+//                        );
+//                        $guestName = $guestContact->guest_name;
+//                        $guestEmail = $guestContact->guest_email;
+//                        $houseName = $guestContact->house->HouseName;
+//                        Notification::route('mail', $guestEmail)
+//                            ->notify(new GuestVacationApprovedNotification($guestName, $guestContact, $adminUser, $vacation, $houseName));
+//                    }
+//                }
+//            }
 
         } catch (\Exception $e) {
 
@@ -147,8 +203,6 @@ class OwnersVacationApprovalList extends Component
 
         $this->emitSelf('user-cu-successfully');
         $this->emitSelf($toggle === 1 ? 'approved-' . $vacation->VacationId : 'unapproved-' . $vacation->VacationId);
-
-//        $this->emitSelf('saved-' . $vacation->VacationId);
     }
 
     public function destroyedSuccessfully($data)
@@ -160,8 +214,15 @@ class OwnersVacationApprovalList extends Component
 
         try {
             if ($ownerRole === 'Guest'){
-                $guestContact = GuestContact::where('house_id', $owner->HouseId)->where('guest_id', $owner->user_id)->first();
-                $this->notificationEmail = $guestContact->guest_email;
+                $guestContact = GuestContact::where([
+                    'guest_id' => $data['original_owner'],
+                    'guest_vac_id' => $data['VacationId'],
+                ])->first();
+                // Delete the guest contact if found
+                if ($guestContact) {
+                    $this->notificationEmail = $guestContact->guest_email;
+                    $guestContact->delete();
+                }
             }
             else{
                 $this->notificationEmail = $owner->email;

@@ -55,6 +55,7 @@ class House extends Model
         'guest_book_email_list',
         'photo_email_list',
         'food_item_list',
+        'vacation_approval_email_list',
         'Audit_user_name',
         'Audit_Role',
         'Audit_FirstName',

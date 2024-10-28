@@ -221,8 +221,11 @@ class CreateOrUpdateUserForm extends Component
                 $user = User::where([
                     'parent_id' => $this->userCU->parent_id,
                     'HouseId' => $houseId,
-                    'role' => $this->state['role'],
                 ])
+                    ->where(function ($query) {
+                        $query->where('role', $this->state['role'])
+                            ->orWhere('role', $this->userCU->role);
+                    })
                     ->where(function ($query) {
                         $query->where('email', $this->state['email'])
                             ->orWhere('email', $this->userCU->email);
@@ -249,6 +252,7 @@ class CreateOrUpdateUserForm extends Component
                         'last_name' => $this->state['last_name'],
                         'password' => $this->userCU->password,
                         'email' => $this->state['email'],
+                        'role' => $this->state['role'],
                     ]);
                 }
             }
@@ -256,8 +260,12 @@ class CreateOrUpdateUserForm extends Component
                 $users = User::whereNotIn('HouseId', $this->state['house_id'])
                     ->where([
                     'parent_id' => $this->userCU->parent_id,
-                    'role' => $this->state['role']
-                ])->where(function ($query) {
+                ])
+                    ->where(function ($query) {
+                        $query->where('role', $this->state['role'])
+                            ->orWhere('role', $this->userCU->role);
+                    })
+                    ->where(function ($query) {
                         $query->where('email', $this->state['email'])
                             ->orWhere('email', $this->userCU->email);
                     })

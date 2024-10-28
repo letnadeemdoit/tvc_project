@@ -341,7 +341,7 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],

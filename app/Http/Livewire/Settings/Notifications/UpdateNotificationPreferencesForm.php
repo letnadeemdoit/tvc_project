@@ -19,6 +19,7 @@ class UpdateNotificationPreferencesForm extends Component
 
         $this->state = [
             'calendar_email_list' => $this->house->CalEmailList,
+            'vacation_approval_email_list' => $this->house->CalEmailList,
             'blog_email_list' => $this->house->BlogEmailList,
             'request_to_use_house_email_list' => $this->house->request_to_use_house_email_list,
             'local_guide_email_list' => $this->house->local_guide_email_list,
@@ -45,6 +46,12 @@ class UpdateNotificationPreferencesForm extends Component
                     ->separatedBy(',')
                     ->max(50)
             ],
+//            'vacation_approval_email_list' => [
+//                'nullable',
+//                (new Delimited('email'))
+//                    ->separatedBy(',')
+//                    ->max(50)
+//            ],
             'blog_email_list' => [
                 'nullable',
                 (new Delimited('email'))

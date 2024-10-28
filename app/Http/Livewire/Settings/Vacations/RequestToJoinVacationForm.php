@@ -149,10 +149,10 @@ class RequestToJoinVacationForm extends Component
             'guest_vacation' => $this->isGuestScheduleVacation && !$this->vacation->VacationId ? ['required'] : ['nullable'],
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'string', 'max:255'],
-            'start_datetime' => $this->isGuestScheduleVacation && !$this->vacation->VacationId ? [
-                'required',
-                new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)
-            ] : ['required'],
+//            'start_datetime' => $this->isGuestScheduleVacation && !$this->vacation->VacationId ? [
+//                'required',
+//                new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)
+//            ] : ['required'],
         ], [
             'start_datetime.required' => 'The start & end datetime field is required'
         ])->validateWithBag('sendRequestToJoinVacation');
@@ -312,20 +312,24 @@ class RequestToJoinVacationForm extends Component
             'repeat_interval' => 0,
             'book_rooms' => 0,
             'is_vac_approved' => 0,
+            'original_owner' => $this->user->user_id,
         ])->save();
 
-        $guestContact = GuestContact::firstOrNew(['house_id'=> $this->user->HouseId,'guest_id'=> $this->user->user_id]);
+        $guestContact = GuestContact::firstOrNew(['house_id'=> $this->user->HouseId,'guest_id'=> $this->user->user_id,'guest_email'=>$this->state['email']]);
         if ($guestContact && $guestContact->id) {
             $guestContact->update(
                 [
-                    'guest_email' => $this->state['email'],
+                    'guest_name' => $this->state['name'],
                 ]
             );
         } else {
             $guestContact->fill([
                 'guest_id' => $this->user->user_id,
                 'house_id' => $this->user->HouseId,
-                'guest_email' => $this->state['email'],
+                'guest_vac_id' => $this->vacation->VacationId,
+                'guest_vac_color' => '#CCCCCC',
+                'guest_name' => $this->state['name'],
+                'guest_email' => $this->state['email']
             ])->save();
         }
 

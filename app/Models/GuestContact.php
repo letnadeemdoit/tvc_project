@@ -14,7 +14,11 @@ class GuestContact extends Model
     protected $fillable = [
         'house_id',
         'guest_id',
-        'guest_email'
+        'guest_name',
+        'guest_email',
+        'guest_vac_id',
+        'guest_vac_color',
+        'is_approved',
     ];
 
 
