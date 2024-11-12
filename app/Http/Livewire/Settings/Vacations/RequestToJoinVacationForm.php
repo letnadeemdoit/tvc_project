@@ -86,7 +86,8 @@ class RequestToJoinVacationForm extends Component
                 try {
                     $initialDatetime = Carbon::parse($initialDate);
 
-                    if ($this->calendarSetting && $this->calendarSetting->enable_schedule_window === 1) {
+//                    if ($this->calendarSetting && $this->calendarSetting->enable_schedule_window === 1) {
+                    if ($this->calendarSetting && $this->calendarSetting->start_datetime) {
                         $defaultStartTime = $this->calendarSetting->start_datetime;
                         $defaultEndTime = $this->calendarSetting->end_datetime;
 
