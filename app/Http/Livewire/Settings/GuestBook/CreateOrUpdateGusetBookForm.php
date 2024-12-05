@@ -17,6 +17,7 @@ class CreateOrUpdateGusetBookForm extends Component
     use Toastr;
 
     public $isShowingModal = false;
+    public $siteUrl = null;
 
     public $state = [];
 
@@ -92,26 +93,32 @@ class CreateOrUpdateGusetBookForm extends Component
         $this->guestBook->updateFile($this->file);
 
         try {
-            $items = $this->guestBook;
-            $createdHouseName = $this->user->house->HouseName;
-            $isAction = $this->isCreating ? 'created' : 'updated';
+            $this->siteUrl = route('guest.guest-book.index');
 
-            if (!is_null($this->user->house->guest_book_email_list) && !empty($this->user->house->guest_book_email_list)) {
+            $createdHouseName = $this->user->house->HouseName;
+            $ccList = [];
+            if ($this->user) {
+                $ccList[] = $this->user->email;
+            }
+
+            if (!is_null($this->user->house->guest_book_email_list) && !empty($this->user->house->guest_book_email_list) && $this->isCreating) {
 
                 $guestBookEmailsList = explode(',', $this->user->house->guest_book_email_list);
                 if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
                     $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
+                        $user->notify(new GuestBookNotification($ccList,$inputs['title'],$this->user, $this->siteUrl, $createdHouseName));
                     }
 //                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
                     $guestBookEmailsList = array_diff($guestBookEmailsList, $users->pluck('email')->toArray());
                     if (count($guestBookEmailsList) > 0) {
                         Notification::route('mail', $guestBookEmailsList)
-                            ->notify(new GuestBookNotification($items, $isAction, $createdHouseName));
+                            ->notify(new GuestBookNotification($ccList,$inputs['title'],$this->user, $this->siteUrl, $createdHouseName));
                     }
                 }
+
+
             }
         } catch (Exception $e) {
 

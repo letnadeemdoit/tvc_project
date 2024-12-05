@@ -8,11 +8,13 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class GuestBookNotification extends Notification implements ShouldQueue
+class GuestBookNotification extends Notification
 {
     use Queueable;
-    public $items;
-    public $isAction;
+    public $ccList;
+    public $title;
+    public $user;
+    public $siteUrl;
     public $createdHouseName;
 
     /**
@@ -20,11 +22,12 @@ class GuestBookNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($items,$isAction,$createdHouseName)
+    public function __construct($ccList,$title,$user,$siteUrl,$createdHouseName)
     {
-        $this->items = $items;
-        $this->isAction = $isAction;
-
+        $this->ccList = $ccList;
+        $this->title = $title;
+        $this->user = $user;
+        $this->siteUrl = $siteUrl;
         $this->createdHouseName = $createdHouseName;
     }
 
@@ -48,11 +51,14 @@ class GuestBookNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Guest Book')
-            ->line(new HtmlString(
-                '<strong>' . $this->items->title . ' </strong>'.
-                ' GuestBook has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
-            ));
+            ->subject('New Guest Book entry added to ' . $this->createdHouseName . ' ')
+            ->cc($this->ccList) // Add CC recipients
+            ->view('emails.guest_book_email_notification', [
+                'title' => $this->title,
+                'siteUrl' => $this->siteUrl,
+                'user' => $this->user,
+                'createdHouseName' => $this->createdHouseName,
+            ]);
     }
 
     /**
@@ -64,10 +70,10 @@ class GuestBookNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'Name' => $this->items->title,
-            'isAction' => $this->isAction,
-            'isModal' => 'Guest Book',
-            'house_name' => $this->createdHouseName,
+            'title' => $this->title,
+            'siteUrl' => $this->siteUrl,
+            'user' => $this->user,
+            'createdHouseName' => $this->createdHouseName,
         ];
     }
 }

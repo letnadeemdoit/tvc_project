@@ -7,8 +7,10 @@ use App\Models\House;
 use App\Models\User;
 use App\Notifications\CalendarEmailNotification;
 use App\Notifications\CreateUserEmailNotification;
+use App\Notifications\NewUserAccountNotification;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -291,6 +293,33 @@ class CreateOrUpdateUserForm extends Component
                     'HouseId' => $houseId,
                 ])->save();
             }
+
+            if(is_array($this->state['house_id'])){
+                $stateHouseId = $this->state['house_id'][0];
+            }
+            else{
+                $stateHouseId = $this->state['house_id'];
+            }
+
+            $houseName = House::where('HouseID', $stateHouseId ?? $this->user->HouseId)->value('HouseName');
+
+            $createUser = $newUser;
+
+            try {
+                if (isset($this->state['send_email']) && $this->state['send_email'] == 1) {
+                    if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
+
+                        Notification::route('mail', $createUser['email'])
+                            ->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
+
+//                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
+                    }
+                }
+            } catch (\Exception $e) {
+
+            }
+
+
         }
         else{
             if(is_array($this->state['house_id'])){
@@ -318,7 +347,9 @@ class CreateOrUpdateUserForm extends Component
             try {
                 if (isset($this->state['send_email']) && $this->state['send_email'] == 1) {
                     if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
-                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
+                        Notification::route('mail', $createUser['email'])
+                            ->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
+//                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
                     }
                 }
             } catch (\Exception $e) {

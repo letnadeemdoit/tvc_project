@@ -20,9 +20,10 @@
                 $(function () {
                     window.addEventListener('destroyed-successfully', function (e) {
                         console.log(e.detail);
-                        var url = "{!! route('dash.calendar', ['VacationId' => '__VacationId__','VacationName' => '__VacationName__']) !!}";
+                        var url = "{!! route('dash.calendar', ['VacationId' => '__VacationId__','VacationName' => '__VacationName__','OwnerId' => '__OwnerId__']) !!}";
                         url = url.replace('__VacationId__', e.detail.VacationId);
                         url = url.replace('__VacationName__', e.detail.VacationName);
+                        url = url.replace('__OwnerId__', e.detail.OwnerId);
                         location.href = url;
                         // window.location.href = url;
                     });

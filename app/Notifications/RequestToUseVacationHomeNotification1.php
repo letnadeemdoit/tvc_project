@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class RequestToUseVacationHomeNotification1 extends Notification implements ShouldQueue
+class RequestToUseVacationHomeNotification1 extends Notification
 {
     use Queueable;
 
@@ -54,13 +54,15 @@ class RequestToUseVacationHomeNotification1 extends Notification implements Shou
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Request To Use Vacation Home')
-            ->greeting('Confirmation of Request to Use Vacation Home')
-
-            ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to use <strong>'
-                . $this->createdHouseName.'</strong>'.
-                ' from ' . '<strong>'. $this->startDate .'</strong>'.' to  <strong> '.$this->endDate .'
-                '.'</strong>'. '.'));
+            ->subject('Request to Use ' . $this->createdHouseName . ' ')
+            ->cc($this->email) // Add CC recipients
+            ->view('emails.request_to_use_home_without_vacation_notification', [
+                'name' => $this->name,
+                'email' => $this->email,
+                'createdHouseName' => $this->createdHouseName,
+                'startDate' => $this->startDate,
+                'endDate' => $this->endDate,
+            ]);
     }
 
     /**

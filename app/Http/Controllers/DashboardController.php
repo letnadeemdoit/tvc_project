@@ -19,9 +19,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Utils;
+use function PHPUnit\Framework\assertFalse;
 
 class DashboardController extends Controller
 {
@@ -106,6 +108,9 @@ class DashboardController extends Controller
 
     public function calendar(Request $request)
     {
+//        return view('emails.calendar_email_notification', [
+//            'createdHouseName' => 'WWWWWW',
+//        ]);
 
         //Function to save HouseId and User Role into cookies
         $this->setHouseInCookie();
@@ -124,13 +129,21 @@ class DashboardController extends Controller
                 $this->endDatetimeOfDelVacation = session()->get('endDatetimeOfVacation');
                 session()->forget('endDatetimeOfVacation');
             }
+            $vac_owner = User::where('user_id', $request->query('OwnerId'))->first();
             Vacation::where('parent_id', $request->query('VacationId'))->delete();
             $name = $request->query('VacationName');
             try {
                 $user = Auth::user();
                 $createdHouseName = $user->house->HouseName;
+                Session::put('vacHouseName', $createdHouseName);
                 $isAction = 'Deleted';
                 $isModal = 'Vacation';
+                $ccList = [];
+                $ccList[] = $user->email;
+                if (!is_null($vac_owner)) {
+                    $ccList[] = $vac_owner->email;
+                }
+
 
                 if (!is_null($user->house->CalEmailList) && !empty($user->house->CalEmailList)) {
                     $CalEmailList = explode(',', $user->house->CalEmailList);
@@ -138,12 +151,12 @@ class DashboardController extends Controller
                         $users = User::whereIn('email', $CalEmailList)->where('HouseId', $user->HouseId)->get();
 
                         foreach ($users as $us) {
-                            $us->notify(new DeleteVacationNotification($name,$user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
+                            $us->notify(new DeleteVacationNotification($name,$user,$vac_owner,$ccList,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
                         }
                         $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                         if (count($CalEmailList) > 0) {
                             Notification::route('mail', $CalEmailList)
-                                ->notify(new DeleteVacationNotification($name,$user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
+                                ->notify(new DeleteVacationNotification($name,$user,$vac_owner,$ccList,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
                         }
                     }
                 }

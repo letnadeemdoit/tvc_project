@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Notifications\EmailVerificationNotification;
+use App\Notifications\ResetPasswordNotification;
+use http\Env\Request;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -357,6 +360,28 @@ class User extends Authenticatable implements Auditable
     public function subscription()
     {
         return $this->hasOne(Subscription::class, 'user_id', 'user_id')->where('house_id', $this->HouseId)->where('status', 'ACTIVE');
+    }
+
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param string $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new EmailVerificationNotification());
     }
 
 }

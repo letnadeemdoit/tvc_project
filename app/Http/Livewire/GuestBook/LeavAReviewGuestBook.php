@@ -4,6 +4,9 @@ namespace App\Http\Livewire\GuestBook;
 
 use App\Http\Livewire\Traits\Toastr;
 use App\Models\GuestBook;
+use App\Models\User;
+use App\Notifications\GuestBookNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,6 +19,8 @@ class LeavAReviewGuestBook extends Component
     public $isShowingModal = false;
 
     public $state = [];
+    public $user;
+    public $siteUrl = null;
 
     public $file;
 
@@ -57,6 +62,42 @@ class LeavAReviewGuestBook extends Component
             'content' => $inputs['content'],
             'image' => $inputs['image'] ?? null,
         ]);
+
+
+        try {
+            $this->siteUrl = route('guest.guest-book.index');
+
+            $createdHouseName = $this->user->house->HouseName;
+            $ccList = [];
+            if ($this->user) {
+                $ccList[] = $this->user->email;
+            }
+
+            if (!is_null($this->user->house->guest_book_email_list) && !empty($this->user->house->guest_book_email_list)) {
+
+                $guestBookEmailsList = explode(',', $this->user->house->guest_book_email_list);
+                if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
+                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new GuestBookNotification($ccList,$inputs['title'],$this->user, $this->siteUrl, $createdHouseName));
+                    }
+//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+                    $guestBookEmailsList = array_diff($guestBookEmailsList, $users->pluck('email')->toArray());
+                    if (count($guestBookEmailsList) > 0) {
+                        Notification::route('mail', $guestBookEmailsList)
+                            ->notify(new GuestBookNotification($ccList,$inputs['title'],$this->user, $this->siteUrl, $createdHouseName));
+                    }
+                }
+
+
+            }
+        } catch (Exception $e) {
+
+        }
+
+
+
 
         session()->flash('success', 'Your feedback is submitted successfully...');
 

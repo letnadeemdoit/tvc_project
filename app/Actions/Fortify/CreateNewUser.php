@@ -2,12 +2,15 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\GuestContact;
 use App\Models\House;
 use App\Models\User;
 use App\Models\World\City;
 use App\Models\World\Country;
 use App\Models\World\State;
+use App\Notifications\NewUserAccountNotification;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
@@ -93,6 +96,24 @@ class CreateNewUser implements CreatesNewUsers
 //            dd($user);
 
         }
+
+
+        try {
+            $firstName = $input['first_name'];
+            $lastName = $input['last_name'];
+            $userName = $input['user_name'];
+            $email = $input['email'];
+            $houseName = $input['HouseName'];
+            Notification::route('mail', $input['email'])
+                ->notify(new NewUserAccountNotification($firstName,$lastName, $userName,$email,$houseName));
+
+        } catch (Exception $e) {
+
+        }
+
+
+
+
 
         return $user;
 

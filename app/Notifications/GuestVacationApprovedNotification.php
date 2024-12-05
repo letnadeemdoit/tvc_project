@@ -8,33 +8,39 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class GuestVacationApprovedNotification extends Notification implements ShouldQueue
+class GuestVacationApprovedNotification extends Notification
 {
     use Queueable;
 
-    public $guestUser;
+    public $name;
+    public $email;
+    public $isApproved;
+    public $ccList;
 
     public $vacContent;
-    public $adminUser;
 
     public $vacation;
 
     public $houseName;
-    public $guestName;
+    public $startDate;
+    public $endDate;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($vacContent,$guestName,$guestContact,$adminUser,$vacation,$houseName)
+    public function __construct($ccList,$vacContent,$name,$email,$isApproved,$vacation,$houseName,$startDate,$endDate)
     {
+        $this->ccList = $ccList;
         $this->vacContent = $vacContent;
-        $this->guestUser = $guestContact;
-        $this->adminUser = $adminUser;
+        $this->name = $name;
+        $this->email = $email;
+        $this->isApproved = $isApproved;
         $this->vacation = $vacation;
         $this->houseName = $houseName;
-        $this->guestName = $guestName;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
     }
 
     /**
@@ -57,9 +63,18 @@ class GuestVacationApprovedNotification extends Notification implements ShouldQu
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Vacation ' . $this->vacContent . '!')
-            ->line(new HtmlString('<strong>' . $this->guestName.'</strong>'. ' Your Vacation <strong>' . $this->vacation->VacationName.'</strong>'. ' has been ' . $this->vacContent . ' by house Administrator <strong>' . $this->adminUser->first_name . ' ' . $this->adminUser->last_name  .'</strong>'. '   Against   ' . '<strong>'. $this->houseName .' '.'House'.'</strong>'))
-            ->line('Thank you for using our application!');
+            ->subject(' ' . $this->vacation->VacationName . ' at ' . $this->houseName . ' was ' . $this->vacContent . ' ')
+            ->cc($this->ccList) // Add CC recipients
+            ->view('emails.guest_vacation_approved_notification', [
+                'vacContent' => $this->vacContent,
+                'name' => $this->name,
+                'email' => $this->email,
+                'isApproved' => $this->isApproved,
+                'vacation' => $this->vacation,
+                'houseName' => $this->houseName,
+                'startDate' => $this->startDate,
+                'endDate' => $this->endDate,
+            ]);
     }
 
     /**
@@ -72,11 +87,13 @@ class GuestVacationApprovedNotification extends Notification implements ShouldQu
     {
         return [
             'vacContent' => $this->vacContent,
-            'guestUser' => $this->guestUser,
-            'adminUser' => $this->adminUser,
-            'vacation' => $this->vacation ,
-            'houseName' => $this->houseName ,
-            'guestName' => $this->guestName ,
+            'name' => $this->name,
+            'email' => $this->email,
+            'isApproved' => $this->isApproved,
+            'vacation' => $this->vacation,
+            'houseName' => $this->houseName,
+            'startDate' => $this->startDate,
+            'endDate' => $this->endDate,
         ];
     }
 }

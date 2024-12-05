@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class CreateUserEmailNotification extends Notification implements ShouldQueue
+class CreateUserEmailNotification extends Notification
 {
     use Queueable;
     public $createUser;
@@ -35,7 +35,9 @@ class CreateUserEmailNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return [
+            'mail','database'
+        ];
     }
 
     /**
@@ -46,14 +48,14 @@ class CreateUserEmailNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+
         return (new MailMessage)
-            ->subject('User ' .$this->createUser['first_name'] .' '. $this->createUser['last_name'] )
-            ->greeting($this->createUser['first_name'] .' '. $this->createUser['last_name'])
-            ->line(new HtmlString('<strong>' .'User Name:'.'</strong>' .' ' . $this->createUser['user_name']))
-            ->line(new HtmlString('<strong>' .'House Name:'.'</strong>' .' ' . $this->houseName))
-            ->line(new HtmlString('<strong>' .'User Email:'.'</strong>' .' ' . $this->createUser['email']))
-            ->line(new HtmlString('<strong>' .'User Role:'.'</strong>' .' ' . $this->createUser['role']))
-            ->line(new HtmlString('<strong>' .'Password:'.'</strong>' .' ' . $this->sendPasswordToMail));
+            ->subject('Welcome to TheVacationCalendar.com')
+            ->view('emails.create_user_email_notification', [
+                'createUser' => $this->createUser,
+                'sendPasswordToMail' => $this->sendPasswordToMail,
+                'houseName' => $this->houseName
+            ]);
     }
 
     /**
@@ -65,7 +67,9 @@ class CreateUserEmailNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'createUser' => $this->createUser,
+            'sendPasswordToMail' => $this->sendPasswordToMail,
+            'houseName' => $this->houseName,
         ];
     }
 }

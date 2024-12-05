@@ -8,10 +8,12 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class RequestToUseVacationHomeNotification2 extends Notification implements ShouldQueue
+class RequestToUseVacationHomeNotification2 extends Notification
 {
     use Queueable;
 
+    public $vacName;
+    public $ccList;
     public $name;
     public $email;
     public $createdHouseName;
@@ -23,8 +25,10 @@ class RequestToUseVacationHomeNotification2 extends Notification implements Shou
      *
      * @return void
      */
-    public function __construct($name,$email,$createdHouseName,$startDate,$endDate)
+    public function __construct($vacName,$ccList,$name,$email,$createdHouseName,$startDate,$endDate)
     {
+        $this->vacName = $vacName;
+        $this->ccList = $ccList;
         $this->name = $name;
         $this->email = $email;
         $this->createdHouseName = $createdHouseName;
@@ -53,18 +57,18 @@ class RequestToUseVacationHomeNotification2 extends Notification implements Shou
      */
     public function toMail($notifiable)
     {
+
         return (new MailMessage)
-
-            ->subject('Request To Use Vacation Home')
-            ->greeting('Request to Use Vacation Home')
-
-            ->line(new HtmlString('<strong>'. $this->name. '</strong>' .' '.'has requested to use <strong>'
-                . $this->createdHouseName.'</strong>'.
-                ' from ' . '<strong>'. $this->startDate .'</strong>'.' to  <strong> '.$this->endDate .'
-                '.'</strong>'. '.'))
-
-            ->line(new HtmlString('Reply to: <strong>' .
-                $this->email.'</strong>'));
+            ->subject('Request to Use ' . $this->createdHouseName . ' ')
+            ->cc($this->ccList) // Add CC recipients
+            ->view('emails.request_to_use_vacation_home_notification', [
+                'vacName' => $this->vacName,
+                'name' => $this->name,
+                'email' => $this->email,
+                'createdHouseName' => $this->createdHouseName,
+                'startDate' => $this->startDate,
+                'endDate' => $this->endDate,
+            ]);
 
     }
 
@@ -77,11 +81,12 @@ class RequestToUseVacationHomeNotification2 extends Notification implements Shou
     public function toArray($notifiable)
     {
         return [
-            'Name' => $this->name,
+            'vacName' => $this->vacName,
+            'name' => $this->name,
             'email' => $this->email,
-            'house_name' => $this->createdHouseName,
-            'start_date' => $this->startDate,
-            'end_date' => $this->endDate,
+            'createdHouseName' => $this->createdHouseName,
+            'startDate' => $this->startDate,
+            'endDate' => $this->endDate,
         ];
     }
 }

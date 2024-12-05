@@ -25,6 +25,8 @@ class CreateOrUpdatePhoto extends Component
 
     public $isCreating = false;
 
+    public $siteUrl = null;
+
     public $isShowingModal = false;
     public $isPhotoOrder = false;
     public $isChangeAlbumOrder = false;
@@ -96,6 +98,7 @@ class CreateOrUpdatePhoto extends Component
 
         $this->photo->fill([
             'HouseId' => auth()->user()->HouseId,
+            'OwnerId' => auth()->user()->user_id,
             'album_id' => $this->isCreating ? $this->album->id : $inputs['album_id'],
             'description' => $inputs['description'] ?? null,
         ])->save();
@@ -105,24 +108,28 @@ class CreateOrUpdatePhoto extends Component
         }
 
         try {
+            $this->siteUrl = route('guest.photo-album.index');
+            $ccList = [];
+            if ($this->user) {
+                $ccList[] = $this->user->email;
+            }
             $items = $this->photo;
             $createdHouseName = $this->user->house->HouseName;
-            $isAction = $this->isCreating ? 'created' : 'updated';
 
-            if (!is_null($this->user->house->photo_email_list) && !empty($this->user->house->photo_email_list)) {
+            if (!is_null($this->user->house->photo_email_list) && !empty($this->user->house->photo_email_list) && $this->isCreating) {
 
                 $photoEmailsList = explode(',', $this->user->house->photo_email_list);
                 if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
                     $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
+                        $user->notify(new PhotoAlbumNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
                     }
 //                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
                     $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
                     if (count($photoEmailsList) > 0) {
                         Notification::route('mail', $photoEmailsList)
-                            ->notify(new PhotoAlbumNotification($items, $isAction, $createdHouseName));
+                            ->notify(new PhotoAlbumNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
                     }
                 }
             }

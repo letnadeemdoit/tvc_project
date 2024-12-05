@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\DeleteNotification;
 use App\Notifications\GuestVacationApprovedNotification;
+use App\Notifications\VacationDeniedEmailNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
@@ -27,6 +28,11 @@ class OwnersVacationApprovalList extends Component
 
     public $start_date = null;
     public $end_date = null;
+
+
+    public $startDate = null;
+    public $endDate = null;
+
 
     public $from;
     public $to;
@@ -122,6 +128,7 @@ class OwnersVacationApprovalList extends Component
         $adminUser = primary_user();
         $owner = User::where('user_id', $vacation->OwnerId)->first();
         $ownerRole = optional($owner)->role;
+        $guestContact = null;
 
         $vacation->update(
             [
@@ -142,38 +149,27 @@ class OwnersVacationApprovalList extends Component
             }
         }
 
-        try {
-            if ($ownerRole !== 'Owner') {
 
-                // Send notifications and update guest contacts
-                $guestContact = GuestContact::where([
-                    'house_id' => $vacation->HouseId,
-                    'guest_id' => $vacation->original_owner,
-                    'guest_vac_id' => $vacation->VacationId,
-                ])->first();
+        if ($ownerRole !== 'Owner') {
+
+            // Send notifications and update guest contacts
+            $guestContact = GuestContact::where([
+                'house_id' => $vacation->HouseId,
+                'guest_id' => $vacation->original_owner,
+                'guest_vac_id' => $vacation->VacationId,
+            ])->first();
 
 
-                if ($guestContact && $guestContact->guest_id) {
-                    $guestContact->update([
-                        'guest_vac_color' => $ownerRole === 'Guest' ? '#FF5733' : '#CCCCCC',
-                        'is_approved' => $ownerRole === 'Guest' ? 1 : 0,
-                    ]);
+            if ($guestContact && $guestContact->guest_id) {
+                $guestContact->update([
+                    'guest_vac_color' => $ownerRole === 'Guest' ? '#FF5733' : '#CCCCCC',
+                    'is_approved' => $ownerRole === 'Guest' ? 1 : 0,
+                ]);
 
-                    $vacContent = $ownerRole === 'Guest' ? 'Approved' : 'Unapproved';
-                    $houseName = $guestContact->house->HouseName;
-                    $guestName = $guestContact->guest_name;
-                    Notification::route('mail', $guestContact->guest_email)
-                        ->notify(new GuestVacationApprovedNotification(
-                            $vacContent,
-                            $guestName,
-                            $guestContact,
-                            $adminUser,
-                            $vacation,
-                            $houseName
-                        ));
-                }
             }
-            // Previous Code
+
+        }
+        // Previous Code
 //            if ($ownerRole === 'Guest') {
 //                $guestContacts = GuestContact::where([
 //                    'house_id' => $owner->HouseId,
@@ -197,6 +193,57 @@ class OwnersVacationApprovalList extends Component
 //                }
 //            }
 
+        try {
+            $vac_owner = User::where('user_id', $vacation->OwnerId)->first();
+            $startDate = $vacation->start_datetime->format('m-d-Y H:i');
+            $endDate = $vacation->end_datetime->format('m-d-Y H:i');
+            $ccList = [];
+            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
+                $CalEmailList = explode(',', $this->user->house->CalEmailList);
+                $ccList = array_merge($ccList, $CalEmailList); // Merge emails into $ccList
+            }
+            $houseName = $vac_owner->house->HouseName;
+
+            if (($vac_owner->role === 'Guest' || $vac_owner->role === 'Administrator') && ($guestContact && $guestContact->guest_email)) {
+                $vacContent = $guestContact->is_approved === 0 ? 'Unapproved' : 'Approved';
+                $name = $guestContact->guest_name;
+                $email = $guestContact->guest_email;
+                $isApproved = $guestContact->is_approved;
+
+                Notification::route('mail', $guestContact->guest_email)
+                    ->notify(new GuestVacationApprovedNotification(
+                        $ccList,
+                        $vacContent,
+                        $name,
+                        $email,
+                        $isApproved,
+                        $vacation,
+                        $houseName,
+                        $startDate,
+                        $endDate
+                    ));
+            }
+            elseif ($vac_owner->role === 'Owner') {
+                $vacContent = $vacation->is_vac_approved === true ? 'Approved' : 'Unapproved';
+                $name = $vac_owner->first_name . ' ' . $vac_owner->last_name;
+                $email = $vac_owner->email;
+                $isApproved = $vacation->is_vac_approved === true ? 1 : 0;
+
+                Notification::route('mail', $email)
+                    ->notify(new GuestVacationApprovedNotification(
+                        $ccList,
+                        $vacContent,
+                        $name,
+                        $email,
+                        $isApproved,
+                        $vacation,
+                        $houseName,
+                        $startDate,
+                        $endDate
+                    ));
+
+            }
+
         } catch (\Exception $e) {
 
         }
@@ -208,9 +255,11 @@ class OwnersVacationApprovalList extends Component
     public function destroyedSuccessfully($data)
     {
         Vacation::where('parent_id', $data['VacationId'])->delete();
-        $vacationName = $data['VacationName'];
         $owner = User::where('user_id', $data['OwnerId'])->first();
         $ownerRole = optional($owner)->role;
+        $vacName = $data['VacationName'];
+        $name = null;
+        $email = null;
 
         try {
             if ($ownerRole === 'Guest'){
@@ -218,21 +267,35 @@ class OwnersVacationApprovalList extends Component
                     'guest_id' => $data['original_owner'],
                     'guest_vac_id' => $data['VacationId'],
                 ])->first();
+
                 // Delete the guest contact if found
-                if ($guestContact) {
+                if ($guestContact && $guestContact->guest_email) {
                     $this->notificationEmail = $guestContact->guest_email;
+                    $name = $guestContact->guest_name;
+                    $email = $guestContact->guest_email;
                     $guestContact->delete();
                 }
             }
             else{
                 $this->notificationEmail = $owner->email;
+                $name = $owner->first_name . ' ' . $owner->last_name;
+                $email = $owner->email;
             }
 
-            $createdHouseName = $owner->house->HouseName;
-            $isAction = 'Rejected';
-            $isModal = 'Vacation';
-            Notification::route('mail', $this->notificationEmail)
-                ->notify(new DeleteNotification($vacationName, $isAction,$createdHouseName,$isModal));
+//            $startDate = $this->deletableModel->start_datetime->format('m-d-Y H:i');
+//            $endDate = $this->deletableModel->end_datetime->format('m-d-Y H:i');
+
+            $ccList = [];
+            if ($this->user){
+                $ccList[] = $this->user->email;
+            }
+            $houseName = $owner->house->HouseName;
+            $admin = $this->user;
+
+            if ($this->notificationEmail){
+                Notification::route('mail', $this->notificationEmail)
+                    ->notify(new VacationDeniedEmailNotification($ccList,$name,$email,$vacName,$admin,$houseName,$this->startDate,$this->endDate));
+            }
 
         } catch (Exception $e) {
 
@@ -241,8 +304,12 @@ class OwnersVacationApprovalList extends Component
         $this->emitSelf('user-cu-successfully');
 
     }
-        public function destroy($id)
+    public function destroy($id)
     {
+        $vacation = Vacation::where('VacationId', $id)->first();
+        $this->startDate = $vacation->start_datetime->format('m-d-Y H:i');
+        $this->endDate = $vacation->end_datetime->format('m-d-Y H:i');
+
         $rejected = 'rejected';
         if ($this->model) {
             $deletableModel = app($this->model)->findOrFail($id);

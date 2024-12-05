@@ -3,9 +3,11 @@
 namespace App\Http\Livewire\Houses\PhotoAlbums\Photos;
 
 use App\Http\Livewire\Traits\Destroyable;
+use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
 use App\Notifications\DeleteNotification;
+use App\Notifications\DeletePhotoEmailNotification;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -16,6 +18,7 @@ class PhotosList extends Component
     use Destroyable;
 
     public $user;
+    public $siteUrl = null;
 
     public $album;
 
@@ -110,10 +113,27 @@ class PhotosList extends Component
     public function destroyedSuccessfully($data)
     {
         $this->dispatchBrowserEvent('refresh-photos-list-in-album');
-        $name = 'Photo';
-        $isAction = 'Deleted';
+        $this->siteUrl = route('guest.photo-album.index');
+
+        $owner = null;
+        if (!empty($data['OwnerId'])) {
+            $owner = User::where('user_id', $data['OwnerId'])->first();
+        }
+
+        $ccList = [];
+        if ($owner && $owner->email) {
+            $ccList[] = $owner->email;
+        }
         $createdHouseName = $this->user->house->HouseName;
-        $isModel = 'Photo';
+
+        $album = Album::where('id', $data['album_id'])->first();
+
+        $object = (object) $data;
+
+        $dataObject = null;
+        if ($object->path){
+            $dataObject = $object->getFileUrl('path');
+        }
 
         try {
 //            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
@@ -131,7 +151,7 @@ class PhotosList extends Component
                     $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                        $user->notify(new DeletePhotoEmailNotification($ccList, $this->siteUrl,$dataObject,$album['name'],$this->user, $createdHouseName));
                     }
 
                     $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
@@ -139,7 +159,7 @@ class PhotosList extends Component
                     if (count($photoEmailsList) > 0) {
 
                         Notification::route('mail', $photoEmailsList)
-                            ->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                            ->notify(new DeletePhotoEmailNotification($ccList, $this->siteUrl,$dataObject,$album['name'],$this->user, $createdHouseName));
 
                     }
                 }

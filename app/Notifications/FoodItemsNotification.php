@@ -8,11 +8,13 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class FoodItemsNotification extends Notification implements ShouldQueue
+class FoodItemsNotification extends Notification
 {
     use Queueable;
+    public $ccList;
     public $items;
-    public $isAction;
+    public $user;
+    public $siteUrl;
     public $createdHouseName;
 
     /**
@@ -20,10 +22,12 @@ class FoodItemsNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($items,$isAction,$createdHouseName)
+    public function __construct($ccList,$items,$user,$siteUrl,$createdHouseName)
     {
+        $this->ccList = $ccList;
         $this->items = $items;
-        $this->isAction = $isAction;
+        $this->user = $user;
+        $this->siteUrl = $siteUrl;
         $this->createdHouseName = $createdHouseName;
     }
 
@@ -47,11 +51,14 @@ class FoodItemsNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Food Items!')
-            ->line(new HtmlString(
-                '<strong>' . $this->items->name . ' </strong>'.
-                ' Food Item has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
-            ));
+            ->subject('New Food Item was added to ' . $this->createdHouseName . ' ')
+            ->cc($this->ccList) // Add CC recipients
+            ->view('emails.food_items_email_notification', [
+                'items' => $this->items,
+                'siteUrl' => $this->siteUrl,
+                'user' => $this->user,
+                'createdHouseName' => $this->createdHouseName,
+            ]);
     }
 
     /**
@@ -63,10 +70,10 @@ class FoodItemsNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'Name' => $this->items->name,
-            'isAction' => $this->isAction,
-            'isModal' => 'Food Item',
-            'house_name' => $this->createdHouseName,
+            'items' => $this->items,
+            'siteUrl' => $this->siteUrl,
+            'user' => $this->user,
+            'createdHouseName' => $this->createdHouseName,
         ];
     }
 }

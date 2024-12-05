@@ -84,7 +84,7 @@
                         <td style="width: 100px">{{$dt->VacationName}}</td>
                         <td>{{ $dt->house ? $dt->house->HouseName : '' }}</td>
                         <td>{{ $dt->owner ? $dt->owner->name : '-' }}</td>
-                        <td>{{ $dt->owner->role }}</td>
+                        <td>{{ $dt->owner->role === 'Owner' ? 'Scheduler' : $dt->owner->role }}</td>
                         <td>{{ $dt->scheduled_dates }}</td>
                         <td x-data="" class="" style="width: 120px">
                             <div class="form-check">

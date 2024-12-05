@@ -26,6 +26,7 @@ class CreateOrUpdateFoodItemForm extends Component
     public $state = [];
 
     public $file;
+    public $siteUrl = null;
 
     public ?FoodItem $foodItemList;
 
@@ -90,24 +91,29 @@ class CreateOrUpdateFoodItemForm extends Component
         $this->foodItemList->updateFile($this->file);
 
         try {
+
+            $this->siteUrl = route('guest.house-items.index');
+            $ccList = [];
+            if ($this->user) {
+                $ccList[] = $this->user->email;
+            }
             $items = $this->foodItemList;
             $createdHouseName = $this->user->house->HouseName;
-            $isAction = $this->isCreating ? 'created' : 'updated';
 
-            if (!is_null($this->user->house->food_item_list) && !empty($this->user->house->food_item_list)) {
+            if (!is_null($this->user->house->food_item_list) && !empty($this->user->house->food_item_list) && $this->isCreating) {
 
                 $foodEmailsList = explode(',', $this->user->house->food_item_list);
                 if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
                     $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
+                        $user->notify(new FoodItemsNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
                     }
 //                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
                     $foodEmailsList = array_diff($foodEmailsList, $users->pluck('email')->toArray());
                     if (count($foodEmailsList) > 0) {
                         Notification::route('mail', $foodEmailsList)
-                            ->notify(new FoodItemsNotification($items, $isAction, $createdHouseName));
+                            ->notify(new FoodItemsNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
                     }
                 }
             }

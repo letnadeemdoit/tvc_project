@@ -22,6 +22,9 @@ class CreateOrUpdateLocalGuideForm extends Component
 
     public $state = [];
 
+    public $siteUrl;
+
+
     public $user;
 
     public $file;
@@ -101,25 +104,30 @@ class CreateOrUpdateLocalGuideForm extends Component
         $this->localGuide->updateFile($this->file);
 
         try {
+            $this->siteUrl = route('guest.local-guide.index');
+
 
             $items = $this->localGuide;
             $createdHouseName = $this->user->house->HouseName;
-            $isAction = $this->isCreating ? 'created' : 'updated';
+            $ccList = [];
+            if ($this->user) {
+                $ccList[] = $this->user->email;
+            }
 
-            if (!is_null($this->user->house->local_guide_email_list) && !empty($this->user->house->local_guide_email_list)) {
+            if (!is_null($this->user->house->local_guide_email_list) && !empty($this->user->house->local_guide_email_list) && $this->isCreating) {
 
                 $localGuideEmailsList = explode(',', $this->user->house->local_guide_email_list);
                 if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
                     $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new LocalGuideNotification($items, $isAction, $createdHouseName));
+                        $user->notify(new LocalGuideNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
                     }
 //                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
                     $localGuideEmailsList = array_diff($localGuideEmailsList, $users->pluck('email')->toArray());
                     if (count($localGuideEmailsList) > 0) {
                         Notification::route('mail', $localGuideEmailsList)
-                            ->notify(new LocalGuideNotification($items, $isAction, $createdHouseName));
+                            ->notify(new LocalGuideNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
                     }
                 }
             }

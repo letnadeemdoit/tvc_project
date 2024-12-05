@@ -130,6 +130,7 @@ Route::middleware([
     ->name('dash.')
     ->group(function () {
 //        Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+
         Route::get('/schedule-vacation', [DashboardController::class, 'scheduleVacation'])->name('schedule-vacation');
         Route::get('/schedule-vacation-room', [DashboardController::class, 'scheduleVacationRoom'])->name('schedule-vacation-room');
         Route::get('/request-to-join-vacation', [DashboardController::class, 'requestToJoinVacation'])->name('request-to-join-vacation');
@@ -186,4 +187,3 @@ Route::middleware([
 //                Route::post('/ipn', 'ipn')->name('ipn');
             });
     });
-

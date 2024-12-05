@@ -14,6 +14,8 @@ class DeleteVacationNotification extends Notification
 
     public $name;
     public $user;
+    public $vacOwner;
+    public $ccList;
     public $startDatetimeOfVacation;
     public $endDatetimeOfVacation;
     public $isAction;
@@ -25,10 +27,12 @@ class DeleteVacationNotification extends Notification
      *
      * @return void
      */
-    public function __construct($name,$user,$startDatetimeOfVacation,$endDatetimeOfVacation,$isAction,$createdHouseName,$isModel)
+    public function __construct($name,$user,$vac_owner,$ccList,$startDatetimeOfVacation,$endDatetimeOfVacation,$isAction,$createdHouseName,$isModel)
     {
         $this->name = $name;
         $this->user = $user;
+        $this->vacOwner = $vac_owner;
+        $this->ccList = $ccList;
         $this->startDatetimeOfVacation = $startDatetimeOfVacation;
         $this->endDatetimeOfVacation = $endDatetimeOfVacation;
         $this->isAction = $isAction;
@@ -56,15 +60,25 @@ class DeleteVacationNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->subject('Vacation removed from ' . $this->createdHouseName . ' Calendar')
+            ->cc($this->ccList) // Add CC recipients
+            ->view('emails.delete_vacation_notification', [
+                'name' => $this->name,
+                'user' => $this->user,
+                'vacOwner' => $this->vacOwner,
+                'createdHouseName' => $this->createdHouseName,
+                'startDate' => $this->startDatetimeOfVacation,
+                'endDate' => $this->endDatetimeOfVacation,
+            ]);
 
-            ->subject('Deleted'. ' ' . $this->isModel)
-            ->greeting($this->isAction)
-
-            ->line(new HtmlString('A Vacation <strong>' .  $this->name .'</strong>'. ' has been Deleted against ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
-
-            ->line(new HtmlString('This change was made by <strong>' . $this->user->first_name. ' ' . $this->user->last_name . '('. $this->user->email . ')' .  '</strong>'))
-
-            ->line(new HtmlString('The duration of the vacation is from <strong>' . $this->startDatetimeOfVacation.'</strong>'. ' to ' . '<strong>'. $this->endDatetimeOfVacation .'</strong>'));
+//            ->subject('Deleted'. ' ' . $this->isModel)
+//            ->greeting($this->isAction)
+//
+//            ->line(new HtmlString('A Vacation <strong>' .  $this->name .'</strong>'. ' has been Deleted against ' . '<strong>'. $this->createdHouseName .' '.'House'.'</strong>'))
+//
+//            ->line(new HtmlString('This change was made by <strong>' . $this->user->first_name. ' ' . $this->user->last_name . '('. $this->user->email . ')' .  '</strong>'))
+//
+//            ->line(new HtmlString('The duration of the vacation is from <strong>' . $this->startDatetimeOfVacation.'</strong>'. ' to ' . '<strong>'. $this->endDatetimeOfVacation .'</strong>'));
 
     }
 

@@ -8,12 +8,13 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class RequestToJoinVacationNotification1 extends Notification implements ShouldQueue
+class RequestToJoinVacationNotification1 extends Notification
 {
     use Queueable;
 
     public $vacation_name;
-    public $house_name;
+    public $ccList;
+    public $createdHouseName;
     public $owner;
     public $startDate;
     public $endDate;
@@ -23,10 +24,11 @@ class RequestToJoinVacationNotification1 extends Notification implements ShouldQ
      *
      * @return void
      */
-    public function __construct($vacation_name,$house_name,$owner, $startDate, $endDate)
+    public function __construct($vacation_name,$ccList,$house_name,$owner, $startDate, $endDate)
     {
         $this->vacation_name = $vacation_name;
-        $this->house_name = $house_name;
+        $this->ccList = $ccList;
+        $this->createdHouseName = $house_name;
         $this->owner = $owner;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -40,7 +42,9 @@ class RequestToJoinVacationNotification1 extends Notification implements ShouldQ
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return [
+            'mail','database'
+        ];
     }
 
     /**
@@ -52,12 +56,15 @@ class RequestToJoinVacationNotification1 extends Notification implements ShouldQ
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Request To Join Vacation')
-            ->greeting('Confirmation of Your Request to Join A Vacation')
-            ->line(new HtmlString('<strong>' . $this->owner['name'] . ' </strong> has requested to join vacation <strong>'
-                . $this->vacation_name . '</strong> from' .
-                ' ' . '<strong>' . $this->startDate . '</strong> to ' . '  <strong> ' . $this->endDate . '
-                ' . '</strong>' . '.'));
+            ->subject('Request to Join ' . $this->vacation_name . ' at ' . $this->createdHouseName . ' ')
+            ->cc($this->ccList) // Add CC recipients
+            ->view('emails.request_to_join_vacation_notification', [
+                'vacation_name' => $this->vacation_name,
+                'owner' => $this->owner,
+                'createdHouseName' => $this->createdHouseName,
+                'startDate' => $this->startDate,
+                'endDate' => $this->endDate,
+            ]);
 
 
     }
@@ -71,7 +78,11 @@ class RequestToJoinVacationNotification1 extends Notification implements ShouldQ
     public function toArray($notifiable)
     {
         return [
-            //
+            'vacation_name' => $this->vacation_name,
+            'owner' => $this->owner,
+            'createdHouseName' => $this->house_name,
+            'startDate' => $this->startDate,
+            'endDate' => $this->endDate,
         ];
     }
 }

@@ -13,10 +13,13 @@ use App\Models\VacationRoom;
 use App\Notifications\BlogNotification;
 use App\Notifications\CalendarEmailNotification;
 use App\Notifications\DeleteNotification;
+use App\Notifications\RequestToApproveVacationEmailNotification;
+use App\Notifications\UpdateCalendarEmailNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
 use Cookie;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
@@ -50,6 +53,12 @@ class ScheduleVacationForm extends Component
     public $manageVac = false;
 
     public $isCreating = false;
+
+    public $originalVacName  = null;
+    public $originalVacStartDate = null;
+    public $originalVacEndDate = null;
+
+
     protected $destroyableConfirmationContent = [
         'title' => '',
         'description' => ''
@@ -109,6 +118,12 @@ class ScheduleVacationForm extends Component
             }
 
 //            dd($this->vacation->start_datetime . ' ' . $this->vacation->end_datetime);
+            //For Update Vacation Email Notification
+
+            $this->originalVacName = $this->vacation->VacationName;
+            $this->originalVacStartDate = $this->vacation->start_datetime->format('m-d-Y H:i');
+            $this->originalVacEndDate = $this->vacation->end_datetime->format('m-d-Y H:i');
+
 
             $this->state = [
                 'vacation_name' => $this->vacation->VacationName,
@@ -341,7 +356,7 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
@@ -352,6 +367,9 @@ class ScheduleVacationForm extends Component
 
         $startDatetime = Carbon::parse($this->state['start_datetime']);
         $endDatetime = Carbon::parse($this->state['end_datetime']);
+
+        $vacStartDate = $startDatetime->format('m-d-Y H:i');;
+        $vacEndDate = $endDatetime->format('m-d-Y H:i');
 
         $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
@@ -626,24 +644,62 @@ class ScheduleVacationForm extends Component
 
         try {
 
-            $items = $this->vacation;
+            $vacName = $this->vacation->VacationName;
+            $currentUser = Auth::user();
+
+            $ccList = [];
+            $vac_owner = User::where('user_id', $this->vacation->OwnerId)->first();
+            if (!is_null($vac_owner)) {
+                $ccList[] = $vac_owner->email;
+            }
             $createdHouseName = $this->user->house->HouseName;
 
             if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
 
                 $CalEmailList = explode(',', $this->user->house->CalEmailList);
 
-                if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+                if (count($CalEmailList) > 0 && !empty($CalEmailList) && $this->isCreating) {
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
                     foreach ($users as $user) {
-                        $user->notify(new CalendarEmailNotification($items,$this->user, $createdHouseName, $startDate, $endDate));
+                        $user->notify(new CalendarEmailNotification($vacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate));
                     }
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new CalendarEmailNotification($items,$this->user, $createdHouseName, $startDate, $endDate));
+                            ->notify(new CalendarEmailNotification($vacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate));
                     }
+                }
+                elseif (count($CalEmailList) > 0 && !empty($CalEmailList) && !$this->isCreating){
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                    foreach ($users as $user) {
+                        $user->notify(new UpdateCalendarEmailNotification($currentUser,$vacName,$this->originalVacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate,$this->originalVacStartDate,$this->originalVacEndDate));
+                    }
+                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+                    if (count($CalEmailList) > 0) {
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new UpdateCalendarEmailNotification($currentUser,$vacName,$this->originalVacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate,$this->originalVacStartDate,$this->originalVacEndDate));
+                    }
+                }
+            }
 
+            if ($vac_owner->role === 'Owner' && $this->isCreating){
+                $owner_name = $vac_owner->first_name . ' ' . $vac_owner->last_name;
+                if (!is_null($this->user->house->vacation_approval_email_list) && !empty($this->user->house->vacation_approval_email_list)) {
+
+                    $CalEmailList = explode(',', $this->user->house->vacation_approval_email_list);
+
+                    if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+                        $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                        foreach ($users as $user) {
+                            $user->notify(new RequestToApproveVacationEmailNotification($vacName,$ccList,$owner_name,$vac_owner->email, $createdHouseName, $vacStartDate, $vacEndDate));
+                        }
+                        $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+                        if (count($CalEmailList) > 0) {
+                            Notification::route('mail', $CalEmailList)
+                                ->notify(new RequestToApproveVacationEmailNotification($vacName,$ccList,$owner_name,$vac_owner->email, $createdHouseName, $vacStartDate, $vacEndDate));
+                        }
+
+                    }
                 }
             }
 

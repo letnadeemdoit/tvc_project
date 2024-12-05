@@ -8,11 +8,14 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class PhotoAlbumNotification extends Notification implements ShouldQueue
+//class PhotoAlbumNotification extends Notification implements ShouldQueue
+class PhotoAlbumNotification extends Notification
 {
     use Queueable;
+    public $ccList;
     public $items;
-    public $isAction;
+    public $user;
+    public $siteUrl;
     public $createdHouseName;
 
     /**
@@ -20,10 +23,12 @@ class PhotoAlbumNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($items,$isAction,$createdHouseName)
+    public function __construct($ccList,$items,$user,$siteUrl,$createdHouseName)
     {
+        $this->ccList = $ccList;
         $this->items = $items;
-        $this->isAction = $isAction;
+        $this->user = $user;
+        $this->siteUrl = $siteUrl;
         $this->createdHouseName = $createdHouseName;
     }
 
@@ -47,11 +52,14 @@ class PhotoAlbumNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Photo')
-            ->line(new HtmlString(
-                '<strong> A new Photo  </strong>'.
-                '  has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
-            ));
+            ->subject('New Picture added to ' . $this->createdHouseName . ' ')
+            ->cc($this->ccList) // Add CC recipients
+            ->view('emails.new_picture_in_album_email_notification', [
+                'items' => $this->items,
+                'siteUrl' => $this->siteUrl,
+                'user' => $this->user,
+                'createdHouseName' => $this->createdHouseName,
+            ]);
     }
 
     /**
@@ -63,9 +71,10 @@ class PhotoAlbumNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'Name' => 'Photo',
-            'isAction' => $this->isAction,
-            'house_name' => $this->createdHouseName,
+            'items' => $this->items,
+            'siteUrl' => $this->siteUrl,
+            'user' => $this->user,
+            'createdHouseName' => $this->createdHouseName,
         ];
     }
 }

@@ -21,22 +21,22 @@
                 <span class="form-text">Use this option to send out a notification email anytime that a vacation is inserted, updated or deleted from the calendar.</span>
             </div>
         </div>
-{{--        <div class="row mb-4">--}}
-{{--            <label class="col-sm-3 col-form-label form-label" for="vacation_approval_email_list">Vacation approval distribution list:</label>--}}
-{{--            <div class="col-sm-9">--}}
-{{--            <textarea--}}
-{{--                id="vacation_approval_email_list"--}}
-{{--                class="form-control @error('vacation_approval_email_list') is-invalid @enderror"--}}
-{{--                placeholder="Separate multiple emails by comma, leave blank for no notification"--}}
-{{--                rows="4"--}}
-{{--                wire:model.defer="state.vacation_approval_email_list"--}}
-{{--            ></textarea>--}}
-{{--                @error('vacation_approval_email_list')--}}
-{{--                <span class="invalid-feedback">{{ $message }}</span>--}}
-{{--                @enderror--}}
-{{--                <span class="form-text">Use this option to send out a notification email when Scheduler or Guest Vacation approved or disapproved.</span>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div class="row mb-4">
+            <label class="col-sm-3 col-form-label form-label" for="vacation_approval_email_list">Vacation approval distribution list:</label>
+            <div class="col-sm-9">
+            <textarea
+                id="vacation_approval_email_list"
+                class="form-control @error('vacation_approval_email_list') is-invalid @enderror"
+                placeholder="Separate multiple emails by comma, leave blank for no notification"
+                rows="4"
+                wire:model.defer="state.vacation_approval_email_list"
+            ></textarea>
+                @error('vacation_approval_email_list')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="form-text">Use this option to send out a notification email when Scheduler or Guest Vacation approved or disapproved.</span>
+            </div>
+        </div>
         <div class="row mb-4">
             <label class="col-sm-3 col-form-label form-label" for="request_to_use_house_email_list">Request to Use House distribution list:</label>
             <div class="col-sm-9">

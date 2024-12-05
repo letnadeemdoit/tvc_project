@@ -8,12 +8,13 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class BlogNotification extends Notification implements ShouldQueue
+class BlogNotification extends Notification
 {
     use Queueable;
     public $items;
+    public $ccList;
     public $blogUrl;
-    public $isAction;
+    public $user;
     public $createdHouseName;
 
     /**
@@ -21,11 +22,12 @@ class BlogNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($items,$blogUrl,$isAction,$createdHouseName)
+    public function __construct($ccList,$items,$blogUrl,$user,$createdHouseName)
     {
+        $this->ccList = $ccList;
         $this->items = $items;
         $this->blogUrl = $blogUrl;
-        $this->isAction = $isAction;
+        $this->user = $user;
         $this->createdHouseName = $createdHouseName;
     }
 
@@ -48,22 +50,15 @@ class BlogNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = $this->blogUrl;
         return (new MailMessage)
-
-            ->greeting('Blog')
-            ->line(new HtmlString(
-                '<strong>' . $this->items->Subject . ' </strong>'.
-                ' Blog has been <strong>' . $this->isAction . '  </strong> for house <strong>'. $this->createdHouseName .' </strong>'
-            ))
-            ->action('click to check blog', $url);
-
-//            ->greeting('Blog!')
-//            ->line(new HtmlString(
-//                'New Blog <strong>' . $this->items->Subject.'</strong>'.
-//                '  has been added for the vacation house ' . '<strong>'. $this->createdHouseName .' </strong>'
-//            ))
-//            ->action('click to check blog', $url);
+            ->subject(' New Blog entry added to ' . $this->createdHouseName . ' ')
+            ->cc($this->ccList) // Add CC recipients
+            ->view('emails.blog_email_notification', [
+                'items' => $this->items,
+                'blogUrl' => $this->blogUrl,
+                'user' => $this->user,
+                'createdHouseName' => $this->createdHouseName,
+            ]);
     }
 
     /**
@@ -75,11 +70,10 @@ class BlogNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'Name' => $this->items->Subject,
-            'house_name' => $this->createdHouseName,
-            'isModal' => 'Blog',
-            'isAction' => $this->isAction,
-            'slug' => $this->blogUrl,
+            'items' => $this->items,
+            'blogUrl' => $this->blogUrl,
+            'user' => $this->user,
+            'createdHouseName' => $this->createdHouseName,
         ];
     }
 }

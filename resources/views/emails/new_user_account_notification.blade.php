@@ -1,0 +1,549 @@
+<x-email-layout>
+    @push('stylesheets')
+        <style>
+            .body-text {
+                font-size: 16px;
+                line-height: 25px;
+                color: #2A3342;
+                font-family: Poppins, sans-serif;
+            }
+
+
+            .body-address-box {
+                border: 1px solid #E8604C;
+                border-radius: 10px;
+                width: 400px;
+                margin: 20px auto;
+                padding: 12px 14px;
+            }
+
+            .address-table {
+                width: 100%; /* Make the table fill the container */
+                border-collapse: collapse; /* Remove extra spacing between cells */
+                font-family: Poppins, sans-serif;
+            }
+
+            .address-table td {
+                padding: 6px 0; /* Add spacing between rows */
+                color: #6D6D6D;
+                font-family: Poppins, sans-serif;
+                font-size: 16px;
+                line-height: 25px;
+            }
+
+            .body-text-color {
+                color: #2A3342;
+                text-decoration: none;
+                font-weight: 600;
+                font-family: Poppins, sans-serif;
+            }
+
+            .email-text-color {
+                color: #E8604C !important; /* Force the color to override other styles */
+                font-weight: 600;
+                font-family: Poppins, sans-serif;
+            }
+
+            .email-text-color a {
+                color: #E8604C !important; /* Force the color to override other styles */
+                font-weight: 600;
+                font-family: Poppins, sans-serif;
+            }
+
+
+            @media (max-width: 500px) {
+                .body-address-box {
+                    width: auto;
+                }
+            }
+        </style>
+    @endpush
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+        font-size: 22px;
+        color: #ffffff;
+        font-family: Poppins, sans-serif;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
+        background-color: #E8604C;
+        width: 100%; /* Ensures full width */
+      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td style="padding: 20px;">
+                    <span
+                        style="
+                        margin: 0;
+                        text-decoration: none;
+                        font-family: Poppins, sans-serif;
+                        font-size: 22px;
+                        font-style: normal;
+                        color: #ffffff;
+                      "
+                    >
+                    Welcome to
+                </span>
+                <a
+                    href="https://www.TheVacationCalendar.com"
+                    style="
+                        margin: 0;
+                        text-decoration: none;
+                        font-family: Poppins, sans-serif;
+                        font-size: 22px;
+                        font-style: normal;
+                        color: #ffffff;
+                      "
+                >
+                    TheVacationCalendar.com
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p class="body-text">Dear {{ $firstName. ' ' . $lastName }},</p>
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td
+                style="vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                     Welcome to
+                    </span>
+                <a
+                    href="https://TheVacationCalendar.com"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                line-height: 14px;
+                                font-weight: 600;
+                                color: #E8604C;
+                              "
+                >
+                    TheVacationCalendar.com
+                </a>
+                <span
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                    ! We’re excited to have you as part of our community of vacation homeowners.
+        By joining, you’ve taken a significant step toward simplifying your property management and ensuring that you not only maximize the potential
+        of your home but also capture and share all the wonderful memories it creates.
+                    </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td
+                style="vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                     To get started, <strong>log in</strong> to your account by visiting
+                    </span>
+                <a
+                    href="https://TheVacationCalendar.com"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                line-height: 14px;
+                                font-weight: 600;
+                                color: #E8604C;
+                              "
+                >
+                    TheVacationCalendar.com
+                </a>
+                <span
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                     Click <strong>Login</strong> at the top right of the page, then search for your house using the <strong>House
+            Name</strong>. Once your house appears, select it and click the <strong>Administrator & Scheduler</strong>
+        button to access the appropriate login page. Enter your email address (or username) and password (provided
+        below) to access the home.
+                    </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td
+                style="vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                     Alternatively, you can go directly to your house using
+                    </span>
+                <a
+                    href="https://TheVacationCalendar.com"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                line-height: 14px;
+                                font-weight: 600;
+                                color: #E8604C;
+                              "
+                >
+                    this link
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td
+                style="vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                    Pro Tip: Bookmark
+                    </span>
+                <a
+                    href="https://TheVacationCalendar.com"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                line-height: 14px;
+                                color: #E8604C;
+                                font-weight: 600;
+                              "
+                >
+                    this link
+                </a>
+                <span
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                    above to your favorites and you can jump to the correct login page with one click from your browser's favorites.
+                    </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- House Info Section -->
+
+
+    <!-- House Info Section -->
+    <div class="body-address-box">
+        <table class="address-table" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>House Name:<span class="body-text-color">{{$houseName}}</span></td>
+            </tr>
+            <tr>
+                <td>Email Address:<span class="email-text-color">{{$email}}</span></td>
+            </tr>
+            <tr>
+                <td>Username:<span class="body-text-color">{{$userName}}</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Help Section -->
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td
+                style="vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                    We are here to help. Please check out our
+                    </span>
+                <a
+                    href="https://youtube.com/playlist?list=PLxQfh1gnJa77a5kzRzEXjhOGmsbLfHGO3&si=JLIS4if_lM6palpM"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                line-height: 14px;
+                                color: #E8604C;
+                                font-weight: 600;
+                              "
+                >
+                    YouTube channel of training videos
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <!-- Thank You Section -->
+    <p class="body-text">
+        Thank you for choosing us to help manage your vacation home. We’re excited to partner with you on this journey!
+    </p>
+
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td
+                style="vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                    Thank you for using
+                    </span>
+            </td>
+            <!-- Text Cell -->
+            <td style="padding-left: 4px;  vertical-align: middle">
+                <a
+                    href="https://www.TheVacationCalendar.com"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                line-height: 14px;
+                                color: #2A3342;
+                              "
+                >
+                    TheVacationCalendar.com
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td style="padding: 0; vertical-align: middle">
+                <a
+                    href="https://www.TheVacationCalendar.com"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 600;
+                                color: #E8604C;
+                              "
+                >
+                    TheVacationCalendar.com
+                </a>
+            </td>
+            <td
+                style="padding-left: 4px; vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              "
+                    >
+                    Team
+                    </span>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</x-email-layout>
