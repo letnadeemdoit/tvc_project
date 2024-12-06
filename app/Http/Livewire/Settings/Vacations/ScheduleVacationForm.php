@@ -670,6 +670,9 @@ class ScheduleVacationForm extends Component
                     }
                 }
                 elseif (count($CalEmailList) > 0 && !empty($CalEmailList) && !$this->isCreating){
+                    if ($this->user) {
+                        $ccList[] = $this->user->email;
+                    }
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
                     foreach ($users as $user) {
                         $user->notify(new UpdateCalendarEmailNotification($currentUser,$vacName,$this->originalVacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate,$this->originalVacStartDate,$this->originalVacEndDate));

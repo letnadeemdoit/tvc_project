@@ -128,12 +128,12 @@ class PhotosList extends Component
 
         $album = Album::where('id', $data['album_id'])->first();
 
-        $object = (object) $data;
 
         $dataObject = null;
-        if ($object->path){
-            $dataObject = $object->getFileUrl('path');
-        }
+//        $object = (object) $data;
+//        if ($object->path){
+//            $dataObject = $object->getFileUrl('path');
+//        }
 
         try {
 //            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();

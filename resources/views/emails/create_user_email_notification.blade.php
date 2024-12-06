@@ -387,7 +387,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Email Address:<span class="email-text-color">{{$createUser->email}}</span></td>
+                <td>Email:<span class="email-text-color">{{$createUser->email}}</span></td>
             </tr>
             <tr>
                 <td>Username:<span class="body-text-color">{{$createUser->user_name}}</span></td>

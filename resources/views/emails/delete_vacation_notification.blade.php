@@ -117,7 +117,7 @@
             </tr>
             <tr>
                 <td>
-                    Created By:
+                    Deleted By:
                     <span class="body-text-color">
                     {{ $user->first_name. ' ' . $user->last_name }}
                         </span>

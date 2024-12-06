@@ -108,7 +108,7 @@
             </tr>
             <tr>
                 <td>
-                    Created By:
+                    Requested By:
                     <span class="body-text-color">
                     {{ $name }}
                         </span>

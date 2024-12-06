@@ -1,56 +1,50 @@
 <x-email-layout>
     @push('stylesheets')
         <style>
-            .template-header-bg {
-                background-color: #E8604C;
-            }
-            .header-heading h2{
-                padding: 15px 25px;
-                font-size: 22px;
-                color: #ffffff;
-            }
-            p {
-                line-height: 22px;
-            }
-
             .body-text {
                 font-size: 16px;
                 line-height: 25px;
-            }
-
-            .template-border-color {
-                border-color: #E8604C !important;
+                color: #2A3342;
+                font-family: Poppins, sans-serif;
             }
 
             .body-address-box {
                 border: 1px solid #E8604C;
                 border-radius: 10px;
-                width: 330px;
-                margin: 20px auto 20px auto;
-            }
-            .body-address-box ul {
+                width: 400px;
+                margin: 20px auto;
                 padding: 12px 14px;
-                margin: 0;
-            }
-            .body-address-box ul li {
-                list-style: none;
-                color: #6D6D6D;
             }
 
-            .body-address-box ul li:not(:last-child) {
-                margin-bottom: 10px;
+            .address-table {
+                width: 100%; /* Make the table fill the container */
+                border-collapse: collapse; /* Remove extra spacing between cells */
+                font-family: Poppins, sans-serif;
+            }
+
+            .address-table td {
+                padding: 6px 0; /* Add spacing between rows */
+                color: #6D6D6D;
+                font-family: Poppins, sans-serif;
+                font-size: 16px;
+                line-height: 25px;
             }
 
             .body-text-color {
                 color: #2A3342;
-            }
-
-            .template-body-link-color {
-                color: #E8604C;
+                text-decoration: none;
                 font-weight: 600;
+                font-family: Poppins, sans-serif;
             }
-            .font-weight-bold {
-                font-weight: 700;
+            .email-text-color {
+                color: #2A3342 !important; /* Force the color to override other styles */
+                font-weight: 600;
+                font-family: Poppins, sans-serif;
+            }
+            .email-text-color a{
+                color: #2A3342 !important; /* Force the color to override other styles */
+                font-weight: 600;
+                font-family: Poppins, sans-serif;
             }
 
             @media (max-width: 500px) {
@@ -58,34 +52,185 @@
                     width: auto;
                 }
             }
+
         </style>
     @endpush
 
-    <div class="header-heading">
-        <h2 class="template-header-bg">{{$vacName}} at {{$houseName}} was Denied</h2>
-    </div>
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+        font-size: 22px;
+        color: #ffffff;
+        font-family: Poppins, sans-serif;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
+        background-color: #E8604C;
+        width: 100%;
+      "
+    >
+        <tbody>
+        <tr>
+            <td style="padding: 20px;">
+                    <span
+                        style="
+                        margin: 0;
+                        text-decoration: none;
+                        font-family: Poppins, sans-serif;
+                        font-size: 22px;
+                        font-style: normal;
+                        color: #ffffff;
+                      "
+                    >
+                    {{$vacName}} at {{$houseName}} was Denied
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
     <p class="body-text">
         {{$name}}
     </p>
-
     <p class="body-text">
         Your vacation request has been denied at {{$houseName}}.
     </p>
-
     <!-- House Info Section -->
     <div class="body-address-box">
-        <ul>
-            <li>Vacation Name: <span class="body-text-color">{{$vacName}}</span></li>
-            <li>Vacation Dates: <span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></li>
-            <li>Denied By: <span class="body-text-color">{{$admin->first_name . ' ' . $admin->last_name}} ({{$admin->email}})</span></li>
-            {{--            <li>Email Address: <a href="mailto:simon.storm@gmail.com" class="template-body-link-color fw-bold">{{$user->email}}</a></li>--}}
-            {{--            <li>Username: <span class="body-text-color">{{ $user->first_name. ' ' . $user->last_name }}</span></li>--}}
-        </ul>
+        <table class="address-table" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>Vacation Name:<span class="body-text-color">{{$vacName}}</span></td>
+            </tr>
+            <tr>
+                <td>Vacation Dates:<span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>
+            </tr>
+            <tr>
+                <td>
+                    Created By:
+                    <span class="body-text-color">
+                    {{$admin->first_name . ' ' . $admin->last_name}}
+                        </span>
+                    (<span class="email-text-color">{{$admin->email}}</span>)
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <!-- Help Section -->
-    <p class="body-text">Thank you for using TheVacationCalendar.com!</p>
-    <!-- Signature Section -->
-    <p class="body-text"><a href="#" class="template-body-link-color fw-medium">TheVacationCalendar.com Team</a></p>
-    <!-- Rest of your content -->
+
+    <!-- Thank You Section -->
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td
+                style="vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              ">
+                    Thank you for using
+                    </span>
+            </td>
+            <!-- Text Cell -->
+            <td style="padding-left: 4px;  vertical-align: middle">
+                <a
+                    href="https://www.TheVacationCalendar.com"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                line-height: 14px;
+                                color: #2A3342;
+                              "
+                >
+                    TheVacationCalendar.com
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+                        font-family: Poppins, sans-serif;
+                        line-height: 1.2;
+                        font-size: 16px;
+                        padding: 0;
+                        margin: 0;
+                        margin-top: 10px;
+                        border-spacing: 0;
+                        border-collapse: collapse;
+                      "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td style="padding: 0; vertical-align: middle">
+                <a
+                    href="https://www.TheVacationCalendar.com"
+                    style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 600;
+                                color: #E8604C;
+                              "
+                >
+                    TheVacationCalendar.com
+                </a>
+            </td>
+            <td
+                style="padding-left: 4px; vertical-align: middle"
+            >
+                    <span
+                        style="
+                                margin: 0;
+                                text-decoration: none;
+                                font-family: Poppins, sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                color: #2A3342;
+                              "
+                    >
+                    Team
+                    </span>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
 </x-email-layout>
