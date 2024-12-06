@@ -27,6 +27,8 @@ class CreateOrUpdateUserForm extends Component
 
     public ?User $user;
 
+    public $siteUrl;
+
     public $new_houseid = null;
 
     public $current_houses = null;
@@ -301,7 +303,13 @@ class CreateOrUpdateUserForm extends Component
                 $stateHouseId = $this->state['house_id'];
             }
 
-            $houseName = House::where('HouseID', $stateHouseId ?? $this->user->HouseId)->value('HouseName');
+            $house = House::where('HouseID', $stateHouseId ?? $this->user->HouseId)->first();
+
+            $houseName = $house->HouseName;
+            $houseId = $house->HouseID;
+
+            $this->siteUrl = route('login', ['houseId' => $houseId]);
+
 
             $createUser = $newUser;
 
@@ -310,7 +318,7 @@ class CreateOrUpdateUserForm extends Component
                     if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
 
                         Notification::route('mail', $createUser['email'])
-                            ->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
+                            ->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName,$this->siteUrl));
 
 //                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
                     }
@@ -342,13 +350,20 @@ class CreateOrUpdateUserForm extends Component
 
             $createUser = $this->userCU;
 
-            $houseName = House::where('HouseID', $stateHouseId ?? $this->user->HouseId)->value('HouseName');
+            $house = House::where('HouseID', $stateHouseId ?? $this->user->HouseId)->first();
+
+            $houseName = $house->HouseName;
+            $houseId = $house->HouseID;
+
+            $this->siteUrl = route('login', ['houseId' => $houseId]);
+
+
 
             try {
                 if (isset($this->state['send_email']) && $this->state['send_email'] == 1) {
                     if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
                         Notification::route('mail', $createUser['email'])
-                            ->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
+                            ->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName,$this->siteUrl));
 //                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
                     }
                 }

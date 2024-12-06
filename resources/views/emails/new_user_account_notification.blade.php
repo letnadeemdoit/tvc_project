@@ -277,7 +277,7 @@
                      Alternatively, you can go directly to your house using
                     </span>
                 <a
-                    href="https://TheVacationCalendar.com"
+                    href="{{$siteUrl}}"
                     style="
                                 margin: 0;
                                 text-decoration: none;
@@ -329,7 +329,7 @@
                     Pro Tip: Bookmark
                     </span>
                 <a
-                    href="https://TheVacationCalendar.com"
+                    href="{{$siteUrl}}"
                     style="
                                 margin: 0;
                                 text-decoration: none;

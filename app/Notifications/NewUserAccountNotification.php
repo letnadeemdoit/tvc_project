@@ -16,6 +16,7 @@ class NewUserAccountNotification extends Notification
     public $userName;
     public $email;
     public $houseName;
+    public $siteUrl;
 
 
     /**
@@ -23,13 +24,14 @@ class NewUserAccountNotification extends Notification
      *
      * @return void
      */
-    public function __construct($firstName,$lastName,$userName, $email,$houseName)
+    public function __construct($firstName,$lastName,$userName, $email,$houseName,$siteUrl)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->userName = $userName;
         $this->email = $email;
         $this->houseName = $houseName;
+        $this->siteUrl = $siteUrl;
     }
 
     /**
@@ -60,7 +62,8 @@ class NewUserAccountNotification extends Notification
                 'lastName' => $this->lastName,
                 'userName' => $this->userName,
                 'email' => $this->email,
-                'houseName' => $this->houseName
+                'houseName' => $this->houseName,
+                'siteUrl' => $this->siteUrl
             ]);
     }
     /**
@@ -75,7 +78,8 @@ class NewUserAccountNotification extends Notification
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'email' => $this->email,
-            'houseName' => $this->houseName
+            'houseName' => $this->houseName,
+            'siteUrl' => $this->siteUrl
         ];
     }
 }

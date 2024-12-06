@@ -19,6 +19,9 @@ class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
 
+    public $siteUrl;
+
+
     /**
      * Validate and create a newly registered user.
      *
@@ -97,6 +100,7 @@ class CreateNewUser implements CreatesNewUsers
 
         }
 
+        $this->siteUrl = route('login', ['houseId' => $getCreatedHouseId->HouseID]);
 
         try {
             $firstName = $input['first_name'];
@@ -105,7 +109,7 @@ class CreateNewUser implements CreatesNewUsers
             $email = $input['email'];
             $houseName = $input['HouseName'];
             Notification::route('mail', $input['email'])
-                ->notify(new NewUserAccountNotification($firstName,$lastName, $userName,$email,$houseName));
+                ->notify(new NewUserAccountNotification($firstName,$lastName, $userName,$email,$houseName,$this->siteUrl));
 
         } catch (Exception $e) {
 

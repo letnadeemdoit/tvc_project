@@ -117,7 +117,7 @@
                             <tr>
                                 <td style="padding-right: 14px">
                                     <a
-                                        href="#"
+                                        href="https://www.facebook.com/thevacationcalendar"
                                         style="
                                 margin: 0;
                                 text-decoration: none;
@@ -135,7 +135,7 @@
                                 </td>
                                 <td style="padding-right: 14px">
                                     <a
-                                        href="#"
+                                        href="https://www.youtube.com/channel/UCXxQTnfwdvMX-Yb30X-WpYQ"
                                         style="
                                 margin: 0;
                                 text-decoration: none;
@@ -153,7 +153,7 @@
                                 </td>
                                 <td style="padding-right: 14px">
                                     <a
-                                        href="#"
+                                        href="https://www.instagram.com/thevacationcalendar/"
                                         style="
                                 margin: 0;
                                 text-decoration: none;
@@ -171,7 +171,7 @@
                                 </td>
                                 <td style="padding-right: 1px">
                                     <a
-                                        href="#"
+                                        href="https://twitter.com/TheVacationCal"
                                         style="
                                 margin: 0;
                                 text-decoration: none;

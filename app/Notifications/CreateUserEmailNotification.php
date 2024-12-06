@@ -14,17 +14,19 @@ class CreateUserEmailNotification extends Notification
     public $createUser;
     public $sendPasswordToMail;
     public $houseName;
+    public $siteUrl;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($createUser,$sendPasswordToMail,$houseName)
+    public function __construct($createUser,$sendPasswordToMail,$houseName,$siteUrl)
     {
         $this->createUser =$createUser;
         $this->sendPasswordToMail =$sendPasswordToMail;
         $this->houseName =$houseName;
+        $this->siteUrl =$siteUrl;
     }
 
     /**
@@ -54,7 +56,8 @@ class CreateUserEmailNotification extends Notification
             ->view('emails.create_user_email_notification', [
                 'createUser' => $this->createUser,
                 'sendPasswordToMail' => $this->sendPasswordToMail,
-                'houseName' => $this->houseName
+                'houseName' => $this->houseName,
+                'siteUrl' => $this->siteUrl
             ]);
     }
 
@@ -70,6 +73,7 @@ class CreateUserEmailNotification extends Notification
             'createUser' => $this->createUser,
             'sendPasswordToMail' => $this->sendPasswordToMail,
             'houseName' => $this->houseName,
+            'siteUrl' => $this->siteUrl,
         ];
     }
 }

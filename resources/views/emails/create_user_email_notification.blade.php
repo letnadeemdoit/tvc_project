@@ -243,7 +243,7 @@
                     Once your house appears, select it and click the <strong>Administrator & Scheduler</strong>
         button to access the appropriate login page. Enter your email address (or username) and password (provided
         below) to access the home.
-                    </span>
+                </span>
             </td>
         </tr>
         </tbody>
@@ -283,7 +283,7 @@
                      Alternatively, you can go directly to your house using
                     </span>
                 <a
-                    href="https://TheVacationCalendar.com"
+                    href="{{$siteUrl}}"
                     style="
                                 margin: 0;
                                 text-decoration: none;
@@ -335,7 +335,7 @@
                     Pro Tip: Bookmark
                     </span>
                 <a
-                    href="https://TheVacationCalendar.com"
+                    href="{{$siteUrl}}"
                     style="
                                 margin: 0;
                                 text-decoration: none;
