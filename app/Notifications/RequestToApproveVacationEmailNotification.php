@@ -15,6 +15,7 @@ class RequestToApproveVacationEmailNotification extends Notification
     public $ccList;
     public $name;
     public $email;
+    public $siteUrl;
     public $createdHouseName;
     public $startDate;
     public $endDate;
@@ -24,9 +25,10 @@ class RequestToApproveVacationEmailNotification extends Notification
      *
      * @return void
      */
-    public function __construct($vacName,$ccList,$name,$email,$createdHouseName,$startDate,$endDate)
+    public function __construct($vacName,$siteUrl,$ccList,$name,$email,$createdHouseName,$startDate,$endDate)
     {
         $this->vacName = $vacName;
+        $this->siteUrl = $siteUrl;
         $this->ccList = $ccList;
         $this->name = $name;
         $this->email = $email;
@@ -62,6 +64,7 @@ class RequestToApproveVacationEmailNotification extends Notification
             ->cc($this->ccList) // Add CC recipients
             ->view('emails.request_to_approve_vacation_email_notification', [
                 'vacName' => $this->vacName,
+                'siteUrl' => $this->siteUrl,
                 'name' => $this->name,
                 'email' => $this->email,
                 'createdHouseName' => $this->createdHouseName,
@@ -81,6 +84,7 @@ class RequestToApproveVacationEmailNotification extends Notification
     {
         return [
             'vacName' => $this->vacName,
+            'siteUrl' => $this->siteUrl,
             'name' => $this->name,
             'email' => $this->email,
             'createdHouseName' => $this->createdHouseName,

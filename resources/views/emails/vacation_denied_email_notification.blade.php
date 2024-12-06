@@ -111,7 +111,7 @@
             </tr>
             <tr>
                 <td>
-                    Created By:
+                    Denied By:
                     <span class="body-text-color">
                     {{$admin->first_name . ' ' . $admin->last_name}}
                         </span>

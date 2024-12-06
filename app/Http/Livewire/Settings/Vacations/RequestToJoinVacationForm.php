@@ -39,6 +39,8 @@ class RequestToJoinVacationForm extends Component
 
     public $calendarSetting = null;
 
+    public $siteUrl = null;
+
     public $isGuestScheduleVacation = false;
     public $isEnableScheduleWindow = false;
     public $defaultStartDate = null;
@@ -366,17 +368,19 @@ class RequestToJoinVacationForm extends Component
 
             if (!is_null($this->user->house->vacation_approval_email_list) && !empty($this->user->house->vacation_approval_email_list)) {
 
+                $this->siteUrl = route('dash.settings.vacation-request-approval');
+
                 $CalEmailList = explode(',', $this->user->house->vacation_approval_email_list);
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
                     foreach ($users as $user) {
-                        $user->notify(new RequestToApproveVacationEmailNotification($vacName,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
+                        $user->notify(new RequestToApproveVacationEmailNotification($vacName,$this->siteUrl,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
                     }
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new RequestToApproveVacationEmailNotification($vacName,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
+                            ->notify(new RequestToApproveVacationEmailNotification($vacName,$this->siteUrl,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
                     }
 
                 }

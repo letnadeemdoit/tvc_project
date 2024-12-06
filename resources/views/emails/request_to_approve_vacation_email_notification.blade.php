@@ -125,7 +125,7 @@
             <!-- Image Cell -->
             <td style="padding: 0; vertical-align: middle; text-align: center;">
                 <a
-                    href="https://TheVacationCalendar.com"
+                    href="{{$siteUrl}}"
                     style="
                 margin: 0;
                 text-decoration: none;
