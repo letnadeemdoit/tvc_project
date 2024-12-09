@@ -137,6 +137,44 @@
         </tbody>
     </table>
 
+    <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        style="
+    font-family: Poppins, sans-serif;
+    line-height: 1.2;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+  "
+    >
+        <tbody>
+        <tr>
+            <!-- Image Cell -->
+            <td style="padding: 0; vertical-align: middle; text-align: center;">
+                <img
+                    src="{{$items}}"
+                    alt="Deleted Image"
+                    style="
+                    display: block;
+                    margin: 0 auto;
+                    width: 300px; /* Set desired width */
+                    height: 200px; /* Set desired height */
+                    object-fit: cover; /* Ensures the image fits within specified dimensions */
+                    border-radius: 8px; /* Optional: Add rounded corners */
+                "
+                />
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
 
 
     <!-- Thank You Section -->

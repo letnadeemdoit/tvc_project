@@ -130,10 +130,12 @@ class PhotosList extends Component
 
 
         $dataObject = null;
-//        $object = (object) $data;
-//        if ($object->path){
-//            $dataObject = $object->getFileUrl('path');
-//        }
+        $photo = Photo::where('PhotoId', $data['PhotoId'])->first();
+
+        if ($photo && $photo->path){
+            $dataObject = $photo->getFileUrl('path');
+        }
+
 
         try {
 //            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
