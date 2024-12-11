@@ -30,6 +30,14 @@
                 line-height: 25px;
             }
 
+            .address-table .key-column {
+                width: 35%; /* Set the width of the key column */
+            }
+
+            .address-table .value-column {
+                width: 65%; /* Set the width of the value column */
+            }
+
             .body-text-color {
                 color: #2A3342;
                 text-decoration: none;
@@ -97,21 +105,47 @@
         A new vacation has been added to the {{$createdHouseName}} calendar.
     </p>
     <!-- House Info Section -->
+{{--        <div class="body-address-box">--}}
+{{--            <table class="address-table" cellpadding="0" cellspacing="0">--}}
+{{--                <tbody>--}}
+{{--                <tr>--}}
+{{--                    <td>Vacation Name:</td>--}}
+{{--                    <td><span class="body-text-color">{{$vacName}}</span></td>--}}
+{{--                </tr>--}}
+{{--                <tr>--}}
+{{--                    <td>Vacation Dates:</td>--}}
+{{--                    <td><span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>--}}
+{{--                </tr>--}}
+{{--                <tr>--}}
+{{--                    <td>Created By:</td>--}}
+{{--                    <td>--}}
+{{--                          <span class="body-text-color">--}}
+{{--                    {{ $user->first_name . ' ' . $user->last_name }}--}}
+{{--                        </span>--}}
+{{--                        (<span class="email-text-color">{{$user->email}}</span>)--}}
+{{--                    </td>--}}
+{{--                </tr>--}}
+{{--                </tbody>--}}
+{{--            </table>--}}
+{{--        </div>--}}
+
         <div class="body-address-box">
             <table class="address-table" cellpadding="0" cellspacing="0">
                 <tbody>
                 <tr>
-                    <td>Vacation Name:<span class="body-text-color">{{$vacName}}</span></td>
+                    <td class="key-column">Vacation Name:</td>
+                    <td class="value-column"><span class="body-text-color">{{$vacName}}</span></td>
                 </tr>
                 <tr>
-                    <td>Vacation Dates:<span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>
+                    <td class="key-column">Vacation Dates:</td>
+                    <td class="value-column"><span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>
                 </tr>
                 <tr>
-                    <td>
-                        Created By:
-                        <span class="body-text-color">
-                    {{ $user->first_name . ' ' . $user->last_name }}
-                        </span>
+                    <td class="key-column">Created By:</td>
+                    <td class="value-column">
+                    <span class="body-text-color">
+                        {{ $user->first_name . ' ' . $user->last_name }}
+                    </span>
                         (<span class="email-text-color">{{$user->email}}</span>)
                     </td>
                 </tr>

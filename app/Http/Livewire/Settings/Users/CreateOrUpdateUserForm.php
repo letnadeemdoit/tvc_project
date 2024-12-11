@@ -85,10 +85,18 @@ class CreateOrUpdateUserForm extends Component
                 $this->current_houses  = $user->pluck('HouseId')->toArray();
             }
             elseif ($userCU->role === 'Guest'){
+                $user = User::where('parent_id', $userCU->parent_id)->where('role', $userCU->role)->get();
+//                $this->state = [
+//                    'house_id' => $userCU->pluck('HouseId')->toArray(),
+//                ];
                 $this->state = [
-                    'house_id' => $userCU->HouseId,
+                    'user_name' => $userCU->user_name,
+                    'first_name' => $userCU->first_name,
+                    'last_name' => $userCU->last_name,
+                    'house_id' => $user->pluck('HouseId')->toArray(),
                     'role' => $userCU->role,
                 ];
+                $this->current_houses  = $user->pluck('HouseId')->toArray();
             }
 //            elseif ($userCU->role === 'Administrator') {
 //                $this->state = [
@@ -329,6 +337,80 @@ class CreateOrUpdateUserForm extends Component
 
 
         }
+        elseif (isset($this->state['house_id']) && is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && $this->isCreating && isset($this->state['role']) && $this->state['role'] === User::ROLE_GUEST) {
+            foreach ($this->state['house_id'] as $houseId) {
+                $newUser = new User();
+                $newUser->fill([
+                    ...$this->userCU->toArray() ?? [],
+                    'user_name' => $this->state['user_name'],
+                    'password' => $this->userCU->password ?? null,
+                    'email' => $this->state['email'] ?? null,
+                    'role' => $this->state['role'],
+                    'first_name' => $this->state['first_name'],
+                    'last_name' => $this->state['last_name'],
+                    'HouseId' => $houseId,
+                ])->save();
+
+                $house = House::where('HouseID', $houseId)->first();
+                $houseName = $house->HouseName;
+                $houseId = $house->HouseID;
+                $this->siteUrl = route('login', ['houseId' => $houseId]);
+
+                try {
+                    if (isset($this->state['send_email']) && $this->state['send_email'] == 1 && isset($sendPasswordToMail)) {
+                        Notification::route('mail', $newUser->email)
+                            ->notify(new CreateUserEmailNotification($newUser, $sendPasswordToMail, $houseName, $this->siteUrl));
+                    }
+                } catch (\Exception $e) {
+                    \Log::error('Error sending email to ' . $newUser->email . ': ' . $e->getMessage());
+                }
+            }
+        }
+        elseif (isset($this->state['house_id']) && is_array($this->state['house_id']) && count($this->state['house_id']) > 0 && !$this->isCreating && isset($this->state['role']) && $this->state['role'] === User::ROLE_GUEST) {
+            foreach ($this->state['house_id'] as $houseId) {
+                $user = User::where([
+                    'parent_id' => $this->userCU->parent_id,
+                    'HouseId' => $houseId,
+                ])
+                    ->where('role', $this->state['role'])
+                    ->first();
+
+                if (!$user) {
+                    $newUser = new User();
+
+                    // Exclude 'user_id' explicitly
+                    $userData = collect($this->userCU->toArray())
+                        ->except(['user_id'])
+                        ->merge([
+                            'user_name' => $this->state['user_name'],
+                            'password' => $this->userCU->password,
+                            'email' => $this->state['email'] ?? null,
+                            'role' => $this->state['role'],
+                            'first_name' => $this->state['first_name'],
+                            'last_name' => $this->state['last_name'],
+                            'HouseId' => $houseId,
+                        ])
+                        ->toArray();
+
+                    $newUser->fill($userData)->save();
+                }
+            }
+
+            // Remove users that are no longer associated with the selected house_id
+            $users = User::whereNotIn('HouseId', $this->state['house_id'])
+                ->where([
+                    'parent_id' => $this->userCU->parent_id,
+                ])
+                ->where('role', $this->state['role']) // Target Guest role specifically
+                ->get();
+
+            if ($users->isNotEmpty()) {
+                foreach ($users as $user) {
+                    $user->delete();
+                }
+            }
+        }
+
         else{
             if(is_array($this->state['house_id'])){
                 $stateHouseId = $this->state['house_id'][0];

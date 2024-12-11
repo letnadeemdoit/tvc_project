@@ -48,15 +48,16 @@ class UsersList extends Component
     }
 
     public function isConfirmed($toggle, User $user) {
-        $usersOwner = User::where('parent_id', $user->parent_id)->where('email', $user->email)->where('role', 'Owner')->get();
+//        $usersOwner = User::where('parent_id', $user->parent_id)->where('email', $user->email)->where('role', 'Owner')->get();
+        $usersOwner = User::where('parent_id', $user->parent_id)->where('email', $user->email)->where('role', $user->role)->get();
         if (count($usersOwner) > 0){
             foreach ($usersOwner as $owner){
                 $owner->update(['is_confirmed' => !!$toggle]);
             }
         }
-        else{
-            $user->update(['is_confirmed' => !!$toggle]);
-        }
+//        else{
+//            $user->update(['is_confirmed' => !!$toggle]);
+//        }
         $this->emitSelf('user-cu-successfully');
         $this->emitSelf('saved-' . $user->user_id);
     }
@@ -84,7 +85,12 @@ class UsersList extends Component
         $this->deletedUserId = $id;
         $deletedUser = User::where('user_id', $id)->first();
         $this->currentProperty = $deletedUser->house->HouseName;
-        $this->houseIds = User::where('email', $deletedUser->email)->where('role', $deletedUser->role)->get()->pluck('HouseId');
+        if ($deletedUser->role === 'Guest'){
+            $this->houseIds = User::where('parent_id', $deletedUser->parent_id)->where('role', $deletedUser->role)->get()->pluck('HouseId');
+        }
+        else{
+            $this->houseIds = User::where('email', $deletedUser->email)->where('role', $deletedUser->role)->get()->pluck('HouseId');
+        }
         if (count($this->houseIds) > 1){
 
             $this->isUserMultiplePropertiies = true;
@@ -94,7 +100,12 @@ class UsersList extends Component
     public function deleteCurrent(){
         if ($this->model) {
             $deletedUser = User::where('user_id', $this->deletedUserId)->first();
-            User::where('HouseId', $deletedUser->HouseId)->where('email', $deletedUser->email)->delete();
+            if ($deletedUser->role === 'Guest'){
+                User::where('HouseId', $deletedUser->HouseId)->where('email', $deletedUser->email)->where('parent_id', $deletedUser->parent_id)->delete();
+            }
+            else{
+                User::where('HouseId', $deletedUser->HouseId)->where('email', $deletedUser->email)->delete();
+            }
             $this->emitSelf('toggle', false);
             $this->emitSelf('user-cu-successfully');
             $this->dispatchBrowserEvent('confirm-deleted',['data' => null]);
@@ -105,7 +116,12 @@ class UsersList extends Component
     public function deleteAllProperties(){
         if ($this->model && count($this->houseIds) > 0) {
             $deletedUser = User::where('user_id', $this->deletedUserId)->first();
-            User::whereIn('HouseId', $this->houseIds)->where('email', $deletedUser->email)->delete();
+            if ($deletedUser->role === 'Guest'){
+                User::whereIn('HouseId', $this->houseIds)->where('email', $deletedUser->email)->where('parent_id', $deletedUser->parent_id)->delete();
+            }
+            else{
+                User::whereIn('HouseId', $this->houseIds)->where('email', $deletedUser->email)->delete();
+            }
             $this->emitSelf('toggle', false);
             $this->emitSelf('user-cu-successfully');
             $this->dispatchBrowserEvent('confirm-deleted',['data' => null]);
