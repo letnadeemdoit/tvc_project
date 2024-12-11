@@ -68,12 +68,9 @@
                 font-family: Poppins, sans-serif;
             }
 
-            @media (max-width: 700px) {
+            @media (max-width: 800px) {
                 .body-address-box {
                     width: auto;
-                }
-                .body-address-box {
-                    width: 80%;
                 }
             }
 
@@ -140,6 +137,7 @@
                      <span class="body-text-color">
                     {{ $user->first_name . ' ' . $user->last_name }}
                         </span>
+                    <br>
                     (<span class="email-text-color">{{$user->email}}</span>)
                 </td>
             </tr>
@@ -167,6 +165,7 @@
                   <span class="body-text-color">
                 {{ $user->first_name . ' ' . $user->last_name }}
                     </span>
+                    <br>
                     (<span class="email-text-color">{{$user->email}}</span>)
                 </td>
             </tr>
