@@ -11,7 +11,7 @@
             .body-address-box {
                 border: 1px solid #E8604C;
                 border-radius: 10px;
-                width: 400px;
+                width: 50%;
                 margin: 20px auto;
                 padding: 12px 14px;
             }
@@ -28,6 +28,14 @@
                 font-family: Poppins, sans-serif;
                 font-size: 16px;
                 line-height: 25px;
+            }
+
+            .address-table .key-column {
+                width: 25%; /* Set the width of the key column */
+            }
+
+            .address-table .value-column {
+                width: 75%; /* Set the width of the value column */
             }
 
             .body-text-color {
@@ -59,6 +67,9 @@
             @media (max-width: 500px) {
                 .body-address-box {
                     width: auto;
+                }
+                .address-table .value-column {
+                    padding-left: 8px !important;
                 }
             }
 
@@ -112,15 +123,17 @@
         <table class="address-table" cellpadding="0" cellspacing="0">
             <tbody>
             <tr>
-                <td>Vacation Name:<span class="body-text-color">{{$originalVacName}}</span></td>
+                <td class="key-column">Vacation Name:</td>
+                <td class="value-column"><span class="body-text-color">{{$originalVacName}}</span></td>
             </tr>
             <tr>
-                <td>Vacation Dates:<span class="body-text-color">{{$originalVacStartDate . ' to ' . $originalVacEndDate}}</span></td>
+                <td class="key-column">Vacation Dates:</td>
+                <td class="value-column"><span class="body-text-color">{{$originalVacStartDate . ' to ' . $originalVacEndDate}}</span></td>
             </tr>
             <tr>
-                <td>
-                    Created By:
-                    <span class="body-text-color">
+                <td class="key-column">Created By:</td>
+                <td class="value-column">
+                     <span class="body-text-color">
                     {{ $user->first_name . ' ' . $user->last_name }}
                         </span>
                     (<span class="email-text-color">{{$user->email}}</span>)

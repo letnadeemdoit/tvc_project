@@ -1,11 +1,6 @@
 <x-email-layout>
     @push('stylesheets')
         <style>
-
-            p {
-                line-height: 22px;
-            }
-
             .body-text {
                 font-size: 16px;
                 line-height: 25px;
@@ -41,6 +36,9 @@
             @media (max-width: 500px) {
                 .body-address-box {
                     width: auto;
+                }
+                .address-table .value-column {
+                    padding-left: 8px !important;
                 }
             }
         </style>

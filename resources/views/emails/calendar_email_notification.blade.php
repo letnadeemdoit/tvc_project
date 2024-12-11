@@ -11,9 +11,9 @@
             .body-address-box {
                 border: 1px solid #E8604C;
                 border-radius: 10px;
-                width: 400px;
+                width: 50%;
                 margin: 20px auto;
-                padding: 12px 14px;
+                padding: 20px 20px;
             }
 
             .address-table {
@@ -31,11 +31,11 @@
             }
 
             .address-table .key-column {
-                width: 35%; /* Set the width of the key column */
+                width: 25%; /* Set the width of the key column */
             }
 
             .address-table .value-column {
-                width: 65%; /* Set the width of the value column */
+                width: 75%; /* Set the width of the value column */
             }
 
             .body-text-color {
@@ -58,6 +58,9 @@
             @media (max-width: 500px) {
                 .body-address-box {
                     width: auto;
+                }
+                .address-table .value-column {
+                    padding-left: 8px !important;
                 }
             }
 
@@ -104,30 +107,6 @@
     <p class="body-text">
         A new vacation has been added to the {{$createdHouseName}} calendar.
     </p>
-    <!-- House Info Section -->
-{{--        <div class="body-address-box">--}}
-{{--            <table class="address-table" cellpadding="0" cellspacing="0">--}}
-{{--                <tbody>--}}
-{{--                <tr>--}}
-{{--                    <td>Vacation Name:</td>--}}
-{{--                    <td><span class="body-text-color">{{$vacName}}</span></td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <td>Vacation Dates:</td>--}}
-{{--                    <td><span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>--}}
-{{--                </tr>--}}
-{{--                <tr>--}}
-{{--                    <td>Created By:</td>--}}
-{{--                    <td>--}}
-{{--                          <span class="body-text-color">--}}
-{{--                    {{ $user->first_name . ' ' . $user->last_name }}--}}
-{{--                        </span>--}}
-{{--                        (<span class="email-text-color">{{$user->email}}</span>)--}}
-{{--                    </td>--}}
-{{--                </tr>--}}
-{{--                </tbody>--}}
-{{--            </table>--}}
-{{--        </div>--}}
 
         <div class="body-address-box">
             <table class="address-table" cellpadding="0" cellspacing="0">
