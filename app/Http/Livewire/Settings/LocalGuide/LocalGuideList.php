@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Settings\LocalGuide;
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\LocalGuide;
 use App\Models\LocalGuideCategory;
+use App\Notifications\DeleteLocalGuideEmailNotification;
 use App\Notifications\DeleteNotification;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
@@ -73,10 +74,18 @@ class LocalGuideList extends Component
     {
         $this->emitSelf('local-guide-cu-successfully');
 
-        $name = $data['title'];
-        $isAction = 'Deleted';
+        $title = $data['title'];
         $createdHouseName = $this->user->house->HouseName;
-        $isModel = 'Local Guide';
+
+        $owner = null;
+        if (!empty($data['user_id'])) {
+            $owner = User::where('user_id', $data['user_id'])->first();
+        }
+        $ccList = [];
+        if ($owner && $owner->email) {
+            $ccList[] = $owner->email;
+        }
+
 
         try {
 //            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
@@ -93,7 +102,7 @@ class LocalGuideList extends Component
                     $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                        $user->notify(new DeleteLocalGuideEmailNotification($ccList,$title,$this->user,$createdHouseName));
                     }
 
                     $localGuideEmailsList = array_diff($localGuideEmailsList, $users->pluck('email')->toArray());
@@ -101,7 +110,7 @@ class LocalGuideList extends Component
                     if (count($localGuideEmailsList) > 0) {
 
                         Notification::route('mail', $localGuideEmailsList)
-                            ->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                            ->notify(new DeleteLocalGuideEmailNotification($ccList,$title,$this->user,$createdHouseName));
 
                     }
                 }

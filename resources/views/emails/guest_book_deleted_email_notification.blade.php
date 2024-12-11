@@ -8,75 +8,6 @@
                 font-family: Poppins, sans-serif;
             }
 
-            .body-address-box {
-                border: 1px solid #E8604C;
-                border-radius: 10px;
-                width: 50%;
-                margin: 20px auto;
-                padding: 12px 14px;
-            }
-
-            .address-table {
-                width: 100%; /* Make the table fill the container */
-                border-collapse: collapse; /* Remove extra spacing between cells */
-                font-family: Poppins, sans-serif;
-            }
-
-            .address-table td {
-                padding: 6px 5px; /* Add spacing between rows */
-                color: #6D6D6D;
-                font-family: Poppins, sans-serif;
-                font-size: 16px;
-                line-height: 25px;
-            }
-
-            .address-table .key-column {
-                width: 25%; /* Set the width of the key column */
-            }
-
-            .address-table .value-column {
-                width: 75%; /* Set the width of the value column */
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-
-            .body-text-color {
-                color: #2A3342;
-                text-decoration: none;
-                font-weight: 600;
-                font-family: Poppins, sans-serif;
-            }
-            .email-text-color {
-                color: #2A3342 !important; /* Force the color to override other styles */
-                font-weight: 600;
-                font-family: Poppins, sans-serif;
-            }
-            .email-text-color a{
-                color: #2A3342 !important; /* Force the color to override other styles */
-                font-weight: 600;
-                font-family: Poppins, sans-serif;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-
-            .owner-email-text-color {
-                color: #2A3342 !important; /* Force the color to override other styles */
-                font-family: Poppins, sans-serif;
-            }
-            .owner-email-text-color a{
-                color: #2A3342 !important; /* Force the color to override other styles */
-                font-family: Poppins, sans-serif;
-            }
-
-            @media (max-width: 700px) {
-                .body-address-box {
-                    width: auto;
-                }
-                .body-address-box {
-                    width: 80%;
-                }
-            }
-
         </style>
     @endpush
 
@@ -110,7 +41,7 @@
                         color: #ffffff;
                       "
                     >
-                    Vacation updated on {{$createdHouseName}} Calendar
+                    Guest Book was deleted from {{$createdHouseName}}
                 </span>
             </td>
         </tr>
@@ -118,66 +49,9 @@
     </table>
 
     <p class="body-text">
-        The following vacation has been updated on the {{$createdHouseName}} calendar.
+        {{$title}} Guest Book has been deleted from {{$createdHouseName}} by {{$user->first_name . ' ' . $user->last_name}}.
     </p>
 
-    <h3 style="color: #2A3342;">Original Vacation Details</h3>
-    <!-- House Info Section -->
-    <div class="body-address-box">
-        <table class="address-table" cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr>
-                <td class="key-column">Vacation Name:</td>
-                <td class="value-column"><span class="body-text-color">{{$originalVacName}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Vacation Dates:</td>
-                <td class="value-column"><span class="body-text-color">{{$originalVacStartDate . ' to ' . $originalVacEndDate}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Created By:</td>
-                <td class="value-column">
-                     <span class="body-text-color">
-                    {{ $user->first_name . ' ' . $user->last_name }}
-                        </span>
-                    (<span class="email-text-color">{{$user->email}}</span>)
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <h3 style="color: #2A3342;">New Vacation Details</h3>
-
-    <!-- House Info Section -->
-    <div class="body-address-box">
-        <table class="address-table" cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr>
-                <td class="key-column">Vacation Name:</td>
-                <td class="value-column"><span class="body-text-color">{{$vacName}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Vacation Dates:</td>
-                <td class="value-column"><span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Created By:</td>
-                <td class="value-column">
-                  <span class="body-text-color">
-                {{ $user->first_name . ' ' . $user->last_name }}
-                    </span>
-                    (<span class="email-text-color">{{$user->email}}</span>)
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <p class="body-text">
-        This vacation was updated by: {{ $currentUser->first_name. ' ' . $currentUser->last_name }}
-        (<span class="owner-email-text-color">{{$currentUser->email}}</span>)
-    </p>
 
     <!-- Thank You Section -->
 

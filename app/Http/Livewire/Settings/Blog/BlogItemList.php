@@ -6,6 +6,7 @@ use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Blog\Blog;
 use App\Models\User;
 use App\Notifications\BlogNotification;
+use App\Notifications\DeleteBlogEmailNotification;
 use App\Notifications\DeleteNotification;
 use Exception;
 use Illuminate\Support\Facades\Notification;
@@ -69,10 +70,18 @@ class BlogItemList extends Component
     {
         $this->emitSelf('blog-cu-successfully');
 
-        $name = $data['Subject'];
-        $isAction = 'Deleted';
+        $title = $data['Subject'];
         $createdHouseName = $this->user->house->HouseName;
-        $isModel = 'Blog';
+
+        $owner = null;
+        if (!empty($data['user_id'])) {
+            $owner = User::where('user_id', $data['user_id'])->first();
+        }
+        $ccList = [];
+        if ($owner && $owner->email) {
+            $ccList[] = $owner->email;
+        }
+
         try {
 
             if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList)) {
@@ -84,7 +93,7 @@ class BlogItemList extends Component
                     $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
+                        $user->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
                     }
 
                     $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
@@ -92,7 +101,7 @@ class BlogItemList extends Component
                     if (count($blogEmailsList) > 0) {
 
                         Notification::route('mail', $blogEmailsList)
-                            ->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
+                            ->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
 
                     }
                 }

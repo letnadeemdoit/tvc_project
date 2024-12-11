@@ -5,6 +5,7 @@ namespace App\Http\Livewire\HouseItems\FoodItem;
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\FoodItem;
 use App\Models\User;
+use App\Notifications\DeleteFoodItemEmailNotification;
 use App\Notifications\DeleteNotification;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
@@ -69,10 +70,17 @@ class FoodItemList extends Component
     {
         $this->emitSelf('food-item-cu-successfully');
 
-        $name = $data['name'];
-        $isAction = 'Deleted';
+        $title = $data['name'];
         $createdHouseName = $this->user->house->HouseName;
         $isModel = 'Food Item';
+        $owner = null;
+        if (!empty($data['user_id'])) {
+            $owner = User::where('user_id', $data['user_id'])->first();
+        }
+        $ccList = [];
+        if ($owner && $owner->email) {
+            $ccList[] = $owner->email;
+        }
 
         try {
 
@@ -91,7 +99,7 @@ class FoodItemList extends Component
                     $users = User::whereIn('email', $foodItemEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                        $user->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
                     }
 
                     $foodItemEmailsList = array_diff($foodItemEmailsList, $users->pluck('email')->toArray());
@@ -99,7 +107,7 @@ class FoodItemList extends Component
                     if (count($foodItemEmailsList) > 0) {
 
                         Notification::route('mail', $foodItemEmailsList)
-                            ->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                            ->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
 
                     }
                 }

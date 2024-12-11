@@ -7,6 +7,7 @@ use App\Models\Board;
 use App\Models\Guest;
 use App\Models\GuestBook;
 use App\Models\User;
+use App\Notifications\DeleteGuestBookEmailNotification;
 use App\Notifications\DeleteNotification;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
@@ -71,10 +72,17 @@ class GuestBookList extends Component
     {
         $this->emitSelf('guest-book-cu-successfully');
 
-        $name = $data['name'];
-        $isAction = 'Deleted';
+        $title = $data['name'];
         $createdHouseName = $this->user->house->HouseName;
         $isModel = 'Guest Book';
+        $owner = null;
+        if (!empty($data['user_id'])) {
+            $owner = User::where('user_id', $data['user_id'])->first();
+        }
+        $ccList = [];
+        if ($owner && $owner->email) {
+            $ccList[] = $owner->email;
+        }
 
         try {
 //            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
@@ -91,7 +99,7 @@ class GuestBookList extends Component
                     $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                        $user->notify(new DeleteGuestBookEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
                     }
 
                     $guestBookEmailsList = array_diff($guestBookEmailsList, $users->pluck('email')->toArray());
@@ -99,7 +107,7 @@ class GuestBookList extends Component
                     if (count($guestBookEmailsList) > 0) {
 
                         Notification::route('mail', $guestBookEmailsList)
-                            ->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+                            ->notify(new DeleteGuestBookEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
 
                     }
                 }
