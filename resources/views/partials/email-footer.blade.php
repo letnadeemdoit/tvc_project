@@ -18,7 +18,7 @@
         margin-top: 40px !important;
         margin: auto;
         border-collapse: collapse;
-        width: 600px;
+        width: 100%;
       "
 >
     <tbody>
@@ -35,7 +35,7 @@
                 font-size: 1px;
                 padding: 0px !important;
                 border-spacing: 0px;
-                margin: 0px;
+                margin: auto;
                 border-collapse: collapse;
               "
             >

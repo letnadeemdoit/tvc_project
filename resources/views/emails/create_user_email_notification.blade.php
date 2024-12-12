@@ -12,9 +12,10 @@
             .body-address-box {
                 border: 1px solid #E8604C;
                 border-radius: 10px;
-                width: 50%;
-                margin: 20px auto;
-                padding: 12px 14px;
+                width: 500px;
+                margin-top: 20px !important;
+                margin: auto;
+                padding: 15px !important;
             }
 
             .address-table {
@@ -37,6 +38,8 @@
 
             .address-table .value-column {
                 width: 75%; /* Set the width of the value column */
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .body-text-color {
@@ -56,6 +59,8 @@
                 color: #E8604C !important; /* Force the color to override other styles */
                 font-weight: 600;
                 font-family: Poppins, sans-serif;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
 
@@ -475,11 +480,11 @@
     </table>
 
 
-    <table
-        border="0"
-        cellpadding="0"
-        cellspacing="0"
-        style="
+        <table
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            style="
                         font-family: Poppins, sans-serif;
                         line-height: 1.2;
                         font-size: 16px;
@@ -489,13 +494,13 @@
                         border-spacing: 0;
                         border-collapse: collapse;
                       "
-    >
-        <tbody>
-        <tr>
-            <!-- Image Cell -->
-            <td
-                style="vertical-align: middle"
-            >
+        >
+            <tbody>
+            <tr>
+                <!-- Image Cell -->
+                <td
+                    style="vertical-align: middle"
+                >
                     <span
                         style="
                                 margin: 0;
@@ -507,27 +512,24 @@
                               ">
                     Thank you for using
                     </span>
-            </td>
-            <!-- Text Cell -->
-            <td style="padding-left: 4px;  vertical-align: middle">
-                <a
-                    href="https://www.TheVacationCalendar.com"
-                    style="
+                    <a
+                        href="https://www.TheVacationCalendar.com"
+                        style="
                                 margin: 0;
                                 text-decoration: none;
                                 font-family: Poppins, sans-serif;
                                 font-size: 16px;
                                 font-style: normal;
-                                line-height: 14px;
                                 color: #2A3342;
                               "
-                >
-                    TheVacationCalendar.com
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                    >
+                        TheVacationCalendar.com
+                    </a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
     <table
         border="0"

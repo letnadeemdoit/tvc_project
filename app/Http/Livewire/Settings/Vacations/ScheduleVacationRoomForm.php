@@ -369,6 +369,9 @@ class ScheduleVacationRoomForm extends Component
 
         if ($this->model) {
             $deletableModel = app($this->model)->findOrFail($id);
+            Session::put('startDatetimeOfRoom', $deletableModel->starts_at->format('m/d/Y H:i'));
+            Session::put('endDatetimeOfRoom', $deletableModel->ends_at->format('m/d/Y H:i'));
+
             $this->emit(
                 'destroyable-confirmation-modal',
                 $this->model,

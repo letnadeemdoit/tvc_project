@@ -37,6 +37,8 @@
 
             .address-table .value-column {
                 width: 75%; /* Set the width of the value column */
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .body-text-color {
@@ -56,6 +58,8 @@
                 color: #2A3342 !important; /* Force the color to override other styles */
                 font-weight: 600;
                 font-family: Poppins, sans-serif;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             @media (max-width: 500px) {

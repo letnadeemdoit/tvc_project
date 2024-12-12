@@ -9,6 +9,7 @@ use App\Models\GuestBook;
 use App\Models\Photo\Album;
 use App\Models\Photo\Photo;
 use App\Models\User;
+use App\Notifications\DeleteVacationRoomEmailNotification;
 use Cookie;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
@@ -33,6 +34,9 @@ class DashboardController extends Controller
     public $startDatetimeOfDelVacation;
 
     public $endDatetimeOfDelVacation;
+
+    public $startDatetimeOfDelRoom;
+    public $endDatetimeOfDelRoom;
 
     public function index()
     {
@@ -168,14 +172,22 @@ class DashboardController extends Controller
         }
         if ($request->query('RoomId') && $request->query('VacationId'))
         {
-            $name = 'Vacation Room';
             try {
                 Session::put('startDatetimeForDeleteRoom', $request->query('SetStartDate'));
 
+                if (session()->has('startDatetimeOfRoom')) {
+                    $this->startDatetimeOfDelRoom = session()->get('startDatetimeOfRoom');
+                    session()->forget('startDatetimeOfRoom');
+                }
+                if (session()->has('endDatetimeOfRoom')) {
+                    $this->endDatetimeOfDelRoom = session()->get('endDatetimeOfRoom');
+                    session()->forget('endDatetimeOfRoom');
+                }
+                $vacation = Vacation::where('VacationId', $request->query('VacationId'))->first();
+
+
                 $user = Auth::user();
                 $createdHouseName = $user->house->HouseName;
-                $isAction = 'Deleted';
-                $isModal = 'Vacation Room';
 
                 if (!is_null($user->house->CalEmailList) && !empty($user->house->CalEmailList)) {
                     $CalEmailList = explode(',', $user->house->CalEmailList);
@@ -183,12 +195,12 @@ class DashboardController extends Controller
                         $users = User::whereIn('email', $CalEmailList)->where('HouseId', $user->HouseId)->get();
 
                         foreach ($users as $user) {
-                            $user->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                            $user->notify(new DeleteVacationRoomEmailNotification($createdHouseName,$vacation['VacationName'],$user,$this->startDatetimeOfDelRoom,$this->endDatetimeOfDelRoom));
                         }
                         $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                         if (count($CalEmailList) > 0) {
                             Notification::route('mail', $CalEmailList)
-                                ->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                                ->notify(new DeleteVacationRoomEmailNotification($createdHouseName,$vacation['VacationName'],$user,$this->startDatetimeOfDelRoom,$this->endDatetimeOfDelRoom));
                         }
                     }
                 }

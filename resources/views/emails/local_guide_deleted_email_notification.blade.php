@@ -55,11 +55,11 @@
 
     <!-- Thank You Section -->
 
-    <table
-        border="0"
-        cellpadding="0"
-        cellspacing="0"
-        style="
+        <table
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            style="
                         font-family: Poppins, sans-serif;
                         line-height: 1.2;
                         font-size: 16px;
@@ -69,13 +69,13 @@
                         border-spacing: 0;
                         border-collapse: collapse;
                       "
-    >
-        <tbody>
-        <tr>
-            <!-- Image Cell -->
-            <td
-                style="vertical-align: middle"
-            >
+        >
+            <tbody>
+            <tr>
+                <!-- Image Cell -->
+                <td
+                    style="vertical-align: middle"
+                >
                     <span
                         style="
                                 margin: 0;
@@ -87,27 +87,24 @@
                               ">
                     Thank you for using
                     </span>
-            </td>
-            <!-- Text Cell -->
-            <td style="padding-left: 4px;  vertical-align: middle">
-                <a
-                    href="https://www.TheVacationCalendar.com"
-                    style="
+                    <a
+                        href="https://www.TheVacationCalendar.com"
+                        style="
                                 margin: 0;
                                 text-decoration: none;
                                 font-family: Poppins, sans-serif;
                                 font-size: 16px;
                                 font-style: normal;
-                                line-height: 14px;
                                 color: #2A3342;
                               "
-                >
-                    TheVacationCalendar.com
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                    >
+                        TheVacationCalendar.com
+                    </a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
     <table
         border="0"

@@ -13,6 +13,7 @@ use App\Models\VacationRoom;
 use App\Notifications\BlogNotification;
 use App\Notifications\CalendarEmailNotification;
 use App\Notifications\DeleteNotification;
+use App\Notifications\DeleteVacationNotification;
 use App\Notifications\RequestToApproveVacationEmailNotification;
 use App\Notifications\UpdateCalendarEmailNotification;
 use App\Rules\VacationSchedule;
@@ -58,6 +59,10 @@ class ScheduleVacationForm extends Component
     public $originalVacName  = null;
     public $originalVacStartDate = null;
     public $originalVacEndDate = null;
+
+    public $startDatetimeOfDelVacation;
+
+    public $endDatetimeOfDelVacation;
 
 
     protected $destroyableConfirmationContent = [
@@ -357,7 +362,7 @@ class ScheduleVacationForm extends Component
 
         Validator::make($this->state, [
             'vacation_name' => ['required', 'string', 'max:100'],
-//            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
+            'start_datetime' => ['required', new VacationSchedule($this->state['end_datetime'] ?? null, $this->user, $this->vacation)],
             'background_color' => ['required'],
             'font_color' => ['required'],
             'recurrence' => ['required', 'in:once,monthly,yearly'],
@@ -1066,6 +1071,16 @@ class ScheduleVacationForm extends Component
     }
     public function destroyedSuccessfully($data)
     {
+
+        if (session()->has('startDatetimeOfVacation')) {
+            $this->startDatetimeOfDelVacation = session()->get('startDatetimeOfVacation');
+            session()->forget('startDatetimeOfVacation');
+        }
+        if (session()->has('endDatetimeOfVacation')) {
+            $this->endDatetimeOfDelVacation = session()->get('endDatetimeOfVacation');
+            session()->forget('endDatetimeOfVacation');
+        }
+
         Vacation::where('parent_id', $data['VacationId'])->delete();
 //        Vacation::where('parent_id', $data['VacationId'])->delete();
 
@@ -1084,7 +1099,7 @@ class ScheduleVacationForm extends Component
                     $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                        $user->notify(new DeleteVacationNotification($name,$this->user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
                     }
 
                     $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
@@ -1092,7 +1107,7 @@ class ScheduleVacationForm extends Component
                     if (count($CalEmailList) > 0) {
 
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+                            ->notify(new DeleteVacationNotification($name,$this->user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
 
                     }
                 }

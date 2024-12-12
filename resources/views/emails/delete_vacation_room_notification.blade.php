@@ -11,9 +11,10 @@
             .body-address-box {
                 border: 1px solid #E8604C;
                 border-radius: 10px;
-                width: 400px;
-                margin: 20px auto;
-                padding: 12px 14px;
+                width: 500px;
+                margin-top: 20px !important;
+                margin: auto;
+                padding: 15px !important;
             }
 
             .address-table {
@@ -28,6 +29,15 @@
                 font-family: Poppins, sans-serif;
                 font-size: 16px;
                 line-height: 25px;
+            }
+            .address-table .key-column {
+                width: 25%; /* Set the width of the key column */
+            }
+
+            .address-table .value-column {
+                width: 75%; /* Set the width of the value column */
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .body-text-color {
@@ -45,11 +55,16 @@
                 color: #2A3342 !important; /* Force the color to override other styles */
                 font-weight: 600;
                 font-family: Poppins, sans-serif;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             @media (max-width: 500px) {
                 .body-address-box {
                     width: auto;
+                }
+                .address-table .value-column {
+                    padding-left: 8px !important;
                 }
             }
 
@@ -86,7 +101,7 @@
                         color: #ffffff;
                       "
                     >
-                    New Guest Book entry added to {{$createdHouseName}}
+                    Vacation Room removed from {{$createdHouseName}} calendar.
                 </span>
             </td>
         </tr>
@@ -94,50 +109,32 @@
     </table>
 
     <p class="body-text">
-        {{$title}} was added to {{$createdHouseName}} by {{$user->first_name . ' ' . $user->last_name}}.
+        A Vacation Room was deleted from {{$vacationName}} in {{$createdHouseName}} by {{$user->first_name . ' ' . $user->last_name}}.
     </p>
-
-
-    <table
-        border="0"
-        cellpadding="0"
-        cellspacing="0"
-        style="
-            font-family: Poppins, sans-serif;
-            line-height: 1.2;
-            font-size: 16px;
-            padding: 0;
-            margin: 0;
-            margin-top: 10px;
-            border-spacing: 0;
-            border-collapse: collapse;
-            width: 100%;
-          "
-    >
-        <tbody>
-        <tr>
-            <!-- Image Cell -->
-            <td style="padding: 0; vertical-align: middle; text-align: center;">
-                <a
-                    href="{{$siteUrl}}"
-                    style="
-                    margin: 0;
-                    text-decoration: none;
-                    font-family: Poppins, sans-serif;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 600;
-                    color: #E8604C;
-                  "
-                >
-                    Click to View Guest Book
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-
+    <!-- House Info Section -->
+    <div class="body-address-box">
+        <table class="address-table" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td class="key-column">Vacation Name:</td>
+                <td class="value-column"><span class="body-text-color">{{$vacationName}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Vacation Room Dates:</td>
+                <td class="value-column"><span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Deleted By:</td>
+                <td class="value-column">
+                    <span class="body-text-color">
+                    {{ $user->first_name. ' ' . $user->last_name }}
+                        </span>
+                    (<span class="email-text-color">{{$user->email}}</span>)
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- Thank You Section -->
 
