@@ -18,12 +18,12 @@
         margin-top: 40px !important;
         margin: auto;
         border-collapse: collapse;
-        width: 650px;
+        width: 600px;
       "
 >
     <tbody>
     <tr>
-        <td style="padding: 0px !important">
+        <td style="padding: 25px !important">
             <table
                 id="inner-table"
                 border="0"

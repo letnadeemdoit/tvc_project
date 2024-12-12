@@ -11,9 +11,10 @@
             .body-address-box {
                 border: 1px solid #E8604C;
                 border-radius: 10px;
-                width: 50%;
-                margin: 20px auto;
-                padding: 20px 20px;
+                width: 500px;
+                margin-top: 20px !important;
+                margin: auto;
+                padding: 15px !important;
             }
 
             .address-table {
@@ -23,7 +24,7 @@
             }
 
             .address-table td {
-                padding: 6px 0; /* Add spacing between rows */
+                padding: 6px 5px; /* Add spacing between rows */
                 color: #6D6D6D;
                 font-family: Poppins, sans-serif;
                 font-size: 16px;
@@ -44,12 +45,14 @@
                 font-weight: 600;
                 font-family: Poppins, sans-serif;
             }
+
             .email-text-color {
                 color: #2A3342 !important; /* Force the color to override other styles */
                 font-weight: 600;
                 font-family: Poppins, sans-serif;
             }
-            .email-text-color a{
+
+            .email-text-color a {
                 color: #2A3342 !important; /* Force the color to override other styles */
                 font-weight: 600;
                 font-family: Poppins, sans-serif;
@@ -58,9 +61,6 @@
             @media (max-width: 500px) {
                 .body-address-box {
                     width: auto;
-                }
-                .address-table .value-column {
-                    padding-left: 8px !important;
                 }
             }
 
@@ -108,29 +108,29 @@
         A new vacation has been added to the {{$createdHouseName}} calendar.
     </p>
 
-        <div class="body-address-box">
-            <table class="address-table" cellpadding="0" cellspacing="0">
-                <tbody>
-                <tr>
-                    <td class="key-column">Vacation Name:</td>
-                    <td class="value-column"><span class="body-text-color">{{$vacName}}</span></td>
-                </tr>
-                <tr>
-                    <td class="key-column">Vacation Dates:</td>
-                    <td class="value-column"><span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>
-                </tr>
-                <tr>
-                    <td class="key-column">Created By:</td>
-                    <td class="value-column">
+    <div class="body-address-box">
+        <table class="address-table" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td class="key-column">Vacation Name:</td>
+                <td class="value-column"><span class="body-text-color">{{$vacName}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Vacation Dates:</td>
+                <td class="value-column"><span class="body-text-color">{{$startDate . ' to ' . $endDate}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Created By:</td>
+                <td class="value-column">
                     <span class="body-text-color">
                         {{ $user->first_name . ' ' . $user->last_name }}
                     </span>
-                        (<span class="email-text-color">{{$user->email}}</span>)
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+                    (<span class="email-text-color">{{$user->email}}</span>)
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- Thank You Section -->
 
@@ -166,9 +166,6 @@
                               ">
                     Thank you for using
                     </span>
-            </td>
-            <!-- Text Cell -->
-            <td style="padding-left: 4px;  vertical-align: middle">
                 <a
                     href="https://www.TheVacationCalendar.com"
                     style="
@@ -177,12 +174,12 @@
                                 font-family: Poppins, sans-serif;
                                 font-size: 16px;
                                 font-style: normal;
-                                line-height: 14px;
                                 color: #2A3342;
                               "
                 >
                     TheVacationCalendar.com
                 </a>
+
             </td>
         </tr>
         </tbody>
