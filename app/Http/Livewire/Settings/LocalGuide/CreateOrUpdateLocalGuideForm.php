@@ -104,7 +104,8 @@ class CreateOrUpdateLocalGuideForm extends Component
         $this->localGuide->updateFile($this->file);
 
         try {
-            $this->siteUrl = route('guest.local-guide.index');
+            $slug = $this->localGuide->id;
+            $this->siteUrl = route('guest.local-guide.show', $slug);
 
 
             $items = $this->localGuide;

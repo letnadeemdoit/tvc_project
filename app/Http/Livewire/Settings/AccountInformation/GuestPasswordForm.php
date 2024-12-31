@@ -6,9 +6,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Rules\Password;
 use Livewire\Component;
+use App\Http\Livewire\Traits\Toastr;
+
 
 class GuestPasswordForm extends Component
 {
+    use Toastr;
+
     public $user;
     public $guestUser;
     public $state = [];
@@ -39,9 +43,16 @@ class GuestPasswordForm extends Component
             ]
         ])->validateWithBag('changePassword');
 
-        $this->guestUser->fill([
-            'password' => \Hash::make($this->state['new_password']),
-        ])->save();
+
+        if ($this->guestUser && $this->guestUser->role === 'Guest') {
+            $this->guestUser->fill([
+                'password' => \Hash::make($this->state['new_password']),
+            ])->save();
+        }
+        else {
+            $this->warning('Sorry! Guest not exist against this house property');
+            return;
+        }
 
         $this->emit('saved');
         $this->reset('state');

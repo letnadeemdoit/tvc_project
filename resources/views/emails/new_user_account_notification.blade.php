@@ -192,6 +192,29 @@
         </tbody>
     </table>
 
+
+        <!-- House Info Section -->
+    <div class="body-address-box">
+        <table class="address-table" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td class="key-column">House Name:</td>
+                <td class="value-column"><span class="body-text-color">{{$houseName}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Email Address:</td>
+                <td class="value-column"><span class="body-text-color">{{$email}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Username:</td>
+                <td class="value-column"><span class="body-text-color">{{$userName}}</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- House Info Section -->
+
+
     <table
         border="0"
         cellpadding="0"
@@ -374,28 +397,7 @@
         </tbody>
     </table>
 
-    <!-- House Info Section -->
 
-
-    <!-- House Info Section -->
-    <div class="body-address-box">
-        <table class="address-table" cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr>
-                <td class="key-column">House Name:</td>
-                <td class="value-column"><span class="body-text-color">{{$houseName}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Email Address:</td>
-                <td class="value-column"><span class="body-text-color">{{$email}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Username:</td>
-                <td class="value-column"><span class="body-text-color">{{$userName}}</span></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
     <!-- Help Section -->
     <table
         border="0"

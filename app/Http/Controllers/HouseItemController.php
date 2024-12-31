@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 
 class HouseItemController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        return view('house-items.index');
+        return view('house-items.index', [
+            'user' => $request->user()
+        ]);
 
     }
 }

@@ -94,7 +94,7 @@
     </table>
 
     <p class="body-text">
-        A picture was deleted from {{$albumName}} in {{$createdHouseName}} by {{$user->first_name . ' ' . $user->last_name}}.
+        A picture was deleted from {{$albumName}} album in {{$createdHouseName}} by {{$user->first_name . ' ' . $user->last_name}}.
     </p>
 
 

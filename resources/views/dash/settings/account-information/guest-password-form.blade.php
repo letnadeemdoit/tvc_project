@@ -5,6 +5,7 @@
 
     <!-- Body -->
     <div class="card-body">
+        <p>The password for the Guest associated with this House will be changed.</p>
         <!-- Form -->
         <form id="changeGuestPasswordForm" wire:submit.prevent="changeGuestPassword">
             <!-- Form -->

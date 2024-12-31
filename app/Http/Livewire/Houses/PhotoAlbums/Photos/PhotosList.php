@@ -113,7 +113,7 @@ class PhotosList extends Component
     public function destroyedSuccessfully($data)
     {
         $this->dispatchBrowserEvent('refresh-photos-list-in-album');
-        $this->siteUrl = route('guest.photo-album.index');
+        $this->siteUrl = route('guest.photo-album.index', ['parent_id' => $data['album_id']]);
 
         $owner = null;
         if (!empty($data['OwnerId'])) {

@@ -10,12 +10,15 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         return view('blog.index', [
             'user' => $request->user()
         ]);
     }
-    public function show(Request $request, $post) {
+
+    public function show(Request $request, $post)
+    {
 
         $user = $request->user();
         $post = Blog::where('slug', $post)->where('HouseId', $user->HouseId)->first();
@@ -24,15 +27,15 @@ class BlogController extends Controller
 
         $existing_views = 0;
 
-        $blog_views = BlogViews::where('viewable_id' , $post->BlogId)->distinct(['ip_address','user_id'])->count();
-        if ($blog_views){
+        $blog_views = BlogViews::where('viewable_id', $post->BlogId)->distinct(['ip_address', 'user_id'])->count();
+        if ($blog_views) {
             $existing_views = $blog_views;
         }
 
 
-        $categories = Category::where('type', 'blog')->where('house_id',$user->HouseId)->withCount('blogs')->get();
+        $categories = Category::where('type', 'blog')->where('house_id', $user->HouseId)->withCount('blogs')->get();
 
-        $relatedBlog = Blog::where('HouseId' , $user->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
+        $relatedBlog = Blog::where('HouseId', $user->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
 
         $blogComments = $post->comments()->count();
 
@@ -40,14 +43,14 @@ class BlogController extends Controller
 
 //        if(!auth()->user()->is_guest){
 //            if (is_null($views)){
-                $view = new BlogViews();
+        $view = new BlogViews();
 
-                $view->fill([
-                    'user_id' => $user->user_id,
-                    'ip_address' => $request->getClientIp()
-                ]);
+        $view->fill([
+            'user_id' => $user->user_id,
+            'ip_address' => $request->getClientIp()
+        ]);
 
-                $post->views()->save($view);
+        $post->views()->save($view);
 //            }
 //        }
 

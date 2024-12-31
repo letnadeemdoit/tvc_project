@@ -72,7 +72,7 @@ class GuestBookList extends Component
     {
         $this->emitSelf('guest-book-cu-successfully');
 
-        $title = $data['name'];
+        $title = $data['title'];
         $createdHouseName = $this->user->house->HouseName;
         $isModel = 'Guest Book';
         $owner = null;

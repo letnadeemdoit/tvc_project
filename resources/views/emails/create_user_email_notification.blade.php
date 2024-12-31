@@ -199,6 +199,45 @@
         </tbody>
     </table>
 
+
+    <!-- House Info Section -->
+    <div class="body-address-box">
+        <table class="address-table" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td class="key-column">House Name:</td>
+                <td class="value-column"><span class="body-text-color">{{$houseName}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Role:</td>
+                <td class="value-column">
+                <span class="body-text-color">
+                    @if($createUser->role === 'Owner')
+                        Schedular
+                    @else
+                        {{ $createUser->role }}
+                    @endif
+                </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="key-column">Email:</td>
+                <td class="value-column"><span class="email-text-color">{{$createUser->email}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Username:</td>
+                <td class="value-column"><span class="email-text-color">{{$createUser->user_name}}</span></td>
+            </tr>
+            <tr>
+                <td class="key-column">Password:</td>
+                <td class="value-column"><span class="email-text-color">{{$sendPasswordToMail}}</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- House Info Section -->
+
+
     <table
         border="0"
         cellpadding="0"
@@ -381,44 +420,7 @@
         </tbody>
     </table>
 
-    <!-- House Info Section -->
 
-
-    <!-- House Info Section -->
-    <div class="body-address-box">
-        <table class="address-table" cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr>
-                <td class="key-column">House Name:</td>
-                <td class="value-column"><span class="body-text-color">{{$houseName}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Role:</td>
-                <td class="value-column">
-                    <span class="body-text-color">
-                        @if($createUser->role === 'Owner')
-                            Schedular
-                        @else
-                            {{ $createUser->role }}
-                        @endif
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="key-column">Email:</td>
-                <td class="value-column"><span class="email-text-color">{{$createUser->email}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Username:</td>
-                <td class="value-column"><span class="email-text-color">{{$createUser->user_name}}</span></td>
-            </tr>
-            <tr>
-                <td class="key-column">Password:</td>
-                <td class="value-column"><span class="email-text-color">{{$sendPasswordToMail}}</span></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
     <!-- Help Section -->
     <table
         border="0"

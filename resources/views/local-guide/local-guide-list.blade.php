@@ -2,8 +2,8 @@
     <div class="container  pb-5 pt-5">
         <div class="text-center float-end d-flex">
             @auth
-                @if(auth()->user()->is_admin)
-{{--                @if(!auth()->user()->is_guest)--}}
+{{--                @if(auth()->user()->is_admin)--}}
+                @if(!auth()->user()->is_guest)
                     <div class="me-4" x-data>
                         <a
                             class="btn btn-sm btn-soft-primary"

@@ -39,12 +39,27 @@ class CheckPrimaryUserHasSubscribedAnyPlan
                 'role' => 'Administrator',
             ])->first();
 
-            if (!auth()->user()->is_admin && $Is_Subscription || !auth()->user()->is_admin && !$Is_Subscription) {
-                return redirect()->route('guest.guest-calendar');
+            if ($request->expectsJson()) {
+                // For API responses
+                return response()->json([
+                    'message' => 'Access denied. Subscription required.',
+//                    'redirect' => $Is_Subscription ? 'guest-calendar' : 'plans-and-pricing',
+                ], 403);
+            } else {
+                // For Web responses
+                if (!auth()->user()->is_admin && $Is_Subscription || !auth()->user()->is_admin && !$Is_Subscription) {
+                    return redirect()->route('guest.guest-calendar');
+                } else {
+                    return redirect()->route('dash.plans-and-pricing');
+                }
             }
-            else {
-                return redirect()->route('dash.plans-and-pricing');
-            }
+
+//            if (!auth()->user()->is_admin && $Is_Subscription || !auth()->user()->is_admin && !$Is_Subscription) {
+//                return redirect()->route('guest.guest-calendar');
+//            }
+//            else {
+//                return redirect()->route('dash.plans-and-pricing');
+//            }
 
         }
         return $next($request);
