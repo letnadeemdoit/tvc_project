@@ -39,7 +39,7 @@ Route::controller(GuestController::class)
     ->prefix('guest')
     ->group(function () {
         // Protected Routes
-        Route::middleware('auth:api')->group(function () {
+        Route::middleware('auth:sanctum')->group(function () {
             // Blog Routes
             Route::controller(GuestBlogController::class)
                 ->prefix('blog')
