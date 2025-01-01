@@ -16,7 +16,9 @@ class GuestLocalGuideController extends BaseController
 
     public $file;
 
-    public $category = 'all';
+    public $category;
+    public $limit;
+    public $offSet;
 
 
     /**
@@ -28,7 +30,9 @@ class GuestLocalGuideController extends BaseController
     {
         try {
             $user = Auth::user();
-            $this->category = $request->category;
+            $this->category = $request->category ?? 'all';
+            $this->limit = $request->limit ?? 5;
+            $this->offSet = $request->offSet ?? 0;
 
             $localGuideList = LocalGuide::where('house_id', $user->HouseId)
                 ->when($this->category !== 'all', function ($query) {
@@ -36,8 +40,15 @@ class GuestLocalGuideController extends BaseController
                         $query->where('slug', $this->category);
                     });
                 })
+                ->skip($this->offSet)
+                ->take($this->limit)
+                ->with(['user' => function ($query) {
+                    $query->select('user_id', 'first_name', 'last_name', 'email', 'profile_photo_path');
+                }])
+                ->withCount('reviews')
                 ->orderBy('id', 'DESC')
                 ->get();
+
 
             $localGuideCategories = Category::where('type', 'local-guide')
                 ->where(function ($query) use ($user){
@@ -71,7 +82,25 @@ class GuestLocalGuideController extends BaseController
     {
 
         try {
-            $dt = LocalGuide::where('id', $request->id)->first();
+            $user = Auth::user();
+            $order = 'desc';
+
+            $dt = LocalGuide::where('id', $request->id)
+                ->with([
+                    'user' => function ($query) {
+                        $query->select('user_id', 'first_name', 'last_name','profile_photo_path');
+                    },
+                    'reviews' => function ($query) use ($order){
+                        $query->orderBy('created_at', $order)
+                            ->with([
+                                'user' => function ($query) {
+                                    $query->select('user_id', 'first_name', 'last_name', 'profile_photo_path');
+                                }
+                            ]);
+                    }
+                ])
+                ->withCount('reviews')
+                ->first();
 
             if (!$dt){
                 $response = [
@@ -82,19 +111,7 @@ class GuestLocalGuideController extends BaseController
                 return response()->json($response, 404);
             }
 
-
-            $user = Auth::user();
-            $categories = Category::where('type', 'local-guide')
-                ->where(function ($query) use ($user){
-                    $query->where('house_id', $user->HouseId)
-                        ->orWhere('house_id', null);
-                })
-                ->withCount(['localGuides' => function($query) use($user){
-                    $query->where('house_id', $user->HouseId);
-                }])
-                ->get();
-
-            $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->withCount('reviews')->inRandomOrder()->limit(3)->get()->except($dt->id);
+            $relatedGuides = LocalGuide::where('house_id', $dt->house_id)->withCount('reviews')->inRandomOrder()->limit(4)->get()->except($dt->id);
 
 
             $totalReviewLocalGuide = $dt->reviews()->get();
@@ -107,13 +124,20 @@ class GuestLocalGuideController extends BaseController
 
             }
 
+            $localGuideCategories = Category::where('type', 'local-guide')
+                ->where(function ($query) use ($user) {
+                    $query->where('house_id', $user->HouseId)
+                        ->orWhere('house_id', null);
+                })
+                ->get();
+
+
             $response = [
                 'success' => true,
                 'data' => [
-                    'user' => $user,
                     'localGuide' => $dt,
-                    'categories' => $categories,
                     'relatedGuides' => $relatedGuides,
+                    'localGuideCategories' => $localGuideCategories,
                     'avgRating' => $avgRating ?? 0,
                 ],
                 'message' => 'Data fetched successfully',

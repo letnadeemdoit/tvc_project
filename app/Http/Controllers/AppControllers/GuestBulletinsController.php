@@ -15,7 +15,8 @@ class GuestBulletinsController extends BaseController
     public $category = 'all';
 
     public $order = 'desc';
-
+    public $limit;
+    public $offSet;
 
     /**
      * Bulletins List api
@@ -28,6 +29,8 @@ class GuestBulletinsController extends BaseController
             $user = Auth::user();
             $this->category = $request->category;
             $this->order = $request->order;
+            $this->limit = $request->limit ?? 5;
+            $this->offSet = $request->offSet ?? 0;
 
             $data = Board::where('HouseId', $user->HouseId)
                 ->when($this->category !== 'all', function ($query) {
@@ -35,6 +38,8 @@ class GuestBulletinsController extends BaseController
                         $query->where('slug', $this->category);
                     });
                 })
+                ->skip($this->offSet)
+                ->take($this->limit)
                 ->orderBy('id', $this->order)
                 ->get();
 

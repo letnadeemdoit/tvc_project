@@ -76,9 +76,9 @@ Route::controller(GuestController::class)
 // Dashboard Routes
 Route::middleware([
     'auth:sanctum',
-    'verified',
-    'check-subscription-status',
-    'check.primary-user.subscribed-any-plan'
+//    'verified',
+//    'check-subscription-status',
+//    'check.primary-user.subscribed-any-plan'
 ])
     ->prefix('dash')
     ->group(function () {

@@ -21,6 +21,10 @@ class AdminLocalGuideController extends BaseController
 
     public $file;
 
+    public $category;
+    public $limit;
+    public $offSet;
+
     public $user;
 
 
@@ -33,18 +37,25 @@ class AdminLocalGuideController extends BaseController
     {
         try {
             $this->user = Auth::user();
-
+            $this->category = $request->category ?? 'all';
+            $this->limit = $request->limit ?? 5;
+            $this->offSet = $request->offSet ?? 0;
+            $user = $this->user;
             $localGuideList = LocalGuide::where('house_id', $this->user->HouseId)
                 ->when($this->user->is_owner_only, function ($query) {
                     $query->where('user_id', $this->user->user_id);
                 })
-                ->when($request->search, function ($query) use ($request) {
-                    $query->where(function ($query) use ($request) {
-                        $query
-                            ->where('title', 'LIKE', "%{$request->search}%")
-                            ->orWhere('address', 'LIKE', "%{$request->search}%");
+                ->when($this->category !== 'all', function ($query) {
+                    $query->whereHas('category', function ($query) {
+                        $query->where('slug', $this->category);
                     });
                 })
+                ->skip($this->offSet)
+                ->take($this->limit)
+                ->with(['user' => function ($query) {
+                    $query->select('user_id', 'first_name', 'last_name', 'email', 'profile_photo_path');
+                }])
+                ->withCount('reviews')
                 ->orderBy('id', 'DESC')
                 ->get();
 
@@ -55,11 +66,23 @@ class AdminLocalGuideController extends BaseController
                 })
                 ->get();
 
+            $totalGuides = LocalGuide::where('house_id', $user->HouseId)
+                ->when($user->is_owner_only, function ($query) use ($user) {
+                    $query->where('user_id', $user->user_id);
+                })
+                ->when($this->category !== 'all', function ($query) {
+                    $query->whereHas('category', function ($query) {
+                        $query->where('slug', $this->category);
+                    });
+                })
+                ->count();
+
             $response = [
                 'success' => true,
                 'data' => [
                     'localGuides' => $localGuideList,
                     'localGuideCategories' => $localGuideCategories,
+                    'totalGuides' => $totalGuides,
                 ],
                 'message' => 'Data fetched successfully',
             ];
@@ -85,7 +108,7 @@ class AdminLocalGuideController extends BaseController
 
             $localGuideItem = $isCreating ? new LocalGuide() : LocalGuide::find($inputs['id']);
 
-            $this->file = $inputs['file'];
+            $this->file = $request->file('file');
 
             if ($this->file) {
                 $inputs['image'] = $this->file;
