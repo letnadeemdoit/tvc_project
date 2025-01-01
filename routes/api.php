@@ -75,7 +75,7 @@ Route::controller(GuestController::class)
 
 // Dashboard Routes
 Route::middleware([
-    'auth:api',
+    'auth:sanctum',
     'verified',
     'check-subscription-status',
     'check.primary-user.subscribed-any-plan'
