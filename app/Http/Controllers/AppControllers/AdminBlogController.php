@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AppControllers;
 
 use App\Http\Controllers\AppControllers\BaseController as BaseController;
+use Illuminate\Support\Facades\Log;
 use App\Models\Blog\Blog;
 use App\Models\Category;
 use App\Models\User;
@@ -19,7 +20,9 @@ class AdminBlogController extends BaseController
 {
 
     public $siteUrl;
-
+    public $category;
+    public $limit;
+    public $offSet;
     public $file;
 
 
@@ -32,25 +35,53 @@ class AdminBlogController extends BaseController
     {
         try {
             $user = Auth::user();
+            $this->category = $request->category ?? 'all';
+            $this->limit = $request->limit ?? 5;
+            $this->offSet = $request->offSet ?? 0;
 
             $blogList = Blog::where('HouseId', $user->HouseId)
                 ->when($user->is_owner_only, function ($query) use ($user) {
                     $query->where('user_id', $user->user_id);
                 })
-                ->when($request->search, function ($query) use ($request) {
-                    $query->where('Subject', 'LIKE', "%{$request->search}%");
+                ->when($this->category !== 'all', function ($query) {
+                    $query->whereHas('category', function ($query) {
+                        $query->where('slug', $this->category);
+                    });
                 })
+                ->skip($this->offSet)
+                ->take($this->limit)
+                ->with(['user' => function ($query) {
+                    $query->select('user_id', 'first_name', 'last_name', 'email', 'profile_photo_path');
+                }])
+                ->withCount('comments', 'likes')
                 ->orderBy('BlogId', 'DESC')
-                ->get();
+                ->get()
+                ->map(function ($blog) use ($user) {
+                    $blog->is_liked = $blog->isLikedBy($user->user_id);
+                    return $blog;
+                });
 
             $blogCategories = Category::where('type', 'blog')
                 ->where('house_id', $user->HouseId)
                 ->get();
 
+            $totalBlogs = Blog::where('HouseId', $user->HouseId)
+                ->when($user->is_owner_only, function ($query) use ($user) {
+                    $query->where('user_id', $user->user_id);
+                })
+                ->when($this->category !== 'all', function ($query) {
+                    $query->whereHas('category', function ($query) {
+                        $query->where('slug', $this->category);
+                    });
+                })
+                ->count();
+
+
             $response = [
                 'success' => true,
                 'data' => [
                     'Blogs' => $blogList,
+                    'totalBlogs' => $totalBlogs,
                     'blogCategories' => $blogCategories,
                 ],
                 'message' => 'Data fetched successfully',
@@ -71,14 +102,14 @@ class AdminBlogController extends BaseController
     public function createBlog(Request $request)
     {
         try {
+
             $user = Auth::user();
             $date = date('Y/m/d H:i:s');
             $inputs = $request->all();
             $isCreating = empty($inputs['BlogId']);
 
             $blogItem = $isCreating ? new Blog() : Blog::find($inputs['BlogId']);
-
-            $this->file = $inputs['file'];
+            $this->file = $request->file('file');
 
             if ($this->file) {
                 $inputs['image'] = $this->file;
@@ -140,23 +171,21 @@ class AdminBlogController extends BaseController
 
             if (!is_null($user->house->BlogEmailList) && !empty($user->house->BlogEmailList) && $isCreating) {
 
-                $blogEmailsList = explode(',', $user->house->BlogEmailList);
-                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
-                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $user->HouseId)->get();
-
-                    foreach ($users as $us) {
-                        $us->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
-                    }
-//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
-                    if (count($blogEmailsList) > 0) {
-                        Notification::route('mail', $blogEmailsList)
-                            ->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
-                    }
-                }
+//                $blogEmailsList = explode(',', $user->house->BlogEmailList);
+//                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
+//                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $user->HouseId)->get();
+//
+//                    foreach ($users as $us) {
+//                        $us->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
+//                    }
+////                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+//                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+//                    if (count($blogEmailsList) > 0) {
+//                        Notification::route('mail', $blogEmailsList)
+//                            ->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
+//                    }
+//                }
             }
-
-
 
 
             return response()->json([
@@ -166,6 +195,11 @@ class AdminBlogController extends BaseController
             ], 200);
 
         } catch (\Exception $e) {
+            Log::error('Error creating/updating blog:', [
+                'message' => $e->getMessage(),
+                'stack' => $e->getTraceAsString(),
+                'inputs' => $request->all(),
+            ]);
             return $this->sendError($e->getMessage(), []);
         }
 

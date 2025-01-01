@@ -21,7 +21,9 @@ class GuestBlogController extends BaseController
 
     public $file;
 
-    public $category = 'all';
+    public $category;
+    public $limit;
+    public $offSet;
 
 
     /**
@@ -33,29 +35,53 @@ class GuestBlogController extends BaseController
     {
         try {
             $user = Auth::user();
-            $this->category = $request->category;
+            $this->category = $request->category ?? 'all';
+            $this->limit = $request->limit ?? 5;
+            $this->offSet = $request->offSet ?? 0;
 
+            // Fetch the paginated blog list
             $blogList = Blog::where('HouseId', $user->HouseId)
                 ->when($this->category !== 'all', function ($query) {
                     $query->whereHas('category', function ($query) {
                         $query->where('slug', $this->category);
                     });
                 })
+                ->skip($this->offSet)
+                ->take($this->limit)
+                ->with(['user' => function ($query) {
+                    $query->select('user_id', 'first_name', 'last_name', 'email', 'profile_photo_path');
+                }])
+                ->withCount('comments', 'likes')
                 ->orderBy('BlogId', 'DESC')
-                ->get();
+                ->get()
+                ->map(function ($blog) use ($user) {
+                    $blog->is_liked = $blog->isLikedBy($user->user_id);
+                    return $blog;
+                });
 
-            $blogCategories = Category::where('type', 'blog')
-                ->where('house_id', $user->HouseId)
-                ->get();
+            // Fetch the blog categories
+//            $blogCategories = Category::where('type', 'blog')
+//                ->where('house_id', $user->HouseId)
+//                ->get();
+
+            $totalBlogs = Blog::where('HouseId', $user->HouseId)
+                ->when($this->category !== 'all', function ($query) {
+                    $query->whereHas('category', function ($query) {
+                        $query->where('slug', $this->category);
+                    });
+                })
+                ->count();
 
             $response = [
                 'success' => true,
                 'data' => [
                     'Blogs' => $blogList,
-                    'blogCategories' => $blogCategories,
+//                    'blogCategories' => $blogCategories,
+                    'totalBlogs' => $totalBlogs,
                 ],
                 'message' => 'Data fetched successfully',
             ];
+
             return response()->json($response, 200);
 
         } catch (\Exception $e) {
@@ -75,9 +101,26 @@ class GuestBlogController extends BaseController
         try {
 
             $post = $request->slug;
+            $order = $request->order ?? 'desc';
             $user = Auth::user();
 
-            $post = Blog::where('slug', $post)->where('HouseId', $user->HouseId)->first();
+            $post = Blog::where('slug', $post)->where('HouseId', $user->HouseId)
+                ->with([
+                    'user' => function ($query) {
+                        $query->select('user_id', 'first_name', 'last_name','profile_photo_path');
+                    },
+                    'comments' => function ($query) use ($order){
+                        $query->orderBy('created_at', $order)
+                        ->with([
+                            'user' => function ($query) {
+                                $query->select('user_id', 'first_name', 'last_name', 'profile_photo_path');
+                            }
+                        ]);
+                    }
+                ])
+                ->withCount('comments', 'likes')
+                ->first();
+
             if (!$post){
                 $response = [
                     'success' => true,
@@ -87,20 +130,8 @@ class GuestBlogController extends BaseController
                 return response()->json($response, 404);
             }
 
-            $existing_views = 0;
-
-            $blog_views = BlogViews::where('viewable_id', $post->BlogId)->distinct(['ip_address', 'user_id'])->count();
-            if ($blog_views) {
-                $existing_views = $blog_views;
-            }
-
-
-            $categories = Category::where('type', 'blog')->where('house_id', $user->HouseId)->withCount('blogs')->get();
-
+            $post->is_liked = $post->isLikedBy($user->user_id);
             $relatedBlog = Blog::where('HouseId', $user->HouseId)->inRandomOrder()->limit(4)->get()->except($post->BlogId);
-
-            $blogComments = $post->comments()->count();
-
 
             $view = new BlogViews();
 
@@ -114,12 +145,8 @@ class GuestBlogController extends BaseController
             $response = [
                 'success' => true,
                 'data' => [
-                    'user' => $user,
                     'post' => $post,
-                    'existing_views' => $existing_views,
-                    'categories' => $categories,
                     'relatedBlog' => $relatedBlog,
-                    'blogComments' => $blogComments
                 ],
                 'message' => 'Data fetched successfully',
             ];

@@ -107,6 +107,11 @@ class Blog extends Model implements Auditable
         return $this->morphMany(Likes::class, 'likeable');
     }
 
+    public function isLikedBy($userId)
+    {
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
+
     public function views()
     {
         return $this->morphMany(BlogViews::class, 'viewable');
