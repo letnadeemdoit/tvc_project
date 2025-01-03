@@ -98,7 +98,7 @@
                                 color: #2A3342;
                               "
                     >
-                        TheVacationCalendar.com
+                        TheVacationCalendar.com,
                     </a>
 
                 </td>

@@ -101,7 +101,7 @@
                         color: #ffffff;
                       "
                     >
-                    Vacation removed from {{$createdHouseName}} calendar.
+                    Vacation removed from {{$createdHouseName}} calendar
                 </span>
             </td>
         </tr>
@@ -190,7 +190,7 @@
                                 color: #2A3342;
                               "
                     >
-                        TheVacationCalendar.com
+                        TheVacationCalendar.com,
                     </a>
 
                 </td>

@@ -48,6 +48,13 @@
                 font-family: Poppins, sans-serif;
             }
 
+            .body-text-color a {
+                color: #2A3342;
+                text-decoration: none;
+                font-weight: 600;
+                font-family: Poppins, sans-serif;
+            }
+
             .email-text-color {
                 color: #E8604C !important; /* Force the color to override other styles */
                 font-weight: 600;
@@ -172,7 +179,7 @@
                                 color: #E8604C;
                               "
                 >
-                    TheVacationCalendar.com
+                    TheVacationCalendar.com!
                 </a>
                 <span
                     style="
@@ -183,7 +190,7 @@
                                 font-style: normal;
                                 color: #2A3342;
                               ">
-                    ! We’re excited to have you as part of our community of vacation homeowners.
+                    We’re excited to have you as part of our community of vacation homeowners.
         By joining, you’ve taken a significant step toward simplifying your property management and ensuring that you not only maximize the potential
         of your home but also capture and share all the wonderful memories it creates.
                     </span>
@@ -203,7 +210,7 @@
             </tr>
             <tr>
                 <td class="key-column">Email Address:</td>
-                <td class="value-column"><span class="body-text-color">{{$email}}</span></td>
+                <td class="value-column"><span class="email-text-color">{{$email}}</span></td>
             </tr>
             <tr>
                 <td class="key-column">Username:</td>
@@ -245,7 +252,7 @@
                                 font-style: normal;
                                 color: #2A3342;
                               ">
-                     To get started, <strong>log in</strong> to your account by visiting
+                     To get started, log in to your account by visiting
                     </span>
                 <a
                     href="https://TheVacationCalendar.com"
@@ -260,7 +267,7 @@
                                 color: #E8604C;
                               "
                 >
-                    TheVacationCalendar.com
+                    TheVacationCalendar.com.
                 </a>
                 <span
                     style="
@@ -327,7 +334,7 @@
                                 color: #E8604C;
                               "
                 >
-                    this link
+                    this link.
                 </a>
             </td>
         </tr>
@@ -444,7 +451,7 @@
                                 font-weight: 600;
                               "
                 >
-                    YouTube channel of training videos
+                    YouTube channel of training videos,
                 </a>
             </td>
         </tr>
@@ -501,7 +508,7 @@
                                 color: #2A3342;
                               "
                     >
-                        TheVacationCalendar.com
+                        TheVacationCalendar.com,
                     </a>
 
                 </td>

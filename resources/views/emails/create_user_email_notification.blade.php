@@ -49,6 +49,13 @@
                 font-family: Poppins, sans-serif;
             }
 
+            .body-text-color a {
+                color: #2A3342;
+                text-decoration: none;
+                font-weight: 600;
+                font-family: Poppins, sans-serif;
+            }
+
             .email-text-color {
                 color: #E8604C !important; /* Force the color to override other styles */
                 font-weight: 600;
@@ -173,7 +180,7 @@
                                 color: #E8604C;
                               "
                 >
-                    TheVacationCalendar.com
+                    TheVacationCalendar.com!
                 </a>
                 <span
                     style="
@@ -184,7 +191,7 @@
                                 font-style: normal;
                                 color: #2A3342;
                               ">
-                    ! We’re excited to have you on board as a(n)
+                    We’re excited to have you on board as a(n)
                     @if($createUser->role === 'Owner')
                         Schedular
                     @else
@@ -226,11 +233,11 @@
             </tr>
             <tr>
                 <td class="key-column">Username:</td>
-                <td class="value-column"><span class="email-text-color">{{$createUser->user_name}}</span></td>
+                <td class="value-column"><span class="body-text-color">{{$createUser->user_name}}</span></td>
             </tr>
             <tr>
                 <td class="key-column">Password:</td>
-                <td class="value-column"><span class="email-text-color">{{$sendPasswordToMail}}</span></td>
+                <td class="value-column"><span class="body-text-color">{{$sendPasswordToMail}}</span></td>
             </tr>
             </tbody>
         </table>
@@ -268,7 +275,7 @@
                                 font-style: normal;
                                 color: #2A3342;
                               ">
-                     To get started, <strong>log in</strong> to your account by visiting
+                     To get started, log in to your account by visiting
                     </span>
                 <a
                     href="https://TheVacationCalendar.com"
@@ -283,7 +290,7 @@
                                 color: #E8604C;
                               "
                 >
-                    TheVacationCalendar.com
+                    TheVacationCalendar.com.
                 </a>
                 <span
                     style="
@@ -350,7 +357,7 @@
                                 color: #E8604C;
                               "
                 >
-                    this link
+                    this link.
                 </a>
             </td>
         </tr>
@@ -459,7 +466,7 @@
                             {{ $createUser->role }}
                         @endif
                         you can schedule vacations, add to the local guide of restaurants and things to do,
-                        share pictures and so much more! If you have questions,
+                        share pictures and so much more! If you have questions, please check out our
                     </span>
                 <a
                     href="https://youtube.com/playlist?list=PLxQfh1gnJa77a5kzRzEXjhOGmsbLfHGO3&si=JLIS4if_lM6palpM"
@@ -474,7 +481,7 @@
                                 font-weight: 600;
                               "
                 >
-                    YouTube channel of training videos
+                    YouTube channel of training videos,
                 </a>
             </td>
         </tr>
@@ -525,7 +532,7 @@
                                 color: #2A3342;
                               "
                     >
-                        TheVacationCalendar.com
+                        TheVacationCalendar.com,
                     </a>
 
                 </td>
