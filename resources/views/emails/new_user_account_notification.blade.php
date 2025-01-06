@@ -371,7 +371,7 @@
                                 font-style: normal;
                                 color: #2A3342;
                               ">
-                    Pro Tip: Bookmark
+                    <strong>Pro Tip:</strong> Bookmark
                     </span>
                 <a
                     href="{{$siteUrl}}"
@@ -465,56 +465,56 @@
     </p>
 
 
-        <table
-            border="0"
-            cellpadding="0"
-            cellspacing="0"
-            style="
-                        font-family: Poppins, sans-serif;
-                        line-height: 1.2;
-                        font-size: 16px;
-                        padding: 0;
-                        margin: 0;
-                        margin-top: 10px;
-                        border-spacing: 0;
-                        border-collapse: collapse;
-                      "
-        >
-            <tbody>
-            <tr>
-                <!-- Image Cell -->
-                <td
-                    style="vertical-align: middle"
-                >
-                    <span
-                        style="
-                                margin: 0;
-                                text-decoration: none;
-                                font-family: Poppins, sans-serif;
-                                font-size: 16px;
-                                font-style: normal;
-                                color: #2A3342;
-                              ">
-                    Thank you for using
-                    </span>
-                    <a
-                        href="https://www.TheVacationCalendar.com"
-                        style="
-                                margin: 0;
-                                text-decoration: none;
-                                font-family: Poppins, sans-serif;
-                                font-size: 16px;
-                                font-style: normal;
-                                color: #2A3342;
-                              "
-                    >
-                        TheVacationCalendar.com,
-                    </a>
+{{--        <table--}}
+{{--            border="0"--}}
+{{--            cellpadding="0"--}}
+{{--            cellspacing="0"--}}
+{{--            style="--}}
+{{--                        font-family: Poppins, sans-serif;--}}
+{{--                        line-height: 1.2;--}}
+{{--                        font-size: 16px;--}}
+{{--                        padding: 0;--}}
+{{--                        margin: 0;--}}
+{{--                        margin-top: 10px;--}}
+{{--                        border-spacing: 0;--}}
+{{--                        border-collapse: collapse;--}}
+{{--                      "--}}
+{{--        >--}}
+{{--            <tbody>--}}
+{{--            <tr>--}}
+{{--                <!-- Image Cell -->--}}
+{{--                <td--}}
+{{--                    style="vertical-align: middle"--}}
+{{--                >--}}
+{{--                    <span--}}
+{{--                        style="--}}
+{{--                                margin: 0;--}}
+{{--                                text-decoration: none;--}}
+{{--                                font-family: Poppins, sans-serif;--}}
+{{--                                font-size: 16px;--}}
+{{--                                font-style: normal;--}}
+{{--                                color: #2A3342;--}}
+{{--                              ">--}}
+{{--                    Thank you for using--}}
+{{--                    </span>--}}
+{{--                    <a--}}
+{{--                        href="https://www.TheVacationCalendar.com"--}}
+{{--                        style="--}}
+{{--                                margin: 0;--}}
+{{--                                text-decoration: none;--}}
+{{--                                font-family: Poppins, sans-serif;--}}
+{{--                                font-size: 16px;--}}
+{{--                                font-style: normal;--}}
+{{--                                color: #2A3342;--}}
+{{--                              "--}}
+{{--                    >--}}
+{{--                        TheVacationCalendar.com,--}}
+{{--                    </a>--}}
 
-                </td>
-            </tr>
-            </tbody>
-        </table>
+{{--                </td>--}}
+{{--            </tr>--}}
+{{--            </tbody>--}}
+{{--        </table>--}}
 
     <table
         border="0"

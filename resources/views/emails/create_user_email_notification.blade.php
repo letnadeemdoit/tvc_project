@@ -193,7 +193,7 @@
                               ">
                     We’re excited to have you on board as a(n)
                     @if($createUser->role === 'Owner')
-                        Schedular
+                        Scheduler
                     @else
                         {{ $createUser->role }}
                     @endif
@@ -220,7 +220,7 @@
                 <td class="value-column">
                 <span class="body-text-color">
                     @if($createUser->role === 'Owner')
-                        Schedular
+                        Scheduler
                     @else
                         {{ $createUser->role }}
                     @endif
@@ -394,7 +394,7 @@
                                 font-style: normal;
                                 color: #2A3342;
                               ">
-                    Pro Tip: Bookmark
+                    <strong>Pro Tip:</strong> Bookmark
                     </span>
                 <a
                     href="{{$siteUrl}}"
@@ -461,7 +461,7 @@
                               ">
                     As a(n)
                         @if($createUser->role === 'Owner')
-                            Schedular
+                            Scheduler
                         @else
                             {{ $createUser->role }}
                         @endif
