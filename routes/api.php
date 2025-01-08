@@ -9,7 +9,9 @@ use App\Http\Controllers\AppControllers\AuthController;
 use App\Http\Controllers\AppControllers\AdminBlogController;
 use App\Http\Controllers\AppControllers\AdminLocalGuideController;
 use App\Http\Controllers\AppControllers\AdminPhotoAlbumController;
+use App\Http\Controllers\AppControllers\AdminFoodItemsController;
 use App\Http\Controllers\AppControllers\GuestPhotoAlbumController;
+use App\Http\Controllers\AppControllers\GuestFoodItemsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,9 @@ Route::controller(GuestController::class)
                 ->group(function () {
                     Route::get('/blog-list', 'blogList');
                     Route::get('/show', 'show');
+                    Route::post('/like-blog', 'likeBlog');
+                    Route::post('/blog-comment', 'addBlogComment');
+                    Route::delete('/delete-blog-comment', 'deleteBlogComment');
                 });
 
             // Local Guide Routes
@@ -54,6 +59,8 @@ Route::controller(GuestController::class)
                 ->group(function () {
                     Route::get('/local-guide-list', 'localGuideList');
                     Route::get('/show', 'show');
+                    Route::post('/add-review', 'addReview');
+                    Route::delete('/delete-review', 'deleteReview');
                 });
 
             // Bulletins Routes
@@ -70,15 +77,23 @@ Route::controller(GuestController::class)
                     Route::get('/photo-list', 'photoList');
                 });
 
+            // Food Items Routes
+            Route::controller(GuestFoodItemsController::class)
+                ->prefix('food-items')
+                ->group(function () {
+                    Route::get('/food-list', 'foodList');
+                    Route::get('/shopping-list', 'shoppingList');
+                });
+
         });
     });
 
 // Dashboard Routes
 Route::middleware([
     'auth:sanctum',
-//    'verified',
-//    'check-subscription-status',
-//    'check.primary-user.subscribed-any-plan'
+    'verified',
+    'check-subscription-status',
+    'check.primary-user.subscribed-any-plan'
 ])
     ->prefix('dash')
     ->group(function () {
@@ -87,6 +102,7 @@ Route::middleware([
             ->group(function () {
                 Route::get('/blog-list', 'blogList');
                 Route::post('/create', 'createBlog');
+                Route::post('/like-blog', 'likeBlog');
                 Route::delete('/delete', 'destroy');
             });
 
@@ -106,4 +122,17 @@ Route::middleware([
                 Route::post('/create-photo', 'createNewPhoto');
                 Route::delete('/delete-photo', 'destroyPhoto');
             });
+
+        Route::controller(AdminFoodItemsController::class)
+            ->prefix('/food-items')
+            ->group(function () {
+                Route::get('/food-list', 'foodList');
+                Route::post('/create-food', 'createFood');
+                Route::delete('/delete-food', 'destroyFood');
+
+                Route::get('/shopping-list', 'shoppingList');
+                Route::post('/create-shopping', 'createShopping');
+                Route::delete('/delete-shopping', 'destroyShopping');
+            });
+
     });

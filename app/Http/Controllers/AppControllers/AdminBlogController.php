@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\AppControllers;
 
 use App\Http\Controllers\AppControllers\BaseController as BaseController;
+use App\Models\BlogViews;
+use App\Models\Likes;
 use Illuminate\Support\Facades\Log;
 use App\Models\Blog\Blog;
 use App\Models\Category;
@@ -58,6 +60,13 @@ class AdminBlogController extends BaseController
                 ->get()
                 ->map(function ($blog) use ($user) {
                     $blog->is_liked = $blog->isLikedBy($user->user_id);
+
+                    // Calculate existing views
+                    $existing_views = BlogViews::where('viewable_id', $blog->BlogId)
+                        ->distinct(['ip_address', 'user_id'])
+                        ->count();
+                    $blog->views_count = $existing_views;
+
                     return $blog;
                 });
 
@@ -204,6 +213,67 @@ class AdminBlogController extends BaseController
         }
 
     }
+
+
+    /**
+     * Like Blog api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function likeBlog(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $inputs = $request->all();
+
+            $validator = Validator::make($inputs, [
+                'BlogId' => 'required|integer',
+            ]);
+
+            if ($validator->fails()) {
+                return $this->sendError('Validation error', $validator->errors(), 422);
+            }
+            $blog = Blog::where('BlogId', $request->BlogId)->first();
+
+            if (!$blog) {
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'message' => 'Blog not found',
+                ], 404);
+            }
+
+            // Check if the user has already liked the blog
+            $existingLike = Likes::where('user_id', $user->user_id)
+                ->where('likeable_id', $blog->BlogId)
+                ->first();
+
+            if ($existingLike) {
+                $existingLike->delete();
+                $message = 'Like removed successfully';
+            } else {
+                $like = new Likes();
+                $like->fill([
+                    'user_id' => $user->user_id,
+                    'ip_address' => $request->getClientIp(),
+                    'likes' => 1,
+                ]);
+                $blog->likes()->save($like);
+                $message = 'Like created successfully';
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => [],
+                'message' => $message,
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError('An error occurred: ' . $e->getMessage(), []);
+        }
+    }
+
+
 
     public function destroy(Request $request)
     {

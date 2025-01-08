@@ -182,31 +182,31 @@
                         </div>
                     </div>
 
-                    @php
+{{--                    @php--}}
 
-                        $address = $localGuide->address;
-                        $apiKey = env('GOOGLE_MAPS_API_KEY');
-                        $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);
-                        $geo = json_decode($geo, true);
+{{--                        $address = $localGuide->address;--}}
+{{--                        $apiKey = env('GOOGLE_MAPS_API_KEY');--}}
+{{--                        $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false&key='.$apiKey);--}}
+{{--                        $geo = json_decode($geo, true);--}}
 
-                        if (isset($geo['status']) && ($geo['status'] == 'OK')) {
-                          $latitude = $geo['results'][0]['geometry']['location']['lat']; // Latitude
-                          $longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude
-                        }
+{{--                        if (isset($geo['status']) && ($geo['status'] == 'OK')) {--}}
+{{--                          $latitude = $geo['results'][0]['geometry']['location']['lat']; // Latitude--}}
+{{--                          $longitude = $geo['results'][0]['geometry']['location']['lng']; // Longitude--}}
+{{--                        }--}}
 
-                    @endphp
+{{--                    @endphp--}}
 
 
-                    <div class="row my-5 pt-5">
-                        <div class="col-12">
-                            @if(isset($geo['status']) && ($geo['status'] == 'OK'))
-                                <iframe src="https://maps.google.com/maps?q={{$latitude ?? 0}},{{$longitude ?? 0 }}&hl=es;z=14&output=embed"
-                                        class="w-100" height="350" style="border:0;"
-                                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            @endif
+{{--                    <div class="row my-5 pt-5">--}}
+{{--                        <div class="col-12">--}}
+{{--                            @if(isset($geo['status']) && ($geo['status'] == 'OK'))--}}
+{{--                                <iframe src="https://maps.google.com/maps?q={{$latitude ?? 0}},{{$longitude ?? 0 }}&hl=es;z=14&output=embed"--}}
+{{--                                        class="w-100" height="350" style="border:0;"--}}
+{{--                                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
+{{--                            @endif--}}
 
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
 
 
                     <livewire:review.review-form :local-guide="$localGuide"/>

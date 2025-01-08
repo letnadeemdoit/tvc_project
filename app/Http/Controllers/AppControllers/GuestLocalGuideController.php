@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog\Blog;
 use App\Models\BlogViews;
 use App\Models\Category;
+use App\Models\Likes;
 use App\Models\LocalGuide;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class GuestLocalGuideController extends BaseController
 {
@@ -83,7 +86,7 @@ class GuestLocalGuideController extends BaseController
 
         try {
             $user = Auth::user();
-            $order = 'desc';
+            $order = $request->order ?? 'desc';
 
             $dt = LocalGuide::where('id', $request->id)
                 ->with([
@@ -147,8 +150,102 @@ class GuestLocalGuideController extends BaseController
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage(), []);
         }
-
     }
+
+
+    /**
+     * Add Review api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addReview(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $inputs = $request->all();
+
+            $validator = Validator::make($inputs, [
+                'LocalGuideId' => 'required|integer',
+                'rating' => 'required',
+                'remarks' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return $this->sendError('Validation error', $validator->errors(), 422);
+            }
+
+            $localGuide = LocalGuide::where('id', $request->LocalGuideId)->first();
+
+            if (!$localGuide) {
+                return response()->json([
+                    'success' => false,
+                    'data' => [],
+                    'message' => 'Local Guide not found',
+                ], 404);
+            }
+
+            $remark = new Review();
+
+            $remark->fill([
+                'user_id' => $user->user_id,
+                'house_id' => $user->HouseId,
+                'rating' => $inputs['rating'] ?? null,
+                'remarks' => $inputs['remarks'] ?? null,
+            ]);
+
+            $localGuide->reviews()->save($remark);
+
+            // Load the associated user for the review
+            $remark->load('user:user_id,first_name,last_name,email,profile_photo_path');
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'review' => $remark
+                ],
+                'message' => 'Review created successfully',
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError('An error occurred: ' . $e->getMessage(), []);
+        }
+    }
+
+
+    /**
+     * Delete Local Guide Review api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteReview(Request $request)
+    {
+        try {
+            $inputs = $request->all();
+            $validator = Validator::make($inputs, [
+                'LocalGuideId' => 'required|integer',
+                'ReviewId' => 'required|integer',
+            ]);
+
+            if ($validator->fails()) {
+                return $this->sendError('Validation error', $validator->errors(), 422);
+            }
+            $localGuide = LocalGuide::where('id', $request->LocalGuideId)->first();
+
+            $reviewQuery = $localGuide->reviews();
+
+            $reviewQuery->where('id', $request->ReviewId)->delete();
+
+            return response()->json([
+                'success' => true,
+                'data' => [],
+                'message' => 'Review Deleted successfully',
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
+
 
 
 }

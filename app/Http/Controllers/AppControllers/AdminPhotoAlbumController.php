@@ -22,6 +22,8 @@ class AdminPhotoAlbumController extends BaseController
 
     public $file;
 
+    public $limit;
+    public $offSet;
 
     /**
      * Albums List api
@@ -33,12 +35,16 @@ class AdminPhotoAlbumController extends BaseController
         try {
             $this->user = Auth::user();
             $search = $request->search;
+            $this->limit = $request->limit ?? 5;
+            $this->offSet = $request->offSet ?? 0;
             $albums = Album::where('house_id', $this->user->HouseId)
                 ->when($search !== '', function ($query) use ($search) {
                     $query->where(function ($query) use ($search) {
                         $query->where('name', 'LIKE', "%$search%");
                     });
                 })
+                ->skip($this->offSet)
+                ->take($this->limit)
                 ->get();
 
             $response = [
@@ -65,8 +71,12 @@ class AdminPhotoAlbumController extends BaseController
     {
         try {
             $album_id = $request->albumId;
+            $this->limit = $request->limit ?? 10;
+            $this->offSet = $request->offSet ?? 0;
             $albumPhotos = Photo::where('album_id', $album_id)
                 ->orderBy('created_at', 'ASC')
+                ->skip($this->offSet)
+                ->take($this->limit)
                 ->get();
 
             $response = [
@@ -99,7 +109,7 @@ class AdminPhotoAlbumController extends BaseController
 
             $photoItem = $isCreating ? new Photo() : Photo::find($inputs['PhotoId']);
 
-            $this->file = $inputs['file'];
+            $this->file = $request->file('file');
 
             if ($this->file) {
                 $inputs['image'] = $this->file;

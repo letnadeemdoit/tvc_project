@@ -55,6 +55,9 @@ class AdminLocalGuideController extends BaseController
                 ->with(['user' => function ($query) {
                     $query->select('user_id', 'first_name', 'last_name', 'email', 'profile_photo_path');
                 }])
+                ->with(['category' => function ($query) {
+                    $query->select('id', 'name', 'slug');
+                }])
                 ->withCount('reviews')
                 ->orderBy('id', 'DESC')
                 ->get();
