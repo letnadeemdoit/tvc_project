@@ -11,6 +11,7 @@ use App\Models\Subscription;
 use App\Models\User;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
@@ -144,7 +145,8 @@ class PaypalController extends Controller
 
         }
 
-        return redirect()->route('dash.plans-and-pricing')->with('status', 'Sorry we are unable to process your subscription right now please try again later or contact with you vendor.');
+        return redirect()->route('dash.plans-and-pricing')->with('status', 'A subscription with PayPal is already in process which needs to be reset. Click “Reset” below to connect your account with PayPal');
+//        return redirect()->route('dash.plans-and-pricing')->with('status', 'Sorry we are unable to process your subscription right now please try again later or contact with you vendor.');
     }
 
     /**
@@ -352,6 +354,48 @@ class PaypalController extends Controller
     {
         return redirect()->route('dash.plans-and-pricing')->with('status', 'You have been cancelled order.');
     }
+
+
+    public function resetSubscription()
+    {
+        $paypalSubscription = Subscription::where([
+            'user_id' => auth()->user()->user_id,
+            'status' => 'IN_PROCESS'
+        ])->latest()->first();
+
+        if (!$paypalSubscription) {
+            return redirect()->route('dash.plans-and-pricing')->with('status', 'No subscription found to reset.');
+        }
+
+        try {
+            DB::transaction(function () use ($paypalSubscription) {
+                // Cancel subscription
+                $paypalSubscription->cancel();
+
+                // Handle associated processing subscription
+                $processingSubscription = ProcessingSubscription::where([
+                    'subscription_id' => $paypalSubscription->id
+                ])->first();
+
+                if ($processingSubscription) {
+                    $processingSubscription->delete();
+                }
+
+                // Delete the subscription itself
+                $paypalSubscription->delete();
+            });
+
+            return redirect()->route('dash.plans-and-pricing')->with('status', 'Your subscription has been reset successfully. You can retry now for a subscription.');
+        } catch (\Exception $e) {
+            Log::channel('paypal')->error('Reset Subscription: ', [$e->getMessage()]);
+            return redirect()->route('dash.plans-and-pricing')->with('error', 'An error occurred while resetting your subscription. Please try again later.');
+        }
+    }
+
+
+
+
+
 
     /**
      * Paypal is calling page for IPN validation...

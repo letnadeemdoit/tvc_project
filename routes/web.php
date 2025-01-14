@@ -120,6 +120,14 @@ Route::get('/super-admin/manage-users', [SuperAdminController::class, 'manageUse
 Route::get('/super-admin/forgot-password', [SuperAdminController::class, 'forgotPassword'])->name('super-admin.forgot-password');
 Route::post('/super-admin/reset-super-admin-password', [SuperAdminController::class, 'resetSuperAdminPassword'])->name('reset-super-admin-password');
 
+Route::controller(\App\Http\Controllers\PaypalController::class)
+    ->prefix('paypal')
+    ->name('paypal.')
+    ->group(function () {
+        Route::get('/reset', 'resetSubscription')->name('reset');
+    });
+
+
 Route::middleware([
     'auth',
     config('jetstream.auth_session'),
