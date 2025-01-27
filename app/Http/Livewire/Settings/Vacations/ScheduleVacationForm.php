@@ -655,7 +655,7 @@ class ScheduleVacationForm extends Component
 
             $ccList = [];
             $vac_owner = User::where('user_id', $this->vacation->OwnerId)->first();
-            if (!is_null($vac_owner)) {
+            if (!is_null($vac_owner) && primary_user()->email !== $vac_owner->email) {
                 $ccList[] = $vac_owner->email;
             }
             $createdHouseName = $this->user->house->HouseName;
