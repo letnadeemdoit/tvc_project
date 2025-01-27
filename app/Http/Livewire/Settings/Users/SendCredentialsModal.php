@@ -18,7 +18,7 @@ class SendCredentialsModal extends Component
     public $user;
 
     public $state = [];
-
+    public $siteUrl;
     public ?User $userCU;
 
     public $isCreating = false;
@@ -81,8 +81,10 @@ class SendCredentialsModal extends Component
             $user = User::where('email', $this->state['email'])->first();
             $house = House::where('HouseID', $user->HouseId)->first();
             $houseName = $house->HouseName;
+            $houseId = $house->HouseID;
+            $this->siteUrl = route('login', ['houseId' => $houseId]);
 
-            $this->userCU->notify(new SendCredentialMailNotification($sendmail,$sendPasswordToMail,$user,$houseName));
+            $this->userCU->notify(new SendCredentialMailNotification($sendmail,$sendPasswordToMail,$user,$houseName,$this->siteUrl));
 
         }
 

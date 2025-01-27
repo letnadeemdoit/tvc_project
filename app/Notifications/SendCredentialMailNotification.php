@@ -16,18 +16,20 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
     public $sendPasswordToMail;
     public $userDetails;
     public $houseName;
+    public $siteUrl;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($sendmail,$sendPasswordToMail,$userDetails,$houseName)
+    public function __construct($sendmail,$sendPasswordToMail,$userDetails,$houseName,$siteUrl)
     {
        $this->sendmail =$sendmail;
        $this->sendPasswordToMail =$sendPasswordToMail;
        $this->userDetails =$userDetails;
        $this->houseName =$houseName;
+       $this->siteUrl =$siteUrl;
     }
 
     /**
@@ -38,7 +40,7 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','database'];
     }
 
     /**
@@ -54,7 +56,8 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
             ->view('emails.send_credential_email_notification', [
                 'createUser' => $this->userDetails,
                 'sendPasswordToMail' => $this->sendPasswordToMail,
-                'houseName' => $this->houseName
+                'houseName' => $this->houseName,
+                'siteUrl' => $this->siteUrl,
             ]);
     }
 
@@ -70,6 +73,7 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
             'sendPasswordToMail' => $this->sendPasswordToMail,
             'userDetails' => $this->userDetails,
             'houseName' => $this->houseName,
+            'siteUrl' => $this->siteUrl,
         ];
     }
 }
