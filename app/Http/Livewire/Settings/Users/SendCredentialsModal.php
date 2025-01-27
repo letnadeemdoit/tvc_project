@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Settings\Users;
 
 use App\Http\Livewire\Traits\Toastr;
+use App\Models\House;
 use App\Models\User;
 use App\Notifications\SendCredentialMailNotification;
 use Illuminate\Support\Facades\Gate;
@@ -77,7 +78,11 @@ class SendCredentialsModal extends Component
 
             $sendmail = $this->state['email'];
 
-            $this->userCU->notify(new SendCredentialMailNotification($sendmail,$sendPasswordToMail,$userDetails));
+            $user = User::where('email', $this->state['email'])->first();
+            $house = House::where('HouseID', $user->HouseId)->first();
+            $houseName = $house->HouseName;
+
+            $this->userCU->notify(new SendCredentialMailNotification($sendmail,$sendPasswordToMail,$user,$houseName));
 
         }
 

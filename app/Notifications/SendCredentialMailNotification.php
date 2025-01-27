@@ -15,17 +15,19 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
     public $sendmail;
     public $sendPasswordToMail;
     public $userDetails;
+    public $houseName;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($sendmail,$sendPasswordToMail,$userDetails)
+    public function __construct($sendmail,$sendPasswordToMail,$userDetails,$houseName)
     {
        $this->sendmail =$sendmail;
        $this->sendPasswordToMail =$sendPasswordToMail;
        $this->userDetails =$userDetails;
+       $this->houseName =$houseName;
     }
 
     /**
@@ -48,9 +50,12 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('User '.' '. $this->userDetails['user_name'] )
-            ->line(new HtmlString('<strong>' .'User Name:'.'</strong>' .' ' . $this->userDetails['user_name']))
-            ->line(new HtmlString('<strong>' .'your Password is:'.'</strong>' .' ' . $this->sendPasswordToMail));
+            ->subject('Access to TheVacationCalendar.com')
+            ->view('emails.send_credential_email_notification', [
+                'createUser' => $this->userDetails,
+                'sendPasswordToMail' => $this->sendPasswordToMail,
+                'houseName' => $this->houseName
+            ]);
     }
 
     /**
@@ -62,7 +67,9 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'sendPasswordToMail' => $this->sendPasswordToMail,
+            'userDetails' => $this->userDetails,
+            'houseName' => $this->houseName,
         ];
     }
 }
