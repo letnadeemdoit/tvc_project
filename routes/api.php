@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppControllers\AdminNotificationsController;
 use App\Http\Controllers\AppControllers\GuestBlogController;
 use App\Http\Controllers\AppControllers\GuestBulletinsController;
 use App\Http\Controllers\AppControllers\GuestLocalGuideController;
@@ -9,9 +10,15 @@ use App\Http\Controllers\AppControllers\AuthController;
 use App\Http\Controllers\AppControllers\AdminBlogController;
 use App\Http\Controllers\AppControllers\AdminLocalGuideController;
 use App\Http\Controllers\AppControllers\AdminPhotoAlbumController;
+use App\Http\Controllers\AppControllers\AdminGuestBookController;
 use App\Http\Controllers\AppControllers\AdminFoodItemsController;
+use App\Http\Controllers\AppControllers\UserProfileController;
+use App\Http\Controllers\AppControllers\CalendarViewController;
+use App\Http\Controllers\AppControllers\CalendarTaskController;
+use App\Http\Controllers\AppControllers\VacationRoomsController;
 use App\Http\Controllers\AppControllers\GuestPhotoAlbumController;
 use App\Http\Controllers\AppControllers\GuestFoodItemsController;
+use App\Http\Controllers\AppControllers\GuestBookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +92,15 @@ Route::controller(GuestController::class)
                     Route::get('/shopping-list', 'shoppingList');
                 });
 
+            // Guest Book Routes
+            Route::controller(GuestBookController::class)
+                ->prefix('guest-book')
+                ->group(function () {
+                    Route::get('/guest-book-list', 'guestBookList');
+                    Route::post('/create-guest-book', 'createGuestBook');
+                });
+
+
         });
     });
 
@@ -134,5 +150,60 @@ Route::middleware([
                 Route::post('/create-shopping', 'createShopping');
                 Route::delete('/delete-shopping', 'destroyShopping');
             });
+
+
+        Route::controller(AdminNotificationsController::class)
+            ->prefix('/notifications')
+            ->group(function () {
+                Route::get('/notifications-list', 'notificationsList');
+                Route::get('/read-notification', 'readNotification');
+                Route::get('/read-all-notifications', 'readAllNotifications');
+            });
+
+        Route::controller(AdminGuestBookController::class)
+            ->prefix('/guest-book')
+            ->group(function () {
+                Route::get('/guest-book-list', 'guestBookList');
+                Route::post('/create-guest-book', 'createGuestBook');
+                Route::delete('/delete-guest-book', 'deleteGuestBook');
+            });
+
+        Route::controller(UserProfileController::class)
+            ->prefix('/profile')
+            ->group(function () {
+                Route::get('/user', 'getUser');
+                Route::post('/update-picture', 'updateProfilePicture');
+                Route::post('/update-basic-info', 'updateBasicInfo');
+                Route::post('/update-email', 'updateEmailAddress');
+                Route::post('/update-admin-password', 'updateAdminPassword');
+                Route::post('/update-guest-password', 'updateGuestPassword');
+                Route::post('/update-preferences', 'updatePreferences');
+                Route::post('/logout-other-browsers', 'logoutOtherBrowsers');
+            });
+
+        Route::controller(CalendarViewController::class)
+            ->prefix('/calendar')
+            ->group(function () {
+                Route::get('/events', 'getVacations');
+                Route::get('/rooms', 'getRooms');
+                Route::post('/create-vacation', 'saveVacations');
+                Route::delete('/delete-event', 'deleteCalendarEvent');
+            });
+
+        Route::controller(CalendarTaskController::class)
+            ->prefix('/task')
+            ->group(function () {
+                Route::post('/create-task', 'createTask');
+            });
+
+        Route::controller(VacationRoomsController::class)
+            ->prefix('/vacation-room')
+            ->group(function () {
+                Route::get('/rooms-list', 'getRoomsList');
+                Route::post('/create', 'createVacationRoom');
+                Route::delete('/delete', 'deleteVacationRoom');
+            });
+
+
 
     });

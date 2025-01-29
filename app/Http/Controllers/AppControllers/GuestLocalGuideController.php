@@ -48,6 +48,9 @@ class GuestLocalGuideController extends BaseController
                 ->with(['user' => function ($query) {
                     $query->select('user_id', 'first_name', 'last_name', 'email', 'profile_photo_path');
                 }])
+                ->with(['reviews' => function ($query) {
+                    $query->select('id', 'rating', 'commentable_id'); // Include the foreign key
+                }])
                 ->withCount('reviews')
                 ->orderBy('id', 'DESC')
                 ->get();

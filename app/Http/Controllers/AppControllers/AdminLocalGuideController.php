@@ -58,6 +58,9 @@ class AdminLocalGuideController extends BaseController
                 ->with(['category' => function ($query) {
                     $query->select('id', 'name', 'slug');
                 }])
+                ->with(['reviews' => function ($query) {
+                    $query->select('id', 'rating', 'commentable_id'); // Include the foreign key
+                }])
                 ->withCount('reviews')
                 ->orderBy('id', 'DESC')
                 ->get();

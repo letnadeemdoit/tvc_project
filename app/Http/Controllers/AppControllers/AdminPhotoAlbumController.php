@@ -43,6 +43,12 @@ class AdminPhotoAlbumController extends BaseController
                         $query->where('name', 'LIKE', "%$search%");
                     });
                 })
+                ->with(['house' => function ($query) {
+                    $query->select('HouseID', 'HouseName');
+                }])
+                ->with(['user' => function ($query) {
+                    $query->select('user_id', 'first_name', 'last_name', 'email', 'profile_photo_path');
+                }])
                 ->skip($this->offSet)
                 ->take($this->limit)
                 ->get();

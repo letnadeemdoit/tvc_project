@@ -60,7 +60,7 @@ class Album extends Model implements Auditable
 
     public function house()
     {
-        return $this->belongsTo(House::class, 'HouseId', 'house_id');
+        return $this->belongsTo(House::class, 'house_id', 'HouseID');
     }
 
     public function user()

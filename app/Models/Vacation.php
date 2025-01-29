@@ -204,6 +204,44 @@ class Vacation extends Model implements Auditable
 
 
 
+    public function toAppCalendar()
+    {
+
+        return array_merge([
+            'id' => $this->VacationId,
+            'OwnerId' => $this->OwnerId,
+            'title' => $this->VacationName,
+            'start' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
+            'end' => str_replace(' ', 'T', $this->end_datetime->format('Y-m-d H:i:s')),
+            'allDay' => false,
+            'display' => 'block',
+            'className' => 'fullcalendar-custom-event-hs-team',
+            'backgroundColor' => optional(User::where('user_id', $this->OwnerId)->first())->role === 'Owner' && $this->is_vac_approved === 0 ? '#CCCCCC' : $this->BackGrndColor,
+            'textColor' => $this->FontColor,
+            'resourceIds' => [00],
+            'imageUrl' => $this->owner ? $this->owner->profile_photo_url : null,
+            'parent_id' => $this->parent_id,
+            'is_room' => false,
+            'user_role' => optional(User::where('user_id', $this->OwnerId)->first())->role,
+            'is_calendar_task' => $this->is_calendar_task,
+            'book_rooms' => $this->book_rooms,
+            'recurrence' => $this->recurrence,
+            'repeat_interval' => $this->repeat_interval,
+        ], []);
+    }
+
+    public function houseVacations()
+    {
+        return array_merge([
+            'VacationID' => $this->VacationId,
+            'VacationName' => $this->VacationName,
+            'start_date' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
+            'end_date' => str_replace(' ', 'T', $this->end_datetime->format('Y-m-d H:i:s')),
+            'is_calendar_task' => $this->is_calendar_task,
+        ], []);
+    }
+
+
     /**
      * Attributes to exclude from the Audit.
      *
