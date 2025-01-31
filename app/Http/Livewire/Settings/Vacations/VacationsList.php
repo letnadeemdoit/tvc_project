@@ -158,8 +158,14 @@ class VacationsList extends Component
         $this->emitSelf('vacation-schedule-successfully');
 
         Vacation::where('parent_id', $data['VacationId'])->delete();
-
+        $vac_owner = User::where('user_id', $data['OwnerId'])->first();
         $name = $data['VacationName'];
+
+        $ccList = [];
+        if (!is_null($vac_owner) && primary_user()->email !== $vac_owner->email) {
+            $ccList[] = $vac_owner->email;
+        }
+
         try {
             $createdHouseName = $this->user->house->HouseName;
             $isAction = 'Deleted';
@@ -182,7 +188,7 @@ class VacationsList extends Component
                     if (count($CalEmailList) > 0) {
 
                         Notification::route('mail', $CalEmailList)
-                            ->notify(new DeleteVacationNotification($name,$this->user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
+                            ->notify(new DeleteVacationNotification($name,$this->user,$vac_owner,$ccList,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
 
                     }
                 }

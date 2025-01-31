@@ -143,7 +143,6 @@ class DashboardController extends Controller
                 $isAction = 'Deleted';
                 $isModal = 'Vacation';
                 $ccList = [];
-                $ccList[] = $user->email;
                 if (!is_null($vac_owner) && primary_user()->email !== $vac_owner->email) {
                     $ccList[] = $vac_owner->email;
                 }
