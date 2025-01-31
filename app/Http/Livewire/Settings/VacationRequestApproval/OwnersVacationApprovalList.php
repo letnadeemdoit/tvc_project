@@ -286,7 +286,7 @@ class OwnersVacationApprovalList extends Component
 //            $endDate = $this->deletableModel->end_datetime->format('m-d-Y H:i');
 
             $ccList = [];
-            if ($this->user){
+            if ($this->user && primary_user()->email !== $this->user->email) {
                 $ccList[] = $this->user->email;
             }
             $houseName = $owner->house->HouseName;

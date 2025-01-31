@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class DeleteVacationRoomEmailNotification extends Notification
+class DeleteVacationRoomEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

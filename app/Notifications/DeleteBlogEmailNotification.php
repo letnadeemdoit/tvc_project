@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class DeleteBlogEmailNotification extends Notification
+class DeleteBlogEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $ccList;

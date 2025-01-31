@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 use function Termwind\style;
 
-class SubscriptionCanceledEmailNotification extends Notification
+class SubscriptionCanceledEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

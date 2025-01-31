@@ -82,7 +82,7 @@ class LocalGuideList extends Component
             $owner = User::where('user_id', $data['user_id'])->first();
         }
         $ccList = [];
-        if ($owner && $owner->email) {
+        if ($owner && primary_user()->email !== $owner->email) {
             $ccList[] = $owner->email;
         }
 

@@ -94,7 +94,7 @@ class CreateOrUpdateFoodItemForm extends Component
 
             $this->siteUrl = route('guest.house-items.index');
             $ccList = [];
-            if ($this->user) {
+            if ($this->user && primary_user()->email !== $this->user->email) {
                 $ccList[] = $this->user->email;
             }
             $items = $this->foodItemList;

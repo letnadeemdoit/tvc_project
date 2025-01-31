@@ -121,7 +121,7 @@ class PhotosList extends Component
         }
 
         $ccList = [];
-        if ($owner && $owner->email) {
+        if ($owner && primary_user()->email !== $owner->email) {
             $ccList[] = $owner->email;
         }
         $createdHouseName = $this->user->house->HouseName;

@@ -325,13 +325,13 @@ class CalendarView extends Component
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
 
-                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
-                    }
-
-                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                    foreach ($users as $user) {
+//                        $user->notify(new DeleteNotification($name, $isAction,$createdHouseName,$isModal));
+//                    }
+//
+//                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
 
                     if (count($CalEmailList) > 0) {
 

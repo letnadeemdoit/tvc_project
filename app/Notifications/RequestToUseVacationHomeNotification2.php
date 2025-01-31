@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class RequestToUseVacationHomeNotification2 extends Notification
+class RequestToUseVacationHomeNotification2 extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -110,7 +110,7 @@ class CreateOrUpdatePhoto extends Component
         try {
             $this->siteUrl = route('guest.photo-album.index', ['parent_id' => $this->album->id]);
             $ccList = [];
-            if ($this->user) {
+            if ($this->user && primary_user()->email !== $this->user->email) {
                 $ccList[] = $this->user->email;
             }
             $items = $this->photo;

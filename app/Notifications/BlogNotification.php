@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class BlogNotification extends Notification
+class BlogNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $items;

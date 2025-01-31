@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class SendProjectDetailsEmailNotification extends Notification
+class SendProjectDetailsEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class GuestVacationApprovedNotification extends Notification
+class GuestVacationApprovedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

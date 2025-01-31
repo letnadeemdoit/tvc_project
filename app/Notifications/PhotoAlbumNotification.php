@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
 //class PhotoAlbumNotification extends Notification implements ShouldQueue
-class PhotoAlbumNotification extends Notification
+class PhotoAlbumNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $ccList;

@@ -111,7 +111,7 @@ class CreateOrUpdateLocalGuideForm extends Component
             $items = $this->localGuide;
             $createdHouseName = $this->user->house->HouseName;
             $ccList = [];
-            if ($this->user) {
+            if ($this->user && primary_user()->email !== $this->user->email) {
                 $ccList[] = $this->user->email;
             }
 

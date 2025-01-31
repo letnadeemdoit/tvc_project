@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class FoodItemsNotification extends Notification
+class FoodItemsNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $ccList;

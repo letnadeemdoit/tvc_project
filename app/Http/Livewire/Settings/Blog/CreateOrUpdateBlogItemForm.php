@@ -159,7 +159,7 @@ class CreateOrUpdateBlogItemForm extends Component
             $blogUrl = $this->siteUrl;
             $isAction = $this->isCreating ? 'created' : 'updated';
             $ccList = [];
-            if ($this->user) {
+            if ($this->user && primary_user()->email !== $this->user->email) {
                 $ccList[] = $this->user->email;
             }
 

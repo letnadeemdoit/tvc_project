@@ -676,7 +676,7 @@ class ScheduleVacationForm extends Component
                     }
                 }
                 elseif (count($CalEmailList) > 0 && !empty($CalEmailList) && !$this->isCreating){
-                    if ($this->user) {
+                    if ($this->user && primary_user()->email !== $this->user->email) {
                         $ccList[] = $this->user->email;
                     }
 

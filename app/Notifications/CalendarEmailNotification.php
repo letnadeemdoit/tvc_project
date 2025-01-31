@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class CalendarEmailNotification extends Notification
+class CalendarEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
