@@ -1096,13 +1096,13 @@ class ScheduleVacationForm extends Component
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
 
-                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new DeleteVacationNotification($name,$this->user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
-                    }
-
-                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                    foreach ($users as $user) {
+//                        $user->notify(new DeleteVacationNotification($name,$this->user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
+//                    }
+//
+//                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
 
                     if (count($CalEmailList) > 0) {
 

@@ -53,10 +53,20 @@ class AdminPhotoAlbumController extends BaseController
                 ->take($this->limit)
                 ->get();
 
+            $totalAlbums = Album::where('house_id', $this->user->HouseId)
+                ->when($search !== '', function ($query) use ($search) {
+                    $query->where(function ($query) use ($search) {
+                        $query->where('name', 'LIKE', "%$search%");
+                    });
+                })
+                ->count();
+
+
             $response = [
                 'success' => true,
                 'data' => [
                     'albumsList' => $albums,
+                    'totalAlbums' => $totalAlbums,
                 ],
                 'message' => 'Data fetched successfully',
             ];
@@ -85,10 +95,13 @@ class AdminPhotoAlbumController extends BaseController
                 ->take($this->limit)
                 ->get();
 
+            $totalAlbumPhotos = Photo::where('album_id', $album_id)->count();
+
             $response = [
                 'success' => true,
                 'data' => [
                     'albumPhotos' => $albumPhotos,
+                    'totalAlbumPhotos' => $totalAlbumPhotos,
                 ],
                 'message' => 'Data fetched successfully',
             ];

@@ -49,10 +49,22 @@ class AdminGuestBookController extends BaseController
                 ->orderBy('id', 'DESC')
                 ->get();
 
+            $totalGuestBooks = GuestBook::where('house_id', $user->HouseId)
+                ->when($this->search !== '', function ($query) {
+                    $query->where(function ($query) {
+                        $query
+                            ->where('name', 'LIKE', "%$this->search%")
+                            ->orWhere('title', 'LIKE', "%$this->search%")
+                            ->orWhere('content', 'LIKE', "%$this->search%");
+                    });
+                })
+                ->count();
+
             $response = [
                 'success' => true,
                 'data' => [
-                    'data' => $data
+                    'data' => $data,
+                    'totalGuestBooks' => $totalGuestBooks,
                 ],
                 'message' => 'Data fetched successfully',
             ];

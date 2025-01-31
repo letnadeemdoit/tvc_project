@@ -99,13 +99,13 @@ class LocalGuideList extends Component
 
                 if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
 
-                    $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new DeleteLocalGuideEmailNotification($ccList,$title,$this->user,$createdHouseName));
-                    }
-
-                    $localGuideEmailsList = array_diff($localGuideEmailsList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                    foreach ($users as $user) {
+//                        $user->notify(new DeleteLocalGuideEmailNotification($ccList,$title,$this->user,$createdHouseName));
+//                    }
+//
+//                    $localGuideEmailsList = array_diff($localGuideEmailsList, $users->pluck('email')->toArray());
 
                     if (count($localGuideEmailsList) > 0) {
 

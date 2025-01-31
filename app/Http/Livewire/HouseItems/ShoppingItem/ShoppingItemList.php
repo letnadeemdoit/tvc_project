@@ -95,13 +95,11 @@ class ShoppingItemList extends Component
 
                 if (count($foodItemEmailsList) > 0 && !empty($foodItemEmailsList)) {
 
-                    $users = User::whereIn('email', $foodItemEmailsList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
-                    }
-
-                    $foodItemEmailsList = array_diff($foodItemEmailsList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $foodItemEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//                    foreach ($users as $user) {
+//                        $user->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
+//                    }
+//                    $foodItemEmailsList = array_diff($foodItemEmailsList, $users->pluck('email')->toArray());
 
                     if (count($foodItemEmailsList) > 0) {
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\AppControllers\AdminLocalGuideController;
 use App\Http\Controllers\AppControllers\AdminPhotoAlbumController;
 use App\Http\Controllers\AppControllers\AdminGuestBookController;
 use App\Http\Controllers\AppControllers\AdminFoodItemsController;
+use App\Http\Controllers\AppControllers\VacationApprovalController;
 use App\Http\Controllers\AppControllers\UserProfileController;
 use App\Http\Controllers\AppControllers\CalendarViewController;
 use App\Http\Controllers\AppControllers\CalendarTaskController;
@@ -202,6 +203,14 @@ Route::middleware([
                 Route::get('/rooms-list', 'getRoomsList');
                 Route::post('/create', 'createVacationRoom');
                 Route::delete('/delete', 'deleteVacationRoom');
+            });
+
+        Route::controller(VacationApprovalController::class)
+            ->prefix('/vacation-approval')
+            ->group(function () {
+                Route::get('/vacation-list', 'getVacationList');
+                Route::post('/is-approve', 'approveVacation');
+                Route::delete('/reject-vacation', 'rejectVacation');
             });
 
 

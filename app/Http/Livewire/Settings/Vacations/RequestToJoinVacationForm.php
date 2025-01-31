@@ -195,11 +195,12 @@ class RequestToJoinVacationForm extends Component
                         $request_to_use_house_email_list = explode(',', $this->user->house->request_to_use_house_email_list);
 
                         if (count($request_to_use_house_email_list) > 0 && !empty($request_to_use_house_email_list)) {
-                            $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', $this->user->HouseId)->get();
-                            foreach ($users as $user) {
-                                $user->notify(new RequestToUseVacationHomeNotification1($this->state['name'], $this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
-                            }
-                            $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
+//                            $users = User::whereIn('email', $request_to_use_house_email_list)->where('HouseId', $this->user->HouseId)->get();
+//                            foreach ($users as $user) {
+//                                $user->notify(new RequestToUseVacationHomeNotification1($this->state['name'], $this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
+//                            }
+//                            $request_to_use_house_email_list = array_diff($request_to_use_house_email_list, $users->pluck('email')->toArray());
+
                             if (count($request_to_use_house_email_list) > 0) {
                                 Notification::route('mail', $request_to_use_house_email_list)
                                     ->notify(new RequestToUseVacationHomeNotification1($this->state['name'], $this->state['email'], $house->HouseName, $this->state['start_datetime'], $this->state['end_datetime']));
@@ -353,11 +354,12 @@ class RequestToJoinVacationForm extends Component
                 $CalEmailList = explode(',', $this->user->house->request_to_use_house_email_list);
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
-                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
-                    foreach ($users as $user) {
-                        $user->notify(new RequestToUseVacationHomeNotification2($vacName,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
-                    }
-                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+//                    foreach ($users as $user) {
+//                        $user->notify(new RequestToUseVacationHomeNotification2($vacName,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
+//                    }
+//                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
                             ->notify(new RequestToUseVacationHomeNotification2($vacName,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
@@ -373,11 +375,12 @@ class RequestToJoinVacationForm extends Component
                 $CalEmailList = explode(',', $this->user->house->vacation_approval_email_list);
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
-                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
-                    foreach ($users as $user) {
-                        $user->notify(new RequestToApproveVacationEmailNotification($vacName,$this->siteUrl,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
-                    }
-                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+//                    foreach ($users as $user) {
+//                        $user->notify(new RequestToApproveVacationEmailNotification($vacName,$this->siteUrl,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));
+//                    }
+//                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
+
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
                             ->notify(new RequestToApproveVacationEmailNotification($vacName,$this->siteUrl,$ccList,$this->state['name'],$this->state['email'], $createdHouseName, $vacStartDate, $vacEndDate));

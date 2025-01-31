@@ -51,11 +51,21 @@ class AdminFoodItemsController extends BaseController
                 ->take($this->limit)
                 ->get();
 
+            $totalFoodItems = FoodItem::where('house_id', $user->HouseId)
+                ->when($this->search !== '', function ($query) {
+                    $query->where(function ($query) {
+                        $query
+                            ->where('name', 'LIKE', "%$this->search%");
+                    });
+                })
+                ->count();
+
 
             $response = [
                 'success' => true,
                 'data' => [
                     'foodItems' => $data,
+                    'totalFoodItems' => $totalFoodItems,
                 ],
                 'message' => 'Data fetched successfully',
             ];
@@ -190,11 +200,20 @@ class AdminFoodItemsController extends BaseController
                 ->take($this->limit)
                 ->get();
 
+            $totalShoppingItems = ShoppingItem::where('house_id', $user->HouseId)
+                ->when($this->search !== '', function ($query) {
+                    $query->where(function ($query) {
+                        $query
+                            ->where('name', 'LIKE', "%$this->search%");
+                    });
+                })
+                ->count();
 
             $response = [
                 'success' => true,
                 'data' => [
                     'foodItems' => $data,
+                    'totalShoppingItems' => $totalShoppingItems
                 ],
                 'message' => 'Data fetched successfully',
             ];

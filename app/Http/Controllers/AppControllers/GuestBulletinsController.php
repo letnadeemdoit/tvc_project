@@ -45,11 +45,20 @@ class GuestBulletinsController extends BaseController
 
             $bulletinsCategories = Category::where('type', 'bulletin-board')->where('house_id', $user->HouseId)->get();
 
+            $totalBulletins = Board::where('HouseId', $user->HouseId)
+                ->when($this->category !== 'all', function ($query) {
+                    $query->whereHas('category', function ($query) {
+                        $query->where('slug', $this->category);
+                    });
+                })
+                ->count();
+
             $response = [
                 'success' => true,
                 'data' => [
                     'bulletins' => $data,
                     'bulletinsCategories' => $bulletinsCategories,
+                    'totalBulletins' => $totalBulletins,
                 ],
                 'message' => 'Data fetched successfully',
             ];

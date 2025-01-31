@@ -120,13 +120,12 @@ class CreateOrUpdatePhoto extends Component
 
                 $photoEmailsList = explode(',', $this->user->house->photo_email_list);
                 if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
-                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//                    foreach ($users as $user) {
+//                        $user->notify(new PhotoAlbumNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
+//                    }
+//                    $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
 
-                    foreach ($users as $user) {
-                        $user->notify(new PhotoAlbumNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
-                    }
-//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-                    $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
                     if (count($photoEmailsList) > 0) {
                         Notification::route('mail', $photoEmailsList)
                             ->notify(new PhotoAlbumNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));

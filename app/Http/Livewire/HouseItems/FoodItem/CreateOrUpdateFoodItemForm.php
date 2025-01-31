@@ -104,13 +104,11 @@ class CreateOrUpdateFoodItemForm extends Component
 
                 $foodEmailsList = explode(',', $this->user->house->food_item_list);
                 if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
-                    $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new FoodItemsNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
-                    }
-//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-                    $foodEmailsList = array_diff($foodEmailsList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//                    foreach ($users as $user) {
+//                        $user->notify(new FoodItemsNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
+//                    }
+//                    $foodEmailsList = array_diff($foodEmailsList, $users->pluck('email')->toArray());
                     if (count($foodEmailsList) > 0) {
                         Notification::route('mail', $foodEmailsList)
                             ->notify(new FoodItemsNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));

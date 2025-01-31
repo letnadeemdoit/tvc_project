@@ -149,13 +149,13 @@ class PhotosList extends Component
 
                 if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
 
-                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new DeletePhotoEmailNotification($ccList, $this->siteUrl,$dataObject,$album['name'],$this->user, $createdHouseName));
-                    }
-
-                    $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                    foreach ($users as $user) {
+//                        $user->notify(new DeletePhotoEmailNotification($ccList, $this->siteUrl,$dataObject,$album['name'],$this->user, $createdHouseName));
+//                    }
+//
+//                    $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
 
                     if (count($photoEmailsList) > 0) {
 

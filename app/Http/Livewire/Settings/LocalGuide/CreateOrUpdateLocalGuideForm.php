@@ -119,13 +119,12 @@ class CreateOrUpdateLocalGuideForm extends Component
 
                 $localGuideEmailsList = explode(',', $this->user->house->local_guide_email_list);
                 if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
-                    $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new LocalGuideNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
-                    }
-//                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-                    $localGuideEmailsList = array_diff($localGuideEmailsList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                    foreach ($users as $user) {
+//                        $user->notify(new LocalGuideNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
+//                    }
+//                    $localGuideEmailsList = array_diff($localGuideEmailsList, $users->pluck('email')->toArray());
                     if (count($localGuideEmailsList) > 0) {
                         Notification::route('mail', $localGuideEmailsList)
                             ->notify(new LocalGuideNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));

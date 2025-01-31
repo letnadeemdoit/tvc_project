@@ -90,13 +90,13 @@ class BlogItemList extends Component
 
                 if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
 
-                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
-
-                    foreach ($users as $user) {
-                        $user->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
-                    }
-
-                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+//                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//
+//                    foreach ($users as $user) {
+//                        $user->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
+//                    }
+//
+//                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
 
                     if (count($blogEmailsList) > 0) {
 

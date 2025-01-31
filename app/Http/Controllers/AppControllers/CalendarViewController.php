@@ -144,7 +144,7 @@ class CalendarViewController extends BaseController
                 'EndTimeId' => $endTime->timeid,
                 'repeat_interval' => $inputs['repeat_interval'] ?? 0,
                 'book_rooms' => $inputs['book_rooms'] ?? 0,
-                'is_vac_approved' => 1,
+                'is_vac_approved' => 0,
 //                'is_vac_approved' => $isCreating ? ($user->is_owner_only && $this->isOwnerVacApproval ? 1: 0) : $this->vacation->is_vac_approved,
             ])->save();
 
@@ -196,7 +196,7 @@ class CalendarViewController extends BaseController
                             'EndTimeId' => $endTime->timeid,
                             'HouseId' => $user->HouseId,
                             'OwnerId' => $user->user_id,
-                            'is_vac_approved' => 1,
+                            'is_vac_approved' => 0,
                         ]);
                     }
 
