@@ -104,6 +104,9 @@ class CreateOrUpdateGusetBookForm extends Component
             if (!is_null($this->user->house->guest_book_email_list) && !empty($this->user->house->guest_book_email_list) && $this->isCreating) {
 
                 $guestBookEmailsList = explode(',', $this->user->house->guest_book_email_list);
+                $guestBookEmailsList = array_merge($guestBookEmailsList, $ccList);
+                $guestBookEmailsList = array_unique(array_filter($guestBookEmailsList));
+
                 if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
 
 //                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();

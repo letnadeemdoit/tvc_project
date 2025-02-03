@@ -57,7 +57,7 @@ class CalendarEmailNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('New Vacation added to ' . $this->createdHouseName . ' Calendar')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.calendar_email_notification', [
                 'vacName' => $this->vacName,
                 'user' => $this->user,

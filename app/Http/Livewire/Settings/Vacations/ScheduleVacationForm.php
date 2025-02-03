@@ -663,22 +663,16 @@ class ScheduleVacationForm extends Component
             if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
 
                 $CalEmailList = explode(',', $this->user->house->CalEmailList);
+                $CalEmailList = array_merge($CalEmailList, $ccList);
+                $CalEmailList = array_unique(array_filter($CalEmailList));
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList) && $this->isCreating) {
-//                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
-//                    foreach ($users as $user) {
-//                        $user->notify(new CalendarEmailNotification($vacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate));
-//                    }
-//                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
                             ->notify(new CalendarEmailNotification($vacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate));
                     }
                 }
                 elseif (count($CalEmailList) > 0 && !empty($CalEmailList) && !$this->isCreating){
-                    if ($this->user && primary_user()->email !== $this->user->email) {
-                        $ccList[] = $this->user->email;
-                    }
 
 //                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
 //                    foreach ($users as $user) {
@@ -699,6 +693,8 @@ class ScheduleVacationForm extends Component
                 if (!is_null($this->user->house->vacation_approval_email_list) && !empty($this->user->house->vacation_approval_email_list)) {
 
                     $CalEmailList = explode(',', $this->user->house->vacation_approval_email_list);
+                    $CalEmailList = array_merge($CalEmailList, $ccList);
+                    $CalEmailList = array_unique(array_filter($CalEmailList));
 
                     if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
 //                        $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();

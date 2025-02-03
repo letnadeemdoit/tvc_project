@@ -49,7 +49,7 @@ class DeleteBlogEmailNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Blog was deleted from ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.blog_deleted_email_notification', [
                 'title' => $this->title,
                 'user' => $this->user,

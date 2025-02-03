@@ -103,6 +103,9 @@ class CreateOrUpdateShoppingItemForm extends Component
             if (!is_null($this->user->house->food_item_list) && !empty($this->user->house->food_item_list) && $this->isCreating) {
 
                 $foodEmailsList = explode(',', $this->user->house->food_item_list);
+                $foodEmailsList = array_merge($foodEmailsList, $ccList);
+                $foodEmailsList = array_unique(array_filter($foodEmailsList));
+
                 if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
 //                    $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $this->user->HouseId)->get();
 //                    foreach ($users as $user) {

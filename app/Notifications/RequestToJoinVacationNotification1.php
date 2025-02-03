@@ -57,7 +57,7 @@ class RequestToJoinVacationNotification1 extends Notification implements ShouldQ
     {
         return (new MailMessage)
             ->subject('Request to Join ' . $this->vacation_name . ' at ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.request_to_join_vacation_notification', [
                 'vacation_name' => $this->vacation_name,
                 'owner' => $this->owner,

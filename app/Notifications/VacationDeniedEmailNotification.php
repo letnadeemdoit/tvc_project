@@ -61,7 +61,7 @@ class VacationDeniedEmailNotification extends Notification implements ShouldQueu
     {
         return (new MailMessage)
             ->subject(' ' . $this->vacName . ' at ' . $this->houseName . ' was Denied ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.vacation_denied_email_notification', [
                 'vacName' => $this->vacName,
                 'name' => $this->name,

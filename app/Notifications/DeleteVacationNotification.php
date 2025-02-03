@@ -61,7 +61,7 @@ class DeleteVacationNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Vacation removed from ' . $this->createdHouseName . ' Calendar')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.delete_vacation_notification', [
                 'name' => $this->name,
                 'user' => $this->user,

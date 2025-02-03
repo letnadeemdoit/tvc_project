@@ -87,6 +87,8 @@ class BlogItemList extends Component
             if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList)) {
 
                 $blogEmailsList = explode(',', $this->user->house->BlogEmailList);
+                $blogEmailsList = array_merge($blogEmailsList, $ccList);
+                $blogEmailsList = array_unique(array_filter($blogEmailsList));
 
                 if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
 

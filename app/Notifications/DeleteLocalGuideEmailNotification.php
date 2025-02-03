@@ -49,7 +49,7 @@ class DeleteLocalGuideEmailNotification extends Notification implements ShouldQu
     {
         return (new MailMessage)
             ->subject('Local Guide was deleted from ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.local_guide_deleted_email_notification', [
                 'title' => $this->title,
                 'user' => $this->user,

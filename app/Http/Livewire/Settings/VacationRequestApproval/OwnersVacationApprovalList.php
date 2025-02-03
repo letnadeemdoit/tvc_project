@@ -201,6 +201,7 @@ class OwnersVacationApprovalList extends Component
             if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
                 $CalEmailList = explode(',', $this->user->house->CalEmailList);
                 $ccList = array_merge($ccList, $CalEmailList); // Merge emails into $ccList
+                $ccList = array_unique(array_filter($ccList));
             }
             $houseName = $vac_owner->house->HouseName;
 
@@ -209,8 +210,10 @@ class OwnersVacationApprovalList extends Component
                 $name = $guestContact->guest_name;
                 $email = $guestContact->guest_email;
                 $isApproved = $guestContact->is_approved;
+                $ccList[] = $guestContact->guest_email;
+                $ccList = array_unique(array_filter($ccList));
 
-                Notification::route('mail', $guestContact->guest_email)
+                Notification::route('mail', $ccList)
                     ->notify(new GuestVacationApprovedNotification(
                         $ccList,
                         $vacContent,
@@ -228,6 +231,8 @@ class OwnersVacationApprovalList extends Component
                 $name = $vac_owner->first_name . ' ' . $vac_owner->last_name;
                 $email = $vac_owner->email;
                 $isApproved = $vacation->is_vac_approved === true ? 1 : 0;
+                $ccList[] = $email;
+                $ccList = array_unique(array_filter($ccList));
 
                 Notification::route('mail', $email)
                     ->notify(new GuestVacationApprovedNotification(
@@ -291,9 +296,11 @@ class OwnersVacationApprovalList extends Component
             }
             $houseName = $owner->house->HouseName;
             $admin = $this->user;
+            $ccList[] = $this->notificationEmail;
+            $ccList = array_unique(array_filter($ccList));
 
             if ($this->notificationEmail){
-                Notification::route('mail', $this->notificationEmail)
+                Notification::route('mail', $ccList)
                     ->notify(new VacationDeniedEmailNotification($ccList,$name,$email,$vacName,$admin,$houseName,$this->startDate,$this->endDate));
             }
 

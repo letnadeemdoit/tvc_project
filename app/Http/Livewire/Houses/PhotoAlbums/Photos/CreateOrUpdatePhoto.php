@@ -119,6 +119,9 @@ class CreateOrUpdatePhoto extends Component
             if (!is_null($this->user->house->photo_email_list) && !empty($this->user->house->photo_email_list) && $this->isCreating) {
 
                 $photoEmailsList = explode(',', $this->user->house->photo_email_list);
+                $photoEmailsList = array_merge($photoEmailsList, $ccList);
+                $photoEmailsList = array_unique(array_filter($photoEmailsList));
+
                 if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
 //                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
 //                    foreach ($users as $user) {

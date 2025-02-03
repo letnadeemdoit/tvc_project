@@ -60,7 +60,7 @@ class RequestToUseVacationHomeNotification2 extends Notification implements Shou
 
         return (new MailMessage)
             ->subject('Request to Use ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.request_to_use_vacation_home_notification', [
                 'vacName' => $this->vacName,
                 'name' => $this->name,

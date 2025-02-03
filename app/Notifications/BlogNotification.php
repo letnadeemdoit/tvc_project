@@ -52,7 +52,7 @@ class BlogNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject(' New Blog entry added to ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.blog_email_notification', [
                 'items' => $this->items,
                 'blogUrl' => $this->blogUrl,

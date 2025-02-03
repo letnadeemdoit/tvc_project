@@ -53,7 +53,7 @@ class DeletePhotoEmailNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Picture was deleted from ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.photo_deleted_email_notification', [
                 'items' => $this->items,
                 'siteUrl' => $this->siteUrl,

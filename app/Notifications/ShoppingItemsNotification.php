@@ -52,7 +52,7 @@ class ShoppingItemsNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('New Shopping Item was added to ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.shopping_items_email_notification', [
                 'items' => $this->items,
                 'siteUrl' => $this->siteUrl,

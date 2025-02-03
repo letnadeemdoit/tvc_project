@@ -51,7 +51,7 @@ class DeleteGuestBookEmailNotification extends Notification implements ShouldQue
     {
         return (new MailMessage)
             ->subject('Guest Book was deleted from ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.guest_book_deleted_email_notification', [
                 'title' => $this->title,
                 'isModel' => $this->isModel,

@@ -52,7 +52,7 @@ class LocalGuideNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('New Local Guide entry added to ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.local_guide_email_notification', [
                 'items' => $this->items,
                 'siteUrl' => $this->siteUrl,

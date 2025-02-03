@@ -52,7 +52,7 @@ class FoodItemsNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('New Food Item was added to ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.food_items_email_notification', [
                 'items' => $this->items,
                 'siteUrl' => $this->siteUrl,

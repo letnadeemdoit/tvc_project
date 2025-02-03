@@ -61,7 +61,7 @@ class RequestToApproveVacationEmailNotification extends Notification implements 
 
         return (new MailMessage)
             ->subject('Approval Request for ' . $this->vacName . ' at ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.request_to_approve_vacation_email_notification', [
                 'vacName' => $this->vacName,
                 'siteUrl' => $this->siteUrl,

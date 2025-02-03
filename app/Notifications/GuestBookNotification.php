@@ -52,7 +52,7 @@ class GuestBookNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('New Guest Book entry added to ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.guest_book_email_notification', [
                 'title' => $this->title,
                 'siteUrl' => $this->siteUrl,

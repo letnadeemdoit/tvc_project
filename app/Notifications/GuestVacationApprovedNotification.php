@@ -64,7 +64,7 @@ class GuestVacationApprovedNotification extends Notification implements ShouldQu
     {
         return (new MailMessage)
             ->subject(' ' . $this->vacation->VacationName . ' at ' . $this->houseName . ' was ' . $this->vacContent . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.guest_vacation_approved_notification', [
                 'vacContent' => $this->vacContent,
                 'name' => $this->name,

@@ -174,6 +174,8 @@ class VacationsList extends Component
             if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
 
                 $CalEmailList = explode(',', $this->user->house->CalEmailList);
+                $CalEmailList = array_merge($CalEmailList, $ccList);
+                $CalEmailList = array_unique(array_filter($CalEmailList));
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
 

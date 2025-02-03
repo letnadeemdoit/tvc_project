@@ -166,6 +166,9 @@ class CreateOrUpdateBlogItemForm extends Component
             if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList) && $this->isCreating) {
 
                 $blogEmailsList = explode(',', $this->user->house->BlogEmailList);
+                $blogEmailsList = array_merge($blogEmailsList, $ccList);
+                $blogEmailsList = array_unique(array_filter($blogEmailsList));
+
                 if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
 //                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 //                    foreach ($users as $user) {

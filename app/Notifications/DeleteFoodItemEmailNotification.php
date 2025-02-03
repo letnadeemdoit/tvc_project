@@ -51,7 +51,7 @@ class DeleteFoodItemEmailNotification extends Notification implements ShouldQueu
     {
         return (new MailMessage)
             ->subject('' . $this->isModel . ' was deleted from ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.food_item_deleted_email_notification', [
                 'title' => $this->title,
                 'isModel' => $this->isModel,

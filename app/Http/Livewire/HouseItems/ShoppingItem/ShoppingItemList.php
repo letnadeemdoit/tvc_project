@@ -92,6 +92,8 @@ class ShoppingItemList extends Component
             if (!is_null($this->user->house->food_item_list) && !empty($this->user->house->food_item_list)) {
 
                 $foodItemEmailsList = explode(',', $this->user->house->food_item_list);
+                $foodItemEmailsList = array_merge($foodItemEmailsList, $ccList);
+                $foodItemEmailsList = array_unique(array_filter($foodItemEmailsList));
 
                 if (count($foodItemEmailsList) > 0 && !empty($foodItemEmailsList)) {
 

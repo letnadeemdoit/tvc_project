@@ -150,6 +150,9 @@ class DashboardController extends Controller
 
                 if (!is_null($user->house->CalEmailList) && !empty($user->house->CalEmailList)) {
                     $CalEmailList = explode(',', $user->house->CalEmailList);
+                    $CalEmailList = array_merge($CalEmailList, $ccList);
+                    $CalEmailList = array_unique(array_filter($CalEmailList));
+
                     if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
 //                        $users = User::whereIn('email', $CalEmailList)->where('HouseId', $user->HouseId)->get();
 //                        foreach ($users as $us) {

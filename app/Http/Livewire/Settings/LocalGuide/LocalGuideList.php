@@ -96,6 +96,8 @@ class LocalGuideList extends Component
             if (!is_null($this->user->house->local_guide_email_list) && !empty($this->user->house->local_guide_email_list)) {
 
                 $localGuideEmailsList = explode(',', $this->user->house->local_guide_email_list);
+                $localGuideEmailsList = array_merge($localGuideEmailsList, $ccList);
+                $localGuideEmailsList = array_unique(array_filter($localGuideEmailsList));
 
                 if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
 

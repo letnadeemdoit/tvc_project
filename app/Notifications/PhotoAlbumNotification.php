@@ -53,7 +53,7 @@ class PhotoAlbumNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('New Picture added to ' . $this->createdHouseName . ' ')
-            ->cc($this->ccList) // Add CC recipients
+//            ->cc($this->ccList) // Add CC recipients
             ->view('emails.new_picture_in_album_email_notification', [
                 'items' => $this->items,
                 'siteUrl' => $this->siteUrl,
