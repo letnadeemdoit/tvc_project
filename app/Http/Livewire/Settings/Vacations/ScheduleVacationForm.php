@@ -693,8 +693,8 @@ class ScheduleVacationForm extends Component
                 if (!is_null($this->user->house->vacation_approval_email_list) && !empty($this->user->house->vacation_approval_email_list)) {
 
                     $CalEmailList = explode(',', $this->user->house->vacation_approval_email_list);
-                    $CalEmailList = array_merge($CalEmailList, $ccList);
-                    $CalEmailList = array_unique(array_filter($CalEmailList));
+//                    $CalEmailList = array_merge($CalEmailList, $ccList);
+//                    $CalEmailList = array_unique(array_filter($CalEmailList));
 
                     if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
 //                        $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
