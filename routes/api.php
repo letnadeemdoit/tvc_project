@@ -13,6 +13,7 @@ use App\Http\Controllers\AppControllers\AdminPhotoAlbumController;
 use App\Http\Controllers\AppControllers\AdminGuestBookController;
 use App\Http\Controllers\AppControllers\AdminFoodItemsController;
 use App\Http\Controllers\AppControllers\VacationApprovalController;
+use App\Http\Controllers\AppControllers\PaypalController;
 use App\Http\Controllers\AppControllers\UserProfileController;
 use App\Http\Controllers\AppControllers\CalendarViewController;
 use App\Http\Controllers\AppControllers\CalendarTaskController;
@@ -185,7 +186,8 @@ Route::middleware([
         Route::controller(CalendarViewController::class)
             ->prefix('/calendar')
             ->group(function () {
-                Route::get('/events', 'getVacations');
+                Route::post('/events', 'getVacations');
+                Route::get('/house-properties', 'houseRelevantProperties');
                 Route::get('/rooms', 'getRooms');
                 Route::post('/create-vacation', 'saveVacations');
                 Route::delete('/delete-event', 'deleteCalendarEvent');
@@ -200,7 +202,7 @@ Route::middleware([
         Route::controller(VacationRoomsController::class)
             ->prefix('/vacation-room')
             ->group(function () {
-                Route::get('/rooms-list', 'getRoomsList');
+                Route::get('/vacations-and-rooms-list', 'getRoomsList');
                 Route::post('/create', 'createVacationRoom');
                 Route::delete('/delete', 'deleteVacationRoom');
             });
@@ -212,6 +214,15 @@ Route::middleware([
                 Route::post('/is-approve', 'approveVacation');
                 Route::delete('/reject-vacation', 'rejectVacation');
             });
+
+        Route::controller(PaypalController::class)
+            ->prefix('/paypal')
+            ->group(function () {
+                Route::get('/plans-and-pricing', 'planAndPricing');
+                Route::get('/process', 'processSubscription');
+
+            });
+
 
 
 
