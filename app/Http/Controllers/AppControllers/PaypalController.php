@@ -48,12 +48,17 @@ class PaypalController extends BaseController
             return response()->json($response, 200);
 
         } catch (\Exception $e) {
+            Log::channel('paypal')->error('Current Subscription: ', [$e->getMessage()]);
             return $this->sendError($e->getMessage(), []);
         }
     }
 
 
-
+    /**
+     * Process Subscription api
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function processSubscription(Request $request)
     {
         $user = Auth::user();
@@ -154,13 +159,54 @@ class PaypalController extends BaseController
             }
         } catch (\Exception $e) {
             Log::channel('paypal')->error('Create Subscription: ', [$e->getMessage()]);
-
+            return $this->sendError($e->getMessage(), []);
         }
 
         return response()->json([
             'success' => false,
             'message' => 'A PayPal subscription is already in process. Please complete the approval process or reset your subscription.',
         ]);
+    }
+
+
+    /**
+     * Cancel Subscription api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function canceledSubscription()
+    {
+        try {
+            $user = Auth::user();
+            $paypalSubscription = Subscription::where([
+                'user_id' => $user->user_id,
+                'status' => 'ACTIVE'
+            ])->latest()->first();
+
+            ProcessingSubscription::create([
+                'subscription_id' => $paypalSubscription->id,
+                'plan_id' => $paypalSubscription->plan_id,
+                'plan' => $paypalSubscription->plan,
+                'period' => $paypalSubscription->period,
+                'status' => 'APPROVAL_PENDING',
+            ]);
+            $subscription = Subscription::where([
+                'user_id' => $user->user_id,
+                'house_id' => $user->HouseId
+            ])->whereNotIn('status', ['CANCELLED','IN_PROCESS','COMPLETED','APPROVED'])->latest()->first();
+
+            $subscription->cancel();
+
+            $response = [
+                'success' => true,
+                'message' => 'You have been unsubscribed successfully. You may see the status is not changed as soon as verified from paypal it will update automatically.'
+            ];
+            return response()->json($response, 200);
+
+        } catch (\Exception $e) {
+            Log::channel('paypal')->error('Cancel Subscription: ', [$e->getMessage()]);
+            return $this->sendError($e->getMessage(), []);
+        }
     }
 
 

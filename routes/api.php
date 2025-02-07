@@ -220,6 +220,8 @@ Route::middleware([
             ->group(function () {
                 Route::get('/plans-and-pricing', 'planAndPricing');
                 Route::get('/process', 'processSubscription');
+                Route::get('/revise', 'processSubscription');
+                Route::get('/canceled', 'canceledSubscription');
 
             });
 
