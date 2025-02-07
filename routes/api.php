@@ -219,13 +219,22 @@ Route::middleware([
             ->prefix('/paypal')
             ->group(function () {
                 Route::get('/plans-and-pricing', 'planAndPricing');
-                Route::get('/process', 'processSubscription');
                 Route::get('/revise', 'processSubscription');
                 Route::get('/canceled', 'canceledSubscription');
 
             });
 
+    });
 
 
-
+Route::middleware([
+    'auth:sanctum'
+])
+    ->prefix('dash')
+    ->group(function () {
+        Route::controller(PaypalController::class)
+            ->prefix('/paypal')
+            ->group(function () {
+                Route::get('/process', 'processSubscription');
+            });
     });

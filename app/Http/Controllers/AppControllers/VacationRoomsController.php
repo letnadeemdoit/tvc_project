@@ -40,6 +40,9 @@ class VacationRoomsController extends BaseController
                 $event = $vacation->houseVacations();
                 if ($event['is_calendar_task'] === 0){
                     $vacations[] = $event;
+                    foreach ($vacation->rooms as $room){
+                        $vacations[] = $room->houseVacationRooms();
+                    }
                 }
             }
 

@@ -238,6 +238,8 @@ class Vacation extends Model implements Auditable
             'start_date' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
             'end_date' => str_replace(' ', 'T', $this->end_datetime->format('Y-m-d H:i:s')),
             'is_calendar_task' => $this->is_calendar_task,
+            'book_rooms' => $this->book_rooms,
+            'is_room' => false,
         ], []);
     }
 

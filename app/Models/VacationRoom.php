@@ -68,4 +68,22 @@ class VacationRoom extends Model
         ], []);
     }
 
+    public function houseVacationRooms()
+    {
+        $endsAtMinus10Minutes = (clone $this->ends_at)->sub(new DateInterval('PT10M'));
+
+        return array_merge([
+            'id' => $this->vacation_id,
+            'occupant_name' => $this->occupant_name,
+            'room_id' => $this->room_id,
+            'vacation_room_id' => $this->id,
+            'title' => $this->room->RoomName . ' '. '('.$this->occupant_name.')',
+            'start' => str_replace(' ', 'T', $this->starts_at->format('Y-m-d H:i:s')),
+            'end' => str_replace(' ', 'T', $endsAtMinus10Minutes->format('Y-m-d H:i:s')),
+            'imageUrl' => $this->vacation->owner ? $this->vacation->owner->profile_photo_url : null,
+            'parent_id' => $this->vacation->parent_id,
+            'is_room' => true,
+        ], []);
+    }
+
 }

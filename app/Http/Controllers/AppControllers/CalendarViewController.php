@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\AppControllers;
 
 use App\Models\Calendar;
+use App\Models\House;
 use App\Models\Room\Room;
 use App\Models\Time;
+use App\Models\User;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
 use App\Rules\VacationSchedule;
@@ -20,6 +22,9 @@ class CalendarViewController extends BaseController
 
     public $user;
     public $house;
+    public $owner;
+    public $properties;
+    public $selectedHouses = [];
 
     public ?Vacation $vacation;
 
@@ -31,31 +36,152 @@ class CalendarViewController extends BaseController
     public function getVacations(Request $request)
     {
         try {
+            $inputs = $request->all();
+            $this->properties = $inputs['properties'] ?? [];
+            $this->owner = $inputs['owner'] ?? null;
+
+            if (is_string($this->properties)) {
+                $decodedProperties = json_decode($this->properties, true);
+                $this->properties = is_array($decodedProperties) ? $decodedProperties : [];
+            }
+
+            $this->selectedHouses = is_array($this->properties) ? $this->properties : [];
             $user = Auth::user();
-//            if (!$user->is_guest) {
-//                $vacations = Vacation::whereIn('HouseId', $this->properties ? $this->selectedHouses : $this->houses->pluck('HouseID')->toArray())
-//                    ->when($user->user_id !== $this->owner && $this->owner !== null, function ($query) {
-//                        $query->where('OwnerId', $this->owner);
-//                    })
-//                    ->orderBy('VacationId','ASC')
-//                    ->get();
-//            } else {
-            $vacations = Vacation::where('HouseId', $user->HouseId)->orderBy('VacationId','ASC')->get();
-//            }
+            $houses = $this->getHousesProperty();
+
+            $whereHouses = !empty($this->selectedHouses) ? $this->selectedHouses : $houses->pluck('HouseID')->toArray();
+            if (!$user->is_guest) {
+                $vacations = Vacation::whereIn('HouseId', $whereHouses)
+                    ->when($user->user_id !== $this->owner && $this->owner !== null, function ($query) {
+                        $query->where('OwnerId', $this->owner);
+                    })
+                    ->orderBy('VacationId', 'ASC')
+                    ->get();
+            } else {
+                $vacations = Vacation::where('HouseId', $user->HouseId)->orderBy('VacationId', 'ASC')->get();
+            }
 
             $events = [];
             foreach ($vacations as $vacation) {
                 $events[] = $vacation->toAppCalendar();
-                foreach ($vacation->rooms as $room){
+                foreach ($vacation->rooms as $room) {
                     $events[] = $room->toCalendar();
                 }
             }
+
+            $response = [
+                'success' => true,
+                'data' => [
+                    'events' =>  $events,
+                ],
+                'message' => 'Data fetched successfully',
+            ];
+            return response()->json($response, 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
+
+    /**
+     * Get Houses Property Function
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getHousesProperty()
+    {
+        $user = Auth::user();
+        if ($user->role === 'Owner') {
+            return House::whereHas('users', function ($query) use ($user) {
+                $query->where([
+                    'role' => User::ROLE_OWNER,
+                ])->where([
+                    ['email', $user->email],
+                    ['HouseId', '<>', 0],
+                    'parent_id' => $user->parent_id
+                ]);
+            })
+                ->select('HouseID', 'parent_id', 'HouseName')
+                ->get();
+        } elseif ($user->role === 'Administrator') {
+            return House::whereHas('users', function ($query) use ($user) {
+                $query->where([
+                    'role' => User::ROLE_ADMINISTRATOR,
+                ])->where(function ($query) use ($user) {
+                    $query->where('email', $user->email)
+                        ->when($user->primary_account, function ($query) use ($user) {
+                            $query->orWhere('parent_id', $user->user_id);
+                        })
+                        ->when(!$user->primary_account, function ($query) use ($user) {
+                            $query->orWhere(function ($query) use ($user) {
+                                $query->where('parent_id', $user->user_id)
+                                    ->orWhere('user_id', $user->user_id);
+                            });
+                        });
+                });
+            })
+                ->select('HouseID', 'parent_id', 'HouseName')
+                ->get();
+        }
+
+    }
+
+
+    /**
+     * Get House Properties api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function houseRelevantProperties(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $houses = null;
+            if ($user->role === 'Owner') {
+                $houses = House::whereHas('users', function ($query) use ($user) {
+                    $query->where([
+                        'role' => User::ROLE_OWNER,
+                    ])->where([
+                        ['email', $user->email],
+                        ['HouseId', '<>', 0],
+                        'parent_id' => $user->parent_id
+                    ]);
+                })
+                    ->select('HouseID', 'parent_id', 'HouseName')
+                    ->get();
+            } elseif ($user->role === 'Administrator') {
+                $houses = House::whereHas('users', function ($query) use ($user) {
+                    $query->where([
+                        'role' => User::ROLE_ADMINISTRATOR,
+                    ])->where(function ($query) use ($user) {
+                        $query->where('email', $user->email)
+                            ->when($user->primary_account, function ($query) use ($user) {
+                                $query->orWhere('parent_id', $user->user_id);
+                            })
+                            ->when(!$user->primary_account, function ($query) use ($user) {
+                                $query->orWhere(function ($query) use ($user) {
+                                    $query->where('parent_id', $user->user_id)
+                                        ->orWhere('user_id', $user->user_id);
+                                });
+                            });
+                    });
+                })
+                    ->select('HouseID', 'parent_id', 'HouseName')
+                    ->get();
+            }
+
+            $users = User::where('HouseId', $user->HouseId)
+                ->where('role', '<>', User::ROLE_GUEST)
+                ->where('user_id', '<>', $user->user_id)
+                ->select('user_id', 'first_name', 'last_name','role')
+                ->get();
 
 
             $response = [
                 'success' => true,
                 'data' => [
-                    'events' => $events,
+                    'houses' => $houses,
+                    'users' => $users,
                 ],
                 'message' => 'Data fetched successfully',
             ];
