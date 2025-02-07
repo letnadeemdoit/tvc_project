@@ -70,12 +70,6 @@ class PaypalController extends BaseController
             $checkSubscription = Subscription::where('user_id', $user->user_id)->latest()->first();
             if (!is_null($checkSubscription)){
                 $checkPaypalSubscription = $this->paypal->showSubscriptionDetails($checkSubscription->subscription_id);
-                return response()->json([
-                    'success' => true,
-                    'data' => [
-                        'checkPaypalSubscription' => $checkPaypalSubscription
-                    ],
-                ]);
                 if ($checkPaypalSubscription['status'] === 'APPROVAL_PENDING'){
                     $processingSubscription = ProcessingSubscription::where([
                         'subscription_id' => $checkSubscription->id,
