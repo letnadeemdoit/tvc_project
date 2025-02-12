@@ -51,8 +51,8 @@
 {{--                >--}}
 {{--                    Print  Calendar--}}
 {{--                </button>--}}
-{{--                @if($user->is_owner && !$user->is_owner_only)--}}
-                @if(!$user->is_guest)
+                @if($user->is_owner && !$user->is_owner_only)
+{{--                @if(!$user->is_guest)--}}
                     <div class="dropdown ms-1">
                         <button type="button" class="btn btn-white dropdown-toggle w-100"
                                 id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -81,8 +81,8 @@
                         </div>
                     </div>
                 @endif
-{{--                    @if($user->is_admin) before--}}
-                @if(!$user->is_guest)
+                    @if($user->is_admin)
+{{--                @if(!$user->is_guest)--}}
                     <div class="dropdown ms-1">
                         <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuProperties"
                                 data-bs-toggle="dropdown" aria-expanded="false" data-offset="10,20">
@@ -431,7 +431,8 @@
                         }
                         @endif
                         // console.log('info ', info)
-                        @if(!$user->is_guest)
+{{--                        @if(!$user->is_guest)--}}
+                        @if($user->is_owner)
 
                         let parsed = queryString.parse(window.location.search);
 

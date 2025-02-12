@@ -62,6 +62,58 @@ class VacationRoomsController extends BaseController
     }
 
 
+    /**
+     * Get Specific Vacation api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getSpecificVacation(Request $request)
+    {
+        try {
+            $vacationId = $request->vacation_id;
+            $vacation = Vacation::where('VacationId', $vacationId)->first();
+
+            $response = [
+                'success' => true,
+                'data' => [
+                    'vacation' => $vacation,
+                ],
+                'message' => 'Data fetched successfully',
+            ];
+            return response()->json($response, 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
+
+
+    /**
+     * Get Specific Vacation Room api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getSpecificVacationRoom(Request $request)
+    {
+        try {
+            $vacationId = $request->vacation_id;
+            $roomId = $request->room_id;
+            $vacationsRoom = VacationRoom::where('vacation_id', $vacationId)->where('room_id',$roomId)->first();
+
+            $response = [
+                'success' => true,
+                'data' => [
+                    'vacationRoom' => $vacationsRoom,
+                ],
+                'message' => 'Data fetched successfully',
+            ];
+            return response()->json($response, 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
+
 
     /**
      * Create Vacation Room api

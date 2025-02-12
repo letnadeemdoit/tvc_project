@@ -10,8 +10,8 @@
     </x-slot>
 
     <x-slot name="headerRightActions">
-{{--        @if($user->is_owner)--}}
-        @if(!$user->is_guest)
+        @if($user->is_admin)
+{{--        @if(!$user->is_guest)--}}
             <div class="col-sm-auto">
 
                 <button type="button" class="btn btn-outline-secondary mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -56,12 +56,12 @@
                     </div>
                 </div>
 
-
-                <a
-                    x-data
-                    class="btn btn-primary mb-2 mb-lg-0"
-                    href="javascript:;"
-                    @click.prevent="() => {
+                @if($user->is_owner)
+                    <a
+                        x-data
+                        class="btn btn-primary mb-2 mb-lg-0"
+                        href="javascript:;"
+                        @click.prevent="() => {
                              let parsed = queryString.parse(window.location.search);
                              var url = '{!! route('dash.schedule-vacation', ['vacationId' => '__vacationId__', 'initialDate' => '__initialDate__', 'owner' => '__owner__']) !!}';
                              url = url.replace('__vacationId__', null);
@@ -71,14 +71,15 @@
 {{--                        let parsed = queryString.parse(window.location.search);--}}
 {{--                        window.livewire.emit('showVacationScheduleModal', true, null, null, parsed.owner, parsed.properties)--}}
                     }"
-                >
-                    <i class="bi-clock me-1"></i> Schedule Vacation
-                </a>
+                    >
+                        <i class="bi-clock me-1"></i> Schedule Vacation
+                    </a>
+                @endif
 
                 @php
                     $isEnableTaskScheduled = App\Models\CalendarSetting::where('house_id', primary_user()->HouseId)->first();
                 @endphp
-                @if($isEnableTaskScheduled && $isEnableTaskScheduled->allow_informational_entries === 1 && $user->is_admin)
+                @if($isEnableTaskScheduled && $isEnableTaskScheduled->allow_informational_entries === 1)
                     <a
                         x-data
                         class="btn btn-primary mb-2 mb-lg-0"

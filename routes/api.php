@@ -203,6 +203,8 @@ Route::middleware([
             ->prefix('/vacation-room')
             ->group(function () {
                 Route::get('/vacations-and-rooms-list', 'getRoomsList');
+                Route::get('/change-vacation', 'getSpecificVacation');
+                Route::get('/change-room', 'getSpecificVacationRoom');
                 Route::post('/create', 'createVacationRoom');
                 Route::delete('/delete', 'deleteVacationRoom');
             });
