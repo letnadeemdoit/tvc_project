@@ -123,6 +123,7 @@ class AdminBlogController extends BaseController
             if ($this->file) {
                 $inputs['image'] = $this->file;
             } else {
+                $blogItem->deleteFile('image');
                 unset($inputs['image']);
             }
 
@@ -162,7 +163,7 @@ class AdminBlogController extends BaseController
                 'slug' => $slug,
             ])->save();
 
-            $blogItem->updateFile($this->file);
+            $blogItem->updateFile($this->file ?? null);
 
 
 
@@ -213,6 +214,7 @@ class AdminBlogController extends BaseController
         }
 
     }
+
 
 
     /**
