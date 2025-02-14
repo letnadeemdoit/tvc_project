@@ -267,7 +267,11 @@ class VacationApprovalController extends BaseController
                 $event->delete();
             }
 
-            return response()->json(['message' => 'Vacation rejected successfully'], 200);
+            return response()->json([
+                'success' => true,
+                'message' => 'Vacation rejected successfully',
+            ], 200);
+
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage(), []);
         }

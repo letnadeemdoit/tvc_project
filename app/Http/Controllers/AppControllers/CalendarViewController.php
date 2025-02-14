@@ -566,23 +566,25 @@ class CalendarViewController extends BaseController
     public function deleteCalendarEvent(Request $request)
     {
         try {
-            $this->vacation = Vacation::where('VacationId',$request->VacationId)->orWhere('parent_id',$request->VacationId)->first();
+            $events = Vacation::where('VacationId', $request->VacationId)
+                ->orWhere('parent_id', $request->VacationId)
+                ->get();
 
-
-            if ($this->vacation->HouseId == current_house()->HouseID) {
-                $events = Vacation::where('VacationId', $request->VacationId)
-                    ->orWhere('parent_id', $request->VacationId)
-                    ->get();
-
-                // Delete all the retrieved events
+            if (isset($events) && count($events) > 0) {
                 foreach ($events as $event) {
                     $event->delete();
                 }
 
-                return response()->json(['message' => 'Events deleted successfully'], 200);
-            }
-            else{
-                return response()->json(['message' => 'Event not found'], 404);
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Event deleted successfully.',
+                ], 200);
+
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Event not found.',
+                ], 404);
             }
 
         } catch (\Exception $e) {

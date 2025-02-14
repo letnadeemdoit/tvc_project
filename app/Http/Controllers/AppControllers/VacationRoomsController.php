@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Calendar;
 use App\Models\Room\Room;
 use App\Models\Time;
+use App\Models\User;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
 use Carbon\Carbon;
@@ -33,7 +34,18 @@ class VacationRoomsController extends BaseController
         try {
             $user = Auth::user();
 
-            $vacationsData = Vacation::where('HouseId', $user->HouseId)->orderBy('VacationId','ASC')->get();
+            $guestUser = User::where('HouseId', current_house()->HouseID)->where('parent_id', primary_user()->user_id)->where('role', 'guest')->first();
+
+            $vacationsData = Vacation::where('HouseId', current_house()->HouseID)
+                ->when($user->is_admin && $guestUser, function ($query) use ($guestUser) {
+                    $query->where('OwnerId', '<>', $guestUser->user_id);
+                })
+                ->when($user->is_owner_only, function ($query) use($user) {
+                    $query->where('OwnerId', $user->user_id);
+                })
+                ->where('is_calendar_task', 0)
+                ->orderBy('VacationName')->get();
+
             $rooms = Room::where('HouseId', $user->HouseId)->select('RoomID', 'RoomName')->get();
             $vacations = [];
             foreach ($vacationsData as $vacation) {
@@ -225,9 +237,15 @@ class VacationRoomsController extends BaseController
 
             if ($vacationRoom) {
                 $vacationRoom->delete();
-                return response()->json(['message' => 'Vacation Room deleted successfully'], 200);
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Vacation Room deleted successfully.',
+                ], 200);
             } else {
-                return response()->json(['message' => 'Vacation Room not found'], 404);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Vacation Room not found.',
+                ], 404);
             }
 
         } catch (\Exception $e) {

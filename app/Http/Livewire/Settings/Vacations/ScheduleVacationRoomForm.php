@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Settings\Vacations;
 
 use App\Http\Livewire\Traits\Destroyable;
 use App\Models\Room\Room;
+use App\Models\User;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
 use Carbon\Carbon;
@@ -197,9 +198,9 @@ class ScheduleVacationRoomForm extends Component
             }
         })->validateWithBag('saveVacationRoomSchedule');
 
-//        if ($this->isCreating) {
-//            $this->vacationRoom->room_id = $this->state['room_id'];
-//        }
+    //        if ($this->isCreating) {
+    //            $this->vacationRoom->room_id = $this->state['room_id'];
+    //        }
 
         $this->vacationRoom->fill([
             'vacation_id' => $this->state['vacation_id'],
@@ -229,7 +230,17 @@ class ScheduleVacationRoomForm extends Component
 
     public function render()
     {
-        $vacations = Vacation::where('HouseId', current_house()->HouseID)->orderBy('VacationName')->get();
+        $guestUser = User::where('HouseId', current_house()->HouseID)->where('parent_id', primary_user()->user_id)->where('role', 'guest')->first();
+
+        $vacations = Vacation::where('HouseId', current_house()->HouseID)
+            ->when($this->user->is_admin && $guestUser, function ($query) use ($guestUser) {
+                $query->where('OwnerId', '<>', $guestUser->user_id);
+            })
+            ->when($this->user->is_owner_only, function ($query) {
+                $query->where('OwnerId', $this->user->user_id);
+            })
+            ->where('is_calendar_task', 0)
+            ->orderBy('VacationName')->get();
         $this->houseRooms = Room::where('HouseID', current_house()->HouseID)->get();
         return view('dash.settings.vacations.schedule-vacation-room-form', compact('vacations'));
     }

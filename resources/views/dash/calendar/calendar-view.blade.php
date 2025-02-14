@@ -334,6 +334,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="selectRelevantUserRoomModal" tabindex="-1" aria-labelledby="selectRelevantUserRoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div>
+              <span class="rounded-circle text-primary border-primary" style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                    <i class="bi-exclamation"></i>
+                </span>
+                    </div>
+
+                    <h4 class="fw-bold text-center my-3"
+                        style="color: #00000090">Select relevant room</h4>
+                    <p class="fw-500 fs-15">
+                        Unable to update room: Scheduler has no right to update admin rooms or other scheduler rooms.
+                    </p>
+                    <div class="btn-group my-2">
+                        <button type="button"
+                                class="btn px-5 btn-dark fw-500 text-uppercase fs-16 mb-2 mb-lg-0 w-180 mx-2 rounded py-2"
+                                data-bs-dismiss="modal">Ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -550,6 +576,15 @@
                                 @if(primary_user()->enable_rooms !== 1)
                                 $('#changeAccountSettingToAccessRoomModal').modal('show');
                                 @else
+
+                                let is_owner_only = "<?php echo $user->is_owner_only; ?>";
+                                let user_id = "<?php echo $user->user_id; ?>";
+                                let vacation_owner_id = calEvent.event.extendedProps.vacation_owner_id.toString();
+                                if(is_owner_only && user_id !== vacation_owner_id){
+                                    $('#selectRelevantUserRoomModal').modal('show');
+                                    return false;
+                                }
+
                                 window.livewire.emit('checkRoomExistInHouse', calEvent.event.extendedProps.room_id, calEvent.event.extendedProps.vacation_room_id);
                                 $.blockUI({ css: {
                                         border: 'none',

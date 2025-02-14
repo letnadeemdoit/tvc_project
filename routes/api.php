@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Authentication Routes
 Route::post('login', [AuthController::class, 'login']);
+Route::post('guest-login', [AuthController::class, 'guestLogin']);
 Route::post('register', [AuthController::class, 'register']);
 Route::get('house-list', [AuthController::class, 'houseList']);
 Route::get('countries-list', [AuthController::class, 'countriesList']);
@@ -197,6 +198,7 @@ Route::middleware([
             ->prefix('/task')
             ->group(function () {
                 Route::post('/create-task', 'createTask');
+                Route::delete('/delete-task', 'deleteTask');
             });
 
         Route::controller(VacationRoomsController::class)

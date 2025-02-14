@@ -64,6 +64,7 @@ class VacationRoom extends Model
             'resourceId' => $this->room_id,
             'imageUrl' => $this->vacation->owner ? $this->vacation->owner->profile_photo_url : null,
             'parent_id' => $this->vacation->parent_id,
+            'vacation_owner_id' => $this->vacation->OwnerId,
             'is_room' => true,
         ], []);
     }
@@ -82,6 +83,7 @@ class VacationRoom extends Model
             'end' => str_replace(' ', 'T', $endsAtMinus10Minutes->format('Y-m-d H:i:s')),
             'imageUrl' => $this->vacation->owner ? $this->vacation->owner->profile_photo_url : null,
             'parent_id' => $this->vacation->parent_id,
+            'vacation_owner_id' => $this->vacation->OwnerId,
             'is_room' => true,
         ], []);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AppControllers;
 
 use App\Http\Controllers\AppControllers\BaseController as BaseController;
 use App\Models\House;
+use App\Models\Subscription;
 use App\Models\User;
 use App\Models\World\Country;
 use App\Models\World\State;
@@ -36,8 +37,15 @@ class AuthController extends BaseController
             $user = Auth::user();
 
             $user->load('house');
+            $subscription = Subscription::where([
+                'user_id' => primary_user()->user_id,
+                'house_id' => primary_user()->HouseId,
+                'status' => 'ACTIVE',
+            ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
+
             $success['token'] = $user->createToken('MyApp')->plainTextToken;
             $success['user'] = $user;
+            $success['subscription'] = $subscription;
             return $this->sendResponse($success, 'User logged in successfully.');
         } else {
             return $this->sendError('Unauthorised. Email and password does not match.', []);
@@ -49,6 +57,49 @@ class AuthController extends BaseController
             ], 500);
         }
     }
+
+
+    /**
+     * Guest Login api
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function guestLogin(Request $request)
+    {
+        try {
+            $request->validate([
+                'password' => 'required',
+                'houseId' => 'required',
+            ]);
+
+            if (Auth::attempt(['role' => 'Guest', 'password' => $request->password , 'HouseID' => $request->houseId])) {
+                $user = Auth::user();
+
+                $user->load('house');
+                $subscription = Subscription::where([
+                    'user_id' => primary_user()->user_id,
+                    'house_id' => primary_user()->HouseId,
+                    'status' => 'ACTIVE',
+                ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
+
+                $success['token'] = $user->createToken('MyApp')->plainTextToken;
+                $success['user'] = $user;
+                $success['subscription'] = $subscription;
+
+                return $this->sendResponse($success, 'User logged in successfully.');
+            } else {
+                return $this->sendError('Unauthorised. Credentials does not match.', []);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
 
     /**
      * House List api
@@ -87,6 +138,7 @@ class AuthController extends BaseController
                 ->get();
 
             return response()->json([
+                'success' => true,
                 'results' => $houseList,
                 'message' => 'Data fetched successfully'
             ]);
@@ -111,6 +163,7 @@ class AuthController extends BaseController
             $countries = Country::orderBy('name', 'ASC')->get();
 
             return response()->json([
+                'success' => true,
                 'results' => $countries,
                 'message' => 'Data fetched successfully'
             ]);
@@ -139,6 +192,7 @@ class AuthController extends BaseController
             }
 
             return response()->json([
+                'success' => true,
                 'results' => $states,
                 'message' => 'Data fetched successfully'
             ]);
@@ -241,7 +295,7 @@ class AuthController extends BaseController
 
 
             }
-
+            $this->newUser->load('house');
             $success['token'] =  $this->newUser->createToken('MyApp')->plainTextToken;
             $success['user'] = $this->newUser;
             return $this->sendResponse($success, 'User registered successfully.');

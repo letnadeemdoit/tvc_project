@@ -214,6 +214,40 @@ class CalendarTaskController extends BaseController
     }
 
 
+
+    /**
+     * Delete Calendar Tasks api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteTask(Request $request)
+    {
+        try {
+            $tasks = Vacation::where('VacationId', $request->VacationId)
+                ->orWhere('parent_id', $request->VacationId)
+                ->get();
+            if (isset($tasks) && count($tasks) > 0) {
+                foreach ($tasks as $event) {
+                    $event->delete();
+                }
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Task deleted successfully.',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Task not found.',
+                ], 404);
+            }
+
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
+
+
     public function syncCalendar($startDatetime, $endDatetime, &$startDate, &$startTime, &$endDate, &$endTime)
     {
         // Start Datetime

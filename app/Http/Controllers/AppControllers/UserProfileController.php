@@ -285,11 +285,7 @@ class UserProfileController extends BaseController
             ]);
 
             if ($validator->fails()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Validation error',
-                    'data' => $validator->errors(),
-                ], 422);
+                return $this->sendError('Validation error', $validator->errors(), 422);
             }
 
             if ($user->primary_account == 1) {
