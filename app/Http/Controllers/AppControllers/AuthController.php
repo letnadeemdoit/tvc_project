@@ -27,29 +27,38 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
         try {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            'houseId' => 'required',
-        ]);
+            $request->validate([
+                'email' => 'required',
+                'password' => 'required',
+                'houseId' => 'required',
+            ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password , 'HouseID' => $request->houseId])) {
-            $user = Auth::user();
+            // Determine if the input is an email or a username
+            $credentials = ['password' => $request->password, 'HouseID' => $request->houseId];
 
-            $user->load('house');
-            $subscription = Subscription::where([
-                'user_id' => primary_user()->user_id,
-                'house_id' => primary_user()->HouseId,
-                'status' => 'ACTIVE',
-            ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
+            if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+                $credentials['email'] = $request->email;
+            } else {
+                $credentials['user_name'] = $request->email;
+            }
 
-            $success['token'] = $user->createToken('MyApp')->plainTextToken;
-            $success['user'] = $user;
-            $success['subscription'] = $subscription;
-            return $this->sendResponse($success, 'User logged in successfully.');
-        } else {
-            return $this->sendError('Unauthorised. Email and password does not match.', []);
-        }
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+
+                $user->load('house');
+                $subscription = Subscription::where([
+                    'user_id' => primary_user()->user_id,
+                    'house_id' => primary_user()->HouseId,
+                    'status' => 'ACTIVE',
+                ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
+
+                $success['token'] = $user->createToken('MyApp')->plainTextToken;
+                $success['user'] = $user;
+                $success['subscription'] = $subscription;
+                return $this->sendResponse($success, 'User logged in successfully.');
+            } else {
+                return $this->sendError('Unauthorised. Email and password does not match.', []);
+            }
         } catch (\Exception $e) {
             return response()->json([
                 'error' => true,
@@ -57,6 +66,40 @@ class AuthController extends BaseController
             ], 500);
         }
     }
+
+//    public function login(Request $request)
+//    {
+//        try {
+//        $request->validate([
+//            'email' => 'required|email',
+//            'password' => 'required',
+//            'houseId' => 'required',
+//        ]);
+//
+//        if (Auth::attempt(['email' => $request->email, 'password' => $request->password , 'HouseID' => $request->houseId])) {
+//            $user = Auth::user();
+//
+//            $user->load('house');
+//            $subscription = Subscription::where([
+//                'user_id' => primary_user()->user_id,
+//                'house_id' => primary_user()->HouseId,
+//                'status' => 'ACTIVE',
+//            ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
+//
+//            $success['token'] = $user->createToken('MyApp')->plainTextToken;
+//            $success['user'] = $user;
+//            $success['subscription'] = $subscription;
+//            return $this->sendResponse($success, 'User logged in successfully.');
+//        } else {
+//            return $this->sendError('Unauthorised. Email and password does not match.', []);
+//        }
+//        } catch (\Exception $e) {
+//            return response()->json([
+//                'error' => true,
+//                'message' => $e->getMessage(),
+//            ], 500);
+//        }
+//    }
 
 
     /**

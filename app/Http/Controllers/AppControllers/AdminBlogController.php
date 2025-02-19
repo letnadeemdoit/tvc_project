@@ -42,9 +42,6 @@ class AdminBlogController extends BaseController
             $this->offSet = $request->offSet ?? 0;
 
             $blogList = Blog::where('HouseId', $user->HouseId)
-                ->when($user->is_owner_only, function ($query) use ($user) {
-                    $query->where('user_id', $user->user_id);
-                })
                 ->when($this->category !== 'all', function ($query) {
                     $query->whereHas('category', function ($query) {
                         $query->where('slug', $this->category);

@@ -21,6 +21,8 @@ use App\Http\Controllers\AppControllers\VacationRoomsController;
 use App\Http\Controllers\AppControllers\GuestPhotoAlbumController;
 use App\Http\Controllers\AppControllers\GuestFoodItemsController;
 use App\Http\Controllers\AppControllers\GuestBookController;
+use App\Http\Controllers\AppControllers\CalendarSettingsController;
+use App\Http\Controllers\AppControllers\HouseSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +103,13 @@ Route::controller(GuestController::class)
                 ->group(function () {
                     Route::get('/guest-book-list', 'guestBookList');
                     Route::post('/create-guest-book', 'createGuestBook');
+                });
+
+            // Calendar Setting Routes
+            Route::controller(CalendarSettingsController::class)
+                ->prefix('calendar-settings')
+                ->group(function () {
+                    Route::get('/get-calendar-settings', 'getCalendarSettings');
                 });
 
 
@@ -226,6 +235,13 @@ Route::middleware([
                 Route::get('/revise', 'processSubscription');
                 Route::get('/canceled', 'canceledSubscription');
 
+            });
+
+        Route::controller(HouseSettingsController::class)
+            ->prefix('/house-settings')
+            ->group(function () {
+                Route::get('/house-details', 'getHouseDetails');
+                Route::post('/update-house-settings', 'updateHouseSettings');
             });
 
     });
