@@ -36,7 +36,29 @@
                     dataType: 'json'
                     // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
                     }
+                }).on('select2:select', function (e)  {
+                    house_id = e.params.data.id;
+                    houseIsSelected = true;
+                    gotoHouse = true; // Automatically proceed after house selection
+                    window.history.pushState({}, null, `?houseId=${house_id}`);
+                    $dispatch('update-image', 'bg-login'); // Dispatch event if needed
+                })
 
+                $('.click-to-login').click(function(){
+                  @if(Cookie::get('house_id') && Cookie::get('user_role'))
+                    @php
+                       $userRole = Cookie::get('user_role');
+                       $houseId = Cookie::get('house_id');
+                       $houseName = \App\Models\House::where('HouseID', $houseId)->select('HouseName')->first();
+                    @endphp
+                    house_id = {{$houseId}};
+                    @if($userRole === 'Guest')
+                    role = 'Guest';
+                    @else
+                    role = 'AdministratorOrGuest';
+                    @endif
+                  @endif
+                })
 
             "
         >
