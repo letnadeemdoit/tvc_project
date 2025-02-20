@@ -494,7 +494,7 @@ class CalendarViewController extends BaseController
             $response = [
                 'success' => true,
                 'data' => [
-                    'vacation' => $this->vacation,
+                    'vacation' => $this->vacation->toAppCalendar(),
                 ],
                 'message' => $isCreating ? 'Vacation created successfully' : 'Vacation Updated successfully',
             ];
