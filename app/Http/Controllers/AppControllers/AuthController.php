@@ -350,4 +350,30 @@ class AuthController extends BaseController
 
     }
 
+    public function getAuthUser(Request $request)
+    {
+
+        try {
+            $user = Auth::user();
+            $user->load('house');
+            $subscription = Subscription::where([
+                'user_id' => primary_user()->user_id,
+                'house_id' => primary_user()->HouseId,
+                'status' => 'ACTIVE',
+            ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
+
+            $success['user'] = $user;
+            $success['subscription'] = $subscription;
+
+            return $this->sendResponse($success, 'User fetch successfully.');
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
 }

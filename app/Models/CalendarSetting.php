@@ -96,5 +96,30 @@ class CalendarSetting extends Model
     }
 
 
+    public function toCalendarSettings()
+    {
+
+        return array_merge([
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'house_id' => $this->house_id,
+            'start_date' => $this->startDate ? str_replace(' ', 'T', $this->startDate->RealDate) : null,
+            'end_date' => $this->endDate ? str_replace(' ', 'T', $this->endDate->RealDate) : null,
+            'start_time' => $this->startTime ? str_replace(' ', 'T', $this->startTime->time) : null,
+            'end_time' => $this->endTime ? str_replace(' ', 'T', $this->endTime->time) : null,
+            'enable_schedule_window' => $this->enable_schedule_window,
+            'owner_vacation_approval' => $this->owner_vacation_approval,
+            'calendar_style' => $this->calendar_style,
+            'calendar_height' => $this->calendar_height,
+            'enable_max_vacation_length' => $this->enable_max_vacation_length,
+            'vacation_length' => $this->vacation_length,
+            'overlap_vacation' => $this->overlap_vacation,
+            'allow_guest_vacations' => $this->allow_guest_vacations,
+            'allow_informational_entries' => $this->allow_informational_entries,
+            'enable_calendar_access' => $this->enable_calendar_access,
+        ], []);
+    }
+
+
 
 }

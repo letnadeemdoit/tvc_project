@@ -235,7 +235,7 @@ class CalendarViewController extends BaseController
             $this->vacation = $isCreating ? new Vacation() : Vacation::find($inputs['VacationId']);
             $validator = Validator::make($inputs, [
                 'vacation_name' => ['required', 'string', 'max:100'],
-//                'start_datetime' => ['required', new VacationSchedule($inputs['end_datetime'] ?? null, $user, $this->vacation)],
+                'start_datetime' => ['required', new VacationSchedule($inputs['end_datetime'] ?? null, $user, $this->vacation)],
                 'background_color' => ['required'],
                 'font_color' => ['required'],
                 'recurrence' => ['required', 'in:once,monthly,yearly'],

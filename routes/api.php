@@ -112,6 +112,13 @@ Route::controller(GuestController::class)
                     Route::get('/get-calendar-settings', 'getCalendarSettings');
                 });
 
+//             Calendar Setting Routes
+            Route::controller(AuthController::class)
+                ->prefix('user')
+                ->group(function () {
+                    Route::get('/auth-user', 'getAuthUser');
+                });
+
 
         });
     });
