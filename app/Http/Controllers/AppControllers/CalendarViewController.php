@@ -36,21 +36,22 @@ class CalendarViewController extends BaseController
     public function getVacations(Request $request)
     {
         try {
-            $inputs = $request->all();
-            $this->properties = $inputs['properties'] ?? [];
-            $this->owner = $inputs['owner'] ?? null;
-
-            if (is_string($this->properties)) {
-                $decodedProperties = json_decode($this->properties, true);
-                $this->properties = is_array($decodedProperties) ? $decodedProperties : [];
-            }
-
-            $this->selectedHouses = is_array($this->properties) ? $this->properties : [];
             $user = Auth::user();
-            $houses = $this->getHousesProperty();
-
-            $whereHouses = !empty($this->selectedHouses) ? $this->selectedHouses : $houses->pluck('HouseID')->toArray();
+            $inputs = $request->all();
             if (!$user->is_guest) {
+                $this->properties = $inputs['properties'] ?? [];
+                $this->owner = $inputs['owner'] ?? null;
+
+                if (is_string($this->properties)) {
+                    $decodedProperties = json_decode($this->properties, true);
+                    $this->properties = is_array($decodedProperties) ? $decodedProperties : [];
+                }
+
+                $this->selectedHouses = is_array($this->properties) ? $this->properties : [];
+                $houses = $this->getHousesProperty();
+
+                $whereHouses = !empty($this->selectedHouses) ? $this->selectedHouses : $houses->pluck('HouseID')->toArray();
+
                 $vacations = Vacation::whereIn('HouseId', $whereHouses)
                     ->when($user->user_id !== $this->owner && $this->owner !== null, function ($query) {
                         $query->where('OwnerId', $this->owner);
