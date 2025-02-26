@@ -250,18 +250,16 @@ class RequestToJoinVacationController extends BaseController
                 }
             }
 
-
-            $response = [
-                'success' => true,
-                'data' => [],
-                'message' => 'Guest vacation created successfully',
-            ];
-            return response()->json($response, 200);
-
         } catch (Exception $e) {
             return $this->sendError($e->getMessage(), []);
         }
 
+        $response = [
+            'success' => true,
+            'data' => [],
+            'message' => 'Guest vacation created successfully',
+        ];
+        return response()->json($response, 200);
 
     }
 
