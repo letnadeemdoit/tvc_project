@@ -82,7 +82,7 @@ class RequestToJoinVacationController extends BaseController
                 'data' => [
                     'vacation' => $this->vacation,
                 ],
-                'message' => 'Request sent successfully',
+                'message' => 'Request to join vacation sent successfully',
             ];
             return response()->json($response, 200);
 
@@ -127,6 +127,13 @@ class RequestToJoinVacationController extends BaseController
             if ($this->isGuestScheduleVacation && $this->user->is_guest) {
                 // Creating guest vacation
                 $this->saveVacationSchedule($inputs);
+
+                $response = [
+                    'success' => true,
+                    'data' => [],
+                    'message' => 'Guest vacation created successfully',
+                ];
+                return response()->json($response, 200);
                 // End creating guest vacation
             } else {
                 $house = $this->user->house;
@@ -253,13 +260,6 @@ class RequestToJoinVacationController extends BaseController
         } catch (Exception $e) {
             return $this->sendError($e->getMessage(), []);
         }
-
-        $response = [
-            'success' => true,
-            'data' => [],
-            'message' => 'Guest vacation created successfully',
-        ];
-        return response()->json($response, 200);
 
     }
 
