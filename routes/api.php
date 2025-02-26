@@ -4,6 +4,7 @@ use App\Http\Controllers\AppControllers\AdminNotificationsController;
 use App\Http\Controllers\AppControllers\GuestBlogController;
 use App\Http\Controllers\AppControllers\GuestBulletinsController;
 use App\Http\Controllers\AppControllers\GuestLocalGuideController;
+use App\Http\Controllers\AppControllers\RequestToJoinVacationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppControllers\AuthController;
@@ -112,11 +113,18 @@ Route::controller(GuestController::class)
                     Route::get('/get-calendar-settings', 'getCalendarSettings');
                 });
 
-//             Calendar Setting Routes
+            // Calendar Setting Routes
             Route::controller(AuthController::class)
                 ->prefix('user')
                 ->group(function () {
                     Route::get('/auth-user', 'getAuthUser');
+                });
+
+            // Request To Join Vacation Routes
+            Route::controller(RequestToJoinVacationController::class)
+                ->prefix('vacation')
+                ->group(function () {
+                    Route::post('/request-to-join', 'RequestToJoinVacation');
                 });
 
 
