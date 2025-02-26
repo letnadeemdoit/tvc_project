@@ -125,6 +125,7 @@ Route::controller(GuestController::class)
                 ->prefix('vacation')
                 ->group(function () {
                     Route::post('/request-to-join', 'RequestToJoinVacation');
+                    Route::post('/request-to-use-house', 'RequestToUseHouse');
                 });
 
 
