@@ -50,87 +50,96 @@ Route::get('countries-list', [AuthController::class, 'countriesList']);
 Route::get('states-list', [AuthController::class, 'statesList']);
 
 // Guest-related Routes
-Route::controller(GuestController::class)
-    ->prefix('guest')
-    ->group(function () {
-        // Protected Routes
-        Route::middleware('auth:sanctum')->group(function () {
-            // Blog Routes
-            Route::controller(GuestBlogController::class)
-                ->prefix('blog')
-                ->group(function () {
-                    Route::get('/blog-list', 'blogList');
-                    Route::get('/show', 'show');
-                    Route::post('/like-blog', 'likeBlog');
-                    Route::post('/blog-comment', 'addBlogComment');
-                    Route::delete('/delete-blog-comment', 'deleteBlogComment');
-                });
+//Route::controller(GuestController::class)
+//    ->prefix('guest')
+//    ->group(function () {
+//        // Protected Routes
+//        Route::middleware('auth:sanctum')->group(function () {
 
-            // Local Guide Routes
-            Route::controller(GuestLocalGuideController::class)
-                ->prefix('local-guide')
-                ->group(function () {
-                    Route::get('/local-guide-list', 'localGuideList');
-                    Route::get('/show', 'show');
-                    Route::post('/add-review', 'addReview');
-                    Route::delete('/delete-review', 'deleteReview');
-                });
-
-            // Bulletins Routes
-            Route::controller(GuestBulletinsController::class)
-                ->prefix('bulletin')
-                ->group(function () {
-                    Route::get('/bulletin-list', 'bulletinList');
-                });
-
-            // Photo Album Routes
-            Route::controller(GuestPhotoAlbumController::class)
-                ->prefix('photo-album')
-                ->group(function () {
-                    Route::get('/photo-list', 'photoList');
-                });
-
-            // Food Items Routes
-            Route::controller(GuestFoodItemsController::class)
-                ->prefix('food-items')
-                ->group(function () {
-                    Route::get('/food-list', 'foodList');
-                    Route::get('/shopping-list', 'shoppingList');
-                });
-
-            // Guest Book Routes
-            Route::controller(GuestBookController::class)
-                ->prefix('guest-book')
-                ->group(function () {
-                    Route::get('/guest-book-list', 'guestBookList');
-                    Route::post('/create-guest-book', 'createGuestBook');
-                });
-
-            // Calendar Setting Routes
-            Route::controller(CalendarSettingsController::class)
-                ->prefix('calendar-settings')
-                ->group(function () {
-                    Route::get('/get-calendar-settings', 'getCalendarSettings');
-                });
-
-            // Calendar Setting Routes
-            Route::controller(AuthController::class)
-                ->prefix('user')
-                ->group(function () {
-                    Route::get('/auth-user', 'getAuthUser');
-                });
-
-            // Request To Join Vacation Routes
-            Route::controller(RequestToJoinVacationController::class)
-                ->prefix('vacation')
-                ->group(function () {
-                    Route::post('/request-to-join', 'RequestToJoinVacation');
-                    Route::post('/request-to-use-house', 'RequestToUseHouse');
-                });
-
-
+Route::prefix('guest')->middleware('auth:sanctum')->group(function () {
+    // Blog Routes
+    Route::controller(GuestBlogController::class)
+        ->prefix('blog')
+        ->group(function () {
+            Route::get('/blog-list', 'blogList');
+            Route::post('/create', 'createBlog');
+            Route::get('/show', 'show');
+            Route::post('/like-blog', 'likeBlog');
+            Route::post('/blog-comment', 'addBlogComment');
+            Route::delete('/delete-blog-comment', 'deleteBlogComment');
         });
-    });
+
+    // Local Guide Routes
+    Route::controller(GuestLocalGuideController::class)
+        ->prefix('local-guide')
+        ->group(function () {
+            Route::get('/local-guide-list', 'localGuideList');
+            Route::post('/create', 'createLocalGuide');
+            Route::get('/show', 'show');
+            Route::post('/add-review', 'addReview');
+            Route::delete('/delete-review', 'deleteReview');
+        });
+
+    // Bulletins Routes
+    Route::controller(GuestBulletinsController::class)
+        ->prefix('bulletin')
+        ->group(function () {
+            Route::get('/bulletin-list', 'bulletinList');
+        });
+
+    // Photo Album Routes
+    Route::controller(GuestPhotoAlbumController::class)
+        ->prefix('photo-album')
+        ->group(function () {
+            Route::get('/photo-list', 'photoList');
+            Route::post('/create-photo', 'createNewPhoto');
+        });
+
+    // Food Items Routes
+    Route::controller(GuestFoodItemsController::class)
+        ->prefix('food-items')
+        ->group(function () {
+            Route::get('/food-list', 'foodList');
+            Route::post('/create-food', 'createFood');
+            Route::delete('/delete-food', 'destroyFood');
+
+            Route::get('/shopping-list', 'shoppingList');
+            Route::post('/create-shopping', 'createShopping');
+            Route::delete('/delete-shopping', 'destroyShopping');
+        });
+
+    // Guest Book Routes
+    Route::controller(GuestBookController::class)
+        ->prefix('guest-book')
+        ->group(function () {
+            Route::get('/guest-book-list', 'guestBookList');
+            Route::post('/create-guest-book', 'createGuestBook');
+        });
+
+    // Calendar Setting Routes
+    Route::controller(CalendarSettingsController::class)
+        ->prefix('calendar-settings')
+        ->group(function () {
+            Route::get('/get-calendar-settings', 'getCalendarSettings');
+        });
+
+    // Calendar Setting Routes
+    Route::controller(AuthController::class)
+        ->prefix('user')
+        ->group(function () {
+            Route::get('/auth-user', 'getAuthUser');
+        });
+
+    // Request To Join Vacation Routes
+    Route::controller(RequestToJoinVacationController::class)
+        ->prefix('vacation')
+        ->group(function () {
+            Route::post('/request-to-join', 'RequestToJoinVacation');
+            Route::post('/request-to-use-house', 'RequestToUseHouse');
+        });
+
+
+});
 
 // Dashboard Routes
 Route::middleware([
@@ -259,6 +268,16 @@ Route::middleware([
                 Route::get('/house-details', 'getHouseDetails');
                 Route::post('/update-house-settings', 'updateHouseSettings');
             });
+
+
+        // Request To Join Vacation Routes
+        Route::controller(RequestToJoinVacationController::class)
+            ->prefix('vacation')
+            ->group(function () {
+                Route::post('/request-to-join', 'RequestToJoinVacation');
+                Route::post('/request-to-use-house', 'RequestToUseHouse');
+            });
+
 
     });
 

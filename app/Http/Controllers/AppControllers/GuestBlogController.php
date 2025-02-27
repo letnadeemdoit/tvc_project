@@ -100,6 +100,121 @@ class GuestBlogController extends BaseController
     }
 
 
+
+    /**
+     * New Blog api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createBlog(Request $request)
+    {
+        try {
+
+            $user = Auth::user();
+            $date = date('Y/m/d H:i:s');
+            $inputs = $request->all();
+            $isCreating = empty($inputs['BlogId']);
+
+            $blogItem = $isCreating ? new Blog() : Blog::find($inputs['BlogId']);
+            $this->file = $request->file('file');
+
+            if ($this->file) {
+                $inputs['image'] = $this->file;
+            } else {
+                $blogItem->deleteFile('image');
+                unset($inputs['image']);
+            }
+
+            $validator = Validator::make($inputs, [
+                'Subject' => [
+                    'required', 'string', 'max:100',
+                    $isCreating ? Rule::unique('Blog')->where(function ($query) use ($user) {
+                        return $query->where('HouseId', $user->HouseId);
+                    }) : '',
+                ],
+                'image' => 'nullable|mimes:png,jpg,gif,tiff',
+                'Contents' => 'required|max:4000000000',
+                'is_public' => 'nullable|boolean',
+                'category_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return $this->sendError('Validation error', $validator->errors(), 422);
+            }
+
+            if ($isCreating) {
+                $blogItem->user_id = $user->user_id;
+                $blogItem->HouseId = $user->HouseId;
+                $blogItem->Author = $user->first_name . " " . $user->last_name;
+                $blogItem->BlogDate = $date;
+                $blogItem->Audit_user_name = $user->Audit_user_name;
+                $blogItem->Audit_Role = $user->Audit_Role;
+                $blogItem->Audit_FirstName = $user->Audit_FirstName;
+                $blogItem->Audit_LastName = $user->Audit_LastName;
+                $blogItem->Audit_Email = $user->Audit_Email;
+            }
+            $slug = Str::slug($inputs['Subject']);
+            $blogItem->fill([
+                'Subject' => $inputs['Subject'],
+                'Contents' => $inputs['Contents'] ?? '',
+                'category_id' => $inputs['category_id'] ?? null,
+                'slug' => $slug,
+            ])->save();
+
+            $blogItem->updateFile($this->file ?? null);
+
+
+
+
+//            $this->siteUrl = route('guest.blog.show', $slug);
+            $this->siteUrl = '';
+
+            $items = $blogItem;
+            $createdHouseName = $user->house->HouseName;
+            $blogUrl = $this->siteUrl;
+            $ccList = [];
+            if ($user) {
+                $ccList[] = $user->email;
+            }
+
+            if (!is_null($user->house->BlogEmailList) && !empty($user->house->BlogEmailList) && $isCreating) {
+
+//                $blogEmailsList = explode(',', $user->house->BlogEmailList);
+//                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
+//                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $user->HouseId)->get();
+//
+//                    foreach ($users as $us) {
+//                        $us->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
+//                    }
+////                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+//                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+//                    if (count($blogEmailsList) > 0) {
+//                        Notification::route('mail', $blogEmailsList)
+//                            ->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
+//                    }
+//                }
+            }
+
+
+            return response()->json([
+                'success' => true,
+                'data' => $blogItem,
+                'message' => $isCreating ? 'Blog created successfully' : 'Blog updated successfully',
+            ], 200);
+
+        } catch (\Exception $e) {
+            Log::error('Error creating/updating blog:', [
+                'message' => $e->getMessage(),
+                'stack' => $e->getTraceAsString(),
+                'inputs' => $request->all(),
+            ]);
+            return $this->sendError($e->getMessage(), []);
+        }
+
+    }
+
+
+
     /**
      * Blog Detail api
      *

@@ -52,9 +52,20 @@ class AuthController extends BaseController
                     'status' => 'ACTIVE',
                 ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
 
-                $success['token'] = $user->createToken('MyApp')->plainTextToken;
-                $success['user'] = $user;
-                $success['subscription'] = $subscription;
+                $userArray = $user->toArray();
+                unset($userArray['primary_user']);
+
+                $success = [
+                    'token' => $user->createToken('MyApp')->plainTextToken,
+                    'user' => $userArray,
+                    'subscription' => $subscription,
+                    'primaryUser' => [
+                        'user_id' => primary_user()->user_id,
+                        'house_id' => primary_user()->HouseId,
+                        'full_name' => primary_user()->first_name . ' ' . primary_user()->last_name,
+                        'email' => primary_user()->email
+                    ],
+                ];
                 return $this->sendResponse($success, 'User logged in successfully.');
             } else {
                 return $this->sendError('Unauthorised. Email and password does not match.', []);
@@ -126,10 +137,19 @@ class AuthController extends BaseController
                     'status' => 'ACTIVE',
                 ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
 
-                $success['token'] = $user->createToken('MyApp')->plainTextToken;
-                $success['user'] = $user;
-                $success['subscription'] = $subscription;
+                $userArray = $user->toArray();
+                unset($userArray['primary_user']);
 
+                $success = [
+                    'token' => $user->createToken('MyApp')->plainTextToken,
+                    'user' => $userArray,
+                    'subscription' => $subscription,
+                    'primaryUser' => [
+                        'user_id' => primary_user()->user_id,
+                        'full_name' => primary_user()->first_name . ' ' . primary_user()->last_name,
+                        'email' => primary_user()->email
+                    ],
+                ];
                 return $this->sendResponse($success, 'User logged in successfully.');
             } else {
                 return $this->sendError('Unauthorised. Credentials does not match.', []);

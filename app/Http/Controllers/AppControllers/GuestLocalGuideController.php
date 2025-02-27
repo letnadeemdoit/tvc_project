@@ -80,6 +80,96 @@ class GuestLocalGuideController extends BaseController
 
 
     /**
+     * New Local Guide api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createLocalGuide(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $inputs = $request->all();
+            $isCreating = empty($inputs['id']);
+
+            $localGuideItem = $isCreating ? new LocalGuide() : LocalGuide::find($inputs['id']);
+
+            $this->file = $request->file('file');
+
+            if ($this->file) {
+                $inputs['image'] = $this->file;
+            } else {
+                unset($inputs['image']);
+            }
+
+            $validator = Validator::make($inputs, [
+                'title' => 'required|string|max:100',
+                'category_id' => 'required',
+                'address' => 'nullable|max:255',
+                'description' => 'nullable|max:4000000000',
+            ]);
+
+            if ($validator->fails()) {
+                return $this->sendError('Validation error', $validator->errors(), 422);
+            }
+
+            if ($isCreating) {
+                $localGuideItem->user_id = $user->user_id;
+                $localGuideItem->house_id = $user->HouseId;
+            }
+
+            $localGuideItem->fill([
+                'category_id' => $inputs['category_id'] ?? null,
+                'title' => $inputs['title'],
+                'description' => $inputs['description'] ?? null,
+                'address' => $inputs['address'] ?? null,
+                'datetime' => $inputs['datetime'] ?? null,
+            ])->save();
+
+            $localGuideItem->updateFile($this->file);
+
+
+//            $this->siteUrl = route('guest.local-guide.index');
+
+//            $items = $localGuideItem;
+//            $createdHouseName = $user->house->HouseName;
+//            $ccList = [];
+//            if ($user) {
+//                $ccList[] = $user->email;
+//            }
+//
+//            if (!is_null($user->house->local_guide_email_list) && !empty($user->house->local_guide_email_list) && $isCreating) {
+//
+//                $localGuideEmailsList = explode(',', $user->house->local_guide_email_list);
+//                if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
+//                    $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $user->HouseId)->get();
+//
+//                    foreach ($users as $us) {
+//                        $us->notify(new LocalGuideNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+//                    }
+////                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
+//                    $localGuideEmailsList = array_diff($localGuideEmailsList, $users->pluck('email')->toArray());
+//                    if (count($localGuideEmailsList) > 0) {
+//                        Notification::route('mail', $localGuideEmailsList)
+//                            ->notify(new LocalGuideNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+//                    }
+//                }
+//            }
+
+
+            return response()->json([
+                'success' => true,
+                'data' => $localGuideItem,
+                'message' => $isCreating ? 'Local Guide created successfully' : 'Local Guide updated successfully',
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
+
+
+
+    /**
      * Local Guide Detail api
      *
      * @return \Illuminate\Http\Response

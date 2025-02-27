@@ -101,7 +101,7 @@ class AdminLocalGuideController extends BaseController
 
 
     /**
-     * New Blog api
+     * New Local Guide api
      *
      * @return \Illuminate\Http\Response
      */
