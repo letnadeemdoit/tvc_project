@@ -567,31 +567,51 @@ class CalendarViewController extends BaseController
     public function deleteCalendarEvent(Request $request)
     {
         try {
-            $events = Vacation::where('VacationId', $request->VacationId)
-                ->orWhere('parent_id', $request->VacationId)
-                ->get();
+            // Validate request
+            $validator = Validator::make($request->all(), [
+                'VacationId' => 'required|integer'
+            ]);
 
-            if (isset($events) && count($events) > 0) {
-                foreach ($events as $event) {
-                    $event->delete();
-                }
-
+            if ($validator->fails()) {
                 return response()->json([
-                    'success' => true,
-                    'message' => 'Event deleted successfully.',
-                ], 200);
+                    'success' => false,
+                    'message' => $validator->errors()->first(),
+                ], 400);
+            }
 
-            } else {
+            $tasksExist = Vacation::where('VacationId', $request->VacationId)
+                ->orWhere('parent_id', $request->VacationId)
+                ->exists();
+
+            if (!$tasksExist) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Event not found.',
                 ], 404);
             }
 
+            Vacation::where('VacationId', $request->VacationId)
+                ->orWhere('parent_id', $request->VacationId)
+                ->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Vacation(s) deleted successfully.',
+            ], 200);
+
         } catch (\Exception $e) {
-            return $this->sendError($e->getMessage(), []);
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage(),
+            ], 500);
         }
     }
+
+
+
+
+
+
 
 
 

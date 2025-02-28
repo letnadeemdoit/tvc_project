@@ -223,29 +223,47 @@ class CalendarTaskController extends BaseController
     public function deleteTask(Request $request)
     {
         try {
-            $tasks = Vacation::where('VacationId', $request->VacationId)
-                ->orWhere('parent_id', $request->VacationId)
-                ->get();
-            if (isset($tasks) && count($tasks) > 0) {
-                foreach ($tasks as $event) {
-                    $event->delete();
-                }
+            // Validate request
+            $validator = Validator::make($request->all(), [
+                'VacationId' => 'required|integer'
+            ]);
 
+            if ($validator->fails()) {
                 return response()->json([
-                    'success' => true,
-                    'message' => 'Task deleted successfully.',
-                ], 200);
-            } else {
+                    'success' => false,
+                    'message' => $validator->errors()->first(),
+                ], 400);
+            }
+
+            $tasksExist = Vacation::where('VacationId', $request->VacationId)
+                ->orWhere('parent_id', $request->VacationId)
+                ->exists();
+
+            if (!$tasksExist) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Task not found.',
                 ], 404);
             }
 
+            Vacation::where('VacationId', $request->VacationId)
+                ->orWhere('parent_id', $request->VacationId)
+                ->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Task(s) deleted successfully.',
+            ], 200);
+
         } catch (\Exception $e) {
-            return $this->sendError($e->getMessage(), []);
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage(),
+            ], 500);
         }
     }
+
+
 
 
     public function syncCalendar($startDatetime, $endDatetime, &$startDate, &$startTime, &$endDate, &$endTime)
