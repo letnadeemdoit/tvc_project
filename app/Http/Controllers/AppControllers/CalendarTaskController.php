@@ -225,7 +225,7 @@ class CalendarTaskController extends BaseController
         try {
             // Validate request
             $validator = Validator::make($request->all(), [
-                'VacationId' => 'required|integer'
+                'id' => 'required|integer'
             ]);
 
             if ($validator->fails()) {
@@ -235,8 +235,8 @@ class CalendarTaskController extends BaseController
                 ], 400);
             }
 
-            $tasksExist = Vacation::where('VacationId', $request->VacationId)
-                ->orWhere('parent_id', $request->VacationId)
+            $tasksExist = Vacation::where('VacationId', $request->id)
+                ->orWhere('parent_id', $request->id)
                 ->exists();
 
             if (!$tasksExist) {
@@ -246,8 +246,8 @@ class CalendarTaskController extends BaseController
                 ], 404);
             }
 
-            Vacation::where('VacationId', $request->VacationId)
-                ->orWhere('parent_id', $request->VacationId)
+            Vacation::where('VacationId', $request->id)
+                ->orWhere('parent_id', $request->id)
                 ->delete();
 
             return response()->json([
