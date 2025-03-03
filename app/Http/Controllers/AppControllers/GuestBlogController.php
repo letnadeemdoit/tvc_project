@@ -166,33 +166,27 @@ class GuestBlogController extends BaseController
 
 
 
-//            $this->siteUrl = route('guest.blog.show', $slug);
-            $this->siteUrl = '';
+            $this->siteUrl = route('guest.blog.show', $slug);
 
             $items = $blogItem;
             $createdHouseName = $user->house->HouseName;
             $blogUrl = $this->siteUrl;
             $ccList = [];
-            if ($user) {
+            if ($user && primary_user()->email !== $user->email) {
                 $ccList[] = $user->email;
             }
-
             if (!is_null($user->house->BlogEmailList) && !empty($user->house->BlogEmailList) && $isCreating) {
 
-//                $blogEmailsList = explode(',', $user->house->BlogEmailList);
-//                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
-//                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $user->HouseId)->get();
-//
-//                    foreach ($users as $us) {
-//                        $us->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
-//                    }
-////                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-//                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
-//                    if (count($blogEmailsList) > 0) {
-//                        Notification::route('mail', $blogEmailsList)
-//                            ->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
-//                    }
-//                }
+                $blogEmailsList = explode(',', $user->house->BlogEmailList);
+                $blogEmailsList = array_merge($blogEmailsList, $ccList);
+                $blogEmailsList = array_unique(array_filter($blogEmailsList));
+
+                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
+                    if (count($blogEmailsList) > 0) {
+                        Notification::route('mail', $blogEmailsList)
+                            ->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
+                    }
+                }
             }
 
 
@@ -212,6 +206,78 @@ class GuestBlogController extends BaseController
         }
 
     }
+
+
+    /**
+     * Delete Blog api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $blogId = $request->id;
+
+            // Find the blog by ID and ensure it belongs to the user's house
+            $blog = Blog::find($blogId);
+
+            if (!$blog) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Blog not found or access denied.',
+                ], 404);
+            }
+
+            $blog->delete();
+            $data = $blog->toArray();
+            $title = $data['Subject'];
+            $createdHouseName = $user->house->HouseName;
+
+            $owner = null;
+            if (!empty($data['user_id'])) {
+                $owner = User::where('user_id', $data['user_id'])->first();
+            }
+            $ccList = [];
+            if ($owner && $owner->email) {
+                $ccList[] = $owner->email;
+            }
+
+//
+//            if (!is_null($user->house->BlogEmailList) && !empty($user->house->BlogEmailList)) {
+//
+//                $blogEmailsList = explode(',', $user->house->BlogEmailList);
+//
+//                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
+//
+//                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $user->HouseId)->get();
+//
+//                    foreach ($users as $user) {
+//                        $user->notify(new DeleteBlogEmailNotification($ccList, $title, $user, $createdHouseName));
+//                    }
+//
+//                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+//
+//                    if (count($blogEmailsList) > 0) {
+//
+//                        Notification::route('mail', $blogEmailsList)
+//                            ->notify(new DeleteBlogEmailNotification($ccList, $title, $user, $createdHouseName));
+//
+//                    }
+//                }
+//            }
+
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Blog deleted successfully.',
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), [], 500);
+        }
+    }
+
+
 
 
 
