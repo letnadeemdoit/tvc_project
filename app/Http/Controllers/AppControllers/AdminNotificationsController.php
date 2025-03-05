@@ -93,10 +93,7 @@ class AdminNotificationsController extends BaseController
     public function readAllNotifications(Request $request)
     {
         try {
-
-//            DB::table('notifications')->update(['read_at' => now()]);
-            DB::table('notifications')->update(['read_at' => null]);
-
+            DB::table('notifications')->update(['read_at' => now()]);
             return response()->json([
                 'success' => true,
                 'data' => [],

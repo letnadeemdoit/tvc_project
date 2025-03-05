@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Likes;
 use App\Models\User;
 use App\Notifications\BlogNotification;
+use App\Notifications\DeleteBlogEmailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -109,7 +110,6 @@ class GuestBlogController extends BaseController
     public function createBlog(Request $request)
     {
         try {
-
             $user = Auth::user();
             $date = date('Y/m/d H:i:s');
             $inputs = $request->all();
@@ -231,41 +231,34 @@ class GuestBlogController extends BaseController
 
             $blog->delete();
             $data = $blog->toArray();
+
             $title = $data['Subject'];
             $createdHouseName = $user->house->HouseName;
-
             $owner = null;
             if (!empty($data['user_id'])) {
                 $owner = User::where('user_id', $data['user_id'])->first();
             }
             $ccList = [];
-            if ($owner && $owner->email) {
+            if ($owner && primary_user()->email !== $owner->email) {
                 $ccList[] = $owner->email;
             }
 
-//
-//            if (!is_null($user->house->BlogEmailList) && !empty($user->house->BlogEmailList)) {
-//
-//                $blogEmailsList = explode(',', $user->house->BlogEmailList);
-//
-//                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
-//
-//                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $user->HouseId)->get();
-//
-//                    foreach ($users as $user) {
-//                        $user->notify(new DeleteBlogEmailNotification($ccList, $title, $user, $createdHouseName));
-//                    }
-//
-//                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
-//
-//                    if (count($blogEmailsList) > 0) {
-//
-//                        Notification::route('mail', $blogEmailsList)
-//                            ->notify(new DeleteBlogEmailNotification($ccList, $title, $user, $createdHouseName));
-//
-//                    }
-//                }
-//            }
+            if (!is_null($user->house->BlogEmailList) && !empty($user->house->BlogEmailList)) {
+
+                $blogEmailsList = explode(',', $user->house->BlogEmailList);
+                $blogEmailsList = array_merge($blogEmailsList, $ccList);
+                $blogEmailsList = array_unique(array_filter($blogEmailsList));
+
+                if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
+
+                    if (count($blogEmailsList) > 0) {
+
+                        Notification::route('mail', $blogEmailsList)
+                            ->notify(new DeleteBlogEmailNotification($ccList, $title, $user, $createdHouseName));
+
+                    }
+                }
+            }
 
 
             return response()->json([

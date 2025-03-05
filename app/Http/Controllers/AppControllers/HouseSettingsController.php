@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\AppControllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog\Blog;
-use App\Models\CalendarSetting;
 use App\Models\House;
+use App\Models\World\City;
 use App\Models\World\Country;
 use App\Models\World\State;
 use App\Rules\PortraitImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 class HouseSettingsController extends BaseController
 {
@@ -58,7 +54,10 @@ class HouseSettingsController extends BaseController
         try {
             $user = Auth::user();
             $inputs = $request->all();
-            $house = House::where('HouseID', $inputs['HouseID'])->first();
+
+//            $house = House::where('HouseID', $inputs['HouseID'])->first();
+            $house = House::find($inputs['HouseID']);
+
             $this->file = $request->file('file');
             $this->login_file = $request->file('login_file');
 
@@ -86,11 +85,9 @@ class HouseSettingsController extends BaseController
                     'max:40',
                     'unique:House,HouseName,' . $house->HouseID . ',HouseID'
                 ],
-                'address_1' => ['nullable', 'string', 'max:40'],
-                'address_2' => ['nullable', 'string', 'max:40'],
-                'country' => ['nullable', 'string', 'max:40'],
-                'city' => ['nullable', 'string', 'max:40'],
-                'state' => ['nullable', 'string', 'max:20'],
+                'country_id' => ['nullable'],
+                'city_id' => ['nullable'],
+                'state_id' => ['nullable'],
                 'zipcode' => ['nullable', 'string', 'max:10'],
             ]);
 
@@ -100,6 +97,7 @@ class HouseSettingsController extends BaseController
 
             $country_name = Country::where('id',$inputs['country_id'])->first();
             $state_name = State::where('id',$inputs['state_id'])->first();
+            $city_name = City::where('id',$inputs['city_id'])->first();
 
             $house->fill([
                 'HouseName' => $inputs['HouseName'],
@@ -108,7 +106,7 @@ class HouseSettingsController extends BaseController
                 'primary_house_name' => $inputs['primary_house_name'],
                 'country' => $country_name['name'] ?? null,
                 'State' => $state_name['name'] ?? null,
-                'City' => $inputs['city_id'] ?? null,
+                'City' => $city_name['name'] ?? null,
                 'ZipCode' => $inputs['zipcode'] ?? null,
             ])->save();
 
@@ -126,4 +124,14 @@ class HouseSettingsController extends BaseController
             return $this->sendError($e->getMessage(), []);
         }
     }
+
+    public function updatedFile()
+    {
+        $this->validateOnly('file', ['file' => 'required|mimes:png,jpg,gif,tiff']);
+        if ($this->login_file){
+            $this->validateOnly('login_file', ['login_file', 'required|mimes:png,jpg,gif,tiff', new PortraitImage]);
+        }
+    }
+
+
 }

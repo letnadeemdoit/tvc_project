@@ -9,11 +9,17 @@ use App\Models\Time;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Models\VacationRoom;
+use App\Notifications\CalendarEmailNotification;
+use App\Notifications\DeleteVacationNotification;
+use App\Notifications\RequestToApproveVacationEmailNotification;
+use App\Notifications\UpdateCalendarEmailNotification;
 use App\Rules\VacationSchedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -24,7 +30,13 @@ class CalendarViewController extends BaseController
     public $house;
     public $owner;
     public $properties;
+    public $siteUrl = null;
+    public $originalVacName  = null;
+    public $originalVacStartDate = null;
+    public $originalVacEndDate = null;
     public $selectedHouses = [];
+    public $startDatetimeOfDelVacation;
+    public $endDatetimeOfDelVacation;
 
     public ?Vacation $vacation;
 
@@ -252,6 +264,15 @@ class CalendarViewController extends BaseController
             $startDatetime = Carbon::parse($inputs['start_datetime']);
             $endDatetime = Carbon::parse($inputs['end_datetime']);
 
+            $vacStartDate = $startDatetime->format('m-d-Y H:i');;
+            $vacEndDate = $endDatetime->format('m-d-Y H:i');
+
+            if ($this->vacation && $this->vacation->VacationId){
+                $this->originalVacName = $this->vacation->VacationName;
+                $this->originalVacStartDate = $this->vacation->start_datetime->format('m-d-Y H:i');
+                $this->originalVacEndDate = $this->vacation->end_datetime->format('m-d-Y H:i');
+            }
+
             $this->syncCalendar($startDatetime, $endDatetime, $startDate, $startTime, $endDate, $endTime);
 
             if ($isCreating) {
@@ -274,8 +295,6 @@ class CalendarViewController extends BaseController
                 'is_vac_approved' => 0,
 //                'is_vac_approved' => $isCreating ? ($user->is_owner_only && $this->isOwnerVacApproval ? 1: 0) : $this->vacation->is_vac_approved,
             ])->save();
-
-
 
             if (
                 isset($inputs['book_rooms']) &&
@@ -492,6 +511,56 @@ class CalendarViewController extends BaseController
                 }
             }
 
+            // Create vacation email
+            $vacName = $this->vacation->VacationName;
+            $currentUser = Auth::user();
+
+            $ccList = [];
+            $vac_owner = User::where('user_id', $this->vacation->OwnerId)->first();
+            if (!is_null($vac_owner) && primary_user()->email !== $vac_owner->email) {
+                $ccList[] = $vac_owner->email;
+            }
+            $createdHouseName = $user->house->HouseName;
+
+            if (!is_null($user->house->CalEmailList) && !empty($user->house->CalEmailList)) {
+
+                $CalEmailList = explode(',', $user->house->CalEmailList);
+                $CalEmailList = array_merge($CalEmailList, $ccList);
+                $CalEmailList = array_unique(array_filter($CalEmailList));
+
+                if (count($CalEmailList) > 0 && !empty($CalEmailList) && $isCreating) {
+                    if (count($CalEmailList) > 0) {
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new CalendarEmailNotification($vacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate));
+                    }
+                }
+                elseif (count($CalEmailList) > 0 && !empty($CalEmailList) && !$isCreating){
+
+                    if (count($CalEmailList) > 0) {
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new UpdateCalendarEmailNotification($currentUser,$vacName,$this->originalVacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate,$this->originalVacStartDate,$this->originalVacEndDate));
+                    }
+                }
+            }
+
+            if ($vac_owner->role === 'Owner' && $isCreating){
+                $owner_name = $vac_owner->first_name . ' ' . $vac_owner->last_name;
+                $this->siteUrl = route('dash.settings.vacation-request-approval');
+
+                if (!is_null($user->house->vacation_approval_email_list) && !empty($user->house->vacation_approval_email_list)) {
+
+                    $CalEmailList = explode(',', $user->house->vacation_approval_email_list);
+
+                    if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+                        if (count($CalEmailList) > 0) {
+                            Notification::route('mail', $CalEmailList)
+                                ->notify(new RequestToApproveVacationEmailNotification($vacName,$this->siteUrl,$ccList,$owner_name,$vac_owner->email, $createdHouseName, $vacStartDate, $vacEndDate));
+                        }
+
+                    }
+                }
+            }
+
             $response = [
                 'success' => true,
                 'data' => [
@@ -567,6 +636,8 @@ class CalendarViewController extends BaseController
     public function deleteCalendarEvent(Request $request)
     {
         try {
+            $user = Auth::user();
+
             // Validate request
             $validator = Validator::make($request->all(), [
                 'id' => 'required|integer'
@@ -590,13 +661,44 @@ class CalendarViewController extends BaseController
                 ], 404);
             }
 
+            $deletedVacation = Vacation::where('VacationId', $request->id)->first();
+
             Vacation::where('VacationId', $request->id)
                 ->orWhere('parent_id', $request->id)
                 ->delete();
 
+
+            // Delete Vacation Email
+            $vac_owner = User::where('user_id', $deletedVacation->OwnerId)->first();
+            $name = $deletedVacation->VacationName;
+            $this->startDatetimeOfDelVacation = $deletedVacation->start_datetime->format('m-d-Y H:i');
+            $this->endDatetimeOfDelVacation = $deletedVacation->end_datetime->format('m-d-Y H:i');
+
+            $createdHouseName = $user->house->HouseName;
+            $isAction = 'Deleted';
+            $isModal = 'Vacation';
+            $ccList = [];
+            if (!is_null($vac_owner) && primary_user()->email !== $vac_owner->email) {
+                $ccList[] = $vac_owner->email;
+            }
+
+            if (!is_null($user->house->CalEmailList) && !empty($user->house->CalEmailList)) {
+                $CalEmailList = explode(',', $user->house->CalEmailList);
+                $CalEmailList = array_merge($CalEmailList, $ccList);
+                $CalEmailList = array_unique(array_filter($CalEmailList));
+
+                if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+
+                    if (count($CalEmailList) > 0) {
+                        Notification::route('mail', $CalEmailList)
+                            ->notify(new DeleteVacationNotification($name, $user, $vac_owner, $ccList, $this->startDatetimeOfDelVacation, $this->endDatetimeOfDelVacation, $isAction, $createdHouseName, $isModal));
+                    }
+                }
+            }
+
             return response()->json([
                 'success' => true,
-                'message' => 'Vacation(s) deleted successfully.',
+                'message' => 'Vacation deleted successfully.',
             ], 200);
 
         } catch (\Exception $e) {

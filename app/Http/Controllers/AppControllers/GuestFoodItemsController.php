@@ -5,9 +5,14 @@ namespace App\Http\Controllers\AppControllers;
 use App\Http\Controllers\Controller;
 use App\Models\FoodItem;
 use App\Models\ShoppingItem;
+use App\Models\User;
+use App\Notifications\DeleteFoodItemEmailNotification;
+use App\Notifications\FoodItemsNotification;
+use App\Notifications\ShoppingItemsNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
 class GuestFoodItemsController extends BaseController
@@ -47,11 +52,21 @@ class GuestFoodItemsController extends BaseController
                 ->take($this->limit)
                 ->get();
 
+            $totalFoodItems = FoodItem::where('house_id', $user->HouseId)
+                ->when($this->search !== '', function ($query) {
+                    $query->where(function ($query) {
+                        $query
+                            ->where('name', 'LIKE', "%$this->search%");
+                    });
+                })
+                ->count();
+
 
             $response = [
                 'success' => true,
                 'data' => [
                     'foodItems' => $data,
+                    'totalFoodItems' => $totalFoodItems,
                 ],
                 'message' => 'Data fetched successfully',
             ];
@@ -111,6 +126,29 @@ class GuestFoodItemsController extends BaseController
 
             $foodItem->updateFile($this->file);
 
+            // Create Food item email
+            $this->siteUrl = route('guest.house-items.index');
+            $ccList = [];
+            if ($user && primary_user()->email !== $user->email) {
+                $ccList[] = $user->email;
+            }
+            $items = $foodItem;
+            $createdHouseName = $user->house->HouseName;
+
+            if (!is_null($user->house->food_item_list) && !empty($user->house->food_item_list) && $isCreating) {
+
+                $foodEmailsList = explode(',', $user->house->food_item_list);
+                $foodEmailsList = array_merge($foodEmailsList, $ccList);
+                $foodEmailsList = array_unique(array_filter($foodEmailsList));
+
+                if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
+
+                    if (count($foodEmailsList) > 0) {
+                        Notification::route('mail', $foodEmailsList)
+                            ->notify(new FoodItemsNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+                    }
+                }
+            }
 
             return response()->json([
                 'success' => true,
@@ -129,6 +167,11 @@ class GuestFoodItemsController extends BaseController
 
     }
 
+    /**
+     * Delete Food Item api
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function destroyFood(Request $request)
     {
         try {
@@ -144,7 +187,36 @@ class GuestFoodItemsController extends BaseController
                 ], 404);
             }
 
+            $data = $foodItem->toArray();
+
             $foodItem->delete();
+
+            // Delete food item email
+            $title = $data['name'];
+            $createdHouseName = $user->house->HouseName;
+            $isModel = 'Food Item';
+            $owner = null;
+            if (!empty($data['user_id'])) {
+                $owner = User::where('user_id', $data['user_id'])->first();
+            }
+            $ccList = [];
+            if ($owner && primary_user()->email !== $owner->email) {
+                $ccList[] = $owner->email;
+            }
+
+            if (!is_null($user->house->food_item_list) && !empty($user->house->food_item_list)) {
+
+                $foodItemEmailsList = explode(',', $user->house->food_item_list);
+                $foodItemEmailsList = array_merge($foodItemEmailsList, $ccList);
+                $foodItemEmailsList = array_unique(array_filter($foodItemEmailsList));
+
+                if (count($foodItemEmailsList) > 0 && !empty($foodItemEmailsList)) {
+                    if (count($foodItemEmailsList) > 0) {
+                        Notification::route('mail', $foodItemEmailsList)
+                            ->notify(new DeleteFoodItemEmailNotification($ccList, $isModel, $title, $user, $createdHouseName));
+                    }
+                }
+            }
 
             return response()->json([
                 'success' => true,
@@ -160,7 +232,7 @@ class GuestFoodItemsController extends BaseController
 
     //    Shopping Item Section
     /**
-     * Food List api
+     * Shopping List api
      *
      * @return \Illuminate\Http\Response
      */
@@ -186,11 +258,21 @@ class GuestFoodItemsController extends BaseController
                 ->take($this->limit)
                 ->get();
 
+            $totalShoppingItems = ShoppingItem::where('house_id', $user->HouseId)
+                ->when($this->search !== '', function ($query) {
+                    $query->where(function ($query) {
+                        $query
+                            ->where('name', 'LIKE', "%$this->search%");
+                    });
+                })
+                ->count();
+
 
             $response = [
                 'success' => true,
                 'data' => [
                     'shoppingItems' => $data,
+                    'totalShoppingItems' => $totalShoppingItems
                 ],
                 'message' => 'Data fetched successfully',
             ];
@@ -245,6 +327,30 @@ class GuestFoodItemsController extends BaseController
             $shoppingItem->updateFile($this->file);
 
 
+            // Create Shopping item email
+            $this->siteUrl = route('guest.house-items.index');
+            $ccList = [];
+            if ($user && primary_user()->email !== $user->email) {
+                $ccList[] = $user->email;
+            }
+            $items = $shoppingItem;
+            $createdHouseName = $user->house->HouseName;
+
+            if (!is_null($user->house->food_item_list) && !empty($user->house->food_item_list) && $isCreating) {
+
+                $foodEmailsList = explode(',', $user->house->food_item_list);
+                $foodEmailsList = array_merge($foodEmailsList, $ccList);
+                $foodEmailsList = array_unique(array_filter($foodEmailsList));
+
+                if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
+
+                    if (count($foodEmailsList) > 0) {
+                        Notification::route('mail', $foodEmailsList)
+                            ->notify(new ShoppingItemsNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+                    }
+                }
+            }
+
             return response()->json([
                 'success' => true,
                 'data' => $shoppingItem,
@@ -265,6 +371,7 @@ class GuestFoodItemsController extends BaseController
     public function destroyShopping(Request $request)
     {
         try {
+            $user = Auth::user();
             $shoppingId = $request->id;
 
             $shoppingItem = ShoppingItem::find($shoppingId);
@@ -276,7 +383,35 @@ class GuestFoodItemsController extends BaseController
                 ], 404);
             }
 
+            $data = $shoppingItem->toArray();
             $shoppingItem->delete();
+
+            // Delete Shopping item email
+            $title = $data['name'];
+            $createdHouseName = $user->house->HouseName;
+            $isModel = 'Shopping Item';
+            $owner = null;
+            if (!empty($data['user_id'])) {
+                $owner = User::where('user_id', $data['user_id'])->first();
+            }
+            $ccList = [];
+            if ($owner && primary_user()->email !== $owner->email) {
+                $ccList[] = $owner->email;
+            }
+            if (!is_null($user->house->food_item_list) && !empty($user->house->food_item_list)) {
+
+                $foodItemEmailsList = explode(',', $user->house->food_item_list);
+                $foodItemEmailsList = array_merge($foodItemEmailsList, $ccList);
+                $foodItemEmailsList = array_unique(array_filter($foodItemEmailsList));
+
+                if (count($foodItemEmailsList) > 0 && !empty($foodItemEmailsList)) {
+                    if (count($foodItemEmailsList) > 0) {
+                        Notification::route('mail', $foodItemEmailsList)
+                            ->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$user,$createdHouseName));
+
+                    }
+                }
+            }
 
             return response()->json([
                 'success' => true,

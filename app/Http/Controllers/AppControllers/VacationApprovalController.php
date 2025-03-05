@@ -7,6 +7,7 @@ use App\Models\GuestContact;
 use App\Models\User;
 use App\Models\Vacation;
 use App\Notifications\GuestVacationApprovedNotification;
+use App\Notifications\VacationDeniedEmailNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,10 @@ class VacationApprovalController extends BaseController
     public $from;
     public $to;
     public $isApproved;
+    public $notificationEmail = null;
+
+    public $startDate = null;
+    public $endDate = null;
 
     public ?Vacation $vacation;
 
@@ -169,6 +174,7 @@ class VacationApprovalController extends BaseController
 
             }
 
+            // Approve vacation email
             try {
                 $vac_owner = User::where('user_id', $vacation->OwnerId)->first();
                 $startDate = $vacation->start_datetime->format('m-d-Y H:i');
@@ -177,48 +183,52 @@ class VacationApprovalController extends BaseController
                 if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
                     $CalEmailList = explode(',', $this->user->house->CalEmailList);
                     $ccList = array_merge($ccList, $CalEmailList); // Merge emails into $ccList
+                    $ccList = array_unique(array_filter($ccList));
                 }
                 $houseName = $vac_owner->house->HouseName;
 
-//            if (($vac_owner->role === 'Guest' || $vac_owner->role === 'Administrator') && ($guestContact && $guestContact->guest_email)) {
-//                $vacContent = $guestContact->is_approved === 0 ? 'Unapproved' : 'Approved';
-//                $name = $guestContact->guest_name;
-//                $email = $guestContact->guest_email;
-//                $isApproved = $guestContact->is_approved;
-//
-//                Notification::route('mail', $guestContact->guest_email)
-//                    ->notify(new GuestVacationApprovedNotification(
-//                        $ccList,
-//                        $vacContent,
-//                        $name,
-//                        $email,
-//                        $isApproved,
-//                        $vacation,
-//                        $houseName,
-//                        $startDate,
-//                        $endDate
-//                    ));
-//            }
-//            elseif ($vac_owner->role === 'Owner') {
-//                $vacContent = $vacation->is_vac_approved === true ? 'Approved' : 'Unapproved';
-//                $name = $vac_owner->first_name . ' ' . $vac_owner->last_name;
-//                $email = $vac_owner->email;
-//                $isApproved = $vacation->is_vac_approved === true ? 1 : 0;
-//
-//                Notification::route('mail', $email)
-//                    ->notify(new GuestVacationApprovedNotification(
-//                        $ccList,
-//                        $vacContent,
-//                        $name,
-//                        $email,
-//                        $isApproved,
-//                        $vacation,
-//                        $houseName,
-//                        $startDate,
-//                        $endDate
-//                    ));
-//
-//            }
+                if (($vac_owner->role === 'Guest' || $vac_owner->role === 'Administrator') && ($guestContact && $guestContact->guest_email)) {
+                    $vacContent = $guestContact->is_approved === 0 ? 'Unapproved' : 'Approved';
+                    $name = $guestContact->guest_name;
+                    $email = $guestContact->guest_email;
+                    $isApproved = $guestContact->is_approved;
+                    $ccList[] = $guestContact->guest_email;
+                    $ccList = array_unique(array_filter($ccList));
+
+                    Notification::route('mail', $ccList)
+                        ->notify(new GuestVacationApprovedNotification(
+                            $ccList,
+                            $vacContent,
+                            $name,
+                            $email,
+                            $isApproved,
+                            $vacation,
+                            $houseName,
+                            $startDate,
+                            $endDate
+                        ));
+                } elseif ($vac_owner->role === 'Owner') {
+                    $vacContent = $vacation->is_vac_approved === true ? 'Approved' : 'Unapproved';
+                    $name = $vac_owner->first_name . ' ' . $vac_owner->last_name;
+                    $email = $vac_owner->email;
+                    $isApproved = $vacation->is_vac_approved === true ? 1 : 0;
+                    $ccList[] = $email;
+                    $ccList = array_unique(array_filter($ccList));
+
+                    Notification::route('mail', $email)
+                        ->notify(new GuestVacationApprovedNotification(
+                            $ccList,
+                            $vacContent,
+                            $name,
+                            $email,
+                            $isApproved,
+                            $vacation,
+                            $houseName,
+                            $startDate,
+                            $endDate
+                        ));
+
+                }
 
             } catch (\Exception $e) {
                 return $this->sendError($e->getMessage(), []);
@@ -248,8 +258,8 @@ class VacationApprovalController extends BaseController
     public function rejectVacation(Request $request)
     {
         try {
+            $this->user = Auth::user();
             $vacationId = $request->vacationId;
-
             $vacation = Vacation::find($vacationId);
             if (!$vacation) {
                 return response()->json([
@@ -265,6 +275,48 @@ class VacationApprovalController extends BaseController
             // Delete all the retrieved events
             foreach ($events as $event) {
                 $event->delete();
+            }
+
+            // Reject Vacation Email
+            $owner = User::where('user_id', $vacation->OwnerId)->first();
+            $ownerRole = optional($owner)->role;
+            $vacName = $vacation->VacationName;
+            $this->startDate = $vacation->start_datetime->format('m-d-Y H:i');
+            $this->endDate = $vacation->end_datetime->format('m-d-Y H:i');
+            $name = null;
+            $email = null;
+            if ($ownerRole === 'Guest'){
+                $guestContact = GuestContact::where([
+                    'guest_id' => $vacation->original_owner,
+                    'guest_vac_id' => $vacation->VacationId,
+                ])->first();
+
+                // Delete the guest contact if found
+                if ($guestContact && $guestContact->guest_email) {
+                    $this->notificationEmail = $guestContact->guest_email;
+                    $name = $guestContact->guest_name;
+                    $email = $guestContact->guest_email;
+                    $guestContact->delete();
+                }
+            }
+            else{
+                $this->notificationEmail = $owner->email;
+                $name = $owner->first_name . ' ' . $owner->last_name;
+                $email = $owner->email;
+            }
+
+            $ccList = [];
+            if ($this->user && primary_user()->email !== $this->user->email) {
+                $ccList[] = $this->user->email;
+            }
+            $houseName = $owner->house->HouseName;
+            $admin = $this->user;
+            $ccList[] = $this->notificationEmail;
+            $ccList = array_unique(array_filter($ccList));
+
+            if ($this->notificationEmail){
+                Notification::route('mail', $ccList)
+                    ->notify(new VacationDeniedEmailNotification($ccList,$name,$email,$vacName,$admin,$houseName,$this->startDate,$this->endDate));
             }
 
             return response()->json([

@@ -9,8 +9,12 @@ use App\Models\Category;
 use App\Models\Likes;
 use App\Models\LocalGuide;
 use App\Models\Review;
+use App\Models\User;
+use App\Notifications\DeleteLocalGuideEmailNotification;
+use App\Notifications\LocalGuideNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
 class GuestLocalGuideController extends BaseController
@@ -128,33 +132,30 @@ class GuestLocalGuideController extends BaseController
             $localGuideItem->updateFile($this->file);
 
 
-//            $this->siteUrl = route('guest.local-guide.index');
+            // Create Local Guide Email
+            $slug = $localGuideItem->id;
+            $this->siteUrl = route('guest.local-guide.show', $slug);
+            $items = $localGuideItem;
+            $createdHouseName = $user->house->HouseName;
+            $ccList = [];
+            if ($user && primary_user()->email !== $user->email) {
+                $ccList[] = $user->email;
+            }
 
-//            $items = $localGuideItem;
-//            $createdHouseName = $user->house->HouseName;
-//            $ccList = [];
-//            if ($user) {
-//                $ccList[] = $user->email;
-//            }
-//
-//            if (!is_null($user->house->local_guide_email_list) && !empty($user->house->local_guide_email_list) && $isCreating) {
-//
-//                $localGuideEmailsList = explode(',', $user->house->local_guide_email_list);
-//                if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
-//                    $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $user->HouseId)->get();
-//
-//                    foreach ($users as $us) {
-//                        $us->notify(new LocalGuideNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
-//                    }
-////                Notification::send($users, new BlogNotification($items,$blogUrl,$createdHouseName));
-//                    $localGuideEmailsList = array_diff($localGuideEmailsList, $users->pluck('email')->toArray());
-//                    if (count($localGuideEmailsList) > 0) {
-//                        Notification::route('mail', $localGuideEmailsList)
-//                            ->notify(new LocalGuideNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
-//                    }
-//                }
-//            }
+            if (!is_null($user->house->local_guide_email_list) && !empty($user->house->local_guide_email_list) && $isCreating) {
 
+                $localGuideEmailsList = explode(',', $user->house->local_guide_email_list);
+                $localGuideEmailsList = array_merge($localGuideEmailsList, $ccList);
+                $localGuideEmailsList = array_unique(array_filter($localGuideEmailsList));
+
+                if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
+                    if (count($localGuideEmailsList) > 0) {
+
+                        Notification::route('mail', $localGuideEmailsList)
+                            ->notify(new LocalGuideNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+                    }
+                }
+            }
 
             return response()->json([
                 'success' => true,
@@ -164,6 +165,63 @@ class GuestLocalGuideController extends BaseController
 
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage(), []);
+        }
+    }
+
+    /**
+     * Delete Local Guide api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $localGuideId = $request->id;
+
+            // Find the blog by ID and ensure it belongs to the user's house
+            $localGuide = LocalGuide::find($localGuideId);
+            if (!$localGuide) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Local Guide not found or access denied.',
+                ], 404);
+            }
+
+            $localGuide->delete();
+
+            // Delete Local Guide Email
+            $data = $localGuide->toArray();
+            $title = $data['title'];
+            $createdHouseName = $user->house->HouseName;
+            $owner = null;
+            if (!empty($data['user_id'])) {
+                $owner = User::where('user_id', $data['user_id'])->first();
+            }
+            $ccList = [];
+            if ($owner && primary_user()->email !== $owner->email) {
+                $ccList[] = $owner->email;
+            }
+            if (!is_null($user->house->local_guide_email_list) && !empty($user->house->local_guide_email_list)) {
+                $localGuideEmailsList = explode(',', $user->house->local_guide_email_list);
+                $localGuideEmailsList = array_merge($localGuideEmailsList, $ccList);
+                $localGuideEmailsList = array_unique(array_filter($localGuideEmailsList));
+
+                if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
+
+                    if (count($localGuideEmailsList) > 0) {
+                        Notification::route('mail', $localGuideEmailsList)
+                            ->notify(new DeleteLocalGuideEmailNotification($ccList,$title,$user,$createdHouseName));
+                    }
+                }
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Local Guide deleted successfully.',
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), [], 500);
         }
     }
 
