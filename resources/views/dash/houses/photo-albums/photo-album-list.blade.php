@@ -68,8 +68,8 @@
                         </td>
                         <td class="fw-600">{{ auth()->user()->house->HouseName ?? ''}}</td>
                         <td>
-                            {{$dt->user->first_name ?? ''}}  {{$dt->user->last_name ?? ''}}
-                            <small class="fs-10">({{$dt->user->role ?? ''}})</small>
+                            {{$dt->user->first_name ?? 'Administrator'}}  {{$dt->user->last_name ?? ''}}
+                            <small class="fs-10">({{$dt->user->role ?? 'Administrator'}})</small>
                         </td>
                         <td style="max-width: 400px" class="text-wrap text-break"><h5
                                 class="mb-0">{{$dt->name ?? ''}}</h5>

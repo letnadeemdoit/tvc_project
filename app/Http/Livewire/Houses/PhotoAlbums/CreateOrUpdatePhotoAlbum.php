@@ -32,7 +32,12 @@ class CreateOrUpdatePhotoAlbum extends Component
 
     public function render()
     {
-        $albumCategory = Album::where('house_id', $this->user->HouseId)
+        $albumCategory = Album::
+        where(function ($query){
+            $query->where('house_id', $this->user->HouseId)
+                ->orWhere('house_id', null);
+        })
+//        where('house_id', $this->user->HouseId)
 //            ->when($this->user->is_owner_only, function ($query){
 //                $query->where('user_id', $this->user->user_id);
 //            })
