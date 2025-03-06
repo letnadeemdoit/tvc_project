@@ -15,40 +15,20 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Food & Drink',
-                'slug' => 'food-&-drink',
+                'name' => 'General',
+                'slug' => 'general',
                 'type' => 'local-guide',
             ],
             [
-                'name' => 'Things to Do',
-                'slug' => 'things-to-do',
-                'type' => 'local-guide',
-            ],
-//            [
-//                'name' => 'Services',
-//                'slug' => 'services',
-//                'type' => 'local-guide',
-//            ],
-//            [
-//                'name' => 'Transportation',
-//                'slug' => 'transportation',
-//                'type' => 'local-guide',
-//            ],
-            [
-                'name' => 'Vacation Summaries',
-                'slug' => 'vacation-summaries',
-                'type' => 'blog',
-            ],
-            [
-                'name' => 'Blog',
-                'slug' => 'blog',
+                'name' => 'General',
+                'slug' => 'general',
                 'type' => 'blog',
             ],
         ];
 
         foreach ($categories as $category) {
             Category::updateOrInsert(
-                ['slug' => $category['slug']], // Condition to check for existing record
+                ['slug' => $category['slug'], 'type' => $category['type']], // Condition to check for existing record
                 [
                     'user_id' => null,
                     'house_id' => null,
@@ -65,7 +45,7 @@ class CategorySeeder extends Seeder
 
         $albums = [
             [
-                'name' => 'Activities'
+                'name' => 'General'
             ]
         ];
 
