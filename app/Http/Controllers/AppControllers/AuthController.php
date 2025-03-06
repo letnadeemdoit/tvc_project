@@ -359,6 +359,7 @@ class AuthController extends BaseController
 
             $this->newUser->load('house');
             $success['token'] =  $this->newUser->createToken('MyApp')->plainTextToken;
+            $success['user'] = $this->newUser;
             $success['primaryUser'] = [
                 'user_id' => $this->newUser->user_id,
                 'house_id' => $this->newUser->HouseId,
