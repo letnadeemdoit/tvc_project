@@ -119,7 +119,11 @@ class GuestPhotoAlbumController extends BaseController
                         $query->where('name', 'LIKE', "%$search%");
                     });
                 })
-                ->where('house_id', $this->user->HouseId)
+                ->where(function ($query){
+                    $query->where('house_id', $this->user->HouseId)
+                        ->orWhere('house_id', null);
+                })
+//                ->where('house_id', $this->user->HouseId)
                 ->when($this->parent_id, function ($query) {
                     $query->where('parent_id', $this->parent_id)->whereNotNull('parent_id');
                 }, function ($query) {

@@ -72,7 +72,10 @@ class GuestBlogController extends BaseController
 
 //             Fetch the blog categories
             $blogCategories = Category::where('type', 'blog')
-                ->where('house_id', $user->HouseId)
+                ->where(function ($query) use ($user){
+                    $query->where('house_id', $user->HouseId)
+                        ->orWhere('house_id', null);
+                })
                 ->get();
 
             $totalBlogs = Blog::where('HouseId', $user->HouseId)

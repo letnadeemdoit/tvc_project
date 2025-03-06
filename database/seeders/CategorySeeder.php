@@ -3,52 +3,86 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Photo\Album;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
-        Category::insert([
+        $categories = [
             [
-                'user_id' => null,
-                'image' => null ,
                 'name' => 'Food & Drink',
-                'slug' => 'food-&-Drink',
-                'description' => null,
+                'slug' => 'food-&-drink',
                 'type' => 'local-guide',
             ],
             [
-                'user_id' => null,
-                'image' => null ,
                 'name' => 'Things to Do',
-                'slug' => 'things-to-Do',
-                'description' => null,
+                'slug' => 'things-to-do',
                 'type' => 'local-guide',
+            ],
+//            [
+//                'name' => 'Services',
+//                'slug' => 'services',
+//                'type' => 'local-guide',
+//            ],
+//            [
+//                'name' => 'Transportation',
+//                'slug' => 'transportation',
+//                'type' => 'local-guide',
+//            ],
+            [
+                'name' => 'Vacation Summaries',
+                'slug' => 'vacation-summaries',
+                'type' => 'blog',
             ],
             [
-                'user_id' => null,
-                'image' => null ,
-                'name' => 'Services',
-                'slug' => 'services',
-                'description' => null,
-                'type' => 'local-guide',
+                'name' => 'Blog',
+                'slug' => 'blog',
+                'type' => 'blog',
             ],
-            [
-                'user_id' => null,
-                'image' => null ,
-                'name' => 'Transportation',
-                'slug' => 'transportation',
-                'description' => null,
-                'type' => 'local-guide',
-            ],
+        ];
 
-        ]);
+        foreach ($categories as $category) {
+            Category::updateOrInsert(
+                ['slug' => $category['slug']], // Condition to check for existing record
+                [
+                    'user_id' => null,
+                    'house_id' => null,
+                    'image' => null,
+                    'name' => $category['name'],
+                    'slug' => $category['slug'],
+                    'description' => null,
+                    'type' => $category['type'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+        }
+
+        $albums = [
+            [
+                'name' => 'Activities'
+            ]
+        ];
+
+        foreach ($albums as $album) {
+            Album::updateOrInsert(
+                ['name' => $album['name']], // Condition to check for existing record
+                [
+                    'user_id' => null,
+                    'house_id' => null,
+                    'parent_id' => null,
+                    'image' => null,
+                    'name' => $album['name'],
+                    'description' => null,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+        }
     }
 }

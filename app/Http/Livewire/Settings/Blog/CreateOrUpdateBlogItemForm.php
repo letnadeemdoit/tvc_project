@@ -51,7 +51,13 @@ class CreateOrUpdateBlogItemForm extends Component
 
     public function mount()
     {
-        $this->blogCategories = Category::where('type', 'blog')->where('house_id', $this->user->HouseId)->get();
+        $this->blogCategories = Category::where('type', 'blog')
+            ->where(function ($query){
+                $query->where('house_id', $this->user->HouseId)
+                    ->orWhere('house_id', null);
+            })
+//            ->where('house_id', $this->user->HouseId)
+            ->get();
     }
 
     public function render()

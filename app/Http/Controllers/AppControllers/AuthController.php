@@ -49,7 +49,6 @@ class AuthController extends BaseController
                 $subscription = Subscription::where([
                     'user_id' => primary_user()->user_id,
                     'house_id' => primary_user()->HouseId,
-                    'status' => 'ACTIVE',
                 ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
 
                 $userArray = $user->toArray();
@@ -134,7 +133,6 @@ class AuthController extends BaseController
                 $subscription = Subscription::where([
                     'user_id' => primary_user()->user_id,
                     'house_id' => primary_user()->HouseId,
-                    'status' => 'ACTIVE',
                 ])->whereIn('plan', ['basic', 'standard', 'premium'])->first();
 
                 $userArray = $user->toArray();
@@ -358,9 +356,16 @@ class AuthController extends BaseController
 
 
             }
+
             $this->newUser->load('house');
             $success['token'] =  $this->newUser->createToken('MyApp')->plainTextToken;
-            $success['user'] = $this->newUser;
+            $success['primaryUser'] = [
+                'user_id' => $this->newUser->user_id,
+                'house_id' => $this->newUser->HouseId,
+                'full_name' => $this->newUser->first_name . ' ' . $this->newUser->last_name,
+                'email' => $this->newUser->email
+            ];
+            $success['subscription'] = null;
             return $this->sendResponse($success, 'User registered successfully.');
 
         }

@@ -33,7 +33,7 @@ class CalendarSettingsController extends BaseController
             $response = [
                 'success' => true,
                 'data' => [
-                    'CalendarSetting' => $calendarSetting->toCalendarSettings(),
+                    'CalendarSetting' => $calendarSetting ? $calendarSetting->toCalendarSettings() : null,
                     'authUser' => $authUser
                 ],
                 'message' => 'Data fetched successfully',
