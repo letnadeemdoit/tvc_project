@@ -159,7 +159,12 @@ class GuestPhotoAlbumController extends BaseController
                 $data = $data->sortBy('created_at');
             }
 
-            $totalAlbums = Album::where('house_id', $this->user->HouseId)
+            $totalAlbums = Album::
+//            where('house_id', $this->user->HouseId)
+                where(function ($query){
+                    $query->where('house_id', $this->user->HouseId)
+                        ->orWhere('house_id', null);
+                })
                 ->when($search !== '', function ($query) use ($search) {
                     $query->where(function ($query) use ($search) {
                         $query->where('name', 'LIKE', "%$search%");

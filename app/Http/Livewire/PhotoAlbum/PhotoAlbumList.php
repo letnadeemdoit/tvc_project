@@ -55,7 +55,13 @@ class PhotoAlbumList extends Component
 
     public function render()
     {
-        $data = Album::where('house_id', $this->user->HouseId)
+        $data = Album::
+
+//        where('house_id', $this->user->HouseId)
+        where(function ($query) {
+            $query->where('house_id', $this->user->HouseId)
+                ->orWhere('house_id', null);
+        })
             ->when($this->parent_id !== null, function ($query) {
                 $query->where('parent_id', $this->parent_id)->whereNotNull('parent_id');
             })
