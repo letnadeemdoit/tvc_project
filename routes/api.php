@@ -281,7 +281,7 @@ Route::middleware([
         Route::controller(PaypalController::class)
             ->prefix('/paypal')
             ->group(function () {
-                Route::get('/plans-and-pricing', 'planAndPricing');
+//                Route::get('/plans-and-pricing', 'planAndPricing');
                 Route::get('/revise', 'processSubscription');
                 Route::get('/canceled', 'canceledSubscription');
 
@@ -316,7 +316,7 @@ Route::middleware([
             ->prefix('/paypal')
             ->group(function () {
                 Route::get('/process', 'processSubscription');
-//                Route::get('/plans-and-pricing', 'planAndPricing');
+                Route::get('/plans-and-pricing', 'planAndPricing');
                 Route::get('/reset', 'resetSubscription');
 
             });
