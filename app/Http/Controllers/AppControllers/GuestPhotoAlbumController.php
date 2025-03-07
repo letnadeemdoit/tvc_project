@@ -103,9 +103,14 @@ class GuestPhotoAlbumController extends BaseController
             $this->limit = $request->limit ?? 5;
             $this->offSet = $request->offSet ?? 0;
             $search = $request->search;
-            $this->album = !is_null($this->parent_id)
-                ? Album::where('id', $this->parent_id)->where('house_id', $this->user->HouseId)->first()
-                : null;
+            if (!is_null($this->parent_id)) {
+                $this->album = Album::where('id', $this->parent_id)->where('house_id', $this->user->HouseId)->first();
+                if (!$this->album){
+                    $this->album = Album::where('id', $this->parent_id)->where('house_id', null)->where('name', 'General')->first();
+                }
+            } else {
+                $this->album = null;
+            }
 
             $data = Album::with(['nestedAlbums', 'photos'])
                 ->with(['house' => function ($query) {

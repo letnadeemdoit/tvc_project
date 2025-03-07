@@ -44,6 +44,9 @@ class PhotoAlbumList extends Component
     public function mount() {
         if (!is_null($this->parent_id)) {
             $this->album = Album::where('id', $this->parent_id)->where('house_id', $this->user->HouseId)->first();
+            if (!$this->album){
+                $this->album = Album::where('id', $this->parent_id)->where('house_id', null)->where('name', 'General')->first();
+            }
         } else {
             $this->album = null;
         }
