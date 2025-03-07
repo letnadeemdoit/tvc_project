@@ -8,6 +8,7 @@ use App\Models\Room\Room;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Srmklive\PayPal\Facades\PayPal;
 
@@ -208,6 +209,53 @@ class PaypalController extends BaseController
             return $this->sendError($e->getMessage(), []);
         }
     }
+
+
+    public function resetSubscription()
+    {
+        $user = Auth::user();
+        $paypalSubscription = Subscription::where([
+            'user_id' => $user->user_id,
+            'status' => 'IN_PROCESS'
+        ])->latest()->first();
+
+        if (!$paypalSubscription) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No subscription found to reset.',
+            ], 404);
+        }
+
+        try {
+            DB::transaction(function () use ($paypalSubscription) {
+                // Cancel subscription
+                $paypalSubscription->cancel();
+
+                // Handle associated processing subscription
+                $processingSubscription = ProcessingSubscription::where([
+                    'subscription_id' => $paypalSubscription->id
+                ])->first();
+
+                if ($processingSubscription) {
+                    $processingSubscription->delete();
+                }
+
+                // Delete the subscription itself
+                $paypalSubscription->delete();
+            });
+
+            $response = [
+                'success' => true,
+                'message' => 'Your subscription has been reset successfully. You can retry now for a subscription.'
+            ];
+            return response()->json($response, 200);
+
+        } catch (\Exception $e) {
+            Log::channel('paypal')->error('Reset Subscription: ', [$e->getMessage()]);
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
+
 
 
 }
