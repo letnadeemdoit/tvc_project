@@ -176,10 +176,10 @@ class CreateOrUpdateBlogItemForm extends Component
                 $blogEmailsList = array_unique(array_filter($blogEmailsList));
 
                 if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
-//                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
-//                    foreach ($users as $user) {
-//                        $user->notify(new BlogNotification($ccList,$items, $blogUrl, $this->user, $createdHouseName));
-//                    }
+                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
+                    foreach ($users as $user) {
+                        $user->notify(new BlogNotification($ccList,$items, $blogUrl, $this->user, $createdHouseName));
+                    }
 //                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
                     if (count($blogEmailsList) > 0) {
                         Notification::route('mail', $blogEmailsList)
