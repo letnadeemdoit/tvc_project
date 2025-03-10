@@ -82,6 +82,10 @@ class BlogItemList extends Component
             $ccList[] = $owner->email;
         }
 
+        $name = 'ASD';
+        $isAction = 'Deleted';
+        $isModel = 'Food Item';
+
         try {
 
             if (!is_null($this->user->house->BlogEmailList) && !empty($this->user->house->BlogEmailList)) {
@@ -95,7 +99,9 @@ class BlogItemList extends Component
                     $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $this->user->HouseId)->get();
 
                     foreach ($users as $user) {
-                        $user->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
+                        $user->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+
+//                        $user->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
                     }
 //
 //                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
@@ -103,7 +109,8 @@ class BlogItemList extends Component
                     if (count($blogEmailsList) > 0) {
 
                         Notification::route('mail', $blogEmailsList)
-                            ->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
+                            ->notify(new DeleteNotification($name, $isAction, $createdHouseName, $isModel));
+//                            ->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
 
                     }
                 }
