@@ -107,10 +107,10 @@ class CreateOrUpdateShoppingItemForm extends Component
                 $foodEmailsList = array_unique(array_filter($foodEmailsList));
 
                 if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
-                    $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $this->user->HouseId)->get();
-                    foreach ($users as $user) {
-                        $user->notify(new ShoppingItemsNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
-                    }
+//                    $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $this->user->HouseId)->get();
+//                    foreach ($users as $user) {
+//                        $user->notify(new ShoppingItemsNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
+//                    }
 //                    $foodEmailsList = array_diff($foodEmailsList, $users->pluck('email')->toArray());
                     if (count($foodEmailsList) > 0) {
                         Notification::route('mail', $foodEmailsList)
