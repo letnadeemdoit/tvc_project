@@ -109,10 +109,10 @@ class CreateOrUpdateGusetBookForm extends Component
 
                 if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
 
-//                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
-//                    foreach ($users as $user) {
-//                        $user->notify(new GuestBookNotification($ccList,$inputs['title'],$this->user, $this->siteUrl, $createdHouseName));
-//                    }
+                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
+                    foreach ($users as $user) {
+                        $user->notify(new GuestBookNotification($ccList,$inputs['title'],$this->user, $this->siteUrl, $createdHouseName));
+                    }
 //                    $guestBookEmailsList = array_diff($guestBookEmailsList, $users->pluck('email')->toArray());
                     if (count($guestBookEmailsList) > 0) {
                         Notification::route('mail', $guestBookEmailsList)

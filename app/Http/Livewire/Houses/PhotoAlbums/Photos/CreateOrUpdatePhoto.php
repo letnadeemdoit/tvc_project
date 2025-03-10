@@ -123,10 +123,10 @@ class CreateOrUpdatePhoto extends Component
                 $photoEmailsList = array_unique(array_filter($photoEmailsList));
 
                 if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
-//                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
-//                    foreach ($users as $user) {
-//                        $user->notify(new PhotoAlbumNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
-//                    }
+                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $this->user->HouseId)->get();
+                    foreach ($users as $user) {
+                        $user->notify(new PhotoAlbumNotification($ccList,$items,$this->user, $this->siteUrl, $createdHouseName));
+                    }
 //                    $photoEmailsList = array_diff($photoEmailsList, $users->pluck('email')->toArray());
 
                     if (count($photoEmailsList) > 0) {

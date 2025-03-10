@@ -179,11 +179,11 @@ class VacationsList extends Component
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
 
-//                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
-//
-//                    foreach ($users as $user) {
-//                        $user->notify(new DeleteVacationNotification($name,$this->user,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
-//                    }
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteVacationNotification($name,$this->user,$vac_owner,$ccList,$this->startDatetimeOfDelVacation,$this->endDatetimeOfDelVacation, $isAction,$createdHouseName,$isModal));
+                    }
 //
 //                    $CalEmailList = array_diff($CalEmailList, $users->pluck('email')->toArray());
 

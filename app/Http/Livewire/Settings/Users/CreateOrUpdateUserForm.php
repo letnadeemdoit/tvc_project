@@ -335,7 +335,7 @@ class CreateOrUpdateUserForm extends Component
                         Notification::route('mail', $createUser['email'])
                             ->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName,$this->siteUrl));
 
-//                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
+                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName,$this->siteUrl));
                     }
                 }
             } catch (\Exception $e) {
@@ -436,7 +436,7 @@ class CreateOrUpdateUserForm extends Component
                     if (isset($sendPasswordToMail) && !is_null($sendPasswordToMail)) {
                         Notification::route('mail', $createUser['email'])
                             ->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName,$this->siteUrl));
-//                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName));
+                        $createUser->notify(new CreateUserEmailNotification($createUser, $sendPasswordToMail,$houseName,$this->siteUrl));
                     }
                 }
             } catch (\Exception $e) {

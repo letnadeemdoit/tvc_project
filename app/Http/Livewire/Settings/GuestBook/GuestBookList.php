@@ -98,11 +98,11 @@ class GuestBookList extends Component
 
                 if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
 
-//                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
-//
-//                    foreach ($users as $user) {
-//                        $user->notify(new DeleteGuestBookEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
-//                    }
+                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $this->user->HouseId)->get();
+
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteGuestBookEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
+                    }
 //
 //                    $guestBookEmailsList = array_diff($guestBookEmailsList, $users->pluck('email')->toArray());
 
