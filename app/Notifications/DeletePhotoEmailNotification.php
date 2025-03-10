@@ -72,11 +72,9 @@ class DeletePhotoEmailNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'items' => $this->items,
-            'siteUrl' => $this->siteUrl,
-            'albumName' => $this->albumName,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'isModal' => 'Photo',
+            'isAction' => 'deleted',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

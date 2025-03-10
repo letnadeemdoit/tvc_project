@@ -70,10 +70,10 @@ class FoodItemsNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'items' => $this->items,
-            'siteUrl' => $this->siteUrl,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'Name' => $this->items->name,
+            'isModal' => 'Food Item',
+            'isAction' => 'created',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

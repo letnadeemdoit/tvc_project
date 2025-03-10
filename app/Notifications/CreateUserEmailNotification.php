@@ -70,10 +70,10 @@ class CreateUserEmailNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'createUser' => $this->createUser,
-            'sendPasswordToMail' => $this->sendPasswordToMail,
-            'houseName' => $this->houseName,
-            'siteUrl' => $this->siteUrl,
+            'Name' => $this->createUser->first_name . ' ' . $this->createUser->last_name,
+            'isModal' => 'User',
+            'isAction' => 'created',
+            'house_name' => $this->houseName,
         ];
     }
 }

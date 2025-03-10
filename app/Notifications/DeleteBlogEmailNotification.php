@@ -66,9 +66,10 @@ class DeleteBlogEmailNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->title,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'Name' => $this->title,
+            'isModal' => 'Blog',
+            'isAction' => 'deleted',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

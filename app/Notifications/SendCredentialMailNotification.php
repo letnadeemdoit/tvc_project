@@ -70,10 +70,10 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'sendPasswordToMail' => $this->sendPasswordToMail,
-            'userDetails' => $this->userDetails,
-            'houseName' => $this->houseName,
-            'siteUrl' => $this->siteUrl,
+            'Name' => $this->userDetails->first_name . ' ' . $this->userDetails->last_name,
+            'isModal' => 'User',
+            'isAction' => 'Credentials',
+            'house_name' => $this->houseName,
         ];
     }
 }

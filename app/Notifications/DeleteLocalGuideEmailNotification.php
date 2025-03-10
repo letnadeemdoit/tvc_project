@@ -66,9 +66,10 @@ class DeleteLocalGuideEmailNotification extends Notification implements ShouldQu
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->title,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'Name' => $this->title,
+            'isModal' => 'Local Guide',
+            'isAction' => 'deleted',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

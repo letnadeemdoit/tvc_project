@@ -69,10 +69,10 @@ class DeleteFoodItemEmailNotification extends Notification implements ShouldQueu
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->title,
-            'isModel' => $this->isModel,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'Name' => $this->title,
+            'isModal' => 'Food Item',
+            'isAction' => 'deleted',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

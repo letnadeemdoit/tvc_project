@@ -71,10 +71,9 @@ class PhotoAlbumNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'items' => $this->items,
-            'siteUrl' => $this->siteUrl,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'isModal' => 'Photo',
+            'isAction' => 'created',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

@@ -70,10 +70,10 @@ class BlogNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'items' => $this->items,
-            'blogUrl' => $this->blogUrl,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'Name' => $this->items->Subject,
+            'isModal' => 'Blog',
+            'isAction' => 'created',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

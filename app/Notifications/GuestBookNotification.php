@@ -70,10 +70,10 @@ class GuestBookNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->title,
-            'siteUrl' => $this->siteUrl,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'Name' => $this->title,
+            'isModal' => 'Guest Book',
+            'isAction' => 'created',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }

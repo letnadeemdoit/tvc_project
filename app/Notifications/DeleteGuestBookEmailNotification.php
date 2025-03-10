@@ -69,10 +69,10 @@ class DeleteGuestBookEmailNotification extends Notification implements ShouldQue
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->title,
-            'isModel' => $this->isModel,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
+            'Name' => $this->title,
+            'isModal' => 'Guest Book',
+            'isAction' => 'deleted',
+            'house_name' => $this->createdHouseName,
         ];
     }
 }
