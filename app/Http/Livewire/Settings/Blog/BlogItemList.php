@@ -97,8 +97,9 @@ class BlogItemList extends Component
                     foreach ($users as $user) {
                         $user->notify(new DeleteBlogEmailNotification($ccList,$title,$this->user,$createdHouseName));
                     }
-//
-//                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
+
+                    $notifiedEmails = $users->pluck('email')->toArray();
+                    $blogEmailsList = array_diff($blogEmailsList, $notifiedEmails);
 
                     if (count($blogEmailsList) > 0) {
 

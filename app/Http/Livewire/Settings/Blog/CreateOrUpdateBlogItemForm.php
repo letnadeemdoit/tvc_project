@@ -16,6 +16,7 @@ use App\Notifications\BlogNotify;
 use App\Models\Tags;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
@@ -180,6 +181,8 @@ class CreateOrUpdateBlogItemForm extends Component
                     foreach ($users as $user) {
                         $user->notify(new BlogNotification($ccList,$items, $blogUrl, $this->user, $createdHouseName));
                     }
+                    $notifiedEmails = $users->pluck('email')->toArray();
+                    $blogEmailsList = array_diff($blogEmailsList, $notifiedEmails);
 //                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
                     if (count($blogEmailsList) > 0) {
                         Notification::route('mail', $blogEmailsList)
@@ -188,7 +191,11 @@ class CreateOrUpdateBlogItemForm extends Component
                 }
             }
         } catch (Exception $e) {
-
+            dd($e->getMessage());
+            Log::error('Error creating blog:', [
+                'message' => $e->getMessage(),
+                'stack' => $e->getTraceAsString(),
+            ]);
         }
 
         $this->emitSelf('toggle', false);
