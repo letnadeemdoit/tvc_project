@@ -44,7 +44,7 @@ class BlogNotification extends Notification implements ShouldQueue
             return ['mail'];
         }
         // For actual User models, send both mail and database notifications
-        return ['mail', 'database'];
+        return ['database'];
     }
 
     /**
