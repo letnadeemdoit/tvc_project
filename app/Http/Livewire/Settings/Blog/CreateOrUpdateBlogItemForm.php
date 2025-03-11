@@ -181,8 +181,8 @@ class CreateOrUpdateBlogItemForm extends Component
                     foreach ($users as $user) {
                         $user->notify(new BlogNotification($ccList,$items, $blogUrl, $this->user, $createdHouseName));
                     }
-                    $notifiedEmails = $users->pluck('email')->toArray();
-                    $blogEmailsList = array_diff($blogEmailsList, $notifiedEmails);
+//                    $notifiedEmails = $users->pluck('email')->toArray();
+//                    $blogEmailsList = array_diff($blogEmailsList, $notifiedEmails);
 //                    $blogEmailsList = array_diff($blogEmailsList, $users->pluck('email')->toArray());
                     if (count($blogEmailsList) > 0) {
                         Notification::route('mail', $blogEmailsList)
