@@ -39,7 +39,12 @@ class BlogNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        // When using Notification::route('mail', ...) the notifiable is a string (email address)
+        if (is_string($notifiable)) {
+            return ['mail'];
+        }
+        // For actual User models, send both mail and database notifications
+        return ['mail', 'database'];
     }
 
     /**
