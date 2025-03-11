@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\HtmlString;
 
 class BlogNotification extends Notification implements ShouldQueue
@@ -40,7 +41,7 @@ class BlogNotification extends Notification implements ShouldQueue
     public function via($notifiable)
     {
         // When using Notification::route('mail', ...) the notifiable is a string (email address)
-        if (is_string($notifiable)) {
+        if ($notifiable instanceof AnonymousNotifiable) {
             return ['mail'];
         }
         // For actual User models, send both mail and database notifications
