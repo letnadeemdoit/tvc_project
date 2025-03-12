@@ -83,12 +83,6 @@ class ShoppingItemList extends Component
         }
 
         try {
-
-//            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
-//
-//            foreach ($users as $user) {
-//                $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-//            }
             if (!is_null($this->user->house->food_item_list) && !empty($this->user->house->food_item_list)) {
 
                 $foodItemEmailsList = explode(',', $this->user->house->food_item_list);
@@ -97,10 +91,10 @@ class ShoppingItemList extends Component
 
                 if (count($foodItemEmailsList) > 0 && !empty($foodItemEmailsList)) {
 
-//                    $users = User::whereIn('email', $foodItemEmailsList)->where('HouseId', $this->user->HouseId)->get();
-//                    foreach ($users as $user) {
-//                        $user->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
-//                    }
+                    $users = User::whereIn('email', $foodItemEmailsList)->where('HouseId', $this->user->HouseId)->get();
+                    foreach ($users as $user) {
+                        $user->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$this->user,$createdHouseName));
+                    }
 //                    $foodItemEmailsList = array_diff($foodItemEmailsList, $users->pluck('email')->toArray());
 
                     if (count($foodItemEmailsList) > 0) {

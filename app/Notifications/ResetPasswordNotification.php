@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Auth\Notifications\ResetPassword as BaseResetPassword;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -32,7 +33,12 @@ class ResetPasswordNotification extends BaseResetPassword
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        // When using Notification::route('mail', ...)
+        if ($notifiable instanceof AnonymousNotifiable) {
+            return ['mail'];
+        }
+        // For actual User models, send database notifications
+        return ['database'];
     }
 
     /**

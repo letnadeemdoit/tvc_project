@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppControllers\AuthController;
 use App\Http\Controllers\AppControllers\AdminBlogController;
 use App\Http\Controllers\AppControllers\AdminLocalGuideController;
-use App\Http\Controllers\AppControllers\AdminPhotoAlbumController;
 use App\Http\Controllers\AppControllers\AdminGuestBookController;
 use App\Http\Controllers\AppControllers\AdminFoodItemsController;
 use App\Http\Controllers\AppControllers\VacationApprovalController;
@@ -48,13 +47,6 @@ Route::post('register', [AuthController::class, 'register']);
 Route::get('house-list', [AuthController::class, 'houseList']);
 Route::get('countries-list', [AuthController::class, 'countriesList']);
 Route::get('states-list', [AuthController::class, 'statesList']);
-
-// Guest-related Routes
-//Route::controller(GuestController::class)
-//    ->prefix('guest')
-//    ->group(function () {
-//        // Protected Routes
-//        Route::middleware('auth:sanctum')->group(function () {
 
 Route::prefix('guest')->middleware('auth:sanctum')->group(function () {
     // Blog Routes
@@ -98,9 +90,6 @@ Route::prefix('guest')->middleware('auth:sanctum')->group(function () {
             Route::post('/create-photo', 'createNewPhoto');
             Route::delete('/delete-photo', 'destroyPhoto');
 
-//
-//            Route::get('/photo-list', 'photoList');
-//            Route::post('/create-photo', 'createNewPhoto');
         });
 
     // Food Items Routes
@@ -139,15 +128,6 @@ Route::prefix('guest')->middleware('auth:sanctum')->group(function () {
             Route::get('/auth-user', 'getAuthUser');
         });
 
-    // Request To Join Vacation Routes
-//    Route::controller(RequestToJoinVacationController::class)
-//        ->prefix('vacation')
-//        ->group(function () {
-//            Route::post('/request-to-join', 'RequestToJoinVacation');
-//            Route::post('/request-to-use-house', 'RequestToUseHouse');
-//        });
-
-
     Route::controller(UserProfileController::class)
         ->prefix('/profile')
         ->group(function () {
@@ -174,46 +154,6 @@ Route::middleware([
     ->prefix('dash')
     ->group(function () {
 
-
-//        Route::controller(AdminBlogController::class)
-//            ->prefix('/blog')
-//            ->group(function () {
-//                Route::get('/blog-list', 'blogList');
-//                Route::post('/create', 'createBlog');
-//                Route::post('/like-blog', 'likeBlog');
-//                Route::delete('/delete', 'destroy');
-//            });
-//
-//        Route::controller(AdminLocalGuideController::class)
-//            ->prefix('/local-guide')
-//            ->group(function () {
-//                Route::get('/local-guide-list', 'LocalGuideList');
-//                Route::post('/create', 'createLocalGuide');
-//                Route::delete('/delete', 'destroy');
-//            });
-//
-//        Route::controller(AdminPhotoAlbumController::class)
-//            ->prefix('/photo-album')
-//            ->group(function () {
-//                Route::get('/albums-list', 'albumsList');
-//                Route::get('/album-photos', 'albumPhotos');
-//                Route::post('/create-photo', 'createNewPhoto');
-//                Route::delete('/delete-photo', 'destroyPhoto');
-//            });
-//
-//        Route::controller(AdminFoodItemsController::class)
-//            ->prefix('/food-items')
-//            ->group(function () {
-//                Route::get('/food-list', 'foodList');
-//                Route::post('/create-food', 'createFood');
-//                Route::delete('/delete-food', 'destroyFood');
-//
-//                Route::get('/shopping-list', 'shoppingList');
-//                Route::post('/create-shopping', 'createShopping');
-//                Route::delete('/delete-shopping', 'destroyShopping');
-//            });
-
-
         Route::controller(AdminNotificationsController::class)
             ->prefix('/notifications')
             ->group(function () {
@@ -221,27 +161,6 @@ Route::middleware([
                 Route::get('/read-notification', 'readNotification');
                 Route::get('/read-all-notifications', 'readAllNotifications');
             });
-
-//        Route::controller(AdminGuestBookController::class)
-//            ->prefix('/guest-book')
-//            ->group(function () {
-//                Route::get('/guest-book-list', 'guestBookList');
-//                Route::post('/create-guest-book', 'createGuestBook');
-//                Route::delete('/delete-guest-book', 'deleteGuestBook');
-//            });
-
-//        Route::controller(UserProfileController::class)
-//            ->prefix('/profile')
-//            ->group(function () {
-//                Route::get('/user', 'getUser');
-//                Route::post('/update-picture', 'updateProfilePicture');
-//                Route::post('/update-basic-info', 'updateBasicInfo');
-//                Route::post('/update-email', 'updateEmailAddress');
-//                Route::post('/update-admin-password', 'updateAdminPassword');
-//                Route::post('/update-guest-password', 'updateGuestPassword');
-//                Route::post('/update-preferences', 'updatePreferences');
-//                Route::post('/logout-other-browsers', 'logoutOtherBrowsers');
-//            });
 
         Route::controller(CalendarViewController::class)
             ->prefix('/calendar')

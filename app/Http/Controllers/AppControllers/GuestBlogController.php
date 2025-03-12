@@ -185,6 +185,12 @@ class GuestBlogController extends BaseController
                 $blogEmailsList = array_unique(array_filter($blogEmailsList));
 
                 if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
+
+                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
+                    }
+
                     if (count($blogEmailsList) > 0) {
                         Notification::route('mail', $blogEmailsList)
                             ->notify(new BlogNotification($ccList,$items, $blogUrl, $user, $createdHouseName));
@@ -253,6 +259,11 @@ class GuestBlogController extends BaseController
                 $blogEmailsList = array_unique(array_filter($blogEmailsList));
 
                 if (count($blogEmailsList) > 0 && !empty($blogEmailsList)) {
+
+                    $users = User::whereIn('email', $blogEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new DeleteBlogEmailNotification($ccList, $title, $user, $createdHouseName));
+                    }
 
                     if (count($blogEmailsList) > 0) {
 

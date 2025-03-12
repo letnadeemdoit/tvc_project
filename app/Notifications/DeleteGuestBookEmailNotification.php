@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -38,7 +39,12 @@ class DeleteGuestBookEmailNotification extends Notification implements ShouldQue
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        // When using Notification::route('mail', ...)
+        if ($notifiable instanceof AnonymousNotifiable) {
+            return ['mail'];
+        }
+        // For actual User models, send database notifications
+        return ['database'];
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -48,7 +49,12 @@ class VacationDeniedEmailNotification extends Notification implements ShouldQueu
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        // When using Notification::route('mail', ...)
+        if ($notifiable instanceof AnonymousNotifiable) {
+            return ['mail'];
+        }
+        // For actual User models, send database notifications
+        return ['database'];
     }
 
     /**
@@ -82,13 +88,10 @@ class VacationDeniedEmailNotification extends Notification implements ShouldQueu
     public function toArray($notifiable)
     {
         return [
-            'vacName' => $this->vacName,
-            'name' => $this->name,
-            'email' => $this->email,
-            'admin' => $this->admin,
-            'houseName' => $this->houseName,
-            'startDate' => $this->startDate,
-            'endDate' => $this->endDate,
+            'content' => 'A vacation has been denied from',
+            'house_name' => $this->houseName,
+            'start_date' => $this->startDate,
+            'end_date' => $this->endDate,
         ];
     }
 }

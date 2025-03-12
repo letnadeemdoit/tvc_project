@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
@@ -44,9 +45,12 @@ class RequestToUseVacationHomeNotification2 extends Notification implements Shou
      */
     public function via($notifiable)
     {
-        return [
-            'mail','database'
-        ];
+        // When using Notification::route('mail', ...)
+        if ($notifiable instanceof AnonymousNotifiable) {
+            return ['mail'];
+        }
+        // For actual User models, send database notifications
+        return ['database'];
     }
 
     /**
@@ -81,12 +85,10 @@ class RequestToUseVacationHomeNotification2 extends Notification implements Shou
     public function toArray($notifiable)
     {
         return [
-            'vacName' => $this->vacName,
-            'name' => $this->name,
-            'email' => $this->email,
-            'createdHouseName' => $this->createdHouseName,
-            'startDate' => $this->startDate,
-            'endDate' => $this->endDate,
+            'content' => 'Request to use vacation home from',
+            'house_name' => $this->createdHouseName,
+            'start_date' => $this->startDate,
+            'end_date' => $this->endDate,
         ];
     }
 }

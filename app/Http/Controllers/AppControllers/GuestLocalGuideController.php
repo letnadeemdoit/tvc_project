@@ -14,6 +14,7 @@ use App\Notifications\DeleteLocalGuideEmailNotification;
 use App\Notifications\LocalGuideNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
@@ -55,6 +56,9 @@ class GuestLocalGuideController extends BaseController
                 ->with(['reviews' => function ($query) {
                     $query->select('id', 'rating', 'commentable_id'); // Include the foreign key
                 }])
+                ->with(['category' => function ($query) {
+                    $query->select('id', 'name');
+                }])
                 ->withCount('reviews')
                 ->orderBy('id', 'DESC')
                 ->get();
@@ -67,11 +71,21 @@ class GuestLocalGuideController extends BaseController
                 })
                 ->get();
 
+            $totalLocalGuides = LocalGuide::where('house_id', $user->HouseId)
+                ->when($this->category !== 'all', function ($query) {
+                    $query->whereHas('category', function ($query) {
+                        $query->where('slug', $this->category);
+                    });
+                })
+                ->count();
+
+
             $response = [
                 'success' => true,
                 'data' => [
                     'localGuides' => $localGuideList,
                     'localGuideCategories' => $localGuideCategories,
+                    'totalLocalGuides' => $totalLocalGuides,
                 ],
                 'message' => 'Data fetched successfully',
             ];
@@ -151,6 +165,11 @@ class GuestLocalGuideController extends BaseController
                 if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
                     if (count($localGuideEmailsList) > 0) {
 
+                        $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $user->HouseId)->get();
+                        foreach ($users as $us) {
+                            $us->notify(new LocalGuideNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+                        }
+
                         Notification::route('mail', $localGuideEmailsList)
                             ->notify(new LocalGuideNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
                     }
@@ -208,6 +227,11 @@ class GuestLocalGuideController extends BaseController
                 $localGuideEmailsList = array_unique(array_filter($localGuideEmailsList));
 
                 if (count($localGuideEmailsList) > 0 && !empty($localGuideEmailsList)) {
+
+                    $users = User::whereIn('email', $localGuideEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new DeleteLocalGuideEmailNotification($ccList,$title,$user,$createdHouseName));
+                    }
 
                     if (count($localGuideEmailsList) > 0) {
                         Notification::route('mail', $localGuideEmailsList)

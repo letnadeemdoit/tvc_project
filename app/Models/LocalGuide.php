@@ -57,13 +57,7 @@ class LocalGuide extends Model implements Auditable
         return '/images/local-guide/default.png';
     }
 
-
-    public function localGuideCategory()
-    {
-        return $this->belongsTo(LocalGuideCategory::class);
-    }
-
-    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }

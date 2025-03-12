@@ -143,6 +143,11 @@ class GuestFoodItemsController extends BaseController
 
                 if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
 
+                    $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new FoodItemsNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+                    }
+
                     if (count($foodEmailsList) > 0) {
                         Notification::route('mail', $foodEmailsList)
                             ->notify(new FoodItemsNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
@@ -211,6 +216,12 @@ class GuestFoodItemsController extends BaseController
                 $foodItemEmailsList = array_unique(array_filter($foodItemEmailsList));
 
                 if (count($foodItemEmailsList) > 0 && !empty($foodItemEmailsList)) {
+
+                    $users = User::whereIn('email', $foodItemEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new DeleteFoodItemEmailNotification($ccList, $isModel, $title, $user, $createdHouseName));
+                    }
+
                     if (count($foodItemEmailsList) > 0) {
                         Notification::route('mail', $foodItemEmailsList)
                             ->notify(new DeleteFoodItemEmailNotification($ccList, $isModel, $title, $user, $createdHouseName));
@@ -344,6 +355,11 @@ class GuestFoodItemsController extends BaseController
 
                 if (count($foodEmailsList) > 0 && !empty($foodEmailsList)) {
 
+                    $users = User::whereIn('email', $foodEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new ShoppingItemsNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+                    }
+
                     if (count($foodEmailsList) > 0) {
                         Notification::route('mail', $foodEmailsList)
                             ->notify(new ShoppingItemsNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
@@ -405,6 +421,12 @@ class GuestFoodItemsController extends BaseController
                 $foodItemEmailsList = array_unique(array_filter($foodItemEmailsList));
 
                 if (count($foodItemEmailsList) > 0 && !empty($foodItemEmailsList)) {
+
+                    $users = User::whereIn('email', $foodItemEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$user,$createdHouseName));
+                    }
+
                     if (count($foodItemEmailsList) > 0) {
                         Notification::route('mail', $foodItemEmailsList)
                             ->notify(new DeleteFoodItemEmailNotification($ccList,$isModel,$title,$user,$createdHouseName));

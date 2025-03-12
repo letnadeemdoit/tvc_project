@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
@@ -42,9 +43,12 @@ class CalendarEmailNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return [
-            'mail','database'
-        ];
+        // When using Notification::route('mail', ...)
+        if ($notifiable instanceof AnonymousNotifiable) {
+            return ['mail'];
+        }
+        // For actual User models, send database notifications
+        return ['database'];
     }
 
     /**
@@ -86,11 +90,10 @@ class CalendarEmailNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'vacName' => $this->vacName,
-            'user' => $this->user,
-            'createdHouseName' => $this->createdHouseName,
-            'startDate' => $this->startDate,
-            'endDate' => $this->endDate,
+            'content' => 'A vacation has been scheduled from',
+            'house_name' => $this->createdHouseName,
+            'start_date' => $this->startDate,
+            'end_date' => $this->endDate,
         ];
     }
 }

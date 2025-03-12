@@ -121,6 +121,12 @@ class GuestBookController extends BaseController
                 $guestBookEmailsList = array_unique(array_filter($guestBookEmailsList));
 
                 if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
+
+                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new GuestBookNotification($ccList,$inputs['title'],$user, $this->siteUrl, $createdHouseName));
+                    }
+
                     if (count($guestBookEmailsList) > 0) {
                         Notification::route('mail', $guestBookEmailsList)
                             ->notify(new GuestBookNotification($ccList,$inputs['title'],$user, $this->siteUrl, $createdHouseName));
@@ -186,6 +192,11 @@ class GuestBookController extends BaseController
                 $guestBookEmailsList = array_unique(array_filter($guestBookEmailsList));
 
                 if (count($guestBookEmailsList) > 0 && !empty($guestBookEmailsList)) {
+
+                    $users = User::whereIn('email', $guestBookEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new DeleteGuestBookEmailNotification($ccList, $isModel, $title, $user, $createdHouseName));
+                    }
 
                     if (count($guestBookEmailsList) > 0) {
                         Notification::route('mail', $guestBookEmailsList)

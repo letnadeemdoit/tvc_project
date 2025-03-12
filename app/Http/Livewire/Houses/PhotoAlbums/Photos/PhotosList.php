@@ -137,12 +137,6 @@ class PhotosList extends Component
 
 
         try {
-//            $users = User::where('HouseId', $this->user->HouseId)->where('role', 'Administrator')->where('is_confirmed', 1)->get();
-//
-//            foreach ($users as $user) {
-//                $user->notify(new DeleteNotification($name,$isAction,$createdHouseName,$isModel));
-//            }
-
             if (!is_null($this->user->house->photo_email_list) && !empty($this->user->house->photo_email_list)) {
 
                 $photoEmailsList = explode(',', $this->user->house->photo_email_list);

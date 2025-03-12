@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
@@ -48,7 +49,12 @@ class DeleteVacationNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        // When using Notification::route('mail', ...)
+        if ($notifiable instanceof AnonymousNotifiable) {
+            return ['mail'];
+        }
+        // For actual User models, send database notifications
+        return ['database'];
     }
 
     /**
@@ -91,10 +97,10 @@ class DeleteVacationNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'Name' => $this->name,
-            'isAction' => $this->isAction,
-            'isModal' => $this->isModel,
+            'content' => 'Vacation deleted from',
             'house_name' => $this->createdHouseName,
+            'start_date' => $this->startDatetimeOfVacation,
+            'end_date' => $this->endDatetimeOfVacation,
         ];
     }
 }

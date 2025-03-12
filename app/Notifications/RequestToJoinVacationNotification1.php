@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
@@ -42,9 +43,12 @@ class RequestToJoinVacationNotification1 extends Notification implements ShouldQ
      */
     public function via($notifiable)
     {
-        return [
-            'mail','database'
-        ];
+        // When using Notification::route('mail', ...)
+        if ($notifiable instanceof AnonymousNotifiable) {
+            return ['mail'];
+        }
+        // For actual User models, send database notifications
+        return ['database'];
     }
 
     /**
@@ -78,11 +82,10 @@ class RequestToJoinVacationNotification1 extends Notification implements ShouldQ
     public function toArray($notifiable)
     {
         return [
-            'vacation_name' => $this->vacation_name,
-            'owner' => $this->owner,
-            'createdHouseName' => $this->house_name,
-            'startDate' => $this->startDate,
-            'endDate' => $this->endDate,
+            'content' => 'Request to join vacation from',
+            'house_name' => $this->createdHouseName,
+            'start_date' => $this->startDate,
+            'end_date' => $this->endDate,
         ];
     }
 }

@@ -527,14 +527,21 @@ class CalendarViewController extends BaseController
                 $CalEmailList = explode(',', $user->house->CalEmailList);
                 $CalEmailList = array_merge($CalEmailList, $ccList);
                 $CalEmailList = array_unique(array_filter($CalEmailList));
+                $users = User::whereIn('email', $CalEmailList)->where('HouseId', $currentUser->HouseId)->get();
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList) && $isCreating) {
+                    foreach ($users as $us) {
+                        $us->notify(new CalendarEmailNotification($vacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate));
+                    }
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
                             ->notify(new CalendarEmailNotification($vacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate));
                     }
                 }
                 elseif (count($CalEmailList) > 0 && !empty($CalEmailList) && !$isCreating){
+                    foreach ($users as $us) {
+                        $us->notify(new UpdateCalendarEmailNotification($currentUser,$vacName,$this->originalVacName,$ccList,$vac_owner, $createdHouseName, $vacStartDate, $vacEndDate,$this->originalVacStartDate,$this->originalVacEndDate));
+                    }
 
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)
@@ -688,6 +695,11 @@ class CalendarViewController extends BaseController
                 $CalEmailList = array_unique(array_filter($CalEmailList));
 
                 if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
+
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new DeleteVacationNotification($name, $user, $vac_owner, $ccList, $this->startDatetimeOfDelVacation, $this->endDatetimeOfDelVacation, $isAction, $createdHouseName, $isModal));
+                    }
 
                     if (count($CalEmailList) > 0) {
                         Notification::route('mail', $CalEmailList)

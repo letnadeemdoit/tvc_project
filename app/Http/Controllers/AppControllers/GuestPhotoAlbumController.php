@@ -261,6 +261,11 @@ class GuestPhotoAlbumController extends BaseController
 
                 if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
 
+                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new PhotoAlbumNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
+                    }
+
                     if (count($photoEmailsList) > 0) {
                         Notification::route('mail', $photoEmailsList)
                             ->notify(new PhotoAlbumNotification($ccList,$items,$user, $this->siteUrl, $createdHouseName));
@@ -326,6 +331,12 @@ class GuestPhotoAlbumController extends BaseController
                 $photoEmailsList = array_unique(array_filter($photoEmailsList));
 
                 if (count($photoEmailsList) > 0 && !empty($photoEmailsList)) {
+
+                    $users = User::whereIn('email', $photoEmailsList)->where('HouseId', $user->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new DeletePhotoEmailNotification($ccList, $this->siteUrl, $dataObject, $album['name'], $user, $createdHouseName));
+                    }
+
                     if (count($photoEmailsList) > 0) {
                         Notification::route('mail', $photoEmailsList)
                             ->notify(new DeletePhotoEmailNotification($ccList, $this->siteUrl, $dataObject, $album['name'], $user, $createdHouseName));

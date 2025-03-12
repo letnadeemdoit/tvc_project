@@ -46,13 +46,22 @@
                                 {{--                                            </form>--}}
                                 {{--                                        </div>--}}
                                 {{--                                    </li>--}}
-                                @if($dt->type == 'App\Notifications\CalendarEmailNotification')
+                                @if($dt->type == 'App\Notifications\CalendarEmailNotification'
+                                  || $dt->type == 'App\Notifications\RequestToApproveVacationEmailNotification'
+                                  || $dt->type == 'App\Notifications\RequestToJoinVacationNotification1'
+                                  || $dt->type == 'App\Notifications\RequestToUseVacationHomeNotification1'
+                                  || $dt->type == 'App\Notifications\RequestToUseVacationHomeNotification2'
+                                  || $dt->type == 'App\Notifications\VacationDeniedEmailNotification'
+                                  || $dt->type == 'App\Notifications\GuestVacationApprovedNotification'
+                                  || $dt->type == 'App\Notifications\UpdateCalendarEmailNotification'
+                                  || $dt->type == 'App\Notifications\DeleteVacationNotification'
+                                  )
 
                                     <li class="list-group-item border-bottom rounded-0 p-1 p-lg-3 d-lg-flex justify-content-between align-items-center">
                                         <div class="d-flex justify-content-start align-items-center mb-2 mb-lg-0">
                                             <h4 class="mb-0 me-3 d-none d-lg-block">- <i
                                                     class="bi bi-calendar-event"></i> : </h4>
-                                            <p class="mb-0">A vacation has been scheduled from
+                                            <p class="mb-0">{{$dt->data['content']}}
                                                 <b class="text-primary text-capitalize">{{$dt->data['start_date'] ?? ''}}</b>
                                                 to
                                                 <b class="text-primary text-capitalize">{{$dt->data['end_date'] ?? ''}}</b>

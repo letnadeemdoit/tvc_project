@@ -90,7 +90,7 @@ class Category extends Model implements Auditable
 
     public function localGuides()
     {
-        return $this->hasMany(LocalGuide::class);
+        return $this->hasMany(LocalGuide::class, 'category_id', 'id');
     }
 
     public function user()
