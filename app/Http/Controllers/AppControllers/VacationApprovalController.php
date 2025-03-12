@@ -228,6 +228,24 @@ class VacationApprovalController extends BaseController
                     $ccList[] = $guestContact->guest_email;
                     $ccList = array_unique(array_filter($ccList));
 
+                    if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
+                        $CalEmailList = explode(',', $this->user->house->CalEmailList);
+                        $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                        foreach ($users as $user) {
+                            $user->notify(new GuestVacationApprovedNotification(
+                                $ccList,
+                                $vacContent,
+                                $name,
+                                $email,
+                                $isApproved,
+                                $vacation,
+                                $houseName,
+                                $startDate,
+                                $endDate
+                            ));
+                        }
+                    }
+
                     Notification::route('mail', $ccList)
                         ->notify(new GuestVacationApprovedNotification(
                             $ccList,
@@ -247,6 +265,24 @@ class VacationApprovalController extends BaseController
                     $isApproved = $vacation->is_vac_approved === true ? 1 : 0;
                     $ccList[] = $email;
                     $ccList = array_unique(array_filter($ccList));
+
+                    if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)) {
+                        $CalEmailList = explode(',', $this->user->house->CalEmailList);
+                        $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                        foreach ($users as $user) {
+                            $user->notify(new GuestVacationApprovedNotification(
+                                $ccList,
+                                $vacContent,
+                                $name,
+                                $email,
+                                $isApproved,
+                                $vacation,
+                                $houseName,
+                                $startDate,
+                                $endDate
+                            ));
+                        }
+                    }
 
                     Notification::route('mail', $email)
                         ->notify(new GuestVacationApprovedNotification(
@@ -292,7 +328,7 @@ class VacationApprovalController extends BaseController
     {
         try {
             $this->user = Auth::user();
-            $vacationId = $request->vacationId;
+            $vacationId = $request->id;
             $vacation = Vacation::find($vacationId);
             if (!$vacation) {
                 return response()->json([
@@ -346,6 +382,13 @@ class VacationApprovalController extends BaseController
             $admin = $this->user;
             $ccList[] = $this->notificationEmail;
             $ccList = array_unique(array_filter($ccList));
+
+            if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)){
+                $users = User::whereIn('email', $this->user->house->CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                foreach ($users as $user) {
+                    $user->notify(new VacationDeniedEmailNotification($ccList,$name,$email,$vacName,$admin,$houseName,$this->startDate,$this->endDate));
+                }
+            }
 
             if ($this->notificationEmail){
                 Notification::route('mail', $ccList)
