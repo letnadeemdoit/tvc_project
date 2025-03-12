@@ -384,7 +384,8 @@ class VacationApprovalController extends BaseController
             $ccList = array_unique(array_filter($ccList));
 
             if (!is_null($this->user->house->CalEmailList) && !empty($this->user->house->CalEmailList)){
-                $users = User::whereIn('email', $this->user->house->CalEmailList)->where('HouseId', $this->user->HouseId)->get();
+                $CalEmailList = explode(',', $this->user->house->CalEmailList);
+                $users = User::whereIn('email', $CalEmailList)->where('HouseId', $this->user->HouseId)->get();
                 foreach ($users as $user) {
                     $user->notify(new VacationDeniedEmailNotification($ccList,$name,$email,$vacName,$admin,$houseName,$this->startDate,$this->endDate));
                 }
