@@ -56,7 +56,7 @@ class VacationApprovalController extends BaseController
                 $roles[] = 'Administrator';
             }
 
-            $data = Vacation::when($this->user->is_owner_only, function ($query) {
+            $vacationsData = Vacation::when($this->user->is_owner_only, function ($query) {
                 $query->where('HouseId', $this->user->HouseId)->where('OwnerId', $this->user->user_id);
             })->when($this->user->is_admin, function ($query) {
                 $query->where('HouseId', $this->user->HouseId);
@@ -81,26 +81,59 @@ class VacationApprovalController extends BaseController
                 ->whereHas('endDate', function ($query) {
                     $query->whereDate('RealDate', '<=', Carbon::parse($this->to)->format('Y-m-d'));
                 })
-                ->with('owner')
                 ->orderBy('VacationId', 'DESC')
                 ->skip($this->offSet)
                 ->take($this->limit)
                 ->get();
 
             // Iterate over the data to exclude based on role and original_owner
-            foreach ($data as $key => $d) {
+            foreach ($vacationsData as $key => $d) {
                 $ownerRole = $d->owner->role ?? '';
                 $originalOwner = $d->original_owner;
                 if ($ownerRole === 'Administrator' && is_null($originalOwner) && $this->isApproved === 'unapproved' && $d->is_vac_approved === 0) {
-                    unset($data[$key]);
+                    unset($vacationsData[$key]);
                 }
+            }
+
+            $totalVacations = Vacation::when($this->user->is_owner_only, function ($query) {
+                $query->where('HouseId', $this->user->HouseId)->where('OwnerId', $this->user->user_id);
+            })->when($this->user->is_admin, function ($query) {
+                $query->where('HouseId', $this->user->HouseId);
+            })
+                ->when($this->search !== '', function ($query) {
+                    $query->where(function ($query) {
+                        $query
+                            ->where('VacationName', 'LIKE', "%$this->search%");
+                    });
+                })
+                ->whereIn('OwnerId', function ($query) use ($houseId, $roles) {
+                    $query->select('user_id')
+                        ->from('users')
+                        ->where('HouseId', $houseId)
+                        ->whereIn('role', $roles);
+                })
+                ->where('is_vac_approved', $this->isApproved === 'unapproved' ? 0 : 1)
+                ->where('is_calendar_task', 0)
+                ->whereHas('startDate', function ($query) {
+                    $query->whereDate('RealDate', '>=', Carbon::parse($this->from)->format('Y-m-d'));
+                })
+                ->whereHas('endDate', function ($query) {
+                    $query->whereDate('RealDate', '<=', Carbon::parse($this->to)->format('Y-m-d'));
+                })
+                ->count();
+
+            $vacations = [];
+            foreach ($vacationsData as $vacation) {
+                $event = $vacation->approvalVacations();
+                    $vacations[] = $event;
             }
 
 
             $response = [
                 'success' => true,
                 'data' => [
-                    'vacations' => $data,
+                    'vacations' => $vacations,
+                    'totalVacations' => $totalVacations
                 ],
                 'message' => 'Data fetched successfully',
             ];

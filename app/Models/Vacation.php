@@ -203,6 +203,23 @@ class Vacation extends Model implements Auditable
     }
 
 
+    public function approvalVacations()
+    {
+
+        return array_merge([
+            'id' => $this->VacationId,
+            'OwnerId' => $this->OwnerId,
+            'VacationName' => $this->VacationName,
+            'start' => str_replace(' ', 'T', $this->start_datetime->format('Y-m-d H:i:s')),
+            'end' => str_replace(' ', 'T', $this->end_datetime->format('Y-m-d H:i:s')),
+            'is_vac_approved' => $this->is_vac_approved,
+            'user_role' => optional(User::where('user_id', $this->OwnerId)->first())->role,
+            'created_by' => optional(User::where('user_id', $this->OwnerId)->first())->first_name . ' ' . optional(User::where('user_id', $this->OwnerId)->first())->last_name,
+            'house_name' => optional(House::where('HouseID', primary_user()->HouseId)->first())->HouseName,
+        ], []);
+    }
+
+
 
     public function toAppCalendar()
     {

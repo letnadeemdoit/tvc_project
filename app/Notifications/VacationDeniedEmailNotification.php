@@ -88,7 +88,7 @@ class VacationDeniedEmailNotification extends Notification implements ShouldQueu
     public function toArray($notifiable)
     {
         return [
-            'content' => 'A vacation has been denied from',
+            'content' => 'Vacation has been denied from',
             'house_name' => $this->houseName,
             'start_date' => $this->startDate,
             'end_date' => $this->endDate,
