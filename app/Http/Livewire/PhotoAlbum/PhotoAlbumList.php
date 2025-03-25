@@ -74,8 +74,14 @@ class PhotoAlbumList extends Component
             ->where(function ($query) {
                 $query->whereHas('nestedAlbums', function ($query) {
                     $query->whereHas('nestedAlbums')->orWhereHas('photos');
-                })->orWhereHas('photos');
+                })->orWhereHas('photos')
+                    ->orWhereDoesntHave('photos')->orWhereDoesntHave('nestedAlbums');
             })
+//            ->where(function ($query) {
+//                $query->whereHas('nestedAlbums', function ($query) {
+//                    $query->whereHas('nestedAlbums')->orWhereHas('photos');
+//                })->orWhereHas('photos');
+//            })
             ->get();
 
         if ($this->album && $this->album->photos->count() > 0) {
@@ -86,16 +92,6 @@ class PhotoAlbumList extends Component
         }
 
         $data->shuffle();
-
-//        if ($this->sort_order){
-//            if ($this->sort_order === 'desc'){
-//                $data = $data->sortByDesc('created_at');
-//            }
-//            elseif ($this->sort_order === 'asc'){
-//                $data = $data->sortBy('created_at');
-//            }
-//        }
-
 
         if ($this->sort_order === 'desc') {
             $data = $data->sortByDesc('created_at');
