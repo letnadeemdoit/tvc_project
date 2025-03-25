@@ -38,6 +38,9 @@ class GuestBulletinsController extends BaseController
                         $query->where('slug', $this->category);
                     });
                 })
+                ->when($user->role === 'Guest', function ($query) {
+                    $query->where('is_private', 0);
+                })
                 ->skip($this->offSet)
                 ->take($this->limit)
                 ->orderBy('id', $this->order)
@@ -50,6 +53,9 @@ class GuestBulletinsController extends BaseController
                     $query->whereHas('category', function ($query) {
                         $query->where('slug', $this->category);
                     });
+                })
+                ->when($user->role === 'Guest', function ($query) {
+                    $query->where('is_private', 0);
                 })
                 ->count();
 
