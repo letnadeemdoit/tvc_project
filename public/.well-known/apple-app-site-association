@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "GW28KA98Y6.com.origins",
+        "paths": [ "/forum-share/*", "/event-share/*", "/share/*", "/topic-share/*" ]
+      }
+    ]
+  }
+}
