@@ -7,6 +7,8 @@ use App\Models\House;
 use App\Models\User;
 use App\Notifications\SendCredentialMailNotification;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -67,32 +69,44 @@ class SendCredentialsModal extends Component
 
         Validator::make($this->state, [
 
-            'password' => ['required', 'string','min:8' ,'max:50'],
+            'password' => ['required', 'string', 'min:8', 'max:50'],
 
         ])->validateWithBag('sendMailUserCU');
 
-        if (isset($this->state['password'])) {
-            $sendPasswordToMail = $this->state['password'];
 
-            $userDetails = $this->state;
+        try {
 
-            $sendmail = $this->state['email'];
+            if (isset($this->state['password'])) {
+                $sendPasswordToMail = $this->state['password'];
 
-            $user = User::where('email', $this->state['email'])->first();
-            $house = House::where('HouseID', $user->HouseId)->first();
-            $houseName = $house->HouseName;
-            $houseId = $house->HouseID;
-            $this->siteUrl = route('login', ['houseId' => $houseId]);
+                $sendmail = $this->state['email'];
 
-            $this->userCU->notify(new SendCredentialMailNotification($sendmail,$sendPasswordToMail,$user,$houseName,$this->siteUrl));
+                $user = User::where('email', $this->state['email'])->first();
+                $house = House::where('HouseID', $user->HouseId)->first();
+                $houseName = $house->HouseName;
+                $houseId = $house->HouseID;
+                $this->siteUrl = route('login', ['houseId' => $houseId]);
 
+//                $this->userCU->notify(new SendCredentialMailNotification($sendPasswordToMail, $user, $houseName, $this->siteUrl));
+
+                if ($this->userCU && $this->userCU->email) {
+                    Notification::route('mail', $this->userCU->email)
+                        ->notify(new SendCredentialMailNotification($sendPasswordToMail, $user, $houseName, $this->siteUrl));
+                }
+
+            }
+        } catch (Exception $e) {
+            Log::error('Error sending email:', [
+                'message' => $e->getMessage(),
+                'stack' => $e->getTraceAsString(),
+            ]);
         }
 
         $this->emitSelf('toggle', false);
 
         $this->emit('user-cu-successfully');
 
-        $this->success( 'Email Sent successfully');
+        $this->success('Email Sent successfully');
     }
 
 

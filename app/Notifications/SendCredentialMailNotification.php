@@ -12,8 +12,6 @@ use Illuminate\Support\HtmlString;
 class SendCredentialMailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-
-    public $sendmail;
     public $sendPasswordToMail;
     public $userDetails;
     public $houseName;
@@ -24,9 +22,8 @@ class SendCredentialMailNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($sendmail,$sendPasswordToMail,$userDetails,$houseName,$siteUrl)
+    public function __construct($sendPasswordToMail,$userDetails,$houseName,$siteUrl)
     {
-       $this->sendmail =$sendmail;
        $this->sendPasswordToMail =$sendPasswordToMail;
        $this->userDetails =$userDetails;
        $this->houseName =$houseName;

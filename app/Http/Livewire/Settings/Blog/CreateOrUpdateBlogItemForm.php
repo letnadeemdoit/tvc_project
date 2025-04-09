@@ -189,7 +189,6 @@ class CreateOrUpdateBlogItemForm extends Component
                 }
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
             Log::error('Error creating blog:', [
                 'message' => $e->getMessage(),
                 'stack' => $e->getTraceAsString(),
