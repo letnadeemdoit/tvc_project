@@ -5,6 +5,7 @@ use App\Http\Controllers\AppControllers\GuestBlogController;
 use App\Http\Controllers\AppControllers\GuestBulletinsController;
 use App\Http\Controllers\AppControllers\GuestLocalGuideController;
 use App\Http\Controllers\AppControllers\RequestToJoinVacationController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppControllers\AuthController;
@@ -42,6 +43,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Authentication Routes
 Route::post('login', [AuthController::class, 'login']);
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']);
 Route::post('guest-login', [AuthController::class, 'guestLogin']);
 Route::post('register', [AuthController::class, 'register']);
 Route::get('house-list', [AuthController::class, 'houseList']);
