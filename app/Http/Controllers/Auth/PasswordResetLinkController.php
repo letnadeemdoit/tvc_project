@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Contracts\FailedPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Contracts\RequestPasswordResetLinkViewResponse;
 use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse;
@@ -71,8 +72,12 @@ class PasswordResetLinkController extends Controller
         // Create password reset token
         $token = $this->broker()->createToken($user);
 
+        $url = URL::route('password.reset', [
+            'token' => $token,
+            'email' => $user->email,
+        ]);
         // Send custom notification
-        $user->notify(new PasswordResetEmailNotification($token, $user->email));
+        $user->notify(new PasswordResetEmailNotification($url));
 
         return app(SuccessfulPasswordResetLinkRequestResponse::class, [
             'status' => Password::RESET_LINK_SENT
