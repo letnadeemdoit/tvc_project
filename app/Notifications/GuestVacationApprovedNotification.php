@@ -92,7 +92,7 @@ class GuestVacationApprovedNotification extends Notification implements ShouldQu
     public function toArray($notifiable)
     {
         return [
-            'content' => 'Vacation'  . $this->vacContent .  'from',
+            'content' => 'Vacation'. ' ' . $this->vacContent . ' ' . 'from',
             'house_name' => $this->houseName,
             'start_date' => $this->startDate,
             'end_date' => $this->endDate,
