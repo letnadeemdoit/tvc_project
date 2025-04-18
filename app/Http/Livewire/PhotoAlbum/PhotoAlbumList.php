@@ -56,12 +56,10 @@ class PhotoAlbumList extends Component
         $this->sort_order = $this->sort_order;
     }
 
+
     public function render()
     {
-        $data = Album::
-
-//        where('house_id', $this->user->HouseId)
-        where(function ($query) {
+        $data = Album::where(function ($query) {
             $query->where('house_id', $this->user->HouseId)
                 ->orWhere('house_id', null);
         })
@@ -77,18 +75,12 @@ class PhotoAlbumList extends Component
                 })->orWhereHas('photos')
                     ->orWhereDoesntHave('photos')->orWhereDoesntHave('nestedAlbums');
             })
-//            ->where(function ($query) {
-//                $query->whereHas('nestedAlbums', function ($query) {
-//                    $query->whereHas('nestedAlbums')->orWhereHas('photos');
-//                })->orWhereHas('photos');
-//            })
             ->get();
 
         if ($this->album && $this->album->photos->count() > 0) {
             $albumPhotos = $this->album->photos;
             $sortedPhotos = $albumPhotos->sortBy('created_at');
             $data = $data->merge($sortedPhotos);
-//            $data = $data->merge($this->album->photos);
         }
 
         $data->shuffle();
@@ -102,4 +94,54 @@ class PhotoAlbumList extends Component
 
         return view('photo-album.photo-album-list', compact('data'));
     }
+
+
+
+    // Previous code
+//    public function render()
+//    {
+//        $data = Album::
+//
+////        where('house_id', $this->user->HouseId)
+//        where(function ($query) {
+//            $query->where('house_id', $this->user->HouseId)
+//                ->orWhere('house_id', null);
+//        })
+//            ->when($this->parent_id !== null, function ($query) {
+//                $query->where('parent_id', $this->parent_id)->whereNotNull('parent_id');
+//            })
+//            ->when($this->parent_id === null, function ($query) {
+//                $query->whereNull('parent_id');
+//            })
+//            ->where(function ($query) {
+//                $query->whereHas('nestedAlbums', function ($query) {
+//                    $query->whereHas('nestedAlbums')->orWhereHas('photos');
+//                })->orWhereHas('photos')
+//                    ->orWhereDoesntHave('photos')->orWhereDoesntHave('nestedAlbums');
+//            })
+////            ->where(function ($query) {
+////                $query->whereHas('nestedAlbums', function ($query) {
+////                    $query->whereHas('nestedAlbums')->orWhereHas('photos');
+////                })->orWhereHas('photos');
+////            })
+//            ->get();
+//
+//        if ($this->album && $this->album->photos->count() > 0) {
+//            $albumPhotos = $this->album->photos;
+//            $sortedPhotos = $albumPhotos->sortBy('created_at');
+//            $data = $data->merge($sortedPhotos);
+////            $data = $data->merge($this->album->photos);
+//        }
+//
+//        $data->shuffle();
+//
+//        if ($this->sort_order === 'desc') {
+//            $data = $data->sortByDesc('created_at');
+//        } else {
+//
+//            $data = $data->sortBy('created_at');
+//        }
+//
+//        return view('photo-album.photo-album-list', compact('data'));
+//    }
 }

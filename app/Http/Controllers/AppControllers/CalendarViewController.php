@@ -557,6 +557,10 @@ class CalendarViewController extends BaseController
                 if (!is_null($user->house->vacation_approval_email_list) && !empty($user->house->vacation_approval_email_list)) {
 
                     $CalEmailList = explode(',', $user->house->vacation_approval_email_list);
+                    $users = User::whereIn('email', $CalEmailList)->where('HouseId', $currentUser->HouseId)->get();
+                    foreach ($users as $us) {
+                        $us->notify(new RequestToApproveVacationEmailNotification($vacName,$this->siteUrl,$ccList,$owner_name,$vac_owner->email, $createdHouseName, $vacStartDate, $vacEndDate));
+                    }
 
                     if (count($CalEmailList) > 0 && !empty($CalEmailList)) {
                         if (count($CalEmailList) > 0) {
