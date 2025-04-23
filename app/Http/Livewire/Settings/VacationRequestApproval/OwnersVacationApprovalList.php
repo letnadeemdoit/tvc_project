@@ -135,7 +135,7 @@ class OwnersVacationApprovalList extends Component
                 'is_vac_approved' => !!$toggle,
                 'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : ($ownerRole === 'Administrator' ? $vacation->original_owner : $owner->user_id),
 //                'HouseId' => $ownerRole === 'Guest' ? $vacation->HouseId : ($ownerRole === 'Administrator' ? $vacation->HouseId : $owner->HouseId),
-                'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : ($ownerRole === 'Administrator' ? '#CCCCCC' : $vacation->BackGrndColor),
+                'BackGrndColor' => $ownerRole === 'Guest' ? '#E8604C' : ($ownerRole === 'Administrator' ? '#CCCCCC' : $vacation->BackGrndColor),
             ]
         );
         $recurringVacations = $vacation->recurrings;
@@ -144,7 +144,7 @@ class OwnersVacationApprovalList extends Component
                 $recurringVacation->update([
                     'is_vac_approved' => !!$toggle,
                     'OwnerId' => $ownerRole === 'Guest' ? primary_user()->user_id : ($ownerRole === 'Administrator' ? $vacation->original_owner : $owner->user_id),
-                    'BackGrndColor' => $ownerRole === 'Guest' ? '#FF5733' : ($ownerRole === 'Administrator' ? '#CCCCCC' : $vacation->BackGrndColor),
+                    'BackGrndColor' => $ownerRole === 'Guest' ? '#E8604C' : ($ownerRole === 'Administrator' ? '#CCCCCC' : $vacation->BackGrndColor),
                 ]);
             }
         }
@@ -162,7 +162,7 @@ class OwnersVacationApprovalList extends Component
 
             if ($guestContact && $guestContact->guest_id) {
                 $guestContact->update([
-                    'guest_vac_color' => $ownerRole === 'Guest' ? '#FF5733' : '#CCCCCC',
+                    'guest_vac_color' => $ownerRole === 'Guest' ? '#E8604C' : '#CCCCCC',
                     'is_approved' => $ownerRole === 'Guest' ? 1 : 0,
                 ]);
 

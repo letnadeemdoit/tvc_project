@@ -407,5 +407,41 @@ class VacationApprovalController extends BaseController
 
     }
 
+    /**
+     * Get count of vacations pending admin approval
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPendingApprovalCount()
+    {
+        try {
+            $this->user = Auth::user();
+            $houseId = $this->user->HouseId;
+            $roles = ['Owner','Guest'];
+
+            $count = Vacation::where('HouseId', $this->user->HouseId)
+            ->whereIn('OwnerId', function ($query) use ($houseId, $roles) {
+                $query->select('user_id')
+                    ->from('users')
+                    ->where('HouseId', $houseId)
+                    ->whereIn('role', $roles);
+            })
+            ->where('is_vac_approved', 0)
+            ->where('is_calendar_task', 0)
+            ->count();
+
+            $response = [
+                'success' => true,
+                'data' => [
+                    'count' => $count
+                ],
+                'message' => 'Count fetched successfully',
+            ];
+            return response()->json($response, 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
 
 }

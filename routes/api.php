@@ -197,6 +197,7 @@ Route::middleware([
                 Route::get('/vacation-list', 'getVacationList');
                 Route::post('/is-approve', 'approveVacation');
                 Route::delete('/reject-vacation', 'rejectVacation');
+                Route::get('/get-approval-vacations-count', 'getPendingApprovalCount');
             });
 
         Route::controller(PaypalController::class)
