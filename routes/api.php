@@ -162,6 +162,7 @@ Route::middleware([
                 Route::get('/notifications-list', 'notificationsList');
                 Route::get('/read-notification', 'readNotification');
                 Route::get('/read-all-notifications', 'readAllNotifications');
+                Route::get('/notifications-count', 'notificationsCount');
             });
 
         Route::controller(CalendarViewController::class)

@@ -83,7 +83,7 @@ class AdminNotificationsController extends BaseController
         }
     }
 
-
+    
 
     /**
      * Read All Notifications api
@@ -105,5 +105,30 @@ class AdminNotificationsController extends BaseController
         }
     }
 
+
+    /**
+     * Count unread notifications for a specific house
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function notificationsCount(Request $request)
+    {
+        try {
+
+            $user = Auth::user();
+            $count = $user->unreadNotifications()->count();
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'count' => $count
+                ],
+                'message' => 'Unread notifications count retrieved successfully',
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->sendError('An error occurred: ' . $e->getMessage(), []);
+        }
+    }
 
 }

@@ -8,6 +8,8 @@ use App\Models\Subscription;
 use App\Models\User;
 use App\Models\World\Country;
 use App\Models\World\State;
+use App\Notifications\NewUserAccountNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +19,7 @@ use Laravel\Jetstream\Jetstream;
 class AuthController extends BaseController
 {
     public $newUser;
+    public $siteUrl;
 
     /**
      * Login api
@@ -367,6 +370,24 @@ class AuthController extends BaseController
                 'email' => $this->newUser->email
             ];
             $success['subscription'] = null;
+
+            $this->siteUrl = route('login', ['houseId' => $getCreatedHouseId->HouseID]);
+
+            try {
+                $firstName = $input['first_name'];
+                $lastName = $input['last_name'];
+                $userName = $input['user_name'];
+                $email = $input['email'];
+                $houseName = $input['HouseName'];
+                if($this->newUser){
+                    Notification::route('mail', $input['email'])
+                    ->notify(new NewUserAccountNotification($firstName,$lastName, $userName,$email,$houseName,$this->siteUrl));
+                }
+    
+            } catch (\Exception $e) {
+                return $this->sendError($e->getMessage(), []);
+            }
+
             return $this->sendResponse($success, 'User registered successfully.');
 
         }
