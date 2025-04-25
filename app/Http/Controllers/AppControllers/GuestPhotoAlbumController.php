@@ -141,7 +141,7 @@ class GuestPhotoAlbumController extends BaseController
 
                 $data->each(function ($album) use (&$photosCount) {
                     $album->image = $album->getFileUrl();
-                    $album->photos = $album->getRelevantPhotos($album->id);
+                    $album->photos = $album->getRelevantPhotos($album->id,$this->user->HouseId);
                     $photosCount += $album->photos->count();
                 });
 
@@ -164,13 +164,13 @@ class GuestPhotoAlbumController extends BaseController
             if ($this->album) {
                 if (is_null($this->album->house_id)) {
                     // If album's house_id is null, fetch photos by user's HouseId
-                    $photos = Photo::where('album_id',$this->album->id)->where('HouseId', $this->album->house_id)
+                    $photos = Photo::where('album_id',$this->album->id)->where('HouseId', $this->user->HouseId)
                         ->orderBy('created_at', $this->sort_order)
                         ->skip($this->offSet)
                         ->take($this->limit)
                         ->get();
 
-                    $photosCount = Photo::where('album_id',$this->album->id)->where('HouseId', $this->album->house_id)->count();
+                    $photosCount = Photo::where('album_id',$this->album->id)->where('HouseId', $this->user->HouseId)->count();
                 } else {
                     // If album has a house_id, fetch by album_id only
                     $photos = $this->album->photos()
