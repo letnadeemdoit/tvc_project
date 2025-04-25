@@ -6,6 +6,7 @@ use App\Models\Blog\Blog;
 use App\Models\House;
 use App\Models\Traits\HasFile;
 use App\Models\User;
+use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -40,6 +41,18 @@ class Album extends Model implements Auditable
     public function photos() {
         return $this->hasMany(Photo::class);
     }
+
+    public function getRelevantPhotos($albumId)
+    {
+        if ($this->house_id === null) {
+            // Fetch photos by house_id
+            return Photo::where('album_id',$albumId)->where('HouseId', Auth::user()->HouseId)->get();
+        }
+
+        // Otherwise fetch via album_id
+        return $this->photos()->get();
+    }
+
 
 
     protected function defaultFileUrl($column = 'image')

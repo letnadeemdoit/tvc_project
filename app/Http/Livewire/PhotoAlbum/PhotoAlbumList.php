@@ -77,11 +77,25 @@ class PhotoAlbumList extends Component
             })
             ->get();
 
-        if ($this->album && $this->album->photos->count() > 0) {
-            $albumPhotos = $this->album->photos;
-            $sortedPhotos = $albumPhotos->sortBy('created_at');
-            $data = $data->merge($sortedPhotos);
-        }
+            $photos = collect();
+
+            if ($this->album) {
+                if (is_null($this->album->house_id)) {
+                    // album is general, fetch photos by house_id
+                    $photos = Photo::where('album_id', $this->album->id)->where('HouseId', $this->user->HouseId)->get();
+                } else {
+                    // album belongs to house, fetch photos by album_id
+                    $photos = $this->album->photos()->get();
+                }
+        
+                $data = $data->merge($photos);
+            }
+
+        // if ($this->album && $this->album->photos->count() > 0) {
+        //     $albumPhotos = $this->album->photos;
+        //     $sortedPhotos = $albumPhotos->sortBy('created_at');
+        //     $data = $data->merge($sortedPhotos);
+        // }
 
         $data->shuffle();
 

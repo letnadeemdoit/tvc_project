@@ -6,6 +6,7 @@ use App\Http\Livewire\Traits\Toastr;
 use App\Models\Photo\Album;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 
 class CreateOrUpdatePhotoAlbum extends Component
@@ -84,7 +85,10 @@ class CreateOrUpdatePhotoAlbum extends Component
         }
 
         Validator::make($inputs, [
-            'name' => 'required|string|max:100',
+            'name' => [
+                'required', 'string', 'max:100',
+                Rule::unique('albums'),
+            ],
             'image' => 'nullable|mimes:png,jpg,gif,tiff',
             'description' => 'nullable|string|max:255',
         ])->validateWithBag('saveAlbumCU');

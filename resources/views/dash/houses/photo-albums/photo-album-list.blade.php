@@ -110,8 +110,16 @@
 
                         <td>
                             <div class="btn-group" role="group" aria-label="Edit group">
-
-                                @if(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR)
+                                @if(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR && $dt->name === 'General')
+                                    <button 
+                                        type="button"
+                                        class="btn btn-secondary btn-sm"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#generalPhotoAlbum{{$dt->id}}Model""
+                                    >
+                                        <i class="bi-pencil me-1 text-success"></i> Edit
+                                    </button>
+                                @elseif(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR)
                                     <a class="btn btn-white" href="#"
                                        wire:click="$emit('showAlbumCUModal', true, {{$dt->id}})"
                                     >
@@ -133,7 +141,17 @@
                                     @endif
                                 @else
 
-                                    @if(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR)
+                                    @if(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR && $dt->name === 'General')
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#generalPhotoAlbum{{$dt->id}}Model"
+                                        >
+                                            <i class="bi-trash"></i>
+                                        </button>
+
+                                    @elseif(auth()->user()->role === \App\Models\User::ROLE_ADMINISTRATOR)
                                         <button
                                             type="button"
                                             class="btn btn-danger btn-sm"
@@ -172,6 +190,33 @@
                                         <p class="fw-500 fs-15">First of all you need to switch your photo items or
                                             nested albums to
                                             another album or remove.</p>
+                                        <div class="btn-group my-2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade hideableModal" id="generalPhotoAlbum{{$dt->id}}Model" tabindex="-1"
+                             aria-labelledby="deleteConfirmation{{ $dt->id ?? 0 }}ModalLabel" aria-hidden="true"
+                             wire:ignore.self>
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <div>
+                                          <span class="rounded-circle text-primary border-primary"
+                                                style="padding: 4px 9px; font-size: 26px; line-height: 75px;border: 3px solid;">
+                                            <i class="bi-exclamation"></i>
+                                        </span>
+                                        </div>
+
+                                        <h4 class="fw-bold text-center my-3"
+                                            style="color: #00000090">You can't edit of delete this Album</h4>
+                                        <p class="fw-500 fs-15">Its a General album you can not edit or delete this album.</p>
                                         <div class="btn-group my-2">
                                         </div>
                                     </div>

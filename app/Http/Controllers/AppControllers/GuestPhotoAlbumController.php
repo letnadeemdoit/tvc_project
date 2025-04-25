@@ -112,7 +112,8 @@ class GuestPhotoAlbumController extends BaseController
                 $this->album = null;
             }
 
-            $data = Album::with(['nestedAlbums', 'photos'])
+            $photosCount = 0;
+            $data = Album::with(['nestedAlbums'])
                 ->with(['house' => function ($query) {
                     $query->select('HouseID', 'HouseName');
                 }])
@@ -138,24 +139,50 @@ class GuestPhotoAlbumController extends BaseController
                 ->take($this->limit)
                 ->get();
 
-//            if ($this->album && $this->album->photos->isNotEmpty()) {
-//                $albumPhotos = $this->album->photos;
-//                $sortedPhotos = $this->sort_order === 'desc'
-//                    ? $albumPhotos->sortByDesc('created_at')
-//                    : $albumPhotos->sortBy('created_at');
-//                $data = $data->merge($sortedPhotos);
-//            }
+                $data->each(function ($album) use (&$photosCount) {
+                    $album->image = $album->getFileUrl();
+                    $album->photos = $album->getRelevantPhotos($album->id);
+                    $photosCount += $album->photos->count();
+                });
 
-            if ($this->album && $this->album->photos->isNotEmpty()) {
-                $albumPhotos = $this->album->photos()
-                    ->orderBy('created_at', $this->sort_order)
-                    ->skip($this->offSet)
-                    ->take($this->limit)
-                    ->get();
-                // Store count separately
-                $photosCount = $this->album->photos()->count();
+            // if ($this->album && $this->album->photos->isNotEmpty()) {
+            //     $albumPhotos = $this->album->photos()
+            //         ->orderBy('created_at', $this->sort_order)
+            //         ->skip($this->offSet)
+            //         ->take($this->limit)
+            //         ->get();
+            //     // Store count separately
+            //     $photosCount = $this->album->photos()->count();
 
-                $data = $data->merge($albumPhotos);
+            //     $data = $data->merge($albumPhotos);
+            // }
+
+
+                    // Fetch photos according to new condition
+            $photos = collect();
+
+            if ($this->album) {
+                if (is_null($this->album->house_id)) {
+                    // If album's house_id is null, fetch photos by user's HouseId
+                    $photos = Photo::where('album_id',$this->album->id)->where('HouseId', $this->album->house_id)
+                        ->orderBy('created_at', $this->sort_order)
+                        ->skip($this->offSet)
+                        ->take($this->limit)
+                        ->get();
+
+                    $photosCount = Photo::where('album_id',$this->album->id)->where('HouseId', $this->album->house_id)->count();
+                } else {
+                    // If album has a house_id, fetch by album_id only
+                    $photos = $this->album->photos()
+                        ->orderBy('created_at', $this->sort_order)
+                        ->skip($this->offSet)
+                        ->take($this->limit)
+                        ->get();
+
+                    $photosCount = $this->album->photos()->count();
+                }
+
+                $data = $data->merge($photos);
             }
 
             if ($this->sort_order === 'desc') {
