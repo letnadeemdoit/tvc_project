@@ -6,7 +6,6 @@ use App\Models\Blog\Blog;
 use App\Models\House;
 use App\Models\Traits\HasFile;
 use App\Models\User;
-use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -44,27 +43,23 @@ class Album extends Model implements Auditable
 
     public function getRelevantPhotos($albumId,$userHouseId)
     {
-            // Fetch photos by house_id
-            return Photo::where('album_id',$albumId)->where('HouseId', $userHouseId)->get();
+        return Photo::where('album_id',$albumId)->where('HouseId', $userHouseId)->get();
     }
-
-
 
     protected function defaultFileUrl($column = 'image')
     {
         $photo = $this->photos()->inRandomOrder()->first();
-
-        if (!$photo) {
-            $nestedAlbum = $this->nestedAlbums()->first();
-            if ($nestedAlbum) {
-                return $nestedAlbum->getFileUrl();
-            }
-        } else {
+    
+        if ($photo && ($photo->path != null && $photo->HouseId == auth()->user()->HouseId)) {
             return $photo->getFileUrl('path');
         }
-
+    
+        $nestedAlbum = $this->nestedAlbums()->first();
+        if ($nestedAlbum && ($nestedAlbum->image != null && $nestedAlbum->house_id == auth()->user()->HouseId)) {
+            return $nestedAlbum->getFileUrl();
+        }
+    
         return asset("images/photo-album/vacation-calendar.png");
-        // return 'https://images.unsplash.com/photo-1661688625912-8d0191156923?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
     }
 
     public function house()
