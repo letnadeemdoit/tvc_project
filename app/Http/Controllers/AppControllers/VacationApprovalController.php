@@ -430,10 +430,13 @@ class VacationApprovalController extends BaseController
             ->where('is_calendar_task', 0)
             ->count();
 
+            $notificationsCount = $this->user->unreadNotifications()->count();
+
             $response = [
                 'success' => true,
                 'data' => [
-                    'count' => $count
+                    'count' => $count,
+                    'notificationsCount' => $notificationsCount
                 ],
                 'message' => 'Count fetched successfully',
             ];
