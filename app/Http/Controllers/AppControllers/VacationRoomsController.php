@@ -88,7 +88,7 @@ class VacationRoomsController extends BaseController
             $response = [
                 'success' => true,
                 'data' => [
-                    'vacation' => $vacation,
+                    'vacation' => $vacation->toAppCalendar(),
                 ],
                 'message' => 'Data fetched successfully',
             ];
