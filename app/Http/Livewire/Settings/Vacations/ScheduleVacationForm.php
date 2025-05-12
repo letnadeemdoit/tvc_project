@@ -388,7 +388,8 @@ class ScheduleVacationForm extends Component
 
         if ($this->isCreating) {
             $this->vacation->HouseId = $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId;
-            $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
+            $this->vacation->OwnerId = $this->user->user_id;
+//            $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
         }
 
         $this->vacation->BackGrndColor = $this->state['background_color'];
@@ -453,7 +454,8 @@ class ScheduleVacationForm extends Component
                         'EndDateId' => $endDate->DateId,
                         'EndTimeId' => $endTime->timeid,
                         'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
-                        'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
+                        'OwnerId' => $this->user->user_id,
+//                        'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
                         'is_vac_approved' => $this->user->is_owner_only && $this->isOwnerVacApproval ? 1: 0,
                     ]);
                 }
@@ -588,7 +590,8 @@ class ScheduleVacationForm extends Component
                                 'EndDateId' => $endDate->DateId,
                                 'EndTimeId' => $endTime->timeid,
                                 'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
-                                'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
+                                'OwnerId' => $this->user->user_id,
+//                                'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
                                 'is_vac_approved' => $this->vacation->is_vac_approved,
                             ]);
                         }
@@ -774,7 +777,8 @@ class ScheduleVacationForm extends Component
         }
         if ($this->isCreating) {
             $this->vacation->HouseId = $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId;
-            $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
+            $this->vacation->OwnerId = $this->user->user_id;
+//            $this->vacation->OwnerId = $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id;
         }
 
         $this->vacation->BackGrndColor = $this->state['background_color'];
@@ -839,7 +843,8 @@ class ScheduleVacationForm extends Component
                         'EndDateId' => $endDate->DateId,
                         'EndTimeId' => $endTime->timeid,
                         'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
-                        'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
+                        'OwnerId' => $this->user->user_id,
+//                        'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
                     ]);
                 }
 
@@ -969,7 +974,8 @@ class ScheduleVacationForm extends Component
                                 'EndDateId' => $endDate->DateId,
                                 'EndTimeId' => $endTime->timeid,
                                 'HouseId' => $this->user->is_admin ? ($this->house ?? $this->user->HouseId) : $this->user->HouseId,
-                                'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
+                                'OwnerId' => $this->user->user_id,
+//                                'OwnerId' => $this->user->is_admin ? ($this->owner ?? $this->user->user_id) : $this->user->user_id,
                             ]);
                         }
 
