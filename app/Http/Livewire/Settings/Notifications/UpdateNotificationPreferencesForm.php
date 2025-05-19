@@ -35,6 +35,16 @@ class UpdateNotificationPreferencesForm extends Component
         return view('dash.settings.notifications.update-notification-preferences-form');
     }
 
+    protected function normalizeEmailList(?string $emailList): ?string
+    {
+        if (empty($emailList)) {
+            return $emailList;
+        }
+
+        // Trim ends and remove spaces before and after commas
+        return preg_replace('/\s*,\s*/', ',', trim($emailList));
+    }
+
     public function updateNotificationPreferences()
     {
         $this->resetErrorBag();
@@ -42,107 +52,62 @@ class UpdateNotificationPreferencesForm extends Component
         Validator::make($this->state, [
             'calendar_email_list' => [
                 'nullable',
-                'not_regex:/\s,|,\s/',
-                (new Delimited('email'))->separatedBy(',')->max(50),
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
             ],
             'vacation_approval_email_list' => [
                 'nullable',
-                'not_regex:/\s,|,\s/',
-                (new Delimited('email'))->separatedBy(',')->max(50),
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
             ],
             'blog_email_list' => [
                 'nullable',
-                'not_regex:/\s,|,\s/',
-                (new Delimited('email'))->separatedBy(',')->max(50),
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
             ],
             'request_to_use_house_email_list' => [
                 'nullable',
-                'not_regex:/\s,|,\s/',
-                (new Delimited('email'))->separatedBy(',')->max(50),
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
             ],
             'local_guide_email_list' => [
                 'nullable',
-                'not_regex:/\s,|,\s/',
-                (new Delimited('email'))->separatedBy(',')->max(50),
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
             ],
             'guest_book_email_list' => [
                 'nullable',
-                'not_regex:/\s,|,\s/',
-                (new Delimited('email'))->separatedBy(',')->max(50),
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
             ],
             'photo_email_list' => [
                 'nullable',
-                'not_regex:/\s,|,\s/',
-                (new Delimited('email'))->separatedBy(',')->max(50),
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
             ],
             'food_item_list' => [
                 'nullable',
-                'not_regex:/\s,|,\s/',
-                (new Delimited('email'))->separatedBy(',')->max(50),
+                (new Delimited('email'))
+                    ->separatedBy(',')
+                    ->max(50)
             ],
-        ], [
-            '*.not_regex' => 'Email addresses must be separated by commas with no spaces: `foo@bar.com,baz@qux.com`.',
         ])->validateWithBag('updateNotificationPreferences');
 
-//        Validator::make($this->state, [
-//            'calendar_email_list' => [
-//                'nullable',
-//                (new Delimited('email'))
-//                    ->separatedBy(',')
-//                    ->max(50)
-//            ],
-//            'vacation_approval_email_list' => [
-//                'nullable',
-//                (new Delimited('email'))
-//                    ->separatedBy(',')
-//                    ->max(50)
-//            ],
-//            'blog_email_list' => [
-//                'nullable',
-//                (new Delimited('email'))
-//                    ->separatedBy(',')
-//                    ->max(50)
-//            ],
-//            'request_to_use_house_email_list' => [
-//                'nullable',
-//                (new Delimited('email'))
-//                    ->separatedBy(',')
-//                    ->max(50)
-//            ],
-//            'local_guide_email_list' => [
-//                'nullable',
-//                (new Delimited('email'))
-//                    ->separatedBy(',')
-//                    ->max(50)
-//            ],
-//            'guest_book_email_list' => [
-//                'nullable',
-//                (new Delimited('email'))
-//                    ->separatedBy(',')
-//                    ->max(50)
-//            ],
-//            'photo_email_list' => [
-//                'nullable',
-//                (new Delimited('email'))
-//                    ->separatedBy(',')
-//                    ->max(50)
-//            ],
-//            'food_item_list' => [
-//                'nullable',
-//                (new Delimited('email'))
-//                    ->separatedBy(',')
-//                    ->max(50)
-//            ],
-//        ])->validateWithBag('updateNotificationPreferences');
-
-        $this->house->CalEmailList = $this->state['calendar_email_list'] ?? null;
-        $this->house->vacation_approval_email_list = $this->state['vacation_approval_email_list'] ?? null;
-        $this->house->BlogEmailList = $this->state['blog_email_list'] ?? null;
-        $this->house->request_to_use_house_email_list = $this->state['request_to_use_house_email_list'] ?? null;
-        $this->house->local_guide_email_list = $this->state['local_guide_email_list'] ?? null;
-        $this->house->guest_book_email_list = $this->state['guest_book_email_list'] ?? null;
-        $this->house->photo_email_list = $this->state['photo_email_list'] ?? null;
-        $this->house->food_item_list = $this->state['food_item_list'] ?? null;
+        $this->house->CalEmailList                    = $this->normalizeEmailList($this->state['calendar_email_list'] ?? null);
+        $this->house->vacation_approval_email_list    = $this->normalizeEmailList($this->state['vacation_approval_email_list'] ?? null);
+        $this->house->BlogEmailList                   = $this->normalizeEmailList($this->state['blog_email_list'] ?? null);
+        $this->house->request_to_use_house_email_list = $this->normalizeEmailList($this->state['request_to_use_house_email_list'] ?? null);
+        $this->house->local_guide_email_list          = $this->normalizeEmailList($this->state['local_guide_email_list'] ?? null);
+        $this->house->guest_book_email_list           = $this->normalizeEmailList($this->state['guest_book_email_list'] ?? null);
+        $this->house->photo_email_list                = $this->normalizeEmailList($this->state['photo_email_list'] ?? null);
+        $this->house->food_item_list                  = $this->normalizeEmailList($this->state['food_item_list'] ?? null);
         $this->house->save();
 
         $this->emit('saved');
