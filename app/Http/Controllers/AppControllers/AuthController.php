@@ -383,7 +383,7 @@ class AuthController extends BaseController
                     Notification::route('mail', $input['email'])
                     ->notify(new NewUserAccountNotification($firstName,$lastName, $userName,$email,$houseName,$this->siteUrl));
                 }
-    
+
             } catch (\Exception $e) {
                 return $this->sendError($e->getMessage(), []);
             }
@@ -421,6 +421,25 @@ class AuthController extends BaseController
             ], 500);
         }
     }
+
+    public function deleteUserAccount(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $user->currentAccessToken()->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'User account deleted successfully.',
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
 
 
 }

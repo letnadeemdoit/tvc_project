@@ -128,6 +128,7 @@ Route::prefix('guest')->middleware('auth:sanctum')->group(function () {
         ->prefix('user')
         ->group(function () {
             Route::get('/auth-user', 'getAuthUser');
+            Route::delete('/delete-user', 'deleteUserAccount');
         });
 
     Route::controller(UserProfileController::class)
