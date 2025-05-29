@@ -37,7 +37,7 @@ class AuthController extends BaseController
             ]);
 
             // Determine if the input is an email or a username
-            $credentials = ['password' => $request->password, 'HouseID' => $request->houseId];
+            $credentials = ['password' => $request->password, 'HouseID' => $request->houseId, 'is_confirmed' => 1];
 
             if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
                 $credentials['email'] = $request->email;
@@ -426,6 +426,17 @@ class AuthController extends BaseController
     {
         try {
             $user = Auth::user();
+            $isConfirmedValue = 0;
+            $usersOwner = User::where('parent_id', $user->parent_id)->where('email', $user->email)->whereIn('role', ['Administrator','Owner'])->get();
+            if (count($usersOwner) > 0){
+                foreach ($usersOwner as $owner){
+                    $owner->update(['is_confirmed' => $isConfirmedValue]);
+                }
+            }
+            else{
+                $guestUser = User::where('parent_id', $user->parent_id)->where('HouseId', $user->HouseId)->where('role', 'Guest')->first();
+                $guestUser->update(['is_confirmed' => $isConfirmedValue]);
+            }
             $user->currentAccessToken()->delete();
             return response()->json([
                 'success' => true,
