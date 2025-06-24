@@ -22,7 +22,13 @@ class CheckSubscriptionStatusOnPaypal
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check()) {
+        $Is_Subscription = Subscription::where([
+            'user_id' => primary_user()->user_id,
+            'house_id' => primary_user()->HouseId,
+            'platform' => 'apple',
+            'status' => 'ACTIVE',
+        ])->whereIn('plan', ['basic', 'standard', 'premium'])->exists();
+        if (auth()->check() && !$Is_Subscription) {
             $paypal = PayPal::setProvider();
             $paypal->getAccessToken();
             $user = auth()->user();

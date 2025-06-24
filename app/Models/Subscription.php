@@ -23,7 +23,11 @@ class Subscription extends Model
         'plan',
         'period',
         'is_migrated',
-        'status'
+        'status',
+        'platform',
+        'apple_jwt_token',
+        'expires_at',
+        'transaction_type',
     ];
 
     protected $casts = [

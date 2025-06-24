@@ -15,6 +15,7 @@ use App\Http\Controllers\AppControllers\AdminGuestBookController;
 use App\Http\Controllers\AppControllers\AdminFoodItemsController;
 use App\Http\Controllers\AppControllers\VacationApprovalController;
 use App\Http\Controllers\AppControllers\PaypalController;
+use App\Http\Controllers\AppControllers\AppleSubscriptionController;
 use App\Http\Controllers\AppControllers\UserProfileController;
 use App\Http\Controllers\AppControllers\CalendarViewController;
 use App\Http\Controllers\AppControllers\CalendarTaskController;
@@ -211,6 +212,13 @@ Route::middleware([
 
             });
 
+//        Route::controller(AppleSubscriptionController::class)
+//            ->prefix('/apple')
+//            ->group(function () {
+//                Route::get('/revise-subscription', 'reviseSubscriptionByApple');
+//                Route::get('/cancel-subscription', 'cancelAppleSubscription');
+//            });
+
         Route::controller(HouseSettingsController::class)
             ->prefix('/house-settings')
             ->group(function () {
@@ -243,5 +251,11 @@ Route::middleware([
                 Route::get('/plans-and-pricing', 'planAndPricing');
                 Route::get('/reset', 'resetSubscription');
 
+            });
+
+        Route::controller(AppleSubscriptionController::class)
+            ->prefix('/apple')
+            ->group(function () {
+                Route::post('/process-subscription', 'processAppleSubscription');
             });
     });
