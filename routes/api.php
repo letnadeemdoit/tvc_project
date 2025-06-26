@@ -257,5 +257,7 @@ Route::middleware([
             ->prefix('/apple')
             ->group(function () {
                 Route::post('/process-subscription', 'processAppleSubscription');
+                Route::post('/cancel-subscription', 'cancelSubscription');
+                Route::post('/sync-subscription', 'syncSubscription');
             });
     });
