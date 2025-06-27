@@ -2,15 +2,17 @@
     <x-slot name="title">
         Billing
     </x-slot>
-    <x-slot name="headerRightActions">
-        <div class="col-sm-auto">
-            <a
-                href="#!"
-                data-bs-toggle="modal" data-bs-target="#unsubscribeModal"
-                class="form-check-select-stretched-btn btn btn-primary"
-            >Unsubscribe</a>
-        </div>
-    </x-slot>
+    @if(!$user->appleSubscription())
+        <x-slot name="headerRightActions">
+            <div class="col-sm-auto">
+                <a
+                    href="#!"
+                    data-bs-toggle="modal" data-bs-target="#unsubscribeModal"
+                    class="form-check-select-stretched-btn btn btn-primary"
+                >Unsubscribe</a>
+            </div>
+        </x-slot>
+    @endif
 
     @if(session()->has('status'))
         <div class="alert alert-soft-success" role="alert">

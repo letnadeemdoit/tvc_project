@@ -39,6 +39,7 @@
 {{--                    <th>User</th>--}}
 {{--                    <th>House</th>--}}
                     <th>Subscription ID</th>
+                    <th>Platform</th>
                     <th>Plan</th>
                     <th>Period</th>
                     <th>Status</th>
@@ -55,6 +56,11 @@
 {{--                        <td>{{$dt->user->user_name ?? ''}}</td>--}}
 {{--                        <td class="text-capitalize">{{$dt->house->HouseName ?? ''}}</td>--}}
                         <td>{{$dt->subscription_id ?? ''}}</td>
+                        <td class="text-capitalize">
+                            <span class="badge bg-warning">
+                                {{$dt->platform ?? ''}}
+                            </span>
+                        </td>
                         <td class="text-capitalize">
                             <span class="badge
 

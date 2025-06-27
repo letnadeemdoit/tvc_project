@@ -23,7 +23,13 @@
         </div>
     @endif
 
-    <livewire:plans-and-pricing.plans-and-pricing-list :user="$user"/>
+    @if($user->appleSubscription() && $user->appleSubscription()->status === 'ACTIVE')
+        <div class="alert alert-soft-success d-flex justify-content-between align-items-center" role="alert">
+            <p class="font-bold">This account currently has an active <span class="font-bold badge bg-warning">Apple</span> subscription with the  <span class="font-bold badge bg-warning">{{$user->appleSubscription()->plan}}  {{$user->appleSubscription()->period}}</span> Plan. To update the plan, please login through the mobile application.</p>
+        </div>
+    @else
+        <livewire:plans-and-pricing.plans-and-pricing-list :user="$user"/>
+    @endif
 
 </x-dashboard-layout>
 

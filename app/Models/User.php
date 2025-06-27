@@ -384,4 +384,20 @@ class User extends Authenticatable implements Auditable
         $this->notify(new EmailVerificationNotification());
     }
 
+    /**
+     * Get user apple subscription.
+     *
+     * @return void
+     */
+    public function appleSubscription()
+    {
+        $appleSubscription = Subscription::where([
+            'user_id' => $this->user_id,
+            'house_id' => $this->HouseId,
+            'platform' => 'apple',
+            'status' => 'ACTIVE',
+        ])->first();
+        return $appleSubscription;
+    }
+
 }
