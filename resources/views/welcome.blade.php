@@ -81,7 +81,7 @@
             <div class="container text-center text-md-start">
                 <p class="mb-1 display-4 text-primary font-vintage">Keep track of when</p>
                 <h1 class="hero-text py-4 poppins-bold text-dark-blue">Your Vacation <br> Home is in Use</h1>
-{{--                <a href="{{route('register')}}" class="btn btn-lg btn-signup btn-primary shadow-lg my-2">GET STARTED</a>--}}
+                <a href="{{route('register')}}" class="btn btn-lg btn-signup btn-primary shadow-lg my-2">GET STARTED</a>
                 <div class="position-relative mt-5 pt-2 pt-lg-5 max-width">
                     <img src="/images/images-home/rounded-arrow.svg"
                          class="img-fluid position-absolute end-0 mt-n100 d-none d-lg-block" alt="arrow"/>
@@ -126,8 +126,8 @@
                                 calendar, or mountain house calendar, this site works great for anybody looking for a
                                 vacation home calendar. Check out the main features below.
                             </p>
-{{--                            <a href="{{route('register')}}"--}}
-{{--                               class="btn btn-lg btn-signup btn-primary shadow-lg mt-3">SIGN UP</a>--}}
+                            <a href="{{route('register')}}"
+                               class="btn btn-lg btn-signup btn-primary shadow-lg mt-3">SIGN UP</a>
                         </div>
                     </div>
                     <div class="col-lg-3 mt-4 mt-lg-0 offset-lg-1 offset-xl-2 d-none d-lg-block">
