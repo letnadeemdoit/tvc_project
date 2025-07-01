@@ -126,8 +126,8 @@
                                 calendar, or mountain house calendar, this site works great for anybody looking for a
                                 vacation home calendar. Check out the main features below.
                             </p>
-                            <a href="{{route('register')}}"
-                               class="btn btn-lg btn-signup btn-primary shadow-lg mt-3">SIGN UP</a>
+{{--                            <a href="{{route('register')}}"--}}
+{{--                               class="btn btn-lg btn-signup btn-primary shadow-lg mt-3">SIGN UP</a>--}}
                         </div>
                     </div>
                     <div class="col-lg-3 mt-4 mt-lg-0 offset-lg-1 offset-xl-2 d-none d-lg-block">
