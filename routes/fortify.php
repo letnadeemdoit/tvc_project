@@ -76,7 +76,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
             ->middleware(['guest:'.config('fortify.guard')]);
     }
 
-    // Email Verification...
+    // Email Verification..
     if (Features::enabled(Features::emailVerification())) {
         if ($enableViews) {
             Route::get('/email/verify', [EmailVerificationPromptController::class, '__invoke'])
